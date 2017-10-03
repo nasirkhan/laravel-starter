@@ -13,7 +13,6 @@ class BackendController extends Controller
      */
     public function index()
     {
-        return "ok";
-        return view('backend.dashboard');
+        return view('backend.index');
     }
 }
