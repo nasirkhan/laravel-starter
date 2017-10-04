@@ -23,55 +23,10 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-    <header class="app-header navbar">
-        <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">☰</button>
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler sidebar-minimizer d-md-down-none" type="button">☰</button>
 
-        <ul class="nav navbar-nav d-md-down-none">
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Users</a>
-            </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Settings</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
-            </li>
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-list"></i></a>
-            </li>
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="img/avatars/6.jpg" class="img-avatar" alt="{{ Auth::user()->name }}">
-                    <span class="d-md-down-none">{{ Auth::user()->name }}</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header text-center">
-                        <strong>Account</strong>
-                    </div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
-
-                    <div class="dropdown-header text-center">
-                        <strong>Settings</strong>
-                    </div>
-                    <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-        <button class="navbar-toggler aside-menu-toggler" type="button">☰</button>
-
-    </header>
+    <!-- Header Block -->
+    @include('backend.includes.header')
+    <!-- / Header Block -->
 
     <div class="app-body">
         <div class="sidebar">
@@ -171,7 +126,7 @@
                     <hr class="transparent mx-3 my-0">
                     <div class="callout callout-warning m-0 py-3">
                         <div class="avatar float-right">
-                            <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div>Meeting with
                             <strong>Lucas</strong>
@@ -182,7 +137,7 @@
                     <hr class="mx-3 my-0">
                     <div class="callout callout-info m-0 py-3">
                         <div class="avatar float-right">
-                            <img src="img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="{{ asset('img/avatars/4.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div>Skype with
                             <strong>Megan</strong>
@@ -204,19 +159,19 @@
                         <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
                         <div class="avatars-stack mt-2">
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/2.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/3.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/4.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/5.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/6.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                         </div>
                     </div>
@@ -236,25 +191,25 @@
                         <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
                         <div class="avatars-stack mt-2">
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/2.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/3.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/4.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/5.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/6.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                             <div class="avatar avatar-xs">
-                                <img src="img/avatars/8.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="{{ asset('img/avatars/8.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                             </div>
                         </div>
                     </div>
@@ -438,12 +393,9 @@
 
     </div>
 
-    <footer class="app-footer">
-        <a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.
-        <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>
-        </span>
-    </footer>
-
+    <!-- Footer block -->
+    @include('backend.includes.footer')
+    <!-- / Footer block -->
 
     <!-- Scripts -->
 
