@@ -8,7 +8,13 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+                    @auth
                     Welcome to Admin Dashboard.
+                    @endauth
+
+                    @guest
+                    You have to <a href="{{ route('frontend.auth.login') }}">Login</a> first to access dashboard!
+                    @endguest
                 </div>
             </div>
         </div>
