@@ -29,8 +29,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 *
 * --------------------------------------------------------------------
 */
-// Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'can:view_backend']], function () {
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.'], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
     /*
     * These routes need view-backend permission
     * (good if you want to allow more than one group in the backend,
