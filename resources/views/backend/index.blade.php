@@ -10,20 +10,11 @@
             </div>
             <!--/.col-->
             <div class="col-sm-7 hidden-sm-down">
-                <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i>
-                </button>
+
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-                        <label class="btn btn-outline-secondary">
-                            <input type="radio" name="options" id="option1">Day
-                        </label>
-                        <label class="btn btn-outline-secondary active">
-                            <input type="radio" name="options" id="option2" checked="">Month
-                        </label>
-                        <label class="btn btn-outline-secondary">
-                            <input type="radio" name="options" id="option3">Year
-                        </label>
-                    </div>
+                    <button type="button" class="btn btn-primary float-right">
+                        <i class="icon-cloud-download"></i>
+                    </button>
                 </div>
             </div>
             <!--/.col-->
