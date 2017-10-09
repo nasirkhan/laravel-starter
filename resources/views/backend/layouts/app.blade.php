@@ -16,11 +16,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Icons -->
+    @stack('before-styles')
+
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
 
     <!-- Main Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    @stack('after-styles')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 
@@ -82,6 +86,7 @@
     <!-- Scripts -->
 
     <!-- Necessary plugins -->
+    @stack('before-scripts')
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('plugins/popper/popper.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -91,5 +96,12 @@
 
     <!-- main scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+    @stack('after-scripts')
 </body>
 </html>

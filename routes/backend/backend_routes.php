@@ -7,6 +7,7 @@
 
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
+Route::resource('users', 'UserController');
 
 // Route::group(['namespace' => 'Backend'], function () {
 //     // need to be logged in,
