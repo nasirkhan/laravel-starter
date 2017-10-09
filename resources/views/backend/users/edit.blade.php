@@ -2,27 +2,17 @@
 
 @section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.edit'))
 
-@section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
-@endsection
-
-@section('page-header')
-    <!-- <h5 class="mb-4">{{ __('labels.backend.access.users.management') }}
-        <small class="text-muted">{{ __('labels.backend.access.users.edit') }}</small>
-    </h5> -->
-@endsection
-
 @section('content')
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.access.users.management') }}
-                    <small class="text-muted">{{ __('labels.backend.access.users.edit') }}</small>
+                    {{ __('labels.backend.users.edit.title') }}
+                    <small class="text-muted">{{ __('labels.backend.users.edit.action') }} </small>
                 </h4>
                 <div class="small text-muted">
-                    User Management Dashboard
+                    {{ __('labels.backend.users.edit.sub-title') }}
                 </div>
             </div>
             <!--/.col-->
@@ -37,7 +27,7 @@
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
-                <form action="{{ route('admin.auth.user.update', $user->id) }}" method="post" class="form-horizontal">
+                <form action="{{ route('backend.users.update', $user->id) }}" method="post" class="form-horizontal">
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
                     <div class="form-group row">
@@ -46,17 +36,7 @@
                         </label>
 
                         <div class="col-md-10">
-                            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.first_name') }}" value="{{ $user->first_name }}" maxlength="191" required="required">
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="last_name">
-                            {{ __('validation.attributes.backend.access.users.last_name') }}
-                        </label>
-
-                        <div class="col-md-10">
-                            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.last_name') }}" value="{{ $user->last_name }}" maxlength="191" required="required">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.first_name') }}" value="{{ $user->name }}" maxlength="191" required="required">
                         </div>
                     </div><!--form-group-->
 
@@ -86,45 +66,10 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        @if ($roles->count())
-                                            @foreach($roles as $role)
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <div class="checkbox">
-                                                            <label for="role-{{ $role->id }}">
-                                                                <input type="checkbox" name="roles[]" value="{{ $role->name }}" {{ in_array($role->name, $userRoles) ? 'checked="checked"' : '' }} id="role-{{ $role->id }}" />
-                                                                {{ ucfirst($role->name) }}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        @if ($role->id != 1)
-                                                            @if ($role->permissions->count())
-                                                                @foreach ($role->permissions as $permission)
-                                                                    <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
-                                                                @endforeach
-                                                            @else
-                                                                None
-                                                            @endif
-                                                        @else
-                                                                All Permissions
-                                                        @endif
-                                                    </div>
-                                                </div><!--card-->
-                                            @endforeach
-                                        @endif
+
                                     </td>
                                     <td>
-                                        @if ($permissions->count())
-                                            @foreach($permissions as $permission)
-                                                <div class="checkbox">
-                                                    <label for="permission-{{ $permission->id }}">
-                                                        <input type="checkbox" name="permissions[]" value="{{ $permission->name }}" id="permission-{{ $permission->id }}" {{ in_array($permission->name, $userPermissions) ? 'checked="checked"' : '' }} />
-                                                        {{ ucwords($permission->name) }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        @endif
+
                                     </td>
                                 </tr>
                                 </tbody>
@@ -132,12 +77,12 @@
                         </div>
                     </div><!--form-group-->
                     <!-- </div> -->
-                    <!-- card-body -->
 
                     <div class="row">
                         <div class="col">
-                            {{ form_cancel(route('admin.auth.user.index'), __('buttons.general.cancel')) }}
-                            {{ form_submit(__('buttons.general.crud.update')) }}
+                            <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
+
+                            <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.create')}}</button>
                         </div>
                     </div>
                     <!-- /.row -->

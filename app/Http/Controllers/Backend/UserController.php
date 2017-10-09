@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -47,7 +48,7 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = "Create";
 
-        $roles = Role::lists('name', 'id');
+        $roles = Role::pluck('name', 'id');
 
         return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles'));
     }
@@ -98,7 +99,7 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = "Edit";
 
-        $roles = Role::lists('name', 'id');
+        $roles = Role::pluck('name', 'id');
 
         $$module_name_singular = User::findOrFail($id);
 

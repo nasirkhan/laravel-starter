@@ -15,6 +15,11 @@ return [
                 'sub-title' => 'Users Management',
                 'profile' => 'Profile',
             ],
+            'edit' => [
+                'action' => 'Edit',
+                'title' => 'Users',
+                'sub-title' => 'Users Management',
+            ],
             'fields'    =>  [
                 'name' => 'Name',
                 'email' => 'Email',
@@ -37,6 +42,14 @@ return [
         'show' => 'Show',
         'update' => 'Update',
         'total' => 'Total',
-    ]
+    ],
+
+    'buttons'   =>  [
+        'general'   =>  [
+            'create'    =>  'Create',
+            'save'    =>  'Save',
+            'cancel'    =>  'Cancel',
+        ]
+    ],
 
 ];
