@@ -1,0 +1,42 @@
+<?php
+
+return [
+
+    'backend'   => [
+        'users' => [
+            'index' => [
+                'action' => 'List',
+                'title' => 'Users',
+                'sub-title' => 'Users Management',
+            ],
+            'show' => [
+                'action' => 'Show',
+                'title' => 'Users',
+                'sub-title' => 'Users Management',
+                'profile' => 'Profile',
+            ],
+            'fields'    =>  [
+                'name' => 'Name',
+                'email' => 'Email',
+                'confirmed' => 'confirmed',
+                'roles' => 'roles',
+                'permissions' => 'Permissions',
+                'social' => 'Social',
+                'picture' => 'Picture',
+                'status' => 'Status',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+            ],
+
+        ],
+        'action' => 'Action',
+        'create' => 'Create',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'save' => 'Save',
+        'show' => 'Show',
+        'update' => 'Update',
+        'total' => 'Total',
+    ]
+
+];
