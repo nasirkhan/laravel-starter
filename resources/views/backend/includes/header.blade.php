@@ -1,6 +1,6 @@
 <header class="app-header navbar">
     <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">☰</button>
-    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="{{ route('frontend.index') }}" target="_blank"></a>
     <button class="navbar-toggler sidebar-minimizer d-md-down-none" type="button">☰</button>
 
     <ul class="nav navbar-nav d-md-down-none">
