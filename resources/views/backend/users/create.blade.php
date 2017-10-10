@@ -1,5 +1,9 @@
 @extends ('backend.layouts.app')
 
+<?php
+$module_name_singular = str_singular($module_name);
+?>
+
 @section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.create'))
 
 @section('content')
@@ -27,6 +31,62 @@
         <!--/.row-->
 
         <hr>
+        <div class="row mt-4 mb-4">
+            <div class="col">
+                <form method="POST" action="{{ route('backend.users.index') }}" class="form-horizontal">
+
+                {!! csrf_field() !!}
+
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            {!! Form::label('name', 'Name' , ['class' => 'control-label']) !!}
+                        </strong>
+                    </div>
+                    <div class="col-9">
+                        {!! Form::text('name', old('name') , ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            {!! Form::label('email', 'Email' , ['class' => 'control-label']) !!}
+                        </strong>
+                    </div>
+
+                    <div class="col-9">
+                        {!! Form::text('email', old('email') , ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            Ablities
+                        </strong>
+                    </div>
+
+                    <div class="col-9">
+                        {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control', 'multiple']) !!}
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
+
+                        <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.create')}}</button>
+                    </div>
+                </div>
+
+
+                {!! Form::close() !!}
+
+            </div>
+            <!--/.col-->
+        </div>
 
         <div class="row mt-4 mb-4">
             <div class="col">

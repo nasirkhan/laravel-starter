@@ -23,6 +23,7 @@ return [
             'fields'    =>  [
                 'name' => 'Name',
                 'email' => 'Email',
+                'password' => 'Password',
                 'confirmed' => 'confirmed',
                 'roles' => 'roles',
                 'permissions' => 'Permissions',

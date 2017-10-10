@@ -60,7 +60,11 @@ class UserController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function store(Request $request) {
+        $title = $this->module_title;
         $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = "Details";
 
         $$module_name_singular = User::create($request->except('roles_list'));
         $$module_name_singular->permissions()->attach($request->input('roles_list'));

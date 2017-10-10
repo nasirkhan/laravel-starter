@@ -1,5 +1,9 @@
 @extends ('backend.layouts.app')
 
+<?php
+$module_name_singular = str_singular($module_name);
+?>
+
 @section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.edit'))
 
 @section('content')
@@ -27,66 +31,57 @@
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
-                <form action="{{ route('backend.users.update', $user->id) }}" method="post" class="form-horizontal">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="first_name">
-                            {{ __('validation.attributes.backend.access.users.first_name') }}
-                        </label>
+                {!! Form::model($$module_name_singular, ['method' => 'PATCH', 'url' => ["admin/$module_name", $$module_name_singular->id], 'class' => 'form-horizontal']) !!}
 
-                        <div class="col-md-10">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.first_name') }}" value="{{ $user->name }}" maxlength="191" required="required">
-                        </div>
-                    </div><!--form-group-->
+                {!! csrf_field() !!}
 
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="email">
-                            {{ __('validation.attributes.backend.access.users.email') }}
-                        </label>
-
-                        <div class="col-md-10">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.email') }}" value="{{ $user->email }}" maxlength="191" required="required">
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label">
-                            Abilities
-                        </label>
-
-                        <div class="col-md-10">
-                            <table class="table table-responsive">
-                                <thead>
-                                <tr>
-                                    <th>Roles</th>
-                                    <th>Permissions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!--form-group-->
-                    <!-- </div> -->
-
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
-
-                            <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.create')}}</button>
-                        </div>
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            {!! Form::label('name', 'Name' , ['class' => 'control-label']) !!}
+                        </strong>
                     </div>
-                    <!-- /.row -->
-                </form>
+                    <div class="col-9">
+                        {!! Form::text('name', old('name') , ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            {!! Form::label('email', 'Email' , ['class' => 'control-label']) !!}
+                        </strong>
+                    </div>
+
+                    <div class="col-9">
+                        {!! Form::text('email', old('email') , ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-3">
+                        <strong>
+                            Ablities
+                        </strong>
+                    </div>
+
+                    <div class="col-9">
+                        {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control', 'multiple']) !!}
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
+
+                        <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.save')}}</button>
+                    </div>
+                </div>
+
+
+                {!! Form::close() !!}
+
             </div>
             <!--/.col-->
         </div>

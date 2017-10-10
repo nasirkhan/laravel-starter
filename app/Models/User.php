@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    /**
+     * Get the list of users related to the current User
+     *
+     * @return [array] roels
+     */
+    public function getRolesListAttribute()
+    {
+        return array_map('intval', $this->roles->pluck('id')->toArray());
+    }
 }
