@@ -30,7 +30,7 @@ class UserController extends Controller
 
         $page_heading = "All Users";
 
-        $$module_name = User::paginate(5);
+        $$module_name = User::paginate();
 
         // Log::info($module_name . ' Index View');
 
@@ -60,6 +60,13 @@ class UserController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function store(Request $request) {
+
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'email',
+            'password' => 'required|confirmed|min:4',
+        ]);
+
         $title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);

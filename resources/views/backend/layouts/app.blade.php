@@ -63,6 +63,12 @@
 
                 <div class="animated fadeIn">
 
+                    @include('flash::message')
+
+                    <!-- Errors block -->
+                    @include('backend.includes.errors')
+                    <!-- / Errors block -->
+
                     @yield('content')
 
                 </div>
@@ -101,6 +107,8 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+    $('#flash-overlay-modal').modal();
     </script>
     @stack('after-scripts')
 </body>

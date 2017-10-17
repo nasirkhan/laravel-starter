@@ -35,7 +35,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row mt-4 mb-4">
             <div class="col">
 
-                {{ html()->form('POST', route('backend.users.index'))->class('form-horizontal')->open() }}
+                {{ html()->form('POST', route('backend.users.store'))->class('form-horizontal')->open() }}
                     {{ csrf_field() }}
 
                     <div class="form-group row">
