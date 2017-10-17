@@ -71,7 +71,26 @@ $module_name_singular = str_singular($module_name);
                                         <td>
                                             @if ($roles->count())
                                                 @foreach($roles as $role)
-                                                    {{ html()->label(html()->checkbox('roles[]', in_array($role->id, $userRoles), $role->id)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="checkbox">
+                                                                {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @if ($role->id != 1)
+                                                                @if ($role->permissions->count())
+                                                                    @foreach ($role->permissions as $permission)
+                                                                        <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
+                                                                    @endforeach
+                                                                @else
+                                                                    None
+                                                                @endif
+                                                            @else
+                                                                All Permissions
+                                                            @endif
+                                                        </div>
+                                                    </div><!--card-->
                                                 @endforeach
                                             @endif
                                         </td>

@@ -100,6 +100,60 @@ $module_name_singular = str_singular($module_name);
                         </div>
                     </div><!--form-group-->
 
+                    <div class="form-group row">
+                        {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
+
+                        <div class="col-md-10">
+                        <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Roles</th>
+                                        <th>Permissions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @if ($roles->count())
+                                                @foreach($roles as $role)
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="checkbox">
+                                                                {{ html()->label(html()->checkbox('roles[]', old('roles') && in_array($role->name, old('roles')) ? true : false, $role->name)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @if ($role->id != 1)
+                                                                @if ($role->permissions->count())
+                                                                    @foreach ($role->permissions as $permission)
+                                                                        <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
+                                                                    @endforeach
+                                                                @else
+                                                                    None
+                                                                @endif
+                                                            @else
+                                                                All Permissions
+                                                            @endif
+                                                        </div>
+                                                    </div><!--card-->
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                       <td>
+                                           @if ($permissions->count())
+                                               @foreach($permissions as $permission)
+                                                   <div class="checkbox">
+                                                       {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                                   </div>
+                                               @endforeach
+                                           @endif
+                                       </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--form-group-->
+
                     <div class="row">
                         <div class="col">
                             {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}

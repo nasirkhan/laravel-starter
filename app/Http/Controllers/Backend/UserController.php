@@ -49,9 +49,10 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = "Create";
 
-        $roles = Role::pluck('name', 'id');
+        $roles = Role::get();
+        $permissions = Permission::select('name', 'id')->get();
 
-        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles'));
+        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
     }
 
     /**
@@ -74,25 +75,18 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = "Details";
 
-        $$module_name_singular = User::create($request->except('roles_list'));
-        $$module_name_singular->permissions()->attach($request->input('roles_list'));
+        $$module_name_singular = User::create($request->except('roles'));
+
+        $roles = $request['roles'];
+        if (isset($roles)) {
+            $$module_name_singular->syncRoles($roles);
+        }
+        else {
+            $roles = [];
+            $$module_name_singular->syncRoles($roles);
+        }
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
-
-        // $roles = $request['roles']; //Retrieving the roles field
-        // //Checking if a role was selected
-        // if (isset($roles)) {
-        //
-        //     foreach ($roles as $role) {
-        //         $role_r = Role::where('id', '=', $role)->firstOrFail();
-        //         $user->assignRole($role_r); //Assigning role to user
-        //     }
-        // }
-        //
-        // //Redirect to the users.index view and display message
-        // flash('Message')->success('User created successfully');
-        //
-        // return redirect()->route('backend.users.index');
     }
 
     /**
@@ -131,8 +125,8 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        $userRoles = $$module_name_singular->roles->pluck('id')->all();
-        $userPermissions = $$module_name_singular->permissions->pluck('id')->all();
+        $userRoles = $$module_name_singular->roles->pluck('name')->all();
+        $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
         return view("backend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions'));
     }
@@ -150,15 +144,16 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        $$module_name_singular->update($request->except('roles_list'));
+        $$module_name_singular->update($request->except('roles'));
 
         $roles = $request['roles'];
 
         if (isset($roles)) {
-            $$module_name_singular->roles()->sync($roles);
+            $$module_name_singular->syncRoles($roles);
         }
         else {
-            $$module_name_singular->roles()->detach();
+            $roles = [];
+            $$module_name_singular->syncRoles($roles);
         }
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
