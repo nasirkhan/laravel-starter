@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
     }
+
+    public function setPasswordAttribute($password)
+    {   
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

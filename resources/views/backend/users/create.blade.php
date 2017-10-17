@@ -31,215 +31,86 @@ $module_name_singular = str_singular($module_name);
         <!--/.row-->
 
         <hr>
-        <div class="row mt-4 mb-4">
-            <div class="col">
-                <form method="POST" action="{{ route('backend.users.index') }}" class="form-horizontal">
-
-                {!! csrf_field() !!}
-
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            {!! Form::label('name', 'Name' , ['class' => 'control-label']) !!}
-                        </strong>
-                    </div>
-                    <div class="col-9">
-                        {!! Form::text('name', old('name') , ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            {!! Form::label('email', 'Email' , ['class' => 'control-label']) !!}
-                        </strong>
-                    </div>
-
-                    <div class="col-9">
-                        {!! Form::text('email', old('email') , ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            Ablities
-                        </strong>
-                    </div>
-
-                    <div class="col-9">
-                        {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control', 'multiple']) !!}
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col">
-                        <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
-
-                        <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.create')}}</button>
-                    </div>
-                </div>
-
-
-                {!! Form::close() !!}
-
-            </div>
-            <!--/.col-->
-        </div>
 
         <div class="row mt-4 mb-4">
             <div class="col">
 
-                <form action="{{ route('backend.users.store') }}" method="post" class="form-horizontal">
+                {{ html()->form('POST', route('backend.users.index'))->class('form-horizontal')->open() }}
                     {{ csrf_field() }}
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="first_name">
-                            {{ __('validation.attributes.backend.access.users.first_name') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
 
                         <div class="col-md-10">
-                            <input type="text" id="first_name" name="first_name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.first_name') }}" maxlength="191" required="required" autofocus="autofocus">
+                            {{ html()->text('name')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.name'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="last_name">
-                            {{ __('validation.attributes.backend.access.users.last_name') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
 
                         <div class="col-md-10">
-                            <input type="text" id="last_name" name="last_name" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.last_name') }}" maxlength="191" required="required">
+                            {{ html()->email('email')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.email'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="email">
-                            {{ __('validation.attributes.backend.access.users.email') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.email') }}" maxlength="191" required="required">
+                            {{ html()->password('password')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.password'))
+                                ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="password">
-                            {{ __('validation.attributes.backend.access.users.password') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
 
                         <div class="col-md-10">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.password') }}" required="required">
+                            {{ html()->password('password_confirmation')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.password_confirmation'))
+                                ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="password_confirmation">
-                            {{ __('validation.attributes.backend.access.users.password_confirmation') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.active'))->class('col-md-2 form-control-label')->for('active') }}
 
                         <div class="col-md-10">
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="{{ __('validation.attributes.backend.access.users.password_confirmation') }}" required="required">
+                            {{ html()->checkbox('active', true, '1') }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="active">
-                            {{ __('validation.attributes.backend.access.users.active') }}
-                        </label>
+                        {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
 
                         <div class="col-md-10">
-                            <input type="checkbox" name="active" value="1" id="active" checked="checked" />
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label" for="confirmed">
-                            {{ __('validation.attributes.backend.access.users.confirmed') }}
-                        </label>
-
-                        <div class="col-md-10">
-                            <input type="checkbox" name="confirmed" value="1" id="confirmed" checked="checked" />
-                        </div>
-                    </div><!--form-group-->
-
-                    @if (! config('access.users.requires_approval'))
-                        <div class="form-group row">
-                            <label class="col-md-2 form-control-label" for="confirmation_email">
-                                {{ __('validation.attributes.backend.access.users.send_confirmation_email') }}<br/>
-                                <small>{{ __('strings.backend.access.users.if_confirmed_off') }}</small>
-                            </label>
-
-                            <div class="col-md-10">
-                                <input type="checkbox" name="confirmation_email" value="1" id="confirmation_email" />
-                            </div>
-                        </div><!--form-group-->
-                    @endif
-
-                    <div class="form-group row">
-                        <label class="col-md-2 form-control-label">
-                            Abilities
-                        </label>
-
-                        <div class="col-md-10">
-                            <table class="table table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th>Roles</th>
-                                        <th>Permissions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @if (!$roles->count())
-                                                @foreach($roles as $role)
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="checkbox">
-                                                                <label for="role-{{ $role->id }}">
-                                                                    <input type="checkbox" name="roles[]" value="{{ $role->name }}" {{ old('roles') && in_array($role->name, old('roles')) ? 'checked="checked"' : '' }} id="role-{{ $role->id }}" />
-                                                                    {{ ucfirst($role->name) }}
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            @if ($role->id != 1)
-                                                                @if ($role->permissions->count())
-                                                                    @foreach ($role->permissions as $permission)
-                                                                        <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
-                                                                    @endforeach
-                                                                @else
-                                                                    None
-                                                                @endif
-                                                            @else
-                                                                All Permissions
-                                                            @endif
-                                                        </div>
-                                                    </div><!--card-->
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            {{ html()->checkbox('confirmed', true, '1') }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="row">
                         <div class="col">
-                            <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
-
-                            <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.create')}}</button>
+                            {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}
+                            {{ form_submit(__('labels.buttons.general.create')) }}
                         </div>
                     </div>
-                </form>
+                {{ html()->form()->open() }}
 
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
+
     </div>
 
     <div class="card-footer">
