@@ -116,6 +116,8 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
+        // return $$module_name_singular->getRoleNames();
+
         return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 

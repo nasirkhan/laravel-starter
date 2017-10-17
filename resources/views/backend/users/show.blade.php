@@ -56,12 +56,20 @@
 
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.status') }}</th>
-                                    <td>{!! $user->status_label !!}</td>
+                                    <td>{!! $user->status !!}</td>
                                 </tr>
 
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
-                                    <td>{!! $user->confirmed_label !!}</td>
+                                    <td>{!! $user->confirmed !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ __('labels.backend.users.fields.roles') }}</th>
+                                    <td>{!! $user->getRoleNames() !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ __('labels.backend.users.fields.permissions') }}</th>
+                                    <td>{!! $user->permissions !!}</td>
                                 </tr>
 
                                 <tr>
