@@ -78,12 +78,24 @@ class UserController extends Controller
         $$module_name_singular = User::create($request->except('roles'));
 
         $roles = $request['roles'];
+        $permissions = $request['permissions'];
+
+        // Sync Roles
         if (isset($roles)) {
             $$module_name_singular->syncRoles($roles);
         }
         else {
             $roles = [];
             $$module_name_singular->syncRoles($roles);
+        }
+
+        // Sync Permissions
+        if (isset($permissions)) {
+            $$module_name_singular->syncPermissions($permissions);
+        }
+        else {
+            $permissions = [];
+            $$module_name_singular->syncPermissions($permissions);
         }
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
@@ -147,7 +159,9 @@ class UserController extends Controller
         $$module_name_singular->update($request->except('roles'));
 
         $roles = $request['roles'];
+        $permissions = $request['permissions'];
 
+        // Sync Roles
         if (isset($roles)) {
             $$module_name_singular->syncRoles($roles);
         }
@@ -155,6 +169,16 @@ class UserController extends Controller
             $roles = [];
             $$module_name_singular->syncRoles($roles);
         }
+
+        // Sync Permissions
+        if (isset($permissions)) {
+            $$module_name_singular->syncPermissions($permissions);
+        }
+        else {
+            $permissions = [];
+            $$module_name_singular->syncPermissions($permissions);
+        }
+
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
