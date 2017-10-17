@@ -31,57 +31,42 @@ $module_name_singular = str_singular($module_name);
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {!! Form::model($$module_name_singular, ['method' => 'PATCH', 'url' => ["admin/$module_name", $$module_name_singular->id], 'class' => 'form-horizontal']) !!}
+                {{ html()->modelForm($user, 'PATCH', route('backend.users.update', $user->id))->class('form-horizontal')->open() }}
 
-                {!! csrf_field() !!}
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
 
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            {!! Form::label('name', 'Name' , ['class' => 'control-label']) !!}
-                        </strong>
+                        <div class="col-md-10">
+                            {{ html()->text('name')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.name'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
+
+                        <div class="col-md-10">
+                            {{ html()->email('email')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.email'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                    </div><!--form-group-->
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}
+                            {{ form_submit(__('labels.buttons.general.update')) }}
+                        </div>
                     </div>
-                    <div class="col-9">
-                        {!! Form::text('name', old('name') , ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            {!! Form::label('email', 'Email' , ['class' => 'control-label']) !!}
-                        </strong>
-                    </div>
-
-                    <div class="col-9">
-                        {!! Form::text('email', old('email') , ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col-3">
-                        <strong>
-                            Ablities
-                        </strong>
-                    </div>
-
-                    <div class="col-9">
-                        {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control', 'multiple']) !!}
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col">
-                        <a href="{{route('backend.users.index')}}" class="btn btn-danger"><i class="fa fa-reply"></i> {{__('labels.buttons.general.cancel')}}</a>
-
-                        <button type="submit" name="submit" class="btn btn-success pull-right"><i class="fa fa-save"></i> {{__('labels.buttons.general.save')}}</button>
-                    </div>
-                </div>
-
-
-                {!! Form::close() !!}
-
+                    <!-- /.row -->
+                {{ html()->closeModelForm() }}
             </div>
             <!--/.col-->
         </div>

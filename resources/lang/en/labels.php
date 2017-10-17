@@ -52,6 +52,7 @@ return [
             'create'    =>  'Create',
             'save'    =>  'Save',
             'cancel'    =>  'Cancel',
+            'update'    =>  'Update',
         ]
     ],
 

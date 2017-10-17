@@ -77,6 +77,21 @@ class UserController extends Controller
         $$module_name_singular->permissions()->attach($request->input('roles_list'));
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
+
+        // $roles = $request['roles']; //Retrieving the roles field
+        // //Checking if a role was selected
+        // if (isset($roles)) {
+        //
+        //     foreach ($roles as $role) {
+        //         $role_r = Role::where('id', '=', $role)->firstOrFail();
+        //         $user->assignRole($role_r); //Assigning role to user
+        //     }
+        // }
+        //
+        // //Redirect to the users.index view and display message
+        // flash('Message')->success('User created successfully');
+        //
+        // return redirect()->route('backend.users.index');
     }
 
     /**
