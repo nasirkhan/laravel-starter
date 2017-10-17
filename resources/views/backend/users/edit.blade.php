@@ -57,7 +57,39 @@ $module_name_singular = str_singular($module_name);
                         </div>
                     </div><!--form-group-->
 
-
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Roles</th>
+                                        <th>Permissions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @if ($roles->count())
+                                                @foreach($roles as $role)
+                                                    {{ html()->label(html()->checkbox('roles[]', in_array($role->id, $userRoles), $role->id)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($permissions->count())
+                                                @foreach($permissions as $permission)
+                                                    <div class="checkbox">
+                                                        {{ html()->label(html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)->id('permission-'.$permission->id) . ' ' . ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
 
                     <div class="row">
                         <div class="col">
@@ -65,7 +97,6 @@ $module_name_singular = str_singular($module_name);
                             {{ form_submit(__('labels.buttons.general.update')) }}
                         </div>
                     </div>
-                    <!-- /.row -->
                 {{ html()->closeModelForm() }}
             </div>
             <!--/.col-->

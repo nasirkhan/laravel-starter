@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Permission;
 
 class UserController extends Controller
 {
@@ -125,11 +126,15 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = "Edit";
 
-        $roles = Role::pluck('name', 'id');
+        $roles = Role::get();
+        $permissions = Permission::select('name', 'id')->get();
 
         $$module_name_singular = User::findOrFail($id);
 
-        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles'));
+        $userRoles = $$module_name_singular->roles->pluck('id')->all();
+        $userPermissions = $$module_name_singular->permissions->pluck('id')->all();
+
+        return view("backend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions'));
     }
 
     /**
@@ -144,13 +149,16 @@ class UserController extends Controller
         $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = User::findOrFail($id);
+
         $$module_name_singular->update($request->except('roles_list'));
 
-        if ($request->input('roles_list') === null) {
-            $roles = array();
+        $roles = $request['roles'];
+
+        if (isset($roles)) {
             $$module_name_singular->roles()->sync($roles);
-        } else {
-            $$module_name_singular->roles()->sync($request->input('roles_list'));
+        }
+        else {
+            $$module_name_singular->roles()->detach();
         }
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
