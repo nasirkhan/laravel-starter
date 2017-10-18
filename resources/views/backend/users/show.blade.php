@@ -65,11 +65,29 @@
                                 </tr>
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.roles') }}</th>
-                                    <td>{!! $user->getRoleNames() !!}</td>
+                                    <td>
+                                        @if($user->getRoleNames()->count() > 0)
+                                            <ul>
+                                                @foreach ($user->getRoleNames() as $role)
+                                                <li>{{ ucwords($role) }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.permissions') }}</th>
-                                    <td>{!! $user->permissions !!}</td>
+                                    <!-- <td>{!! $user->permissions !!}</td> -->
+                                    <td>
+                                        @if($user->getAllPermissions()->count() > 0)
+                                            <ul>
+                                                @foreach ($user->getAllPermissions() as $permission)
+                                                <li>{{ $permission->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </td>
                                 </tr>
 
                                 <tr>

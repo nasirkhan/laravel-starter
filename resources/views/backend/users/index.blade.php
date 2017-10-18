@@ -46,8 +46,24 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{!! $user->confirmed_label !!}</td>
-                            <td>{!! $user->roles_label !!}</td>
-                            <td>{!! $user->permissions_label !!}</td>
+                            <td>
+                                @if($user->getRoleNames()->count() > 0)
+                                    <ul>
+                                        @foreach ($user->getRoleNames() as $role)
+                                        <li>{{ ucwords($role) }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </td>
+                            <td>
+                                @if($user->getAllPermissions()->count() > 0)
+                                    <ul>
+                                        @foreach ($user->getAllPermissions() as $permission)
+                                        <li>{{ $permission->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </td>
                             <td>{!! $user->social_buttons !!}</td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
                             <td>
