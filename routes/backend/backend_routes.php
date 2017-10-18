@@ -9,6 +9,8 @@ Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
 Route::resource('users', 'UserController');
 
+Route::resource('roles', 'RolesController');
+
 // Route::group(['namespace' => 'Backend'], function () {
 //     // need to be logged in,
 //     // user must have the permission 'view-backend'

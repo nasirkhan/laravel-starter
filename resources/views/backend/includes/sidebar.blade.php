@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('backend.users.index') }}"><i class="icon-user"></i> Users</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('backend.roles.index') }}"><i class="icon-user"></i> Roles</a>
+                    </li>
                 </ul>
             </li>
 

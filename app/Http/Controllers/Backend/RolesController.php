@@ -8,15 +8,15 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Permission;
 
-class UserController extends Controller
+class RolesController extends Controller
 {
     public function __construct() {
 
-        $this->module_name = 'users';
-        $this->module_path = 'users';
+        $this->module_name = 'roles';
+        $this->module_path = 'roles';
         $this->module_icon = 'fa fa-users';
-        $this->module_title = 'Users';
-        $this->module_model = 'App\Models\User';
+        $this->module_title = 'Roles';
+        $this->module_model = 'App\Models\Role';
 
     }
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
 
-        $page_heading = "All Users";
+        $page_heading = "All Roles";
 
         $$module_name = User::paginate();
 
@@ -62,12 +62,6 @@ class UserController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function store(Request $request) {
-
-        $request->validate([
-            'name' => 'required|min:3|max:50',
-            'email' => 'email',
-            'password' => 'required|confirmed|min:4',
-        ]);
 
         $title = $this->module_title;
         $module_name = $this->module_name;
