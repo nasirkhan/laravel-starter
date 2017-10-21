@@ -4,8 +4,6 @@
 $module_name_singular = str_singular($module_name);
 ?>
 
-@section('title', 'Page Title')
-
 @section ('title', __("labels.backend.access.$module_name.management") . " | " . __("labels.backend.access.$module_name.edit"))
 
 @section("content")
@@ -36,7 +34,7 @@ $module_name_singular = str_singular($module_name);
                 {{ html()->modelForm($$module_name_singular, 'PATCH', route("backend.$module_name.update", $$module_name_singular->id))->class('form-horizontal')->open() }}
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
+                        {{ html()->label(__("labels.backend.$module_name.fields.name"))->class('col-md-2 form-control-label')->for('name') }}
 
                         <div class="col-md-10">
                             {{ html()->text('name')
@@ -65,8 +63,8 @@ $module_name_singular = str_singular($module_name);
 
                     <div class="row">
                         <div class="col">
-                            {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}
-                            {{ html()->submit(__('labels.buttons.general.update')) }}
+                            {{ form_cancel(route("backend.$module_name.index"), __('labels.buttons.general.cancel')) }}
+                            {{ form_submit(__('labels.buttons.general.update')) }}
                         </div>
                     </div>
                 {{ html()->closeModelForm() }}

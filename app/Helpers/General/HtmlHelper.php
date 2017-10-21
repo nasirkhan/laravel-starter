@@ -81,7 +81,7 @@ class HtmlHelper
      */
     public function formSubmit($title, $classes = 'btn btn-success btn-sm pull-right')
     {
-        return $this->toHtmlString('<button type="submit" name="submit" class="'.$classes.'"><i class="fa fa-save"></i> '.$title.'</button>'.PHP_EOL);
+        return $this->toHtmlString('<button type="submit" class="'.$classes.'"><i class="fa fa-save"></i> '.$title.'</button>'.PHP_EOL);
     }
 
     /**
