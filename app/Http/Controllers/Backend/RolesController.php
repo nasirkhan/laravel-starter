@@ -26,12 +26,16 @@ class RolesController extends Controller
     */
     public function index() {
         $title = $this->module_title;
+
         $module_name = $this->module_name;
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_title = $this->module_title;
+        $module_model = $this->module_model;
 
         $page_heading = "All Roles";
 
-        $$module_name = User::paginate();
+        $$module_name = $module_model::paginate();
 
         // Log::info($module_name . ' Index View');
 
