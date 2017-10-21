@@ -20,6 +20,11 @@ return [
                 'title' => 'Users',
                 'sub-title' => 'Users Management',
             ],
+            'create' => [
+                'action' => 'Create',
+                'title' => 'Users',
+                'sub-title' => 'Users Management',
+            ],
             'fields'    =>  [
                 'name' => 'Name',
                 'email' => 'Email',

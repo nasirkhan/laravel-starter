@@ -28,6 +28,7 @@ class UserController extends Controller
         $title = $this->module_title;
         $module_name = $this->module_name;
         $module_icon = $this->module_icon;
+        $module_action = "Index";
 
         $page_heading = "All Users";
 
@@ -35,7 +36,7 @@ class UserController extends Controller
 
         // Log::info($module_name . ' Index View');
 
-        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', "module_name", "$module_name"));
+        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', 'module_action', "module_name", "$module_name"));
     }
 
     /**
@@ -112,7 +113,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
-        $module_action = "Details";
+        $module_action = "Show";
 
         $$module_name_singular = User::findOrFail($id);
 

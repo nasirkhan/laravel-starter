@@ -4,7 +4,7 @@
 $module_name_singular = str_singular($module_name);
 ?>
 
-@section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.create'))
+@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
 
 @section('content')
 
@@ -14,7 +14,7 @@ $module_name_singular = str_singular($module_name);
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.users.index.title') }}
-                    <small class="text-muted">{{ __('labels.backend.users.show.action') }} </small>
+                    <small class="text-muted">{{ __('labels.backend.users.create.action') }} </small>
                 </h4>
                 <div class="small text-muted">
                     {{ __('labels.backend.users.index.sub-title') }}
