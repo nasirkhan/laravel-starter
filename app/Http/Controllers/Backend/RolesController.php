@@ -110,9 +110,11 @@ class RolesController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
+        $module_title = $this->module_title;
+        $module_model = $this->module_model;
         $module_action = "Details";
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::findOrFail($id);
 
         return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
