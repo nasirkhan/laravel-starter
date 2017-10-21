@@ -2,7 +2,7 @@
 
 <?php $module_name_singular = str_singular($module_name); ?>
 
-@section ('title', __('labels.backend.access.users.management'))
+@section ('title', __("labels.backend.access.$module_name.management"))
 
 @section('content')
 <div class="card">
@@ -10,17 +10,17 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.index.title') }}
-                    <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
+                    {{ __("labels.backend.$module_name.index.title") }}
+                    <small class="text-muted">{{ __("labels.backend.$module_name.index.action") }} </small>
                 </h4>
                 <div class="small text-muted">
-                    {{ __('labels.backend.users.index.sub-title') }}
+                    {{ __("labels.backend.$module_name.index.sub-title") }}
                 </div>
             </div>
             <!--/.col-->
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{route('backend.users.create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
+                    <a href="{{route("backend.$module_name.create")}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
                 </div>
             </div>
             <!--/.col-->
@@ -32,10 +32,9 @@
                 <table class="table table-responsive">
                     <thead>
                         <tr>
-                            <th>{{ __('labels.backend.users.fields.name') }}</th>
-                            <th>{{ __('labels.backend.users.fields.permissions') }}</th>
-                            <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                            <th>{{ __('labels.backend.action') }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
+                            <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
+                            <th class="text-right">{{ __("labels.backend.action") }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +42,11 @@
                         <tr>
                             <td>{{ $module_name_singular->name }}</td>
                             <td>
+                                @foreach ($module_name_singular->permissions as $permission)
+                                <li>{{ $permission->name }}</li>
+                                @endforeach
+                            </td>
+                            <td class="text-right">
                                 <a href="{{route("backend.$module_name.show", $module_name_singular)}}" class="btn btn-success"><i class="fa fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
                                 <a href="{{route("backend.$module_name.edit", $module_name_singular)}}" class="btn btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
                             </td>

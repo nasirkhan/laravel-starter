@@ -37,6 +37,32 @@ return [
             ],
 
         ],
+        'roles' => [
+            'index' => [
+                'action' => 'List',
+                'title' => 'Roles',
+                'sub-title' => 'Roles Management',
+            ],
+            'show' => [
+                'action' => 'Show',
+                'title' => 'Roles',
+                'sub-title' => 'Roles Management',
+                'profile' => 'Profile',
+            ],
+            'edit' => [
+                'action' => 'Edit',
+                'title' => 'Roles',
+                'sub-title' => 'Roles Management',
+            ],
+            'fields'    =>  [
+                'name' => 'Name',
+                'status' => 'Status',
+                'permissions' => 'Permissions',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+            ],
+
+        ],
         'action' => 'Action',
         'create' => 'Create',
         'edit' => 'Edit',
