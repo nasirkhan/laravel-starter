@@ -179,7 +179,7 @@ class UserController extends Controller
             $$module_name_singular->syncPermissions($permissions);
         }
 
-
+return $request;
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
 

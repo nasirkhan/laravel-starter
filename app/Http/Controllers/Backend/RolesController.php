@@ -128,17 +128,15 @@ class RolesController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
+        $module_title = $this->module_title;
+        $module_model = $this->module_model;
         $module_action = "Edit";
 
-        $roles = Role::get();
         $permissions = Permission::select('name', 'id')->get();
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::findOrFail($id);
 
-        $userRoles = $$module_name_singular->roles->pluck('name')->all();
-        $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
-
-        return view("backend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions'));
+        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'permissions'));
     }
 
     /**
@@ -151,32 +149,31 @@ class RolesController extends Controller
     public function update(Request $request, $id) {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_title = $this->module_title;
+        $module_model = $this->module_model;
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->except('roles'));
+        $this->validate($request, [
+            'name'=>'required|max:20|unique:roles,name,'.$id,
+            'permissions' =>'required',
+        ]);
 
-        $roles = $request['roles'];
+        $input = $request->except(['permissions']);
         $permissions = $request['permissions'];
+        $$module_name_singular->fill($input)->save();
 
-        // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        }
-        else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
+        $p_all = Permission::all();//Get all permissions
+
+        foreach ($p_all as $p) {
+            $$module_name_singular->revokePermissionTo($p); //Remove all permissions associated with role
         }
 
-        // Sync Permissions
-        if (isset($permissions)) {
-            $$module_name_singular->syncPermissions($permissions);
+        foreach ($permissions as $permission) {
+            $p = Permission::where('name', '=', $permission)->firstOrFail(); //Get corresponding form //permission in db
+            $$module_name_singular->givePermissionTo($p);  //Assign permission to role
         }
-        else {
-            $permissions = [];
-            $$module_name_singular->syncPermissions($permissions);
-        }
-
 
         return redirect("admin/$module_name")->with('flash_success', "Update successful!");
     }
