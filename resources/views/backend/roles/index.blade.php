@@ -2,7 +2,7 @@
 
 <?php $module_name_singular = str_singular($module_name); ?>
 
-@section ('title', __("labels.backend.access.$module_name.management"))
+@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
 
 @section('content')
 <div class="card">

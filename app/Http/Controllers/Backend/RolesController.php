@@ -32,6 +32,7 @@ class RolesController extends Controller
         $module_icon = $this->module_icon;
         $module_title = $this->module_title;
         $module_model = $this->module_model;
+        $module_action = "Index";
 
         $page_heading = "All Roles";
 
@@ -39,7 +40,7 @@ class RolesController extends Controller
 
         // Log::info($module_name . ' Index View');
 
-        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', "module_name", "$module_name"));
+        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', 'module_action', "module_name", "$module_name"));
     }
 
     /**
@@ -112,7 +113,7 @@ class RolesController extends Controller
         $module_icon = $this->module_icon;
         $module_title = $this->module_title;
         $module_model = $this->module_model;
-        $module_action = "Details";
+        $module_action = "Show";
 
         $$module_name_singular = $module_model::findOrFail($id);
 
