@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -41,7 +40,8 @@ class User extends Authenticatable
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
+     *
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the list of users related to the current User
+     * Get the list of users related to the current User.
      *
      * @return [array] roels
      */
@@ -60,7 +60,7 @@ class User extends Authenticatable
     }
 
     public function setPasswordAttribute($password)
-    {   
+    {
         $this->attributes['password'] = bcrypt($password);
     }
 }
