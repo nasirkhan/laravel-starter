@@ -2,8 +2,8 @@
 
 namespace App\Helpers\General;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\HtmlString;
 
 /**
  * Class HtmlHelper.
@@ -98,7 +98,7 @@ class HtmlHelper
         foreach ((array) $attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (! is_null($element)) {
+            if (!is_null($element)) {
                 $html[] = $element;
             }
         }
@@ -130,7 +130,7 @@ class HtmlHelper
             return $value ? $key : '';
         }
 
-        if (! is_null($value)) {
+        if (!is_null($value)) {
             return $key.'="'.e($value).'"';
         }
     }
