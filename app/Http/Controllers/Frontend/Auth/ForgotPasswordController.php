@@ -21,21 +21,21 @@ class ForgotPasswordController extends Controller
     use SendsPasswordResetEmails;
 
     /**
-    * Where to redirect users after resetting their password.
-    *
-    * @var string
-    */
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
     protected $redirectTo = '/';
 
     /**
-    * Get the response for a successful password reset link.
-    *
-    * @param  string  $response
-    * @return \Illuminate\Http\RedirectResponse
-    */
+     * Get the response for a successful password reset link.
+     *
+     * @param string $response
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function sendResetLinkResponse($response)
     {
         return redirect()->route('frontend.auth.login')->with('status', trans($response));
     }
-
 }
