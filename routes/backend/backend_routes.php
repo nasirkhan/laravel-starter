@@ -2,9 +2,8 @@
 
 /**
  * Backend Routes
- * Namespaces indicate folder structure
+ * Namespaces indicate folder structure.
  */
-
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
 Route::resource('users', 'UserController');
