@@ -164,9 +164,15 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        $$module_name_singular->update($request->except('roles'));
+        $$module_name_singular->update($request->except(['roles', 'permissions']));
 
-        $roles = $request['roles'];
+        if ($id == 1) {
+            $user->assignRole('administrator');
+
+            return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+        }
+
+        return $roles = $request['roles'];
         $permissions = $request['permissions'];
 
         // Sync Roles
@@ -184,8 +190,6 @@ class UserController extends Controller
             $permissions = [];
             $$module_name_singular->syncPermissions($permissions);
         }
-
-        return $request;
 
         return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
     }
