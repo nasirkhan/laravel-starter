@@ -1,5 +1,7 @@
 @extends('backend.layouts.app')
 
+@section ('title', 'Dashboard' . " - " . config('app.name'))
+
 @section('content')
 <div class="card">
     <div class="card-body">
