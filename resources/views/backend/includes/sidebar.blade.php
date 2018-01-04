@@ -9,7 +9,7 @@
                 Access Management
             </li>
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Access Controle</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Access Control</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('backend.users.index') }}"><i class="icon-user"></i> Users</a>
