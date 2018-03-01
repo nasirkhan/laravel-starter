@@ -1,38 +1,32 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Frontend</div>
 
-                <div class="panel-body">
-                    @auth
-                    <p>
-                        Welcome {{Auth::user()->name}}!
-                    </p>
-                    @endauth
-
-                    @guest
-                    <p>
-                        Welcome to {{app_name()}}!
-                        <br>
-                        You have to <a href="{{ route('frontend.auth.login') }}">Login</a> first to access dashboard!
-                    </p>
-                    @endguest
-
-                    @can('view_backend')
-
-                    <p>
-                        <a href="{{ route('backend.dashboard') }}" class="btn btn-primary">Visit Admin Dashboard</a>
-                    </p>
+<main role="main" class="inner cover">
+    <h1 class="cover-heading">Welcome to Latavel Starter</h1>
 
 
-                    @endcan
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    @auth
+    <p class="lead">
+        Hello {{Auth::user()->name}}!
+    </p>
+    @endauth
+
+    <p class="lead">
+        Visit the admin dashboard to find the features and functionalities of this starter project.
+    </p>
+
+    @guest
+    <p class="lead">
+        <a href="{{ route('frontend.auth.login') }}" class="btn btn-lg btn-secondary">Login</a>
+    </p>
+    @endguest
+
+    @can('view_backend')
+    <p class="lead">
+        <a href="{{ route('backend.dashboard') }}" class="btn btn-lg btn-secondary">Dashboard</a>
+    </p>
+    @endcan
+</main>
+
 @endsection

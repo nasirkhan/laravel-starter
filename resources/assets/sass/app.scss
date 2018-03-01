@@ -6,4 +6,7 @@
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import '~bootstrap/scss/bootstrap';
+
+// Custom Style
+@import "custom";
