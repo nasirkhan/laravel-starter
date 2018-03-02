@@ -4,7 +4,7 @@
 
 
 <main role="main" class="inner cover">
-    <h1 class="cover-heading">Welcome to Latavel Starter</h1>
+    <h1 class="cover-heading">Login</h1>
 
     <div class="row">
         <div class="col-12">
@@ -12,7 +12,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                    <label for="email" class="control-label">E-Mail Address</label>
 
                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">Password</label>
+                    <label for="password" class="control-label">Password</label>
 
                     <input id="password" type="password" class="form-control" name="password"  placeholder="Password" required>
 
