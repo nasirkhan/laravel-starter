@@ -1,4 +1,6 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app_backend.css": "/css/app_backend.css",
+    "/js/fontawesome-all.min.js": "/js/fontawesome-all.min.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/app_backend.js": "/js/app_backend.js"
 }

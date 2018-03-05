@@ -1,0 +1,13 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,200");
+
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+@import '../now-ui-dashboard/css/bootstrap.min.css';
+
+// Now UI Dashboard
+@import '../now-ui-dashboard/css/now-ui-dashboard-pro.min.css';
+
+// Custom Style
+@import "custom_backend";
