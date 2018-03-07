@@ -34,7 +34,7 @@ $module_name_singular = str_singular($module_name);
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true">
-                            <i class="fa fa-user"></i> {{ __("labels.backend.$module_name.show.profile") }}
+                            <i class="fas fa-user"></i> {{ __("labels.backend.$module_name.show.profile") }}
                         </a>
                     </li>
                 </ul>

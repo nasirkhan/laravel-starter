@@ -20,7 +20,7 @@
             <!--/.col-->
             <div class="col-sm-7">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{route("backend.$module_name.create")}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
+                    <a href="{{route("backend.$module_name.create")}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i></a>
                 </div>
             </div>
             <!--/.col-->
