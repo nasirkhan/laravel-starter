@@ -37,7 +37,7 @@
                             <th>{{ __('labels.backend.users.fields.permissions') }}</th>
                             <th>{{ __('labels.backend.users.fields.social') }}</th>
                             <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                            <th>{{ __('labels.backend.action') }}</th>
+                            <th class="text-right">{{ __('labels.backend.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,7 @@
                             </td>
                             <td>{!! $user->social_buttons !!}</td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
-                            <td>
+                            <td class="text-right">
                                 <a href="{{route('backend.users.show', $user)}}" class="btn btn-success"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
                                 <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
                             </td>
