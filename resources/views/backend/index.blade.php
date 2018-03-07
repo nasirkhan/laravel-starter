@@ -10,9 +10,9 @@
                 <h4 class="card-title mb-0">Welcome</h4>
                 <div class="small text-muted">{{ date('D, F d, Y') }}</div>
             </div>
+            
             <!--/.col-->
             <div class="col-sm-7 hidden-sm-down">
-
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <button type="button" class="btn btn-primary float-right">
                         <i class="icon-cloud-download"></i>
