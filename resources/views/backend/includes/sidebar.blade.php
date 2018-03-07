@@ -8,13 +8,13 @@
                 Access Management
             </li>
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Access Control</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-key"></i> Access Control</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('backend.users.index') }}"><i class="icon-puzzle"></i> Users</a>
+                        <a class="nav-link" href="{{ route('backend.users.index') }}"><i class="icon-people"></i> Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('backend.roles.index') }}"><i class="icon-puzzle"></i> Roles</a>
+                        <a class="nav-link" href="{{ route('backend.roles.index') }}"><i class="icon-user-following"></i> Roles</a>
                     </li>
                 </ul>
             </li>
