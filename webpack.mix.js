@@ -12,8 +12,7 @@ let mix = require('laravel-mix');
  */
 
 // copy assets
-mix.copy('resources/assets/fontawesome/js/fontawesome-all.min.js', 'public/js/fontawesome-all.min.js')
-   .copy('node_modules/jquery/dist/jquery.slim.min.js', 'public/js/jquery.min.js');
+mix.copy('node_modules/jquery/dist/jquery.slim.min.js', 'public/js/jquery.min.js');
 
 // build backend css
 mix.styles([

@@ -24,9 +24,7 @@
     <link rel="stylesheet" href="/plugins/simple-line-icons/css/simple-line-icons.css">
 
     <!-- fontawesome -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script> -->
-    <script type="text/javascript" src="/js/fontawesome-all.min.js"></script>
-
+    <link href="/plugins/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
     @stack('after-styles')
 </head>
 
