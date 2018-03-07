@@ -42,7 +42,7 @@ $module_name_singular = str_singular($module_name);
                 <div class="tab-content">
                     <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
                         <div class="table-responsive">
-                            <table class="table table-hover table-responsive">
+                            <table class="table table-hover">
                                 <tr>
                                     <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                                     <td>{{ $$module_name_singular->name }}</td>

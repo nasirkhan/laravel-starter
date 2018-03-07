@@ -59,7 +59,7 @@ $module_name_singular = str_singular($module_name);
 
                     <div class="row">
                         <div class="col">
-                            <table class="table table-responsive">
+                            <table class="table table-responsive-sm">
                                 <thead>
                                     <tr>
                                         <th>Roles</th>
