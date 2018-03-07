@@ -1,6 +1,6 @@
 {
-    "/css/app_backend.css": "/css/app_backend.css",
-    "/js/fontawesome-all.min.js": "/js/fontawesome-all.min.js",
-    "/js/jquery.min.js": "/js/jquery.min.js",
-    "/js/app_backend.js": "/js/app_backend.js"
+    "/js/fontawesome-all.min.js": "/js/fontawesome-all.min.js?id=668aad8c7d9f38f93221",
+    "/js/jquery.min.js": "/js/jquery.min.js?id=99b0a83cf1b0b1e2cb16",
+    "/css/app_backend.css": "/css/app_backend.css?id=1fea5ecb0fdb2de7ea10",
+    "/js/app_backend.js": "/js/app_backend.js?id=05b48973a63ca84d326a"
 }

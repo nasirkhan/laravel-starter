@@ -33,7 +33,7 @@
                 <div class="dropdown-header text-center">
                     <strong>Account</strong>
                 </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="badge badge-success">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i> Messages<span class="badge badge-success">42</span></a>
 
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>

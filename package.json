@@ -12,11 +12,15 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "popper.js": "^1.12",
+        "chart.js": "2.7.1",
         "cross-env": "^5.1",
+        "flag-icon-css": "2.9.0",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
+        "pace-progress": "1.0.2",
+        "popper.js": "^1.12",
+        "simple-line-icons": "^2.4.1",
         "vue": "^2.5.7"
     }
 }

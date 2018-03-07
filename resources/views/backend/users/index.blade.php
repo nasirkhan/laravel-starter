@@ -67,8 +67,8 @@
                             <td>{!! $user->social_buttons !!}</td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
                             <td>
-                                <a href="{{route('backend.users.show', $user)}}" class="btn btn-success"><i class="fa fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
-                                <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
+                                <a href="{{route('backend.users.show', $user)}}" class="btn btn-success"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
+                                <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
                             </td>
                         </tr>
                         @endforeach
