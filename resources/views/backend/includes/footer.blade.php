@@ -1,5 +1,4 @@
 <footer class="app-footer">
-    <strong>Copyright &copy; {{ date('Y') }} <a href="https://github.com/nasirkhan/laravel-starter">Laravel Starter</a></strong>
-
-    <span class="float-right text-secondary">Developed with ❤ by <a href="http://nasirkhn.com" class="text-secondary">Nasir Khan Saikat</a></span>
+    <span>Copyright &copy; {{ date('Y') }} <a href="https://github.com/nasirkhan/laravel-starter">Laravel Starter</a></span>
+    <span class="ml-auto">Developed with ❤ by <a href="http://nasirkhn.com" class="">Nasir Khan Saikat</a></span>
 </footer>
