@@ -2,3 +2,12 @@
 
 # Laravel Starter
 Laravel 5.6 based simple starter project.
+
+
+## Features
+
+* User Authentication
+* Social Login
+* Role-Permissions for users 
+* Backend Theme
+* Frontend Theme
