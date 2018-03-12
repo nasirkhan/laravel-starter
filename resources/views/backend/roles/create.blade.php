@@ -11,7 +11,7 @@ $module_name_singular = str_singular($module_name);
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.show.action') }} </small>
@@ -21,7 +21,7 @@ $module_name_singular = str_singular($module_name);
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-sm-7">
+            <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
                 </div>
