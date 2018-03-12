@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCategoriesTable extends Migration
 {
@@ -11,27 +11,26 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
-     public function up()
-     {
-         Schema::create('categories', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
 
-             $table->increments('id')->unsigned();
+            $table->string('name');
+            $table->string('code')->nullable();
+            $table->string('description')->nullable();
 
-             $table->string('name');
-             $table->string('code')->nullable();
-             $table->string('description')->nullable();
+            $table->string('order')->nullable();
+            $table->tinyInteger('status')->default(1);
 
-             $table->string('order')->nullable();
-             $table->tinyInteger('status')->default(1);
+            $table->integer('created_by')->unsigned()->index();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
 
-             $table->integer('created_by')->unsigned()->index();
-             $table->integer('updated_by')->unsigned()->nullable();
-             $table->integer('deleted_by')->unsigned()->nullable();
-
-             $table->timestamps();
-             $table->softDeletes();
-         });
-     }
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
 
     /**
      * Reverse the migrations.
