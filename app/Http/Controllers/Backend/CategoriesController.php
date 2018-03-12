@@ -289,7 +289,7 @@ class CategoriesController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' DeletRestoreded Successfully!');
+        Flash::success('<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Data Restoreded Successfully!');
         Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");

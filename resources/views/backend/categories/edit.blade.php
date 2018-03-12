@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="form-group">
-                            {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-primary', 'type'=>'submit']) !!}
+                            {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
                         </div>
                     </div>
                     {{ html()->form()->close() }}
@@ -59,7 +59,7 @@
                         <div class="pull-right">
                             {{ html()->modelForm($$module_name_singular, 'DELETE', route("backend.$module_name.destroy", $$module_name_singular))->open() }}
                             <div class="form-group">
-                                {!! Form::button("<i class='fas fa-trash'></i>", ['class' => 'btn btn-danger', 'type'=>'submit']) !!}
+                                {!! Form::button("<i class='fas fa-trash-alt'></i>", ['class' => 'btn btn-danger', 'type'=>'submit']) !!}
 
                                 <a class="btn btn-warning" href="{{ route("backend.$module_name.index") }}">
                                     <i class="fas fa-reply"></i> Cancel

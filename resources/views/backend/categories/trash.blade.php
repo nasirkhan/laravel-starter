@@ -1,4 +1,4 @@
-@extends ('backend.layouts.master')
+@extends ('backend.layouts.app')
 
 <?php
 $module_name_singular = str_singular($module_name);
@@ -16,89 +16,105 @@ $module_name_singular = str_singular($module_name);
 @stop
 
 @section('breadcrumbs')
-<li><a href="{!!route('backend.dashboard')!!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-<li class="active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
 @stop
 
 @section('content')
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{ ucfirst($module_title) }} {{ ucfirst($module_action) }}</h3>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-8">
+                <h4 class="card-title mb-0">
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                </h4>
+                <div class="small text-muted">
+                    {{ title_case($module_name) }} Management Dashboard
+                </div>
+            </div>
+            <!--/.col-->
+            <div class="col-4">
+                <div class="pull-right">
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ $module_name }} List"><i class="fas fa-list"></i> List</a>
+                </div>
+            </div>
+            <!--/.col-->
+        </div>
+        <!--/.row-->
 
-        <div class="box-tools pull-right">
-            <a href="{{ route("backend.$module_name.index") }}" class="btn btn-primary pull-right btn-sm">
-                <i class="fa fa-th-list"></i> List
-            </a>
+        <div class="row mt-4">
+            <div class="col">
+                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Page
+                            </th>
+                            <th>
+                                Updated At
+                            </th>
+                            <th>
+                                Created By
+                            </th>
+                            <th class="text-right">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($$module_name as $module_name_singular)
+                        <tr>
+                            <td>
+                                {{ $module_name_singular->id }}
+                            </td>
+                            <td>
+                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                            </td>
+                            <td>
+                                {{ $module_name_singular->code }}
+                            </td>
+                            <td>
+                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                            </td>
+                            <td>
+                                {{ $module_name_singular->created_by }}
+                            </td>
+                            <td class="text-right">
+                                {{ html()->form('POST', route("backend.$module_name.restore", $module_name_singular))->open() }}
+
+                                <div class="form-group">
+                                    {{ html()->button($text = "<i class='fas fa-undo'></i> Restore", $type = 'submit')->class('btn btn-danger') }}
+                                </div>
+
+                                {{ html()->form()->close() }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="box-body">
-        <table id="datatable" class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    <th>
-                        Updated At
-                    </th>
-                    <th>
-                        Created By
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th class="text-right">
-                        Action
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach($$module_name as $module_name_singular)
-                <tr>
-                    <td>
-                        {{ $module_name_singular->id }}
-                    </td>
-                    <td>
-                        <strong>
-                            {{ $module_name_singular->name }}
-                        </strong>
-                    </td>
-                    <td>
-                        {{ $module_name_singular->description }}
-                    </td>
-                    <td>
-                        {{ $module_name_singular->updated_at }}
-                    </td>
-                    <td>
-                        {{ $module_name_singular->user->name }}
-                    </td>
-                    <td>
-                        {{ $module_name_singular->status }}
-                    </td>
-                    <td class="text-right">
-
-                        {!! Form::open(["url" => "admin/$module_name/trashed/$module_name_singular->id"]) !!}
-
-                        <div class="form-group">
-                            {!! Form::button("<i class='fa fa-undo'></i> Restore", ['class' => 'btn btn-danger ', 'type'=>'submit']) !!}
-                        </div>
-
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        {!! $$module_name->render() !!}
-
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-7">
+                <div class="float-left">
+                    Total {{ $$module_name->total() }} {{ title_case($module_name) }}
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="float-right">
+                    {!! $$module_name->render() !!}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
