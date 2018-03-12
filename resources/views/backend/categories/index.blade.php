@@ -12,7 +12,7 @@
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
 @stop
 
@@ -20,7 +20,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
                     <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
@@ -29,18 +29,19 @@
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-sm-7">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success ml-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i> Create</a>
-                    &nbsp;
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle btn-sm" data-toggle="tooltip" title="Options" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ route("backend.$module_name.trashed") }}">
-                                <i class="fa fa-eye-slash"></i> View trash
-                            </a>
+            <div class="col-4">
+                <div class="pull-right">
+                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
+                    <div class="btn-group " role="group" aria-label="Toolbar button groups">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
+                                <a class="dropdown-item" href="{{ route("backend.$module_name.trashed") }}">
+                                    <i class="fas fa-eye-slash"></i> View trash
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@
 
         <div class="row mt-4">
             <div class="col">
-                <table id="datatable" class="table table-bordered table-hover table-striped table-responsive-sm">
+                <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
                     <thead>
                         <tr>
                             <th>
@@ -94,7 +95,8 @@
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td>
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular->id)!!}' class='btn btn-sm btn-primary' data-toggle="tooltip" title="Edit {{ title_case($module_name) }}"><i class="fa fa-wrench"></i></a>
+                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary' data-toggle="tooltip" title="Edit {{ title_case($module_name) }}"><i class="fas fa-wrench"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success' data-toggle="tooltip" title="Show {{ title_case($module_name) }}"><i class="fas fa-desktop"></i></a>
                             </td>
                         </tr>
                         @endforeach
