@@ -160,7 +160,7 @@ $module_name_singular = str_singular($module_name);
                             {{ form_submit(__('labels.buttons.general.create')) }}
                         </div>
                     </div>
-                {{ html()->form()->open() }}
+                {{ html()->form()->close() }}
 
             </div>
         </div>
