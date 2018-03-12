@@ -155,7 +155,7 @@ if (!function_exists('form_submit')) {
         return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
 }
-/**
+/*
  *
  * lable_case
  *
@@ -163,23 +163,21 @@ if (!function_exists('form_submit')) {
  */
 if (!function_exists('lable_case')) {
 
-/**
- * Prepare the Column Name for Lables
- */
-
-    function lable_case($text) {
-        $order   = array("_", "-");
+    /**
+     * Prepare the Column Name for Lables.
+     */
+    function lable_case($text)
+    {
+        $order = ['_', '-'];
         $replace = ' ';
 
         $new_text = title_case(str_replace($order, $replace, $text));
 
         return $new_text;
     }
-
 }
 
-
-/**
+/*
  *
  * show_column_value
  *
@@ -188,17 +186,19 @@ if (!function_exists('lable_case')) {
 if (!function_exists('show_column_value')) {
 
     /**
-     * Return Column values as Raw and formatted
+     * Return Column values as Raw and formatted.
      *
-     * @param  string $valueObject      Model Object
-     * @param  string $column           Column Name
-     * @param  string $return_format    Return Type
-     * @return string                   Raw/Formatted Column Value
+     * @param string $valueObject   Model Object
+     * @param string $column        Column Name
+     * @param string $return_format Return Type
+     *
+     * @return string Raw/Formatted Column Value
      */
-    function show_column_value($valueObject, $column, $return_format = '') {
+    function show_column_value($valueObject, $column, $return_format = '')
+    {
         $value = $valueObject->$column;
 
-        if ($return_format == 'raw'){
+        if ($return_format == 'raw') {
             return $value;
         }
 
@@ -222,8 +222,6 @@ if (!function_exists('show_column_value')) {
             $return_text = $value;
         }
 
-
         return $return_text;
     }
-
 }
