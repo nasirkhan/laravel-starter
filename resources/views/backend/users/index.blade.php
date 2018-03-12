@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-8">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-sm-7">
+            <div class="col-sm-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <a href="{{route('backend.users.create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
                 </div>

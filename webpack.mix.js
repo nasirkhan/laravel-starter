@@ -16,9 +16,9 @@ mix.copy('node_modules/jquery/dist/jquery.slim.min.js', 'public/js/jquery.min.js
 
 // build backend css
 mix.styles([
-        'resources/assets/coreui/css/style.min.css',
-        'resources/assets/coreui/css/custom.css'
-    ], 'public/css/app_backend.css');
+    'resources/assets/coreui/css/style.min.css',
+    'resources/assets/coreui/css/custom.css'
+], 'public/css/app_backend.css');
 
 // build backend js
 mix.scripts([

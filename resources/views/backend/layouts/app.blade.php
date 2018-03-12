@@ -25,6 +25,7 @@
 
     <!-- fontawesome -->
     <link href="/plugins/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
+    
     @stack('after-styles')
 </head>
 
