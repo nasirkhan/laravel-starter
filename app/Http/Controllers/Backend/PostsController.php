@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\PostsRequest;
 use App\Models\Category;
 use Auth;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     public function __construct()
     {
