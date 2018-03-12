@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
         <div class="form-group">
             <?php
             $field_name = 'name';
@@ -11,7 +11,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-6 col-md-4">
         <div class="form-group">
             <?php
             $field_name = 'code';
@@ -23,7 +23,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-6 col-md-2">
         <div class="form-group">
             <?php
             $field_name = 'order';
