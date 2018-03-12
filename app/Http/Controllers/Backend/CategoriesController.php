@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\CategoriesRequest;
+use Log;
 use Auth;
 use Flash;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Log;
+use App\Http\Requests\Backend\CategoriesRequest;
+
 
 class CategoriesController extends Controller
 {
