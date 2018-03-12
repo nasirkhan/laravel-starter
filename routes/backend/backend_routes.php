@@ -6,7 +6,7 @@
  */
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
-/**
+/*
  *
  *  Users Routes
  *
@@ -14,7 +14,7 @@ Route::get('dashboard', 'BackendController@index')->name('dashboard');
  */
 Route::resource('users', 'UserController');
 
-/**
+/*
  *
  *  Roles Routes
  *
@@ -22,8 +22,7 @@ Route::resource('users', 'UserController');
  */
 Route::resource('roles', 'RolesController');
 
-
-/**
+/*
  *
  *  Categories Routes
  *
@@ -34,7 +33,7 @@ Route::get('categories/trashed', ['as' => 'categories.trashed', 'uses' => 'Categ
 Route::post('categories/trashed/{id}', ['as' => 'categories.restore', 'uses' => 'CategoriesController@restore']);
 Route::resource('categories', 'CategoriesController');
 
-/**
+/*
  *
  *  Posts Routes
  *

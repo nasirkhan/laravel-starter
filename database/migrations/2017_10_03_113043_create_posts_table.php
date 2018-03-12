@@ -14,7 +14,6 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-
             $table->increments('id')->unsigned();
             $table->string('title');
             $table->string('slug');
@@ -42,7 +41,6 @@ class CreatePostsTable extends Migration
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            
         });
     }
 
