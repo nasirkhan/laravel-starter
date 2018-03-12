@@ -13,7 +13,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "spatie/laravel-html": "^2.8",
-        "spatie/laravel-permission": "^2.7"
+        "spatie/laravel-permission": "^2.7",
+        "yajra/laravel-datatables": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
