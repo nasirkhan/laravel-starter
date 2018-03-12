@@ -14,8 +14,35 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
+
+            $table->increments('id')->unsigned();
+            $table->string('title');
+            $table->string('slug');
+            $table->text('intro')->nullable();
+            $table->text('content')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->string('category')->nullable();
+            $table->string('is_featured')->nullable();
+            $table->string('featured_image')->nullable();
+
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_og_image')->nullable();
+            $table->string('meta_og_url')->nullable();
+
+            $table->string('order')->nullable();
+            $table->tinyInteger('status')->default(1);
+
+            $table->integer('created_by')->unsigned()->nullable()->index();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
+
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            
         });
     }
 

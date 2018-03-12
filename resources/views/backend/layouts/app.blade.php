@@ -25,7 +25,7 @@
 
     <!-- fontawesome -->
     <link href="/plugins/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
-    
+
     @stack('after-styles')
 </head>
 
@@ -74,9 +74,10 @@
 
             <!-- Breadcrumb -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Home</li>
+                @yield('breadcrumbs')
+                <!-- <li class="breadcrumb-item">Home</li>
                 <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Dashboard</li> -->
 
                 <!-- Breadcrumb Menu-->
                 <li class="breadcrumb-menu d-md-down-none">

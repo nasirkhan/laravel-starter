@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Log;
 use Auth;
@@ -8,27 +8,25 @@ use Flash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Backend\PostsRequest;
-use App\Models\Category;
-use Yajra\DataTables\DataTables;
+use App\Http\Requests\Backend\CategoriesRequest;
 
-class PostsController extends Controller {
+class CategoriesController extends Controller {
 
     public function __construct() {
         // Page Title
-        $this->module_title = "Posts";
+        $this->module_title = "Categories";
 
         // module name
-        $this->module_name  = "posts";
+        $this->module_name  = "categories";
 
         // directory path of the module
-        $this->module_path  = "posts";
+        $this->module_path  = "categories";
 
         // module icon
-        $this->module_icon  = "fa fa-file-text-o";
+        $this->module_icon  = "fas fa-sitemap";
 
         // module model name, path
-        $this->module_model = "App\Models\Post";
+        $this->module_model = "App\Models\Category";
     }
 
     /**
@@ -50,11 +48,11 @@ class PostsController extends Controller {
         $page_heading = ucfirst($module_title);
         $title = $page_heading . ' ' . ucfirst($module_action);
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::paginate();
 
         Log::info("'$title' viewed by User:" . Auth::user()->name . '(ID:' . Auth::user()->id . ')');
         return view("backend.$module_path.index",
-                compact("module_title", "module_name", "$module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact("module_title", "module_name", "$module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     public function index_data() {
@@ -71,22 +69,20 @@ class PostsController extends Controller {
         $page_heading = ucfirst($module_title);
         $title = $page_heading . ' ' . ucfirst($module_action);
 
-        $$module_name = $module_model::orderBy('id', 'desc');
+        $$module_name = $module_model::all();
 
-        return $data = $$module_name;
+        $data = $$module_name;
 
-        return DataTables::of($$module_name)
-                // ->addColumn('action', function ($data) {
-                //     $module_name = $this->module_name;
-                //     return '<a href="' . route("admin.$module_name.edit", $data->id) . '" class="btn btn-sm btn-primary"><i class="fa fa-wrench"></i> Edit</a>';
-                // })
-                // ->editColumn('title', function ($data) {
-                //     $module_name = $this->module_name;
-                //     return '<strong><a href="' . route("admin.$module_name.show", $data->id) . '" class="">' . $data->title . '</a></strong>';
-                // })
-                // ->rawColumns(['title', 'action'])
-                ->toJson();
-
+        return Datatables::of($$module_name)
+        ->addColumn('action', function ($data) {
+            $module_name = $this->module_name;
+            return '<a href="' . route("admin.$module_name.edit", $data->id) . '" class="btn btn-sm btn-primary"><i class="fa fa-wrench"></i> Edit</a>';
+        })
+        ->editColumn('title', function ($data) {
+            $module_name = $this->module_name;
+            return '<strong><a href="' . route("admin.$module_name.show", $data->id) . '" class="">' . $data->title . '</a></strong>';
+        })
+        ->make(true);
     }
 
     /**
@@ -108,10 +104,8 @@ class PostsController extends Controller {
         $page_heading = ucfirst($module_title);
         $title = $page_heading . ' ' . ucfirst($module_action);
 
-        $categories = Category::pluck('name', 'id');
-
         return view("backend.$module_name.create",
-                compact('categories', "module_title", "module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact("module_title", "module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
@@ -120,7 +114,7 @@ class PostsController extends Controller {
     * @param  Request  $request
     * @return Response
     */
-    public function store(PostsRequest $request) {
+    public function store(CategoriesRequest $request) {
 
         $module_title = $this->module_title;
         $module_name  = $this->module_name;
@@ -190,10 +184,8 @@ class PostsController extends Controller {
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
-
         return view("backend.$module_name.edit",
-        compact('categories', "module_title", "module_name", "$module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact("module_title", "module_name", "$module_name", "module_path", "module_icon", 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
 
     }
 
@@ -204,7 +196,7 @@ class PostsController extends Controller {
     * @param  int  $id
     * @return Response
     */
-    public function update(PostsRequest $request, $id) {
+    public function update(CategoriesRequest $request, $id) {
 
         $module_title = $this->module_title;
         $module_name  = $this->module_name;
@@ -264,7 +256,7 @@ class PostsController extends Controller {
         $module_action = "List";
         $page_heading = $module_title;
 
-        $$module_name = $module_model::onlyTrashed()->get();
+        $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
         Log::info(ucfirst($module_action) . " " . ucfirst($module_name) . " by User:" . Auth::user()->name);
         return view("backend.$module_name.trash",

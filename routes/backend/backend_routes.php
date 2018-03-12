@@ -1,14 +1,49 @@
 <?php
 
 /**
- * Backend Routes
+ * Backend Dashboard
  * Namespaces indicate folder structure.
  */
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
+/**
+ *
+ *  Users Routes
+ *
+ * ---------------------------------------------------------------------
+ */
 Route::resource('users', 'UserController');
 
+/**
+ *
+ *  Roles Routes
+ *
+ * ---------------------------------------------------------------------
+ */
 Route::resource('roles', 'RolesController');
+
+
+/**
+ *
+ *  Categories Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+Route::get('categories/index-data', ['as' => 'categories.index-data', 'uses' => 'CategoriesController@index_data']);
+Route::get('categories/trashed', ['as' => 'categories.trashed', 'uses' => 'CategoriesController@trashed']);
+Route::post('categories/trashed/{id}', ['as' => 'categories.restore', 'uses' => 'CategoriesController@restore']);
+Route::resource('categories', 'CategoriesController');
+
+/**
+ *
+ *  Posts Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+Route::get('posts/index_data', ['as' => 'posts.index_data', 'uses' => 'PostsController@index_data']);
+Route::get('posts/trashed', ['as' => 'posts.trashed', 'uses' => 'PostsController@trashed']);
+Route::post('posts/trashed/{id}', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
+Route::resource('posts', 'PostsController');
 
 // Route::group(['namespace' => 'Backend'], function () {
 //     // need to be logged in,
