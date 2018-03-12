@@ -70,7 +70,7 @@
                             <th>
                                 Created By
                             </th>
-                            <th>
+                            <th class="text-right">
                                 Action
                             </th>
                         </tr>
@@ -89,14 +89,14 @@
                                 {{ $module_name_singular->code }}
                             </td>
                             <td>
-                                {{ $module_name_singular->updated_at }}
+                                {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
-                            <td>
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary' data-toggle="tooltip" title="Edit {{ title_case($module_name) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success' data-toggle="tooltip" title="Show {{ title_case($module_name) }}"><i class="fas fa-desktop"></i></a>
+                            <td class="text-right">
+                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success' data-toggle="tooltip" title="Show {{ title_case(str_singular($module_name)) }}"><i class="fas fa-desktop"></i></a>
                             </td>
                         </tr>
                         @endforeach
