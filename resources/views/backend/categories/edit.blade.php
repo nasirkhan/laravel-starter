@@ -32,7 +32,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route("backend.$module_name.show", $$module_name_singular->id) }}" class="btn btn-primary ml-1" data-toggle="tooltip" title="Show Details"><i class="fas fa-tv"></i> Show</a>
+                    <a href="{{ route("backend.$module_name.show", $$module_name_singular->id) }}" class="btn btn-primary btn-sm ml-1" data-toggle="tooltip" title="Show Details"><i class="fas fa-tv"></i> Show</a>
                 </div>
             </div>
             <!--/.col-->
@@ -57,7 +57,7 @@
 
                     <div class="col-8">
                         <div class="pull-right">
-                            {{ html()->modelForm($$module_name_singular, 'DELETE', route("backend.$module_name.destroy", $$module_name_singular))->open() }}                            
+                            {{ html()->modelForm($$module_name_singular, 'DELETE', route("backend.$module_name.destroy", $$module_name_singular))->open() }}
                             <div class="form-group">
                                 {!! Form::button("<i class='fas fa-trash'></i>", ['class' => 'btn btn-danger', 'type'=>'submit']) !!}
 

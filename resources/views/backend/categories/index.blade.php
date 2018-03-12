@@ -31,10 +31,10 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="pull-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
-                    <div class="btn-group " role="group" aria-label="Toolbar button groups">
+                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
+                    <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">
-                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-cog"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
@@ -95,8 +95,8 @@
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success' data-toggle="tooltip" title="Show {{ title_case(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ title_case(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach

@@ -155,3 +155,75 @@ if (!function_exists('form_submit')) {
         return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
 }
+/**
+ *
+ * lable_case
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('lable_case')) {
+
+/**
+ * Prepare the Column Name for Lables
+ */
+
+    function lable_case($text) {
+        $order   = array("_", "-");
+        $replace = ' ';
+
+        $new_text = title_case(str_replace($order, $replace, $text));
+
+        return $new_text;
+    }
+
+}
+
+
+/**
+ *
+ * show_column_value
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('show_column_value')) {
+
+    /**
+     * Return Column values as Raw and formatted
+     *
+     * @param  string $valueObject      Model Object
+     * @param  string $column           Column Name
+     * @param  string $return_format    Return Type
+     * @return string                   Raw/Formatted Column Value
+     */
+    function show_column_value($valueObject, $column, $return_format = '') {
+        $value = $valueObject->$column;
+
+        if ($return_format == 'raw'){
+            return $value;
+        }
+
+        if (ends_with(strtolower($value), ['png', 'jpg', 'jpeg'])) {
+            $img_path = asset($value);
+
+            // $return_text = "<img src='$img_path' class='img-responsive img-thumbnail'>";
+            // $return_text = '<figure class="figure">
+            //                     <a href="images/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>
+            //                     <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
+            //                     <figcaption class="figure-caption">Path: '.$value.'</figcaption>
+            //                 </figure>';
+
+            $return_text = '<figure class="figure">
+                                <a href="'.$img_path.'" data-lightbox="image-set" data-title="Path: '.$value.'">
+                                    <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
+                                </a>
+                                <figcaption class="figure-caption">Path: '.$value.'</figcaption>
+                            </figure>';
+        } else {
+            $return_text = $value;
+        }
+
+
+        return $return_text;
+    }
+
+}
