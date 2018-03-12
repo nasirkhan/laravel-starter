@@ -35,7 +35,7 @@ $module_name_singular = str_singular($module_name);
             <!--/.col-->
             <div class="col-4">
                 <div class="pull-right">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ $module_name }} List"><i class="fas fa-list"></i> List</a>
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ title_case($module_name) }} List"><i class="fas fa-list"></i> List</a>
                 </div>
             </div>
             <!--/.col-->
