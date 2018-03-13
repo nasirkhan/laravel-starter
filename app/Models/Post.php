@@ -7,77 +7,16 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Post extends BaseModel
 {
     use SoftDeletes;
 
     protected $table = 'posts';
 
-    protected $guarded = [
-        'id',
-        'updated_at',
-    ];
-
-    protected $dates = [
-        'published_at',
-        'deleted_at',
-    ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        // static::saving(function($table) {
-        //     $table->created_by = Auth::id();
-        // });
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-        });
-    }
-
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'category');
     }
-
-    /**
-     * Show the Status in a more readable way.
-     *
-     * @param type $value
-     *
-     * @return type
-     */
-    // public function getStatusAttribute($value)
-    // {
-    //     switch ($value){
-    //         case 0:
-    //             $return_value = "Unpublished";
-    //             break;
-    //         case 1:
-    //             $return_value = "Published";
-    //             break;
-    //         case 2:
-    //             $return_value = "Draft";
-    //             break;
-    //         default:
-    //             $return_value = $value;
-    //     }
-    //
-    //     return $return_value;
-    // }
 
     /**
      *  set post 'Title' and update the 'slug'.
@@ -190,13 +129,4 @@ class Post extends Model
                         ->orderBy('published_at', 'desc');
     }
 
-    /**
-     * Get the list of all the Columns of the table.
-     *
-     * @return array Column names array
-     */
-    public function getTableColumns()
-    {
-        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
-    }
 }

@@ -7,46 +7,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Category extends BaseModel
 {
     use SoftDeletes;
 
     protected $table = 'categories';
-
-    protected $guarded = [
-        'id',
-        'updated_at',
-    ];
-
-    protected $dates = [
-        'published_at',
-        'deleted_at',
-    ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        // static::saving(function($table) {
-        //     $table->created_by = Auth::id();
-        // });
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-        });
-    }
 
     /**
      * Caegories has Many posts.
@@ -82,16 +47,6 @@ class Category extends Model
         }
 
         return $return_value;
-    }
-
-    /**
-     *  set post 'Title' and update the 'slug'.
-     *
-     * @param [type]
-     */
-    public function setTitleAttribute($value)
-    {
-        $this->attributes['title'] = trim(title_case($value));
     }
 
     /**
@@ -175,18 +130,9 @@ class Category extends Model
      *
      * @return type
      */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'created_by');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User', 'created_by');
+    // }
 
-    /**
-     * Get the list of all the Columns of the table.
-     *
-     * @return array Column names array
-     */
-    public function getTableColumns()
-    {
-        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
-    }
 }
