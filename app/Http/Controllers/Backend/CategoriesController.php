@@ -83,18 +83,20 @@ class CategoriesController extends Controller
 
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
+                        ->editColumn('name', '<strong>{{$name}}</strong>')
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
 
                             $diff = Carbon::now()->diffInHours($data->updated_at);
 
-                            if ($diff < 20) {
+                            if ($diff < 25) {
                                 return $data->updated_at->diffForHumans();
                             } else {
                                 return $data->updated_at->toCookieString();
                             }
                         })
-                        ->rawColumns(['action'])
+                        ->rawColumns(['name','action'])
+                        ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }
 
