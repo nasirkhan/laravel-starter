@@ -95,7 +95,7 @@ class CategoriesController extends Controller
                                 return $data->updated_at->toCookieString();
                             }
                         })
-                        ->rawColumns(['name','action'])
+                        ->rawColumns(['name', 'action'])
                         ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }
