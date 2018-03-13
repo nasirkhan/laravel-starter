@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Auth;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends BaseModel
@@ -125,7 +123,7 @@ class Category extends BaseModel
         }
     }
 
-    /**
+    /*
      * a post is belongs to an user.
      *
      * @return type
@@ -134,5 +132,4 @@ class Category extends BaseModel
     // {
     //     return $this->belongsTo('App\User', 'created_by');
     // }
-
 }
