@@ -26,7 +26,7 @@ class PostsController extends Controller
         $this->module_path = 'posts';
 
         // module icon
-        $this->module_icon = 'fa fa-file-text-o';
+        $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
         $this->module_model = "App\Models\Post";
@@ -73,21 +73,31 @@ class PostsController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
 
-        $$module_name = $module_model::orderBy('id', 'desc');
+        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
 
-        return $data = $$module_name;
+        $data = $$module_name;
 
-        return DataTables::of($$module_name)
-                // ->addColumn('action', function ($data) {
-                //     $module_name = $this->module_name;
-                //     return '<a href="' . route("admin.$module_name.edit", $data->id) . '" class="btn btn-sm btn-primary"><i class="fa fa-wrench"></i> Edit</a>';
-                // })
-                // ->editColumn('title', function ($data) {
-                //     $module_name = $this->module_name;
-                //     return '<strong><a href="' . route("admin.$module_name.show", $data->id) . '" class="">' . $data->title . '</a></strong>';
-                // })
-                // ->rawColumns(['title', 'action'])
-                ->toJson();
+        return Datatables::of($$module_name)
+                        ->addColumn('action', function ($data) {
+                            $module_name = $this->module_name;
+
+                            return view('backend.includes.action_column', compact('module_name', 'data'));
+                        })
+                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('updated_at', function ($data) {
+                            $module_name = $this->module_name;
+
+                            $diff = Carbon::now()->diffInHours($data->updated_at);
+
+                            if ($diff < 25) {
+                                return $data->updated_at->diffForHumans();
+                            } else {
+                                return $data->updated_at->toCookieString();
+                            }
+                        })
+                        ->rawColumns(['name', 'action'])
+                        ->orderColumns(['id'], '-:column $1')
+                        ->make(true);
     }
 
     /**

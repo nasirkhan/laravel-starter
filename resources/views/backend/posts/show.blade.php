@@ -12,16 +12,16 @@
 @stop
 
 @section('breadcrumbs')
-<li><a href="{!!route('backend.dashboard')!!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-<li><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="active"> {{ $module_action }}</li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+<li class="breadcrumb-item active"> {{ $module_action }}</li>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
                     <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
@@ -30,10 +30,10 @@
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-7">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary ml-1 btn-sm" data-toggle="tooltip" title="List"><i class="fa fa-list"></i> List</a>
-                    <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary ml-1 btn-sm" data-toggle="tooltip" title="Edit"><i class="fa fa-wrench"></i> Edit</a>
+            <div class="col-4">
+                <div class="pull-right">
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ title_case($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                    <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
             <!--/.col-->

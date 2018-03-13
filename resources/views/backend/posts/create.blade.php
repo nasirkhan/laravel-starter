@@ -12,27 +12,28 @@
 @stop
 
 @section('breadcrumbs')
-<li><a href="{!!route('backend.dashboard')!!}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-<li><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="active"> {{ $module_action }}</li>
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+<li class="breadcrumb-item active"> {{ $module_action }}</li>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
                     {{ title_case($module_name) }} Management Dashboard
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-7">
+            <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-primary ml-1 btn-sm" data-toggle="tooltip" title="List"><i class="fa fa-list"></i> List</a>
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary btn-sm ml-1" data-toggle="tooltip" title="{{ $module_title }} List"><i class="fas fa-list-ul"></i> List</a>
                 </div>
             </div>
             <!--/.col-->
@@ -43,28 +44,26 @@
 
         <div class="row mt-4">
             <div class="col">
-                {!! Form::open(['url' => "admin/$module_name", 'files' => true, 'class' => 'form']) !!}
-
-                {!! csrf_field() !!}
+                {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->open() }}
 
                 @include ("backend.$module_name.form")
 
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            {!! Form::button("<i class='fa fa-plus-circle'></i> " . ucfirst($module_action) . "", ['class' => 'btn btn-primary', 'type'=>'submit']) !!}
+                            {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst($module_action) . "", $type = 'submit')->class('btn btn-success') }}
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="pull-right">
                             <div class="form-group">
-                                <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fa fa-reply"></i> Cancel</button>
+                                <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {!! Form::close() !!}
+                {{ html()->form()->close() }}
 
             </div>
         </div>

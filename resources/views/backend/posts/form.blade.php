@@ -1,36 +1,60 @@
+<div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'title';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "required";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-sm-6">
+    <div class="col-6">
         <div class="form-group">
-            {!! Form::label('title', 'Title') !!}
-            {!! Form::text('title', old('title'), ['class' => 'form-control', 'required']) !!}
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('slug', 'Slug') !!}
-            {!! Form::text('slug', old('slug'), ['class' => 'form-control']) !!}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="form-group">
-            {!! Form::label('intro', 'Intro') !!}
-            {!! Form::textarea('intro', old('intro'), ['class' => 'form-control', 'rows' => '3']) !!}
+            <?php
+            $field_name = 'slug';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-12">
         <div class="form-group">
-            {!! Form::label('content', 'Content') !!}
-            {!! Form::textarea('content', old('content'), ['class' => 'form-control']) !!}
+            <?php
+            $field_name = 'intro';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'content';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="form-group">
             <?php
             $field_name = 'featured_image';
@@ -42,121 +66,167 @@
             <div class="input-group">
                 {!! Form::text("$field_name", old("$field_name"), ['class' => 'form-control', 'id' => "$field_name", 'required']) !!}
                 <span class="input-group-btn">
-                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" type="button"><i class="fa fa-folder-open"></i> Browse</button>
+                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" type="button"><i class="fas fa-folder-open"></i> Browse</button>
                 </span>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-4">
         <div class="form-group">
-            {!! Form::label('category_id', 'Category') !!}
-            {!! Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control', 'placeholder' => 'Select an option', 'required']) !!}
+            <?php
+            $field_name = 'category_id';
+            $field_lable = "Category";
+            $field_placeholder = "-- Select an option --";
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->select($field_name, $categories)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-4">
         <div class="form-group">
-            {!! Form::label('type', 'Type') !!}
-            {!! Form::select('type', array(
-            'Article'=>'Article',
-            'Achievement'=>'Achievement',
-            'CSR'=>'CSR',
-            'News'=>'News',
-            ),old('type') , ['class' => 'form-control', 'placeholder' => 'Select an option', 'required'])
-            !!}
+            <?php
+            $field_name = 'type';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = "-- Select an option --";
+            $required = "";
+            $select_options = [
+                'Article'=>'Article',
+                'Blog'=>'Blog',
+                'News'=>'News',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-4">
         <div class="form-group">
-            {!! Form::label('is_featured', 'Is Featured') !!}
-            {!! Form::select('is_featured', array(
-            'No'=>'No',
-            'Yes'=>'Yes',
-            ),old('is_featured') , ['class' => 'form-control', 'required'])
-            !!}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('status', 'Status') !!}
-            {!! Form::select('status', array(
-            '1'=>'Published',
-            '0'=>'Unpublished',
-            '2'=>'Draft'
-            ), old('status') , ['class' => 'form-control'])
-            !!}
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::label('published_at', 'Publish Time') !!}
-            {!! Form::text('published_at', old('published_at') , ['class' => 'form-control']) !!}
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-5">
-        <div class="form-group">
-            {!! Form::label('meta_title', 'Meta Title') !!}
-            {!! Form::text('meta_title', old('meta_title'), ['class' => 'form-control']) !!}
-        </div>
-    </div>
-    <div class="col-sm-5">
-        <div class="form-group">
-            {!! Form::label('meta_keywords', 'Meta Keyword') !!}
-            {!! Form::text('meta_keywords', old('meta_keywords'), ['class' => 'form-control']) !!}
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="form-group">
-            {!! Form::label('order', 'Order') !!}
-            {!! Form::text('order', old('order'), ['class' => 'form-control']) !!}
+            <?php
+            $field_name = 'is_featured';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = "-- Select an option --";
+            $required = "";
+            $select_options = [
+                'Yes'=>'Yes',
+                'No'=>'No',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-6">
         <div class="form-group">
-            {!! Form::label('meta_description', 'Meta Description') !!}
-            {!! Form::text('meta_description', old('meta_description'), ['class' => 'form-control']) !!}
+            <?php
+            $field_name = 'status';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = "-- Select an option --";
+            $required = "";
+            $select_options = [
+                '1'=>'Published',
+                '0'=>'Unpublished',
+                '2'=>'Draft'
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'published_at';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-5">
         <div class="form-group">
-            {!! Form::label('meta_og_image', 'meta_og_image') !!}
-            {!! Form::text('meta_og_image', old('meta_og_image'), ['class' => 'form-control']) !!}
+            <?php
+            $field_name = 'meta_title';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-5">
         <div class="form-group">
-            {!! Form::label('meta_og_url', 'meta_og_url') !!}
-            {!! Form::text('meta_og_url', old('meta_og_url'), ['class' => 'form-control']) !!}
+            <?php
+            $field_name = 'meta_keywords';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <?php
+            $field_name = 'order';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
-
-@push('after-scripts')
-
-<script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
-<script type="text/javascript" src="/vendor/laravel-filemanager/js/lfm.js"></script>
-
-<script type="text/javascript">
-
-$('#btn_featured_image').filemanager('image');
-
-CKEDITOR.replace( 'content', {
-    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-});
-
-</script>
-
-@endpush
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'meta_description';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'meta_og_image';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <?php
+            $field_name = 'meta_og_url';
+            $field_lable = lable_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>

@@ -5,12 +5,20 @@
                 <a class="nav-link" href="{{ route('backend.dashboard') }}"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
             </li>
             <li class="nav-title">
-                Access Management
+                Modules
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('backend.posts.index') }}">
+                    <i class="fas fa-file-alt"></i> Posts
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.categories.index') }}">
                     <i class="fas fa-sitemap"></i> Categories
                 </a>
+            </li>
+            <li class="nav-title">
+                Access Management
             </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-key"></i> Access Control</a>
