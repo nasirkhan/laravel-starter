@@ -146,7 +146,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::create($request->all());
 
-        Flash::success("<i class='fa fa-check'></i> New '".str_singular($module_title)."' Added")->important();
+        Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
         Log::info("'$title': '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -233,7 +233,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular->update($request->all());
 
-        Flash::success("<i class='fa fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
+        Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 
         Log::info("'$title': '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -260,7 +260,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular->delete();
 
-        Flash::success('<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Deleted Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' Deleted Successfully!')->important();
 
         Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
@@ -315,7 +315,7 @@ class CategoriesController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Data Restoreded Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' Data Restoreded Successfully!')->important();
 
         Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
