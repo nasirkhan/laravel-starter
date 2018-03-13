@@ -265,12 +265,18 @@ class PostsController extends Controller
         $$module_name_singular->delete();
 
         Flash::success('<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Deleted Successfully!')->important();
-        
+
         Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");
     }
 
+    /**
+     * List of trashed ertries
+     * works if the softdelete is enabled
+     *
+     * @return Response
+     */
     public function trashed()
     {
         $module_name = $this->module_name;
@@ -291,6 +297,14 @@ class PostsController extends Controller
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 
+    /**
+     * Restore a soft deleted entry
+     *
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return Response
+     */
     public function restore($id)
     {
         $module_name = $this->module_name;
