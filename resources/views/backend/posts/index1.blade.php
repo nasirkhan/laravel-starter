@@ -62,13 +62,16 @@
                                 Name
                             </th>
                             <th>
-                                Page
+                                Category
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Image
                             </th>
                             <th>
                                 Updated At
-                            </th>
-                            <th>
-                                Created By
                             </th>
                             <th class="text-right">
                                 Action

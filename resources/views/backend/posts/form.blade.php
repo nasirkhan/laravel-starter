@@ -61,13 +61,12 @@
             $field_lable = 'Featured Image';
             $field_placeholder = $field_lable;
             ?>
-
             {!! Form::label("$field_name", "$field_lable") !!}
-            <div class="input-group">
-                {!! Form::text("$field_name", old("$field_name"), ['class' => 'form-control', 'id' => "$field_name", 'required']) !!}
-                <span class="input-group-btn">
-                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" type="button"><i class="fas fa-folder-open"></i> Browse</button>
-                </span>
+            <div class="input-group mb-3">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                <div class="input-group-append">
+                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" class="btn btn-outline-secondary" type="button"><i class="fas fa-folder-open"></i> Browse</button>
+                </div>
             </div>
         </div>
     </div>
