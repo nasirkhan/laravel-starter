@@ -269,7 +269,7 @@ class CategoriesController extends Controller
 
     /**
      * List of trashed ertries
-     * works if the softdelete is enabled
+     * works if the softdelete is enabled.
      *
      * @return Response
      */
@@ -294,7 +294,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Restore a soft deleted entry
+     * Restore a soft deleted entry.
      *
      * @param Request $request
      * @param int     $id
