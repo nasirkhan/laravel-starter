@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CategoriesRequest;
 use Auth;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
-use Carbon\Carbon;
 
 class CategoriesController extends Controller
 {
@@ -81,14 +81,14 @@ class CategoriesController extends Controller
                         ->addColumn('action', function ($data) {
                             $module_name = $this->module_name;
 
-                            return view("backend.includes.action_column", compact("module_name"));
+                            return view('backend.includes.action_column', compact('module_name'));
                         })
-                        ->editColumn('updated_at', function($data) {
+                        ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
 
                             $diff = Carbon::now()->diffInHours($data->updated_at);
 
-                            if ($diff <20) {
+                            if ($diff < 20) {
                                 return $data->updated_at->diffForHumans();
                             } else {
                                 return $data->updated_at->toCookieString();
