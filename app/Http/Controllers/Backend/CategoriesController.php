@@ -81,7 +81,7 @@ class CategoriesController extends Controller
                         ->addColumn('action', function ($data) {
                             $module_name = $this->module_name;
 
-                            return view('backend.includes.action_column', compact('module_name'));
+                            return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
