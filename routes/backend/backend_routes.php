@@ -28,7 +28,7 @@ Route::resource('roles', 'RolesController');
  *
  * ---------------------------------------------------------------------
  */
-Route::get('categories/index-data', ['as' => 'categories.index-data', 'uses' => 'CategoriesController@index_data']);
+Route::get('categories/index_data', ['as' => 'categories.index_data', 'uses' => 'CategoriesController@index_data']);
 Route::get('categories/trashed', ['as' => 'categories.trashed', 'uses' => 'CategoriesController@trashed']);
 Route::post('categories/trashed/{id}', ['as' => 'categories.restore', 'uses' => 'CategoriesController@restore']);
 Route::resource('categories', 'CategoriesController');

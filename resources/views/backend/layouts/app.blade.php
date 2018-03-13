@@ -129,6 +129,7 @@
 
     $('#flash-overlay-modal').modal();
     </script>
+    
     @stack('after-scripts')
 </body>
 </html>

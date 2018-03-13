@@ -12,7 +12,7 @@ let mix = require('laravel-mix');
  */
 
 // copy assets
-mix.copy('node_modules/jquery/dist/jquery.slim.min.js', 'public/js/jquery.min.js');
+mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
 
 // build backend css
 mix.styles([
@@ -22,7 +22,7 @@ mix.styles([
 
 // build backend js
 mix.scripts([
-   'node_modules/jquery/dist/jquery.slim.min.js',
+   'node_modules/jquery/dist/jquery.min.js',
    'node_modules/popper.js/dist/umd/popper.min.js',
    'node_modules/bootstrap/dist/js/bootstrap.min.js',
    'node_modules/pace-progress/pace.min.js',

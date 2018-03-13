@@ -9,6 +9,8 @@ use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
+use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
 
 class CategoriesController extends Controller
 {
@@ -53,7 +55,7 @@ class CategoriesController extends Controller
 
         Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
+        return view("backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
@@ -71,22 +73,29 @@ class CategoriesController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
 
-        $$module_name = $module_model::all();
+        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
 
         $data = $$module_name;
 
         return Datatables::of($$module_name)
-        ->addColumn('action', function ($data) {
-            $module_name = $this->module_name;
+                        ->addColumn('action', function ($data) {
+                            $module_name = $this->module_name;
 
-            return '<a href="'.route("admin.$module_name.edit", $data->id).'" class="btn btn-sm btn-primary"><i class="fa fa-wrench"></i> Edit</a>';
-        })
-        ->editColumn('title', function ($data) {
-            $module_name = $this->module_name;
+                            return view("backend.includes.action_column", compact("module_name"));
+                        })
+                        ->editColumn('updated_at', function($data) {
+                            $module_name = $this->module_name;
 
-            return '<strong><a href="'.route("admin.$module_name.show", $data->id).'" class="">'.$data->title.'</a></strong>';
-        })
-        ->make(true);
+                            $diff = Carbon::now()->diffInHours($data->updated_at);
+
+                            if ($diff <20) {
+                                return $data->updated_at->diffForHumans();
+                            } else {
+                                return $data->updated_at->toCookieString();
+                            }
+                        })
+                        ->rawColumns(['action'])
+                        ->make(true);
     }
 
     /**
