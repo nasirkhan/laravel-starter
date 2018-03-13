@@ -8,6 +8,10 @@ Laravel 5.6 based simple starter project.
 
 * User Authentication
 * Social Login
-* Role-Permissions for users 
+* Role-Permissions for users
 * Backend Theme
 * Frontend Theme
+* Posts Module
+ * wysiwyg editor
+ * file browser
+* Categories Module
