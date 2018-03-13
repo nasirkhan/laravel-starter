@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Log;
-use Auth;
-use Flash;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Backend\CategoriesRequest;
+use Auth;
+use Carbon\Carbon;
+use Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Log;
+use Yajra\DataTables\DataTables;
 
 class CategoriesController extends Controller
 {
