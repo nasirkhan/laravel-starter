@@ -230,3 +230,21 @@
         </div>
     </div>
 </div>
+
+@push ('after-scripts')
+<script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="/vendor/laravel-filemanager/js/lfm.js"></script>
+
+<script type="text/javascript">
+
+$('#btn_featured_image').filemanager('image');
+
+CKEDITOR.replace( 'content', {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+});
+
+</script>
+@endpush
