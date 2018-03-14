@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         // Page Title
@@ -195,7 +194,7 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        $$module_name_singular->update($request->only('name','email'));
+        $$module_name_singular->update($request->only('name', 'email'));
 
         return redirect("admin/$module_name/profile")->with('flash_success', 'Update successful!');
     }
@@ -231,7 +230,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function changePasswordUpdate(Request $request)
-    {        
+    {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
