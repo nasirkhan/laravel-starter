@@ -114,12 +114,24 @@ class Post extends BaseModel
         }
     }
 
+    /**
+     * Get the list of Published Articles
+     * 
+     * @param  [type] $query [description]
+     * @return [type]        [description]
+     */
     public function scopePublished($query)
     {
         return $query->where('status', '=', '1')
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString());
     }
 
+    /**
+     * Get the list of Recently Published Articles
+     *
+     * @param  [type] $query [description]
+     * @return [type]        [description]
+     */
     public function scopeRecentlyPublished($query)
     {
         return $query->where('status', '=', '1')
