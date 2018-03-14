@@ -36,7 +36,7 @@
 </table>
 
 
-@push('styles-library')
+@push('after-styles')
 <!-- Lightbox2 CSS -->
 <link href="{{ asset('vendor/lightbox2/css/lightbox.min.css') }}" rel="stylesheet">
 @endpush
