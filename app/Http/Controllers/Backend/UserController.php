@@ -134,7 +134,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display Profile Details of Logged in user
+     * Display Profile Details of Logged in user.
      *
      * @param int $id
      *
