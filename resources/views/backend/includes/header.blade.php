@@ -48,14 +48,14 @@
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>
                 </div>
-                <span class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('backend.users.profile') }}">
                     <i class="fas fa-user"></i> {{ Auth::user()->name }}
-                </span>
+                </a>
                 <span class="dropdown-item" href="#">
                     <i class="fas fa-at"></i> {{ Auth::user()->email }}
                 </span>
-                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fas fa-cogs"></i> Settings</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
                 <div class="divider"></div>
                 <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
                     <i class="fas fa-lock"></i> Logout

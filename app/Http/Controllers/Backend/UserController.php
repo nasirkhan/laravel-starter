@@ -10,13 +10,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
-        $this->module_name = 'users';
-        $this->module_path = 'users';
-        $this->module_icon = 'fa fa-users';
+        // Page Title
         $this->module_title = 'Users';
-        $this->module_model = 'App\Models\User';
+
+        // module name
+        $this->module_name = 'users';
+
+        // directory path of the module
+        $this->module_path = 'users';
+
+        // module icon
+        $this->module_icon = 'fas fa-users';
+
+        // module model name, path
+        $this->module_model = "App\Models\User";
     }
 
     /**
@@ -133,6 +143,7 @@ class UserController extends Controller
     public function profile()
     {
         $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
@@ -142,7 +153,7 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title'));
     }
 
     /**
