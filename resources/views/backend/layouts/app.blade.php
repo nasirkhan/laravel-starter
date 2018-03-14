@@ -81,7 +81,7 @@
                     <div class="btn-group" role="group" aria-label="Button group">
                         <a class="btn" href="#"><i class="icon-speech"></i></a>
                         <a class="btn" href="./"><i class="fas fa-user"></i> &nbsp;Profile</a>
-                        <a class="btn" href="#"><i class="fas fa-cogs"></i> &nbsp;Settings</a>
+                        <a class="btn" href="{{ route('backend.users.changePassword') }}"><i class="fas fa-cogs"></i> &nbsp;Settings</a>
                     </div>
                 </li>
             </ol>
