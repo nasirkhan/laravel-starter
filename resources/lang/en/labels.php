@@ -32,7 +32,7 @@ return [
                 'password_confirmation' => 'Password Confirmation',
                 'confirmed'             => 'Confirmed',
                 'active'                => 'Active',
-                'roles'                 => 'roles',
+                'roles'                 => 'Roles',
                 'permissions'           => 'Permissions',
                 'social'                => 'Social',
                 'picture'               => 'Picture',

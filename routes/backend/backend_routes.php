@@ -12,6 +12,9 @@ Route::get('dashboard', 'BackendController@index')->name('dashboard');
  *
  * ---------------------------------------------------------------------
  */
+Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
+Route::patch('users/profile', ['as' => 'users.profileUpdate', 'uses' => 'UserController@profileUpdate']);
+Route::get('users/profile/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);
 Route::resource('users', 'UserController');
 
 /*

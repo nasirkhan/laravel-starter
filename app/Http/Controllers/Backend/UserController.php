@@ -124,6 +124,72 @@ class UserController extends Controller
     }
 
     /**
+     * Display Profile Details of Logged in user
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = 'Show';
+
+        $id = auth()->user()->id;
+
+        $$module_name_singular = User::findOrFail($id);
+
+        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+    }
+
+    /**
+     * Show the form for Profile Paeg Editing the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profileEdit()
+    {
+        $title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = 'Edit';
+
+        $id = auth()->user()->id;
+
+        $$module_name_singular = User::findOrFail($id);
+
+        return view("backend.$module_name.profileEdit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profileUpdate(Request $request)
+    {
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+
+        $id = auth()->user()->id;
+
+        $$module_name_singular = User::findOrFail($id);
+
+        $$module_name_singular->update($request->all());
+
+        return redirect("admin/$module_name/profile")->with('flash_success', 'Update successful!');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -172,7 +238,7 @@ class UserController extends Controller
             return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
         }
 
-        return $roles = $request['roles'];
+        $roles = $request['roles'];
         $permissions = $request['permissions'];
 
         // Sync Roles
