@@ -9,10 +9,7 @@
 
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Users</a>
-        </li>
-        <li class="nav-item px-3">
-            <a class="nav-link" href="#">Settings</a>
+            <a class="nav-link" href="{{ route('frontend.index') }}">Website</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
