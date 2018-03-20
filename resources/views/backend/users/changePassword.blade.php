@@ -60,7 +60,7 @@ $module_name_singular = str_singular($module_name);
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
+                                    {{ html()->button($text = "<i class='fas fa-save'></i> Save", $type = 'submit')->class('btn btn-success') }}
                                 </div>
                             </div>
                         </div>
