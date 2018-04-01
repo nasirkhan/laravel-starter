@@ -1,5 +1,7 @@
 {
     "/js/jquery.min.js": "/js/jquery.min.js?id=a09e13ee94d51c524b7e",
-    "/css/app_backend.css": "/css/app_backend.css?id=1fea5ecb0fdb2de7ea10",
-    "/js/app_backend.js": "/js/app_backend.js?id=077d6dd5d480afd3219b"
+    "/css/app_frontend.css": "/css/app_frontend.css?id=92e8ba66e4ba73f18c44",
+    "/js/app_frontend.js": "/js/app_frontend.js?id=3edf766fb4bb23a49d15",
+    "/css/app_backend.css": "/css/app_backend.css?id=92e8ba66e4ba73f18c44",
+    "/js/app_backend.js": "/js/app_backend.js?id=3edf766fb4bb23a49d15"
 }
