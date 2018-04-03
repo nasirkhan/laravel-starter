@@ -1,32 +1,20 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
-<main role="main" class="inner cover">
-    <h1 class="cover-heading">Welcome to Latavel Starter</h1>
-
-
-    @auth
-    <p class="lead">
-        Hello {{Auth::user()->name}}!
-    </p>
-    @endauth
-
-    <p class="lead">
-        Visit the admin dashboard to find the features and functionalities of this starter project.
-    </p>
-
-    @guest
-    <p class="lead">
-        <a href="{{ route('frontend.auth.login') }}" class="btn btn-lg btn-secondary">Login</a>
-    </p>
-    @endguest
-
-    @can('view_backend')
-    <p class="lead">
-        <a href="{{ route('backend.dashboard') }}" class="btn btn-lg btn-secondary">Dashboard</a>
-    </p>
-    @endcan
-</main>
+<div class="page-header">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('{{asset('img/cover-01.jpg')}}');">
+    </div>
+    <div class="container">
+        <div class="content-center">
+            <h1 class="title text-center">
+                ISA Inventory
+            </h1>
+            <!-- <h3 class="category">
+                Register & be a part of the festival!
+            </h3> -->
+            <a href="{{ route('backend.dashboard') }}" class="btn btn-primary btn-lg btn-round">Dashboard</a>
+        </div>
+    </div>
+</div>
 
 @endsection
