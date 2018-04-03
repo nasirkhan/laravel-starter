@@ -4,6 +4,7 @@
  * Backend Dashboard
  * Namespaces indicate folder structure.
  */
+Route::get('/', 'BackendController@index')->name('home');
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
 /*
