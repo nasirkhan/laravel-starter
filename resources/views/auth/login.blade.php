@@ -1,49 +1,100 @@
-@extends('frontend.layouts.app')
+@extends('auth.layout')
 
 @section('content')
 
+<div class="page-header-image" style="background-image:url('/img/cover-01.jpg')"></div>
 
-<main role="main" class="inner cover">
-    <h1 class="cover-heading">Login</h1>
+<div class="container">
 
-    <div class="row">
-        <div class="col-12">
-            <form class="form" method="POST" action="{{ route('frontend.auth.login') }}">
+    @include('flash::message')
+
+    @if ($errors->has('email'))
+    <div class="row justify-content-center">
+        <div class="col-md-8 align-self-center">
+            <div class="alert alert-danger" role="alert">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+
+                    <strong>{!! $errors->first('email') !!}</strong>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    @if ($errors->has('password'))
+    <div class="row justify-content-center">
+        <div class="col-md-8 align-self-center">
+            <div class="alert alert-danger" role="alert">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+
+                    <strong>{!! $errors->first('password') !!}</strong>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    <div class="col-md-4 content-center">
+        <div class="card card-login card-plain">
+            <form class="form" method="POST" action="{{ route('frontend.auth.login.post') }}">
                 {{ csrf_field() }}
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="control-label">E-Mail Address</label>
+                <div class="header header-primary text-center">
+                    <div class="logo-container">
+                        <img src="img/login-logo.png" alt="">
+                    </div>
+                    <h5>
+                        Login to Account
+                    </h5>
+                </div>
+                <div class="content">
 
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
-
-                    @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                    <div class="input-group form-group-no-border input-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
+                        <span class="input-group-addon">
+                            <i class="fas fa-at"></i>
                         </span>
-                    @endif
-                </div>
-
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="control-label">Password</label>
-
-                    <input id="password" type="password" class="form-control" name="password"  placeholder="Password" required>
-
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
+                    </div>
+                    <div class="input-group form-group-no-border input-lg {{ $errors->has('password') ? ' has-danger' : '' }}">
+                        <span class="input-group-addon">
+                            <i class="fas fa-key"></i>
                         </span>
-                    @endif
+                        <input id="password" type="password" class="form-control" name="password"  placeholder="Password" required>
+                    </div>
                 </div>
-
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" name="remember" {{ old('remember') ? 'checked' : '' }} for="exampleCheck1">Check me out</label>
+                <div class="footer text-center">
+                    <button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="pull-left">
+                    <h6>
+                        <a href="{{ route('frontend.auth.register') }}" class="link">Create Account</a>
+                    </h6>
+                </div>
+                <div class="pull-right">
+                    <h6>
+                        <a href="{{route('frontend.auth.password.email')}}" class="link">Need Help?</a>
+                    </h6>
+                </div>
             </form>
         </div>
     </div>
-
-</main>
+</div>
 
 @endsection
