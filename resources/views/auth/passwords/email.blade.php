@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="page-header-image" style="background-image:url('/img/cover-1.jpg')"></div>
+<div class="page-header-image" style="background-image:url('/img/cover-01.jpg')"></div>
 
 <div class="container">
     @if ($errors->has('email'))
