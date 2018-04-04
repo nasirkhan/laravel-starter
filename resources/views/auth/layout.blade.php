@@ -38,13 +38,13 @@
                     <span class="button-bar"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-header">Meet At</a>
+                    <a class="dropdown-header">Home</a>
                     <a class="dropdown-item" href="#">About</a>
                 </div>
             </div>
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/" rel="tooltip" title="Meet At - Event Management Platform" data-placement="bottom">
-                    {{ config('app.name', 'Meet At') }}
+                <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name') }} " data-placement="bottom">
+                    {{ config('app.name') }}
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
@@ -74,7 +74,6 @@
 <script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.1.0') }}" type="text/javascript"></script>
 
 </html>
