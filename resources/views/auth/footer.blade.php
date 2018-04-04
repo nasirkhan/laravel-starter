@@ -42,7 +42,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script> Meet At, Developed by
-            <a href="https://nasirkhn.com" target="_blank">Transcom ISA</a>
+            <a href="https://nasirkhn.com" target="_blank">Nasir Khan Saikat</a>
         </div>
     </div>
 </footer>
