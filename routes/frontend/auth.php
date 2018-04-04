@@ -25,11 +25,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         Route::get('login/{provider}', ['as' => 'social.login', 'uses' => 'LoginController@redirectToProvider']);
         Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
 
-        // Registration Routes
-        // if (config('access.registration')) {
-        //     Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-        //     Route::post('register', 'RegisterController@register')->name('register.post');
-        // }
+        // Registration routes
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'RegisterController@register')->name('register.post');
 

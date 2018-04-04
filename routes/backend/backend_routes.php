@@ -34,10 +34,12 @@ Route::resource('roles', 'RolesController');
  *
  * ---------------------------------------------------------------------
  */
-Route::get('categories/index_data', ['as' => 'categories.index_data', 'uses' => 'CategoriesController@index_data']);
-Route::get('categories/trashed', ['as' => 'categories.trashed', 'uses' => 'CategoriesController@trashed']);
-Route::post('categories/trashed/{id}', ['as' => 'categories.restore', 'uses' => 'CategoriesController@restore']);
-Route::resource('categories', 'CategoriesController');
+$module_name = "categories";
+$controller_name = "CategoriesController";
+Route::get("$module_name/index_data", ["as" => "$module_name.index_data", "uses" => "$controller_name@index_data"]);
+Route::get("$module_name/trashed", ["as" => "$module_name.trashed", "uses" => "$controller_name@trashed"]);
+Route::post("$module_name/trashed/{id}", ["as" => "$module_name.restore", "uses" => "$controller_name@restore"]);
+Route::resource("$module_name", "$controller_name");
 
 /*
  *
@@ -45,7 +47,9 @@ Route::resource('categories', 'CategoriesController');
  *
  * ---------------------------------------------------------------------
  */
-Route::get('posts/index_data', ['as' => 'posts.index_data', 'uses' => 'PostsController@index_data']);
-Route::get('posts/trashed', ['as' => 'posts.trashed', 'uses' => 'PostsController@trashed']);
-Route::post('posts/trashed/{id}', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
-Route::resource('posts', 'PostsController');
+$module_name = "posts";
+$controller_name = "PostsController";
+Route::get("$module_name/index_data", ["as" => "$module_name.index_data", "uses" => "$controller_name@index_data"]);
+Route::get("$module_name/trashed", ["as" => "$module_name.trashed", "uses" => "$controller_name@trashed"]);
+Route::post("$module_name/trashed/{id}", ["as" => "$module_name.restore", "uses" => "$controller_name@restore"]);
+Route::resource("$module_name", "$controller_name");

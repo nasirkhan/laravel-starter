@@ -7,4 +7,4 @@
 */
 
 Route::get('/', 'FrontendController@index')->name('index');
-Route::get('/home', 'FrontendController@index')->name('home');
+Route::get('home', 'FrontendController@index')->name('home');
