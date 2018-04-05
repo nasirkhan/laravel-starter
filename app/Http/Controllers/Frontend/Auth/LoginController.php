@@ -42,7 +42,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Social login Handler
+     * Social login Handler.
      */
     public function redirectToProvider($provider)
     {
@@ -50,7 +50,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Social login redirect
+     * Social login redirect.
      */
     public function handleProviderCallback($provider)
     {
