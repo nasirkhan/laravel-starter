@@ -41,11 +41,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Social login Handler
+     */
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
     }
 
+    /**
+     * Social login redirect
+     */
     public function handleProviderCallback($provider)
     {
         try {
