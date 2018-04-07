@@ -219,7 +219,6 @@ if (!function_exists('show_column_value')) {
     }
 }
 
-
 /*
  *
  * fielf_required
@@ -236,7 +235,7 @@ if (!function_exists('fielf_required')) {
     {
         $return_text = '';
 
-        if($required != '') {
+        if ($required != '') {
             $return_text = '<span class="text-danger">*</span>';
         }
 
