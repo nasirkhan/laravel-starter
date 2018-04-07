@@ -145,7 +145,7 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetime')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -235,6 +235,9 @@
 <!-- Select2 Bootstrap 4 Core UI -->
 <link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
 
+<!-- Date Time Picker -->
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap-4-datetime-picker/css/tempusdominus-bootstrap-4.min.css') }}" />
+
 @endpush
 
 @push ('after-scripts')
@@ -266,6 +269,27 @@ $(document).ready(function() {
 });
 </script>
 
+<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('.datetime').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar-alt',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check',
+            clear: 'far fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+});
+</script>
 
 <script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="/vendor/laravel-filemanager/js/lfm.js"></script>

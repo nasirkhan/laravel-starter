@@ -28,3 +28,4 @@ Laravel 5.6 based simple starter project.
  * Now UI Kit
  * Datatables
  * Select2
+ * Date Time Picker
