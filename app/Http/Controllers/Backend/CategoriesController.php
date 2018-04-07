@@ -61,7 +61,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Select Options for Select 2 Request/ Response
      *
      * @return Response
      */
