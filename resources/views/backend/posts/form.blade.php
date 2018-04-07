@@ -232,7 +232,8 @@
 
 @push('after-styles')
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<!-- Select2 Bootstrap 4 Core UI -->
+<link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
 
 @endpush
 
@@ -242,6 +243,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('.select2').select2({
+        theme: "bootstrap",
         placeholder: "-- Select an option --",
         minimumInputLength: 2,
         allowClear: true,
