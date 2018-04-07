@@ -205,13 +205,6 @@ if (!function_exists('show_column_value')) {
         if (ends_with(strtolower($value), ['png', 'jpg', 'jpeg'])) {
             $img_path = asset($value);
 
-            // $return_text = "<img src='$img_path' class='img-responsive img-thumbnail'>";
-            // $return_text = '<figure class="figure">
-            //                     <a href="images/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>
-            //                     <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
-            //                     <figcaption class="figure-caption">Path: '.$value.'</figcaption>
-            //                 </figure>';
-
             $return_text = '<figure class="figure">
                                 <a href="'.$img_path.'" data-lightbox="image-set" data-title="Path: '.$value.'">
                                     <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
@@ -220,6 +213,31 @@ if (!function_exists('show_column_value')) {
                             </figure>';
         } else {
             $return_text = $value;
+        }
+
+        return $return_text;
+    }
+}
+
+
+/*
+ *
+ * fielf_required
+ * Show a * if field is required
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('fielf_required')) {
+
+    /**
+     * Prepare the Column Name for Lables.
+     */
+    function fielf_required($required)
+    {
+        $return_text = '';
+
+        if($required != '') {
+            $return_text = '<span class="text-danger">*</span>';
         }
 
         return $return_text;

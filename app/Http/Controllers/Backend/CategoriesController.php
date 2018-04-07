@@ -8,6 +8,7 @@ use Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
@@ -57,6 +58,45 @@ class CategoriesController extends Controller
 
         return view("backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index_list(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'List';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
+
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->limit(5)->get();
+
+        $$module_name = [];
+
+        foreach ($query_data as $row) {
+            $$module_name[] = [
+                'id' => $row->id,
+                'text' => $row->name . " (Code: ".$row->code.")"
+            ];
+        }
+
+        return response()->json($$module_name);
     }
 
     public function index_data()

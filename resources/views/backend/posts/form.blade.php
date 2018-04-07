@@ -81,7 +81,7 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $categories)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->select($field_name, '')->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -230,7 +230,41 @@
     </div>
 </div>
 
+@push('after-styles')
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+@endpush
+
 @push ('after-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.select2').select2({
+        placeholder: "-- Select an option --",
+        minimumInputLength: 2,
+        allowClear: true,
+        ajax: {
+            url: '{{route("backend.categories.index_list")}}',
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    q: $.trim(params.term)
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        }
+    });
+});
+</script>
+
+
 <script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="/vendor/laravel-filemanager/js/lfm.js"></script>
 
