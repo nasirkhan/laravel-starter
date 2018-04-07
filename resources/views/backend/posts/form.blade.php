@@ -90,7 +90,7 @@
             $field_name = 'type';
             $field_lable = lable_case($field_name);
             $field_placeholder = "-- Select an option --";
-            $required = "";
+            $required = "required";
             $select_options = [
                 'Article'=>'Article',
                 'Blog'=>'Blog',
@@ -107,7 +107,7 @@
             $field_name = 'is_featured';
             $field_lable = lable_case($field_name);
             $field_placeholder = "-- Select an option --";
-            $required = "";
+            $required = "required";
             $select_options = [
                 'Yes'=>'Yes',
                 'No'=>'No',
@@ -145,7 +145,12 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetime')->attributes(["$required"]) }}
+            <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
+                <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
