@@ -28,6 +28,29 @@
 </head>
 
 <body class=" sidebar-collapse">
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '569561286532601',
+                cookie     : true,
+                xfbml      : true,
+                version    : '{latest-api-version}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg  fixed-top bg-primary navbar-transparent  " color-on-scroll="400">
         <div class="container">

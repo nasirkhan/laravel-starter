@@ -24,7 +24,7 @@
     <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.1.0')}}" rel="stylesheet" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-
+    
 </head>
 
 <body class="login-page sidebar-collapse">
