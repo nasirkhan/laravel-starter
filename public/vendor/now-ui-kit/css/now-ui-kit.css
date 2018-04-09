@@ -1386,8 +1386,9 @@
     cursor: pointer;
     background-color: #888;
     color: #FFFFFF;
-    /*display: inline-flex;*/
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
 }
 
 .btn:hover,
