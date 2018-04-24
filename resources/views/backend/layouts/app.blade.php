@@ -8,7 +8,7 @@
     <meta name="description" content="Laravel starter project. ">
     <meta name="author" content="Nasir Khan Saikat">
     <meta name="keyword" content="Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="/img/favicon.png">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
