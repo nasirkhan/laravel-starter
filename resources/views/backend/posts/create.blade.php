@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="pull-right">
+                        <div class="float-right">
                             <div class="form-group">
                                 <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
                             </div>

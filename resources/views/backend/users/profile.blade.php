@@ -23,7 +23,7 @@
             </div>
             <!--/.col-->
             <div class="col-4">
-                <div class="pull-right">
+                <div class="float-right">
                     <a href="{{ route("backend.users.profileEdit") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>

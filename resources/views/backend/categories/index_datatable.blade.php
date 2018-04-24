@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="pull-right">
+                <div class="float-right">
                     <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
                     <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">

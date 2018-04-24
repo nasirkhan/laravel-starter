@@ -56,7 +56,7 @@
                     {{ html()->form()->close() }}
 
                     <div class="col-8">
-                        <div class="pull-right">
+                        <div class="float-right">
                             {{ html()->modelForm($$module_name_singular, 'DELETE', route("backend.$module_name.destroy", $$module_name_singular))->open() }}
                             <div class="form-group">
                                 {!! Form::button("<i class='fas fa-trash-alt'></i>", ['class' => 'btn btn-danger', 'type'=>'submit']) !!}

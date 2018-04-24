@@ -53,7 +53,7 @@
                         <a href="{{ route('frontend.auth.login') }}" class="link">Login to Account</a>
                     </h6>
                 </div>
-                <div class="pull-right">
+                <div class="float-right">
                     <h6>
                         <a href="{{route('frontend.auth.password.email')}}" class="link">Need Help?</a>
                     </h6>
