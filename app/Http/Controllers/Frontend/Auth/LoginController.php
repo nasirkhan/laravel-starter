@@ -88,6 +88,11 @@ class LoginController extends Controller
                 'provider'    => $provider,
             ]);
 
+            if ($authUser->avatar === 'default-avatar.jpg') {
+                $authUser->avatar = $socialUser->getAvatar();
+                $authUser->save();
+            }
+
             return $authUser;
         } else {
             $user = User::create([
