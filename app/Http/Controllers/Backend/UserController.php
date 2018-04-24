@@ -7,7 +7,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 use Image;
 
 class UserController extends Controller
@@ -199,10 +198,12 @@ class UserController extends Controller
         $$module_name_singular->update($request->only('name', 'email'));
 
         // Handle Avatar upload
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
-            $filename = 'avatar-'. $$module_name_singular->id . '.' . $avatar->getClientOriginalExtension();
-            $img = Image::make($avatar)->resize(null, 200, function ($constraint) {$constraint->aspectRatio();})->save( public_path('/photos/avatars/' . $filename ) );
+            $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
+            $img = Image::make($avatar)->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/photos/avatars/'.$filename));
             $$module_name_singular->avatar = $filename;
             $$module_name_singular->save();
         }
