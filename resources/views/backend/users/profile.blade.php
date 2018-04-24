@@ -46,8 +46,8 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>{{ __('labels.backend.users.fields.picture') }}</th>
-                                    <td><img src="{{ $user->picture }}" class="user-profile-image" /></td>
+                                    <th>{{ __('labels.backend.users.fields.avatar') }}</th>
+                                    <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
                                 </tr>
 
                                 <tr>

@@ -31,7 +31,18 @@ $module_name_singular = str_singular($module_name);
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->modelForm($user, 'PATCH', route('backend.users.profileUpdate'))->class('form-horizontal')->open() }}
+                {{ html()->modelForm($user, 'PATCH', route('backend.users.profileUpdate'))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }}
+
+                        <div class="col-md-5">
+                            <img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" />
+                        </div>
+                        <div class="col-md-5">
+                            <input id="file-multiple-input" name="avatar" multiple="" type="file">
+                        </div>
+                    </div><!--form-group-->
 
                     <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}

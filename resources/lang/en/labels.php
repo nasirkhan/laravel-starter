@@ -36,6 +36,7 @@ return [
                 'permissions'           => 'Permissions',
                 'social'                => 'Social',
                 'picture'               => 'Picture',
+                'avatar'                => 'Avatar',
                 'status'                => 'Status',
                 'created_at'            => 'Created At',
                 'updated_at'            => 'Updated At',
