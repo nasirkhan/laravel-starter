@@ -12,7 +12,6 @@
 @stop
 
 @section('breadcrumbs')
-@section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
 <li class="breadcrumb-item active"> {{ $module_action }}</li>
