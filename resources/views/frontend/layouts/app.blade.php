@@ -55,8 +55,8 @@
     <nav class="navbar navbar-expand-lg  fixed-top bg-primary navbar-transparent  " color-on-scroll="400">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/" rel="tooltip" title="Meet At - Event Management Platform" data-placement="bottom">
-                    {{ config('app.name', 'Meet At') }}
+                <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name', 'Laravel Starter') }} - Application Landing Page" data-placement="bottom">
+                    {{ config('app.name', 'Laravel Starter') }}
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
@@ -66,9 +66,12 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('img/blurred-image-1.jpg')}}">
                 <ul class="navbar-nav">
+                    @can('view_backend')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('backend.dashboard') }}">Dashboard</a>
                     </li>
+                    @endcan
+
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('frontend.auth.login') }}">
@@ -107,7 +110,7 @@
                     <ul>
                         <li>
                             <a href="/">
-                                Meet At
+                                {{ config('app.name', 'Laravel Starter') }}
                             </a>
                         </li>
                         <li>
@@ -144,7 +147,7 @@
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> Meet At, Developed by
+                    </script> {{ config('app.name', 'Laravel Starter') }}, Developed by
                     <a href="https://nasirkhn.com" target="_blank">Nasir Khan Saikat</a>
                 </div>
             </div>
