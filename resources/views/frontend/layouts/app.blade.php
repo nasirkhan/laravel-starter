@@ -33,7 +33,7 @@
 
 </head>
 
-<body class=" sidebar-collapse">
+<body class="{{$body_class}} sidebar-collapse">
 
     <script>
         window.fbAsyncInit = function() {
@@ -57,12 +57,11 @@
     </script>
 
     <!-- Header Block -->
-    @include('backend.includes.header')
+    @include('frontend.includes.header')
     <!-- / Header Block -->
 
     <div class="wrapper">
 
-        @include('flash::message')
 
         @yield('content')
 

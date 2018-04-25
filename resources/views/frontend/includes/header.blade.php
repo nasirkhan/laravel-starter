@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg  fixed-top bg-primary navbar-transparent  " color-on-scroll="400">
+<nav class="navbar navbar-expand-lg fixed-top bg-primary navbar-transparent" color-on-scroll="400">
     <div class="container">
         <div class="navbar-translate">
             <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name', 'Laravel Starter') }} - Application Landing Page" data-placement="bottom">
@@ -37,7 +37,7 @@
                         <i class="now-ui-icons users_single-02"></i> {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{{ route('frontend.profile') }}">Profile</a>
                         <a class="dropdown-item" href="#">Dashboard</a>
                     </div>
                 </li>
