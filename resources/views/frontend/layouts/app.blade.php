@@ -66,16 +66,17 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('img/blurred-image-1.jpg')}}">
                 <ul class="navbar-nav">
+
                     @can('view_backend')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('backend.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('backend.dashboard') }}">Admin Dashboard</a>
                     </li>
                     @endcan
 
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('frontend.auth.login') }}">
-                            Login
+                            <i class="now-ui-icons objects_key-25"></i> Login
                         </a>
                     </li>
                     <li class="nav-item">
@@ -84,14 +85,18 @@
                         </a>
                     </li>
                     @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            {{ Auth::user()->name }}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="now-ui-icons users_single-02"></i> {{ Auth::user()->name }}
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Dashboard</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('frontend.auth.logout') }}">
-                            Logout
+                            <i class="now-ui-icons sport_user-run"></i> Logout
                         </a>
                     </li>
                     @endguest
@@ -147,7 +152,7 @@
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> {{ config('app.name', 'Laravel Starter') }}, Developed by
+                    </script> {{ config('app.name', 'Laravel Starter') }}, Built with ♥ by
                     <a href="https://nasirkhn.com" target="_blank">Nasir Khan Saikat</a>
                 </div>
             </div>
