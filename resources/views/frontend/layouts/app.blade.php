@@ -75,13 +75,13 @@
 
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.auth.login') }}">
-                            <i class="now-ui-icons objects_key-25"></i> Login
+                        <a class="nav-link" href="{{ route('frontend.auth.register') }}">
+                            Register
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.auth.register') }}">
-                            Register
+                        <a class="nav-link" href="{{ route('frontend.auth.login') }}">
+                            <i class="now-ui-icons objects_key-25"></i> Login
                         </a>
                     </li>
                     @else
@@ -125,13 +125,13 @@
                         </li>
                         @guest
                         <li>
-                            <a href="{{ route('frontend.auth.login') }}">
-                                Login
+                            <a href="{{ route('frontend.auth.register') }}">
+                                Register
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('frontend.auth.register') }}">
-                                Register
+                            <a href="{{ route('frontend.auth.login') }}">
+                                Login
                             </a>
                         </li>
                         @else
