@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.index.title') }}
+                    <i class="icon-user-following"></i> {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
                 </h4>
                 <div class="small text-muted">

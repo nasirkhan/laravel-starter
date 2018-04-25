@@ -47,6 +47,7 @@
                     </a>
                 </li>
                 @endguest
+                
             </ul>
         </div>
     </div>

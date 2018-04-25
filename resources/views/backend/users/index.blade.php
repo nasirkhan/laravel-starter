@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.index.title') }}
+                    <i class="icon-people"></i> {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
                 </h4>
                 <div class="small text-muted">
@@ -64,7 +64,15 @@
                                     </ul>
                                 @endif
                             </td>
-                            <td>{!! $user->social_buttons !!}</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    @foreach ($user->providers as $provider)
+                                    <li>
+                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
                             <td class="text-right">
                                 <a href="{{route('backend.users.show', $user)}}" class="btn btn-success mt-1"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>

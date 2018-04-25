@@ -61,6 +61,19 @@
                                 </tr>
 
                                 <tr>
+                                    <th>{{ __('labels.backend.users.fields.social') }}</th>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            @foreach ($user->providers as $provider)
+                                            <li>
+                                                <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>{{ __('labels.backend.users.fields.status') }}</th>
                                     <td>{!! $user->status !!}</td>
                                 </tr>

@@ -40,8 +40,8 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>{{ __('labels.backend.users.fields.picture') }}</th>
-                                    <td><img src="{{ $user->picture }}" class="user-profile-image" /></td>
+                                    <th>{{ __('labels.backend.users.fields.avatar') }}</th>
+                                    <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
                                 </tr>
 
                                 <tr>
@@ -52,6 +52,19 @@
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.email') }}</th>
                                     <td>{{ $user->email }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ __('labels.backend.users.fields.social') }}</th>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            @foreach ($user->providers as $provider)
+                                            <li>
+                                                <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
                                 </tr>
 
                                 <tr>
