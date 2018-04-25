@@ -11,22 +11,25 @@
                 <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="">
             </div>
             <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">{{auth()->user()->email}}</p>
-            <div class="content">
-                <div class="social-description">
-                    <h2>26</h2>
-                    <p>Comments</p>
-                </div>
-                <div class="social-description">
-                    <h2>26</h2>
-                    <p>Comments</p>
-                </div>
-                <div class="social-description">
-                    <h2>48</h2>
-                    <p>Bookmarks</p>
-                </div>
-            </div>
+            <p class="category">{{auth()->user()->email}}</p>            
         </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="button-container">
+            <a href="#button" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
+            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <h3 class="title">About me</h3>
+        <h5 class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in magna pharetra, varius nisi id, porta augue. Sed lobortis non enim vel cursus. Duis et massa vitae justo cursus finibus. In hac habitasse platea dictumst. Duis laoreet condimentum magna a tincidunt. Nullam in molestie nibh. Fusce lectus ipsum, feugiat non scelerisque bibendum, rutrum id sapien.
+        </h5>
     </div>
 </div>
 
