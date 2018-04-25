@@ -71,11 +71,9 @@
                                                             {{ html()->form('DELETE', route('backend.users.userProviderDestroy'))->class('form-inline')->open() }}
 
                                                             {{ html()->hidden('user_provider_id')->value($provider->id) }}
-                                                            <div class="form-group">
-                                                                {{ html()->hidden('user_id')->value($user->id) }}
-                                                            </div>
+                                                            {{ html()->hidden('user_id')->value($user->id) }}
 
-                                                            {{ html()->button($text = '<i class="fas fa-unlink"></i> <span class="d-none d-md-inline ">Unlink ' . lable_case($provider->provider) . '</span>', $type = 'button')->attributes(['class' => "btn btn-outline-danger btn-sm"]) }}
+                                                            {{ html()->submit($text = '<i class="fas fa-unlink"></i> <span class="d-none d-md-inline ">Unlink ' . lable_case($provider->provider) . '</span>', $type = 'button')->attributes(['class' => "btn btn-outline-danger btn-sm"]) }}
 
                                                             {{ html()->form()->close() }}
                                                         </div>

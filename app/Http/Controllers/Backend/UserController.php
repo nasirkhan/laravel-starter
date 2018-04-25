@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
+use App\Models\UserProvider;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -380,32 +381,24 @@ class UserController extends Controller
         $user_id = $request->user_id;
 
         if (!$user_provider_id > 0 || !$user_id > 0) {
-            Flash::error('Invalid Request. Please try again.');
+            flash('Invalid Request. Please try again.')->error();
 
             return redirect()->back();
         } else {
-            Flash::success('User successfully deleted!');
+            $user_provider = UserProvider::findOrFail($user_provider_id);
 
-            return redirect()->back();
+            if ($user_id == $user_provider->user->id) {
+
+                $user_provider->delete();
+
+                flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name. '"!')->success();
+
+                return redirect()->back();
+            } else {
+                flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
+            }
         }
 
-
-
-        // if (auth()->id() == $user_id) {
-        //     throw new GeneralException('You can not delete yourself.');
-        // }
-        //
-        // $module_name = $this->module_name;
-        // $module_name_singular = str_singular($this->module_name);
-        //
-        // $$module_name_singular = User::withTrashed()->find($id);
-        // //        $$module_name_singular = $this->findOrThrowException($id);
-        //
-        // if ($$module_name_singular->delete()) {
-        //     Flash::success('User successfully deleted!');
-        //
-        //     return redirect()->back();
-        // }
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
