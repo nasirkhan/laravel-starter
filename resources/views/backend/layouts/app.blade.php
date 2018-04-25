@@ -15,16 +15,15 @@
 
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Icons -->
     @stack('before-styles')
 
     <link rel="stylesheet" href="{{ mix('css/app_backend.css') }}">
 
     <!-- simple-line-icons -->
-    <link rel="stylesheet" href="/plugins/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{{asset('plugins/simple-line-icons/css/simple-line-icons.css')}}">
 
     <!-- fontawesome -->
-    <link href="/plugins/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="{{asset('plugins/fontawesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
 
     @stack('after-styles')
 </head>

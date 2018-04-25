@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+
 <div class="page-header">
     <div class="page-header-image" data-parallax="true" style="background-image: url('{{asset('img/cover-01.jpg')}}');">
     </div>
