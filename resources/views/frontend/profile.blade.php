@@ -8,21 +8,21 @@
     <div class="container">
         <div class="content-center">
             <div class="photo-container">
-                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="">
+                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
             </div>
             <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">{{auth()->user()->email}}</p>            
+            <p class="category">{{auth()->user()->email}}</p>
         </div>
     </div>
 </div>
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="#button" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
-            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
+            <a href="#" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
+            <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Instagram">
+            <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
