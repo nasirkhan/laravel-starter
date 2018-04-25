@@ -10,6 +10,7 @@ Laravel 5.6 based simple starter project.
 * Social Login
  * Facebook
  * Github
+* User Profile with Avatar
 * Role-Permissions for users
 * Backend Theme
  * Bootstrap 4, CoreUI
@@ -29,3 +30,4 @@ Laravel 5.6 based simple starter project.
  * Datatables
  * Select2
  * Date Time Picker
+ * 

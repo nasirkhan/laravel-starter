@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
 use Auth;
+use Image;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 
@@ -88,17 +89,35 @@ class LoginController extends Controller
                 'provider'    => $provider,
             ]);
 
-            if ($authUser->avatar === 'default-avatar.jpg') {
-                $authUser->avatar = $socialUser->getAvatar();
+            // update User Avatar from Social Profile
+            if ($authUser->avatar == 'default-avatar.jpg') {
+                $avatar = $socialUser->getAvatar();
+
+                $filename = 'avatar-'. $authUser->id .'.jpg';
+
+                $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->encode('jpg', 75)->save(public_path('/photos/avatars/'.$filename));
+                $authUser->avatar = $filename;
                 $authUser->save();
             }
 
             return $authUser;
         } else {
+
             $user = User::create([
-                'name'  => $socialUser->getName(),
-                'email' => $socialUser->getEmail(),
+                'name'      => $socialUser->getName(),
+                'email'     => $socialUser->getEmail(),
             ]);
+
+            // update User Avatar from Social Profile
+            $avatar = $socialUser->getAvatar();
+            $filename = 'avatar-'. $user->id .'.jpg';
+            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('jpg', 75)->save(public_path('/photos/avatars/'.$filename));
+            $user->avatar = $filename;
+            $user->save();
 
             UserProvider::create([
                 'user_id'     => $user->id,

@@ -201,7 +201,7 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
-            $img = Image::make($avatar)->resize(null, 200, function ($constraint) {
+            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('/photos/avatars/'.$filename));
             $$module_name_singular->avatar = $filename;
