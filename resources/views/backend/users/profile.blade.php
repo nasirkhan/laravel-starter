@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    Profile
+                    <i class="icon-people"></i> Profile
                     <small class="text-muted">{{ __('labels.backend.users.show.action') }} </small>
                 </h4>
                 <div class="small text-muted">

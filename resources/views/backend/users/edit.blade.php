@@ -12,7 +12,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.edit.title') }}
+                    <i class="icon-people"></i> {{ __('labels.backend.users.edit.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.edit.action') }} </small>
                 </h4>
                 <div class="small text-muted">
