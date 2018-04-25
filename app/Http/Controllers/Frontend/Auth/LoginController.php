@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
 use Auth;
-use Image;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Image;
 use Socialite;
 
 class LoginController extends Controller
@@ -93,7 +93,7 @@ class LoginController extends Controller
             if ($authUser->avatar == 'default-avatar.jpg') {
                 $avatar = $socialUser->getAvatar();
 
-                $filename = 'avatar-'. $authUser->id .'.jpg';
+                $filename = 'avatar-'.$authUser->id.'.jpg';
 
                 $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
                     $constraint->aspectRatio();
@@ -104,7 +104,6 @@ class LoginController extends Controller
 
             return $authUser;
         } else {
-
             $user = User::create([
                 'name'      => $socialUser->getName(),
                 'email'     => $socialUser->getEmail(),
@@ -112,7 +111,7 @@ class LoginController extends Controller
 
             // update User Avatar from Social Profile
             $avatar = $socialUser->getAvatar();
-            $filename = 'avatar-'. $user->id .'.jpg';
+            $filename = 'avatar-'.$user->id.'.jpg';
             $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('jpg', 75)->save(public_path('/photos/avatars/'.$filename));
