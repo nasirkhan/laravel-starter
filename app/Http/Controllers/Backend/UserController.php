@@ -366,4 +366,47 @@ class UserController extends Controller
 
         return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Restored Successfully!');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userProviderDestroy(Request $request)
+    {
+        $user_provider_id =  $request->user_provider_id;
+        $user_id = $request->user_id;
+
+        if (!$user_provider_id > 0 || !$user_id > 0) {
+            Flash::error('Invalid Request. Please try again.');
+
+            return redirect()->back();
+        } else {
+            Flash::success('User successfully deleted!');
+
+            return redirect()->back();
+        }
+
+
+
+        // if (auth()->id() == $user_id) {
+        //     throw new GeneralException('You can not delete yourself.');
+        // }
+        //
+        // $module_name = $this->module_name;
+        // $module_name_singular = str_singular($this->module_name);
+        //
+        // $$module_name_singular = User::withTrashed()->find($id);
+        // //        $$module_name_singular = $this->findOrThrowException($id);
+        //
+        // if ($$module_name_singular->delete()) {
+        //     Flash::success('User successfully deleted!');
+        //
+        //     return redirect()->back();
+        // }
+
+        throw new GeneralException('There was a problem updating this user. Please try again.');
+    }
 }

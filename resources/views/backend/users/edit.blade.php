@@ -56,6 +56,20 @@ $module_name_singular = str_singular($module_name);
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            {{ __('labels.backend.users.fields.social') }}
+                        </div>
+                        <div class="col-md-10">
+                            <ul class="list-unstyled">
+                                @foreach ($user->providers as $provider)
+                                <li>
+                                    <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div><!--form-group-->
 
                     <div class="row">
                         <div class="col">

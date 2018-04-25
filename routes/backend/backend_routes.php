@@ -16,6 +16,7 @@ Route::get('dashboard', 'BackendController@index')->name('dashboard');
 Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
 Route::get('users/profile/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);
 Route::patch('users/profile/edit', ['as' => 'users.profileUpdate', 'uses' => 'UserController@profileUpdate']);
+Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
 Route::get('users/profile/changePassword', ['as' => 'users.changePassword', 'uses' => 'UserController@changePassword']);
 Route::patch('users/profile/changePassword', ['as' => 'users.changePasswordUpdate', 'uses' => 'UserController@changePasswordUpdate']);
 Route::resource('users', 'UserController');

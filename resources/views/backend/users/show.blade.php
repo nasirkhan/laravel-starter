@@ -19,6 +19,7 @@
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary ml-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
                 </div>
             </div>
             <!--/.col-->
@@ -57,10 +58,31 @@
                                 <tr>
                                     <th>{{ __('labels.backend.users.fields.social') }}</th>
                                     <td>
-                                        <ul class="list-unstyled">
+                                        <ul class="list-group">
                                             @foreach ($user->providers as $provider)
-                                            <li>
-                                                <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="float-right">
+                                                            {{ html()->form('DELETE', route('backend.users.userProviderDestroy'))->class('form-inline')->open() }}
+
+                                                            {{ html()->hidden('user_provider_id')->value($provider->id) }}
+                                                            <div class="form-group">
+                                                                {{ html()->hidden('user_id')->value($user->id) }}
+                                                            </div>
+
+                                                            {{ html()->button($text = '<i class="fas fa-unlink"></i> <span class="d-none d-md-inline ">Unlink ' . lable_case($provider->provider) . '</span>', $type = 'button')->attributes(['class' => "btn btn-outline-danger btn-sm"]) }}
+
+                                                            {{ html()->form()->close() }}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
                                             </li>
                                             @endforeach
                                         </ul>
