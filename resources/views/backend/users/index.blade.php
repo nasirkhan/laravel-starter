@@ -80,7 +80,7 @@
 
                                 {{ html()->form('PATCH', route('backend.users.block', $user))->class('form-inline')->open() }}
 
-                                {{ html()->submit($text = '<i class="fas fa-ban"></i> <span class="d-none d-md-inline ">Block </span>')->attributes(['class' => "btn btn-danger mt-1"]) }}
+                                {{ html()->submit($text = '<i class="fas fa-ban"></i> <span class="d-none d-md-inline ">Block </span>')->attributes(['class' => "btn btn-danger mt-1", 'data-toggle'=>"tooltip", 'title'=>'Block']) }}
 
                                 {{ html()->form()->close() }}
 
