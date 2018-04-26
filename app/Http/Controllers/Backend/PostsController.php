@@ -289,7 +289,7 @@ class PostsController extends Controller
         $module_action = 'List';
         $page_heading = $module_title;
 
-        $$module_name = $module_model::onlyTrashed()->get();
+        $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
         Log::info(ucfirst($module_action).' '.ucfirst($module_name).' by User:'.Auth::user()->name);
 
@@ -319,7 +319,7 @@ class PostsController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' DeletRestoreded Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' Restoreded Successfully!')->important();
 
         Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Image;
+use Log;
 
 class UserController extends Controller
 {
@@ -332,27 +333,84 @@ class UserController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
-        if (auth()->id() == $id) {
-            throw new GeneralException('You can not delete yourself.');
+        if (auth()->id() == $id || $id == 1) {
+            abort(403, 'Unauthorized action.');
         }
-
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
+        $module_model = $this->module_model;
 
-        $$module_name_singular = User::withTrashed()->find($id);
-        // $$module_name_singular = $this->findOrThrowException($id);
+        $module_action = 'destroy';
 
-        if ($$module_name_singular->delete()) {
-            Flash::success('User successfully deleted!');
+        $$module_name_singular = $module_model::findOrFail($id);
 
-            return redirect()->back();
-        }
+        $$module_name_singular->delete();
 
-        throw new GeneralException('There was a problem updating this user. Please try again.');
+        flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Deleted!')->success();
+
+        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
+
+        return redirect("admin/$module_name");
+    }
+
+    /**
+     * List of trashed ertries
+     * works if the softdelete is enabled.
+     *
+     * @return Response
+     */
+    public function trashed()
+    {
+        $module_name = $this->module_name;
+        $module_title = $this->module_title;
+        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+
+        $module_action = 'List';
+        $page_heading = $module_title;
+
+        $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
+
+        Log::info(ucfirst($module_action).' '.ucfirst($module_name).' by User:'.auth()->user()->name);
+
+        return view("backend.$module_name.trash",
+        compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
+    }
+
+    /**
+     * Restore a soft deleted entry.
+     *
+     * @param Request $request
+     * @param int     $id
+     *
+     * @return Response
+     */
+    public function restore($id)
+    {
+        $module_name = $this->module_name;
+        $module_title = $this->module_title;
+        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+
+        $module_action = 'Restore';
+
+        $$module_name_singular = $module_model::withTrashed()->find($id);
+        $$module_name_singular->restore();
+
+        flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' Successfully Restoreded!')->success();
+
+        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
+
+        return redirect("admin/$module_name");
     }
 
     /**
@@ -364,7 +422,7 @@ class UserController extends Controller
     public function block($id)
     {
         if (auth()->id() == $id) {
-            throw new GeneralException('You can not `Block` yourself.');
+            abort(403, 'Unauthorized action.');
         }
 
         $module_name = $this->module_name;
@@ -381,12 +439,12 @@ class UserController extends Controller
 
             return redirect()->back();
         } catch (\Exception $e) {
-            throw new GeneralException('There was a problem updating this user. Please try again.');
+            abort(403, 'Unauthorized action.');
         }
     }
 
     /**
-     * Unblock Any Specific User 
+     * Unblock Any Specific User
      *
      * @param  INT $id User Id
      * @return Back To Previous Page
@@ -394,7 +452,7 @@ class UserController extends Controller
     public function unblock($id)
     {
         if (auth()->id() == $id) {
-            throw new GeneralException('You can not `Unblocked` yourself.');
+            abort(403, 'Unauthorized action.');
         }
 
         $module_name = $this->module_name;
@@ -411,21 +469,8 @@ class UserController extends Controller
 
             return redirect()->back();
         } catch (\Exception $e) {
-            throw new GeneralException('There was a problem updating this user. Please try again.');
+            abort(403, 'Unauthorized action.');
         }
-    }
-
-    public function restore($id)
-    {
-        $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
-
-        $module_action = 'Restore';
-
-        $$module_name_singular = User::withTrashed()->find($id);
-        $$module_name_singular->restore();
-
-        return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Restored Successfully!');
     }
 
     /**
@@ -457,6 +502,6 @@ class UserController extends Controller
             }
         }
 
-        throw new GeneralException('There was a problem updating this user. Please try again.');
+        abort(403, 'Unauthorized action.');
     }
 }

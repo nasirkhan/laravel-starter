@@ -15,10 +15,22 @@
                     {{ __('labels.backend.users.index.sub-title') }}
                 </div>
             </div>
-            <!--/.col-->
+            
             <div class="col-4">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="float-right">
                     <a href="{{route('backend.users.create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
+                    <div class="btn-group" role="group" aria-label="Toolbar button groups">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
+                                <a class="dropdown-item" href="{{ route("backend.$module_name.trashed") }}">
+                                    <i class="fas fa-eye-slash"></i> View trash
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--/.col-->
@@ -79,6 +91,7 @@
                                 <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
                                 <a href="{{route('backend.users.block', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-ban" data-toggle="tooltip" title="{{__('labels.backend.block')}}" data-confirm="Are you sure?"></i></a>
                                 <a href="{{route('backend.users.unblock', $user)}}" class="btn btn-info btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-check" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}" data-confirm="Are you sure?"></i></a>
+                                <a href="{{route('backend.users.destroy', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="DELETE" data-token="{{csrf_token()}}"><i class="fas fa-trash-alt" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"></i></a>
                             </td>
                         </tr>
                         @endforeach
