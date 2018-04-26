@@ -369,9 +369,8 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the Social Account attached with a User.
      *
-     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -398,7 +397,6 @@ class UserController extends Controller
                 flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
             }
         }
-
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
