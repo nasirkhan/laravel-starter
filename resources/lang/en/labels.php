@@ -77,6 +77,8 @@ return [
         'show'   => 'Show',
         'update' => 'Update',
         'total'  => 'Total',
+        'block'  => 'Block',
+        'unblock'  => 'Unblock',
     ],
 
     'buttons'   => [

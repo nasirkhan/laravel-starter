@@ -12,7 +12,8 @@ let mix = require('laravel-mix');
  */
 
 // copy assets
-mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
+mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js')
+    .copy('resources/assets/js/laravel.js', 'public/js/laravel.js');
 
 // build frontend css
 mix.styles([
@@ -27,6 +28,7 @@ mix.scripts([
    'node_modules/bootstrap/dist/js/bootstrap.min.js',
    'node_modules/pace-progress/pace.min.js',
    'node_modules/chart.js/dist/Chart.min.js',
+   'resources/assets/js/laravel.js',
    'resources/assets/coreui/js/app.js'
 ], 'public/js/app_frontend.js').version();
 
@@ -44,6 +46,7 @@ mix.scripts([
    'node_modules/bootstrap/dist/js/bootstrap.min.js',
    'node_modules/pace-progress/pace.min.js',
    'node_modules/chart.js/dist/Chart.min.js',
+   'resources/assets/js/laravel.js',
    'resources/assets/coreui/js/app.js'
 ], 'public/js/app_backend.js').version();
 
