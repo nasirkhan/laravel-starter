@@ -379,6 +379,30 @@ class UserController extends Controller
         }
     }
 
+    public function unblock($id)
+    {
+        if (auth()->id() == $id) {
+            throw new GeneralException('You can not `Unblocked` yourself.');
+        }
+
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+
+        $$module_name_singular = User::withTrashed()->find($id);
+        // $$module_name_singular = $this->findOrThrowException($id);
+
+        try {
+            $$module_name_singular->status = 1;
+            $$module_name_singular->save();
+
+            flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Unblocked!')->success();
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            throw new GeneralException('There was a problem updating this user. Please try again.');
+        }
+    }
+
     public function restore($id)
     {
         $module_name = $this->module_name;

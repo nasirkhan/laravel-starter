@@ -19,8 +19,9 @@ Route::patch('users/profile/edit', ['as' => 'users.profileUpdate', 'uses' => 'Us
 Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
 Route::get('users/profile/changePassword', ['as' => 'users.changePassword', 'uses' => 'UserController@changePassword']);
 Route::patch('users/profile/changePassword', ['as' => 'users.changePasswordUpdate', 'uses' => 'UserController@changePasswordUpdate']);
-Route::patch('users/{id}/block', ['as' => 'users.block', 'uses' => 'UserController@block', 'middleware' => ['permission:block_users']]);
 Route::resource('users', 'UserController');
+Route::patch('users/{id}/block', ['as' => 'users.block', 'uses' => 'UserController@block', 'middleware' => ['permission:block_users']]);
+Route::patch('users/{id}/unblock', ['as' => 'users.unblock', 'uses' => 'UserController@unblock', 'middleware' => ['permission:block_users']]);
 
 /*
  *
