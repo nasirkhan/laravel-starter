@@ -61,14 +61,14 @@ class User extends Authenticatable
     }
 
     /**
-     * Get Status Label
+     * Get Status Label.
      *
      * @return [type] [description]
      */
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
-            case '1': 
+            case '1':
                 return '<span class="badge badge-success">Active</span>';
                 break;
             case '2':
@@ -80,6 +80,4 @@ class User extends Authenticatable
                 break;
         }
     }
-
-
 }
