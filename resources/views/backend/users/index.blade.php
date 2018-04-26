@@ -77,9 +77,8 @@
                             <td class="text-right">
                                 <a href="{{route('backend.users.show', $user)}}" class="btn btn-success btn-sm mt-1"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
                                 <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
-                                <a href="{{route('backend.users.block', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-ban" data-toggle="tooltip" title="{{__('labels.backend.block')}}"></i></a>                                
+                                <a href="{{route('backend.users.block', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-ban" data-toggle="tooltip" title="{{__('labels.backend.block')}}"></i></a>
                                 <a href="{{route('backend.users.unblock', $user)}}" class="btn btn-info btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-check" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}"></i></a>
-
                             </td>
                         </tr>
                         @endforeach

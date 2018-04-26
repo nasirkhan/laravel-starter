@@ -6,7 +6,7 @@
                     <ul>
                         <li>
                             <a href="/">
-                                Meet At
+                                {{ config('app.name', 'Laravel Starter') }}
                             </a>
                         </li>
                         <li>
@@ -43,7 +43,7 @@
             <div class="col-12 col-md-5">
                 <div class="copyright float-right">
                     &copy;
-                    <script> document.write(new Date().getFullYear()) </script> Meet At, Developed by
+                    <script> document.write(new Date().getFullYear()) </script> {{ config('app.name', 'Laravel Starter') }}, Developed by
                     <a href="https://nasirkhn.com" target="_blank">Nasir Khan Saikat</a>
                 </div></div>
             </div>
