@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
-use App\Models\UserProvider;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Image;
 
@@ -376,7 +376,7 @@ class UserController extends Controller
      */
     public function userProviderDestroy(Request $request)
     {
-        $user_provider_id =  $request->user_provider_id;
+        $user_provider_id = $request->user_provider_id;
         $user_id = $request->user_id;
 
         if (!$user_provider_id > 0 || !$user_id > 0) {
@@ -387,10 +387,9 @@ class UserController extends Controller
             $user_provider = UserProvider::findOrFail($user_provider_id);
 
             if ($user_id == $user_provider->user->id) {
-
                 $user_provider->delete();
 
-                flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name. '"!')->success();
+                flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name.'"!')->success();
 
                 return redirect()->back();
             } else {
