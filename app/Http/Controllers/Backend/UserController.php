@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
@@ -10,7 +11,6 @@ use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Image;
 use Log;
-use App\Exceptions\GeneralException;
 
 class UserController extends Controller
 {
@@ -341,7 +341,7 @@ class UserController extends Controller
         if (auth()->id() == $id || $id == 1) {
             throw new GeneralException('You can not delete yourself.');
         }
-        
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_path = $this->module_path;
@@ -416,7 +416,7 @@ class UserController extends Controller
     }
 
     /**
-     * Block Any Specific User
+     * Block Any Specific User.
      *
      * @param int $id User Id
      *
@@ -447,7 +447,7 @@ class UserController extends Controller
     }
 
     /**
-     * Unblock Any Specific User 
+     * Unblock Any Specific User.
      *
      * @param int $id User Id
      *
