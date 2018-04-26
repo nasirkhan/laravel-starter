@@ -377,7 +377,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             throw new GeneralException('There was a problem updating this user. Please try again.');
         }
-
     }
 
     public function restore($id)
