@@ -157,16 +157,16 @@ if (!function_exists('form_submit')) {
 }
 /*
  *
- * lable_case
+ * label_case
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('lable_case')) {
+if (!function_exists('label_case')) {
 
     /**
      * Prepare the Column Name for Lables.
      */
-    function lable_case($text)
+    function label_case($text)
     {
         $order = ['_', '-'];
         $replace = ' ';

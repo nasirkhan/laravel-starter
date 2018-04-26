@@ -64,7 +64,7 @@ $module_name_singular = str_singular($module_name);
                             <ul class="list-unstyled">
                                 @foreach ($user->providers as $provider)
                                 <li>
-                                    <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                    <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
                                 </li>
                                 @endforeach
                             </ul>

@@ -3,7 +3,7 @@
         <div class="form-group">
             <?php
             $field_name = 'title';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -16,7 +16,7 @@
         <div class="form-group">
             <?php
             $field_name = 'slug';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -30,7 +30,7 @@
         <div class="form-group">
             <?php
             $field_name = 'intro';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -44,7 +44,7 @@
         <div class="form-group">
             <?php
             $field_name = 'content';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -88,7 +88,7 @@
         <div class="form-group">
             <?php
             $field_name = 'type';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
@@ -105,7 +105,7 @@
         <div class="form-group">
             <?php
             $field_name = 'is_featured';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
@@ -123,7 +123,7 @@
         <div class="form-group">
             <?php
             $field_name = 'status';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = "-- Select an option --";
             $required = "";
             $select_options = [
@@ -140,7 +140,7 @@
         <div class="form-group">
             <?php
             $field_name = 'published_at';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -159,7 +159,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_title';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -171,7 +171,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_keywords';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -183,7 +183,7 @@
         <div class="form-group">
             <?php
             $field_name = 'order';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -197,7 +197,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_description';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -211,7 +211,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_og_image';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -225,7 +225,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_og_url';
-            $field_lable = lable_case($field_name);
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>

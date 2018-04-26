@@ -32,7 +32,7 @@
                         <tr>
                             <th>{{ __('labels.backend.users.fields.name') }}</th>
                             <th>{{ __('labels.backend.users.fields.email') }}</th>
-                            <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
+                            <th>{{ __('labels.backend.users.fields.status') }}</th>
                             <th>{{ __('labels.backend.users.fields.roles') }}</th>
                             <th>{{ __('labels.backend.users.fields.permissions') }}</th>
                             <th>{{ __('labels.backend.users.fields.social') }}</th>
@@ -45,7 +45,7 @@
                         <tr>
                             <td>{{ $user->name }} (Status: {{ $user->status }})</td>
                             <td>{{ $user->email }}</td>
-                            <td>{!! $user->confirmed_label !!}</td>
+                            <td>{!! $user->status_label !!}</td>
                             <td>
                                 @if($user->getRoleNames()->count() > 0)
                                     <ul>
@@ -68,7 +68,7 @@
                                 <ul class="list-unstyled">
                                     @foreach ($user->providers as $provider)
                                     <li>
-                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
                                     </li>
                                     @endforeach
                                 </ul>

@@ -60,8 +60,26 @@ class User extends Authenticatable
         return array_map('intval', $this->roles->pluck('id')->toArray());
     }
 
-    public function setPasswordAttribute($password)
+    /**
+     * Get Status Label
+     *
+     * @return [type] [description]
+     */
+    public function getStatusLabelAttribute()
     {
-        $this->attributes['password'] = bcrypt($password);
+        switch ($this->status) {
+            case '1': 
+                return '<span class="badge badge-success">Active</span>';
+                break;
+            case '2':
+                return '<span class="badge badge-warning">Blocked</span>';
+                break;
+
+            default:
+                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                break;
+        }
     }
+
+
 }

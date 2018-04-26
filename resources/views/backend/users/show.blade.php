@@ -64,7 +64,7 @@
                                                 <div class="row">
                                                     <div class="col">
 
-                                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ lable_case($provider->provider) }}
+                                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
                                                     </div>
                                                     <div class="col">
                                                         <div class="float-right">
@@ -73,7 +73,7 @@
                                                             {{ html()->hidden('user_provider_id')->value($provider->id) }}
                                                             {{ html()->hidden('user_id')->value($user->id) }}
 
-                                                            {{ html()->submit($text = '<i class="fas fa-unlink"></i> <span class="d-none d-md-inline ">Unlink ' . lable_case($provider->provider) . '</span>', $type = 'button')->attributes(['class' => "btn btn-outline-danger btn-sm"]) }}
+                                                            {{ html()->submit($text = '<i class="fas fa-unlink"></i> <span class="d-none d-md-inline ">Unlink ' . label_case($provider->provider) . '</span>', $type = 'button')->attributes(['class' => "btn btn-outline-danger btn-sm"]) }}
 
                                                             {{ html()->form()->close() }}
                                                         </div>
