@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->name }} (Status: {{ $user->status }})</td>
                             <td>{{ $user->email }}</td>
                             <td>{!! $user->confirmed_label !!}</td>
                             <td>
@@ -77,6 +77,13 @@
                             <td class="text-right">
                                 <a href="{{route('backend.users.show', $user)}}" class="btn btn-success mt-1"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
                                 <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary mt-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
+
+                                {{ html()->form('PATCH', route('backend.users.block', $user))->class('form-inline')->open() }}
+
+                                {{ html()->submit($text = '<i class="fas fa-ban"></i> <span class="d-none d-md-inline ">Block </span>')->attributes(['class' => "btn btn-danger mt-1"]) }}
+
+                                {{ html()->form()->close() }}
+
                             </td>
                         </tr>
                         @endforeach

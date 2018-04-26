@@ -14,6 +14,7 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_users',
             'edit_users',
             'delete_users',
+            'block_users',
 
             'view_roles',
             'add_roles',
@@ -24,6 +25,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_posts',
             'edit_posts',
             'delete_posts',
+
+            'view_categories',
+            'add_categories',
+            'edit_categories',
+            'delete_categories',
         ];
     }
 }

@@ -344,7 +344,7 @@ class UserController extends Controller
         $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = User::withTrashed()->find($id);
-        //        $$module_name_singular = $this->findOrThrowException($id);
+        // $$module_name_singular = $this->findOrThrowException($id);
 
         if ($$module_name_singular->delete()) {
             Flash::success('User successfully deleted!');
@@ -353,6 +353,31 @@ class UserController extends Controller
         }
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
+    }
+
+    public function block($id)
+    {
+        if (auth()->id() == $id) {
+            throw new GeneralException('You can not `Block` yourself.');
+        }
+
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+
+        $$module_name_singular = User::withTrashed()->find($id);
+        // $$module_name_singular = $this->findOrThrowException($id);
+
+        try {
+            $$module_name_singular->status = 2;
+            $$module_name_singular->save();
+
+            flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Blocked!')->success();
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            throw new GeneralException('There was a problem updating this user. Please try again.');
+        }
+
     }
 
     public function restore($id)
