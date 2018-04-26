@@ -75,12 +75,12 @@
                             </td>
                             <td>{{ $user->updated_at->diffForHumans() }}</td>
                             <td class="text-right">
-                                <a href="{{route('backend.users.show', $user)}}" class="btn btn-success mt-1"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
-                                <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary mt-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
+                                <a href="{{route('backend.users.show', $user)}}" class="btn btn-success btn-sm mt-1"><i class="fas fa-desktop" data-toggle="tooltip" title="{{__('labels.backend.show')}}"></i></a>
+                                <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"></i></a>
 
                                 {{ html()->form('PATCH', route('backend.users.block', $user))->class('form-inline')->open() }}
 
-                                {{ html()->submit($text = '<i class="fas fa-ban"></i> <span class="d-none d-md-inline ">Block </span>')->attributes(['class' => "btn btn-danger mt-1", 'data-toggle'=>"tooltip", 'title'=>'Block']) }}
+                                {{ html()->submit($text = '<i class="fas fa-ban"></i> <span class="d-none d-md-inline ">Block </span>')->attributes(['class' => "btn btn-danger btn-sm mt-1", 'data-toggle'=>"tooltip", 'title'=>'Block']) }}
 
                                 {{ html()->form()->close() }}
 
