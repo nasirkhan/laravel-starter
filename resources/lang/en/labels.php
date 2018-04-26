@@ -73,6 +73,7 @@ return [
         'create'    => 'Create',
         'edit'      => 'Edit',
         'delete'    => 'Delete',
+        'restore'    => 'Restore',
         'save'      => 'Save',
         'show'      => 'Show',
         'update'    => 'Update',

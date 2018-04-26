@@ -10,6 +10,7 @@ use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Image;
 use Log;
+use App\Exceptions\GeneralException;
 
 class UserController extends Controller
 {
@@ -338,8 +339,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         if (auth()->id() == $id || $id == 1) {
-            abort(403, 'Unauthorized action.');
+            throw new GeneralException('You can not delete yourself.');
         }
+        
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_path = $this->module_path;
@@ -422,7 +424,7 @@ class UserController extends Controller
     public function block($id)
     {
         if (auth()->id() == $id) {
-            abort(403, 'Unauthorized action.');
+            throw new GeneralException('You can not `Block` yourself.');
         }
 
         $module_name = $this->module_name;
@@ -439,7 +441,7 @@ class UserController extends Controller
 
             return redirect()->back();
         } catch (\Exception $e) {
-            abort(403, 'Unauthorized action.');
+            throw new GeneralException('There was a problem updating this user. Please try again.');
         }
     }
 
@@ -452,7 +454,7 @@ class UserController extends Controller
     public function unblock($id)
     {
         if (auth()->id() == $id) {
-            abort(403, 'Unauthorized action.');
+            throw new GeneralException('You can not `Unblocked` yourself.');
         }
 
         $module_name = $this->module_name;
@@ -469,7 +471,7 @@ class UserController extends Controller
 
             return redirect()->back();
         } catch (\Exception $e) {
-            abort(403, 'Unauthorized action.');
+            throw new GeneralException('There was a problem updating this user. Please try again.');
         }
     }
 
@@ -502,6 +504,6 @@ class UserController extends Controller
             }
         }
 
-        abort(403, 'Unauthorized action.');
+        throw new GeneralException('There was a problem updating this user. Please try again.');
     }
 }
