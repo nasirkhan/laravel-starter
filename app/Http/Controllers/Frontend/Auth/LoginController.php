@@ -55,7 +55,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
             flash('<i class="fas fa-check"></i> Login Successful')->success();
 
-            return redirect()->intended('frontend.home');
+            return redirect()->intended('/');
         } else {
             flash('<i class="fas fa-exclamation-triangle"></i> Login Failed. Please Contact Administrator.')->error();
 
