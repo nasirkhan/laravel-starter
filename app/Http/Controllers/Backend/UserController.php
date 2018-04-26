@@ -356,9 +356,10 @@ class UserController extends Controller
     }
 
     /**
-     * Block Any Specific User
+     * Block Any Specific User.
      *
-     * @param  INT $id User Id
+     * @param int $id User Id
+     *
      * @return Back To Previous Page
      */
     public function block($id)
@@ -386,9 +387,10 @@ class UserController extends Controller
     }
 
     /**
-     * Unblock Any Specific User 
+     * Unblock Any Specific User.
      *
-     * @param  INT $id User Id
+     * @param int $id User Id
+     *
      * @return Back To Previous Page
      */
     public function unblock($id)
