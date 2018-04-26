@@ -300,7 +300,7 @@ class UserController extends Controller
         $$module_name_singular->update($request->except(['roles', 'permissions']));
 
         if ($id == 1) {
-            $user->assignRole('administrator');
+            $user->syncRoles(['administrator']);
 
             return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
         }
