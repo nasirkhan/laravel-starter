@@ -355,6 +355,12 @@ class UserController extends Controller
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
 
+    /**
+     * Block Any Specific User
+     *
+     * @param  INT $id User Id
+     * @return Back To Previous Page
+     */
     public function block($id)
     {
         if (auth()->id() == $id) {
@@ -379,6 +385,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Unblock Any Specific User 
+     *
+     * @param  INT $id User Id
+     * @return Back To Previous Page
+     */
     public function unblock($id)
     {
         if (auth()->id() == $id) {
