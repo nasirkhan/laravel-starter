@@ -12,7 +12,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="icon-people"></i> Profile
+                    <i class="{{$module_icon}}"></i> Profile
                     <small class="text-muted">Change Password </small>
                 </h4>
                 <div class="small text-muted">

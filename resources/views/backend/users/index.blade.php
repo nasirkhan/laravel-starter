@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="icon-people"></i> {{ __('labels.backend.users.index.title') }}
+                    <i class="{{$module_icon}}"></i> {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
                 </h4>
                 <div class="small text-muted">
                     {{ __('labels.backend.users.index.sub-title') }}
                 </div>
             </div>
-            
+
             <div class="col-4">
                 <div class="float-right">
                     <a href="{{route('backend.users.create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>

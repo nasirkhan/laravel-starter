@@ -8,7 +8,7 @@ $module_name_singular = str_singular($module_name);
 
 @section('page_heading')
 <h1>
-    <i class="{{ $module_icon }}"></i> {{ ucfirst($module_name) }}
+    <i class="{{$module_icon}}"></i> {{ ucfirst($module_name) }}
     <small>
         {{ ucfirst($module_action) }}
     </small>
