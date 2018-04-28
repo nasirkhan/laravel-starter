@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="icon-user-following"></i> {{ __('labels.backend.users.index.title') }}
-                    <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
+                    <i class="{{$module_icon}}"></i> {{ __('labels.backend.roles.index.title') }}
+                    <small class="text-muted">{{ __('labels.backend.roles.index.action') }} </small>
                 </h4>
                 <div class="small text-muted">
-                    {{ __('labels.backend.users.index.sub-title') }}
+                    {{ __('labels.backend.roles.index.sub-title') }}
                 </div>
             </div>
             <!--/.col-->
@@ -40,7 +40,9 @@
                     <tbody>
                         @foreach ($$module_name as $module_name_singular)
                         <tr>
-                            <td>{{ $module_name_singular->name }}</td>
+                            <td>
+                                {{ $module_name_singular->name }}
+                            </td>
                             <td>
                                 @foreach ($module_name_singular->permissions as $permission)
                                 <li>{{ $permission->name }}</li>

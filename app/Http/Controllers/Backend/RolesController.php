@@ -14,7 +14,7 @@ class RolesController extends Controller
     {
         $this->module_name = 'roles';
         $this->module_path = 'roles';
-        $this->module_icon = 'fa fa-users';
+        $this->module_icon = 'icon-user-following';
         $this->module_title = 'Roles';
         $this->module_model = 'App\Models\Role';
     }
@@ -110,17 +110,22 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
-        $module_icon = $this->module_icon;
         $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Show';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.show",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**

@@ -4,7 +4,7 @@
 $module_name_singular = str_singular($module_name);
 ?>
 
-@section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.create'))
+@section ('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.create'))
 
 @section('content')
 
@@ -13,11 +13,11 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.index.title') }}
-                    <small class="text-muted">{{ __('labels.backend.users.show.action') }} </small>
+                    <i class="{{$module_icon}}"></i> {{ __('labels.backend.roles.index.title') }}
+                    <small class="text-muted">{{ __('labels.backend.roles.show.action') }} </small>
                 </h4>
                 <div class="small text-muted">
-                    {{ __('labels.backend.users.index.sub-title') }}
+                    {{ __('labels.backend.roles.index.sub-title') }}
                 </div>
             </div>
             <!--/.col-->
@@ -35,57 +35,57 @@ $module_name_singular = str_singular($module_name);
         <div class="row mt-4 mb-4">
             <div class="col">
 
-                {{ html()->form('POST', route('backend.users.store'))->class('form-horizontal')->open() }}
+                {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
                     {{ csrf_field() }}
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
+                        {{ html()->label(__('labels.backend.roles.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
 
                         <div class="col-md-10">
                             {{ html()->text('name')
                                 ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.name'))
+                                ->placeholder(__('labels.backend.roles.fields.name'))
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
+                        {{ html()->label(__('labels.backend.roles.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
 
                         <div class="col-md-10">
                             {{ html()->email('email')
                                 ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.email'))
+                                ->placeholder(__('labels.backend.roles.fields.email'))
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+                        {{ html()->label(__('labels.backend.roles.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
                             {{ html()->password('password')
                                 ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.password'))
+                                ->placeholder(__('labels.backend.roles.fields.password'))
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
+                        {{ html()->label(__('labels.backend.roles.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
 
                         <div class="col-md-10">
                             {{ html()->password('password_confirmation')
                                 ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.password_confirmation'))
+                                ->placeholder(__('labels.backend.roles.fields.password_confirmation'))
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.active'))->class('col-md-2 form-control-label')->for('active') }}
+                        {{ html()->label(__('labels.backend.roles.fields.active'))->class('col-md-2 form-control-label')->for('active') }}
 
                         <div class="col-md-10">
                             {{ html()->checkbox('active', true, '1') }}
@@ -93,7 +93,7 @@ $module_name_singular = str_singular($module_name);
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
+                        {{ html()->label(__('labels.backend.roles.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
 
                         <div class="col-md-10">
                             {{ html()->checkbox('confirmed', true, '1') }}
@@ -156,7 +156,7 @@ $module_name_singular = str_singular($module_name);
 
                     <div class="row">
                         <div class="col">
-                            {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}
+                            {{ form_cancel(route('backend.roles.index'), __('labels.buttons.general.cancel')) }}
                             {{ form_submit(__('labels.buttons.general.create')) }}
                         </div>
                     </div>
