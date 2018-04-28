@@ -19,15 +19,14 @@ $module_name_singular = str_singular($module_name);
                     {{ __("labels.backend.$module_name.edit.sub-title") }}
                 </div>
             </div>
-            <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                     <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <a href="{{route("backend.$module_name.show", $$module_name_singular)}}" class="btn btn-primary ml-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-tv"></i></a>
                 </div>
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
+
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
@@ -43,7 +42,7 @@ $module_name_singular = str_singular($module_name);
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div>
-                    </div><!--form-group-->
+                    </div>
 
                     <div class="row">
                         <div class="col-md-2">
@@ -59,7 +58,6 @@ $module_name_singular = str_singular($module_name);
                             @endif
                         </div>
                     </div>
-                    <!-- /.row -->
 
                     <div class="row">
                         <div class="col">
@@ -69,9 +67,9 @@ $module_name_singular = str_singular($module_name);
                     </div>
                 {{ html()->closeModelForm() }}
             </div>
-            <!--/.col-->
+
         </div>
-        <!--/.row-->
+        
     </div>
     <div class="card-footer">
         <div class="row">
