@@ -46,13 +46,13 @@ class GeneralException extends Exception
      */
     public function render($request)
     {
-        abort(403, 'Unauthorized action.');
         /*
          * All instances of GeneralException redirect back with a flash message to show a bootstrap alert-error
          */
-        // return redirect()
-        //     ->back()
-        //     ->withInput($request->except('password', 'password_confirmation'))
-        //     ->withFlashDanger($this->message);
+        flash('<i class="fas fa-exclamation-triangle"></i> '.$this->message)->error();
+
+        return redirect()
+            ->back()
+            ->withInput($request->except('password', 'password_confirmation'));
     }
 }
