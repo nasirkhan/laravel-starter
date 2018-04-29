@@ -60,8 +60,6 @@ class BaseModel extends Model
         return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
     }
 
-
-
     /**
      * Get Status Label.
      *
