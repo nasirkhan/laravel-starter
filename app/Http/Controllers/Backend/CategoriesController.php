@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\CategoriesRequest;
 use Auth;
@@ -12,7 +13,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
-use App\Authorizable;
 
 class CategoriesController extends Controller
 {
