@@ -121,19 +121,26 @@ class UserController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Show';
 
-        $$module_name_singular = User::findOrFail($id);
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        return view("backend.$module_name.show",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**

@@ -59,4 +59,27 @@ class BaseModel extends Model
     {
         return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
     }
+
+
+
+    /**
+     * Get Status Label.
+     *
+     * @return [type] [description]
+     */
+    public function getStatusLabelAttribute()
+    {
+        switch ($this->status) {
+            case '1':
+                return '<span class="badge badge-success">Active</span>';
+                break;
+            case '2':
+                return '<span class="badge badge-warning">Blocked</span>';
+                break;
+
+            default:
+                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                break;
+        }
+    }
 }

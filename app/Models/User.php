@@ -80,4 +80,25 @@ class User extends Authenticatable
                 break;
         }
     }
+
+    /**
+     * Get Status Label.
+     *
+     * @return [type] [description]
+     */
+    public function getConfirmedLabelAttribute()
+    {
+        switch ($this->status) {
+            case '1':
+                return '<span class="badge badge-success">Yes</span>';
+                break;
+            case '0':
+                return '<span class="badge badge-warning">No</span>';
+                break;
+
+            default:
+                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                break;
+        }
+    }
 }

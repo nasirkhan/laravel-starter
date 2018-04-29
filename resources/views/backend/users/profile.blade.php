@@ -33,98 +33,83 @@
 
         <div class="row mt-4 mb-4">
             <div class="col">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true">
-                            <i class="fas fa-user"></i> {{ __('labels.backend.users.show.profile') }}
-                        </a>
-                    </li>
-                </ul>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.avatar') }}</th>
+                            <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
+                        </tr>
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.avatar') }}</th>
-                                    <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.name') }}</th>
+                            <td>{{ $user->name }}</td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.name') }}</th>
-                                    <td>{{ $user->name }}</td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.email') }}</th>
+                            <td>{{ $user->email }}</td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.email') }}</th>
-                                    <td>{{ $user->email }}</td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.social') }}</th>
+                            <td>
+                                <ul class="list-unstyled">
+                                    @foreach ($user->providers as $provider)
+                                    <li>
+                                        <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.social') }}</th>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            @foreach ($user->providers as $provider)
-                                            <li>
-                                                <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
-                                            </li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.status') }}</th>
+                            <td>{!! $user->status_label !!}</td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.status') }}</th>
-                                    <td>{!! $user->status !!}</td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
+                            <td>{!! $user->confirmed_label !!}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.roles') }}</th>
+                            <td>
+                                @if($user->getRoleNames()->count() > 0)
+                                    <ul>
+                                        @foreach ($user->getRoleNames() as $role)
+                                        <li>{{ ucwords($role) }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </td>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
-                                    <td>{!! $user->confirmed !!}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.roles') }}</th>
-                                    <td>
-                                        @if($user->getRoleNames()->count() > 0)
-                                            <ul>
-                                                @foreach ($user->getRoleNames() as $role)
-                                                <li>{{ ucwords($role) }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.permissions') }}</th>
+                            <td>
+                                @if($user->getAllPermissions()->count() > 0)
+                                    <ul>
+                                        @foreach ($user->getAllPermissions() as $permission)
+                                        <li>{{ $permission->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </td>
+                        </tr>
 
-                                </tr>
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.permissions') }}</th>
-                                    <!-- <td>{!! $user->permissions !!}</td> -->
-                                    <td>
-                                        @if($user->getAllPermissions()->count() > 0)
-                                            <ul>
-                                                @foreach ($user->getAllPermissions() as $permission)
-                                                <li>{{ $permission->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.created_at') }}</th>
+                            <td>{{ $user->created_at }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.created_at') }}</th>
-                                    <td>{{ $user->created_at }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
-                                </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
+                            <td>{{ $user->updated_at }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                                    <td>{{ $user->updated_at }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
-                                </tr>
-
-                            </table>
-                        </div><!--table-responsive-->
-
-                    </div><!--tab-->
-
-                </div>
+                    </table>
+                </div><!--table-responsive-->
             </div>
             <!--/.col-->
         </div>
