@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Authorizable;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
+    use Authorizable;
+
     public function __construct()
     {
         $this->module_name = 'roles';

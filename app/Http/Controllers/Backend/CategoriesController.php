@@ -12,9 +12,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
+use App\Authorizable;
 
 class CategoriesController extends Controller
 {
+    use Authorizable;
+
     public function __construct()
     {
         // Page Title

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Authorizable;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -14,6 +15,8 @@ use Log;
 
 class UserController extends Controller
 {
+    use Authorizable;
+
     public function __construct()
     {
         // Page Title
