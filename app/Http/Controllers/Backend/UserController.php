@@ -134,8 +134,8 @@ class UserController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -362,7 +362,7 @@ class UserController extends Controller
 
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Deleted!')->success();
 
-        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
 
         return redirect("admin/$module_name");
     }
@@ -387,7 +387,7 @@ class UserController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(ucfirst($module_action).' '.ucfirst($module_name).' by User:'.auth()->user()->name);
+        Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.auth()->user()->name);
 
         return view("backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
@@ -417,7 +417,7 @@ class UserController extends Controller
 
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' Successfully Restoreded!')->success();
 
-        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
 
         return redirect("admin/$module_name");
     }

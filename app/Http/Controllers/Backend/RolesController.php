@@ -119,8 +119,8 @@ class RolesController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -231,6 +231,6 @@ class RolesController extends Controller
         $$module_name_singular = User::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Restored Successfully!');
+        return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.label_case($module_name_singular).' Restored Successfully!');
     }
 }

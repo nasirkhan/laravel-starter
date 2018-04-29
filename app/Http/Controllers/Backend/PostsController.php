@@ -48,8 +48,8 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name = $module_model::latest()->paginate();
 
@@ -70,8 +70,8 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
 
@@ -116,8 +116,8 @@ class PostsController extends Controller
 
         $module_action = 'Create';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $categories = Category::pluck('name', 'id');
 
@@ -143,8 +143,8 @@ class PostsController extends Controller
 
         $module_action = 'Store';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::create($request->all());
 
@@ -173,8 +173,8 @@ class PostsController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -200,8 +200,8 @@ class PostsController extends Controller
 
         $module_action = 'Edit';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -230,8 +230,8 @@ class PostsController extends Controller
 
         $module_action = 'Update';
 
-        $page_heading = ucfirst($module_title);
-        $title = $page_heading.' '.ucfirst($module_action);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -264,9 +264,9 @@ class PostsController extends Controller
 
         $$module_name_singular->delete();
 
-        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' Deleted Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
-        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");
     }
@@ -291,7 +291,7 @@ class PostsController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(ucfirst($module_action).' '.ucfirst($module_name).' by User:'.Auth::user()->name);
+        Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.Auth::user()->name);
 
         return view("backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
@@ -319,9 +319,9 @@ class PostsController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fas fa-check"></i> '.ucfirst($module_name_singular).' Restoreded Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Restoreded Successfully!')->important();
 
-        Log::info(ucfirst($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");
     }
