@@ -39,7 +39,7 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ asset('img/avatars/6.jpg') }}" class="img-avatar" alt="{{ Auth::user()->name }}">
+                <img src="{{ asset('photos/avatars/'.Auth::user()->avatar) }}" class="img-avatar" alt="{{ Auth::user()->name }}">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
