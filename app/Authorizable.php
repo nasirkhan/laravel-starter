@@ -12,6 +12,8 @@ trait Authorizable
         'create'  => 'add',
         'store'   => 'add',
         'destroy' => 'delete',
+        'restore' => 'restore',
+        'trashed' => 'restore',
     ];
 
     /**
