@@ -57,15 +57,8 @@
 
                     <div class="col-8">
                         <div class="float-right">
-                            {{ html()->modelForm($$module_name_singular, 'DELETE', route("backend.$module_name.destroy", $$module_name_singular))->open() }}
-                            <div class="form-group">
-                                {!! Form::button("<i class='fas fa-trash-alt'></i>", ['class' => 'btn btn-danger', 'type'=>'submit']) !!}
-
-                                <a class="btn btn-warning" href="{{ route("backend.$module_name.index") }}">
-                                    <i class="fas fa-reply"></i> Cancel
-                                </a>
-                            </div>
-                            {{ html()->form()->close() }}
+                            <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
                         </div>
                     </div>
                 </div>
