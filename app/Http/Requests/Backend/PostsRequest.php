@@ -24,7 +24,7 @@ class PostsRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:191',
+            'title'          => 'required|max:191',
             'featured_image' => 'required',
             'type' => 'required',
             'is_featured' => 'required',
