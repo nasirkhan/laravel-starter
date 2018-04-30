@@ -126,7 +126,7 @@
             $field_name = 'status';
             $field_lable = label_case($field_name);
             $field_placeholder = "-- Select an option --";
-            $required = "";
+            $required = "required";
             $select_options = [
                 '1'=>'Published',
                 '0'=>'Unpublished',

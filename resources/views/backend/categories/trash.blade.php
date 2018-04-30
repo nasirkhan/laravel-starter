@@ -87,13 +87,7 @@ $module_name_singular = str_singular($module_name);
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-right">
-                                {{ html()->form('POST', route("backend.$module_name.restore", $module_name_singular))->open() }}
-
-                                <div class="form-group">
-                                    {{ html()->button($text = "<i class='fas fa-undo'></i> Restore", $type = 'submit')->class('btn btn-danger') }}
-                                </div>
-
-                                {{ html()->form()->close() }}
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
                             </td>
                         </tr>
                         @endforeach

@@ -80,6 +80,7 @@ return [
         'total'      => 'Total',
         'block'      => 'Block',
         'unblock'    => 'Unblock',
+        'cancel'     => 'Cancel',
     ],
 
     'buttons'   => [

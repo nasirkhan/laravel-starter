@@ -51,16 +51,22 @@ $module_name_singular = str_singular($module_name);
                                 #
                             </th>
                             <th>
-                                Name
+                                Title
                             </th>
                             <th>
-                                Page
+                                Slug
+                            </th>
+                            <th>
+                                Image
                             </th>
                             <th>
                                 Updated At
                             </th>
                             <th>
                                 Created By
+                            </th>
+                            <th>
+                                Deleted By
                             </th>
                             <th class="text-right">
                                 Action
@@ -75,10 +81,13 @@ $module_name_singular = str_singular($module_name);
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                {{ $module_name_singular->title }}
                             </td>
                             <td>
-                                {{ $module_name_singular->code }}
+                                {{ $module_name_singular->slug }}
+                            </td>
+                            <td>
+                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->title }}">
                             </td>
                             <td>
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
@@ -86,14 +95,11 @@ $module_name_singular = str_singular($module_name);
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
+                            <td>
+                                {{ $module_name_singular->deleted_by }}
+                            </td>
                             <td class="text-right">
-                                {{ html()->form('POST', route("backend.$module_name.restore", $module_name_singular))->open() }}
-
-                                <div class="form-group">
-                                    {{ html()->button($text = "<i class='fas fa-undo'></i> Restore", $type = 'submit')->class('btn btn-danger') }}
-                                </div>
-
-                                {{ html()->form()->close() }}
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>                                
                             </td>
                         </tr>
                         @endforeach

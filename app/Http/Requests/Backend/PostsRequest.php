@@ -28,6 +28,7 @@ class PostsRequest extends FormRequest
             'featured_image' => 'required',
             'type' => 'required',
             'is_featured' => 'required',
+            'status' => 'required',
         ];
     }
 }
