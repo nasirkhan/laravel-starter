@@ -51,6 +51,13 @@
                         </tr>
 
                         <tr>
+                            <th>{{ __('labels.backend.users.fields.password') }}</th>
+                            <td>
+                                <a href="{{ route('backend.users.changePassword') }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <th>{{ __('labels.backend.users.fields.social') }}</th>
                             <td>
                                 <ul class="list-unstyled">
