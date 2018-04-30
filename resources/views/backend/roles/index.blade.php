@@ -49,8 +49,8 @@
                                 @endforeach
                             </td>
                             <td class="text-right">
-                                <a href="{{route("backend.$module_name.show", $module_name_singular)}}" class="btn btn-success mt-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-desktop"></i></a>
-                                <a href="{{route("backend.$module_name.edit", $module_name_singular)}}" class="btn btn-primary mt-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{route("backend.$module_name.show", $module_name_singular)}}" class="btn btn-success btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-desktop"></i></a>
+                                <a href="{{route("backend.$module_name.edit", $module_name_singular)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
