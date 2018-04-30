@@ -26,9 +26,9 @@ class PostsRequest extends FormRequest
         return [
             'title'          => 'required|max:191',
             'featured_image' => 'required',
-            'type' => 'required',
-            'is_featured' => 'required',
-            'status' => 'required',
+            'type'           => 'required',
+            'is_featured'    => 'required',
+            'status'         => 'required',
         ];
     }
 }
