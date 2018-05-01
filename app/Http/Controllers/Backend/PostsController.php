@@ -289,7 +289,7 @@ class PostsController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
 
-        $module_action = 'List';
+        $module_action = 'Trash List';
         $page_heading = $module_title;
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
