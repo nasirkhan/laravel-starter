@@ -203,7 +203,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        Log::info(label_case(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
