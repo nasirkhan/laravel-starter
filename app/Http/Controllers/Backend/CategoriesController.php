@@ -54,7 +54,7 @@ class CategoriesController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
@@ -150,7 +150,7 @@ class CategoriesController extends Controller
 
         $module_action = 'Create';
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
@@ -178,7 +178,7 @@ class CategoriesController extends Controller
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -203,7 +203,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
@@ -229,7 +229,7 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
@@ -260,7 +260,7 @@ class CategoriesController extends Controller
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -287,7 +287,7 @@ class CategoriesController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -312,7 +312,7 @@ class CategoriesController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(label_case($module_title. ' ' .$module_action)." | User:".Auth::user()->name);
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view("backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
