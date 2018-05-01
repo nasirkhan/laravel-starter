@@ -4,13 +4,6 @@
 {{ $module_action }} {{ $module_title }} | {{ app_name() }}
 @stop
 
-@section('page_heading')
-<h1>
-    <i class="{{ $module_icon }}"></i> {{ $module_title }}
-    <small>{{ $module_action }}</small>
-</h1>
-@stop
-
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
@@ -53,16 +46,16 @@
                             {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
                         </div>
                     </div>
-                    {{ html()->form()->close() }}
 
                     <div class="col-8">
                         <div class="float-right">
-
                             <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
                             <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
                         </div>
                     </div>
                 </div>
+
+                {{ html()->form()->close() }}
 
             </div>
         </div>
