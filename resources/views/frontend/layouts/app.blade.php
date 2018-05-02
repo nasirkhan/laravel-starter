@@ -12,6 +12,7 @@
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
 
     <link rel="shortcut icon" href="/img/favicon.png">
+    <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
