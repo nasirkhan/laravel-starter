@@ -197,7 +197,7 @@ class PostsController extends Controller
         $module_action = 'Edit';
 
         $$module_name_singular = $module_model::findOrFail($id);
-// return $$module_name_singular->tags->pluck('id')->toArray();
+        // return $$module_name_singular->tags->pluck('id')->toArray();
         $categories = Category::pluck('name', 'id');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
