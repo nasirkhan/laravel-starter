@@ -10,6 +10,7 @@
             <?php $articles_uri_paterns = [
                 'admin/posts/*',
                 'admin/categories/*',
+                'admin/tags/*',
             ]; ?>
             <li class="nav-item nav-dropdown {{ active_class(if_uri_pattern($articles_uri_paterns), 'open') }}">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="fas fa-file"></i> Articles</a>
@@ -22,6 +23,11 @@
                     <li class="nav-item">
                         <a class="nav-link {{ active_class(if_uri_pattern('admin/categories/*')) }}" href="{{ route('backend.categories.index') }}">
                             <i class="fas fa-sitemap"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(if_uri_pattern('admin/tags/*')) }}" href="{{ route('backend.tags.index') }}">
+                            <i class="fas fa-tags"></i> Tags
                         </a>
                     </li>
                 </ul>

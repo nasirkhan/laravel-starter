@@ -82,7 +82,7 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, '')->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+            {{ html()->select($field_name, '')->placeholder($field_placeholder)->class('form-control select2-category')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -116,6 +116,20 @@
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <?php
+            $field_name = 'tags_list[]';
+            $field_lable = "Tags";
+            $field_placeholder = "-- Select an option --";
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->multiselect($field_name, '', $$module_name_singular->tags->pluck('id')->toArray())->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -252,13 +266,35 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('.select2').select2({
+    $('.select2-category').select2({
         theme: "bootstrap",
         placeholder: "-- Select an option --",
         minimumInputLength: 2,
         allowClear: true,
         ajax: {
             url: '{{route("backend.categories.index_list")}}',
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    q: $.trim(params.term)
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        }
+    });
+
+    $('.select2-tags').select2({
+        theme: "bootstrap",
+        placeholder: "-- Select an option --",
+        minimumInputLength: 2,
+        allowClear: true,
+        ajax: {
+            url: '{{route("backend.tags.index_list")}}',
             dataType: 'json',
             data: function (params) {
                 return {

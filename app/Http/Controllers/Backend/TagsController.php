@@ -4,35 +4,36 @@ namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\PostsRequest;
-use App\Models\Category;
+use App\Http\Requests\Backend\TagsRequest;
 use Auth;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
 
-class PostsController extends Controller
+class TagsController extends Controller
 {
     use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Posts';
+        $this->module_title = 'Tags';
 
         // module name
-        $this->module_name = 'posts';
+        $this->module_name = 'tags';
 
         // directory path of the module
-        $this->module_path = 'posts';
+        $this->module_path = 'tags';
 
         // module icon
-        $this->module_icon = 'fas fa-file-alt';
+        $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "App\Models\Post";
+        $this->module_model = "App\Models\Tag";
     }
 
     /**
@@ -54,12 +55,51 @@ class PostsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::paginate();
 
         Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
-                compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        return view("backend.$module_path.index_datatable",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+    }
+
+    /**
+     * Select Options for Select 2 Request/ Response.
+     *
+     * @return Response
+     */
+    public function index_list(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'List';
+
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->limit(5)->get();
+
+        $$module_name = [];
+
+        foreach ($query_data as $row) {
+            $$module_name[] = [
+                'id'   => $row->id,
+                'text' => $row->name.' (Code: '.$row->code.')',
+            ];
+        }
+
+        return response()->json($$module_name);
     }
 
     public function index_data()
@@ -122,10 +162,8 @@ class PostsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        $categories = Category::pluck('name', 'id');
-
         return view("backend.$module_name.create",
-                compact('categories', 'module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
@@ -135,7 +173,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function store(PostsRequest $request)
+    public function store(TagsRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -149,9 +187,7 @@ class PostsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        // $$module_name_singular = $module_model::create($request->all());
-        $$module_name_singular = $module_model::create($request->except('tags_list'));
-        $$module_name_singular->tags()->attach($request->input('tags_list'));
+        $$module_name_singular = $module_model::create($request->all());
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
@@ -209,11 +245,9 @@ class PostsController extends Controller
         $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
-// return $$module_name_singular->tags->pluck('id')->toArray();
-        $categories = Category::pluck('name', 'id');
 
         return view("backend.$module_name.edit",
-        compact('categories', 'module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
     /**
@@ -224,7 +258,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function update(PostsRequest $request, $id)
+    public function update(TagsRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -324,7 +358,7 @@ class PostsController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Restoreded Successfully!')->important();
+        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->important();
 
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
