@@ -41,7 +41,7 @@ class PermissionRoleTableSeeder extends Seeder
         $executive->givePermissionTo('view_backend');
 
         Artisan::call('auth:permission', [
-            'name' => 'tags'
+            'name' => 'tags',
         ]);
 
         $this->enableForeignKeys();

@@ -62,7 +62,6 @@ Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$
 Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
 Route::resource("$module_name", "$controller_name");
 
-
 /*
  *
  *  Tags Routes
