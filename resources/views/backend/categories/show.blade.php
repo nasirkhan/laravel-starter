@@ -4,13 +4,6 @@
 {{ $module_action }} {{ $module_title }} | {{ app_name() }}
 @stop
 
-@section('page_heading')
-<h1>
-    <i class="{{ $module_icon }}"></i> {{ $module_title }}
-    <small>{{ $module_action }}</small>
-</h1>
-@stop
-
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>

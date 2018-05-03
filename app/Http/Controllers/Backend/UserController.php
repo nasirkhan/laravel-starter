@@ -201,6 +201,10 @@ class UserController extends Controller
      */
     public function profileUpdate(Request $request)
     {
+        $this->validate($request, [
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
