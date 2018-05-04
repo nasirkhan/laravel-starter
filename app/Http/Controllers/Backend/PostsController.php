@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\PostsRequest;
-use App\Models\Tag;
 use App\Models\Category;
 use Auth;
 use Flash;
@@ -232,7 +231,7 @@ class PostsController extends Controller
         $$module_name_singular->update($request->except('tags_list'));
 
         if ($request->input('tags_list') == null) {
-            $tags_list = array();
+            $tags_list = [];
         } else {
             $tags_list = $request->input('tags_list');
         }
