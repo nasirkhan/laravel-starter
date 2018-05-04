@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\PostsRequest;
+use App\Models\Tag;
 use App\Models\Category;
 use Auth;
 use Flash;
@@ -127,7 +129,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function store(CategoriesRequest $request)
+    public function store(PostsRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -197,7 +199,7 @@ class PostsController extends Controller
         $module_action = 'Edit';
 
         $$module_name_singular = $module_model::findOrFail($id);
-        // return $$module_name_singular->tags->pluck('id')->toArray();
+
         $categories = Category::pluck('name', 'id');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
@@ -214,7 +216,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(PostsRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -227,7 +229,14 @@ class PostsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->all());
+        $$module_name_singular->update($request->except('tags_list'));
+
+        if ($request->input('tags_list') == null) {
+            $tags_list = array();
+        } else {
+            $tags_list = $request->input('tags_list');
+        }
+        $$module_name_singular->tags()->sync($tags_list);
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 

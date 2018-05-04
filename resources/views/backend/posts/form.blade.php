@@ -129,7 +129,7 @@
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->multiselect($field_name, '', $$module_name_singular->tags->pluck('id')->toArray())->class('form-control select2-tags')->attributes(["$required"]) }}
+            {{ html()->multiselect($field_name, optional($$module_name_singular->tags)->pluck('name', 'id'), $$module_name_singular->tags->pluck('id')->toArray())->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
