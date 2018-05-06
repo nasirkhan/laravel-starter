@@ -81,7 +81,7 @@
                                 <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
                             </td>
                             <td>
-                                {{ $module_name_singular->category_id }}
+                                {{ $module_name_singular->category_name }}
                             </td>
                             <td>
                                 {{ $module_name_singular->type }}
