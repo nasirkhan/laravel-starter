@@ -78,11 +78,12 @@
             <?php
             $field_name = 'category_id';
             $field_lable = "Category";
+            $field_relation = "category";
             $field_placeholder = "-- Select an option --";
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, '')->placeholder($field_placeholder)->class('form-control select2-category')->attributes(["$required"]) }}
+            {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('name', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-category')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -125,11 +126,15 @@
             <?php
             $field_name = 'tags_list[]';
             $field_lable = "Tags";
+            $field_relation = "tags";
             $field_placeholder = "-- Select an option --";
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->multiselect($field_name, optional($$module_name_singular->tags)->pluck('name', 'id'), $$module_name_singular->tags->pluck('id')->toArray())->class('form-control select2-tags')->attributes(["$required"]) }}
+            {{ html()->multiselect($field_name,
+                isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('name', 'id'):'',
+                isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('id')->toArray():''
+                )->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
 </div>

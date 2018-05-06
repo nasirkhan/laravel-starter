@@ -37,9 +37,9 @@ class Post extends BaseModel
 
         try {
             $category = Category::findOrFail($value);
-            $this->attributes['category'] = $category->name;
+            $this->attributes['category_name'] = $category->name;
         } catch (\Exception $e) {
-            $this->attributes['category'] = null;
+            $this->attributes['category_name'] = null;
         }
     }
 
