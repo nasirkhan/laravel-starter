@@ -23,7 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('order')->nullable();
             $table->tinyInteger('status')->default(1);
 
-            $table->integer('created_by')->unsigned()->index();
+            $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 

@@ -68,9 +68,14 @@ class BaseModel extends Model
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
+            case '0':
+                return '<span class="badge badge-danger">Inactive</span>';
+                break;
+
             case '1':
                 return '<span class="badge badge-success">Active</span>';
                 break;
+
             case '2':
                 return '<span class="badge badge-warning">Blocked</span>';
                 break;
