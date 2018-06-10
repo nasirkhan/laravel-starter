@@ -1,7 +1,18 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
-@section('title')
-{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+<?php
+$module_name_singular = str_singular($module_name);
+?>
+
+@section ('title', ucfirst($module_name) . ' ' . ucfirst($module_action))
+
+@section('page_heading')
+<h1>
+    <i class="{{ $module_icon }}"></i> {{ ucfirst($module_name) }}
+    <small>
+        {{ ucfirst($module_action) }}
+    </small>
+</h1>
 @stop
 
 @section('breadcrumbs')
@@ -24,19 +35,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
-                    <div class="btn-group" role="group" aria-label="Toolbar button groups">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
-                                <a class="dropdown-item" href="{{ route("backend.$module_name.trashed") }}">
-                                    <i class="fas fa-eye-slash"></i> View trash
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ title_case($module_name) }} List"><i class="fas fa-list"></i> List</a>
                 </div>
             </div>
             <!--/.col-->
@@ -52,16 +51,16 @@
                                 #
                             </th>
                             <th>
-                                Title
+                                Name
                             </th>
                             <th>
-                                Category
+                                Page
                             </th>
                             <th>
-                                Type
+                                Updated At
                             </th>
                             <th>
-                                Image
+                                Created By
                             </th>
                             <th class="text-right">
                                 Action
@@ -76,22 +75,19 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <strong>{{ $module_name_singular->title }}</strong>
-                                <br>
-                                <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
+                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
                             </td>
                             <td>
-                                {{ $module_name_singular->category_name }}
+                                {{ $module_name_singular->code }}
                             </td>
                             <td>
-                                {{ $module_name_singular->type }}
+                                {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td>
-                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->title }}">
+                                {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ title_case(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
                             </td>
                         </tr>
                         @endforeach
@@ -115,4 +111,8 @@
         </div>
     </div>
 </div>
+
+@stop
+@section ('after-scripts-end')
+
 @stop

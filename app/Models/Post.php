@@ -13,7 +13,12 @@ class Post extends BaseModel
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category', 'category');
+        return $this->belongsTo('App\Models\Category');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
     }
 
     /**
@@ -32,9 +37,9 @@ class Post extends BaseModel
 
         try {
             $category = Category::findOrFail($value);
-            $this->attributes['category'] = $category->name;
+            $this->attributes['category_name'] = $category->name;
         } catch (\Exception $e) {
-            $this->attributes['category'] = null;
+            $this->attributes['category_name'] = null;
         }
     }
 

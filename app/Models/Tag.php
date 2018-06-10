@@ -5,21 +5,11 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends BaseModel
+class Tag extends BaseModel
 {
     use SoftDeletes;
 
-    protected $table = 'categories';
-
-    /**
-     * Caegories has Many posts.
-     *
-     * @return [type] [description]
-     */
-    public function posts()
-    {
-        return $this->hasMany('App\Models\Post');
-    }
+    protected $table = 'tags';
 
     /**
      * Set the 'Slug'.

@@ -4,6 +4,13 @@
 {{ $module_action }} {{ $module_title }} | {{ app_name() }}
 @stop
 
+@section('page_heading')
+<h1>
+    <i class="{{ $module_icon }}"></i> {{ $module_title }}
+    <small>{{ $module_action }}</small>
+</h1>
+@stop
+
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
@@ -52,16 +59,16 @@
                                 #
                             </th>
                             <th>
-                                Title
+                                Name
                             </th>
                             <th>
-                                Category
+                                Code
                             </th>
                             <th>
-                                Type
+                                Updated At
                             </th>
                             <th>
-                                Image
+                                Created By
                             </th>
                             <th class="text-right">
                                 Action
@@ -76,18 +83,16 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <strong>{{ $module_name_singular->title }}</strong>
-                                <br>
-                                <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
+                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
                             </td>
                             <td>
-                                {{ $module_name_singular->category_name }}
+                                {{ $module_name_singular->code }}
                             </td>
                             <td>
-                                {{ $module_name_singular->type }}
+                                {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td>
-                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->title }}">
+                                {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-right">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
