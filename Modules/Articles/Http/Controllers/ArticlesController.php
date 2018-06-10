@@ -10,6 +10,7 @@ class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return Response
      */
     public function index()
@@ -19,6 +20,7 @@ class ArticlesController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Response
      */
     public function create()
@@ -28,7 +30,9 @@ class ArticlesController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -37,6 +41,7 @@ class ArticlesController extends Controller
 
     /**
      * Show the specified resource.
+     *
      * @return Response
      */
     public function show()
@@ -46,6 +51,7 @@ class ArticlesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @return Response
      */
     public function edit()
@@ -55,7 +61,9 @@ class ArticlesController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function update(Request $request)
@@ -64,6 +72,7 @@ class ArticlesController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @return Response
      */
     public function destroy()
