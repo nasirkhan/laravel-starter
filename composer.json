@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "nwidart/laravel-modules": "^3.2",
         "spatie/laravel-html": "^2.8",
         "spatie/laravel-permission": "^2.7",
         "unisharp/laravel-filemanager": "~1.8",
@@ -31,7 +32,8 @@
             "app/Models"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Modules\\": "Modules/"
         },
         "files": [
             "app/helpers.php"
