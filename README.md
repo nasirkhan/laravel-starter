@@ -30,4 +30,12 @@ Laravel 5.6 based simple starter project.
   * Datatables
   * Select2
   * Date Time Picker
+  
+## Installation
 
+1. Clone or download the repository 
+2. Go to the project directory and run `composer install`
+3. Create `.env` file by copying the `.env.example`. You may use the command to to that `cp .env.example .env`
+4. Update the database name and credentials 
+5. Run the command `php artisan migrate -seed`
+6. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
