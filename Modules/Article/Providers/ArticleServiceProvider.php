@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Articles\Providers;
+namespace Modules\Article\Providers;
 
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factory;
 
-class ArticlesServiceProvider extends ServiceProvider
+class ArticleServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -25,7 +25,7 @@ class ArticlesServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**
@@ -46,10 +46,10 @@ class ArticlesServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('articles.php'),
+            __DIR__.'/../Config/config.php' => config_path('article.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'articles'
+            __DIR__.'/../Config/config.php', 'article'
         );
     }
 
@@ -60,17 +60,17 @@ class ArticlesServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/articles');
+        $viewPath = resource_path('views/modules/article');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
         $this->publishes([
-            $sourcePath => $viewPath,
-        ], 'views');
+            $sourcePath => $viewPath
+        ],'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/articles';
-        }, \Config::get('view.paths')), [$sourcePath]), 'articles');
+            return $path . '/modules/article';
+        }, \Config::get('view.paths')), [$sourcePath]), 'article');
     }
 
     /**
@@ -80,24 +80,24 @@ class ArticlesServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/articles');
+        $langPath = resource_path('lang/modules/article');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'articles');
+            $this->loadTranslationsFrom($langPath, 'article');
         } else {
-            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'articles');
+            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'article');
         }
     }
 
     /**
      * Register an additional directory of factories.
-     *
+     * 
      * @return void
      */
     public function registerFactories()
     {
-        if (!app()->environment('production')) {
-            app(Factory::class)->load(__DIR__.'/../Database/factories');
+        if (! app()->environment('production')) {
+            app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
     }
 

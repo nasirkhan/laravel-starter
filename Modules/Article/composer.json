@@ -1,16 +1,16 @@
 {
-    "name": "nwidart/articles",
+    "name": "nwidart/article",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Nasir Khan Saikat",
+            "email": "nasir8891@gmail.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Articles\\Providers\\ArticlesServiceProvider"
+                "Modules\\Article\\Providers\\ArticleServiceProvider"
             ],
             "aliases": {
                 
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Articles\\": ""
+            "Modules\\Article\\": ""
         }
     }
 }

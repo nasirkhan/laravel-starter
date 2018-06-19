@@ -1,12 +1,12 @@
 {
-    "name": "Articles",
-    "alias": "articles",
+    "name": "Article",
+    "alias": "article",
     "description": "",
     "keywords": [],
     "active": 1,
     "order": 0,
     "providers": [
-        "Modules\\Articles\\Providers\\ArticlesServiceProvider"
+        "Modules\\Article\\Providers\\ArticleServiceProvider"
     ],
     "aliases": {},
     "files": [
