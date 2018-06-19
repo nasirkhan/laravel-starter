@@ -1,8 +1,8 @@
 {
     "name": "Article",
     "alias": "article",
-    "description": "",
-    "keywords": [],
+    "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
+    "keywords": ['blog', 'articles', 'posts'],
     "active": 1,
     "order": 0,
     "providers": [

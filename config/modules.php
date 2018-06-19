@@ -148,7 +148,7 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'nasirkhan',
         'author' => [
             'name' => 'Nasir Khan Saikat',
             'email' => 'nasir8891@gmail.com',

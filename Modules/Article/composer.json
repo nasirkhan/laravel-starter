@@ -1,6 +1,6 @@
 {
-    "name": "nwidart/article",
-    "description": "",
+    "name": "nasirkhan/article",
+    "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
     "authors": [
         {
             "name": "Nasir Khan Saikat",
@@ -13,7 +13,7 @@
                 "Modules\\Article\\Providers\\ArticleServiceProvider"
             ],
             "aliases": {
-                
+
             }
         }
     },
