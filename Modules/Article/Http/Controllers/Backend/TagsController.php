@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\CategoriesRequest;
+use App\Http\Requests\Backend\TagsRequest;
 use Auth;
 use Carbon\Carbon;
 use Flash;
@@ -14,26 +14,26 @@ use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
 
-class CategoriesController extends Controller
+class TagsController extends Controller
 {
     use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Categories';
+        $this->module_title = 'Tags';
 
         // module name
-        $this->module_name = 'categories';
+        $this->module_name = 'tags';
 
         // directory path of the module
-        $this->module_path = 'categories';
+        $this->module_path = 'tags';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "App\Models\Category";        
+        $this->module_model = "App\Models\Tag";
     }
 
     /**
@@ -52,12 +52,15 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
         $$module_name = $module_model::paginate();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
@@ -75,6 +78,9 @@ class CategoriesController extends Controller
         $module_name_singular = str_singular($module_name);
 
         $module_action = 'List';
+
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $term = trim($request->q);
 
@@ -106,6 +112,9 @@ class CategoriesController extends Controller
         $module_name_singular = str_singular($module_name);
 
         $module_action = 'List';
+
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
 
@@ -150,10 +159,11 @@ class CategoriesController extends Controller
 
         $module_action = 'Create';
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         return view("backend.$module_name.create",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
@@ -163,7 +173,7 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function store(CategoriesRequest $request)
+    public function store(TagsRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -174,11 +184,14 @@ class CategoriesController extends Controller
 
         $module_action = 'Store';
 
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
         $$module_name_singular = $module_model::create($request->all());
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info("'$title': '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -201,12 +214,13 @@ class CategoriesController extends Controller
 
         $module_action = 'Show';
 
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
         $$module_name_singular = $module_model::findOrFail($id);
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
         return view("backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**
@@ -227,9 +241,10 @@ class CategoriesController extends Controller
 
         $module_action = 'Edit';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        $$module_name_singular = $module_model::findOrFail($id);
 
         return view("backend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
@@ -243,7 +258,7 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(TagsRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -254,13 +269,16 @@ class CategoriesController extends Controller
 
         $module_action = 'Update';
 
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
         $$module_name_singular = $module_model::findOrFail($id);
 
         $$module_name_singular->update($request->all());
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info("'$title': '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -287,7 +305,7 @@ class CategoriesController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
-        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");
     }
@@ -307,12 +325,12 @@ class CategoriesController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
 
-        $module_action = 'Trash List';
+        $module_action = 'List';
         $page_heading = $module_title;
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
+        Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.Auth::user()->name);
 
         return view("backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
@@ -342,7 +360,7 @@ class CategoriesController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->important();
 
-        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
 
         return redirect("admin/$module_name");
     }

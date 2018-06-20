@@ -1,39 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\CategoriesRequest;
+use App\Http\Requests\Backend\PostsRequest;
+use App\Models\Category;
 use Auth;
-use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Yajra\DataTables\DataTables;
 
-class CategoriesController extends Controller
+class PostsController extends Controller
 {
     use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Categories';
+        $this->module_title = 'Posts';
 
         // module name
-        $this->module_name = 'categories';
+        $this->module_name = 'posts';
 
         // directory path of the module
-        $this->module_path = 'categories';
+        $this->module_path = 'posts';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "App\Models\Category";        
+        $this->module_model = "App\Models\Post";
+
     }
 
     /**
@@ -43,6 +43,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        dd(Auth::user());
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -52,48 +54,12 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::paginate();
+        $$module_name = $module_model::latest()->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
-    }
-
-    /**
-     * Select Options for Select 2 Request/ Response.
-     *
-     * @return Response
-     */
-    public function index_list(Request $request)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
-
-        $module_action = 'List';
-
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            return response()->json([]);
-        }
-
-        $query_data = $module_model::where('name', 'LIKE', "%$term%")->limit(5)->get();
-
-        $$module_name = [];
-
-        foreach ($query_data as $row) {
-            $$module_name[] = [
-                'id'   => $row->id,
-                'text' => $row->name.' (Code: '.$row->code.')',
-            ];
-        }
-
-        return response()->json($$module_name);
+        return view("backend.$module_path.index",
+                compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
     public function index_data()
@@ -150,10 +116,12 @@ class CategoriesController extends Controller
 
         $module_action = 'Create';
 
+        $categories = Category::pluck('name', 'id');
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.create",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+                compact('categories', 'module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
     /**
@@ -163,7 +131,7 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function store(CategoriesRequest $request)
+    public function store(PostsRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -174,7 +142,12 @@ class CategoriesController extends Controller
 
         $module_action = 'Store';
 
-        $$module_name_singular = $module_model::create($request->all());
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
+        // $$module_name_singular = $module_model::create($request->all());
+        $$module_name_singular = $module_model::create($request->except('tags_list'));
+        $$module_name_singular->tags()->attach($request->input('tags_list'));
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
@@ -229,10 +202,12 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $categories = Category::pluck('name', 'id');
+
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.edit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact('categories', 'module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'now'));
     }
 
     /**
@@ -243,7 +218,7 @@ class CategoriesController extends Controller
      *
      * @return Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(PostsRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -256,7 +231,14 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->all());
+        $$module_name_singular->update($request->except('tags_list'));
+
+        if ($request->input('tags_list') == null) {
+            $tags_list = [];
+        } else {
+            $tags_list = $request->input('tags_list');
+        }
+        $$module_name_singular->tags()->sync($tags_list);
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 

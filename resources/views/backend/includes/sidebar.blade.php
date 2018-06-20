@@ -16,7 +16,7 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="fas fa-file"></i> Articles</a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a class="nav-link {{ active_class(if_uri_pattern('admin/posts/*')) }}" href="{{ route('backend.posts.index') }}">
+                        <a class="nav-link {{ active_class(if_uri_pattern('admin/posts/*')) }}" href="{{ route('backend.article.posts.index') }}">
                             <i class="fas fa-file-alt"></i> Posts
                         </a>
                     </li>
