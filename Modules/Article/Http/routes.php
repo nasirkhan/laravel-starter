@@ -5,7 +5,6 @@
 //     Route::get('/', 'ArticleController@index');
 // });
 
-
 /*
 *
 * Frontend Routes
@@ -13,9 +12,7 @@
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => 'Modules\Article\Http\Controllers\Frontend', 'as' => 'frontend.article.', 'middleware' => 'web', 'prefix' => 'article'], function () {
-
     Route::get('/', 'ArticleController@index');
-
 });
 
 /*
