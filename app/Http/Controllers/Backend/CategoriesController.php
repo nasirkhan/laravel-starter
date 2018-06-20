@@ -33,7 +33,7 @@ class CategoriesController extends Controller
         $this->module_icon = 'fas fa-sitemap';
 
         // module model name, path
-        $this->module_model = "App\Models\Category";        
+        $this->module_model = "App\Models\Category";
     }
 
     /**

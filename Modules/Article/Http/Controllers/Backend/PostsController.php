@@ -33,7 +33,6 @@ class PostsController extends Controller
 
         // module model name, path
         $this->module_model = "App\Models\Post";
-
     }
 
     /**
