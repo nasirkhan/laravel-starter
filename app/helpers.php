@@ -179,7 +179,6 @@ if (!function_exists('label_case')) {
     }
 }
 
-
 /*
  *
  * show_column_value
