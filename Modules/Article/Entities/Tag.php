@@ -2,9 +2,9 @@
 
 namespace Modules\Article\Entities;
 
+use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\BaseModel;
 
 class Tag extends BaseModel
 {

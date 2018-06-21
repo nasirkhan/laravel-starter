@@ -7,7 +7,6 @@
 Route::get('/', 'BackendController@index')->name('home');
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
-
 /*
  *
  *  Roles Routes

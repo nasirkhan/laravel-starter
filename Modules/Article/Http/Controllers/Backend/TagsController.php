@@ -4,7 +4,6 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use Modules\Article\Http\Requests\Backend\TagsRequest;
 use Auth;
 use Carbon\Carbon;
 use Flash;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
+use Modules\Article\Http\Requests\Backend\TagsRequest;
 use Yajra\DataTables\DataTables;
 
 class TagsController extends Controller
