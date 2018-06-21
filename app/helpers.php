@@ -155,6 +155,7 @@ if (!function_exists('form_submit')) {
         return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
 }
+
 /*
  *
  * label_case
@@ -171,11 +172,13 @@ if (!function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = title_case(str_replace($order, $replace, $text));
+        $new_text = trim(title_case(str_replace('"', '', $text)));
+        $new_text = trim(title_case(str_replace($order, $replace, $text)));
 
         return $new_text;
     }
 }
+
 
 /*
  *
@@ -196,13 +199,15 @@ if (!function_exists('show_column_value')) {
      */
     function show_column_value($valueObject, $column, $return_format = '')
     {
-        $value = $valueObject->$column;
+        $column_name = $column->column_name;
+
+        $value = $valueObject->$column_name;
 
         if ($return_format == 'raw') {
             return $value;
         }
 
-        if (ends_with(strtolower($value), ['png', 'jpg', 'jpeg'])) {
+        if (ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
