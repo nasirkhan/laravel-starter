@@ -3,9 +3,10 @@
 # Laravel Starter
 Laravel 5.6 based simple starter project.
 
+> Current Build Status
+
 [![StyleCI](https://github.styleci.io/repos/105638882/shield)](https://github.styleci.io/repos/105638882)
 
-https://github.styleci.io/repos/105638882/shield
 
 ## Features
 
