@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section ('title', 'GeneralException' . " - " . config('app.name'))
+@section ('title', '403 Error' . " - " . config('app.name'))
 
 @section('content')
 <div class="card text-white bg-danger">
