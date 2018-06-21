@@ -2,9 +2,8 @@
 
 namespace Modules\Article\Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
 {
@@ -15,5 +14,4 @@ class AdminDashboardTest extends TestCase
     {
         $this->get('/admin/dashboard')->assertRedirect('/login');
     }
-
 }
