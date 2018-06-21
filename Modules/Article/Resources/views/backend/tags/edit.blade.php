@@ -45,7 +45,7 @@
             <div class="col">
                 {{ html()->modelForm($$module_name_singular, 'PATCH', route("backend.$module_name.update", $$module_name_singular))->class('form')->open() }}
 
-                @include ("backend.$module_name.form")
+                @include ("article::backend.$module_name.form")
 
                 <div class="row">
                     <div class="col-4">
