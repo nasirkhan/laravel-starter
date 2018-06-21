@@ -58,7 +58,7 @@ class BaseModel extends Model
     public function getTableColumns()
     {
         return $this->getConnection()->select(
-            (new \Illuminate\Database\Schema\Grammars\MySqlGrammar())->compileColumnListing()
+            (new \Illuminate\Database\Schema\Grammars\MySqlGrammar)->compileColumnListing()
             .' order by ordinal_position',
             [$this->getConnection()->getDatabaseName(), $this->getTable()]
         );

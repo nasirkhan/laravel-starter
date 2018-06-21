@@ -1,0 +1,25 @@
+{
+    "name": "nasirkhan/article",
+    "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
+    "authors": [
+        {
+            "name": "Nasir Khan Saikat",
+            "email": "nasir8891@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Article\\Providers\\ArticleServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Article\\": ""
+        }
+    }
+}
