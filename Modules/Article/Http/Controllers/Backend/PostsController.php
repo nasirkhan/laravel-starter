@@ -4,13 +4,13 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use Modules\Article\Http\Requests\Backend\PostsRequest;
-use Modules\Article\Entities\Category;
 use Auth;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
+use Modules\Article\Entities\Category;
+use Modules\Article\Http\Requests\Backend\PostsRequest;
 use Yajra\DataTables\DataTables;
 
 class PostsController extends Controller
