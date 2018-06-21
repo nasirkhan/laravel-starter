@@ -4,8 +4,8 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\PostsRequest;
-use App\Models\Category;
+use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Modules\Article\Entities\Category;
 use Auth;
 use Flash;
 use Illuminate\Http\Request;
@@ -32,7 +32,7 @@ class PostsController extends Controller
         $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "App\Models\Post";
+        $this->module_model = "Modules\Article\Entities\Post";
     }
 
     /**
@@ -55,7 +55,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
+        return view("article::backend.$module_path.index",
                 compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -117,7 +117,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.create",
+        return view("article::backend.$module_name.create",
                 compact('categories', 'module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -175,7 +175,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.show",
+        return view("article::backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
@@ -203,7 +203,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.edit",
+        return view("article::backend.$module_name.edit",
         compact('categories', 'module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'now'));
     }
 
@@ -293,7 +293,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("backend.$module_name.trash",
+        return view("article::backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

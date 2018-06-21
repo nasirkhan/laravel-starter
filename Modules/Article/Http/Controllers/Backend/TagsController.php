@@ -4,7 +4,7 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\TagsRequest;
+use Modules\Article\Http\Requests\Backend\TagsRequest;
 use Auth;
 use Carbon\Carbon;
 use Flash;
@@ -33,7 +33,7 @@ class TagsController extends Controller
         $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "App\Models\Tag";
+        $this->module_model = "Modules\Article\Entities\Tag";
     }
 
     /**
@@ -59,7 +59,7 @@ class TagsController extends Controller
 
         Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index_datatable",
+        return view("article::backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
@@ -162,7 +162,7 @@ class TagsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        return view("backend.$module_name.create",
+        return view("article::backend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
@@ -219,7 +219,7 @@ class TagsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.show",
+        return view("article::backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
@@ -246,7 +246,7 @@ class TagsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.edit",
+        return view("article::backend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
@@ -332,7 +332,7 @@ class TagsController extends Controller
 
         Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.Auth::user()->name);
 
-        return view("backend.$module_name.trash",
+        return view("article::backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

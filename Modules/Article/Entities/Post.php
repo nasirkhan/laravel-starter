@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Article\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\BaseModel;
 
 class Post extends BaseModel
 {

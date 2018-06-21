@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace Modules\Article\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TagsRequest extends FormRequest
+class CategoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

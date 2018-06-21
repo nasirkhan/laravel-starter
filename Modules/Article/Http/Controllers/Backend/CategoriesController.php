@@ -4,7 +4,7 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\CategoriesRequest;
+use Modules\Article\Http\Requests\Backend\CategoriesRequest;
 use Auth;
 use Carbon\Carbon;
 use Flash;
@@ -33,7 +33,7 @@ class CategoriesController extends Controller
         $this->module_icon = 'fas fa-sitemap';
 
         // module model name, path
-        $this->module_model = "App\Models\Category";
+        $this->module_model = "Modules\Article\Entities\Category";
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index_datatable",
+        return view("article::backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -152,7 +152,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.create",
+        return view("article::backend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -205,7 +205,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.show",
+        return view("article::backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
@@ -231,7 +231,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.edit",
+        return view("article::backend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
@@ -314,7 +314,7 @@ class CategoriesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("backend.$module_name.trash",
+        return view("article::backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

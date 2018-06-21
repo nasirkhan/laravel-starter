@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace Modules\Article\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoriesRequest extends FormRequest
+class PostsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,11 @@ class CategoriesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:191',
+            'title'          => 'required|max:191',
+            'featured_image' => 'required',
+            'type'           => 'required',
+            'is_featured'    => 'required',
+            'status'         => 'required',
         ];
     }
 }

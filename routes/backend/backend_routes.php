@@ -7,6 +7,15 @@
 Route::get('/', 'BackendController@index')->name('home');
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
+
+/*
+ *
+ *  Roles Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+Route::resource('roles', 'RolesController');
+
 /*
  *
  *  Users Routes
@@ -26,52 +35,3 @@ Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses
 Route::resource("$module_name", "$controller_name");
 Route::patch("$module_name/{id}/block", ['as' => "$module_name.block", 'uses' => "$controller_name@block", 'middleware' => ['permission:block_users']]);
 Route::patch("$module_name/{id}/unblock", ['as' => "$module_name.unblock", 'uses' => "$controller_name@unblock", 'middleware' => ['permission:block_users']]);
-
-/*
- *
- *  Roles Routes
- *
- * ---------------------------------------------------------------------
- */
-Route::resource('roles', 'RolesController');
-
-/*
- *
- *  Categories Routes
- *
- * ---------------------------------------------------------------------
- */
-$module_name = 'categories';
-$controller_name = 'CategoriesController';
-Route::get("$module_name/index_list", ['as' => "$module_name.index_list", 'uses' => "$controller_name@index_list"]);
-Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
-Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
-Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
-Route::resource("$module_name", "$controller_name");
-
-/*
- *
- *  Posts Routes
- *
- * ---------------------------------------------------------------------
- */
-// $module_name = 'posts';
-// $controller_name = 'PostsController';
-// Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
-// Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
-// Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
-// Route::resource("$module_name", "$controller_name");
-
-/*
- *
- *  Tags Routes
- *
- * ---------------------------------------------------------------------
- */
-$module_name = 'tags';
-$controller_name = 'TagsController';
-Route::get("$module_name/index_list", ['as' => "$module_name.index_list", 'uses' => "$controller_name@index_list"]);
-Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
-Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
-Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
-Route::resource("$module_name", "$controller_name");
