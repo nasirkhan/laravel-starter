@@ -44,10 +44,6 @@ class PermissionRoleTableSeeder extends Seeder
             'name' => 'tags',
         ]);
 
-        Artisan::call('auth:permission', [
-            'name' => 'article',
-        ]);
-
         $this->enableForeignKeys();
     }
 }

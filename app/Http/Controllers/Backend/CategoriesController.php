@@ -34,6 +34,8 @@ class CategoriesController extends Controller
 
         // module model name, path
         $this->module_model = "App\Models\Category";
+        // dd (\Session::all());
+        // dd(Auth::user());
     }
 
     /**

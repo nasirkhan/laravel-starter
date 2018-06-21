@@ -42,8 +42,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        dd(Auth::user());
-
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
