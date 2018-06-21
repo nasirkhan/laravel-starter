@@ -3,6 +3,7 @@
 # Laravel Starter
 Laravel 5.6 based simple starter project.
 
+[![StyleCI](https://github.styleci.io/repos/105638882/shield)](https://github.styleci.io/repos/105638882)
 
 https://github.styleci.io/repos/105638882/shield
 
@@ -34,6 +35,8 @@ https://github.styleci.io/repos/105638882/shield
   * Date Time Picker
   
 ## Installation
+
+Follow the steps mentioned below to install and run the project. 
 
 1. Clone or download the repository 
 2. Go to the project directory and run `composer install`
