@@ -15,14 +15,18 @@ Laravel 5.6 based simple starter project.
   * Facebook
   * Github
 * User Profile with Avatar
-* Role-Permissions for users
+* Role-Permissions for Users
+* Dynamic Menu System
 * Backend Theme
   * Bootstrap 4, CoreUI
   * Fontawesome 5
 * Frontend Theme
   * Bootstrap 4, Now UI Kit
   * Fontawesome 5
-* Posts Module
+* Articles Module
+  * Posts
+  * Categories
+  * Tags
   * wysiwyg editor
   * file browser
 * Categories Module
