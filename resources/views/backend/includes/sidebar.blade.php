@@ -1,6 +1,10 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
-        <ul class="nav">
+
+        {!! $admin_sidebar->asUl( ['class' => 'nav'] ) !!}
+
+        <!-- <ul class="nav">
+
             <li class="nav-item">
                 <a class="nav-link {{ active_class(Active::checkUriPattern('admin/dashboard')) }}" href="{{ route('backend.dashboard') }}"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-primary">NEW</span></a>
             </li>
@@ -52,7 +56,7 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>

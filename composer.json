@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "lavary/laravel-menu": "^1.7",
         "nwidart/laravel-modules": "^3.2",
         "spatie/laravel-html": "^2.8",
         "spatie/laravel-permission": "^2.7",
