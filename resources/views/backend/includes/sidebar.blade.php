@@ -1,7 +1,7 @@
 <div class="sidebar">
     <nav class="sidebar-nav">
 
-        {!! $admin_sidebar->asUl( ['class' => 'nav'] ) !!}
+        {!! $admin_sidebar->asUl( ['class' => 'nav'], ['class' => 'nav-dropdown-items'] ) !!}
 
         <!-- <ul class="nav">
 
