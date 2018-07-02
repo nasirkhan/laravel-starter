@@ -2,16 +2,14 @@
 
 namespace Modules\Article\Database\Seeders;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
-use Modules\Article\Entities\Tag;
 use Modules\Article\Entities\Post;
+use Modules\Article\Entities\Tag;
 
 class ArticleDatabaseSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
