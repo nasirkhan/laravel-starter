@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
 
             $table->string('name');
             $table->string('code')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
 
             $table->string('order')->nullable();
             $table->tinyInteger('status')->default(1);
