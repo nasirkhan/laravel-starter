@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use Carbon\Carbon;
+use Faker\Generator as Faker;
 
 $factory->define(Modules\Article\Entities\Category::class, function (Faker $faker) {
     return [
