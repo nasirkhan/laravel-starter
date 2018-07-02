@@ -11,6 +11,7 @@ use Modules\Article\Entities\Post;
 
 class ArticleDatabaseSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -18,23 +19,29 @@ class ArticleDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Disable foreign key checks!
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         // categories seed
         DB::table('categories')->truncate();
-        $categories = factory(Category::class, 5)->create();
+        factory(Category::class, 5)->create();
 
         // tags seed
-        DB::table('tags')->truncate()
-        $tags = factory(Tag::class, 10)->create();
+        DB::table('tags')->truncate();
+        factory(Tag::class, 10)->create();
+        $tags = Tag::all();
 
-        // // posts seed
-        // DB::table('posts')->truncate()
-        // // $posts = factory(Post::class, 15)->create();
-        //
-        //
-        // factory(Post::class, 20)->create()->each(function ($u) {
-        //     $u->post()->save(factory(App\Post::class)->make());
-        // });
+        // posts seed
+        DB::table('posts')->truncate();
 
-        // $this->call("OthersTableSeeder");
+        // Populate the pivot table
+        factory(Post::class, 25)->create()->each(function ($post) use ($tags) {
+            $post->tags()->attach(
+                $tags->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
+
+        // Enable foreign key checks!
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

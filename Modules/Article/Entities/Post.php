@@ -14,12 +14,12 @@ class Post extends BaseModel
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo('Modules\Article\Entities\Category');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany('Modules\Article\Entities\Tag');
     }
 
     /**
