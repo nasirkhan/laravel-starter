@@ -25,6 +25,7 @@ class ArticleDatabaseSeeder extends Seeder
         factory(Category::class, 5)->create();
 
         // tags seed
+        DB::table('post_tag')->truncate();
         DB::table('tags')->truncate();
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
