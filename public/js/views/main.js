@@ -33,12 +33,12 @@ $(function(){
     scales: {
       xAxes: [{
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
+          color: "transparent",
+          zeroLineColor: "transparent"
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: "transparent",
         }
 
       }],
@@ -88,12 +88,12 @@ $(function(){
     scales: {
       xAxes: [{
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
+          color: "transparent",
+          zeroLineColor: "transparent"
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: "transparent",
         }
 
       }],
@@ -202,7 +202,7 @@ $(function(){
     datasets: [
       {
         backgroundColor: 'rgba(255,255,255,.3)',
-        borderColor: 'transparent',
+        borderColor: "transparent",
         data: data
       },
     ]
@@ -239,7 +239,7 @@ $(function(){
       },
       {
         label: 'My Second dataset',
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandSuccess,
         pointHoverBackgroundColor: '#fff',
         borderWidth: 2,
@@ -247,7 +247,7 @@ $(function(){
       },
       {
         label: 'My Third dataset',
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandDanger,
         pointHoverBackgroundColor: '#fff',
         borderWidth: 1,
@@ -426,7 +426,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandPrimary,
         borderWidth: 2,
         data: [35, 23, 56, 22, 97, 23, 64]
@@ -444,7 +444,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandDanger,
         borderWidth: 2,
         data: [78, 81, 80, 45, 34, 12, 40]
@@ -462,7 +462,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandWarning,
         borderWidth: 2,
         data: [35, 23, 56, 22, 97, 23, 64]
@@ -480,7 +480,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandSuccess,
         borderWidth: 2,
         data: [78, 81, 80, 45, 34, 12, 40]
@@ -498,7 +498,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: '#d1d4d7',
         borderWidth: 2,
         data: [35, 23, 56, 22, 97, 23, 64]
@@ -516,7 +516,7 @@ $(function(){
     labels: labels,
     datasets: [
       {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
         borderColor: $.brandInfo,
         borderWidth: 2,
         data: [78, 81, 80, 45, 34, 12, 40]
