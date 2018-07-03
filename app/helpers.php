@@ -247,10 +247,9 @@ if (!function_exists('fielf_required')) {
     }
 }
 
-if (! function_exists('app_setting')) {
-
+if (!function_exists('app_setting')) {
     function app_setting($key, $default = null)
-    {        
+    {
         if (is_null($key)) {
             return new App\Models\Setting();
         }
