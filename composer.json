@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.1.3",
+        "anlutro/l4-settings": "^0.7.3",
         "fideloper/proxy": "~4.0",
         "hieu-le/active": "^3.5",
         "laracasts/flash": "^3.0",
