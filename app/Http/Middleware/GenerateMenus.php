@@ -23,7 +23,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order' => 1,
+                'order'         => 1,
                 'activematches' => 'admin/dashboard*',
             ])
             ->link->attr([
@@ -41,7 +41,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order' => 78,
+                'order'         => 78,
                 'activematches' => [
                     'admin/roles*',
                     'admin/users*',
@@ -58,7 +58,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order' => 79,
+                'order'         => 79,
                 'activematches' => 'admin/users*',
             ])
             ->link->attr([
@@ -70,13 +70,12 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order' => 80,
+                'order'         => 80,
                 'activematches' => 'admin/roles*',
             ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
-
 
             $menu->filter(function ($item) {
                 // if ($item->title === '<i class="icon-key"></i> Access Control') {
@@ -97,7 +96,6 @@ class GenerateMenus
                 //     }
                 // }
                 if ($item->activematches) {
-
                     $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
 
                     foreach ($matches as $pattern) {
