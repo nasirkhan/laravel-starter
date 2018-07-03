@@ -22,7 +22,10 @@ class GenerateMenus
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
-            ->data('order', 1)
+            ->data([
+                'order' => 1,
+                'activematches' => 'admin/dashboard*',
+            ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
@@ -37,7 +40,13 @@ class GenerateMenus
             $accessControl = $menu->add('<i class="icon-key"></i> Access Control', [
                 'class' => 'nav-item nav-dropdown',
             ])
-            ->data('order', 78);
+            ->data([
+                'order' => 78,
+                'activematches' => [
+                    'admin/roles*',
+                    'admin/users*',
+                ],
+            ]);
             $accessControl->link->attr([
                 'class' => 'nav-link nav-dropdown-toggle',
                 'href'  => '#',
@@ -48,7 +57,10 @@ class GenerateMenus
                 'route' => 'backend.users.index',
                 'class' => 'nav-item',
             ])
-            ->data('order', 79)
+            ->data([
+                'order' => 79,
+                'activematches' => 'admin/users*',
+            ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
@@ -57,10 +69,47 @@ class GenerateMenus
                 'route' => 'backend.roles.index',
                 'class' => 'nav-item',
             ])
-            ->data('order', 80)
+            ->data([
+                'order' => 80,
+                'activematches' => 'admin/roles*',
+            ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
+
+
+            $menu->filter(function ($item) {
+                // if ($item->title === '<i class="icon-key"></i> Access Control') {
+                //     if ($item->activematches) {
+                //
+                //         $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
+                //
+                //         foreach ($matches as $pattern) {
+                //             // dd(\Request::path());
+                //             // dd($pattern);
+                //             if (str_is($pattern, \Request::path())) {
+                //                 $item->activate();
+                //                 $item->isActive = true;
+                //                 dd($item);
+                //             }
+                //             // dd($item);
+                //         }
+                //     }
+                // }
+                if ($item->activematches) {
+
+                    $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
+
+                    foreach ($matches as $pattern) {
+                        if (str_is($pattern, \Request::path())) {
+                            $item->activate();
+                            // dd($item);
+                        }
+                    }
+                }
+
+                return true;
+            });
         })->sortBy('order');
 
         return $next($request);
