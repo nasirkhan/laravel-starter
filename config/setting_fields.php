@@ -4,7 +4,7 @@ return [
     'app' => [
         'title' => 'General',
         'desc' => 'All the general settings for application.',
-        'icon' => 'glyphicon glyphicon-sunglasses',
+        'icon' => 'fas fa-cogs',
 
         'elements' => [
             [
@@ -15,11 +15,19 @@ return [
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
                 'class' => 'w-auto px-2', // any class for input
                 'value' => 'CoolApp' // default value if you want
-            ]
-        ]
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'string', // data type, string, int, boolean
+                'name' => 'footer_text', // unique name for field
+                'label' => 'Footer Text', // you know what label it is
+                'rules' => 'required|min:2|max:50', // validation rule of laravel
+                'class' => 'w-auto px-2', // any class for input
+                'value' => 'Developed with ♥ from Bangladesh' // default value if you want
+            ],
+        ],
     ],
     'email' => [
-
         'title' => 'Email',
         'desc' => 'Email settings for app',
         'icon' => 'glyphicon glyphicon-envelope',
@@ -34,7 +42,7 @@ return [
                 'class' => 'w-auto px-2', // any class for input
                 'value' => 'info@example.com' // default value if you want
             ]
-        ]
+        ],
 
     ],
 ];

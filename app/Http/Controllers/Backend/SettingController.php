@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use Log;
+use App\Models\Setting;
 
 class SettingController extends Controller
 {
@@ -22,7 +23,7 @@ class SettingController extends Controller
         $this->module_path = 'settings';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fas fa-cogs';
 
         // module model name, path
         $this->module_model = "App\Models\Setting";
