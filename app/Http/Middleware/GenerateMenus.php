@@ -77,7 +77,7 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
-            if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])){
+            if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])) {
                 // Settings
                 $menu->add('<i class="fas fa-cogs"></i> Settings', [
                     'route' => 'backend.settings',
