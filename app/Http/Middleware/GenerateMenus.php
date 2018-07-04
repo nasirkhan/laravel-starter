@@ -77,18 +77,20 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
-            // Settings
-            $menu->add('<i class="fas fa-cogs"></i> Settings', [
-                'route' => 'backend.settings',
-                'class' => 'nav-item',
-            ])
-            ->data([
-                'order'         => 81,
-                'activematches' => 'admin/settings*',
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+            if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])){
+                // Settings
+                $menu->add('<i class="fas fa-cogs"></i> Settings', [
+                    'route' => 'backend.settings',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 81,
+                    'activematches' => 'admin/settings*',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+            }
 
             $menu->filter(function ($item) {
                 // if ($item->title === '<i class="icon-key"></i> Access Control') {
