@@ -2,10 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 class Setting extends BaseModel
 {
@@ -14,16 +11,17 @@ class Setting extends BaseModel
     protected $table = 'settings';
 
     /**
-     * Add a settings value
+     * Add a settings value.
      *
      * @param $key
      * @param $val
      * @param string $type
+     *
      * @return bool
      */
     public static function add($key, $val, $type = 'string')
     {
-        if ( self::has($key) ) {
+        if (self::has($key)) {
             return self::set($key, $val, $type);
         }
 
@@ -31,16 +29,18 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get a settings value
+     * Get a settings value.
      *
      * @param $key
      * @param null $default
+     *
      * @return bool|int|mixed
      */
     public static function get($key, $default = null)
     {
-        if ( self::has($key) ) {
+        if (self::has($key)) {
             $setting = self::getAllSettings()->where('name', $key)->first();
+
             return self::castValue($setting->val, $setting->type);
         }
 
@@ -48,34 +48,36 @@ class Setting extends BaseModel
     }
 
     /**
-     * Set a value for setting
+     * Set a value for setting.
      *
      * @param $key
      * @param $val
      * @param string $type
+     *
      * @return bool
      */
     public static function set($key, $val, $type = 'string')
     {
-        if ( $setting = self::getAllSettings()->where('name', $key)->first() ) {
+        if ($setting = self::getAllSettings()->where('name', $key)->first()) {
             return $setting->update([
                 'name' => $key,
-                'val' => $val,
-                'type' => $type]) ? $val : false;
+                'val'  => $val,
+                'type' => $type, ]) ? $val : false;
         }
 
         return self::add($key, $val, $type);
     }
 
     /**
-     * Remove a setting
+     * Remove a setting.
      *
      * @param $key
+     *
      * @return bool
      */
     public static function remove($key)
     {
-        if( self::has($key) ) {
+        if (self::has($key)) {
             return self::whereName($key)->delete();
         }
 
@@ -83,18 +85,19 @@ class Setting extends BaseModel
     }
 
     /**
-     * Check if setting exists
+     * Check if setting exists.
      *
      * @param $key
+     *
      * @return bool
      */
     public static function has($key)
     {
-        return (boolean) self::getAllSettings()->whereStrict('name', $key)->count();
+        return (bool) self::getAllSettings()->whereStrict('name', $key)->count();
     }
 
     /**
-     * Get the validation rules for setting fields
+     * Get the validation rules for setting fields.
      *
      * @return array
      */
@@ -102,19 +105,20 @@ class Setting extends BaseModel
     {
         return self::getDefinedSettingFields()->pluck('rules', 'name')
             ->reject(function ($val) {
-            return is_null($val);
-        })->toArray();
+                return is_null($val);
+            })->toArray();
     }
 
     /**
-     * Get the data type of a setting
+     * Get the data type of a setting.
      *
      * @param $field
+     *
      * @return mixed
      */
     public static function getDataType($field)
     {
-        $type  = self::getDefinedSettingFields()
+        $type = self::getDefinedSettingFields()
                 ->pluck('data', 'name')
                 ->get($field);
 
@@ -122,9 +126,10 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get default value for a setting
+     * Get default value for a setting.
      *
      * @param $field
+     *
      * @return mixed
      */
     public static function getDefaultValueForField($field)
@@ -135,10 +140,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get default value from config if no value passed
+     * Get default value from config if no value passed.
      *
      * @param $key
      * @param $default
+     *
      * @return mixed
      */
     private static function getDefaultValue($key, $default)
@@ -147,7 +153,7 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get all the settings fields from config
+     * Get all the settings fields from config.
      *
      * @return Collection
      */
@@ -157,10 +163,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * caste value into respective type
+     * caste value into respective type.
      *
      * @param $val
      * @param $castTo
+     *
      * @return bool|int
      */
     private static function castValue($val, $castTo)
@@ -182,19 +189,19 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get all the settings
+     * Get all the settings.
      *
      * @return mixed
      */
     public static function getAllSettings()
     {
-        return \Cache::rememberForever('settings.all', function() {
+        return \Cache::rememberForever('settings.all', function () {
             return self::all();
         });
     }
 
     /**
-     * Flush the cache
+     * Flush the cache.
      */
     public static function flushCache()
     {
@@ -214,7 +221,7 @@ class Setting extends BaseModel
             self::flushCache();
         });
 
-        static::created(function() {
+        static::created(function () {
             self::flushCache();
         });
 

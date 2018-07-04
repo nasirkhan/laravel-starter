@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 use Log;
 use App\Models\Setting;
 
 class SettingController extends Controller
 {
-
     public function __construct()
     {
         // Page Title
