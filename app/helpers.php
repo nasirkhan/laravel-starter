@@ -247,14 +247,12 @@ if (!function_exists('fielf_required')) {
     }
 }
 
-
-/**
+/*
  * Get or Set the Settings Values
  *
  * @var [type]
  */
-if (! function_exists('app_setting')) {
-
+if (!function_exists('app_setting')) {
     function app_setting($key, $default = null)
     {
         if (is_null($key)) {
@@ -271,13 +269,12 @@ if (! function_exists('app_setting')) {
     }
 }
 
-/**
+/*
  * Get or Set the Settings Values
  *
  * @var [type]
  */
-if (! function_exists('setting')) {
-
+if (!function_exists('setting')) {
     function setting($key, $default = null)
     {
         if (is_null($key)) {
