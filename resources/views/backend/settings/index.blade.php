@@ -65,11 +65,11 @@
                     <div class="row m-b-md">
                         <div class="col-md-12">
                             <button class="btn-primary btn">
-                                Save Settings
+                                <i class='fas fa-save'></i> Save Settings
                             </button>
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>

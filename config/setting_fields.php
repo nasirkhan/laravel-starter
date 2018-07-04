@@ -4,7 +4,7 @@ return [
     'app' => [
         'title' => 'General',
         'desc' => 'All the general settings for application.',
-        'icon' => 'fas fa-cogs',
+        'icon' => 'fas fa-cube',
 
         'elements' => [
             [
@@ -13,8 +13,8 @@ return [
                 'name' => 'app_name', // unique name for field
                 'label' => 'App Name', // you know what label it is
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
-                'class' => 'w-auto px-2', // any class for input
-                'value' => 'CoolApp' // default value if you want
+                'class' => '', // any class for input
+                'value' => 'Laravel Starter' // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -22,7 +22,7 @@ return [
                 'name' => 'footer_text', // unique name for field
                 'label' => 'Footer Text', // you know what label it is
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
-                'class' => 'w-auto px-2', // any class for input
+                'class' => '', // any class for input
                 'value' => 'Developed with ♥ from Bangladesh' // default value if you want
             ],
         ],
@@ -30,7 +30,7 @@ return [
     'email' => [
         'title' => 'Email',
         'desc' => 'Email settings for app',
-        'icon' => 'glyphicon glyphicon-envelope',
+        'icon' => 'fas fa-envelope',
 
         'elements' => [
             [
@@ -39,7 +39,7 @@ return [
                 'name' => 'email', // unique name for field
                 'label' => 'Email', // you know what label it is
                 'rules' => 'required|email', // validation rule of laravel
-                'class' => 'w-auto px-2', // any class for input
+                'class' => '', // any class for input
                 'value' => 'info@example.com' // default value if you want
             ]
         ],
