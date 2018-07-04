@@ -11,9 +11,6 @@
         <li class="nav-item px-3">
             <a class="nav-link" href="{{ route('backend.users.profile') }}">Profile</a>
         </li>
-        <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('backend.users.changePassword') }}">Settings</a>
-        </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown">
@@ -51,8 +48,9 @@
                 <span class="dropdown-item" href="#">
                     <i class="fas fa-at"></i> {{ Auth::user()->email }}
                 </span>
-                <a class="dropdown-item" href="{{ route('backend.users.changePassword') }}"><i class="fas fa-cogs"></i> Settings</a>
-                <a class="dropdown-item" href="#"><i class="fas fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-file"></i> Projects<span class="badge badge-primary">42</span>
+                </a>
                 <div class="divider"></div>
                 <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
                     <i class="fas fa-lock"></i> Logout

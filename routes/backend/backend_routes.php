@@ -9,6 +9,17 @@ Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
 /*
  *
+ *  Settings Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['permission:edit_settings']], function () {
+    Route::get('settings', 'SettingController@index')->name('settings');
+    Route::post('settings', 'SettingController@store')->name('settings.store');
+});
+
+/*
+ *
  *  Roles Routes
  *
  * ---------------------------------------------------------------------

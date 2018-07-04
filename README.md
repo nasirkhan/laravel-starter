@@ -23,13 +23,13 @@ Laravel 5.6 based simple starter project.
 * Frontend Theme
   * Bootstrap 4, Now UI Kit
   * Fontawesome 5
-* Articles Module
+* Article Module
   * Posts
   * Categories
   * Tags
   * wysiwyg editor
   * file browser
-* Categories Module
+* Application Setting
 * External Libraries
   * Bootstrap 4
   * Fontawesome 5
