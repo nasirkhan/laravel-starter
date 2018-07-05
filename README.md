@@ -52,3 +52,18 @@ Follow the steps mentioned below to install and run the project.
 
 ### Seed
 1. Add sample data on Posts, Categories, Tags with the following command `php artisan module:seed Article`
+
+
+## Screenshots
+
+__Home Page__
+
+![Laravel Starter Home](https://user-images.githubusercontent.com/396987/42303564-d533b1e2-8043-11e8-9672-ba557b36c079.png)
+
+__Login Page__
+
+![Laravel Starter Login](https://user-images.githubusercontent.com/396987/42303563-d33f0576-8043-11e8-8a46-b4af32320b69.png)
+
+__Backend Dashboard__
+
+![Backend Dashboard](https://user-images.githubusercontent.com/396987/42303738-6bbe11c0-8044-11e8-9952-37f5587e59fd.png)
