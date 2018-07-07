@@ -27,9 +27,12 @@ trait Authorizable
     public function callAction($method, $parameters)
     {
         if ($ability = $this->getAbility($method)) {
-            $this->authorize($ability);
+            // dd($ability);
+            // $this->authorize($ability);
+            if (\Gate::denies($ability)) {
+                abort(403);
+            }
         }
-
         return parent::callAction($method, $parameters);
     }
 
@@ -37,6 +40,10 @@ trait Authorizable
     {
         $routeName = explode('.', \Request::route()->getName());
         $action = array_get($this->getAbilities(), $method);
+
+        \Debugbar::info('$routeName:'.$routeName[1]);
+        \Debugbar::info('$action:'.$action);
+        \Debugbar::info('$action:'. $action.'_'.$routeName[1]);
 
         return $action ? $action.'_'.$routeName[1] : null;
     }
