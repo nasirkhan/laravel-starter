@@ -28,9 +28,16 @@ trait Authorizable
     {
         if ($ability = $this->getAbility($method)) {
             // dd($ability);
-            // $this->authorize($ability);
-            if (\Gate::denies($ability)) {
+            // dd(auth()->user()->hasPermissionTo($ability));
+            // dd(auth()->user()->getAllPermissions());
+            // dd($ability);
+            $this->authorize($ability);
+
+
+            if (!auth()->user()->hasPermissionTo($ability)) {
                 abort(403);
+            } else {
+
             }
         }
 

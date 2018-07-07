@@ -10,7 +10,7 @@ class Category extends BaseModel
 {
     use SoftDeletes;
 
-    protected $table = 'newsletters';
+    protected $table = 'categories';
 
     /**
      * Set the 'Slug'.

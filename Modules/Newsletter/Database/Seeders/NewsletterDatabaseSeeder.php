@@ -14,7 +14,7 @@ class NewsletterDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        // Model::unguard();
 
         // $this->call("OthersTableSeeder");
     }
