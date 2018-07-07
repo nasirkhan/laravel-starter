@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Newsletter extends BaseModel
+class Category extends BaseModel
 {
     use SoftDeletes;
 
@@ -42,5 +42,4 @@ class Newsletter extends BaseModel
             $this->attributes['published_at'] = Carbon::now();
         }
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace Modules\Newsletter\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\ServiceProvider;
 
 class NewsletterServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,7 @@ class NewsletterServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -65,11 +65,11 @@ class NewsletterServiceProvider extends ServiceProvider
         $sourcePath = __DIR__.'/../Resources/views';
 
         $this->publishes([
-            $sourcePath => $viewPath
-        ],'views');
+            $sourcePath => $viewPath,
+        ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/newsletter';
+            return $path.'/modules/newsletter';
         }, \Config::get('view.paths')), [$sourcePath]), 'newsletter');
     }
 
@@ -85,19 +85,19 @@ class NewsletterServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'newsletter');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'newsletter');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'newsletter');
         }
     }
 
     /**
      * Register an additional directory of factories.
-     * 
+     *
      * @return void
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 
