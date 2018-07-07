@@ -33,6 +33,7 @@ trait Authorizable
                 abort(403);
             }
         }
+
         return parent::callAction($method, $parameters);
     }
 
@@ -43,7 +44,7 @@ trait Authorizable
 
         \Debugbar::info('$routeName:'.$routeName[1]);
         \Debugbar::info('$action:'.$action);
-        \Debugbar::info('$action:'. $action.'_'.$routeName[1]);
+        \Debugbar::info('$action:'.$action.'_'.$routeName[1]);
 
         return $action ? $action.'_'.$routeName[1] : null;
     }

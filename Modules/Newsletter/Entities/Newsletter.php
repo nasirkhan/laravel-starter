@@ -6,7 +6,7 @@ use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends BaseModel
+class Newsletter extends BaseModel
 {
     use SoftDeletes;
 
