@@ -33,11 +33,9 @@ trait Authorizable
             // dd($ability);
             $this->authorize($ability);
 
-
             if (!auth()->user()->hasPermissionTo($ability)) {
                 abort(403);
             } else {
-
             }
         }
 
