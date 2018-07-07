@@ -23,13 +23,13 @@ if (!app()->routesAreCached()) {
  */
 \Menu::makeOnce('admin_sidebar', function ($menu) {
 
-    // Separator: Access Management
+    // Separator: Module Management
     $menu->add('Modules', [
         'class' => 'nav-title',
     ])
     ->data('order', 2);
 
-    // Access Control Dropdown
+    // Articles Dropdown
     $accessControl = $menu->add('<i class="fas fa-file-alt"></i> Article', [
         'class' => 'nav-item nav-dropdown',
     ])

@@ -31,7 +31,7 @@ class GenerateMenus
             ]);
 
             // Separator: Access Management
-            $menu->add('Access Management', [
+            $menu->add('Management', [
                 'class' => 'nav-title',
             ])
             ->data('order', 77);
