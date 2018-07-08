@@ -50,8 +50,13 @@ Follow the steps mentioned below to install and run the project.
 5. Run the command `php artisan migrate -seed`
 6. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
 
-### Seed
-1. Add sample data on Posts, Categories, Tags with the following command `php artisan module:seed Article`
+### Set Module Permissions
+1. Set Permissions for Posts, Categories, Tags: `php artisan article:create-permissions`
+1. Set Permissions for Newsletter:  `php artisan newsletter:create-permissions`
+
+### Seed Sample Data (Optional & should use only on testing)
+1. Add sample data on Posts, Categories, Tags with the following command `php artisan article:create-sample-data`
+1. Add sample data on Newsletter with the following command `php artisan newsletter:create-sample-data`
 
 
 ## Screenshots
