@@ -26,6 +26,7 @@ class ArticleServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->registerCommands('\Modules\Article\Console');
     }
 
     /**
@@ -109,5 +110,24 @@ class ArticleServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
+    }
+
+    /**
+     * Register commands.
+     *
+     * @param string $namespace
+     */
+    protected function registerCommands($namespace = '')
+    {
+        $finder = new Finder(); // from Symfony\Component\Finder;
+        $finder->files()->name('*Command.php')->in(__DIR__.'/../Console');
+
+        $classes = [];
+        foreach ($finder as $file) {
+            $class = $namespace.'\\'.$file->getBasename('.php');
+            array_push($classes, $class);
+        }
+
+        $this->commands($classes);
     }
 }
