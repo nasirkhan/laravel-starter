@@ -13,6 +13,15 @@ class Category extends BaseModel
     protected $table = 'categories';
 
     /**
+     * Caegories has Many posts.
+     *
+     */
+    public function posts()
+    {
+        return $this->hasMany('Modules\Article\Entities\Post');
+    }
+
+    /**
      * Set the 'Slug'.
      * If no value submitted 'Title' will be used as slug
      * str_slug helper method was used to format the text.
