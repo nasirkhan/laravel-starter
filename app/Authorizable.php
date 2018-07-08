@@ -27,7 +27,6 @@ trait Authorizable
     public function callAction($method, $parameters)
     {
         if ($ability = $this->getAbility($method)) {
-            
             $this->authorize($ability);
 
             if (!auth()->user()->hasPermissionTo($ability)) {
