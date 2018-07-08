@@ -1,0 +1,25 @@
+{
+    "name": "nasirkhan/newsletter",
+    "description": "Newsletter Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
+    "authors": [
+        {
+            "name": "Nasir Khan Saikat",
+            "email": "nasir8891@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Newsletter\\Providers\\NewsletterServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Newsletter\\": ""
+        }
+    }
+}

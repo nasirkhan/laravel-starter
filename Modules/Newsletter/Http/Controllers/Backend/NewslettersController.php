@@ -5,34 +5,35 @@ namespace Modules\Article\Http\Controllers\Backend;
 use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Auth;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use Modules\Article\Entities\Category;
-use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Modules\Article\Http\Requests\Backend\CategoriesRequest;
 use Yajra\DataTables\DataTables;
 
-class PostsController extends Controller
+class NewslettersController extends Controller
 {
     use Authorizable;
 
     public function __construct()
     {
         // Page Title
-        $this->module_title = 'Posts';
+        $this->module_title = 'Newsletter';
 
         // module name
-        $this->module_name = 'posts';
+        $this->module_name = 'newsletters';
 
         // directory path of the module
-        $this->module_path = 'posts';
+        $this->module_path = 'newsletters';
 
         // module icon
-        $this->module_icon = 'fas fa-file-alt';
+        $this->module_icon = 'fas fa-newspaper';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Post";
+        $this->module_model = "Modules\Article\Entities\Newsletter";
     }
 
     /**
@@ -42,8 +43,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        // dd(\App\Models\User::permission('view_newsletters')->get());
-        // dd(auth()->user()->getPermissionsViaRoles());
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -53,12 +52,48 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_path.index",
-                compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view("newsletter::backend.$module_path.index_datatable",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+    }
+
+    /**
+     * Select Options for Select 2 Request/ Response.
+     *
+     * @return Response
+     */
+    public function index_list(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'List';
+
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->limit(5)->get();
+
+        $$module_name = [];
+
+        foreach ($query_data as $row) {
+            $$module_name[] = [
+                'id'   => $row->id,
+                'text' => $row->name.' (Code: '.$row->code.')',
+            ];
+        }
+
+        return response()->json($$module_name);
     }
 
     public function index_data()
@@ -115,12 +150,10 @@ class PostsController extends Controller
 
         $module_action = 'Create';
 
-        $categories = Category::pluck('name', 'id');
-
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.create",
-                compact('categories', 'module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view("newsletter::backend.$module_name.create",
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
     /**
@@ -130,7 +163,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function store(PostsRequest $request)
+    public function store(CategoriesRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -141,12 +174,7 @@ class PostsController extends Controller
 
         $module_action = 'Store';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
-        // $$module_name_singular = $module_model::create($request->all());
-        $$module_name_singular = $module_model::create($request->except('tags_list'));
-        $$module_name_singular->tags()->attach($request->input('tags_list'));
+        $$module_name_singular = $module_model::create($request->all());
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
@@ -177,7 +205,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.show",
+        return view("newsletter::backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
@@ -201,12 +229,10 @@ class PostsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
-
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.edit",
-        compact('categories', 'module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'now'));
+        return view("newsletter::backend.$module_name.edit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
     /**
@@ -217,7 +243,7 @@ class PostsController extends Controller
      *
      * @return Response
      */
-    public function update(PostsRequest $request, $id)
+    public function update(CategoriesRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -230,14 +256,7 @@ class PostsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->except('tags_list'));
-
-        if ($request->input('tags_list') == null) {
-            $tags_list = [];
-        } else {
-            $tags_list = $request->input('tags_list');
-        }
-        $$module_name_singular->tags()->sync($tags_list);
+        $$module_name_singular->update($request->all());
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 
@@ -295,7 +314,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("article::backend.$module_name.trash",
+        return view("newsletter::backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

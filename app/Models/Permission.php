@@ -22,18 +22,6 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_roles',
             'delete_roles',
             'restore_roles',
-
-            'view_posts',
-            'add_posts',
-            'edit_posts',
-            'delete_posts',
-            'restore_posts',
-
-            'view_categories',
-            'add_categories',
-            'edit_categories',
-            'delete_categories',
-            'restore_categories',
         ];
     }
 }

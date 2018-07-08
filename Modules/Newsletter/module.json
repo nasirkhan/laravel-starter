@@ -1,0 +1,16 @@
+{
+    "name": "Newsletter",
+    "alias": "newsletter",
+    "description": "Newsletter Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
+    "keywords": ["blog", "articles","newsletter"],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Newsletter\\Providers\\NewsletterServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

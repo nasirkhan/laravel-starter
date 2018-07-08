@@ -101,4 +101,14 @@ class User extends Authenticatable
                 break;
         }
     }
+
+    /**
+     * Set Password and bcrypt before that.
+     *
+     * @param string $password Password Text
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

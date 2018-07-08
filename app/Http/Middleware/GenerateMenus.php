@@ -31,7 +31,7 @@ class GenerateMenus
             ]);
 
             // Separator: Access Management
-            $menu->add('Access Management', [
+            $menu->add('Management', [
                 'class' => 'nav-title',
             ])
             ->data('order', 77);
@@ -91,6 +91,26 @@ class GenerateMenus
                     'class' => 'nav-link',
                 ]);
             }
+
+            // Newsletter Dropdown
+            $newslettersControl = $menu->add('<i class="fas fa-newspaper"></i> Newsletter', [
+                'class' => 'nav-item nav-dropdown',
+            ])
+            ->data('order', 7);
+            $newslettersControl->link->attr([
+                'class' => 'nav-link nav-dropdown-toggle',
+                'href'  => '#',
+            ]);
+
+            // Submenu: Posts
+            $newslettersControl->add('<i class="fas fa-newspaper"></i> Newsletter Posts', [
+                'route' => 'backend.newsletters.index',
+                'class' => 'nav-item',
+            ])
+            ->data('order', 8)
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
 
             $menu->filter(function ($item) {
                 // if ($item->title === '<i class="icon-key"></i> Access Control') {

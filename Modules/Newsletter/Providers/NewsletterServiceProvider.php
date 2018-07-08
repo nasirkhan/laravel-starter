@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\Article\Providers;
+namespace Modules\Newsletter\Providers;
 
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
 
-class ArticleServiceProvider extends ServiceProvider
+class NewsletterServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -26,7 +27,7 @@ class ArticleServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
-        $this->registerCommands('\Modules\Article\Console');
+        $this->registerCommands('\Modules\Newsletter\Console');
     }
 
     /**
@@ -47,10 +48,10 @@ class ArticleServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('article.php'),
+            __DIR__.'/../Config/config.php' => config_path('newsletter.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'article'
+            __DIR__.'/../Config/config.php', 'newsletter'
         );
     }
 
@@ -61,7 +62,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/article');
+        $viewPath = resource_path('views/modules/newsletter');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
@@ -70,8 +71,8 @@ class ArticleServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/article';
-        }, \Config::get('view.paths')), [$sourcePath]), 'article');
+            return $path.'/modules/newsletter';
+        }, \Config::get('view.paths')), [$sourcePath]), 'newsletter');
     }
 
     /**
@@ -81,12 +82,12 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/article');
+        $langPath = resource_path('lang/modules/newsletter');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'article');
+            $this->loadTranslationsFrom($langPath, 'newsletter');
         } else {
-            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'article');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'newsletter');
         }
     }
 
