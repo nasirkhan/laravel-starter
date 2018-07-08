@@ -28,11 +28,6 @@ trait Authorizable
     {
         if ($ability = $this->getAbility($method)) {
             $this->authorize($ability);
-
-            if (!auth()->user()->hasPermissionTo($ability)) {
-                abort(403);
-            } else {
-            }
         }
 
         return parent::callAction($method, $parameters);
@@ -42,10 +37,6 @@ trait Authorizable
     {
         $routeName = explode('.', \Request::route()->getName());
         $action = array_get($this->getAbilities(), $method);
-
-        \Debugbar::info('$routeName:'.$routeName[1]);
-        \Debugbar::info('$action:'.$action);
-        \Debugbar::info('$action:'.$action.'_'.$routeName[1]);
 
         return $action ? $action.'_'.$routeName[1] : null;
     }
