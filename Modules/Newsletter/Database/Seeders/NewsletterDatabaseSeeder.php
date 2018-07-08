@@ -2,7 +2,6 @@
 
 namespace Modules\Newsletter\Database\Seeders;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Newsletter;

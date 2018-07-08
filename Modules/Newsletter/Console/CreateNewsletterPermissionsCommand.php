@@ -4,8 +4,6 @@ namespace Modules\Newsletter\Console;
 
 use Artisan;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class CreateNewsletterPermissionsCommand extends Command
 {
@@ -48,6 +46,4 @@ class CreateNewsletterPermissionsCommand extends Command
         echo "\nAlso the permissions have been added to the Admin User.";
         echo "\n\n";
     }
-
-
 }

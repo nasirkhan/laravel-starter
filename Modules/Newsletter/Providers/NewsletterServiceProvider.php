@@ -114,14 +114,14 @@ class NewsletterServiceProvider extends ServiceProvider
     }
 
     /**
-    * Register commands
-    *
-    * @param string $namespace
-    */
+     * Register commands.
+     *
+     * @param string $namespace
+     */
     protected function registerCommands($namespace = '')
     {
         $finder = new Finder(); // from Symfony\Component\Finder;
-        $finder->files()->name('*Command.php')->in(__DIR__ . '/../Console');
+        $finder->files()->name('*Command.php')->in(__DIR__.'/../Console');
 
         $classes = [];
         foreach ($finder as $file) {

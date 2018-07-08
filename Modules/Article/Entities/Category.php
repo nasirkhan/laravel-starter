@@ -14,7 +14,6 @@ class Category extends BaseModel
 
     /**
      * Caegories has Many posts.
-     *
      */
     public function posts()
     {
