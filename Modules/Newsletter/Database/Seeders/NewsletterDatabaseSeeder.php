@@ -4,6 +4,8 @@ namespace Modules\Newsletter\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Modules\Article\Entities\Newsletter;
 
 class NewsletterDatabaseSeeder extends Seeder
 {
@@ -14,8 +16,14 @@ class NewsletterDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Model::unguard();
+        // Disable foreign key checks!
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        // $this->call("OthersTableSeeder");
+        // categories seed
+        DB::table('newsletters')->truncate();
+        factory(Newsletter::class, 10)->create();
+
+        // Enable foreign key checks!
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

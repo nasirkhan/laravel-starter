@@ -15,14 +15,11 @@ class CreateNewslettersTable extends Migration
     {
         Schema::create('newsletters', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('title');
-            $table->string('slug');
-            $table->text('intro')->nullable();
+            $table->string('name');
+            $table->string('code');
             $table->text('content')->nullable();
             $table->string('type')->nullable();
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->string('category_name')->nullable();
-            $table->string('featured_image')->nullable();
+            $table->string('image')->nullable();
 
             $table->string('order')->nullable();
             $table->tinyInteger('status')->default(1);

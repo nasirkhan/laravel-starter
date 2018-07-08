@@ -4,6 +4,7 @@ namespace Modules\Newsletter\Providers;
 
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
 
 class NewsletterServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class NewsletterServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->registerCommands('\Modules\Newsletter\Console');
     }
 
     /**
@@ -109,5 +111,24 @@ class NewsletterServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
+    }
+
+    /**
+    * Register commands
+    *
+    * @param string $namespace
+    */
+    protected function registerCommands($namespace = '')
+    {
+        $finder = new Finder(); // from Symfony\Component\Finder;
+        $finder->files()->name('*Command.php')->in(__DIR__ . '/../Console');
+
+        $classes = [];
+        foreach ($finder as $file) {
+            $class = $namespace.'\\'.$file->getBasename('.php');
+            array_push($classes, $class);
+        }
+
+        $this->commands($classes);
     }
 }

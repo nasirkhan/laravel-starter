@@ -2,6 +2,7 @@
 
 namespace Modules\Article\Database\Seeders;
 
+use Artisan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
@@ -40,15 +41,15 @@ class ArticleDatabaseSeeder extends Seeder
             );
         });
 
-        Artisan::call('auth:permission', [
-            'name' => 'posts',
-        ]);
-        Artisan::call('auth:permission', [
-            'name' => 'categories',
-        ]);
-        Artisan::call('auth:permission', [
-            'name' => 'tags',
-        ]);
+        // Artisan::call('auth:permission', [
+        //     'name' => 'posts',
+        // ]);
+        // Artisan::call('auth:permission', [
+        //     'name' => 'categories',
+        // ]);
+        // Artisan::call('auth:permission', [
+        //     'name' => 'tags',
+        // ]);
 
         // Enable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

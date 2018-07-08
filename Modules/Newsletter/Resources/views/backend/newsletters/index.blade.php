@@ -52,16 +52,16 @@
                                 #
                             </th>
                             <th>
-                                Name
+                                Title
                             </th>
                             <th>
-                                Code
+                                Category
                             </th>
                             <th>
-                                Updated At
+                                Type
                             </th>
                             <th>
-                                Created By
+                                Image
                             </th>
                             <th class="text-right">
                                 Action
@@ -76,16 +76,18 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                <strong>{{ $module_name_singular->title }}</strong>
+                                <br>
+                                <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
                             </td>
                             <td>
-                                {{ $module_name_singular->code }}
+                                {{ $module_name_singular->category_name }}
                             </td>
                             <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                                {{ $module_name_singular->type }}
                             </td>
                             <td>
-                                {{ $module_name_singular->created_by }}
+                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->title }}">
                             </td>
                             <td class="text-right">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>

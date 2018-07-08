@@ -30,7 +30,7 @@ class NewslettersController extends Controller
         $this->module_path = 'newsletters';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fas fa-newspaper';
 
         // module model name, path
         $this->module_model = "Modules\Article\Entities\Newsletter";

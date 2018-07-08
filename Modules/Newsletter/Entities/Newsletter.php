@@ -10,17 +10,7 @@ class Newsletter extends BaseModel
 {
     use SoftDeletes;
 
-    protected $table = 'categories';
-
-    /**
-     * Caegories has Many posts.
-     *
-     * @return [type] [description]
-     */
-    public function posts()
-    {
-        return $this->hasMany('Modules\Article\Entities\Post');
-    }
+    protected $table = 'newsletters';
 
     /**
      * Set the 'Slug'.
