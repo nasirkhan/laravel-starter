@@ -103,9 +103,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Set Password and bcrypt before that
+     * Set Password and bcrypt before that.
      *
-     * @param String $password Password Text
+     * @param string $password Password Text
      */
     public function setPasswordAttribute($password)
     {
