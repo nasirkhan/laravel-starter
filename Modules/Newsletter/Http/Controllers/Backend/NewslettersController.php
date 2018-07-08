@@ -56,7 +56,7 @@ class NewslettersController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_path.index_datatable",
+        return view("newsletter::backend.$module_path.index_datatable",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -152,7 +152,7 @@ class NewslettersController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.create",
+        return view("newsletter::backend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -205,7 +205,7 @@ class NewslettersController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.show",
+        return view("newsletter::backend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
@@ -231,7 +231,7 @@ class NewslettersController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.edit",
+        return view("newsletter::backend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
@@ -314,7 +314,7 @@ class NewslettersController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("article::backend.$module_name.trash",
+        return view("newsletter::backend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 
