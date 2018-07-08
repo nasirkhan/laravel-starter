@@ -4,8 +4,6 @@ namespace Modules\Newsletter\Console;
 
 use Artisan;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class CreateNewsletterSampleDataCommand extends Command
 {
@@ -47,6 +45,4 @@ class CreateNewsletterSampleDataCommand extends Command
         echo "\nCreated Sample Data for _Newsletter_ Module.";
         echo "\n\n";
     }
-
-
 }
