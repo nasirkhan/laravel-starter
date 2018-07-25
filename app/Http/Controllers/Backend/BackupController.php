@@ -32,6 +32,12 @@ class BackupController extends Controller
         // module model name, path
         $this->module_model = "Modules\Article\Entities\Category";
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $module_title = $this->module_title;
@@ -73,6 +79,13 @@ class BackupController extends Controller
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         try {
