@@ -38,6 +38,7 @@ Laravel 5.6 based simple starter project.
   * Datatables
   * Select2
   * Date Time Picker
+* Backup (Source, Files, Database as Zip)
 
 ## Installation
 

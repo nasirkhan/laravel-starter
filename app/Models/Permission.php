@@ -22,6 +22,12 @@ class Permission extends \Spatie\Permission\Models\Permission
             'edit_roles',
             'delete_roles',
             'restore_roles',
+
+            'view_backups',
+            'add_backups',
+            'create_backups',
+            'download_backups',
+            'delete_backups',
         ];
     }
 }

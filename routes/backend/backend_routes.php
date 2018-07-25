@@ -20,6 +20,19 @@ Route::group(['middleware' => ['permission:edit_settings']], function () {
 
 /*
  *
+ *  Backup Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+$module_name = 'backups';
+$controller_name = 'BackupController';
+Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
+Route::get("$module_name/create", ['as' => "$module_name.create", 'uses' => "$controller_name@create"]);
+Route::get("$module_name/download/{file_name}", ['as' => "$module_name.download", 'uses' => "$controller_name@download"]);
+Route::get("$module_name/delete/{file_name}", ['as' => "$module_name.delete", 'uses' => "$controller_name@delete"]);
+
+/*
+ *
  *  Roles Routes
  *
  * ---------------------------------------------------------------------
