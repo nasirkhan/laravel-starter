@@ -92,6 +92,21 @@ class GenerateMenus
                 ]);
             }
 
+            if (auth()->check() && auth()->user()->hasAnyPermission(['view_backups'])) {
+                // Backup
+                $menu->add('<i class="fas fa-archive "></i> Backups', [
+                    'route' => 'backend.backups.index',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 82,
+                    'activematches' => 'admin/backups*',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+            }
+
             // Newsletter Dropdown
             $newslettersControl = $menu->add('<i class="fas fa-newspaper"></i> Newsletter', [
                 'class' => 'nav-item nav-dropdown',
