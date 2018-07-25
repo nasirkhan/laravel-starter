@@ -29,8 +29,6 @@ class BackupController extends Controller
         // module icon
         $this->module_icon = 'fas fa-archive';
 
-        // module model name, path
-        $this->module_model = "Modules\Article\Entities\Category";
     }
 
     /**
@@ -44,7 +42,6 @@ class BackupController extends Controller
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
         $module_name_singular = str_singular($module_name);
 
         $module_action = 'List';
@@ -135,6 +132,7 @@ class BackupController extends Controller
     public function delete($file_name)
     {
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
+
         if ($disk->exists(str_replace(" ","-",config('backup.backup.name')) . '/' . $file_name)) {
             $disk->delete(str_replace(" ","-",config('backup.backup.name')) . '/' . $file_name);
             return redirect()->back();
