@@ -27,7 +27,7 @@ class BackupController extends Controller
         $this->module_path = 'backups';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fas fa-archive';
 
         // module model name, path
         $this->module_model = "Modules\Article\Entities\Category";
