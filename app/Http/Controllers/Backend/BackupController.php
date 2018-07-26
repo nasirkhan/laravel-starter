@@ -26,7 +26,6 @@ class BackupController extends Controller
 
         // module icon
         $this->module_icon = 'fas fa-archive';
-
     }
 
     /**
@@ -133,8 +132,9 @@ class BackupController extends Controller
     {
         $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
 
-        if ($disk->exists(str_replace(" ","-",config('backup.backup.name')) . '/' . $file_name)) {
-            $disk->delete(str_replace(" ","-",config('backup.backup.name')) . '/' . $file_name);
+        if ($disk->exists(str_replace(' ', '-', config('backup.backup.name')).'/'.$file_name)) {
+            $disk->delete(str_replace(' ', '-', config('backup.backup.name')).'/'.$file_name);
+
             return redirect()->back();
         } else {
             abort(404, "The backup file doesn't exist.");
