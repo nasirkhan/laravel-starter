@@ -277,6 +277,46 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for Profile Paeg Editing the specified resource.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword($id)
+    {
+        $title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+        $module_icon = $this->module_icon;
+        $module_action = 'Edit';
+
+        $$module_name_singular = User::findOrFail($id);
+
+        return view("backend.$module_name.changePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changePasswordUpdate(Request $request, $id)
+    {
+        $module_name = $this->module_name;
+        $module_name_singular = str_singular($this->module_name);
+
+        $$module_name_singular = User::findOrFail($id);
+
+        $$module_name_singular->update($request->only('password'));
+
+        return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
