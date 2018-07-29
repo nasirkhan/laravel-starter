@@ -51,6 +51,11 @@
                         </tr>
 
                         <tr>
+                            <th>{{ __('labels.backend.users.fields.mobile') }}</th>
+                            <td>{{ $user->mobile }}</td>
+                        </tr>
+
+                        <tr>
                             <th>{{ __('labels.backend.users.fields.social') }}</th>
                             <td>
                                 <ul class="list-unstyled">

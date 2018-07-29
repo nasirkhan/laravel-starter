@@ -56,6 +56,19 @@ $module_name_singular = str_singular($module_name);
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.mobile'))->class('col-md-2 form-control-label')->for('mobile') }}
+
+                        <div class="col-md-10">
+                            {{ html()->text('mobile')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.mobile'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                    </div><!--form-group-->
+
                     <div class="form-group row">
                         <div class="col-md-2">
                             {{ __('labels.backend.users.fields.social') }}

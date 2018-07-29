@@ -28,6 +28,7 @@ return [
             'fields'    => [
                 'name'                  => 'Name',
                 'email'                 => 'Email',
+                'mobile'                => 'Mobile',
                 'password'              => 'Password',
                 'password_confirmation' => 'Password Confirmation',
                 'confirmed'             => 'Confirmed',

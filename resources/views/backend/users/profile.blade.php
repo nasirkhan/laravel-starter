@@ -49,6 +49,11 @@
                             <th>{{ __('labels.backend.users.fields.email') }}</th>
                             <td>{{ $user->email }}</td>
                         </tr>
+                        
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.mobile') }}</th>
+                            <td>{{ $user->mobile }}</td>
+                        </tr>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.password') }}</th>

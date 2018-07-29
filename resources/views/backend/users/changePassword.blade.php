@@ -29,6 +29,20 @@ $module_name_singular = str_singular($module_name);
         </div>
         <!--/.row-->
         <hr>
+        <div class="row">
+            <div class="col">
+                <strong>
+                    Name:
+                </strong>
+                {{ $$module_name_singular->name }}
+            </div>
+            <div class="col">
+                <strong>
+                    Email:
+                </strong>
+                {{ $$module_name_singular->email }}
+            </div>
+        </div>
         <div class="row mt-4 mb-4">
             <div class="col">
                 {{ html()->form('PATCH', route('backend.users.changePasswordUpdate'))->class('form-horizontal')->open() }}

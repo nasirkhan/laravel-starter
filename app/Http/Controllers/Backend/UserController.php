@@ -235,15 +235,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword()
+    public function changePassword($id = '')
     {
+        if ($id == '') {
+            $id = auth()->user()->id;
+        }
         $title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = 'Edit';
-
-        $id = auth()->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
 
