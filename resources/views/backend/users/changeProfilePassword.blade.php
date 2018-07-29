@@ -45,7 +45,7 @@ $module_name_singular = str_singular($module_name);
         </div>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->form('PATCH', route('backend.users.changePasswordUpdate'))->class('form-horizontal')->open() }}
+                {{ html()->form('PATCH', route('backend.users.changeProfilePasswordUpdate'))->class('form-horizontal')->open() }}
 
                 <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}

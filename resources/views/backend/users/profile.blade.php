@@ -49,7 +49,7 @@
                             <th>{{ __('labels.backend.users.fields.email') }}</th>
                             <td>{{ $user->email }}</td>
                         </tr>
-                        
+
                         <tr>
                             <th>{{ __('labels.backend.users.fields.mobile') }}</th>
                             <td>{{ $user->mobile }}</td>
@@ -58,7 +58,7 @@
                         <tr>
                             <th>{{ __('labels.backend.users.fields.password') }}</th>
                             <td>
-                                <a href="{{ route('backend.users.changePassword') }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                                <a href="{{ route('backend.users.changeProfilePassword') }}" class="btn btn-outline-primary btn-sm">Change password</a>
                             </td>
                         </tr>
 

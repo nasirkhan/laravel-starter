@@ -235,11 +235,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword($id = '')
+    public function changeProfilePassword($id = '')
     {
         if ($id == '') {
             $id = auth()->user()->id;
         }
+
         $title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
@@ -248,7 +249,7 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        return view("backend.$module_name.changePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.changeProfilePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -259,12 +260,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request)
+    public function changeProfilePasswordUpdate(Request $request, $id = '')
     {
+        if ($id == '') {
+            $id = auth()->user()->id;
+        }
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
-
-        $id = auth()->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
 

@@ -70,6 +70,14 @@ $module_name_singular = str_singular($module_name);
                     </div><!--form-group-->
 
                     <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+                        
+                        <div class="col-md-10">
+                            <a href="{{ route('backend.users.changePassword') }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
                         <div class="col-md-2">
                             {{ __('labels.backend.users.fields.social') }}
                         </div>
