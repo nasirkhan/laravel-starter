@@ -55,6 +55,10 @@ Follow the steps mentioned below to install and run the project.
 1. Set Permissions for Posts, Categories, Tags: `php artisan article:create-permissions`
 1. Set Permissions for Newsletter:  `php artisan newsletter:create-permissions`
 
+*After creating the new permissions use the following commands to update cashed permissions.*
+
+`php artisan cache:forget spatie.permission.cache`
+
 ### Seed Sample Data (Optional & should use only on testing)
 1. Add sample data on Posts, Categories, Tags with the following command `php artisan article:create-sample-data`
 1. Add sample data on Newsletter with the following command `php artisan newsletter:create-sample-data`
