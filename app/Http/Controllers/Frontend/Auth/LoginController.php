@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Frontend\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Image;
 use Socialite;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -63,17 +62,48 @@ class LoginController extends Controller
         }
     }
 
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $data['active'] = true;
+        $data['confirmed'] = true;
+        return $data;
+    }
     /**
-     * Social login Handler.
-     */
+    * Get the failed login response instance.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\RedirectResponse
+    */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [$this->username() => __('auth.failed')];
+        // Load user from database
+        $user = User::where($this->username(), $request->{$this->username()})->first();
+
+        // Check if user was successfully loaded, that the password matches
+        // and active is not 1. If so, override the default error message.
+        if ($user && \Hash::check($request->password, $user->password) && $user->status != 1) {
+            $errors = [$this->username() => 'Your account is not active.'];
+        }
+
+        if ($user && \Hash::check($request->password, $user->password) && $user->confirmed != 1) {
+            $errors = [$this->username() => __('exceptions.frontend.auth.confirmation.resend', ['user_id' => $user->id])];
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json($errors, 422);
+        }
+        return redirect()->back()
+        ->withInput($request->only($this->username(), 'remember'))
+        ->withErrors($errors);
+    }
+
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
     }
 
-    /**
-     * Social login redirect.
-     */
     public function handleProviderCallback($provider)
     {
         try {
@@ -110,34 +140,12 @@ class LoginController extends Controller
                 'provider'    => $provider,
             ]);
 
-            // update User Avatar from Social Profile
-            if ($authUser->avatar == 'default-avatar.jpg') {
-                $avatar = $socialUser->getAvatar();
-
-                $filename = 'avatar-'.$authUser->id.'.jpg';
-
-                $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->encode('jpg', 75)->save(public_path('/photos/avatars/'.$filename));
-                $authUser->avatar = $filename;
-                $authUser->save();
-            }
-
             return $authUser;
         } else {
             $user = User::create([
-                'name'      => $socialUser->getName(),
-                'email'     => $socialUser->getEmail(),
+                'name'  => $socialUser->getName(),
+                'email' => $socialUser->getEmail(),
             ]);
-
-            // update User Avatar from Social Profile
-            $avatar = $socialUser->getAvatar();
-            $filename = 'avatar-'.$user->id.'.jpg';
-            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->encode('jpg', 75)->save(public_path('/photos/avatars/'.$filename));
-            $user->avatar = $filename;
-            $user->save();
 
             UserProvider::create([
                 'user_id'     => $user->id,
