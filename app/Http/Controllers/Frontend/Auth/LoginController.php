@@ -7,8 +7,8 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
 use Illuminate\Http\Request;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -67,14 +67,17 @@ class LoginController extends Controller
         $data = $request->only($this->username(), 'password');
         $data['active'] = true;
         $data['confirmed'] = true;
+
         return $data;
     }
+
     /**
-    * Get the failed login response instance.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\RedirectResponse
-    */
+     * Get the failed login response instance.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function sendFailedLoginResponse(Request $request)
     {
         $errors = [$this->username() => __('auth.failed')];
@@ -94,6 +97,7 @@ class LoginController extends Controller
         if ($request->expectsJson()) {
             return response()->json($errors, 422);
         }
+
         return redirect()->back()
         ->withInput($request->only($this->username(), 'remember'))
         ->withErrors($errors);
