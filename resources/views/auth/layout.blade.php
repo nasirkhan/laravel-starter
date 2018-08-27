@@ -11,6 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
 
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
+    <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -21,10 +24,10 @@
     <!-- CSS Files -->
     <!-- <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" /> -->
     <link href="{{asset('vendor/now-ui-kit/css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.1.0')}}" rel="stylesheet" />
+    <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.2.0')}}" rel="stylesheet" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-    
+
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -71,9 +74,9 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.3.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.1.0') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 
 </html>

@@ -11,7 +11,7 @@
     <meta name="description" content="Laravel Starter Application. A boilarplate to all type of application.">
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
 
-    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
 
     <!-- CSRF Token -->
@@ -26,7 +26,7 @@
     <!-- CSS Files -->
     <!-- <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" /> -->
     <link href="{{asset('vendor/now-ui-kit/css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.1.0')}}" rel="stylesheet" />
+    <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.2.0')}}" rel="stylesheet" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <link href="{{asset('plugins/fontawesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
 
@@ -76,7 +76,7 @@
 @stack('before-scripts')
 
 <!--   Core JS Files   -->
-<script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.3.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/now-ui-kit/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -86,32 +86,8 @@
 <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
 <script src="{{ asset('vendor/now-ui-kit/js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.1.0') }}" type="text/javascript"></script>
-<script>
-    var header_height;
-    var fixed_section;
-    var floating = false;
+<script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 
-    $(document).ready(function() {
-        suggestions_distance = $("#suggestions").offset();
-        pay_height = $('.fixed-section').outerHeight();
-
-        $(window).on('scroll', nowuiKit.checkScrollForTransparentNavbar);
-
-        if ($(window).width() >= 768) {
-            big_image = $('.header[data-parallax="true"]');
-            if (big_image.length != 0) {
-                $(window).on('scroll', nowuiKitDemo.checkScrollForParallax);
-            }
-        }
-
-        // the body of this function is in assets/js/now-ui-kit.js
-        nowuiKit.initSliders();
-    });
-
-    // Laracasts Flash Modal
-    $('#flash-overlay-modal').modal();
-</script>
 
 @stack('after-scripts')
 
