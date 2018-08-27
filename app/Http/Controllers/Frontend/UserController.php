@@ -11,7 +11,6 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
 use Image;
-use Log;
 
 class UserController extends Controller
 {
