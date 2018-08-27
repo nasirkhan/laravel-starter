@@ -1,5 +1,10 @@
 @extends('frontend.layouts.app')
 
+@section('title')
+{{auth()->user()->name}}'s Profile  | {{ app_name() }}
+@stop
+
+
 @section('content')
 
 <div class="page-header page-header-small" filter-color="orange">
@@ -18,7 +23,7 @@
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="#" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
+            <a href="{{ route('frontend.users.profileEdit') }}" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
             <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
