@@ -1,8 +1,8 @@
 {
     "/js/jquery.min.js": "/js/jquery.min.js?id=a09e13ee94d51c524b7e",
-    "/js/laravel.js": "/js/laravel.js?id=6d8334ad7f7b4bbe083b",
-    "/css/app_frontend.css": "/css/app_frontend.css?id=92e8ba66e4ba73f18c44",
-    "/js/app_frontend.js": "/js/app_frontend.js?id=ad0a0b3a6f1e4bc2f418",
-    "/css/app_backend.css": "/css/app_backend.css?id=92e8ba66e4ba73f18c44",
-    "/js/app_backend.js": "/js/app_backend.js?id=ad0a0b3a6f1e4bc2f418"
+    "/js/laravel.js": "/js/laravel.js?id=d3dfc18b929ec946777b",
+    "/css/app_frontend.css": "/css/app_frontend.css?id=e4375304654eaf7cddd1",
+    "/js/app_frontend.js": "/js/app_frontend.js?id=ec8bb4dcabd0cfad3093",
+    "/css/app_backend.css": "/css/app_backend.css?id=e4375304654eaf7cddd1",
+    "/js/app_backend.js": "/js/app_backend.js?id=ec8bb4dcabd0cfad3093"
 }
