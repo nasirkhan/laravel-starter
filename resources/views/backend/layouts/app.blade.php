@@ -26,6 +26,8 @@
     <!-- fontawesome -->
     <link href="{{asset('plugins/fontawesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
 
+    <!-- <link href="node_modules/pace-progress/themes/blue/pace-theme-flat-top.css" rel="stylesheet"> -->
+
     @stack('after-styles')
 </head>
 
@@ -96,7 +98,7 @@
     <script src="{{ mix('js/app_backend.js') }}"></script>
 
     <script type="text/javascript">
-    
+
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
 

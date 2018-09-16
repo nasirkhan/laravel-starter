@@ -36,7 +36,8 @@ mix.scripts([
 // build backend css
 mix.styles([
     'node_modules/@coreui/coreui/dist/css/coreui.min.css',
-    'resources/assets/coreui/css/custom.css'
+    'resources/assets/css/pace.min.css',
+    'resources/assets/css/custom.css'
 ], 'public/css/app_backend.css');
 
 // build backend js
