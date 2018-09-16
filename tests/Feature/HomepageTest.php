@@ -2,16 +2,15 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class HomepageTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Home Page visiting
+     * Home Page visiting.
      *
      * @test
      */
@@ -24,7 +23,7 @@ class HomepageTest extends TestCase
     }
 
     /**
-     * Homepage footer text
+     * Homepage footer text.
      *
      * @test
      */
