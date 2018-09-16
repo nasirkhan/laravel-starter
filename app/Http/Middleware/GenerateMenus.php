@@ -18,7 +18,7 @@ class GenerateMenus
     {
         \Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
-            $menu->add('<i class="icon-speedometer"></i> Dashboard', [
+            $menu->add('<i class="nav-icon icon-speedometer"></i> Dashboard', [
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
@@ -37,7 +37,7 @@ class GenerateMenus
             ->data('order', 77);
 
             // Access Control Dropdown
-            $accessControl = $menu->add('<i class="icon-key"></i> Access Control', [
+            $accessControl = $menu->add('<i class="nav-icon icon-key"></i> Access Control', [
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
@@ -53,7 +53,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Users
-            $accessControl->add('<i class="icon-people"></i> Users', [
+            $accessControl->add('<i class="nav-icon icon-people"></i> Users', [
                 'route' => 'backend.users.index',
                 'class' => 'nav-item',
             ])
@@ -65,7 +65,7 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
             // Submenu: Roles
-            $accessControl->add('<i class="icon-people"></i> Roles', [
+            $accessControl->add('<i class="nav-icon icon-people"></i> Roles', [
                 'route' => 'backend.roles.index',
                 'class' => 'nav-item',
             ])
@@ -79,7 +79,7 @@ class GenerateMenus
 
             if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])) {
                 // Settings
-                $menu->add('<i class="fas fa-cogs"></i> Settings', [
+                $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
                     'route' => 'backend.settings',
                     'class' => 'nav-item',
                 ])
@@ -94,7 +94,7 @@ class GenerateMenus
 
             if (auth()->check() && auth()->user()->hasAnyPermission(['view_backups'])) {
                 // Backup
-                $menu->add('<i class="fas fa-archive "></i> Backups', [
+                $menu->add('<i class="nav-icon fas fa-archive"></i> Backups', [
                     'route' => 'backend.backups.index',
                     'class' => 'nav-item',
                 ])
@@ -108,7 +108,7 @@ class GenerateMenus
             }
 
             // Newsletter Dropdown
-            $newslettersControl = $menu->add('<i class="fas fa-newspaper"></i> Newsletter', [
+            $newslettersControl = $menu->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter', [
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data('order', 7);
@@ -118,7 +118,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Posts
-            $newslettersControl->add('<i class="fas fa-newspaper"></i> Newsletter Posts', [
+            $newslettersControl->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter Posts', [
                 'route' => 'backend.newsletters.index',
                 'class' => 'nav-item',
             ])

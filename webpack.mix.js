@@ -30,12 +30,12 @@ mix.scripts([
    'node_modules/chart.js/dist/Chart.min.js',
    'resources/assets/js/laravel.js',
    'resources/assets/coreui/js/app.js'
-], 'public/js/app_frontend.js').version();
+], 'public/js/app_frontend.js');
 
 
 // build backend css
 mix.styles([
-    'resources/assets/coreui/css/style.min.css',
+    'node_modules/@coreui/coreui/dist/css/coreui.min.css',
     'resources/assets/coreui/css/custom.css'
 ], 'public/css/app_backend.css');
 
@@ -45,10 +45,11 @@ mix.scripts([
    'node_modules/popper.js/dist/umd/popper.min.js',
    'node_modules/bootstrap/dist/js/bootstrap.min.js',
    'node_modules/pace-progress/pace.min.js',
+   'node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js',
    'node_modules/chart.js/dist/Chart.min.js',
    'resources/assets/js/laravel.js',
-   'resources/assets/coreui/js/app.js'
-], 'public/js/app_backend.js').version();
+   'node_modules/@coreui/coreui/dist/js/coreui.min.js'
+], 'public/js/app_backend.js');
 
 
 if (mix.inProduction()) {
