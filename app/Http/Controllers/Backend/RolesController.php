@@ -80,18 +80,9 @@ class RolesController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Details';
 
-        $$module_name_singular = User::create($request->except('roles'));
+        $$module_name_singular = Role::create($request->except('permissions'));
 
-        $roles = $request['roles'];
         $permissions = $request['permissions'];
-
-        // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        } else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
-        }
 
         // Sync Permissions
         if (isset($permissions)) {
@@ -212,7 +203,7 @@ class RolesController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = Role::withTrashed()->find($id);
         //        $$module_name_singular = $this->findOrThrowException($id);
 
         if ($$module_name_singular->delete()) {
@@ -231,7 +222,7 @@ class RolesController extends Controller
 
         $module_action = 'Restore';
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = Role::withTrashed()->find($id);
         $$module_name_singular->restore();
 
         return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.label_case($module_name_singular).' Restored Successfully!');

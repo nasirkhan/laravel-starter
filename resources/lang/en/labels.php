@@ -61,6 +61,11 @@ return [
                 'title'     => 'Roles',
                 'sub-title' => 'Roles Management',
             ],
+            'create' => [
+                'action'    => 'Create',
+                'title'     => 'Roles',
+                'sub-title' => 'Roles Management',
+            ],
             'fields'    => [
                 'name'        => 'Name',
                 'status'      => 'Status',

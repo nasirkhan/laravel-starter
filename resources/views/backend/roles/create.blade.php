@@ -4,7 +4,7 @@
 $module_name_singular = str_singular($module_name);
 ?>
 
-@section ('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.create'))
+@section ('title', __('labels.backend.roles.create.title') . ' | ' . __('labels.backend.roles.create.sub-title'))
 
 @section('content')
 
@@ -51,94 +51,17 @@ $module_name_singular = str_singular($module_name);
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.roles.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
-
-                        <div class="col-md-10">
-                            {{ html()->email('email')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.roles.fields.email'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.roles.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
-
-                        <div class="col-md-10">
-                            {{ html()->password('password')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.roles.fields.password'))
-                                ->required() }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.roles.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
-
-                        <div class="col-md-10">
-                            {{ html()->password('password_confirmation')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.roles.fields.password_confirmation'))
-                                ->required() }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.roles.fields.active'))->class('col-md-2 form-control-label')->for('active') }}
-
-                        <div class="col-md-10">
-                            {{ html()->checkbox('active', true, '1') }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.roles.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
-
-                        <div class="col-md-10">
-                            {{ html()->checkbox('confirmed', true, '1') }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
                         {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
 
                         <div class="col-md-10">
                         <table class="table table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>Roles</th>
                                         <th>Permissions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            @if ($roles->count())
-                                                @foreach($roles as $role)
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="checkbox">
-                                                                {{ html()->label(html()->checkbox('roles[]', old('roles') && in_array($role->name, old('roles')) ? true : false, $role->name)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            @if ($role->id != 1)
-                                                                @if ($role->permissions->count())
-                                                                    @foreach ($role->permissions as $permission)
-                                                                        <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
-                                                                    @endforeach
-                                                                @else
-                                                                    None
-                                                                @endif
-                                                            @else
-                                                                All Permissions
-                                                            @endif
-                                                        </div>
-                                                    </div><!--card-->
-                                                @endforeach
-                                            @endif
-                                        </td>
                                        <td>
                                            @if ($permissions->count())
                                                @foreach($permissions as $permission)
