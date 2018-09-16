@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class LoginPageTest extends TestCase
 {
@@ -20,10 +18,10 @@ class LoginPageTest extends TestCase
     }
 
     /**
-    * The login form can be displayed.
-    *
-    * @test
-    */
+     * The login form can be displayed.
+     *
+     * @test
+     */
     public function visit_home_page()
     {
         $response = $this->get('/login');
