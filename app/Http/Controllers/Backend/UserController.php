@@ -38,40 +38,54 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Index';
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
-        $page_heading = 'All Users';
+        $module_action = 'List';
 
-        $$module_name = User::paginate();
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        // Log::info($module_name . ' Index View');
+        $$module_name = $module_model::paginate();
 
-        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', 'module_action', 'module_name', "$module_name"));
+        Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view("backend.$module_path.index",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Create';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
         $roles = Role::get();
         $permissions = Permission::select('name', 'id')->get();
 
-        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
+        return view("backend.$module_name.create",
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title', 'roles', 'permissions'));
     }
 
     /**
@@ -178,17 +192,24 @@ class UserController extends Controller
      */
     public function profileEdit()
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Edit';
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'Edit Profile';
 
         $id = auth()->user()->id;
 
-        $$module_name_singular = User::findOrFail($id);
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        return view("backend.$module_name.profileEdit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        return view("backend.$module_name.profileEdit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**
@@ -242,6 +263,7 @@ class UserController extends Controller
         }
 
         $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
@@ -249,7 +271,7 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
-        return view("backend.$module_name.changeProfilePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.changeProfilePassword", compact('module_name', 'module_title', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -285,15 +307,22 @@ class UserController extends Controller
      */
     public function changePassword($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Edit';
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
-        $$module_name_singular = User::findOrFail($id);
+        $module_action = 'Change Password';
 
-        return view("backend.$module_name.changePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        return view("backend.$module_name.changePassword",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**
@@ -321,25 +350,32 @@ class UserController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Edit';
 
-        $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::findOrFail($id);
 
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        return view("backend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions'));
+        $roles = Role::get();
+        $permissions = Permission::select('name', 'id')->get();
+
+        return view("backend.$module_name.edit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'roles', 'permissions', 'userRoles', 'userPermissions'));
     }
 
     /**

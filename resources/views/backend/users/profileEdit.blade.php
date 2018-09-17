@@ -1,10 +1,15 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
-<?php
-$module_name_singular = str_singular($module_name);
-?>
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.show", $user->id)!!}'><i class="{{ $module_icon }}"></i> {{ $user->name }}</a></li>
+<li class="breadcrumb-item active"> {{ $module_action }}</li>
+@stop
 
 @section('content')
 <div class="card">
@@ -79,7 +84,7 @@ $module_name_singular = str_singular($module_name);
                                 ->required() }}
                         </div>
                     </div><!--form-group-->
-                    
+
                     <div class="row">
                         <div class="col">
                             <div class="row">

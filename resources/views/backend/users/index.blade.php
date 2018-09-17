@@ -1,6 +1,13 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
+
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+@stop
 
 @section('content')
 <div class="card">
@@ -70,7 +77,7 @@
                             <td>
                                 @if($user->getAllPermissions()->count() > 0)
                                     <ul>
-                                        @foreach ($user->getAllPermissions() as $permission)
+                                        @foreach ($user->getDirectPermissions() as $permission)
                                         <li>{{ $permission->name }}</li>
                                         @endforeach
                                     </ul>
