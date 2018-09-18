@@ -2,6 +2,10 @@
 
 @section ('title', 'Dashboard' . " - " . config('app.name'))
 
+@section('breadcrumbs')
+<li class="breadcrumb-item active"><i class="icon-speedometer"></i> Dashboard</li>
+@stop
+
 @section('content')
 <div class="card">
     <div class="card-body">
