@@ -86,19 +86,14 @@
 @stop
 
 @push ('after-styles')
-<!-- DataTables Core CSS and Extensions -->
-<link rel="stylesheet" href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/datatables/css/responsive.bootstrap4.min.css') }}">
+<!-- DataTables Core and Extensions -->
+<link rel="stylesheet" href="{{ asset('vendor/datatable/datatables.min.css') }}">
 
 @endpush
 
 @push ('after-scripts')
-<!-- DataTables Core JS and Extensions -->
-<script type="text/javascript" src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/datatables/js/dataTables.responsive.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<!-- DataTables Core and Extensions -->
+<script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
 
 <script type="text/javascript">
 
