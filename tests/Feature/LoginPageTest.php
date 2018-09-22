@@ -39,17 +39,17 @@ class LoginPageTest extends TestCase
     }
 
     /**
-    * A valid user can be logged in.
-    *
-    * @return void
-    */
+     * A valid user can be logged in.
+     *
+     * @return void
+     */
     public function testLoginAValidUser()
     {
         $user = User::find(1);
 
         $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => $user->password
+            'email'    => $user->email,
+            'password' => $user->password,
         ]);
 
         $response->assertStatus(302);
