@@ -10,12 +10,12 @@ class LoginPageTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function setUp()
-    {
-        parent::setUp();
-        \Artisan::call('migrate');
-        \Artisan::call('db:seed');
-    }
+    // public function setUp()
+    // {
+    //     parent::setUp();
+    //     \Artisan::call('migrate');
+    //     \Artisan::call('db:seed');
+    // }
 
     /**
      * The login form can be displayed.
@@ -31,31 +31,31 @@ class LoginPageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    // /** @test */
-    // public function admin_can_access_admin_dashboard()
-    // {
-    //     $this->loginAsAdmin();
-    //     $this->get('/admin/dashboard')->assertStatus(200);
-    // }
+    /** @test */
+    public function admin_can_access_admin_dashboard()
+    {
+        $this->loginAsAdmin();
+        $this->get('/admin/dashboard')->assertStatus(200);
+    }
 
-    // /**
-    // * A valid user can be logged in.
-    // *
-    // * @return void
-    // */
-    // public function testLoginAValidUser()
-    // {
-    //     $user = User::find(1);
-    //
-    //     $response = $this->post('/login', [
-    //         'email' => $user->email,
-    //         'password' => $user->password
-    //     ]);
-    //
-    //     $response->assertStatus(302);
-    //     $this->seeIsAuthenticatedAs($user);
-    // }
-    //
+    /**
+    * A valid user can be logged in.
+    *
+    * @return void
+    */
+    public function testLoginAValidUser()
+    {
+        $user = User::find(1);
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => $user->password
+        ]);
+
+        $response->assertStatus(302);
+        // $this->seeIsAuthenticatedAs($user);
+    }
+
     // /**
     // * An invalid user cannot be logged in.
     // *
@@ -63,6 +63,7 @@ class LoginPageTest extends TestCase
     // */
     // public function testDoesNotLoginAnInvalidUser()
     // {
+    //     $this->session();
     //     $user = factory(User::class)->create();
     //     $response = $this->post('/login', [
     //         'email' => $user->email,

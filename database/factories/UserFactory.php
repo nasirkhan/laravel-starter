@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,17 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     static $password;
 
     return [
-        'name'           => $faker->name,
-        'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name'              => $faker->name,
+        'email'             => $faker->unique()->safeEmail,
+        'password'          => $password ?: $password = bcrypt('secret'),
+        'remember_token'    => str_random(10),
+        'confirmation_code' => md5(uniqid(mt_rand(), true)),
+        'confirmed'         => true,
+        'created_at'        => Carbon::now(),
+        'updated_at'        => Carbon::now(),
     ];
 });

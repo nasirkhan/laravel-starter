@@ -2,12 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class HomepageTest extends TestCase
 {
-    use RefreshDatabase;
 
     /**
      * Home Page visiting.
@@ -17,6 +15,7 @@ class HomepageTest extends TestCase
     public function visit_home_page()
     {
         $response = $this->get('/');
+        
         $response->assertSeeText(app_name());
 
         $response->assertStatus(200);
