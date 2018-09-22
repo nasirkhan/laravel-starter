@@ -31,13 +31,6 @@ class LoginPageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /** @test */
-    public function admin_can_access_admin_dashboard()
-    {
-        $this->loginAsAdmin();
-        $this->get('/admin/dashboard')->assertStatus(200);
-    }
-
     /**
     * A valid user can be logged in.
     *
@@ -53,7 +46,15 @@ class LoginPageTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-        // $this->seeIsAuthenticatedAs($user);
+
+        $response = $this->actingAs($user, 'web');
+    }
+
+    /** @test */
+    public function admin_can_access_admin_dashboard()
+    {
+        $this->loginAsAdmin();
+        $this->get('/admin/dashboard')->assertStatus(200);
     }
 
     // /**
