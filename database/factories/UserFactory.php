@@ -22,8 +22,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'email'             => $faker->unique()->safeEmail,
         'password'          => $password ?: $password = bcrypt('secret'),
         'remember_token'    => str_random(10),
-        'confirmation_code' => md5(uniqid(mt_rand(), true)),
-        'confirmed'         => true,
+        'email_verified_at' => Carbon::now(),
         'created_at'        => Carbon::now(),
         'updated_at'        => Carbon::now(),
     ];

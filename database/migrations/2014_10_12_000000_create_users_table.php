@@ -20,9 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->default('default-avatar.jpg');
+            $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('status')->default(1)->unsigned();
-            $table->string('confirmation_code')->nullable();
-            $table->boolean('confirmed')->default(config('access.users.confirm_email') ? false : true);
             $table->text('optional_fields')->nullable();
             $table->rememberToken();
             $table->timestamps();
