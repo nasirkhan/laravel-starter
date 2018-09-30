@@ -1,10 +1,13 @@
 <?php
+// use Auth;
 
 /**
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.auth'.
  */
 Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
+
+    // Auth::routes(['verify' => true]);
 
     /*
     * These routes require the user to be logged in
