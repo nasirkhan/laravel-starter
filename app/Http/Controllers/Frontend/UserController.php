@@ -322,7 +322,7 @@ class UserController extends Controller
 
                 flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
 
-                return redirect()->route('frontend.users.profile');
+                return redirect()->back();
             }
 
             $user->confirmed_at = Carbon::now();
@@ -330,11 +330,11 @@ class UserController extends Controller
 
             flash('You have successfully confirmed your email address!')->success()->important();
 
-            return redirect()->route('frontend.users.profile');
+            return redirect()->back();
         } else {
             flash('Invalid email confirmation code!')->warning()->important();
 
-            return redirect()->route('frontend.users.profile');
+            return redirect()->back();
         }
 
     }
@@ -369,13 +369,13 @@ class UserController extends Controller
 
             flash('Email Sent! Please Check Your Inbox.')->success()->important();
 
-            return redirect()->route('frontend.users.profile');
+            return redirect()->back();
         } else {
             Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.' .$user->confirmed_at );
 
             flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
 
-            return redirect()->route('frontend.users.profile');
+            return redirect()->back();
         }
     }
 
