@@ -58,7 +58,8 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
@@ -86,9 +87,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => $data['password'],
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'password'          => $data['password'],
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
         ]);
 
