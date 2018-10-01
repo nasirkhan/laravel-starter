@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
+use App\Events\Frontend\User\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -56,6 +58,28 @@ class RegisterController extends Controller
     }
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        $this->guard()->login($user);
+
+        event(new UserRegistered($user));
+
+        flash('Registration Complered! Please check email inbox.')->success()->important();
+
+        return redirect($this->redirectPath());
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param array $data
@@ -64,10 +88,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
+        $user = User::create([
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'password'          => $data['password'],
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
         ]);
+
+        return $user;
     }
 }

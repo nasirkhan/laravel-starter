@@ -1,5 +1,7 @@
 <?php
 
+// use Auth;
+
 /**
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.auth'.
@@ -35,5 +37,9 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
 
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset.form');
         Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
+
+        Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
     });
 });

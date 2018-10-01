@@ -6,6 +6,12 @@
 
 <div class="content-center">
     <div class="container">
+
+        @include('flash::message')
+        <!-- Errors block -->
+        @include('frontend.includes.errors')
+        <!-- / Errors block -->
+
         <div class="col-md-4 content-center">
             <div class="card card-login card-plain">
                 <form class="form" method="POST" action="{{ route('frontend.auth.register.post') }}">
