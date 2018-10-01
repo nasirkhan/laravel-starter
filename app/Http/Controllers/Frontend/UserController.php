@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Authorizable;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Image;
+use Log;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -291,4 +295,88 @@ class UserController extends Controller
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }
+
+    /**
+     * Confirm Email Address of a User
+     *
+     * @param  String $confirmation_code Auto Generated Confirmation Code
+     * @return [type]                    [description]
+     */
+    public function emailConfirmation($confirmation_code) {
+        // Find if the confirmation_code belongs to an user.
+        $user = User::where('confirmation_code', '=', $confirmation_code)->first();
+
+        // If there is a user continue else redirect back
+        if ($user) {
+            // Check if email is confirmed by right user
+            if ($user->id != auth()->user()->id) {
+                if (auth()->user()->hasRole('administrator')){
+                    Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+                } else {
+                    Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+
+                    abort('404');
+                }
+            } else if ($user->confirmed_at != null) {
+                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.' .$user->confirmed_at );
+
+                flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
+
+                return redirect()->route('frontend.users.profile');
+            }
+
+            $user->confirmed_at = Carbon::now();
+            $user->save();
+
+            flash('You have successfully confirmed your email address!')->success()->important();
+
+            return redirect()->route('frontend.users.profile');
+        } else {
+            flash('Invalid email confirmation code!')->warning()->important();
+
+            return redirect()->route('frontend.users.profile');
+        }
+
+    }
+
+    /**
+     * Resend Email Confirmation Code to User
+     *
+     * @param  [type] $hashid [description]
+     * @return [type]         [description]
+     */
+    public function emailConfirmationResend($hashid) {
+
+        $id = $hashid;
+
+        if ($id != auth()->user()->id) {
+            if (auth()->user()->hasRole('administrator')){
+                Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+            } else {
+                Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+
+                abort('404');
+            }
+        }
+
+        $user = User::findOrFail($id);
+
+        if ($user->confirmed_at == null) {
+            Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
+
+            // Send Email To Registered User
+            Mail::to($user->email)->send(new EmailVerificationMail($user));
+
+            flash('Email Sent! Please Check Your Inbox.')->success()->important();
+
+            return redirect()->route('frontend.users.profile');
+        } else {
+            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.' .$user->confirmed_at );
+
+            flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
+
+            return redirect()->route('frontend.users.profile');
+        }
+    }
+
 }

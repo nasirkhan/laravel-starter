@@ -12,6 +12,8 @@ Route::get('home', 'FrontendController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('profile', 'FrontendController@profile')->name('profile');
     Route::get('users/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
+    Route::get('users/emailConfirmation/{confirmation_code}', ['as' => 'users.emailConfirmation', 'uses' => 'UserController@emailConfirmation']);
+    Route::get('users/emailConfirmationResend/{hashid}', ['as' => 'users.emailConfirmationResend', 'uses' => 'UserController@emailConfirmationResend']);
 
     Route::get('profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
     Route::get('profile/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);

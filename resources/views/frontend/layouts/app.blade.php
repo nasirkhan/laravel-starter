@@ -63,7 +63,6 @@
 
     <div class="wrapper">
 
-
         @yield('content')
 
         <!-- Footer block -->

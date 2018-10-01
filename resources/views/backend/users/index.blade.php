@@ -64,7 +64,10 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{!! $user->status_label !!}</td>
+                            <td>
+                                {!! $user->status_label !!}
+                                {!! $user->confirmed_label !!}
+                            </td>
                             <td>
                                 @if($user->getRoleNames()->count() > 0)
                                     <ul>

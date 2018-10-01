@@ -13,6 +13,9 @@
             <h3 class="category">
                 An awesome starter project based on Laravel
             </h3>
+
+            @include('flash::message')
+
             @can('view_backend')
             <a href="{{ route('backend.dashboard') }}" class="btn btn-primary btn-lg btn-round">Dashboard</a>
             @endcan

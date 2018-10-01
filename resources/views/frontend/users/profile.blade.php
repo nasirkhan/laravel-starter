@@ -16,7 +16,12 @@
                 <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
             </div>
             <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">{{auth()->user()->email}}</p>
+            <p class="category">
+                @if (auth()->user()->confirmed_at == null)
+                <a href="{{route('frontend.users.emailConfirmationResend', auth()->user()->id)}}">Confirm Email</a>
+                @endif
+            </p>
+            @include('flash::message')
         </div>
     </div>
 </div>

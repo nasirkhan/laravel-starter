@@ -19,6 +19,11 @@ class User extends Authenticatable
         '_method',
     ];
 
+    protected $dates = [
+        'deleted_at',
+        'confirmed_at',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -86,17 +91,10 @@ class User extends Authenticatable
      */
     public function getConfirmedLabelAttribute()
     {
-        switch ($this->status) {
-            case '1':
-                return '<span class="badge badge-success">Yes</span>';
-                break;
-            case '0':
-                return '<span class="badge badge-warning">No</span>';
-                break;
-
-            default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
-                break;
+        if ($this->confirmed_at != null) {
+            return '<span class="badge badge-success">Confirmed</span>';
+        } else {
+            return '<span class="badge badge-danger">Not Confirmed</span>';
         }
     }
 
