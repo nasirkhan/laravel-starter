@@ -7,8 +7,6 @@
  */
 Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
 
-    // Auth::routes(['verify' => true]);
-
     /*
     * These routes require the user to be logged in
     */
@@ -38,5 +36,9 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
 
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset.form');
         Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
+
+        Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
     });
 });
