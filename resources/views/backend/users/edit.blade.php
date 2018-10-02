@@ -77,7 +77,21 @@
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            <a href="{{ route('backend.users.changePassword', $user->id) }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                            <a href="{{ route('backend.users.changePassword', $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-key"></i> Change password</a>
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
+
+                        <div class="col-md-10">
+                            @if ($user->confirmed_at == null)
+                            <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-outline-primary btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Send Confirmation Email</a>
+
+                            <a href="{{route('backend.users.emailConfirmation', $user->confirmation_code)}}" class="btn btn-outline-info btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Confirm Email</a>
+                            @else
+                            {!! $user->confirmed_label !!}
+                            @endif
                         </div>
                     </div><!--form-group-->
 

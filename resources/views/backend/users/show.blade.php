@@ -24,7 +24,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.users.profileEdit") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
+                    <a href="{{ route("backend.users.edit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
             <!--/.col-->
@@ -82,7 +82,12 @@
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
-                            <td>{!! $user->confirmed_label !!}</td>
+                            <td>
+                                {!! $user->confirmed_label !!}
+                                @if ($user->confirmed_at == null)
+                                <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Send Confirmation Reminder</a>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('labels.backend.users.fields.roles') }}</th>
