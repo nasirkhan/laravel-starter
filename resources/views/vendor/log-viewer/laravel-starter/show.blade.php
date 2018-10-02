@@ -44,7 +44,7 @@ Log Viewer Dashboard | {{ app_name() }}
                     <div class="col-lg-2">
                         {{-- Log Menu --}}
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-fw fa-flag"></i> Levels</div>
+                            <div class="card-header"><i class="fa fa-fw fa-flag"></i> Levels</div>
                             <div class="list-group list-group-flush log-menu">
                                 @foreach($log->menu() as $levelKey => $item)
                                     @if ($item['count'] === 0)
@@ -69,10 +69,10 @@ Log Viewer Dashboard | {{ app_name() }}
                                 Log info :
                                 <div class="group-btns pull-right">
                                     <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-sm btn-success">
-                                        <i class="fas fa-download"></i> DOWNLOAD
+                                        <i class="fa fa-download"></i> DOWNLOAD
                                     </a>
                                     <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal">
-                                        <i class="fas fa-trash"></i> DELETE
+                                        <i class="fa fa-trash-o"></i> DELETE
                                     </a>
                                 </div>
                             </div>
@@ -113,11 +113,11 @@ Log Viewer Dashboard | {{ app_name() }}
                                             <div class="input-group-append">
                                                 @if (request()->has('query'))
                                                     <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-secondary">
-                                                        <i class="fas fa-fw fa-times"></i>
+                                                        <i class="fa fa-fw fa-times"></i>
                                                     </a>
                                                 @endif
                                                 <button id="search-btn" class="btn btn-primary">
-                                                    <span class="fas fa-fw fa-search"></span>
+                                                    <span class="fa fa-fw fa-search"></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@ Log Viewer Dashboard | {{ app_name() }}
                                                     <span class="badge badge-env">{{ $entry->env }}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-{{ $entry->level }}">
+                                                    <span class="badge badge-level-{{ $entry->level }}">
                                                         {!! $entry->level() !!}
                                                     </span>
                                                 </td>
@@ -280,4 +280,8 @@ Log Viewer Dashboard | {{ app_name() }}
             @endunless
         });
     </script>
+@endpush
+
+@push('after-styles')
+@include('log-viewer::laravel-starter.partials.style')
 @endpush

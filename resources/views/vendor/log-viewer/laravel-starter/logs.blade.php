@@ -35,7 +35,6 @@ Log Viewer Dashboard | {{ app_name() }}
             <!--/.col-->
         </div>
         <!--/.row-->
-
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
@@ -45,9 +44,7 @@ Log Viewer Dashboard | {{ app_name() }}
                                 @foreach($headers as $key => $header)
                                 <th scope="col" class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                     @if ($key == 'date')
-                                        <strong>
-                                            {{ $header }}
-                                        </strong>
+                                        {{ $header }}
                                     @else
                                         <span class="badge badge-level-{{ $key }}">
                                             {!! log_styler()->icon($key) . ' ' . $header !!}
@@ -65,12 +62,15 @@ Log Viewer Dashboard | {{ app_name() }}
                                     @foreach($row as $key => $value)
                                         <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                             @if ($key == 'date')
-                                                <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-info">{{ $value }}</a>
+                                                <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-info">
+                                                    {{ $value }}
+                                                </a>
+                                                <span class="badge badge-primary"></span>
                                             @elseif ($value == 0)
                                                 <span class="badge empty">{{ $value }}</span>
                                             @else
                                                 <a href="{{ route('log-viewer::logs.filter', [$date, $key]) }}">
-                                                    <span class="badge badge-{{ $key }}">{{ $value }}</span>
+                                                    <span class="badge badge-level-{{ $key }}">{{ $value }}</span>
                                                 </a>
                                             @endif
                                         </td>
@@ -200,4 +200,8 @@ Log Viewer Dashboard | {{ app_name() }}
             });
         });
     </script>
+@endpush
+
+@push('after-styles')
+@include('log-viewer::laravel-starter.partials.style')
 @endpush

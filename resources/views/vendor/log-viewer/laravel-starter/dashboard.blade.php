@@ -49,53 +49,23 @@ Log Viewer Dashboard | {{ app_name() }}
                 <div class="row">
                     @foreach($percents as $level => $item)
                         <div class="col-sm-6 col-md-12 col-lg-4 mb-3">
-                            @switch($level)
-                                @case('all')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('emergency')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('alert')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('critical')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('error')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('warning')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('notice')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('info')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @case('debug')
-                                    @include('log-viewer::laravel-starter.partials.'.$level)
-                                    @break
-                                @default
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="text-value">
-                                                {!! log_styler()->icon($level) !!} {{ $item['name'] }}
-                                            </div>
-                                            <div>{{ $item['count'] }} entries - {!! $item['percent'] !!} %</div>
-                                            <div class="progress progress-white progress-xs my-2">
-                                                <div class="progress-bar" role="progressbar" style="width: {{ $item['percent'] }}%" aria-valuenow="{{ $item['percent'] }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                            <small class="text-muted">{{ $item['name'] }}: {{ $item['count'] }} entries - {!! $item['percent'] !!} %</small>
-                                            <br>
+                            <div class="box level-{{ $level }} {{ $item['count'] === 0 ? 'empty' : '' }}">
+                                <div class="box-icon">
+                                    {!! log_styler()->icon($level) !!}
+                                </div>
 
-                                            {{ $level }} {{ $item['count'] === 0 ? 'empty' : '' }}
-                                        </div>
+                                <div class="box-content">
+                                    <span class="box-text">{{ $item['name'] }}</span>
+                                    <span class="box-number">
+                                        {{ $item['count'] }} entries - {!! $item['percent'] !!} %
+                                    </span>
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
                                     </div>
-                            @endswitch
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
+                    @endforeach                    
                 </div>
             </div>
         </div>
@@ -120,4 +90,8 @@ Log Viewer Dashboard | {{ app_name() }}
         });
     });
 </script>
+@endpush
+
+@push('after-styles')
+@include('log-viewer::laravel-starter.partials.style')
 @endpush

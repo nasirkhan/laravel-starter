@@ -108,18 +108,6 @@ class GenerateMenus
                 ]);
             }
 
-            // $menu->add('<i class="nav-icon fas fa-list"></i> Log Viewer', [
-            //     'route' => 'log-viewer::dashboard',
-            //     'class' => 'nav-item',
-            // ])
-            // ->data([
-            //     'order'         => 83,
-            //     'activematches' => 'admin/log-viewer*',
-            // ])
-            // ->link->attr([
-            //     'class' => 'nav-link',
-            // ]);
-
             // Log Viewer Dropdown
             $accessControl = $menu->add('<i class="nav-icon fas fa-list"></i> Log Viewer', [
                 'class' => 'nav-item nav-dropdown',
@@ -142,7 +130,7 @@ class GenerateMenus
             ])
             ->data([
                 'order'         => 84,
-                'activematches' => 'admin/log-viewer*',
+                'activematches' => 'admin/log-viewer',
             ])
             ->link->attr([
                 'class' => 'nav-link',
