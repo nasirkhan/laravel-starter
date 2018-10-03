@@ -87,17 +87,17 @@ class UserController extends Controller
 
                             return view('backend.includes.user_actions', compact('module_name', 'data'));
                         })
-                        ->editColumn('name', '<strong>{{$name}}</strong>')
-                        ->editColumn('status', function ($data) {
-                            $return_data = $data->status_label;
-                            $return_data .= " ". $data->confirmed_label;
-
-                            return $return_data;
-                        })
                         ->addColumn('user_roles', function ($data) {
                             $module_name = $this->module_name;
 
                             return view('backend.includes.user_roles', compact('module_name', 'data'));
+                        })
+                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('status', function ($data) {
+                            $return_data = $data->status_label;
+                            $return_data .= "<br>". $data->confirmed_label;
+
+                            return $return_data;
                         })
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;

@@ -87,8 +87,7 @@
                             {{ html()->text('gender')
                                 ->class('form-control')
                                 ->placeholder(__('labels.backend.users.fields.gender'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                                ->attribute('maxlength', 191) }}
                         </div>
                     </div><!--form-group-->
 
@@ -99,8 +98,7 @@
                             {{ html()->text('date_of_birth')
                                 ->class('form-control')
                                 ->placeholder(__('labels.backend.users.fields.date_of_birth'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                                ->attribute('maxlength', 191) }}
                         </div>
                     </div><!--form-group-->
 
