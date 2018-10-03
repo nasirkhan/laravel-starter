@@ -29,6 +29,7 @@ class PermissionRoleTableSeeder extends Seeder
         // Create Permissions
         Permission::firstOrCreate(['name' => 'view_backend']);
         Permission::firstOrCreate(['name' => 'edit_settings']);
+        Permission::firstOrCreate(['name' => 'view_logs']);
 
         $permissions = Permission::defaultPermissions();
 

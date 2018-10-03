@@ -53,7 +53,7 @@ return [
 
         'attributes' => [
             'prefix'     => 'admin/log-viewer',
-            'middleware' => ['web', 'auth'],
+            'middleware' => ['web', 'auth', 'permission:view_logs'],
         ],
     ],
 
