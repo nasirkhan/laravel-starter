@@ -39,6 +39,7 @@ Laravel 5.7 based simple starter project.
   * Select2
   * Date Time Picker
 * Backup (Source, Files, Database as Zip)
+* Log Viewer
 
 ## Installation
 
