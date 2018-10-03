@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'email', 'updated_at', 'status');
+        $$module_name = $module_model::select('id', 'name', 'email', 'updated_at', 'status', 'confirmed_at');
 
         $data = $$module_name;
 
@@ -90,6 +90,7 @@ class UserController extends Controller
                         ->editColumn('name', '<strong>{{$name}}</strong>')
                         ->editColumn('status', function ($data) {
                             $return_data = $data->status_label;
+                            $return_data .= " ". $data->confirmed_label;
 
                             return $return_data;
                         })
