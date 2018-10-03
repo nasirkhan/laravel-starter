@@ -74,6 +74,30 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.gender'))->class('col-md-2 form-control-label')->for('gender') }}
+
+                        <div class="col-md-10">
+                            {{ html()->text('gender')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.gender'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.date_of_birth'))->class('col-md-2 form-control-label')->for('date_of_birth') }}
+
+                        <div class="col-md-10">
+                            {{ html()->text('date_of_birth')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.date_of_birth'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">

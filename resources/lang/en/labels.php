@@ -29,6 +29,8 @@ return [
                 'name'                  => 'Name',
                 'email'                 => 'Email',
                 'mobile'                => 'Mobile',
+                'gender'                => 'Gender',
+                'date_of_birth'         => 'Date of Birth',
                 'password'              => 'Password',
                 'password_confirmation' => 'Password Confirmation',
                 'confirmed'             => 'Confirmed',
