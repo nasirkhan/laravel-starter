@@ -95,7 +95,7 @@ class UserController extends Controller
                         ->editColumn('name', '<strong>{{$name}}</strong>')
                         ->editColumn('status', function ($data) {
                             $return_data = $data->status_label;
-                            $return_data .= "<br>". $data->confirmed_label;
+                            $return_data .= '<br>'.$data->confirmed_label;
 
                             return $return_data;
                         })
