@@ -152,8 +152,6 @@ class GenerateMenus
                 ]);
             }
 
-
-
             // Newsletter Dropdown
             $newslettersControl = $menu->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter', [
                 'class' => 'nav-item nav-dropdown',
