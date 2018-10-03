@@ -29,7 +29,7 @@ Laravel 5.7 based simple starter project.
   * Tags
   * wysiwyg editor
   * file browser
-* Application Setting
+* Application Settings 
 * External Libraries
   * Bootstrap 4
   * Fontawesome 5
