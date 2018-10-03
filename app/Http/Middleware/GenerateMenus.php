@@ -64,6 +64,7 @@ class GenerateMenus
             ->link->attr([
                 'class' => 'nav-link',
             ]);
+
             // Submenu: Roles
             $accessControl->add('<i class="nav-icon icon-people"></i> Roles', [
                 'route' => 'backend.roles.index',
@@ -101,6 +102,50 @@ class GenerateMenus
                 ->data([
                     'order'         => 82,
                     'activematches' => 'admin/backups*',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+            }
+
+            // Log Viewer
+            if (auth()->check() && auth()->user()->hasAnyPermission(['view_logs'])) {
+                // Log Viewer Dropdown
+                $accessControl = $menu->add('<i class="nav-icon fas fa-list"></i> Log Viewer', [
+                    'class' => 'nav-item nav-dropdown',
+                ])
+                ->data([
+                    'order'         => 83,
+                    'activematches' => [
+                        'log-viewer*',
+                    ],
+                ]);
+                $accessControl->link->attr([
+                    'class' => 'nav-link nav-dropdown-toggle',
+                    'href'  => '#',
+                ]);
+
+                // Submenu: Log Viewer Dashboard
+                $accessControl->add('<i class="nav-icon fas fa-list"></i> Dashboard', [
+                    'route' => 'log-viewer::dashboard',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 84,
+                    'activematches' => 'admin/log-viewer',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+
+                // Submenu: Log Viewer Logs by Days
+                $accessControl->add('<i class="nav-icon fas fa-list-ol"></i> Logs by Days', [
+                    'route' => 'log-viewer::logs.list',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 85,
+                    'activematches' => 'admin/log-viewer/logs*',
                 ])
                 ->link->attr([
                     'class' => 'nav-link',
