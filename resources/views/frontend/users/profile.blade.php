@@ -6,25 +6,22 @@
 
 
 @section('content')
-
-<div class="page-header page-header-small" filter-color="orange">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('{{asset('img/cover-01.jpg')}}');">
+<div class="page-header page-header-small clear-filter" filter-color="orange">
+    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
     </div>
     <div class="container">
-        <div class="content-center">
-            <div class="photo-container">
-                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
-            </div>
-            <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">
-                @if (auth()->user()->confirmed_at == null)
-                <a href="{{route('frontend.users.emailConfirmationResend', auth()->user()->id)}}">Confirm Email</a>
-                @endif
-            </p>
-            @include('flash::message')
+        <div class="photo-container">
+            <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
         </div>
+        <h3 class="title">{{auth()->user()->name}}</h3>
+        <p class="category">
+            @if (auth()->user()->confirmed_at == null)
+            <a href="{{route('frontend.users.emailConfirmationResend', auth()->user()->id)}}">Confirm Email</a>
+            @endif
+        </p>
     </div>
 </div>
+
 <div class="section">
     <div class="container">
         <div class="button-container">
