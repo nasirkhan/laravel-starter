@@ -7,17 +7,19 @@
 
 @section('content')
 
-<div class="page-header page-header-small" filter-color="orange">
-    <div class="page-header-image" data-parallax="true" style="background-image: url('{{asset('img/cover-01.jpg')}}');">
+<div class="page-header page-header-small clear-filter" filter-color="orange">
+    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
     </div>
     <div class="container">
-        <div class="content-center">
-            <div class="photo-container">
-                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
-            </div>
-            <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">{{auth()->user()->email}}</p>
+        <div class="photo-container">
+            <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
         </div>
+        <h3 class="title">{{auth()->user()->name}}</h3>
+        <p class="category">
+            @if (auth()->user()->confirmed_at == null)
+            <a href="{{route('frontend.users.emailConfirmationResend', auth()->user()->id)}}">Confirm Email</a>
+            @endif
+        </p>
     </div>
 </div>
 <div class="section">
@@ -44,7 +46,10 @@
                             <img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" />
                         </div>
                         <div class="col-md-5">
-                            <input id="file-multiple-input" name="avatar" multiple="" type="file">
+                            <div class="form-group">
+                                <label for="file-multiple-input">Click here to update photo</label>
+                                <input id="file-multiple-input" name="avatar" multiple="" type="file" class="form-control-file">
+                            </div>
                         </div>
                     </div><!--form-group-->
 
