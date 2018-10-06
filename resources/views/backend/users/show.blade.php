@@ -24,6 +24,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
+                    <a href="{{ route("backend.users.index") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
                     <a href="{{ route("backend.users.edit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
@@ -37,7 +38,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>{{ __('labels.backend.users.fields.avatar') }}</th>
-                            <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
+                            <td><img src="{{asset($$module_name_singular->avatar)}}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
                         </tr>
 
                         <tr>

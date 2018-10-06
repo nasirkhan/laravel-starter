@@ -88,10 +88,10 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.active'))->class('col-md-2 form-control-label')->for('active') }}
+                        {{ html()->label(__('labels.backend.users.fields.status'))->class('col-md-2 form-control-label')->for('status') }}
 
                         <div class="col-md-10">
-                            {{ html()->checkbox('active', true, '1') }}
+                            {{ html()->checkbox('status', true, '1') }}
                         </div>
                     </div><!--form-group-->
 

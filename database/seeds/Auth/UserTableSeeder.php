@@ -3,6 +3,8 @@
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Events\Backend\User\UserCreated;
 
 /**
  * Class UserTableSeeder.
@@ -25,7 +27,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Admin User',
                 'email'             => 'admin@admin.com',
-                'password'          => bcrypt('1234'),
+                'password'          => '1234',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -34,7 +36,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Manager User',
                 'email'             => 'manager@manager.com',
-                'password'          => bcrypt('1234'),
+                'password'          => '1234',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -43,7 +45,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Executive User',
                 'email'             => 'executive@executive.com',
-                'password'          => bcrypt('1234'),
+                'password'          => '1234',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -52,7 +54,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'General User',
                 'email'             => 'user@user.com',
-                'password'          => bcrypt('1234'),
+                'password'          => '1234',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -60,7 +62,11 @@ class UserTableSeeder extends Seeder
             ],
         ];
 
-        DB::table('users')->insert($users);
+        foreach ($users as $user_data) {
+            $user = User::create($user_data);
+
+            event(new UserCreated($user));
+        }
 
         $this->enableForeignKeys();
     }

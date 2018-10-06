@@ -2,12 +2,12 @@
 
 namespace App\Listeners\Backend\User;
 
-use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\User\UserUpdated;
 use App\Models\Userprofile;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Log;
 
-class UserCreatedProfileCreate implements ShouldQueue
+class UserUpdatedProfileUpdate implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -22,25 +22,24 @@ class UserCreatedProfileCreate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param UserCreated $event
-     *
+     * @param  UserUpdated  $event
      * @return void
      */
-    public function handle(UserCreated $event)
+    public function handle(UserUpdated $event)
     {
-
-        Log::info('UserCreatedProfileCreate');
         $user = $event->user;
 
-        $userprofile = new Userprofile();
-        $userprofile->user_id = $user->id;
+        $userprofile = Userprofile::where('user_id', '=', $user->id)->first()
         $userprofile->name = $user->name;
         $userprofile->email = $user->email;
         $userprofile->mobile = $user->mobile;
         $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
         $userprofile->status = $user->status;
+        $userprofile->updated_at = $user->updated_at;
+        $userprofile->updated_by = $user->updated_by;
+        $userprofile->deleted_at = $user->deleted_at;
+        $userprofile->deleted_by = $user->deleted_by;
         $userprofile->save();
-
     }
 }

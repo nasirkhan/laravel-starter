@@ -37,7 +37,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>{{ __('labels.backend.users.fields.avatar') }}</th>
-                            <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
+                            <td><img src="{{asset($user->avatar)}}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
                         </tr>
 
                         <tr>
@@ -47,12 +47,17 @@
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.email') }}</th>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $userprofile->email }}</td>
                         </tr>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.mobile') }}</th>
-                            <td>{{ $user->mobile }}</td>
+                            <td>{{ $userprofile->mobile }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.date_of_birth') }}</th>
+                            <td>{{ $userprofile->date_of_birth }}</td>
                         </tr>
 
                         <tr>

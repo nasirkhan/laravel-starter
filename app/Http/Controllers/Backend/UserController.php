@@ -9,12 +9,16 @@ use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Userprofile;
 use App\Models\UserProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Image;
 use Log;
+use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\User\UserProfileUpdated;
+use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -162,7 +166,26 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Details';
 
-        $$module_name_singular = User::create($request->except('roles'));
+        $order_data = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+
+        if ( $request->confirmed == 1 ){
+            $confirmed_data = [
+                'confirmed' => Carbon::now(),
+            ];
+
+            array_push($order_data, $confirmed_data);
+        } else {
+            $confirmed_data = [
+                'confirmed' => null,
+            ];
+
+            array_push($order_data, $confirmed_data);
+        }
+
+        // return $order_data;
+
+
+        $$module_name_singular = User::create($order_data);
 
         $roles = $request['roles'];
         $permissions = $request['permissions'];
@@ -182,6 +205,8 @@ class UserController extends Controller
             $permissions = [];
             $$module_name_singular->syncPermissions($permissions);
         }
+
+        event(new UserCreated($$module_name_singular));
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
     }
@@ -208,9 +233,10 @@ class UserController extends Controller
         $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         return view("backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile'));
     }
 
     /**
@@ -232,8 +258,9 @@ class UserController extends Controller
         $id = auth()->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
-        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title'));
+        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'userprofile'));
     }
 
     /**
@@ -260,9 +287,10 @@ class UserController extends Controller
         $title = $page_heading.' '.ucfirst($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         return view("backend.$module_name.profileEdit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile'));
     }
 
     /**
@@ -285,19 +313,40 @@ class UserController extends Controller
         $id = auth()->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
-
-        $$module_name_singular->update($request->only('name', 'email'));
+        $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
-            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('/photos/avatars/'.$filename));
-            $$module_name_singular->avatar = $filename;
+            if ($$module_name_singular->getMedia($module_name)->first()){
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+            }
+
+            $media = $$module_name_singular->addMediaFromRequest('avatar')->toMediaCollection($module_name);
+
+            $$module_name_singular->avatar = $media->getUrl();
+
             $$module_name_singular->save();
         }
+
+        // return $$module_name_singular->avatar;
+        // if ($request->hasFile('avatar')) {
+        //     $avatar = $request->file('avatar');
+        //     $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
+        //     $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //     })->save(public_path('/photos/avatars/'.$filename));
+        //     $$module_name_singular->avatar = $filename;
+        //     $$module_name_singular->save();
+        //     return $filename;
+        // }
+
+        $data_array = $request->except('avatar');
+        $data_array['avatar'] = $$module_name_singular->avatar;
+
+        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
+        $user_profile->update($data_array);
+
+        event(new UserProfileUpdated($user_profile));
 
         return redirect("admin/$module_name/profile")->with('flash_success', 'Update successful!');
     }
@@ -500,6 +549,8 @@ class UserController extends Controller
 
         $$module_name_singular->delete();
 
+        event(new UserUpdatedProfileUpdate($$module_name_singular));
+
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Deleted!')->success();
 
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
@@ -555,6 +606,8 @@ class UserController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
+        event(new UserUpdatedProfileUpdate($$module_name_singular));
+
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' Successfully Restoreded!')->success();
 
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
@@ -584,6 +637,8 @@ class UserController extends Controller
         try {
             $$module_name_singular->status = 2;
             $$module_name_singular->save();
+
+            event(new UserUpdatedProfileUpdate($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Blocked!')->success();
 
@@ -615,6 +670,8 @@ class UserController extends Controller
         try {
             $$module_name_singular->status = 1;
             $$module_name_singular->save();
+
+            event(new UserUpdatedProfileUpdate($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Unblocked!')->success();
 
