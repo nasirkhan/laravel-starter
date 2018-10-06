@@ -3,7 +3,6 @@
 namespace App\Listeners\Backend\User;
 
 use App\Events\Backend\User\UserProfileUpdated;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserProfileUpdatedNotifyUser implements ShouldQueue
@@ -21,7 +20,8 @@ class UserProfileUpdatedNotifyUser implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  UserProfileUpdated  $event
+     * @param UserProfileUpdated $event
+     *
      * @return void
      */
     public function handle(UserProfileUpdated $event)
