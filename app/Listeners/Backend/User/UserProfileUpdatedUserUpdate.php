@@ -4,7 +4,6 @@ namespace App\Listeners\Backend\User;
 
 use App\Events\Backend\User\UserProfileUpdated;
 use App\Models\User;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserProfileUpdatedUserUpdate implements ShouldQueue
@@ -22,13 +21,14 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  UserProfileUpdated  $event
+     * @param UserProfileUpdated $event
+     *
      * @return void
      */
     public function handle(UserProfileUpdated $event)
     {
         $user_profile = $event->user_profile;
-        
+
         $user = User::where('id', '=', $user_profile->user_id)->first();
         $user->name = $user_profile->name;
         $user->email = $user_profile->email;

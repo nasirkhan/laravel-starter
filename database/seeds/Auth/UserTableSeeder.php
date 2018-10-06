@@ -1,10 +1,9 @@
 <?php
 
+use App\Events\Backend\User\UserCreated;
+use App\Models\User;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Events\Backend\User\UserCreated;
 
 /**
  * Class UserTableSeeder.

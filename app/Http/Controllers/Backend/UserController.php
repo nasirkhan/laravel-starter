@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
+use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
 use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
@@ -16,9 +19,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Image;
 use Log;
-use App\Events\Backend\User\UserCreated;
-use App\Events\Backend\User\UserProfileUpdated;
-use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -168,7 +168,7 @@ class UserController extends Controller
 
         $order_data = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
 
-        if ( $request->confirmed == 1 ){
+        if ($request->confirmed == 1) {
             $confirmed_data = [
                 'confirmed' => Carbon::now(),
             ];
@@ -183,7 +183,6 @@ class UserController extends Controller
         }
 
         // return $order_data;
-
 
         $$module_name_singular = User::create($order_data);
 
@@ -323,7 +322,7 @@ class UserController extends Controller
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
-            if ($$module_name_singular->getMedia($module_name)->first()){
+            if ($$module_name_singular->getMedia($module_name)->first()) {
                 $$module_name_singular->getMedia($module_name)->first()->delete();
             }
 
