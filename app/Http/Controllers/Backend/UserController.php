@@ -246,7 +246,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile($id)
     {
         $title = $this->module_title;
         $module_title = $this->module_title;
@@ -255,7 +255,9 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Show';
 
-        $id = auth()->user()->id;
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
         $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
@@ -270,7 +272,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit()
+    public function profileEdit($id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -281,10 +283,12 @@ class UserController extends Controller
 
         $module_action = 'Edit Profile';
 
-        $id = auth()->user()->id;
-
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
+
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = $module_model::findOrFail($id);
         $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
@@ -301,16 +305,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request)
+    public function profileUpdate(Request $request, $id)
     {
         $this->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name_singular = str_singular($this->module_name);        
 
-        $id = auth()->user()->id;
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
         $filename = $$module_name_singular->avatar;

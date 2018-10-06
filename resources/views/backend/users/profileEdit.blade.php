@@ -36,7 +36,7 @@
         <hr>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate'))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}
+                {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}
                 <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }}
 

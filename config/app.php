@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'salt' => env('APP_SALT', 'A4B361266DBD621982C975F471D41'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
