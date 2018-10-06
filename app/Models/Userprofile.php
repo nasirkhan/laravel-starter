@@ -2,12 +2,6 @@
 
 namespace App\Models;
 
-use App\Notifications\ResetPasswordNotification;
-use App\Models\BaseModel;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-
 class Userprofile extends BaseModel
 {
     protected $dates = [
@@ -23,5 +17,4 @@ class Userprofile extends BaseModel
     {
         return $this->belongsTo('App\Models\User');
     }
-
 }

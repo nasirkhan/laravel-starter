@@ -3,7 +3,6 @@
 namespace App\Listeners\Frontend\User;
 
 use App\Events\Frontend\User\UserRegistered;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserRegisteredProfileCreate implements ShouldQueue
@@ -21,7 +20,8 @@ class UserRegisteredProfileCreate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  UserRegistered  $event
+     * @param UserRegistered $event
+     *
      * @return void
      */
     public function handle(UserRegistered $event)
