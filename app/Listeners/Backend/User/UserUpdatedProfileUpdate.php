@@ -29,7 +29,7 @@ class UserUpdatedProfileUpdate implements ShouldQueue
     {
         $user = $event->user;
 
-        $userprofile = Userprofile::where('user_id', '=', $user->id)->first()
+        $userprofile = Userprofile::where('user_id', '=', $user->id)->first();
         $userprofile->name = $user->name;
         $userprofile->email = $user->email;
         $userprofile->mobile = $user->mobile;
