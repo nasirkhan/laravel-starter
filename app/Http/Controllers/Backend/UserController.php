@@ -469,7 +469,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (auth()->user()->can('edit_users')) {
+        if (!auth()->user()->can('edit_users')) {
             abort(404);
         }
 
