@@ -311,7 +311,7 @@ class UserController extends Controller
         ]);
 
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);        
+        $module_name_singular = str_singular($this->module_name);
 
         if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
@@ -363,9 +363,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changeProfilePassword($id = '')
+    public function changeProfilePassword($id)
     {
-        if ($id == '') {
+        if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -389,9 +389,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changeProfilePasswordUpdate(Request $request, $id = '')
+    public function changeProfilePasswordUpdate(Request $request, $id)
     {
-        if ($id == '') {
+        if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -426,6 +426,10 @@ class UserController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view("backend.$module_name.changePassword",
@@ -444,6 +448,10 @@ class UserController extends Controller
     {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
+        
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
 
