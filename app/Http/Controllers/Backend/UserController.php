@@ -510,7 +510,7 @@ class UserController extends Controller
         if (auth()->user()->can('edit_users')) {
             abort(404);
         }
-        
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
