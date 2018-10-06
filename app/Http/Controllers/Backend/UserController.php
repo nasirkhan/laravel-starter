@@ -448,7 +448,7 @@ class UserController extends Controller
     {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
-        
+
         if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
@@ -469,6 +469,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->can('edit_users')) {
+            abort(404);
+        }
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -503,6 +507,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->can('edit_users')) {
+            abort(404);
+        }
+        
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
