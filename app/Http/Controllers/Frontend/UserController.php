@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
+use App\Events\Backend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Userprofile;
 use App\Models\UserProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -85,10 +87,11 @@ class UserController extends Controller
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class'));
+        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile'));
     }
 
     /**
@@ -106,13 +109,23 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = str_singular($module_name);
-        $module_action = 'Edit';
+
+        $module_action = 'Edit Profile';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
+
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profileEdit", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'title', 'body_class'));
+        return view("frontend.$module_name.profileEdit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile', 'body_class'));
     }
 
     /**
@@ -140,20 +153,33 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
-        $$module_name_singular->update($request->only('name', 'mobile', 'gender', 'date_of_birth'));
+        $$module_name_singular = User::findOrFail($id);
+        $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
-            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('/photos/avatars/'.$filename));
-            $$module_name_singular->avatar = $filename;
+            if ($$module_name_singular->getMedia($module_name)->first()) {
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+            }
+
+            $media = $$module_name_singular->addMediaFromRequest('avatar')->toMediaCollection($module_name);
+
+            $$module_name_singular->avatar = $media->getUrl();
+
             $$module_name_singular->save();
         }
+
+        $data_array = $request->except('avatar');
+        $data_array['avatar'] = $$module_name_singular->avatar;
+
+        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
+        $user_profile->update($data_array);
+
+        event(new UserProfileUpdated($user_profile));
 
         return redirect()->route('frontend.users.profile', $$module_name_singular->id)->with('flash_success', 'Update successful!');
     }
