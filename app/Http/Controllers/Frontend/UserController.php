@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
+use App\Events\Backend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Mail\EmailVerificationMail;
@@ -16,7 +17,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Image;
 use Log;
-use App\Events\Backend\User\UserProfileUpdated;
 
 class UserController extends Controller
 {
