@@ -20,6 +20,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'name'              => $faker->name,
         'email'             => $faker->unique()->safeEmail,
+        'mobile'            => $faker->phoneNumber,
+        'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
         'password'          => $password ?: $password = bcrypt('secret'),
         'remember_token'    => str_random(10),
         'confirmation_code' => md5(uniqid(mt_rand(), true)),

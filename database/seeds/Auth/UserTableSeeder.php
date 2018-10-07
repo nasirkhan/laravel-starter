@@ -21,12 +21,17 @@ class UserTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
+        $faker = Faker\Factory::create();
+
         // Add the master administrator, user id of 1
         $users = [
             [
                 'name'              => 'Admin User',
                 'email'             => 'admin@admin.com',
                 'password'          => '1234',
+                'mobile'            => $faker->phoneNumber,
+                'date_of_birth'     => $faker->date,
+                'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -36,6 +41,9 @@ class UserTableSeeder extends Seeder
                 'name'              => 'Manager User',
                 'email'             => 'manager@manager.com',
                 'password'          => '1234',
+                'mobile'            => $faker->phoneNumber,
+                'date_of_birth'     => $faker->date,
+                'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -45,6 +53,9 @@ class UserTableSeeder extends Seeder
                 'name'              => 'Executive User',
                 'email'             => 'executive@executive.com',
                 'password'          => '1234',
+                'mobile'            => $faker->phoneNumber,
+                'date_of_birth'     => $faker->date,
+                'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
@@ -54,6 +65,9 @@ class UserTableSeeder extends Seeder
                 'name'              => 'General User',
                 'email'             => 'user@user.com',
                 'password'          => '1234',
+                'mobile'            => $faker->phoneNumber,
+                'date_of_birth'     => $faker->date,
+                'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
