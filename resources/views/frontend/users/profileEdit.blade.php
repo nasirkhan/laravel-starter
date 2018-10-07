@@ -25,7 +25,7 @@
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">Show Profile</a>
+            <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">View Profile</a>
             <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
