@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-{{auth()->user()->name}}'s Profile  | {{ app_name() }}
+{{$$module_name_singular->name}}'s Profile  | {{ app_name() }}
 @stop
 
 
@@ -13,10 +13,10 @@
     <div class="container">
         <div class="content-center">
             <div class="photo-container">
-                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
+                <img src="{{asset($user->avatar)}}" alt="{{$$module_name_singular->name}}">
             </div>
-            <h3 class="title">{{auth()->user()->name}}</h3>
-            <p class="category">{{auth()->user()->email}}</p>
+            <h3 class="title">{{$$module_name_singular->name}}</h3>
+            <p class="category">{{$$module_name_singular->email}}</p>
         </div>
     </div>
 </div>

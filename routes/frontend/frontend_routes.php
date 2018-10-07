@@ -15,10 +15,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('users/emailConfirmation/{confirmation_code}', ['as' => 'users.emailConfirmation', 'uses' => 'UserController@emailConfirmation']);
     Route::get('users/emailConfirmationResend/{hashid}', ['as' => 'users.emailConfirmationResend', 'uses' => 'UserController@emailConfirmationResend']);
 
-    Route::get('profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
-    Route::get('profile/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);
-    Route::patch('profile/edit', ['as' => 'users.profileUpdate', 'uses' => 'UserController@profileUpdate']);
+    Route::get('profile/{id}', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
+    Route::get('profile/{id}/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);
+    Route::patch('profile/{id}/edit', ['as' => 'users.profileUpdate', 'uses' => 'UserController@profileUpdate']);
     Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
-    Route::get('users/profile/changePassword', ['as' => 'users.changePassword', 'uses' => 'UserController@changePassword']);
-    Route::patch('users/profile/changePassword', ['as' => 'users.changePasswordUpdate', 'uses' => 'UserController@changePasswordUpdate']);
+    Route::get('users/profile/changePassword/{id}', ['as' => 'users.changePassword', 'uses' => 'UserController@changePassword']);
+    Route::patch('users/profile/changePassword/{id}', ['as' => 'users.changePasswordUpdate', 'uses' => 'UserController@changePasswordUpdate']);
 });

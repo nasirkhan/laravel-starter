@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-{{auth()->user()->name}}'s Profile  | {{ app_name() }}
+{{$$module_name_singular->name}}'s Profile  | {{ app_name() }}
 @stop
 
 
@@ -11,12 +11,12 @@
     </div>
     <div class="container">
         <div class="photo-container">
-            <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
+            <img src="{{asset($user->avatar)}}" alt="{{$$module_name_singular->name}}">
         </div>
-        <h3 class="title">{{auth()->user()->name}}</h3>
+        <h3 class="title">{{$$module_name_singular->name}}</h3>
         <p class="category">
-            @if (auth()->user()->confirmed_at == null)
-            <a href="{{route('frontend.users.emailConfirmationResend', auth()->user()->id)}}">Confirm Email</a>
+            @if ($$module_name_singular->confirmed_at == null)
+            <a href="{{route('frontend.users.emailConfirmationResend', $$module_name_singular->id)}}">Confirm Email</a>
             @endif
         </p>
     </div>
@@ -25,7 +25,7 @@
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="{{ route('frontend.users.profileEdit') }}" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
+            <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
             <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
