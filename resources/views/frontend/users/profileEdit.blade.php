@@ -37,7 +37,7 @@
 
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->modelForm($user, 'PATCH', route('frontend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->acceptsFiles()->open() }}
+                {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->acceptsFiles()->open() }}
 
                     <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }}
@@ -53,59 +53,224 @@
                         </div>
                     </div><!--form-group-->
 
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('name')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'name';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "required";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
                         </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
-
-                        <div class="col-md-10">
-                            {{ $user->email }}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'email';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->disabled() }}
+                            </div>
                         </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.mobile'))->class('col-md-2 form-control-label')->for('mobile') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('mobile')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.mobile'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'mobile';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
                         </div>
-                    </div><!--form-group-->
+                    </div>
 
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.gender'))->class('col-md-2 form-control-label')->for('gender') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('gender')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.gender'))
-                                ->attribute('maxlength', 191) }}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'date_of_birth';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
+                                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
+                                    <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div><!--form-group-->
 
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.date_of_birth'))->class('col-md-2 form-control-label')->for('date_of_birth') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('date_of_birth')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.date_of_birth'))
-                                ->attribute('maxlength', 191) }}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'gender';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = "-- Select an option --";
+                                $required = "";
+                                $select_options = [
+                                    'Man'=>'Man',
+                                    'Woman'=>'Woman',
+                                    'Other'=>'Other'
+                                ];
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+                            </div>
                         </div>
-                    </div><!--form-group-->
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'profile_privecy';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = "-- Select an option --";
+                                $required = "required";
+                                $select_options = [
+                                    'Public'=>'Public',
+                                    'Private'=>'Private',
+                                ];
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'address';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'bio';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_website';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_facebook';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_twitter';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_googleplus';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_linkedin';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_1';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_2';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'url_3';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
@@ -135,3 +300,50 @@
 </div>
 
 @endsection
+
+@push('after-styles')
+
+<!-- Select2 Bootstrap 4 Core UI -->
+<link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
+
+<!-- Date Time Picker -->
+<link rel="stylesheet" href="{{ asset('vendor/bootstrap-4-datetime-picker/css/tempusdominus-bootstrap-4.min.css') }}" />
+
+@endpush
+
+@push ('after-scripts')
+<!-- Select2 Bootstrap 4 Core UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.select2').select2({
+        theme: "bootstrap",
+        placeholder: "-- Select an option --",
+        allowClear: true,
+    });
+});
+</script>
+
+<!-- Date Time Picker & Moment Js-->
+<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('.datetime').datetimepicker({
+        format: 'YYYY-MM-DD',
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar-alt',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-check',
+            clear: 'far fa-trash-alt',
+            close: 'fas fa-times'
+        }
+    });
+});
+</script>
+@endpush
