@@ -37,6 +37,39 @@
         <h5 class="description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in magna pharetra, varius nisi id, porta augue. Sed lobortis non enim vel cursus. Duis et massa vitae justo cursus finibus. In hac habitasse platea dictumst. Duis laoreet condimentum magna a tincidunt. Nullam in molestie nibh. Fusce lectus ipsum, feugiat non scelerisque bibendum, rutrum id sapien.
         </h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                    <?php $fields_array = [
+                        'name',
+                        'email',
+                        'mobile',
+                        'gender',
+                        'date_of_birth',
+                        'url_website',
+                        'url_facebook',
+                        'url_twitter',
+                        'url_googleplus',
+                        'url_linkedin',
+                        'url_1',
+                        'url_2',
+                        'url_3',
+                        'profile_privecy',
+                        'address',
+                        'bio',
+                        'logins_count',
+                        'last_login',
+                    ]; ?>
+                    <?php foreach ($fields_array as $field): ?>
+                    <tr>
+                        <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
+                        <td>{{ $userprofile->$field }}</td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
