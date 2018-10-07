@@ -13,7 +13,7 @@
     <div class="container">
         <div class="content-center">
             <div class="photo-container">
-                <img src="{{asset('photos/avatars/'.auth()->user()->avatar)}}" alt="{{auth()->user()->name}}">
+                <img src="{{asset($user->avatar)}}" alt="{{auth()->user()->name}}">
             </div>
             <h3 class="title">{{auth()->user()->name}}</h3>
             <p class="category">{{auth()->user()->email}}</p>
@@ -65,7 +65,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     {{ html()->button($text = "<i class='fas fa-save'></i>&nbsp;Save", $type = 'submit')->class('btn btn-success') }}
-                                    
+
                                     <a href="{{ route("frontend.$module_name.profile") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
                                 </div>
                             </div>

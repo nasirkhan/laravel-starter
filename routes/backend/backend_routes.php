@@ -49,7 +49,7 @@ $module_name = 'users';
 $controller_name = 'UserController';
 Route::get("$module_name/profile/{id}", ['as' => "$module_name.profile", 'uses' => "$controller_name@profile"]);
 Route::get("$module_name/profile/{id}/edit", ['as' => "$module_name.profileEdit", 'uses' => "$controller_name@profileEdit"]);
-Route::patch("$module_name/profile/edit", ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);
+Route::patch("$module_name/profile/{id}/edit", ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);
 Route::get("$module_name/emailConfirmation/{confirmation_code}", ['as' => "$module_name.emailConfirmation", 'uses' => "$controller_name@emailConfirmation"]);
 Route::get("$module_name/emailConfirmationResend/{hashid}", ['as' => "$module_name.emailConfirmationResend", 'uses' => "$controller_name@emailConfirmationResend"]);
 Route::delete("$module_name/userProviderDestroy", ['as' => "$module_name.userProviderDestroy", 'uses' => "$controller_name@userProviderDestroy"]);

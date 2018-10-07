@@ -353,7 +353,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        return redirect("admin/$module_name/profile")->with('flash_success', 'Update successful!');
+        return redirect(route('backend.users.profile', $$module_name_singular->id))->with('flash_success', 'Update successful!');
     }
 
     /**

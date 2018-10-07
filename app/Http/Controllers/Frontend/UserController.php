@@ -74,20 +74,21 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile($id)
     {
-        $title = $this->module_title;
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
         $module_action = 'Show';
 
-        $$module_name_singular = auth()->user();
+        $$module_name_singular = $module_model::findOrFail($id);
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class'));
+        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class'));
     }
 
     /**
@@ -97,19 +98,21 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit()
+    public function profileEdit($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
         $module_action = 'Edit';
 
-        $$module_name_singular = auth()->user();
+        $$module_name_singular = $module_model::findOrFail($id);
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profileEdit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'body_class'));
+        return view("frontend.$module_name.profileEdit", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'title', 'body_class'));
     }
 
     /**
@@ -120,8 +123,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request)
+    public function profileUpdate(Request $request, $id)
     {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+        $module_action = 'Edit';
+
         $this->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -129,7 +140,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $$module_name_singular = auth()->user();
+        $$module_name_singular = $module_model::findOrFail($id);
 
         $$module_name_singular->update($request->only('name', 'mobile', 'gender', 'date_of_birth'));
 
@@ -144,7 +155,7 @@ class UserController extends Controller
             $$module_name_singular->save();
         }
 
-        return redirect()->route('frontend.users.profile')->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', $$module_name_singular->id)->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -154,7 +165,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword()
+    public function changePassword($id)
     {
         $title = $this->module_title;
         $module_name = $this->module_name;
@@ -179,7 +190,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request)
+    public function changePasswordUpdate(Request $request, $id)
     {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
