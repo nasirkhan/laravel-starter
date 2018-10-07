@@ -17,7 +17,7 @@
             <a class="nav-link" href="#">Users</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('backend.users.profile') }}">Profile</a>
+            <a class="nav-link" href="{{ route('backend.users.profile', auth()->user()->id) }}">Profile</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">

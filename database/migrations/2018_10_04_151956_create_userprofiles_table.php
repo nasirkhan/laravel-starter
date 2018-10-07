@@ -15,7 +15,39 @@ class CreateUserprofilesTable extends Migration
     {
         Schema::create('userprofiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('mobile')->nullable();
+            $table->string('gender')->nullable();
+
+            $table->string('url_website')->nullable();
+            $table->string('url_facebook')->nullable();
+            $table->string('url_twitter')->nullable();
+            $table->string('url_googleplus')->nullable();
+            $table->string('url_linkedin')->nullable();
+            $table->string('url_1')->nullable();
+            $table->string('url_2')->nullable();
+            $table->string('url_3')->nullable();
+
+            $table->string('profile_privecy')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->text('address')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('avatar')->nullable();
+            $table->text('user_metadata')->nullable();
+            $table->string('last_ip')->nullable();
+            $table->integer('logins_count')->default(0);
+            $table->timestamp('last_login')->nullable();
+            $table->timestamp('confirmed_at')->nullable();
+            $table->tinyInteger('status')->default(1)->unsigned();
+
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('deleted_by')->unsigned()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -131,7 +131,7 @@ class UserController extends Controller
 
         $$module_name_singular = auth()->user();
 
-        $$module_name_singular->update($request->only('name'));
+        $$module_name_singular->update($request->only('name', 'mobile', 'gender', 'date_of_birth'));
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {

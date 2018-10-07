@@ -38,18 +38,6 @@
                 {{ html()->modelForm($user, 'PATCH', route('backend.users.update', $user->id))->class('form-horizontal')->open() }}
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('name')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
 
                         <div class="col-md-10">
@@ -62,14 +50,10 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.mobile'))->class('col-md-2 form-control-label')->for('mobile') }}
+                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('mobile')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.mobile'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                            <a href="{{ route('backend.users.changePassword', $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-key"></i> Change password</a>
                         </div>
                     </div><!--form-group-->
 
@@ -77,7 +61,7 @@
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            <a href="{{ route('backend.users.changePassword', $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-key"></i> Change password</a>
+                            <a href="{{ route("backend.users.profileEdit", $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-user"></i> Update Profile</a>
                         </div>
                     </div><!--form-group-->
 

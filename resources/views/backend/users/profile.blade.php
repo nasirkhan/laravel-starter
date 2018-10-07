@@ -24,7 +24,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.users.profileEdit") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
+                    <a href="{{ route("backend.users.profileEdit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} Profile"><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
             <!--/.col-->
@@ -37,28 +37,40 @@
                     <table class="table table-hover">
                         <tr>
                             <th>{{ __('labels.backend.users.fields.avatar') }}</th>
-                            <td><img src="{{ asset('photos/avatars/'.$user->avatar) }}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
+                            <td><img src="{{asset($user->avatar)}}" class="user-profile-image img-fluid img-thumbnail" style="max-height:200px; max-width:200px;" /></td>
                         </tr>
 
+                        <?php $fields_array = [
+                            'name',
+                            'email',
+                            'mobile',
+                            'gender',
+                            'date_of_birth',
+                            'url_website',
+                            'url_facebook',
+                            'url_twitter',
+                            'url_googleplus',
+                            'url_linkedin',
+                            'url_1',
+                            'url_2',
+                            'url_3',
+                            'profile_privecy',
+                            'address',
+                            'bio',
+                            'logins_count',
+                            'last_login',
+                        ]; ?>
+                        <?php foreach ($fields_array as $field): ?>
                         <tr>
-                            <th>{{ __('labels.backend.users.fields.name') }}</th>
-                            <td>{{ $user->name }}</td>
+                            <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
+                            <td>{{ $userprofile->$field }}</td>
                         </tr>
-
-                        <tr>
-                            <th>{{ __('labels.backend.users.fields.email') }}</th>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>{{ __('labels.backend.users.fields.mobile') }}</th>
-                            <td>{{ $user->mobile }}</td>
-                        </tr>
+                        <?php endforeach; ?>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.password') }}</th>
                             <td>
-                                <a href="{{ route('backend.users.changeProfilePassword') }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                                <a href="{{ route('backend.users.changeProfilePassword', $user->id) }}" class="btn btn-outline-primary btn-sm">Change password</a>
                             </td>
                         </tr>
 
