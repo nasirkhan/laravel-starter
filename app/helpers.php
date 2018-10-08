@@ -136,7 +136,7 @@ if (!function_exists('form_cancel')) {
      *
      * @return mixed
      */
-    function form_cancel($cancel_to, $title, $classes = 'btn btn-danger btn-sm')
+    function form_cancel($cancel_to, $title, $classes = 'btn btn-warning pull-right')
     {
         return resolve(HtmlHelper::class)->formCancel($cancel_to, $title, $classes);
     }
@@ -150,7 +150,7 @@ if (!function_exists('form_submit')) {
      *
      * @return mixed
      */
-    function form_submit($title, $classes = 'btn btn-success btn-sm pull-right')
+    function form_submit($title, $classes = 'btn btn-success')
     {
         return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
@@ -246,28 +246,6 @@ if (!function_exists('fielf_required')) {
         return $return_text;
     }
 }
-
-/*
- * Get or Set the Settings Values
- *
- * @var [type]
- */
-// if (!function_exists('app_setting')) {
-//     function app_setting($key, $default = null)
-//     {
-//         if (is_null($key)) {
-//             return new App\Models\Setting();
-//         }
-//
-//         if (is_array($key)) {
-//             return App\Models\Setting::set($key[0], $key[1]);
-//         }
-//
-//         $value = App\Models\Setting::get($key);
-//
-//         return is_null($value) ? value($default) : $value;
-//     }
-// }
 
 /*
  * Get or Set the Settings Values
