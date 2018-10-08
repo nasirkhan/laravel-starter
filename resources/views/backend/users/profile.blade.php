@@ -62,8 +62,13 @@
                         ]; ?>
                         <?php foreach ($fields_array as $field): ?>
                         <tr>
+                            @if (starts_with($field, 'url_'))
+                            <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
+                            <td><a href="{{ $userprofile->$field }}" target="_blank">{{ $userprofile->$field }}</a></td>
+                            @else
                             <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
                             <td>{{ $userprofile->$field }}</td>
+                            @endif
                         </tr>
                         <?php endforeach; ?>
 
