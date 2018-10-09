@@ -3,11 +3,10 @@
 namespace App\Models\Presenters;
 
 /**
- * Presenter Class for Book Module
+ * Presenter Class for Book Module.
  */
 trait UserPresenter
 {
-
     /**
      * Get Status Label.
      *
@@ -42,5 +41,4 @@ trait UserPresenter
             return '<span class="badge badge-danger">Not Confirmed</span>';
         }
     }
-
 }
