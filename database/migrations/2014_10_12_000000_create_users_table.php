@@ -17,10 +17,14 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('mobile')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('password')->nullable();
-            $table->tinyInteger('active')->default(1)->unsigned();
+            $table->string('avatar')->nullable()->default('default-avatar.jpg');
+            $table->tinyInteger('status')->default(1)->unsigned();
             $table->string('confirmation_code')->nullable();
-            $table->boolean('confirmed')->default(config('access.users.confirm_email') ? false : true);
+            $table->timestamp('confirmed_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

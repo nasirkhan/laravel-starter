@@ -1,5 +1,9 @@
 /node_modules
 /public/hot
+!/public/photos/
+/public/photos/**
+!/public/photos/avatars/default-avatar.jpg
+!/public/photos/avatars/index.html
 /public/storage
 /storage/*.key
 /vendor

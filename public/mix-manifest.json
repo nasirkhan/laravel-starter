@@ -1,0 +1,8 @@
+{
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/laravel.js": "/js/laravel.js",
+    "/css/app_frontend.css": "/css/app_frontend.css",
+    "/js/app_frontend.js": "/js/app_frontend.js",
+    "/css/app_backend.css": "/css/app_backend.css",
+    "/js/app_backend.js": "/js/app_backend.js"
+}

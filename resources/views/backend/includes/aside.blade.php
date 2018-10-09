@@ -129,7 +129,7 @@
             <div class="message">
                 <div class="py-3 pb-5 mr-3 float-left">
                     <div class="avatar">
-                        <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         <span class="avatar-status badge-success"></span>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
             <div class="message">
                 <div class="py-3 pb-5 mr-3 float-left">
                     <div class="avatar">
-                        <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         <span class="avatar-status badge-success"></span>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
             <div class="message">
                 <div class="py-3 pb-5 mr-3 float-left">
                     <div class="avatar">
-                        <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         <span class="avatar-status badge-success"></span>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
             <div class="message">
                 <div class="py-3 pb-5 mr-3 float-left">
                     <div class="avatar">
-                        <img src="img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="{{ asset('img/avatars/7.jpg') }}" class="img-avatar" alt="admin@bootstrapmaster.com">
                         <span class="avatar-status badge-success"></span>
                     </div>
                 </div>

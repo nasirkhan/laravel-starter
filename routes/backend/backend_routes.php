@@ -1,58 +1,65 @@
 <?php
 
 /**
- * Backend Routes
+ * Backend Dashboard
  * Namespaces indicate folder structure.
  */
+Route::get('/', 'BackendController@index')->name('home');
 Route::get('dashboard', 'BackendController@index')->name('dashboard');
 
-Route::resource('users', 'UserController');
+/*
+ *
+ *  Settings Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+Route::group(['middleware' => ['permission:edit_settings']], function () {
+    Route::get('settings', 'SettingController@index')->name('settings');
+    Route::post('settings', 'SettingController@store')->name('settings.store');
+});
 
+/*
+ *
+ *  Backup Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+$module_name = 'backups';
+$controller_name = 'BackupController';
+Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
+Route::get("$module_name/create", ['as' => "$module_name.create", 'uses' => "$controller_name@create"]);
+Route::get("$module_name/download/{file_name}", ['as' => "$module_name.download", 'uses' => "$controller_name@download"]);
+Route::get("$module_name/delete/{file_name}", ['as' => "$module_name.delete", 'uses' => "$controller_name@delete"]);
+
+/*
+ *
+ *  Roles Routes
+ *
+ * ---------------------------------------------------------------------
+ */
 Route::resource('roles', 'RolesController');
 
-// Route::group(['namespace' => 'Backend'], function () {
-//     // need to be logged in,
-//     // user must have the permission 'view-backend'
-//     // Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:view-backend']], function () {
-//     Route::group(['prefix' => 'admin'], function () {
-//
-//         // user, role and permission related routes
-//         // require (__DIR__ . '/Routes/Backend/AccessRoutes.php');
-//
-//         // backend dashboard
-//         Route::get('/', ['as' => 'backend.dashboard', 'uses' => 'BackendController@index']);
-//
-//         // /**
-//         //  *
-//         //  *  Posts Routes
-//         //  *
-//         //  * ---------------------------------------------------------------------
-//         //  */
-//         // Route::get('posts/index-data', ['as' => 'admin.posts.index-data', 'uses' => 'PostsController@index_data']);
-//         // Route::get('posts/trashed', ['as' => 'admin.posts.trashed', 'uses' => 'PostsController@trashed']);
-//         // Route::post('posts/trashed/{id}', ['as' => 'admin.posts.restore', 'uses' => 'PostsController@restore']);
-//         // Route::resource('posts', 'PostsController');
-//         //
-//         // /**
-//         //  *
-//         //  *  Posts Routes
-//         //  *
-//         //  * ---------------------------------------------------------------------
-//         //  */
-//         // Route::get('pages/index-data', ['as' => 'admin.pages.index-data', 'uses' => 'PagesController@index_data']);
-//         // Route::get('pages/trashed', ['as' => 'admin.pages.trashed', 'uses' => 'PagesController@trashed']);
-//         // Route::post('pages/trashed/{id}', ['as' => 'admin.pages.restore', 'uses' => 'PagesController@restore']);
-//         // Route::resource('pages', 'PagesController');
-//         //
-//         // /**
-//         //  *
-//         //  *  Categories Routes
-//         //  *
-//         //  * ---------------------------------------------------------------------
-//         //  */
-//         // Route::get('categories/index-data', ['as' => 'admin.categories.index-data', 'uses' => 'CategoriesController@index_data']);
-//         // Route::get('categories/trashed', ['as' => 'admin.categories.trashed', 'uses' => 'CategoriesController@trashed']);
-//         // Route::post('categories/trashed/{id}', ['as' => 'admin.categories.restore', 'uses' => 'CategoriesController@restore']);
-//         // Route::resource('categories', 'CategoriesController');
-//     });
-// });
+/*
+ *
+ *  Users Routes
+ *
+ * ---------------------------------------------------------------------
+ */
+$module_name = 'users';
+$controller_name = 'UserController';
+Route::get("$module_name/profile/{id}", ['as' => "$module_name.profile", 'uses' => "$controller_name@profile"]);
+Route::get("$module_name/profile/{id}/edit", ['as' => "$module_name.profileEdit", 'uses' => "$controller_name@profileEdit"]);
+Route::patch("$module_name/profile/{id}/edit", ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);
+Route::get("$module_name/emailConfirmation/{confirmation_code}", ['as' => "$module_name.emailConfirmation", 'uses' => "$controller_name@emailConfirmation"]);
+Route::get("$module_name/emailConfirmationResend/{hashid}", ['as' => "$module_name.emailConfirmationResend", 'uses' => "$controller_name@emailConfirmationResend"]);
+Route::delete("$module_name/userProviderDestroy", ['as' => "$module_name.userProviderDestroy", 'uses' => "$controller_name@userProviderDestroy"]);
+Route::get("$module_name/profile/changeProfilePassword/{id}", ['as' => "$module_name.changeProfilePassword", 'uses' => "$controller_name@changeProfilePassword"]);
+Route::patch("$module_name/profile/changeProfilePassword/{id}", ['as' => "$module_name.changeProfilePasswordUpdate", 'uses' => "$controller_name@changeProfilePasswordUpdate"]);
+Route::get("$module_name/changePassword/{id}", ['as' => "$module_name.changePassword", 'uses' => "$controller_name@changePassword"]);
+Route::patch("$module_name/changePassword/{id}", ['as' => "$module_name.changePasswordUpdate", 'uses' => "$controller_name@changePasswordUpdate"]);
+Route::get("$module_name/trashed", ['as' => "$module_name.trashed", 'uses' => "$controller_name@trashed"]);
+Route::patch("$module_name/trashed/{id}", ['as' => "$module_name.restore", 'uses' => "$controller_name@restore"]);
+Route::get("$module_name/index_data", ['as' => "$module_name.index_data", 'uses' => "$controller_name@index_data"]);
+Route::resource("$module_name", "$controller_name");
+Route::patch("$module_name/{id}/block", ['as' => "$module_name.block", 'uses' => "$controller_name@block", 'middleware' => ['permission:block_users']]);
+Route::patch("$module_name/{id}/unblock", ['as' => "$module_name.unblock", 'uses' => "$controller_name@unblock", 'middleware' => ['permission:block_users']]);

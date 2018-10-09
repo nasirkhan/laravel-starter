@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Socialite;
 
 class LoginController extends Controller
@@ -39,6 +40,67 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return Response
+     */
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+            flash('<i class="fas fa-check"></i> Login Successful')->success();
+
+            return redirect()->intended('/');
+        } else {
+            flash('<i class="fas fa-exclamation-triangle"></i> Login Failed. Please Contact Administrator.')->error();
+
+            return redirect()->back();
+        }
+    }
+
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $data['active'] = true;
+        $data['confirmed'] = true;
+
+        return $data;
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [$this->username() => __('auth.failed')];
+        // Load user from database
+        $user = User::where($this->username(), $request->{$this->username()})->first();
+
+        // Check if user was successfully loaded, that the password matches
+        // and active is not 1. If so, override the default error message.
+        if ($user && \Hash::check($request->password, $user->password) && $user->status != 1) {
+            $errors = [$this->username() => 'Your account is not active.'];
+        }
+
+        if ($user && \Hash::check($request->password, $user->password) && $user->confirmed != 1) {
+            $errors = [$this->username() => __('exceptions.frontend.auth.confirmation.resend', ['user_id' => $user->id])];
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json($errors, 422);
+        }
+
+        return redirect()->back()
+        ->withInput($request->only($this->username(), 'remember'))
+        ->withErrors($errors);
     }
 
     public function redirectToProvider($provider)

@@ -1,18 +1,22 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
-<?php
-$module_name_singular = str_singular($module_name);
-?>
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+<li class="breadcrumb-item active"> {{ $module_action }}</li>
+@stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.users.edit.title') }}
+                    <i class="{{$module_icon}}"></i> {{ __('labels.backend.users.edit.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.edit.action') }} </small>
                 </h4>
                 <div class="small text-muted">
@@ -20,9 +24,9 @@ $module_name_singular = str_singular($module_name);
                 </div>
             </div>
             <!--/.col-->
-            <div class="col-sm-7">
+            <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fa fa-reply"></i></button>
+                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
                 </div>
             </div>
             <!--/.col-->
@@ -32,18 +36,6 @@ $module_name_singular = str_singular($module_name);
         <div class="row mt-4 mb-4">
             <div class="col">
                 {{ html()->modelForm($user, 'PATCH', route('backend.users.update', $user->id))->class('form-horizontal')->open() }}
-
-                    <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
-
-                        <div class="col-md-10">
-                            {{ html()->text('name')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
-                        </div>
-                    </div><!--form-group-->
 
                     <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.email'))->class('col-md-2 form-control-label')->for('email') }}
@@ -57,9 +49,54 @@ $module_name_singular = str_singular($module_name);
                         </div>
                     </div><!--form-group-->
 
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+
+                        <div class="col-md-10">
+                            <a href="{{ route('backend.users.changePassword', $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-key"></i> Change password</a>
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+
+                        <div class="col-md-10">
+                            <a href="{{ route("backend.users.profileEdit", $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-user"></i> Update Profile</a>
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
+
+                        <div class="col-md-10">
+                            @if ($user->confirmed_at == null)
+                            <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-outline-primary btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Send Confirmation Email</a>
+
+                            <a href="{{route('backend.users.emailConfirmation', $user->confirmation_code)}}" class="btn btn-outline-info btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Confirm Email</a>
+                            @else
+                            {!! $user->confirmed_label !!}
+                            @endif
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            {{ __('labels.backend.users.fields.social') }}
+                        </div>
+                        <div class="col-md-10">
+                            <ul class="list-unstyled">
+                                @foreach ($user->providers as $provider)
+                                <li>
+                                    <i class="fab fa-{{ $provider->provider }}"></i> {{ label_case($provider->provider) }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div><!--form-group-->
+
                     <div class="row">
                         <div class="col">
-                            <table class="table table-responsive">
+                            <table class="table table-responsive-sm">
                                 <thead>
                                     <tr>
                                         <th>Roles</th>

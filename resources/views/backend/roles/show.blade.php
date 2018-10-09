@@ -10,73 +10,57 @@ $module_name_singular = str_singular($module_name);
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-8">
                 <h4 class="card-title mb-0">
-                    {{ __("labels.backend.$module_name.index.title") }}
+                    <i class="{{$module_icon}}"></i> {{ __("labels.backend.$module_name.index.title") }}
                     <small class="text-muted">{{ __("labels.backend.$module_name.show.action") }} </small>
                 </h4>
                 <div class="small text-muted">
                     {{ __("labels.backend.$module_name.index.sub-title") }}
                 </div>
             </div>
-            <!--/.col-->
-            <div class="col-sm-7">
+            <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fa fa-reply"></i></button>
+                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <a href="{{route("backend.$module_name.edit", $$module_name_singular)}}" class="btn btn-primary ml-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
                 </div>
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
 
         <div class="row mt-4 mb-4">
             <div class="col">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true">
-                            <i class="fa fa-user"></i> {{ __("labels.backend.$module_name.show.profile") }}
-                        </a>
-                    </li>
-                </ul>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
+                            <td>{{ $$module_name_singular->name }}</td>
+                        </tr>
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="overview" role="tabpanel" aria-expanded="true">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-responsive">
-                                <tr>
-                                    <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
-                                    <td>{{ $$module_name_singular->name }}</td>
-                                </tr>
+                        <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
+                            <td>
+                                @if($$module_name_singular->permissions()->count() > 0)
+                                    <ul>
+                                        @foreach ($$module_name_singular->permissions as $permission)
+                                        <li>{{ $permission->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
-                                    <td>
-                                        @if($$module_name_singular->permissions()->count() > 0)
-                                            <ul>
-                                                @foreach ($$module_name_singular->permissions as $permission)
-                                                <li>{{ $permission->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
-                                    </td>
-                                </tr>
+                        <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.created_at") }}</th>
+                            <td>{{ $$module_name_singular->created_at }}<br><small>({{ $$module_name_singular->created_at->diffForHumans() }})</small></td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.created_at') }}</th>
-                                    <td>{{ $$module_name_singular->created_at }}<br><small>({{ $$module_name_singular->created_at->diffForHumans() }})</small></td>
-                                </tr>
+                        <tr>
+                            <th>{{ __("labels.backend.$module_name.fields.updated_at") }}</th>
+                            <td>{{ $$module_name_singular->updated_at }}<br/><small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small></td>
+                        </tr>
 
-                                <tr>
-                                    <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                                    <td>{{ $$module_name_singular->updated_at }}<br/><small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small></td>
-                                </tr>
-
-                            </table>
-                        </div><!--table-responsive-->
-
-                    </div><!--tab-->
-
-                </div>
+                    </table>
+                </div><!--table-responsive-->
             </div>
             <!--/.col-->
         </div>

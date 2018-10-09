@@ -52,6 +52,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof AuthorizationException) {
+            return $this->unauthorized($request, $exception);
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -62,5 +66,16 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('frontend.auth.login'));
+    }
+
+    private function unauthorized($request, Exception $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => $exception->getMessage()], 403);
+        }
+
+        flash()->warning($exception->getMessage());
+
+        return redirect()->route('backend.home');
     }
 }

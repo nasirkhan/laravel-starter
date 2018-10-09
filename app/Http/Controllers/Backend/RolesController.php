@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
@@ -10,11 +11,13 @@ use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
+    use Authorizable;
+
     public function __construct()
     {
         $this->module_name = 'roles';
         $this->module_path = 'roles';
-        $this->module_icon = 'fa fa-users';
+        $this->module_icon = 'icon-user-following';
         $this->module_title = 'Roles';
         $this->module_model = 'App\Models\Role';
     }
@@ -77,18 +80,9 @@ class RolesController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Details';
 
-        $$module_name_singular = User::create($request->except('roles'));
+        $$module_name_singular = Role::create($request->except('permissions'));
 
-        $roles = $request['roles'];
         $permissions = $request['permissions'];
-
-        // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        } else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
-        }
 
         // Sync Permissions
         if (isset($permissions)) {
@@ -110,17 +104,22 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
-        $module_icon = $this->module_icon;
         $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Show';
+
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.show", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.show",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
     }
 
     /**
@@ -204,7 +203,7 @@ class RolesController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = Role::withTrashed()->find($id);
         //        $$module_name_singular = $this->findOrThrowException($id);
 
         if ($$module_name_singular->delete()) {
@@ -223,9 +222,9 @@ class RolesController extends Controller
 
         $module_action = 'Restore';
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = Role::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.ucfirst($module_name_singular).' Restored Successfully!');
+        return redirect("admin/$module_name")->with('flash_success', '<i class="fa fa-check"></i> '.label_case($module_name_singular).' Restored Successfully!');
     }
 }

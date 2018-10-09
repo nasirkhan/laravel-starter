@@ -13,6 +13,15 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        $body_class = '';
+
+        return view('frontend.index', compact('body_class'));
+    }
+
+    public function profile()
+    {
+        $body_class = 'profile-page';
+
+        return view('frontend.profile', compact('body_class'));
     }
 }
