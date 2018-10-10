@@ -36,12 +36,42 @@ class GenerateMenus
             ])
             ->data('order', 77);
 
+            if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])) {
+                // Settings
+                $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
+                    'route' => 'backend.settings',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 78,
+                    'activematches' => 'admin/settings*',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+            }
+
+            if (auth()->check() && auth()->user()->hasAnyPermission(['view_backups'])) {
+                // Backup
+                $menu->add('<i class="nav-icon fas fa-archive"></i> Backups', [
+                    'route' => 'backend.backups.index',
+                    'class' => 'nav-item',
+                ])
+                ->data([
+                    'order'         => 79,
+                    'activematches' => 'admin/backups*',
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
+            }
+
             // Access Control Dropdown
             $accessControl = $menu->add('<i class="nav-icon icon-key"></i> Access Control', [
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 78,
+                'order'         => 80,
                 'activematches' => [
                     'admin/roles*',
                     'admin/users*',
@@ -58,7 +88,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 79,
+                'order'         => 81,
                 'activematches' => 'admin/users*',
             ])
             ->link->attr([
@@ -71,42 +101,12 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 80,
+                'order'         => 82,
                 'activematches' => 'admin/roles*',
             ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
-
-            if (auth()->check() && auth()->user()->hasAnyPermission(['edit_settings'])) {
-                // Settings
-                $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
-                    'route' => 'backend.settings',
-                    'class' => 'nav-item',
-                ])
-                ->data([
-                    'order'         => 81,
-                    'activematches' => 'admin/settings*',
-                ])
-                ->link->attr([
-                    'class' => 'nav-link',
-                ]);
-            }
-
-            if (auth()->check() && auth()->user()->hasAnyPermission(['view_backups'])) {
-                // Backup
-                $menu->add('<i class="nav-icon fas fa-archive"></i> Backups', [
-                    'route' => 'backend.backups.index',
-                    'class' => 'nav-item',
-                ])
-                ->data([
-                    'order'         => 82,
-                    'activematches' => 'admin/backups*',
-                ])
-                ->link->attr([
-                    'class' => 'nav-link',
-                ]);
-            }
 
             // Log Viewer
             if (auth()->check() && auth()->user()->hasAnyPermission(['view_logs'])) {

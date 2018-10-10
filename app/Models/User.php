@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Presenters\UserPresenter;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait;
+    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
 
     protected $guarded = [
         'id',
@@ -73,41 +74,6 @@ class User extends Authenticatable implements HasMedia
     public function getRolesListAttribute()
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     * Get Status Label.
-     *
-     * @return [type] [description]
-     */
-    public function getStatusLabelAttribute()
-    {
-        switch ($this->status) {
-            case '1':
-                return '<span class="badge badge-success">Active</span>';
-                break;
-            case '2':
-                return '<span class="badge badge-warning">Blocked</span>';
-                break;
-
-            default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
-                break;
-        }
-    }
-
-    /**
-     * Get Status Label.
-     *
-     * @return [type] [description]
-     */
-    public function getConfirmedLabelAttribute()
-    {
-        if ($this->confirmed_at != null) {
-            return '<span class="badge badge-success">Confirmed</span>';
-        } else {
-            return '<span class="badge badge-danger">Not Confirmed</span>';
-        }
     }
 
     /**
