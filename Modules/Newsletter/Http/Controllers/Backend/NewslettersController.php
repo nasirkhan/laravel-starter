@@ -4,6 +4,7 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Auth;
 use Carbon\Carbon;
 use Flash;
@@ -11,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use App\Models\Role;
 use Modules\Article\Http\Requests\Backend\CategoriesRequest;
 use Yajra\DataTables\DataTables;
 
