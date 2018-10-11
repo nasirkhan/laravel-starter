@@ -4,6 +4,7 @@ namespace Modules\Article\Providers;
 
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
 
 class ArticleServiceProvider extends ServiceProvider
 {

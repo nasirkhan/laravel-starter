@@ -30,7 +30,7 @@ if (!app()->routesAreCached()) {
     ->data('order', 2);
 
     // Articles Dropdown
-    $accessControl = $menu->add('<i class="fas fa-file-alt"></i> Article', [
+    $accessControl = $menu->add('<i class="nav-icon fas fa-file-alt"></i> Article', [
         'class' => 'nav-item nav-dropdown',
     ])
     ->data('order', 3);
@@ -40,7 +40,7 @@ if (!app()->routesAreCached()) {
     ]);
 
     // Submenu: Posts
-    $accessControl->add('<i class="fas fa-file-alt"></i> Posts', [
+    $accessControl->add('<i class="nav-icon fas fa-file-alt"></i> Posts', [
         'route' => 'backend.posts.index',
         'class' => 'nav-item',
     ])
@@ -49,7 +49,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-link',
     ]);
     // Submenu: Categories
-    $accessControl->add('<i class="fas fa-sitemap"></i> Categories', [
+    $accessControl->add('<i class="nav-icon fas fa-sitemap"></i> Categories', [
         'route' => 'backend.categories.index',
         'class' => 'nav-item',
     ])
@@ -58,7 +58,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-link',
     ]);
     // Submenu: Tags
-    $accessControl->add('<i class="fas fa-tags"></i> Tags', [
+    $accessControl->add('<i class="nav-icon fas fa-tags"></i> Tags', [
         'route' => 'backend.tags.index',
         'class' => 'nav-item',
     ])

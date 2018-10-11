@@ -2,23 +2,31 @@
 
 namespace App\Models;
 
+use App\Models\Presenters\UserPresenter;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasRoles, Notifiable, SoftDeletes;
+    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password', 'avatar',
+    protected $guarded = [
+        'id',
+        'updated_at',
+        '_token',
+        '_method',
+        'password_confirmation',
+    ];
+
+    protected $dates = [
+        'deleted_at',
+        'confirmed_at',
+        'date_of_birth',
     ];
 
     /**
@@ -36,6 +44,14 @@ class User extends Authenticatable
     public function providers()
     {
         return $this->hasMany('App\Models\UserProvider');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userprofile()
+    {
+        return $this->hasOne('App\Models\Userprofile');
     }
 
     /**
@@ -58,48 +74,6 @@ class User extends Authenticatable
     public function getRolesListAttribute()
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     * Get Status Label.
-     *
-     * @return [type] [description]
-     */
-    public function getStatusLabelAttribute()
-    {
-        switch ($this->status) {
-            case '1':
-                return '<span class="badge badge-success">Active</span>';
-                break;
-            case '2':
-                return '<span class="badge badge-warning">Blocked</span>';
-                break;
-
-            default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
-                break;
-        }
-    }
-
-    /**
-     * Get Status Label.
-     *
-     * @return [type] [description]
-     */
-    public function getConfirmedLabelAttribute()
-    {
-        switch ($this->status) {
-            case '1':
-                return '<span class="badge badge-success">Yes</span>';
-                break;
-            case '0':
-                return '<span class="badge badge-warning">No</span>';
-                break;
-
-            default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
-                break;
-        }
     }
 
     /**

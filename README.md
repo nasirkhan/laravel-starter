@@ -1,7 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 # Laravel Starter
-Laravel 5.6 based simple starter project.
+Laravel 5.7 based simple starter project.
 
 > Current Build Status
 
@@ -29,7 +29,7 @@ Laravel 5.6 based simple starter project.
   * Tags
   * wysiwyg editor
   * file browser
-* Application Setting
+* Application Settings 
 * External Libraries
   * Bootstrap 4
   * Fontawesome 5
@@ -38,6 +38,8 @@ Laravel 5.6 based simple starter project.
   * Datatables
   * Select2
   * Date Time Picker
+* Backup (Source, Files, Database as Zip)
+* Log Viewer
 
 ## Installation
 
@@ -53,6 +55,10 @@ Follow the steps mentioned below to install and run the project.
 ### Set Module Permissions
 1. Set Permissions for Posts, Categories, Tags: `php artisan article:create-permissions`
 1. Set Permissions for Newsletter:  `php artisan newsletter:create-permissions`
+
+*After creating the new permissions use the following commands to update cashed permissions.*
+
+`php artisan cache:forget spatie.permission.cache`
 
 ### Seed Sample Data (Optional & should use only on testing)
 1. Add sample data on Posts, Categories, Tags with the following command `php artisan article:create-sample-data`

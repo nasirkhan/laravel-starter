@@ -2,7 +2,7 @@
     <label for="{{ $field['name'] }}">{{ $field['label'] }}</label>
     <input type="{{ $field['type'] }}"
            name="{{ $field['name'] }}"
-           value="{{ old($field['name'], app_setting($field['name'])) }}"
+           value="{{ old($field['name'], setting($field['name'])) }}"
            class="form-control {{ array_get( $field, 'class') }}"
            id="{{ $field['name'] }}"
            placeholder="{{ $field['label'] }}">

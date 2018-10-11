@@ -21,9 +21,9 @@ return [
                 'data'  => 'string', // data type, string, int, boolean
                 'name'  => 'footer_text', // unique name for field
                 'label' => 'Footer Text', // you know what label it is
-                'rules' => 'required|min:2|max:50', // validation rule of laravel
+                'rules' => 'required|min:2', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Developed with ♥ from Bangladesh', // default value if you want
+                'value' => '<a href="https://github.com/nasirkhan/laravel-starter/">Developed with ♥ from Bangladesh</a>', // default value if you want
             ],
         ],
     ],

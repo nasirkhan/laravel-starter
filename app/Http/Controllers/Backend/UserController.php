@@ -3,15 +3,23 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
+use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
+use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Userprofile;
 use App\Models\UserProvider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Image;
 use Log;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -38,40 +46,103 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Index';
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
-        $page_heading = 'All Users';
+        $module_action = 'List';
 
-        $$module_name = User::paginate();
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        // Log::info($module_name . ' Index View');
+        $$module_name = $module_model::paginate();
 
-        return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', 'module_action', 'module_name', "$module_name"));
+        Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+        return view("backend.$module_path.index_datatable",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+    }
+
+    public function index_data()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'List';
+
+        $$module_name = $module_model::select('id', 'name', 'email', 'updated_at', 'status', 'confirmed_at');
+
+        $data = $$module_name;
+
+        return Datatables::of($$module_name)
+                        ->addColumn('action', function ($data) {
+                            $module_name = $this->module_name;
+
+                            return view('backend.includes.user_actions', compact('module_name', 'data'));
+                        })
+                        ->addColumn('user_roles', function ($data) {
+                            $module_name = $this->module_name;
+
+                            return view('backend.includes.user_roles', compact('module_name', 'data'));
+                        })
+                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('status', function ($data) {
+                            $return_data = $data->status_label;
+                            $return_data .= '<br>'.$data->confirmed_label;
+
+                            return $return_data;
+                        })
+                        ->editColumn('updated_at', function ($data) {
+                            $module_name = $this->module_name;
+
+                            $diff = Carbon::now()->diffInHours($data->updated_at);
+
+                            if ($diff < 25) {
+                                return $data->updated_at->diffForHumans();
+                            } else {
+                                return $data->updated_at->toCookieString();
+                            }
+                        })
+                        ->rawColumns(['name', 'action', 'status', 'user_roles'])
+                        ->orderColumns(['id'], '-:column $1')
+                        ->make(true);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         $module_action = 'Create';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
         $roles = Role::get();
         $permissions = Permission::select('name', 'id')->get();
 
-        return view("backend.$module_name.create", compact('title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
+        return view("backend.$module_name.create",
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title', 'roles', 'permissions'));
     }
 
     /**
@@ -95,7 +166,25 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Details';
 
-        $$module_name_singular = User::create($request->except('roles'));
+        $order_data = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+
+        if ($request->confirmed == 1) {
+            $confirmed_data = [
+                'confirmed' => Carbon::now(),
+            ];
+
+            array_push($order_data, $confirmed_data);
+        } else {
+            $confirmed_data = [
+                'confirmed' => null,
+            ];
+
+            array_push($order_data, $confirmed_data);
+        }
+
+        // return $order_data;
+
+        $$module_name_singular = User::create($order_data);
 
         $roles = $request['roles'];
         $permissions = $request['permissions'];
@@ -115,6 +204,8 @@ class UserController extends Controller
             $permissions = [];
             $$module_name_singular->syncPermissions($permissions);
         }
+
+        event(new UserCreated($$module_name_singular));
 
         return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
     }
@@ -141,9 +232,10 @@ class UserController extends Controller
         $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         return view("backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile'));
     }
 
     /**
@@ -153,7 +245,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile($id)
     {
         $title = $this->module_title;
         $module_title = $this->module_title;
@@ -162,11 +254,14 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Show';
 
-        $id = auth()->user()->id;
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
-        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title'));
+        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'userprofile'));
     }
 
     /**
@@ -176,19 +271,29 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit()
+    public function profileEdit($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Edit';
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
-        $id = auth()->user()->id;
+        $module_action = 'Edit Profile';
 
-        $$module_name_singular = User::findOrFail($id);
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
 
-        return view("backend.$module_name.profileEdit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
+        $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+
+        return view("backend.$module_name.profileEdit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile'));
     }
 
     /**
@@ -199,7 +304,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request)
+    public function profileUpdate(Request $request, $id)
     {
         $this->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -208,24 +313,47 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
-        $id = auth()->user()->id;
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
-
-        $$module_name_singular->update($request->only('name', 'email'));
+        $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
-            $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('/photos/avatars/'.$filename));
-            $$module_name_singular->avatar = $filename;
+            if ($$module_name_singular->getMedia($module_name)->first()) {
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+            }
+
+            $media = $$module_name_singular->addMediaFromRequest('avatar')->toMediaCollection($module_name);
+
+            $$module_name_singular->avatar = $media->getUrl();
+
             $$module_name_singular->save();
         }
 
-        return redirect("admin/$module_name/profile")->with('flash_success', 'Update successful!');
+        // return $$module_name_singular->avatar;
+        // if ($request->hasFile('avatar')) {
+        //     $avatar = $request->file('avatar');
+        //     $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
+        //     $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //     })->save(public_path('/photos/avatars/'.$filename));
+        //     $$module_name_singular->avatar = $filename;
+        //     $$module_name_singular->save();
+        //     return $filename;
+        // }
+
+        $data_array = $request->except('avatar');
+        $data_array['avatar'] = $$module_name_singular->avatar;
+
+        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
+        $user_profile->update($data_array);
+
+        event(new UserProfileUpdated($user_profile));
+
+        return redirect(route('backend.users.profile', $$module_name_singular->id))->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -235,19 +363,22 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword()
+    public function changeProfilePassword($id)
     {
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
         $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
         $module_icon = $this->module_icon;
         $module_action = 'Edit';
 
-        $id = auth()->user()->id;
-
         $$module_name_singular = User::findOrFail($id);
 
-        return view("backend.$module_name.changePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title'));
+        return view("backend.$module_name.changeProfilePassword", compact('module_name', 'module_title', "$module_name_singular", 'module_icon', 'module_action', 'title'));
     }
 
     /**
@@ -258,12 +389,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request)
+    public function changeProfilePasswordUpdate(Request $request, $id)
     {
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
-
-        $id = auth()->user()->id;
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -273,29 +406,95 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function changePassword($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'Change Password';
+
+        $page_heading = label_case($module_title);
+        $title = $page_heading.' '.label_case($module_action);
+
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        return view("backend.$module_name.changePassword",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changePasswordUpdate(Request $request, $id)
+    {
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
-        $module_icon = $this->module_icon;
-        $module_action = 'Edit';
 
-        $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
+        if (!auth()->user()->can('edit_users')) {
+            $id = auth()->user()->id;
+        }
 
         $$module_name_singular = User::findOrFail($id);
+
+        $$module_name_singular->update($request->only('password'));
+
+        return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        if (!auth()->user()->can('edit_users')) {
+            abort(404);
+        }
+
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'Edit';
+
+        $page_heading = ucfirst($module_title);
+        $title = $page_heading.' '.ucfirst($module_action);
+
+        $$module_name_singular = $module_model::findOrFail($id);
 
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        return view("backend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions'));
+        $roles = Role::get();
+        $permissions = Permission::select('name', 'id')->get();
+
+        return view("backend.$module_name.edit",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'roles', 'permissions', 'userRoles', 'userPermissions'));
     }
 
     /**
@@ -308,6 +507,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->can('edit_users')) {
+            abort(404);
+        }
+
         $module_name = $this->module_name;
         $module_name_singular = str_singular($this->module_name);
 
@@ -367,6 +570,8 @@ class UserController extends Controller
 
         $$module_name_singular->delete();
 
+        event(new UserUpdatedProfileUpdate($$module_name_singular));
+
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Deleted!')->success();
 
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
@@ -422,6 +627,8 @@ class UserController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
+        event(new UserUpdatedProfileUpdate($$module_name_singular));
+
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' Successfully Restoreded!')->success();
 
         Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".auth()->user()->name);
@@ -451,6 +658,8 @@ class UserController extends Controller
         try {
             $$module_name_singular->status = 2;
             $$module_name_singular->save();
+
+            event(new UserUpdatedProfileUpdate($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Blocked!')->success();
 
@@ -482,6 +691,8 @@ class UserController extends Controller
         try {
             $$module_name_singular->status = 1;
             $$module_name_singular->save();
+
+            event(new UserUpdatedProfileUpdate($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Unblocked!')->success();
 
@@ -521,5 +732,90 @@ class UserController extends Controller
         }
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
+    }
+
+    /**
+     * Confirm Email Address of a User.
+     *
+     * @param string $confirmation_code Auto Generated Confirmation Code
+     *
+     * @return [type] [description]
+     */
+    public function emailConfirmation($confirmation_code)
+    {
+        // Find if the confirmation_code belongs to an user.
+        $user = User::where('confirmation_code', '=', $confirmation_code)->first();
+
+        // If there is a user continue else redirect back
+        if ($user) {
+            // Check if email is confirmed by right user
+            if ($user->id != auth()->user()->id) {
+                if (auth()->user()->hasRole('administrator')) {
+                    Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+                } else {
+                    Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+
+                    abort('404');
+                }
+            } elseif ($user->confirmed_at != null) {
+                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->confirmed_at);
+
+                flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
+
+                return redirect()->back();
+            }
+
+            $user->confirmed_at = Carbon::now();
+            $user->save();
+
+            flash('You have successfully confirmed your email address!')->success()->important();
+
+            return redirect()->back();
+        } else {
+            flash('Invalid email confirmation code!')->warning()->important();
+
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Resend Email Confirmation Code to User.
+     *
+     * @param [type] $hashid [description]
+     *
+     * @return [type] [description]
+     */
+    public function emailConfirmationResend($hashid)
+    {
+        $id = $hashid;
+
+        if ($id != auth()->user()->id) {
+            if (auth()->user()->hasRole('administrator')) {
+                Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+            } else {
+                Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+
+                abort('404');
+            }
+        }
+
+        $user = User::findOrFail($id);
+
+        if ($user->confirmed_at == null) {
+            Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
+
+            // Send Email To Registered User
+            Mail::to($user->email)->send(new EmailVerificationMail($user));
+
+            flash('Email Sent! Please Check Your Inbox.')->success()->important();
+
+            return redirect()->back();
+        } else {
+            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->confirmed_at);
+
+            flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
+
+            return redirect()->back();
+        }
     }
 }

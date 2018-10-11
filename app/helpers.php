@@ -136,7 +136,7 @@ if (!function_exists('form_cancel')) {
      *
      * @return mixed
      */
-    function form_cancel($cancel_to, $title, $classes = 'btn btn-danger btn-sm')
+    function form_cancel($cancel_to, $title, $classes = 'btn btn-warning pull-right')
     {
         return resolve(HtmlHelper::class)->formCancel($cancel_to, $title, $classes);
     }
@@ -150,7 +150,7 @@ if (!function_exists('form_submit')) {
      *
      * @return mixed
      */
-    function form_submit($title, $classes = 'btn btn-success btn-sm pull-right')
+    function form_submit($title, $classes = 'btn btn-success')
     {
         return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
@@ -252,8 +252,8 @@ if (!function_exists('fielf_required')) {
  *
  * @var [type]
  */
-if (!function_exists('app_setting')) {
-    function app_setting($key, $default = null)
+if (!function_exists('setting')) {
+    function setting($key, $default = null)
     {
         if (is_null($key)) {
             return new App\Models\Setting();
@@ -274,19 +274,18 @@ if (!function_exists('app_setting')) {
  *
  * @var [type]
  */
-if (!function_exists('setting')) {
-    function setting($key, $default = null)
+if (!function_exists('humanFilesize')) {
+    function humanFilesize($size, $precision = 2)
     {
-        if (is_null($key)) {
-            return new App\Models\Setting();
+        $units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        $step = 1024;
+        $i = 0;
+
+        while (($size / $step) > 0.9) {
+            $size = $size / $step;
+            $i++;
         }
 
-        if (is_array($key)) {
-            return App\Models\Setting::set($key[0], $key[1]);
-        }
-
-        $value = App\Models\Setting::get($key);
-
-        return is_null($value) ? value($default) : $value;
+        return round($size, $precision).$units[$i];
     }
 }

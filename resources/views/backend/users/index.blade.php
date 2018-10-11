@@ -1,6 +1,13 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
+
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+@stop
 
 @section('content')
 <div class="card">
@@ -57,7 +64,10 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{!! $user->status_label !!}</td>
+                            <td>
+                                {!! $user->status_label !!}
+                                {!! $user->confirmed_label !!}
+                            </td>
                             <td>
                                 @if($user->getRoleNames()->count() > 0)
                                     <ul>
@@ -70,7 +80,7 @@
                             <td>
                                 @if($user->getAllPermissions()->count() > 0)
                                     <ul>
-                                        @foreach ($user->getAllPermissions() as $permission)
+                                        @foreach ($user->getDirectPermissions() as $permission)
                                         <li>{{ $permission->name }}</li>
                                         @endforeach
                                     </ul>
@@ -89,9 +99,17 @@
                             <td class="text-right">
                                 <a href="{{route('backend.users.show', $user)}}" class="btn btn-success btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-desktop"></i></a>
                                 <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{route('backend.users.changePassword', $user)}}" class="btn btn-info btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.changePassword')}}"><i class="fas fa-key"></i></a>
+                                @if ($user->status != 2)
                                 <a href="{{route('backend.users.block', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.block')}}" data-confirm="Are you sure?"><i class="fas fa-ban"></i></a>
+                                @endif
+                                @if ($user->status == 2)
                                 <a href="{{route('backend.users.unblock', $user)}}" class="btn btn-info btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}" data-confirm="Are you sure?"><i class="fas fa-check"></i></a>
+                                @endif
                                 <a href="{{route('backend.users.destroy', $user)}}" class="btn btn-danger btn-sm mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i></a>
+                                @if ($user->confirmed_at == null)
+                                <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i></a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

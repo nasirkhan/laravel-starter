@@ -37,7 +37,7 @@
                         <i class="now-ui-icons users_single-02"></i> {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('frontend.profile') }}">Profile</a>
+                        <a class="dropdown-item" href="{{ route('frontend.users.profile', auth()->user()->id) }}">Profile</a>
                         <a class="dropdown-item" href="#">Dashboard</a>
                     </div>
                 </li>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 @endguest
-                
+
             </ul>
         </div>
     </div>

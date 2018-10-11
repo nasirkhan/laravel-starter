@@ -1,10 +1,14 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
-<?php
-$module_name_singular = str_singular($module_name);
-?>
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('breadcrumbs')
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+<li class="breadcrumb-item active"> {{ $module_action }}</li>
+@stop
 
 @section('content')
 <div class="card">
@@ -12,7 +16,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> Profile
+                    <i class="{{$module_icon}}"></i> User
                     <small class="text-muted">Change Password </small>
                 </h4>
                 <div class="small text-muted">
@@ -22,16 +26,30 @@ $module_name_singular = str_singular($module_name);
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <button onclick="window.history.back();"class="btn btn-sm btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
                 </div>
             </div>
             <!--/.col-->
         </div>
         <!--/.row-->
         <hr>
+        <div class="row">
+            <div class="col">
+                <strong>
+                    Name:
+                </strong>
+                {{ $$module_name_singular->name }}
+            </div>
+            <div class="col">
+                <strong>
+                    Email:
+                </strong>
+                {{ $$module_name_singular->email }}
+            </div>
+        </div>
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->form('PATCH', route('backend.users.changePasswordUpdate'))->class('form-horizontal')->open() }}
+                {{ html()->form('PATCH', route('backend.users.changePasswordUpdate', $$module_name_singular->id))->class('form-horizontal')->open() }}
 
                 <div class="form-group row">
                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}

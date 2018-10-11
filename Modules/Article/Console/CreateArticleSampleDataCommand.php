@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Newsletter\Console;
+namespace Modules\Article\Console;
 
 use Artisan;
 use Illuminate\Console\Command;
