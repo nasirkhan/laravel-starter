@@ -77,7 +77,20 @@
 </div>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col">
+        <div class="form-group">
+            <?php
+            $field_name = 'role_id';
+            $field_lable = label_case("User Group");
+            $field_placeholder = "-- Select an option --";
+            $required = "required";
+            $select_options = $roles;
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col">
         <div class="form-group">
             <?php
             $field_name = 'status';
@@ -94,7 +107,7 @@
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-6">
+    <div class="col">
         <div class="form-group">
             <?php
             $field_name = 'published_at';
