@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use Modules\Article\Http\Requests\Backend\CategoriesRequest;
+use Modules\Newsletter\Http\Requests\Backend\NewslettersRequest;
 use Yajra\DataTables\DataTables;
 
 class NewslettersController extends Controller
@@ -166,7 +166,7 @@ class NewslettersController extends Controller
      *
      * @return Response
      */
-    public function store(CategoriesRequest $request)
+    public function store(NewslettersRequest $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -232,10 +232,12 @@ class NewslettersController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $roles = Role::pluck('name', 'id');
+
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("newsletter::backend.$module_name.edit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'roles'));
     }
 
     /**
@@ -246,7 +248,7 @@ class NewslettersController extends Controller
      *
      * @return Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(NewslettersRequest $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
