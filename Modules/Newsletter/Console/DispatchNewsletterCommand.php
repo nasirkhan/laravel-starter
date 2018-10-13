@@ -2,12 +2,10 @@
 
 namespace Modules\Newsletter\Console;
 
+use App\Models\Role;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use Modules\Article\Entities\Newsletter;
 use Modules\Newsletter\Events\DispatchNewsletter;
-use App\Models\Role;
 
 class DispatchNewsletterCommand extends Command
 {
@@ -44,18 +42,18 @@ class DispatchNewsletterCommand extends Command
     {
         $newsletters = Newsletter::notDelivered()->get();
         echo "\n\n";
-        echo "Total Newsletters which are yet to deliver: ". $newsletters->count();
+        echo 'Total Newsletters which are yet to deliver: '.$newsletters->count();
         echo "\n\n";
 
         foreach ($newsletters as $newsletter) {
             echo "\n";
-            echo "Name: ". $newsletter->name;
+            echo 'Name: '.$newsletter->name;
             echo "\n";
-            echo "Time: ". $newsletter->published_at;
+            echo 'Time: '.$newsletter->published_at;
             echo "\n";
-            echo "User Group: ". $newsletter->role_name . " (Id:".$newsletter->role_id.")";
+            echo 'User Group: '.$newsletter->role_name.' (Id:'.$newsletter->role_id.')';
             echo "\n";
-            echo "Status: ". $newsletter->status . " (".$newsletter->status_label.")";
+            echo 'Status: '.$newsletter->status.' ('.$newsletter->status_label.')';
             echo "\n\n";
 
             if ($newsletter->role_id > 0) {
@@ -64,17 +62,16 @@ class DispatchNewsletterCommand extends Command
 
                 foreach ($users as $user) {
                     echo "\n";
-                    echo " User: ". $user->name . " (Id:".$user->id.")";
+                    echo ' User: '.$user->name.' (Id:'.$user->id.')';
 
-                    event( new DispatchNewsletter($newsletter, $user) );
+                    event(new DispatchNewsletter($newsletter, $user));
                 }
             }
 
             echo "\n\n\n";
         }
 
-
-        echo "---";
+        echo '---';
         echo "\n\n";
     }
 }
