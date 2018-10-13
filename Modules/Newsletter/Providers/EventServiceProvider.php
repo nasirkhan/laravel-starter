@@ -13,6 +13,6 @@ class EventServiceProvider extends ServiceProvider
         DispatchNewsletter::class => [
             DispatchNewsletterListener::class,
             DispatchNewsletterNotification::class,
-        ]
+        ],
     ];
 }

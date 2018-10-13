@@ -2,8 +2,8 @@
 
 namespace Modules\Article\Entities;
 
-use App\Models\Role;
 use App\Models\BaseModel;
+use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -104,7 +104,6 @@ class Newsletter extends BaseModel
     public function setRoleIdAttribute($value)
     {
         if ($value == 0) {
-
         } else {
             $this->attributes['role_id'] = $value;
 
@@ -126,7 +125,7 @@ class Newsletter extends BaseModel
     }
 
     /**
-     * Newsletters which are have not dispatched yet
+     * Newsletters which are have not dispatched yet.
      *
      * @param [type] $query [description]
      *
