@@ -6,8 +6,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Modules\Newsletter\Events\DispatchNewsletter;
 use Modules\Newsletter\Notifications\SpecialNewsletter;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class DispatchNewsletterNotification implements ShouldQueue
 {
