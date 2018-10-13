@@ -13,6 +13,9 @@ class SpecialNewsletter extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $newsletter;
+    public $user;
+
     /**
      * Create a new notification instance.
      *
@@ -43,10 +46,11 @@ class SpecialNewsletter extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $newsletter = $notifiable->newsletter;
+        $newsletter = $this->newsletter;
         $newsletter_name = $newsletter->name;
-        $user = $notifiable->user;
-        $user_name = $user_name->name;
+
+        $user = $this->user;
+        $user_name = $user->name;
 
         return (new MailMessage)
                     ->subject("Newsletter: $newsletter_name")
