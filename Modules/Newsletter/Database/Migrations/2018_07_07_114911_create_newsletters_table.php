@@ -24,11 +24,15 @@ class CreateNewslettersTable extends Migration
             $table->string('order')->nullable();
             $table->tinyInteger('status')->default(1);
 
-            $table->integer('created_by')->unsigned()->nullable()->index();
+            $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
             $table->timestamp('published_at')->nullable();
+
+            $table->integer('role_id')->unsigned()->nullable();
+            $table->string('role_name')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });
