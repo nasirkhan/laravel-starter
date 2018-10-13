@@ -28,7 +28,8 @@ class CreateNewslettersTable extends Migration
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 
-            $table->timestamp('published_at')->nullable();
+            $table->dateTime('published_at')->nullable();
+            $table->dateTime('delivered_at')->nullable();
 
             $table->integer('role_id')->unsigned()->nullable();
             $table->string('role_name')->nullable();

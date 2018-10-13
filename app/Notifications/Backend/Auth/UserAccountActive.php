@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 /**
  * Class UserAccountActive.
  */
-class UserAccountActive extends Notification
+class UserAccountActive extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -2,6 +2,7 @@
 
 namespace Modules\Article\Entities;
 
+use App\Models\Role;
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +12,12 @@ class Newsletter extends BaseModel
     use SoftDeletes;
 
     protected $table = 'newsletters';
+
+    protected $dates = [
+        'deleted_at',
+        'published_at',
+        'delivered_at',
+    ];
 
     /**
      * Set the 'Slug'.
@@ -88,13 +95,47 @@ class Newsletter extends BaseModel
         }
     }
 
-    /*
-     * a post is belongs to an user.
+    /**
+     * Set the published at
+     * If no value submitted use the 'Title'.
      *
-     * @return type
+     * @param [type]
      */
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User', 'created_by');
-    // }
+    public function setRoleIdAttribute($value)
+    {
+        if ($value == 0) {
+
+        } else {
+            $this->attributes['role_id'] = $value;
+
+            $this->attributes['role_name'] = Role::findOrFail($value)->name;
+        }
+    }
+
+    /**
+     * Get the list of Published Newsletters.
+     *
+     * @param [type] $query [description]
+     *
+     * @return [type] [description]
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('status', '=', '1')
+                        ->whereDate('published_at', '<=', Carbon::today()->toDateString());
+    }
+
+    /**
+     * Newsletters which are have not dispatched yet
+     *
+     * @param [type] $query [description]
+     *
+     * @return [type] [description]
+     */
+    public function scopeNotDelivered($query)
+    {
+        return $query->whereNull('delivered_at')
+                        ->where('status', '=', '1')
+                        ->whereDate('published_at', '<=', Carbon::today()->toDateString());
+    }
 }

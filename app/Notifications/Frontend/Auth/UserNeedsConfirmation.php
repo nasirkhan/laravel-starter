@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 /**
  * Class UserNeedsConfirmation.
  */
-class UserNeedsConfirmation extends Notification
+class UserNeedsConfirmation extends Notification implements ShouldQueue
 {
     use Queueable;
 
