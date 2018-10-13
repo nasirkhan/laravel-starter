@@ -2,18 +2,14 @@
 
 namespace Modules\Newsletter\Events;
 
-use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Modules\Article\Entities\Newsletter;
 use App\Models\User;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+use Modules\Article\Entities\Newsletter;
 
 /**
- * An Event to handle the Newsletter Dispatch
+ * An Event to handle the Newsletter Dispatch.
  */
 class DispatchNewsletter
 {

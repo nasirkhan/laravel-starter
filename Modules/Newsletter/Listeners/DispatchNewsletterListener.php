@@ -2,9 +2,9 @@
 
 namespace Modules\Newsletter\Listeners;
 
-use Modules\Newsletter\Events\DispatchNewsletter;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Modules\Newsletter\Events\DispatchNewsletter;
 
 class DispatchNewsletterListener implements ShouldQueue
 {
@@ -23,7 +23,8 @@ class DispatchNewsletterListener implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  DispatchNewsletter  $event
+     * @param DispatchNewsletter $event
+     *
      * @return void
      */
     public function handle(DispatchNewsletter $event)
