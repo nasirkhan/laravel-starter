@@ -174,6 +174,7 @@ class NewslettersController extends Controller
         $module_action = 'Create';
 
         $roles = Role::pluck('name', 'id');
+        $roles = array_add($roles, '0', 'All Users');
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -255,6 +256,7 @@ class NewslettersController extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
 
         $roles = Role::pluck('name', 'id');
+        $roles = array_add($roles, '0', 'All Users');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
