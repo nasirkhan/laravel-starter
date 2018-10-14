@@ -72,7 +72,7 @@ class SpecialNewsletter extends Notification implements ShouldQueue
     {
         return [
             'newsletter' => $this->newsletter,
-            'user' => $this->user
+            'user'       => $this->user,
         ];
     }
 
