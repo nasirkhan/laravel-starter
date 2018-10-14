@@ -108,7 +108,7 @@ class NewslettersController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'delivered_at', 'updated_at', 'published_at');
 
         $data = $$module_name;
 
@@ -119,6 +119,28 @@ class NewslettersController extends Controller
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
                         ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('delivered_at', function ($data) {
+                            $module_name = $this->module_name;
+
+                            $diff = Carbon::now()->diffInHours($data->delivered_at);
+
+                            if ($diff < 25) {
+                                return $data->delivered_at->diffForHumans();
+                            } else {
+                                return $data->delivered_at->toCookieString();
+                            }
+                        })
+                        ->editColumn('published_at', function ($data) {
+                            $module_name = $this->module_name;
+
+                            $diff = Carbon::now()->diffInHours($data->published_at);
+
+                            if ($diff < 25) {
+                                return $data->published_at->diffForHumans();
+                            } else {
+                                return $data->published_at->toCookieString();
+                            }
+                        })
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
 

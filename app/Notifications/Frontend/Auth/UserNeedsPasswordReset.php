@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 /**
  * Class UserNeedsPasswordReset.
  */
-class UserNeedsPasswordReset extends Notification
+class UserNeedsPasswordReset extends Notification implements ShouldQueue
 {
     use Queueable;
     /**

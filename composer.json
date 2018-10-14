@@ -11,6 +11,7 @@
         "hieu-le/active": "^3.5",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
+        "laravel/horizon": "^1.4",
         "laravel/socialite": "^3.1",
         "laravel/tinker": "^1.0",
         "lavary/laravel-menu": "^1.7",
