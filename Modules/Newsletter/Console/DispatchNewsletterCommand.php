@@ -3,11 +3,11 @@
 namespace Modules\Newsletter\Console;
 
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Log;
 use Modules\Article\Entities\Newsletter;
 use Modules\Newsletter\Events\DispatchNewsletter;
-use Carbon\Carbon;
-use Log;
 
 class DispatchNewsletterCommand extends Command
 {
@@ -74,8 +74,8 @@ class DispatchNewsletterCommand extends Command
             $newsletter->delivered_at = Carbon::now();
             $newsletter->save();
 
-            echo "\n\n>> Newsletter Delivered at " . Carbon::now();
-            Log::info("Newsletter: '". $newsletter->name ."' delived at " . Carbon::now());
+            echo "\n\n>> Newsletter Delivered at ".Carbon::now();
+            Log::info("Newsletter: '".$newsletter->name."' delived at ".Carbon::now());
 
             echo "\n\n\n";
         }
