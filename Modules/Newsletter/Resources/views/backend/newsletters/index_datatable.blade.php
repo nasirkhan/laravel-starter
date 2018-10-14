@@ -53,10 +53,10 @@
                                 Name
                             </th>
                             <th>
-                                Code
+                                Published At
                             </th>
                             <th>
-                                Updated At
+                                Delivered At
                             </th>
                             <th class="text-right">
                                 Action
@@ -106,8 +106,8 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'code', name: 'code'},
-            {data: 'updated_at', name: 'updated_at'},
+            {data: 'published_at', name: 'published_at'},
+            {data: 'delivered_at', name: 'delivered_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

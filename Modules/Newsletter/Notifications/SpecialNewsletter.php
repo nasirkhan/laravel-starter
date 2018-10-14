@@ -36,7 +36,7 @@ class SpecialNewsletter extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -59,6 +59,21 @@ class SpecialNewsletter extends Notification implements ShouldQueue
                     ->greeting("Hello $user_name!")
                     ->line('Thank you for your application. "'.$newsletter_name.'" is our new newsletter.')
                     ->action('Action', '#');
+    }
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param mixed $notifiable
+     *
+     * @return array
+     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'newsletter' => $this->newsletter,
+            'user' => $this->user
+        ];
     }
 
     /**

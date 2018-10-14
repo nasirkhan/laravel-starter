@@ -6,6 +6,8 @@ use App\Models\Role;
 use Illuminate\Console\Command;
 use Modules\Article\Entities\Newsletter;
 use Modules\Newsletter\Events\DispatchNewsletter;
+use Carbon\Carbon;
+use Log;
 
 class DispatchNewsletterCommand extends Command
 {
@@ -40,6 +42,7 @@ class DispatchNewsletterCommand extends Command
      */
     public function handle()
     {
+        // Get all newsletters which are published and not delivered
         $newsletters = Newsletter::notDelivered()->get();
         echo "\n\n";
         echo 'Total Newsletters which are yet to deliver: '.$newsletters->count();
@@ -67,6 +70,12 @@ class DispatchNewsletterCommand extends Command
                     event(new DispatchNewsletter($newsletter, $user));
                 }
             }
+
+            $newsletter->delivered_at = Carbon::now();
+            $newsletter->save();
+
+            echo "\n\n>> Newsletter Delivered at " . Carbon::now();
+            Log::info("Newsletter: '". $newsletter->name ."' delived at " . Carbon::now());
 
             echo "\n\n\n";
         }
