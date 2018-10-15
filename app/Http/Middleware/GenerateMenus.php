@@ -81,7 +81,6 @@ class GenerateMenus
                 'href'  => '#',
             ]);
 
-
             // Submenu: Users
             $accessControl->add('<i class="nav-icon icon-people"></i> Users', [
                 'route' => 'backend.users.index',
@@ -109,7 +108,6 @@ class GenerateMenus
             ->link->attr([
                 'class' => 'nav-link',
             ]);
-
 
             // Log Viewer
             // Log Viewer Dropdown
@@ -181,11 +179,12 @@ class GenerateMenus
             ]);
 
             // Access Permission Check
-            $menu->filter(function($item){
+            $menu->filter(function ($item) {
                 if ($item->data('permission')) {
-                    if(auth()->check() && auth()->user()->hasAnyPermission($item->data('permission'))) {
+                    if (auth()->check() && auth()->user()->hasAnyPermission($item->data('permission'))) {
                         return true;
                     }
+
                     return false;
                 } else {
                     return true;
