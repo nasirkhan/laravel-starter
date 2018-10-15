@@ -33,7 +33,15 @@ if (!app()->routesAreCached()) {
     $accessControl = $menu->add('<i class="nav-icon fas fa-file-alt"></i> Article', [
         'class' => 'nav-item nav-dropdown',
     ])
-    ->data('order', 3);
+    ->data([
+        'order'         => 3,
+        'activematches' => [
+            'admin/posts*',
+            'admin/categories*',
+            'admin/tags*',
+        ],
+        'permission'    => ['view_posts', 'view_categories', 'view_tags'],
+    ]);
     $accessControl->link->attr([
         'class' => 'nav-link nav-dropdown-toggle',
         'href'  => '#',
@@ -44,7 +52,11 @@ if (!app()->routesAreCached()) {
         'route' => 'backend.posts.index',
         'class' => 'nav-item',
     ])
-    ->data('order', 4)
+    ->data([
+        'order'         => 4,
+        'activematches' => 'admin/posts*',
+        'permission'    => ['edit_posts'],
+    ])
     ->link->attr([
         'class' => 'nav-link',
     ]);
@@ -53,7 +65,11 @@ if (!app()->routesAreCached()) {
         'route' => 'backend.categories.index',
         'class' => 'nav-item',
     ])
-    ->data('order', 5)
+    ->data([
+        'order'         => 5,
+        'activematches' => 'admin/categories*',
+        'permission'    => ['edit_categories'],
+    ])
     ->link->attr([
         'class' => 'nav-link',
     ]);
@@ -62,7 +78,11 @@ if (!app()->routesAreCached()) {
         'route' => 'backend.tags.index',
         'class' => 'nav-item',
     ])
-    ->data('order', 6)
+    ->data([
+        'order'         => 6,
+        'activematches' => 'admin/tags*',
+        'permission'    => ['edit_tags'],
+    ])
     ->link->attr([
         'class' => 'nav-link',
     ]);
