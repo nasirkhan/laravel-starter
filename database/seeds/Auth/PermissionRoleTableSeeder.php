@@ -37,6 +37,26 @@ class PermissionRoleTableSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
+        \Artisan::call('auth:permission', [
+            'name' => 'posts',
+        ]);
+        echo "\n _Posts_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
+            'name' => 'categories',
+        ]);
+        echo "\n _Categories_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
+            'name' => 'tags',
+        ]);
+        echo "\n _Tags_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
+            'name' => 'newsletters',
+        ]);
+        echo "\n _Newsletters_ Permissions Created.";
+
         // Assign Permissions to Roles
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo('view_backend');
