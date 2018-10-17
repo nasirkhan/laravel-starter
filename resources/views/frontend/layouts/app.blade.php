@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="{{$body_class}} sidebar-collapse">
+<body class="{{isset($body_class) ? $body_class : ''}} sidebar-collapse">
 
     <script>
         window.fbAsyncInit = function() {
