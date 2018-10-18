@@ -57,6 +57,8 @@ class PermissionRoleTableSeeder extends Seeder
         ]);
         echo "\n _Newsletters_ Permissions Created.";
 
+        echo "\n\n";
+
         // Assign Permissions to Roles
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo('view_backend');

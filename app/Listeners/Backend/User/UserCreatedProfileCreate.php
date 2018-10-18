@@ -28,7 +28,6 @@ class UserCreatedProfileCreate implements ShouldQueue
      */
     public function handle(UserCreated $event)
     {
-        Log::info('UserCreatedProfileCreate');
         $user = $event->user;
 
         $userprofile = new Userprofile();
@@ -41,5 +40,7 @@ class UserCreatedProfileCreate implements ShouldQueue
         $userprofile->avatar = $user->avatar;
         $userprofile->status = $user->status;
         $userprofile->save();
+
+        Log::info('UserCreatedProfileCreate: '. $userprofile->name . "(Id:".$userprofile->user_id.")");
     }
 }
