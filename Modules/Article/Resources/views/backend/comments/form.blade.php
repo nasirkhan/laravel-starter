@@ -12,8 +12,7 @@
             {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('title', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-posts')->attributes(["$required"]) }}
         </div>
     </div>
-</div>
-<div class="row">
+    
     <div class="col">
         <div class="form-group">
             <?php
