@@ -12,6 +12,16 @@ class Comment extends BaseModel
 
     protected $table = 'comments';
 
+    public function post()
+    {
+        return $this->belongsTo('Modules\Article\Entities\Post');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     /**
      * Set the 'Slug'.
      * If no value submitted 'Title' will be used as slug
@@ -24,7 +34,7 @@ class Comment extends BaseModel
         $this->attributes['slug'] = str_slug(trim($value));
 
         if (empty($value)) {
-            $this->attributes['slug'] = str_slug(trim($this->attributes['title']));
+            $this->attributes['slug'] = str_slug(trim($this->attributes['name']));
         }
     }
 

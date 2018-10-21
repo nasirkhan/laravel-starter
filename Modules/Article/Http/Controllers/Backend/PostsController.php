@@ -100,6 +100,42 @@ class PostsController extends Controller
     }
 
     /**
+     * Select Options for Select 2 Request/ Response.
+     *
+     * @return Response
+     */
+    public function index_list(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'List';
+
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $query_data = $module_model::where('title', 'LIKE', "%$term%")->published()->limit(10)->get();
+
+        $$module_name = [];
+
+        foreach ($query_data as $row) {
+            $$module_name[] = [
+                'id'   => $row->id,
+                'text' => $row->title,
+            ];
+        }
+
+        return response()->json($$module_name);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Response
