@@ -5,6 +5,7 @@ namespace Modules\Article\Entities;
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Article\Entities\Post;
 
 class Comment extends BaseModel
 {
@@ -20,6 +21,13 @@ class Comment extends BaseModel
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function setPostIdAttribute($value)
+    {
+        $this->attributes['post_id'] = $value;
+
+        $this->attributes['post_name'] = Post::findOrFail($value)->title;
     }
 
     /**

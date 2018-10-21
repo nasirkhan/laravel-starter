@@ -107,7 +107,7 @@ class CommentsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'post_name', 'updated_at');
 
         $data = $$module_name;
 
