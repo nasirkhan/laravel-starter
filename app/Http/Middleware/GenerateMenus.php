@@ -157,7 +157,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 7,
+                'order'         => 8,
                 'activematches' => [
                     'admin/newsletters*',
                 ],
@@ -173,7 +173,7 @@ class GenerateMenus
                 'route' => 'backend.newsletters.index',
                 'class' => 'nav-item',
             ])
-            ->data('order', 8)
+            ->data('order', 9)
             ->link->attr([
                 'class' => 'nav-link',
             ]);

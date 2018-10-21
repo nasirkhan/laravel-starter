@@ -1,0 +1,72 @@
+<?php
+
+namespace Modules\Article\Entities;
+
+use App\Models\BaseModel;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Comment extends BaseModel
+{
+    use SoftDeletes;
+
+    protected $table = 'comments';
+
+    /**
+     * Set the 'Slug'.
+     * If no value submitted 'Title' will be used as slug
+     * str_slug helper method was used to format the text.
+     *
+     * @param [type]
+     */
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = str_slug(trim($value));
+
+        if (empty($value)) {
+            $this->attributes['slug'] = str_slug(trim($this->attributes['title']));
+        }
+    }
+
+    /**
+     * Set the published at
+     * If no value submitted use the 'Title'.
+     *
+     * @param [type]
+     */
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value;
+
+        if (empty($value) && $this->attributes['status'] == 1) {
+            $this->attributes['published_at'] = Carbon::now();
+        }
+    }
+
+    /**
+     * Get the list of Published Articles.
+     *
+     * @param [type] $query [description]
+     *
+     * @return [type] [description]
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('status', '=', '1')
+                        ->whereDate('published_at', '<=', Carbon::today()->toDateString());
+    }
+
+    /**
+     * Get the list of Recently Published Articles.
+     *
+     * @param [type] $query [description]
+     *
+     * @return [type] [description]
+     */
+    public function scopeRecentlyPublished($query)
+    {
+        return $query->where('status', '=', '1')
+                        ->whereDate('published_at', '<=', Carbon::today()->toDateString())
+                        ->orderBy('published_at', 'desc');
+    }
+}

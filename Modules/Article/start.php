@@ -86,4 +86,17 @@ if (!app()->routesAreCached()) {
     ->link->attr([
         'class' => 'nav-link',
     ]);
+    // Submenu: Comments
+    $accessControl->add('<i class="nav-icon fas fa-comments"></i> Comments', [
+        'route' => 'backend.comments.index',
+        'class' => 'nav-item',
+    ])
+    ->data([
+        'order'         => 7,
+        'activematches' => 'admin/comments*',
+        'permission'    => ['edit_comments'],
+    ])
+    ->link->attr([
+        'class' => 'nav-link',
+    ]);
 })->sortBy('order');
