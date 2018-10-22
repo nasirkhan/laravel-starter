@@ -58,7 +58,7 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+                        {{ html()->label('Profile')->class('col-md-2 form-control-label')->for('profile') }}
 
                         <div class="col-md-10">
                             <a href="{{ route("backend.users.profileEdit", $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-user"></i> Update Profile</a>

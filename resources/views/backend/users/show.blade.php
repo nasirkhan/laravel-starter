@@ -159,7 +159,7 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        {{ label_case($column->column_name) }}
+                                        {{ label_case($column->Field) }}
                                     </strong>
                                 </td>
                                 <td>

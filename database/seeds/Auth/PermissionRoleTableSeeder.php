@@ -53,6 +53,11 @@ class PermissionRoleTableSeeder extends Seeder
         echo "\n _Tags_ Permissions Created.";
 
         \Artisan::call('auth:permission', [
+            'name' => 'comments',
+        ]);
+        echo "\n _Comments_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
             'name' => 'newsletters',
         ]);
         echo "\n _Newsletters_ Permissions Created.";
