@@ -185,7 +185,7 @@ if (!function_exists('label_case')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('show_column_value')) {
+if (!function_exists('show_column_value')) {
     /**
      * Return Column values as Raw and formatted.
      *
@@ -208,7 +208,7 @@ if (! function_exists('show_column_value')) {
 
         if ($column_type == 'json') {
             $return_text = json_encode($value);
-        } else if ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } elseif ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
