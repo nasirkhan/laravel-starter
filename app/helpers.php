@@ -185,8 +185,7 @@ if (!function_exists('label_case')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('show_column_value')) {
-
+if (! function_exists('show_column_value')) {
     /**
      * Return Column values as Raw and formatted.
      *
@@ -198,7 +197,8 @@ if (!function_exists('show_column_value')) {
      */
     function show_column_value($valueObject, $column, $return_format = '')
     {
-        $column_name = $column->column_name;
+        $column_name = $column->Field;
+        $column_type = $column->Type;
 
         $value = $valueObject->$column_name;
 
@@ -206,7 +206,9 @@ if (!function_exists('show_column_value')) {
             return $value;
         }
 
-        if (ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        if ($column_type == 'json') {
+            $return_text = json_encode($value);
+        } else if ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -218,7 +220,7 @@ if (!function_exists('show_column_value')) {
         } else {
             $return_text = $value;
         }
-
+        // $return_text = $value;
         return $return_text;
     }
 }
@@ -287,5 +289,49 @@ if (!function_exists('humanFilesize')) {
         }
 
         return round($size, $precision).$units[$i];
+    }
+}
+
+/*
+ *
+ * Encode Id to a Hashids\Hashids
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('encode_id')) {
+
+    /**
+     * Prepare the Column Name for Lables.
+     */
+    function encode_id($id)
+    {
+        $hashids = new Hashids\Hashids(config('app.salf'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $hashid = $hashids->encode($id);
+
+        return $hashid;
+    }
+}
+
+/*
+ *
+ * Decode Id to a Hashids\Hashids
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('decode_id')) {
+
+    /**
+     * Prepare the Column Name for Lables.
+     */
+    function decode_id($hashid)
+    {
+        $hashids = new Hashids\Hashids(config('app.salf'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $id = $hashids->decode($hashid);
+
+        if (count($id)) {
+            return $id[0];
+        } else {
+            abort(404);
+        }
     }
 }

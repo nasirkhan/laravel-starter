@@ -6,6 +6,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class BaseModel extends Model
 {
@@ -57,11 +58,9 @@ class BaseModel extends Model
      */
     public function getTableColumns()
     {
-        return $this->getConnection()->select(
-            (new \Illuminate\Database\Schema\Grammars\MySqlGrammar())->compileColumnListing()
-            .' order by ordinal_position',
-            [$this->getConnection()->getDatabaseName(), $this->getTable()]
-        );
+        $table_info_columns = DB::select( DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
+
+        return $table_info_columns;
     }
 
     /**
