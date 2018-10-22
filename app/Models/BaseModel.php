@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Auth;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use DB;
 
 class BaseModel extends Model
 {
@@ -58,7 +58,7 @@ class BaseModel extends Model
      */
     public function getTableColumns()
     {
-        $table_info_columns = DB::select( DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
+        $table_info_columns = DB::select(DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
 
         return $table_info_columns;
     }
