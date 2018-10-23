@@ -18,6 +18,7 @@
         "lavary/laravel-menu": "^1.7",
         "nwidart/laravel-modules": "^3.3",
         "predis/predis": "^1.1",
+        "spatie/laravel-activitylog": "^3.1",
         "spatie/laravel-backup": "^5.10",
         "spatie/laravel-html": "^2.19",
         "spatie/laravel-medialibrary": "^7.5",
