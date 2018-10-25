@@ -684,7 +684,7 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (auth()->id() == $id) {
+        if (auth()->user()->id == $id) {
             throw new GeneralException('You can not `Block` yourself.');
         }
 
@@ -717,7 +717,7 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (auth()->id() == $id) {
+        if (auth()->user()->id == $id) {
             throw new GeneralException('You can not `Unblocked` yourself.');
         }
 
