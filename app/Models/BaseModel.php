@@ -7,10 +7,9 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
@@ -56,8 +55,7 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     * Create Converted copies of uploaded images
-     *
+     * Create Converted copies of uploaded images.
      */
     public function registerMediaConversions(Media $media = null)
     {
