@@ -7,10 +7,14 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class BaseModel extends Model
+class BaseModel extends Model implements HasMedia
 {
-    use SoftDeletes;
+    use SoftDeletes, HasMediaTrait;
 
     protected $guarded = [
         'id',
@@ -49,6 +53,23 @@ class BaseModel extends Model
             $table->deleted_by = Auth::id();
             $table->save();
         });
+    }
+
+    /**
+     * Create Converted copies of uploaded images
+     *
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+              ->width(250)
+              ->height(250)
+              ->quality(70);
+
+        $this->addMediaConversion('thumb300')
+              ->width(300)
+              ->height(300)
+              ->quality(70);
     }
 
     /**
