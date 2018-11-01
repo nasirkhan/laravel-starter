@@ -118,7 +118,7 @@
                                                             @if ($role->id != 1)
                                                                 @if ($role->permissions->count())
                                                                     @foreach ($role->permissions as $permission)
-                                                                        <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
+                                                                        <i class="fa fa-dot-circle-o"></i> {{ $permission->name }}
                                                                     @endforeach
                                                                 @else
                                                                     None
