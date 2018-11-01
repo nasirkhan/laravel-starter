@@ -96,56 +96,55 @@
 
                     <div class="row">
                         <div class="col">
-                            <table class="table table-responsive-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Roles</th>
-                                        <th>Permissions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @if ($roles->count())
-                                                @foreach($roles as $role)
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="checkbox">
-                                                                {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            @if ($role->id != 1)
-                                                                @if ($role->permissions->count())
-                                                                    @foreach ($role->permissions as $permission)
-                                                                        <i class="fa fa-dot-circle-o"></i> {{ $permission->name }}
-                                                                    @endforeach
-                                                                @else
-                                                                    None
-                                                                @endif
-                                                            @else
-                                                                All Permissions
-                                                            @endif
-                                                        </div>
-                                                    </div><!--card-->
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($permissions->count())
-                                                @foreach($permissions as $permission)
+                            <div class="card card-accent-primary">
+                                <div class="card-header">
+                                    <strong>Roles</strong>
+                                </div>
+                                <div class="card-body">
+                                    @if ($roles->count())
+                                        @foreach($roles as $role)
+                                            <div class="card">
+                                                <div class="card-header">
                                                     <div class="checkbox">
-                                                        {{ html()->label(html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)->id('permission-'.$permission->id) . ' ' . ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                                        {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-'.$role->id) . ' ' . ucwords($role->name))->for('role-'.$role->id) }}
                                                     </div>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                </div>
+                                                <div class="card-body">
+                                                    @if ($role->id != 1)
+                                                        @if ($role->permissions->count())
+                                                            @foreach ($role->permissions as $permission)
+                                                                <i class="fa fa-dot-circle-o"></i> {{ $permission->name }}
+                                                            @endforeach
+                                                        @else
+                                                            None
+                                                        @endif
+                                                    @else
+                                                        All Permissions
+                                                    @endif
+                                                </div>
+                                            </div><!--card-->
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card card-accent-info">
+                                <div class="card-header">
+                                    <strong>Permissions</strong>
+                                </div>
+                                <div class="card-body">
+                                    @if ($permissions->count())
+                                        @foreach($permissions as $permission)
+                                            <div class="checkbox">
+                                                {{ html()->label(html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- /.row -->
 
                     <div class="row">
                         <div class="col">
