@@ -205,25 +205,17 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_action = 'Details';
 
-        $order_data = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+        $data_array = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
 
         if ($request->confirmed == 1) {
-            $confirmed_data = [
-                'confirmed' => Carbon::now(),
-            ];
-
-            array_push($order_data, $confirmed_data);
+            $data_array = array_add($data_array, 'confirmed_at', Carbon::now());
+            $data_array = array_add($data_array, 'confirmation_code', md5(uniqid(rand(), true)));
         } else {
-            $confirmed_data = [
-                'confirmed' => null,
-            ];
-
-            array_push($order_data, $confirmed_data);
+            $data_array = array_add($data_array, 'confirmed_at', null);
+            $data_array = array_add($data_array, 'confirmation_code', md5(uniqid(rand(), true)));
         }
 
-        // return $order_data;
-
-        $$module_name_singular = User::create($order_data);
+        $$module_name_singular = User::create($data_array);
 
         $roles = $request['roles'];
         $permissions = $request['permissions'];
