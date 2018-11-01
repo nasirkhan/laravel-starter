@@ -96,7 +96,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-md-3">
         <div class="card">
             <div class="card-body">
                 <div class="text-value">89.9%</div>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-6 col-md-3">
         <div class="card">
             <div class="card-body">
                 <div class="text-value">12.124</div>
