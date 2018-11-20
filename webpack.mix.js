@@ -13,15 +13,22 @@ let mix = require("laravel-mix");
 
 // copy assets
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js")
-    .copy("resources/assets/js/laravel.js", "public/js/laravel.js");
+    .copy("resources/assets/js/laravel.js", "public/js/laravel.js")
+    .copy("node_modules/@fortawesome/fontawesome-free/webfonts/*", "public/webfonts");
 
-// build frontend css
+/**
+ *
+ * Backend
+ *
+ * -----------------------------------------------------------------------------
+ */
+// frontend css
 mix.styles([
     "resources/assets/coreui/css/style.min.css",
     "resources/assets/coreui/css/custom.css"
 ], "public/css/app_frontend.css");
 
-// build frontend js
+// frontend js
 mix.scripts([
    "node_modules/jquery/dist/jquery.min.js",
    "node_modules/popper.js/dist/umd/popper.min.js",
@@ -33,14 +40,21 @@ mix.scripts([
 ], "public/js/app_frontend.js");
 
 
-// build backend css
+/**
+ *
+ * Backend
+ *
+ * -----------------------------------------------------------------------------
+ */
+// backend css
 mix.styles([
     "node_modules/@coreui/coreui/dist/css/coreui.min.css",
+    "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
     "resources/assets/css/pace.min.css",
     "resources/assets/css/custom.css"
 ], "public/css/app_backend.css");
 
-// build backend js
+// backend js
 mix.scripts([
    "node_modules/jquery/dist/jquery.min.js",
    "node_modules/popper.js/dist/umd/popper.min.js",

@@ -23,9 +23,6 @@
     <!-- simple-line-icons -->
     <link rel="stylesheet" href="{{asset('plugins/simple-line-icons/css/simple-line-icons.css')}}">
 
-    <!-- fontawesome -->
-    <link href="{{asset('plugins/fontawesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
-
     @stack('after-styles')
 </head>
 
