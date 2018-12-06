@@ -1,7 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 # Laravel Starter
-Laravel 5.7 based simple starter project.
+Laravel 5.7 based simple starter project to build all type of applications.
 
 > Current Build Status
 
@@ -29,7 +29,7 @@ Laravel 5.7 based simple starter project.
   * Tags
   * wysiwyg editor
   * file browser
-* Application Settings 
+* Application Settings
 * External Libraries
   * Bootstrap 4
   * Fontawesome 5
