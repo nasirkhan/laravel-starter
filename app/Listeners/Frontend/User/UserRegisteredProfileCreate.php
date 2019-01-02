@@ -3,8 +3,8 @@
 namespace App\Listeners\Frontend\User;
 
 use App\Events\Frontend\User\UserRegistered;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Userprofile;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserRegisteredProfileCreate implements ShouldQueue
 {
