@@ -138,7 +138,6 @@ class LoginController extends Controller
 
             return $authUser;
         } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
-
             $media = $authUser->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
             $avatar_url = $media->getUrl();
 
