@@ -21,7 +21,7 @@ if (!app()->routesAreCached()) {
  *
  * *************************************************************************
  */
-\Menu::make('admin_sidebar', function($menu){
+\Menu::make('admin_sidebar', function ($menu) {
     // Newsletter Dropdown
     $newslettersControl = $menu->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter', [
         'class' => 'nav-item nav-dropdown',
@@ -47,5 +47,4 @@ if (!app()->routesAreCached()) {
     ->link->attr([
         'class' => 'nav-link',
     ]);
-
- })->sortBy('order');
+})->sortBy('order');
