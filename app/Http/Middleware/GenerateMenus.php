@@ -152,32 +152,6 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
-            // Newsletter Dropdown
-            $newslettersControl = $menu->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter', [
-                'class' => 'nav-item nav-dropdown',
-            ])
-            ->data([
-                'order'         => 8,
-                'activematches' => [
-                    'admin/newsletters*',
-                ],
-                'permission'    => ['view_newsletters'],
-            ]);
-            $newslettersControl->link->attr([
-                'class' => 'nav-link nav-dropdown-toggle',
-                'href'  => '#',
-            ]);
-
-            // Submenu: Posts
-            $newslettersControl->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter Posts', [
-                'route' => 'backend.newsletters.index',
-                'class' => 'nav-item',
-            ])
-            ->data('order', 9)
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
-
             // Access Permission Check
             $menu->filter(function ($item) {
                 if ($item->data('permission')) {
