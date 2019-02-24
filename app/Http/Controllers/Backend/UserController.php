@@ -538,7 +538,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (auth()->user()->can('edit_users')) {
+        if (!auth()->user()->can('edit_users')) {
             abort(404);
         }
 
