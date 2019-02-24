@@ -21,26 +21,30 @@ if (!app()->routesAreCached()) {
  *
  * *************************************************************************
  */
-// \Menu::makeOnce('admin_sidebar', function ($menu) {
-//
-//     // Newsletter Dropdown
-//     $accessControl = $menu->add('<i class="fas fa-newspaper"></i> Newsletter', [
-//         'class' => 'nav-item nav-dropdown',
-//     ])
-//     ->data('order', 7);
-//     $accessControl->link->attr([
-//         'class' => 'nav-link nav-dropdown-toggle',
-//         'href'  => '#',
-//     ]);
-//
-//     // Submenu: Posts
-//     $accessControl->add('<i class="fas fa-newspaper"></i> Newsletter Posts', [
-//         'route' => 'backend.newsletters.index',
-//         'class' => 'nav-item',
-//     ])
-//     ->data('order', 8)
-//     ->link->attr([
-//         'class' => 'nav-link',
-//     ]);
-//
-// })->sortBy('order');
+\Menu::make('admin_sidebar', function ($menu) {
+    // Newsletter Dropdown
+    $newslettersControl = $menu->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter', [
+        'class' => 'nav-item nav-dropdown',
+    ])
+    ->data([
+        'order'         => 66,
+        'activematches' => [
+            'admin/newsletters*',
+        ],
+        'permission'    => ['view_newsletters'],
+    ]);
+    $newslettersControl->link->attr([
+        'class' => 'nav-link nav-dropdown-toggle',
+        'href'  => '#',
+    ]);
+
+    // Submenu: Newsletter Posts
+    $newslettersControl->add('<i class="nav-icon fas fa-newspaper"></i> Newsletter Posts', [
+        'route' => 'backend.newsletters.index',
+        'class' => 'nav-item',
+    ])
+    ->data('order', 67)
+    ->link->attr([
+        'class' => 'nav-link',
+    ]);
+})->sortBy('order');

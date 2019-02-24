@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
+use App\Events\Frontend\User\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
@@ -137,10 +138,13 @@ class LoginController extends Controller
 
             return $authUser;
         } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+            $media = $authUser->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
+            $avatar_url = $media->getUrl();
+
             UserProvider::create([
                 'user_id'     => $authUser->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
+                'avatar'      => $avatar_url,
                 'provider'    => $provider,
             ]);
 
@@ -151,12 +155,20 @@ class LoginController extends Controller
                 'email' => $socialUser->getEmail(),
             ]);
 
+            $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
+            $avatar_url = $media->getUrl();
+
             UserProvider::create([
                 'user_id'     => $user->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
+                'avatar'      => $avatar_url,
                 'provider'    => $provider,
             ]);
+
+            $user->avatar = $avatar_url;
+            $user->save();
+
+            event(new UserRegistered($user));
 
             return $user;
         }
