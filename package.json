@@ -13,7 +13,7 @@
         "@coreui/coreui": "2.0.6",
         "@fortawesome/fontawesome-free": "^5.5.0",
         "axios": "^0.18",
-        "bootstrap": "4.1.3",
+        "bootstrap": "4.3.1",
         "chart.js": "^2.7.2",
         "cross-env": "^5.1",
         "jquery": "3.3.1",
