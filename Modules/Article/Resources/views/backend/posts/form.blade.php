@@ -58,7 +58,7 @@
         <div class="form-group">
             <?php
             $field_name = 'featured_image';
-            $field_lable = 'Featured Image';
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "required";
             ?>

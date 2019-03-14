@@ -3,7 +3,7 @@
         <div class="form-group">
             <?php
             $field_name = 'name';
-            $field_lable = 'Name';
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -15,7 +15,7 @@
         <div class="form-group">
             <?php
             $field_name = 'code';
-            $field_lable = 'Code';
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -27,7 +27,7 @@
         <div class="form-group">
             <?php
             $field_name = 'order';
-            $field_lable = 'Order';
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -41,7 +41,7 @@
         <div class="form-group">
             <?php
             $field_name = 'description';
-            $field_lable = 'Description';
+            $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
             ?>
