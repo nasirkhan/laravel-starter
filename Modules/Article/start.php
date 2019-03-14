@@ -26,14 +26,14 @@ if (!app()->routesAreCached()) {
     $all_modules = $menu->add('Modules', [
         'class' => 'nav-title',
     ])
-    ->data('order', 2);
+    ->data('order', 80);
 
     // Articles Dropdown
     $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> Article', [
         'class' => 'nav-item nav-dropdown',
     ])
     ->data([
-        'order'         => 3,
+        'order'         => 81,
         'activematches' => [
             'admin/posts*',
             'admin/categories*',
@@ -52,7 +52,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-item',
     ])
     ->data([
-        'order'         => 4,
+        'order'         => 82,
         'activematches' => 'admin/posts*',
         'permission'    => ['edit_posts'],
     ])
@@ -65,7 +65,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-item',
     ])
     ->data([
-        'order'         => 5,
+        'order'         => 83,
         'activematches' => 'admin/categories*',
         'permission'    => ['edit_categories'],
     ])
@@ -78,7 +78,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-item',
     ])
     ->data([
-        'order'         => 6,
+        'order'         => 84,
         'activematches' => 'admin/tags*',
         'permission'    => ['edit_tags'],
     ])
@@ -91,7 +91,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-item',
     ])
     ->data([
-        'order'         => 7,
+        'order'         => 85,
         'activematches' => 'admin/comments*',
         'permission'    => ['edit_comments'],
     ])

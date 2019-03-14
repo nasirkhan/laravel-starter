@@ -27,7 +27,7 @@ if (!app()->routesAreCached()) {
         'class' => 'nav-item nav-dropdown',
     ])
     ->data([
-        'order'         => 66,
+        'order'         => 86,
         'activematches' => [
             'admin/newsletters*',
         ],
@@ -43,7 +43,7 @@ if (!app()->routesAreCached()) {
         'route' => 'backend.newsletters.index',
         'class' => 'nav-item',
     ])
-    ->data('order', 67)
+    ->data('order', 87)
     ->link->attr([
         'class' => 'nav-link',
     ]);

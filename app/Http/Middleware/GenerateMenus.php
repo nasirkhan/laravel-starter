@@ -34,7 +34,7 @@ class GenerateMenus
             $menu->add('Management', [
                 'class' => 'nav-title',
             ])
-            ->data('order', 77);
+            ->data('order', 90);
 
             // Settings
             $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
@@ -42,7 +42,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 78,
+                'order'         => 91,
                 'activematches' => 'admin/settings*',
                 'permission'    => ['edit_settings'],
             ])
@@ -56,7 +56,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 79,
+                'order'         => 92,
                 'activematches' => 'admin/backups*',
                 'permission'    => ['view_backups'],
             ])
@@ -69,7 +69,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 80,
+                'order'         => 93,
                 'activematches' => [
                     'admin/roles*',
                     'admin/users*',
@@ -87,7 +87,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 81,
+                'order'         => 94,
                 'activematches' => 'admin/users*',
                 'permission'    => ['view_users'],
             ])
@@ -101,7 +101,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 82,
+                'order'         => 95,
                 'activematches' => 'admin/roles*',
                 'permission'    => ['view_roles'],
             ])
@@ -115,7 +115,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 83,
+                'order'         => 96,
                 'activematches' => [
                     'log-viewer*',
                 ],
@@ -132,7 +132,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 84,
+                'order'         => 97,
                 'activematches' => 'admin/log-viewer',
             ])
             ->link->attr([
@@ -145,7 +145,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 85,
+                'order'         => 98,
                 'activematches' => 'admin/log-viewer/logs*',
             ])
             ->link->attr([
