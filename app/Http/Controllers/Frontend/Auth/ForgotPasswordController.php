@@ -28,13 +28,6 @@ class ForgotPasswordController extends Controller
     protected $redirectTo = '/';
 
     /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
      * Get the response for a successful password reset link.
      *
      * @param  \Illuminate\Http\Request  $request
