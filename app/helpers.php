@@ -207,9 +207,15 @@ if (!function_exists('show_column_value')) {
             return $value;
         }
 
-        if ($column_type == 'json') {
+        if ($column_type == 'date') {
+            $datetime = \Carbon\Carbon::parse($value);
+            return $datetime->toFormattedDateString();
+        } else if ($column_type == 'datetime' || $column_type == 'timestamp') {
+            $datetime = \Carbon\Carbon::parse($value);
+            return $datetime->toDayDateTimeString();
+        } else if ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } else if ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -221,7 +227,7 @@ if (!function_exists('show_column_value')) {
         } else {
             $return_text = $value;
         }
-        // $return_text = $value;
+        
         return $return_text;
     }
 }
