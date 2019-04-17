@@ -209,13 +209,15 @@ if (!function_exists('show_column_value')) {
 
         if ($column_type == 'date') {
             $datetime = \Carbon\Carbon::parse($value);
+
             return $datetime->toFormattedDateString();
-        } else if ($column_type == 'datetime' || $column_type == 'timestamp') {
+        } elseif ($column_type == 'datetime' || $column_type == 'timestamp') {
             $datetime = \Carbon\Carbon::parse($value);
+
             return $datetime->toDayDateTimeString();
-        } else if ($column_type == 'json') {
+        } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } else if ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } elseif ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -227,7 +229,7 @@ if (!function_exists('show_column_value')) {
         } else {
             $return_text = $value;
         }
-        
+
         return $return_text;
     }
 }
