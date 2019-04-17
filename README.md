@@ -1,7 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 # Laravel Starter
-Laravel 5.7 based simple starter project to build all type of applications.
+Laravel 5.8 based simple starter project to build all type of applications.
 
 > Current Build Status
 
