@@ -21,14 +21,14 @@ class ArticleDatabaseSeeder extends Seeder
         // Disable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        /**
+        /*
          * Category Seed
          * ------------------
          */
         // DB::table('categories')->truncate();
         factory(Category::class, 5)->create();
 
-        /**
+        /*
          * Tags Seed
          * ------------------
          */
@@ -37,7 +37,7 @@ class ArticleDatabaseSeeder extends Seeder
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
 
-        /**
+        /*
          * Posts Seed
          * ------------------
          */
