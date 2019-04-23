@@ -21,18 +21,27 @@ class ArticleDatabaseSeeder extends Seeder
         // Disable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        // categories seed
-        DB::table('categories')->truncate();
+        /**
+         * Category Seed
+         * ------------------
+         */
+        // DB::table('categories')->truncate();
         factory(Category::class, 5)->create();
 
-        // tags seed
-        DB::table('post_tag')->truncate();
-        DB::table('tags')->truncate();
+        /**
+         * Tags Seed
+         * ------------------
+         */
+        // DB::table('post_tag')->truncate();
+        // DB::table('tags')->truncate();
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
 
-        // posts seed
-        DB::table('posts')->truncate();
+        /**
+         * Posts Seed
+         * ------------------
+         */
+        // DB::table('posts')->truncate();
 
         // Populate the pivot table
         factory(Post::class, 25)->create()->each(function ($post) use ($tags) {
