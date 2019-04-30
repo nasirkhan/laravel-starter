@@ -207,11 +207,11 @@ if (!function_exists('show_column_value')) {
             return $value;
         }
 
-        if ($column_type == 'date') {
+        if (($column_type == 'date') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 
             return $datetime->toFormattedDateString();
-        } elseif ($column_type == 'datetime' || $column_type == 'timestamp') {
+        } elseif (($column_type == 'datetime' || $column_type == 'timestamp') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 
             return $datetime->toDayDateTimeString();
