@@ -66,7 +66,7 @@
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                 <div class="input-group-append">
-                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" class="btn btn-outline-secondary" type="button"><i class="fas fa-folder-open"></i> Browse</button>
+                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" type="button"><i class="fas fa-folder-open"></i> Browse</button>
                 </div>
             </div>
         </div>
