@@ -59,7 +59,7 @@
 
                     <div class="header header-primary text-center">
                         <div class="logo-container">
-                            <img src="img/login-logo.png" alt="">
+                            <img src="{{asset('img/logo-square.png')}}" alt="">
                         </div>
                         <h5>
                             Login to Account
