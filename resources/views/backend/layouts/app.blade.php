@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Laravel starter project. ">
+    <meta name="description" content="{{ setting('meta_description') }}">
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
-    <meta name="keyword" content="Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source">
+    <meta name="keyword" content="{{ setting('meta_keyword') }}">
     <link rel="shortcut icon" href="/img/favicon.png">
     <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
 

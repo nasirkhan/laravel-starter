@@ -45,4 +45,31 @@ return [
         ],
 
     ],
+    'meta' => [
+        'title' => 'Meta ',
+        'desc'  => 'Application Meta Data',
+        'icon'  => 'fas fa-globe-asia',
+
+        'elements' => [
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_description', // unique name for field
+                'label' => 'Meta Description', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Laravel Starter Application. A boilarplate to all type of application.', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_keyword', // unique name for field
+                'label' => 'Meta Keyword', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, nasir khan, nasirkhan', // default value if you want
+            ],
+        ],
+
+    ],
 ];

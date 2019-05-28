@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <meta name="description" content="Laravel Starter Application. A boilarplate to all type of application.">
+    <meta name="description" content="{{ setting('meta_description') }}">
+    <meta name="keyword" content="{{ setting('meta_keyword') }}">
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
 
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">

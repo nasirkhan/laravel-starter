@@ -5,6 +5,6 @@
             {{ $field['label'] }}
         </label>
 
-        @if ($errors->has($field['name'])) <small class="help-block">{{ $errors->first($field['name']) }}</small> @endif
+        @if ($errors->has($field['name'])) <small class="invalid-feedback">{{ $errors->first($field['name']) }}</small> @endif
     </div>
 </div>
