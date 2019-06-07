@@ -8,6 +8,10 @@ Laravel 5.8 based simple starter project to build all type of applications.
 [![StyleCI](https://github.styleci.io/repos/105638882/shield)](https://github.styleci.io/repos/105638882)
 
 
+# Demo
+
+http://laravel.nasirkhn.com/
+
 ## Features
 
 * User Authentication
