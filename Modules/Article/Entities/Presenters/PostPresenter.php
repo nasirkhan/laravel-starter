@@ -9,7 +9,6 @@ use Carbon\Carbon;
  */
 trait PostPresenter
 {
-
     public function getPublishedAtFormattedAttribute()
     {
         $diff = Carbon::now()->diffInHours($this->published_at);
@@ -20,5 +19,4 @@ trait PostPresenter
             return $this->published_at->toCookieString();
         }
     }
-
 }

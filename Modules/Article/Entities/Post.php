@@ -152,5 +152,4 @@ class Post extends BaseModel
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString())
                         ->orderBy('published_at', 'desc');
     }
-
 }

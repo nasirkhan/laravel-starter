@@ -14,7 +14,6 @@ use Yajra\DataTables\DataTables;
 
 class PostsController extends Controller
 {
-
     public function __construct()
     {
         // Page Title
@@ -49,7 +48,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->with(['tags','comments'])->paginate();
+        $$module_name = $module_model::latest()->with(['tags', 'comments'])->paginate();
 
         return view("article::frontend.$module_path.index",
                 compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
@@ -205,7 +204,7 @@ class PostsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::with(['tags','comments'])->findOrFail($id);
+        $$module_name_singular = $module_model::with(['tags', 'comments'])->findOrFail($id);
 
         return view("article::frontend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
