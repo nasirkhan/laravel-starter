@@ -65,9 +65,23 @@
                         </p>
 
                         <p class="card-text">
-                            <a href="#" class="badge badge-primary">
-                                <i class="now-ui-icons ui-2_chat-round"></i> Total {{$$module_name_singular->comments->count()}} comments
-                            </a>
+                            Comments (Total {{$$module_name_singular->comments->count()}})
+                            <br>
+                            @foreach ($$module_name_singular->comments as $comments)
+                            <blockquote>
+                             <p class="blockquote blockquote-primary">
+                             {{$comments->comment}}
+
+                             <br>
+                             <br>
+
+                             <small>
+                                - {{$comments->user_name}}
+                             </small>
+                             </p>
+
+                            </blockquote>
+                            @endforeach
                         </p>
                         <p class="card-text">
                             <div class="row">
