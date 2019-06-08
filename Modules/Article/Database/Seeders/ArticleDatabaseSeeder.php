@@ -26,15 +26,15 @@ class ArticleDatabaseSeeder extends Seeder
          * Category Seed
          * ------------------
          */
-        // DB::table('categories')->truncate();
+        DB::table('categories')->truncate();
         factory(Category::class, 5)->create();
 
         /*
          * Tags Seed
          * ------------------
          */
-        // DB::table('post_tag')->truncate();
-        // DB::table('tags')->truncate();
+        DB::table('post_tag')->truncate();
+        DB::table('tags')->truncate();
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
 
@@ -42,7 +42,7 @@ class ArticleDatabaseSeeder extends Seeder
          * Posts Seed
          * ------------------
          */
-        // DB::table('posts')->truncate();
+        DB::table('posts')->truncate();
 
         // Populate the pivot table
         factory(Post::class, 25)->create()->each(function ($post) use ($tags) {

@@ -15,14 +15,24 @@
             <ul class="navbar-nav">
 
                 @if(Modules\Article\Entities\Post::count())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.posts.index') }}">Posts</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="now-ui-icons files_paper"></i> Articles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ route('frontend.posts.index') }}">Posts</a>
+                        <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">Categories</a>
+                        <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">Tags</a>
+                    </div>
                 </li>
                 @endif
 
                 @can('view_backend')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('backend.dashboard') }}">Admin Dashboard</a>
+                    <a class="nav-link" href="{{ route('backend.dashboard') }}">
+                        <i class="now-ui-icons tech_tv"></i>
+                        Admin Dashboard
+                    </a>
                 </li>
                 @endcan
 

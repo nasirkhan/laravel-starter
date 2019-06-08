@@ -8,12 +8,12 @@
 @section('content')
 <div class="page-header page-header-small">
 
-    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset($$module_name_singular->featured_image)}}');">
+    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
     </div>
     <div class="content-center">
         <div class="container">
             <h1 class="title">
-                {{$$module_name_singular->title}}
+                Category: {{$$module_name_singular->name}}
             </h1>
 
             <div class="text-center">
@@ -37,52 +37,28 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    @php
-                    $post_details_url = route('frontend.posts.show',[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-                    @endphp
-                    <img class="card-img-top" src="{{$$module_name_singular->featured_image}}" alt="{{$$module_name_singular->title}}">
                     <div class="card-body">
-                        <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$$module_name_singular->title}}</h4>
-                        </a>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            {{$$module_name_singular->author_name}}
-                        </h6>
+                        <h4 class="card-title">{{$$module_name_singular->name}}</h4>
                         <hr>
                         <p class="card-text">
-                            {!!$$module_name_singular->content!!}
+                            {!!$$module_name_singular->description!!}
                         </p>
                         <hr>
 
                         <p class="card-text">
-                            <a href="#" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
+                            <h6>
+                                Posts (Total {{$$module_name_singular->posts->count()}})
+                            </h6>
+                            <ul>
+                                @foreach ($$module_name_singular->posts as $post)
+                                <li>
+                                    <a href="{{route("frontend.posts.show",[encode_id($post->id), $post->slug])}}">{{$post->title}}</a>
+                                </li>
+                                @endforeach
+                            </ul>
                         </p>
 
-                        <p class="card-text">
-                            @foreach ($$module_name_singular->tags as $tag)
-                            <a href="#" class="badge badge-warning">{{$tag->name}}</a>
-                            @endforeach
-                        </p>
 
-                        <p class="card-text">
-                            Comments (Total {{$$module_name_singular->comments->count()}})
-                            <br>
-                            @foreach ($$module_name_singular->comments as $comments)
-                            <blockquote>
-                             <p class="blockquote blockquote-primary">
-                             {{$comments->comment}}
-
-                             <br>
-                             <br>
-
-                             <small>
-                                - {{$comments->user_name}}
-                             </small>
-                             </p>
-
-                            </blockquote>
-                            @endforeach
-                        </p>
                         <p class="card-text">
                             <div class="row">
                                 <div class="col">
