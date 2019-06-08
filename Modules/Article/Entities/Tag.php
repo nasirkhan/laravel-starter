@@ -95,5 +95,4 @@ class Tag extends BaseModel
             $this->attributes['published_at'] = Carbon::now();
         }
     }
-
 }

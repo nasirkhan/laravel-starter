@@ -2,8 +2,8 @@
 
 namespace Modules\Article\Entities;
 
-use App\Models\User;
 use App\Models\BaseModel;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
