@@ -14,6 +14,12 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('/vendor/now-ui-kit/img/blurred-image-1.jpg')}}">
             <ul class="navbar-nav">
 
+                @if(Modules\Article\Entities\Post::count())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('frontend.posts.index') }}">Posts</a>
+                </li>
+                @endif
+
                 @can('view_backend')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('backend.dashboard') }}">Admin Dashboard</a>

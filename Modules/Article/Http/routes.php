@@ -8,6 +8,18 @@
 */
 Route::group(['namespace' => 'Modules\Article\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => 'article'], function () {
     Route::get('/', 'ArticleController@index');
+
+    /*
+     *
+     *  Posts Routes
+     *
+     * ---------------------------------------------------------------------
+     */
+    $module_name = 'posts';
+    $controller_name = 'PostsController';
+    Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
+    Route::get("$module_name/{id}/{slug?}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
+    // Route::resource("$module_name", "$controller_name")->only(['index','show']);
 });
 
 /*

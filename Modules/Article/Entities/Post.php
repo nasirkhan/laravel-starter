@@ -5,10 +5,11 @@ namespace Modules\Article\Entities;
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Article\Entities\Presenters\PostPresenter;
 
 class Post extends BaseModel
 {
-    use SoftDeletes;
+    use SoftDeletes, PostPresenter;
 
     protected $table = 'posts';
 
@@ -151,4 +152,5 @@ class Post extends BaseModel
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString())
                         ->orderBy('published_at', 'desc');
     }
+
 }
