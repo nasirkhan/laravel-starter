@@ -13,6 +13,14 @@ class Tag extends BaseModel
     protected $table = 'tags';
 
     /**
+     * Tags has Many posts.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany('Modules\Article\Entities\Post');
+    }
+
+    /**
      * Set the 'Slug'.
      * If no value submitted 'Title' will be used as slug
      * str_slug helper method was used to format the text.
@@ -88,13 +96,4 @@ class Tag extends BaseModel
         }
     }
 
-    /*
-     * a post is belongs to an user.
-     *
-     * @return type
-     */
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User', 'created_by');
-    // }
 }

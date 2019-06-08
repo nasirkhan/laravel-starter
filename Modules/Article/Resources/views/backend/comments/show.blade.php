@@ -41,6 +41,17 @@
                 @include('backend.includes.show')
 
             </div>
+            <div class="col">
+
+                <h4>Post</h4>
+                <ul>
+                    <li>
+                        <a href="{{route('backend.posts.show', $$module_name_singular->post_id)}}">{{$$module_name_singular->post_name}}</a>
+                    </li>
+                </ul>
+                <hr>
+
+            </div>
         </div>
     </div>
 

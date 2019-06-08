@@ -22,6 +22,11 @@ class Post extends BaseModel
         return $this->belongsToMany('Modules\Article\Entities\Tag');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('Modules\Article\Entities\Comment');
+    }
+
     /**
      *  set post 'Title' and update the 'slug'.
      *

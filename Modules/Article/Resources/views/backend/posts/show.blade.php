@@ -41,6 +41,37 @@
                 @include('backend.includes.show')
 
             </div>
+            <div class="col">
+
+                <h4>Category</h4>
+                <ul>
+                    <li>
+                        <a href="{{route('backend.categories.show', $$module_name_singular->category_id)}}">{{$$module_name_singular->category_name}}</a>
+                    </li>
+                </ul>
+                <hr>
+
+                <h4>Tags</h4>
+                <ul>
+                    @foreach($$module_name_singular->tags as $row)
+                    <li>
+                        <a href="{{route('backend.tags.show', $row->id)}}">{{$row->name}}</a>
+                    </li>
+                    @endforeach
+                </ul>
+                <hr>
+
+                <h4>Comments</h4>
+                <ul>
+                    @foreach($$module_name_singular->comments as $row)
+                    <li>
+                        <a href="{{route('backend.comments.show', $row->id)}}">{{$row->name}}</a> by {{$row->user_name}}
+                    </li>
+                    @endforeach
+                </ul>
+                <hr>
+                
+            </div>
         </div>
     </div>
 

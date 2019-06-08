@@ -41,6 +41,19 @@
                 @include('backend.includes.show')
 
             </div>
+            <div class="col">
+
+                <h4>Posts</h4>
+                <ul>
+                    @foreach($$module_name_singular->posts as $row)
+                    <li>
+                        <a href="{{route('backend.posts.show', $row->id)}}">{{$row->title}}</a>
+                    </li>
+                    @endforeach
+                </ul>
+                <hr>
+
+            </div>
         </div>
     </div>
 
