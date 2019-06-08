@@ -5,8 +5,8 @@ namespace Modules\Article\Database\Seeders;
 use Artisan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Article\Entities\Comment;
 use Modules\Article\Entities\Category;
+use Modules\Article\Entities\Comment;
 use Modules\Article\Entities\Post;
 use Modules\Article\Entities\Tag;
 
