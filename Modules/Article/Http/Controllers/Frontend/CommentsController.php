@@ -15,7 +15,6 @@ use Yajra\DataTables\DataTables;
 
 class CommentsController extends Controller
 {
-
     public function __construct()
     {
         // Page Title

@@ -15,7 +15,6 @@ use Yajra\DataTables\DataTables;
 
 class TagsController extends Controller
 {
-
     public function __construct()
     {
         // Page Title
@@ -202,7 +201,7 @@ class TagsController extends Controller
     public function show($id)
     {
         $id = decode_id($id);
-        
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
