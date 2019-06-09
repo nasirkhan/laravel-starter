@@ -55,30 +55,36 @@
                         <hr>
 
                         <p class="card-text">
-                            <a href="#" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', $$module_name_singular->category_id)}}" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($$module_name_singular->tags as $tag)
-                            <a href="#" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', encode_id($tag->id))}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
 
                         <p class="card-text">
                             Comments (Total {{$$module_name_singular->comments->count()}})
                             <br>
-                            @foreach ($$module_name_singular->comments as $comments)
+                            @foreach ($$module_name_singular->comments as $comment)
                             <blockquote>
-                             <p class="blockquote blockquote-primary">
-                             {{$comments->comment}}
+                                <p class="blockquote blockquote-primary">
+                                    <a href="{{route('frontend.comments.show', encode_id($comment->id))}}">
+                                        <i class="now-ui-icons ui-2_chat-round"></i>
+                                    </a>
+                                    {{$comment->name}}
+                                    <br>
 
-                             <br>
-                             <br>
+                                    {{$comment->comment}}
 
-                             <small>
-                                - {{$comments->user_name}}
-                             </small>
-                             </p>
+                                    <br>
+                                    <br>
+
+                                    <small>
+                                        - {{$comment->user_name}}
+                                    </small>
+                                </p>
 
                             </blockquote>
                             @endforeach

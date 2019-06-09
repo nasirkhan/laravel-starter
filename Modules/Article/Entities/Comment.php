@@ -6,6 +6,7 @@ use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Article\Entities\Post;
 
 class Comment extends BaseModel
 {

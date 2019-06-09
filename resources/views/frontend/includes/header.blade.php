@@ -23,6 +23,7 @@
                         <a class="dropdown-item" href="{{ route('frontend.posts.index') }}">Posts</a>
                         <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">Categories</a>
                         <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">Tags</a>
+                        <a class="dropdown-item" href="{{ route('frontend.comments.index') }}">Comments</a>
                     </div>
                 </li>
                 @endif

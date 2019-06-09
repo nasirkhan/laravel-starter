@@ -1,8 +1,7 @@
 <?php
 
-namespace Modules\Article\Http\Controllers\Backend;
+namespace Modules\Article\Http\Controllers\Frontend;
 
-use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Auth;
 use Carbon\Carbon;
@@ -11,12 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use Modules\Article\Http\Requests\Backend\TagsRequest;
+use Modules\Article\Http\Requests\Frontend\TagsRequest;
 use Yajra\DataTables\DataTables;
 
 class TagsController extends Controller
 {
-    use Authorizable;
 
     public function __construct()
     {
@@ -57,9 +55,7 @@ class TagsController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
-        return view("article::backend.$module_path.index_datatable",
+        return view("article::frontend.$module_path.index",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
@@ -162,7 +158,7 @@ class TagsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        return view("article::backend.$module_name.create",
+        return view("article::frontend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
@@ -205,6 +201,8 @@ class TagsController extends Controller
      */
     public function show($id)
     {
+        $id = decode_id($id);
+        
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -218,9 +216,10 @@ class TagsController extends Controller
         $title = $page_heading.' '.label_case($module_action);
 
         $$module_name_singular = $module_model::findOrFail($id);
+        $posts = $$module_name_singular->posts()->paginate();
 
-        return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        return view("article::frontend.$module_name.show",
+        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'posts'));
     }
 
     /**
@@ -246,7 +245,7 @@ class TagsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("article::backend.$module_name.edit",
+        return view("article::frontend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
@@ -332,7 +331,7 @@ class TagsController extends Controller
 
         Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.Auth::user()->name);
 
-        return view("article::backend.$module_name.trash",
+        return view("article::frontend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

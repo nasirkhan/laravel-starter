@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-Posts
+{{$$module_name_singular->name}}
 @stop
 
 
@@ -13,7 +13,7 @@ Posts
     <div class="content-center">
         <div class="container">
             <h1 class="title">
-                Posts
+                Tag: {{$$module_name_singular->name}}
             </h1>
 
             <div class="text-center">
@@ -29,40 +29,82 @@ Posts
             </div>
         </div>
     </div>
-
 </div>
+
 
 <div class="section">
     <div class="container">
         <div class="row">
-            @foreach ($$module_name as $$module_name_singular)
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{$$module_name_singular->name}}</h4>
+                        <hr>
+                        <p class="card-text">
+                            {!!$$module_name_singular->description!!}
+                        </p>
+
+                        <p class="card-text">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-center">
+                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-google-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+
+                        <p class="card-text">
+                            <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>
+                    Posts in {{$$module_name_singular->name}} (Total {{$$module_name_singular->posts->count()}})
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($posts as $post)
             <div class="col-12 col-sm-6">
                 <div class="card">
                     @php
-                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+                    $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
                     @endphp
                     <a href="{{$post_details_url}}">
-                        <img class="card-img-top" src="{{$$module_name_singular->featured_image}}" alt="{{$$module_name_singular->title}}">
+                        <img class="card-img-top" src="{{$post->featured_image}}" alt="{{$post->title}}">
                     </a>
                     <div class="card-body">
                         <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$$module_name_singular->title}}</h4>
+                            <h4 class="card-title">{{$post->title}}</h4>
                         </a>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            {{$$module_name_singular->author_name}}
+                            {{$post->author_name}}
                         </h6>
                         <hr>
                         <p class="card-text">
-                            {{$$module_name_singular->intro}}
+                            {{$post->intro}}
                         </p>
                         <hr>
 
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', encode_id($$module_name_singular->category_id))}}" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', encode_id($post->category_id))}}" class="badge badge-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">
-                            @foreach ($$module_name_singular->tags as $tag)
+                            @foreach ($post->tags as $tag)
                             <a href="{{route('frontend.tags.show', encode_id($tag->id))}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
@@ -84,7 +126,7 @@ Posts
                         </p>
 
                         <p class="card-text">
-                            <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
+                            <small class="text-muted">{{$post->published_at_formatted}}</small>
                         </p>
                     </div>
                 </div>
@@ -93,7 +135,7 @@ Posts
         </div>
         <div class="row">
             <div class="col">
-                {{$$module_name->links()}}
+                {{$posts->links()}}
             </div>
         </div>
     </div>

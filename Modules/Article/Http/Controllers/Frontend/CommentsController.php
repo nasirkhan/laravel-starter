@@ -1,8 +1,7 @@
 <?php
 
-namespace Modules\Article\Http\Controllers\Backend;
+namespace Modules\Article\Http\Controllers\Frontend;
 
-use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Auth;
 use Carbon\Carbon;
@@ -11,12 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use Modules\Article\Http\Requests\Backend\CommentsRequest;
+use Modules\Article\Http\Requests\Frontend\CommentsRequest;
 use Yajra\DataTables\DataTables;
 
 class CommentsController extends Controller
 {
-    use Authorizable;
 
     public function __construct()
     {
@@ -54,9 +52,7 @@ class CommentsController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
-        return view("article::backend.$module_path.index_datatable",
+        return view("article::frontend.$module_path.index",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -152,7 +148,7 @@ class CommentsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.create",
+        return view("article::frontend.$module_name.create",
         compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
     }
 
@@ -192,6 +188,8 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
+        $id = decode_id($id);
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -203,9 +201,7 @@ class CommentsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
-
-        return view("article::backend.$module_name.show",
+        return view("article::frontend.$module_name.show",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
@@ -231,7 +227,7 @@ class CommentsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.edit",
+        return view("article::frontend.$module_name.edit",
         compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
     }
 
@@ -314,7 +310,7 @@ class CommentsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("article::backend.$module_name.trash",
+        return view("article::frontend.$module_name.trash",
         compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
     }
 

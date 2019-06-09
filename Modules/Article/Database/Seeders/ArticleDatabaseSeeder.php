@@ -27,7 +27,9 @@ class ArticleDatabaseSeeder extends Seeder
          * ------------------
          */
         DB::table('categories')->truncate();
+        echo "\n Truncate: categories";
         factory(Category::class, 5)->create();
+        echo "\n Insert: categories";
 
         /*
          * Tags Seed
@@ -55,7 +57,7 @@ class ArticleDatabaseSeeder extends Seeder
          * Comment Seed
          * ------------------
          */
-        // DB::table('comments')->truncate();
+        DB::table('comments')->truncate();
         factory(Comment::class, 50)->create();
 
         // Artisan::call('auth:permission', [
