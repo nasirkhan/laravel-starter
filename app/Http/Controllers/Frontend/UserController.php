@@ -15,7 +15,6 @@ use App\Models\UserProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Image;
 use Log;
 
 class UserController extends Controller
