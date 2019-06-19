@@ -16,6 +16,12 @@
                 {{$$module_name_singular->title}}
             </h1>
 
+            @include('flash::message')
+
+            <!-- Errors block -->
+            @include('frontend.includes.errors')
+            <!-- / Errors block -->
+
             <div class="text-center">
                 <a href="#pablo" class="btn btn-primary btn-icon btn-round">
                     <i class="fab fa-facebook-square"></i>
@@ -65,13 +71,32 @@
                         </p>
 
                         <p class="card-text">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-primary btn-icon btn-round">
+                                            <i class="fab fa-google-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+
+                        <p class="card-text">
                             Comments (Total {{$$module_name_singular->comments->count()}})
                             <br>
                             @foreach ($$module_name_singular->comments as $comment)
                             <blockquote>
                                 <p class="blockquote blockquote-primary">
                                     <a href="{{route('frontend.comments.show', encode_id($comment->id))}}">
-                                        <i class="now-ui-icons ui-2_chat-round"></i>
+                                        <!-- <i class="now-ui-icons ui-2_chat-round"></i> -->
+                                        <i class="far fa-comment-alt"></i>
                                     </a>
                                     {{$comment->name}}
                                     <br>
@@ -89,23 +114,95 @@
                             </blockquote>
                             @endforeach
                         </p>
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="text-center">
-                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-facebook-square"></i>
-                                        </a>
-                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-google-plus"></i>
-                                        </a>
+                        <div class="row justify-content-md-center">
+                                @auth
+                                <div class="col-4 align-self-center">
+                                    <p>
+                                        <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#commentForm" role="button" aria-expanded="false" aria-controls="commentForm"><i class="far fa-comment-alt"></i> Write new comment</a>
+                                    </p>
+                                </div>
+                                <div class="row justify-content-md-center">
+                                    <div class="col-8 align-self-center">
+                                        <div class="collapse multi-collapse" id="commentForm">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Your comment will be in the moderation queue. If your comment will be approved, you will get notification and it will be displayed here.
+                                                    <br>
+                                                    Please submit once & wait till published.
+                                                </p>
+
+                                                {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <?php
+                                                            $field_name = 'name';
+                                                            $field_lable = "Subject";
+                                                            $field_placeholder = $field_lable;
+                                                            $required = "required";
+                                                            ?>
+                                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <?php
+                                                            $field_name = 'comment';
+                                                            $field_lable = "Details Comment";
+                                                            $field_placeholder = $field_lable;
+                                                            $required = "required";
+                                                            ?>
+                                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <?php
+                                                $field_name = 'post_id';
+                                                $field_lable = label_case($field_name);
+                                                $field_placeholder = $field_lable;
+                                                $required = "required";
+                                                ?>
+                                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                {{ html()->hidden($field_name)->value(encode_id($$module_name_singular->id))->attributes(["$required"]) }}
+
+                                                <?php
+                                                $field_name = 'user_id';
+                                                $field_lable = label_case($field_name);
+                                                $field_placeholder = $field_lable;
+                                                $required = "required";
+                                                ?>
+                                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            {{ html()->button($text = "<i class='fas fa-save'></i> Submit", $type = 'submit')->class('btn btn-success') }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {{ html()->form()->close() }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </p>
+                                @endauth
+                                @guest
+                                <div class="col-4 align-self-center">
+                                    <p>
+                                        <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
+                                    </p>
+                                </div>
+                                @endguest
+
+
+
+                        </div>
+
 
                         <p class="card-text">
                             <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>

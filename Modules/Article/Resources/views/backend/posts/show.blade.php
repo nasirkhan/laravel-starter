@@ -43,6 +43,11 @@
             </div>
             <div class="col">
 
+                <div class="text-center">
+                    <a href="{{route('frontend.posts.show', encode_id($$module_name_singular->id))}}" class="btn btn-success"><i class="fas fa-link"></i> Public View</a>
+                </div>
+                <hr>
+
                 <h4>Category</h4>
                 <ul>
                     <li>
@@ -70,7 +75,7 @@
                     @endforeach
                 </ul>
                 <hr>
-                
+
             </div>
         </div>
     </div>

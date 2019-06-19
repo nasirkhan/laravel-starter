@@ -12,7 +12,7 @@
             {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('title', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-posts')->attributes(["$required"]) }}
         </div>
     </div>
-    
+
     <div class="col">
         <div class="form-group">
             <?php
@@ -76,6 +76,49 @@
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'status';
+            $field_lable = label_case($field_name);
+            $field_placeholder = "-- Select an option --";
+            $required = "required";
+            $select_options = [
+                '0'=>'Pending',
+                '1'=>'Published',
+                '2'=>'Rejected',
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'moderated_at';
+            $field_lable = label_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->text($field_name)->value(\Carbon\Carbon::now())->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'published_at';
+            $field_lable = label_case($field_name);
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->text($field_name)->value(\Carbon\Carbon::now())->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>

@@ -23,7 +23,18 @@ class Post extends BaseModel
         return $this->belongsToMany('Modules\Article\Entities\Tag');
     }
 
+    /**
+     * All Published Comments
+     */
     public function comments()
+    {
+        return $this->hasMany('Modules\Article\Entities\Comment')->where('status','=', 1);
+    }
+
+    /**
+     * All the Published and Unpublished Comments
+     */
+    public function comments_all()
     {
         return $this->hasMany('Modules\Article\Entities\Comment');
     }

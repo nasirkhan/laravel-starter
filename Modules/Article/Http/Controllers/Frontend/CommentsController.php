@@ -169,13 +169,22 @@ class CommentsController extends Controller
 
         $module_action = 'Store';
 
-        $$module_name_singular = $module_model::create($request->all());
+        $data = [
+            'name' => $request->name,
+            'slug' => '',
+            'comment' => $request->comment,
+            'post_id' => decode_id($request->post_id),
+            'user_id' => decode_id($request->user_id),
+        ];
+
+        // $$module_name_singular = $module_model::create($request->all());
+        $$module_name_singular = $module_model::create($data);
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect()->back();
     }
 
     /**
