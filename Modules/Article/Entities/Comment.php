@@ -6,12 +6,17 @@ use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
-    use SoftDeletes;
+    use LogsActivity, SoftDeletes;
 
     protected $table = 'comments';
+
+    protected static $logName = 'comments';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = ['post_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
 
     protected $dates = [
         'deleted_at',
