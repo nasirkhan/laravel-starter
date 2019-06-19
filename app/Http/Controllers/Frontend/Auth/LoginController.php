@@ -41,6 +41,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        $this->redirectTo = app('request')->input('redirectTo') ? : $this->redirectTo;
+    }
+
+    /**
+     * Show the Login form
+     *
+     * this method overrides the default method. 
+     */
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+
+        return view('auth.login');
     }
 
     /**
@@ -55,7 +72,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
             flash('<i class="fas fa-check"></i> Login Successful')->success();
 
-            return redirect()->intended('/');
+            return redirect()->intended($this->redirectTo);
         } else {
             flash('<i class="fas fa-exclamation-triangle"></i> Login Failed. Please Contact Administrator.')->error();
 
@@ -118,10 +135,10 @@ class LoginController extends Controller
 
             Auth::login($authUser, true);
         } catch (Exception $e) {
-            return redirect('/');
+            return redirect($this->redirectTo);
         }
 
-        return redirect('/');
+        return redirect($this->redirectTo);
     }
 
     /**
