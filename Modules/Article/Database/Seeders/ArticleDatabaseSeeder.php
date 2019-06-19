@@ -27,10 +27,10 @@ class ArticleDatabaseSeeder extends Seeder
          * ------------------
          */
         DB::table('categories')->truncate();
-        $this->info("Truncate: categories");
+        $this->info('Truncate: categories');
 
         factory(Category::class, 5)->create();
-        $this->info("Insert: categories");
+        $this->info('Insert: categories');
 
         /*
          * Tags Seed
@@ -38,21 +38,21 @@ class ArticleDatabaseSeeder extends Seeder
          */
 
         DB::table('post_tag')->truncate();
-        $this->info("Truncate: post_tag");
+        $this->info('Truncate: post_tag');
 
         DB::table('tags')->truncate();
-        $this->info("Truncate: tags");
+        $this->info('Truncate: tags');
 
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
-        $this->info("Insert: tags");
+        $this->info('Insert: tags');
 
         /*
          * Posts Seed
          * ------------------
          */
         DB::table('posts')->truncate();
-        $this->info("Truncate: posts");
+        $this->info('Truncate: posts');
 
         // Populate the pivot table
         factory(Post::class, 25)->create()->each(function ($post) use ($tags) {
@@ -60,17 +60,17 @@ class ArticleDatabaseSeeder extends Seeder
                 $tags->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
-        $this->info("Insert: posts");
+        $this->info('Insert: posts');
 
         /*
          * Comment Seed
          * ------------------
          */
         DB::table('comments')->truncate();
-        $this->info("Truncate: comments");
+        $this->info('Truncate: comments');
 
         factory(Comment::class, 50)->create();
-        $this->info("Insert: comments");
+        $this->info('Insert: comments');
 
         // Artisan::call('auth:permission', [
         //     'name' => 'posts',
