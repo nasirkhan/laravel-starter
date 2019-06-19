@@ -42,18 +42,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
 
-        $this->redirectTo = app('request')->input('redirectTo') ? : $this->redirectTo;
+        $this->redirectTo = app('request')->input('redirectTo') ?: $this->redirectTo;
     }
 
     /**
-     * Show the Login form
+     * Show the Login form.
      *
-     * this method overrides the default method. 
+     * this method overrides the default method.
      */
     public function showLoginForm()
     {
-        if(!session()->has('url.intended'))
-        {
+        if (!session()->has('url.intended')) {
             session(['url.intended' => url()->previous()]);
         }
 
