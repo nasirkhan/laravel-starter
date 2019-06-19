@@ -165,7 +165,6 @@
                                                 $field_placeholder = $field_lable;
                                                 $required = "required";
                                                 ?>
-                                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
                                                 {{ html()->hidden($field_name)->value(encode_id($$module_name_singular->id))->attributes(["$required"]) }}
 
                                                 <?php
@@ -174,7 +173,6 @@
                                                 $field_placeholder = $field_lable;
                                                 $required = "required";
                                                 ?>
-                                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
                                                 {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
 
                                                 <div class="row">
