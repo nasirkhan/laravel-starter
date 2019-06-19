@@ -89,6 +89,7 @@
                         </h5>
                     </div>
                     <div class="content">
+                        <input type="hidden" name="redirectTo" value="{{request('redirectTo')}}">
                         <div class="input-group mb-3 input-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="input-email"><i class="fas fa-at"></i></span>

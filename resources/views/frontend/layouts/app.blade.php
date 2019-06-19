@@ -29,7 +29,7 @@
     <link href="{{asset('vendor/now-ui-kit/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.2.0')}}" rel="stylesheet" />
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <link href="{{asset('plugins/fontawesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6f8083e669.js"></script>
 
     @stack('after-styles')
 
