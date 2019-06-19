@@ -54,6 +54,7 @@
             </div>
             @endif
 
+            @if (session('status'))
             <div class="row justify-content-center">
                 <div class="col-md-8 align-self-center">
                     <div class="alert alert-success" role="alert">
@@ -73,9 +74,11 @@
                     </div>
                 </div>
             </div>
+            @endif
+
             <div class="card card-login card-plain">
                 <form class="form" method="POST" action="{{ route('frontend.auth.login.post') }}">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <div class="header header-primary text-center">
                         <div class="logo-container">
