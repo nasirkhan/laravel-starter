@@ -9,6 +9,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
+use Carbon\Carbon;
 use Modules\Article\Entities\Category;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
 use Yajra\DataTables\DataTables;
@@ -42,8 +43,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        // dd(\App\Models\User::permission('view_newsletters')->get());
-        // dd(auth()->user()->getPermissionsViaRoles());
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -53,12 +52,12 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::latest()->paginate();
+        $$module_name = $module_model::paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_path.index",
-                compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view("article::backend.$module_path.index_datatable",
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     public function index_data()
@@ -72,7 +71,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
+        $$module_name = $module_model::select('id', 'title', 'slug', 'updated_at');
 
         $data = $$module_name;
 
@@ -82,7 +81,7 @@ class PostsController extends Controller
 
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
-                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('title', '<strong>{{$title}}</strong>')
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
 
@@ -94,7 +93,7 @@ class PostsController extends Controller
                                 return $data->updated_at->toCookieString();
                             }
                         })
-                        ->rawColumns(['name', 'action'])
+                        ->rawColumns(['title', 'action'])
                         ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }
@@ -156,7 +155,7 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.create",
-                compact('categories', 'module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+                compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories'));
     }
 
     /**
@@ -177,10 +176,6 @@ class PostsController extends Controller
 
         $module_action = 'Store';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
-        // $$module_name_singular = $module_model::create($request->all());
         $$module_name_singular = $module_model::create($request->except('tags_list'));
         $$module_name_singular->tags()->attach($request->input('tags_list'));
 
@@ -214,7 +209,7 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
     }
 
     /**
@@ -242,7 +237,7 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.edit",
-        compact('categories', 'module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'now'));
+        compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
     }
 
     /**
@@ -291,10 +286,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
         $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'destroy';
 
@@ -317,22 +314,21 @@ class PostsController extends Controller
      */
     public function trashed()
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'Trash List';
-        $page_heading = $module_title;
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view("article::backend.$module_name.trash",
-        compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -345,12 +341,12 @@ class PostsController extends Controller
      */
     public function restore($id)
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'Restore';
 

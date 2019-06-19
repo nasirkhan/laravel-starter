@@ -57,7 +57,7 @@ class CategoriesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -153,7 +153,7 @@ class CategoriesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.create",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -206,7 +206,7 @@ class CategoriesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
     }
 
     /**
@@ -232,7 +232,7 @@ class CategoriesController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.edit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
     }
 
     /**
@@ -274,10 +274,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
         $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'destroy';
 
@@ -300,22 +302,21 @@ class CategoriesController extends Controller
      */
     public function trashed()
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'Trash List';
-        $page_heading = $module_title;
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view("article::backend.$module_name.trash",
-        compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -328,12 +329,12 @@ class CategoriesController extends Controller
      */
     public function restore($id)
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'Restore';
 

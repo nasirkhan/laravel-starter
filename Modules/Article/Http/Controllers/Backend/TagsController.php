@@ -52,15 +52,12 @@ class TagsController extends Controller
 
         $module_action = 'List';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name = $module_model::paginate();
 
-        Log::info("'$title' viewed by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -159,11 +156,10 @@ class TagsController extends Controller
 
         $module_action = 'Create';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.create",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -184,14 +180,11 @@ class TagsController extends Controller
 
         $module_action = 'Store';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name_singular = $module_model::create($request->all());
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
-        Log::info("'$title': '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -214,13 +207,12 @@ class TagsController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name_singular = $module_model::findOrFail($id);
 
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+
         return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
     }
 
     /**
@@ -292,10 +284,12 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
         $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'destroy';
 
@@ -305,7 +299,7 @@ class TagsController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
 
-        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
+        Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
@@ -318,22 +312,21 @@ class TagsController extends Controller
      */
     public function trashed()
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
-        $module_action = 'List';
-        $page_heading = $module_title;
+        $module_action = 'Trash List';
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.Auth::user()->name);
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view("article::backend.$module_name.trash",
-        compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
     }
 
     /**
@@ -346,12 +339,12 @@ class TagsController extends Controller
      */
     public function restore($id)
     {
-        $module_name = $this->module_name;
         $module_title = $this->module_title;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
 
         $module_action = 'Restore';
 
@@ -360,7 +353,7 @@ class TagsController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->important();
 
-        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name);
+        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect("admin/$module_name");
     }
