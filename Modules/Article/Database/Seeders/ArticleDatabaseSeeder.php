@@ -38,10 +38,10 @@ class ArticleDatabaseSeeder extends Seeder
          */
 
         DB::table('post_tag')->truncate();
-        echo("Truncate: post_tag \n");
+        echo "Truncate: post_tag \n";
 
         DB::table('tags')->truncate();
-        echo("Truncate: tags \n");
+        echo "Truncate: tags \n";
 
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
@@ -52,7 +52,7 @@ class ArticleDatabaseSeeder extends Seeder
          * ------------------
          */
         DB::table('posts')->truncate();
-        echo("Truncate: posts \n");
+        echo "Truncate: posts \n";
 
         // Populate the pivot table
         factory(Post::class, 25)->create()->each(function ($post) use ($tags) {
@@ -67,7 +67,7 @@ class ArticleDatabaseSeeder extends Seeder
          * ------------------
          */
         DB::table('comments')->truncate();
-        echo("Truncate: comments \n");
+        echo "Truncate: comments \n";
 
         factory(Comment::class, 50)->create();
         echo(" Insert: comments \n");
