@@ -24,15 +24,15 @@ class Post extends BaseModel
     }
 
     /**
-     * All Published Comments
+     * All Published Comments.
      */
     public function comments()
     {
-        return $this->hasMany('Modules\Article\Entities\Comment')->where('status','=', 1);
+        return $this->hasMany('Modules\Article\Entities\Comment')->where('status', '=', 1);
     }
 
     /**
-     * All the Published and Unpublished Comments
+     * All the Published and Unpublished Comments.
      */
     public function comments_all()
     {
