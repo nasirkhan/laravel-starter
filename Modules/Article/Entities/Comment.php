@@ -13,6 +13,12 @@ class Comment extends BaseModel
 
     protected $table = 'comments';
 
+    protected $dates = [
+        'deleted_at',
+        'published_at',
+        'moderated_at',
+    ];
+
     public function post()
     {
         return $this->belongsTo('Modules\Article\Entities\Post');
@@ -65,6 +71,15 @@ class Comment extends BaseModel
 
         if (empty($value) && $this->attributes['status'] == 1) {
             $this->attributes['published_at'] = Carbon::now();
+        }
+    }
+
+    public function setModeratedAtAttribute($value)
+    {
+        $this->attributes['moderated_at'] = $value;
+
+        if (empty($value)) {
+            $this->attributes['moderated_at'] = Carbon::now();
         }
     }
 

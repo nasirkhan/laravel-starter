@@ -1,3 +1,19 @@
+<?php
+$post_id_value = '';
+$published_at_value = '';
+$moderated_at_value = '';
+
+if ($$module_name_singular){
+    $post_id_value = ($$module_name_singular->post_name != '')? $$module_name_singular->post_name : '';
+
+    $user_id_value = ($$module_name_singular->user_name != '')? $$module_name_singular->user_name : '';
+
+    $published_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
+
+    $moderated_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
+
+}
+?>
 <div class="row">
     <div class="col">
         <div class="form-group">
@@ -7,9 +23,11 @@
             $field_relation = "post";
             $field_placeholder = "-- Select an option --";
             $required = "required";
+            $value = $post_id_value;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('title', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-posts')->attributes(["$required"]) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}
+            {{ html()->hidden($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 
@@ -21,9 +39,11 @@
             $field_relation = "user";
             $field_placeholder = "-- Select an option --";
             $required = "required";
+            $value = $user_id_value;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('name', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-users')->attributes(["$required"]) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}
+            {{ html()->hidden($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -104,9 +124,11 @@
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
+            $value = $moderated_at_value;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->value(\Carbon\Carbon::now())->class('form-control')->attributes(["$required"]) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}
+            {{ html()->hidden($field_name)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -116,9 +138,11 @@
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
+            $value = $published_at_value;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->value(\Carbon\Carbon::now())->class('form-control')->attributes(["$required"]) }}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}
+            {{ html()->hidden($field_name)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
