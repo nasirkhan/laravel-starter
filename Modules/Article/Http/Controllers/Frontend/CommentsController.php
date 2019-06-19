@@ -170,8 +170,8 @@ class CommentsController extends Controller
         $module_action = 'Store';
 
         $data = [
-            'name' => $request->name,
-            'slug' => '',
+            'name'    => $request->name,
+            'slug'    => '',
             'comment' => $request->comment,
             'post_id' => decode_id($request->post_id),
             'user_id' => decode_id($request->user_id),
