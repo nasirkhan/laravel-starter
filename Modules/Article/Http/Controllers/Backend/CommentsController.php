@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
-use Spatie\Activitylog\Models\Activity;
 use Modules\Article\Http\Requests\Backend\CommentsRequest;
+use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
 class CommentsController extends Controller
