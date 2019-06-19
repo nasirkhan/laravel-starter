@@ -27,10 +27,10 @@ class ArticleDatabaseSeeder extends Seeder
          * ------------------
          */
         DB::table('categories')->truncate();
-        echo "\n Truncate: categories \n";
+        echo "\nTruncate: categories \n";
 
         factory(Category::class, 5)->create();
-        echo ("Insert: categories \n");
+        echo (" Insert: categories \n");
 
         /*
          * Tags Seed
@@ -45,7 +45,7 @@ class ArticleDatabaseSeeder extends Seeder
 
         factory(Tag::class, 10)->create();
         $tags = Tag::all();
-        echo("Insert: tags \n");
+        echo(" Insert: tags \n");
 
         /*
          * Posts Seed
@@ -60,7 +60,7 @@ class ArticleDatabaseSeeder extends Seeder
                 $tags->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
-        echo("Insert: posts \n");
+        echo(" Insert: posts \n");
 
         /*
          * Comment Seed
@@ -70,7 +70,7 @@ class ArticleDatabaseSeeder extends Seeder
         echo("Truncate: comments \n");
 
         factory(Comment::class, 50)->create();
-        echo("Insert: comments \n");
+        echo(" Insert: comments \n");
 
         // Artisan::call('auth:permission', [
         //     'name' => 'posts',
