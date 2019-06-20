@@ -3,7 +3,7 @@
     "alias": "article",
     "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
     "keywords": ["blog", "articles","posts"],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "active": 1,
     "order": 0,
     "providers": [
