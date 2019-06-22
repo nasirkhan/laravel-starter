@@ -3,14 +3,6 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Auth;
-use Flash;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Log;
-use Modules\Article\Entities\Category;
-use Modules\Article\Http\Requests\Frontend\PostsRequest;
-use Yajra\DataTables\DataTables;
 
 class PostsController extends Controller
 {
@@ -79,5 +71,4 @@ class PostsController extends Controller
         return view("article::frontend.$module_name.show",
         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
-
 }
