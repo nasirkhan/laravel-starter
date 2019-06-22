@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Modules\Article\Entities\Post::class, function (Faker $faker) {
     return [
-        'name'             => $faker->sentence,
+        'name'              => $faker->sentence,
         'slug'              => '',
         'intro'             => $faker->paragraph,
         'content'           => $faker->paragraphs(rand(5, 7), true),
