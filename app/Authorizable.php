@@ -5,7 +5,7 @@ namespace App;
 trait Authorizable
 {
     /**
-     * List of default method names of the Controllers and the related permission
+     * List of default method names of the Controllers and the related permission.
      */
     private $abilities = [
         'index'     => 'view',
