@@ -3,15 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Auth;
-use Carbon\Carbon;
-use Flash;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-use Log;
-use Modules\Article\Http\Requests\Frontend\CommentsRequest;
-use Yajra\DataTables\DataTables;
 
 class CommentsController extends Controller
 {

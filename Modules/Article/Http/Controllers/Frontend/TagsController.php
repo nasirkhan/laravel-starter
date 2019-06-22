@@ -3,15 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Auth;
-use Carbon\Carbon;
-use Flash;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-use Log;
-use Modules\Article\Http\Requests\Frontend\TagsRequest;
-use Yajra\DataTables\DataTables;
 
 class TagsController extends Controller
 {
@@ -76,9 +68,9 @@ class TagsController extends Controller
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::findOrFail($id);
-        $posts = $$module_name_singular->posts()->with('category' ,'tags', 'comments')->paginate();
+        $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular",  'posts'));
+        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts'));
     }
 }
