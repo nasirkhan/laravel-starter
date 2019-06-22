@@ -103,7 +103,7 @@
                         <hr>
 
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', encode_id($post->category_id))}}" class="badge badge-primary">{{$post->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->code])}}" class="badge badge-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">

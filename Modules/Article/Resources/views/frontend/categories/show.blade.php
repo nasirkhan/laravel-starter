@@ -100,12 +100,12 @@
                         <hr>
 
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', encode_id($post->category_id))}}" class="badge badge-primary">{{$post->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->code])}}" class="badge badge-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', encode_id($tag->id))}}" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->code])}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
 
@@ -114,7 +114,7 @@
                                 <i class="now-ui-icons ui-2_chat-round"></i> Total {{$post->comments->count()}} comments
                             </span>
                         </p>
-                        
+
                         <p class="card-text">
                             <div class="row">
                                 <div class="col">
