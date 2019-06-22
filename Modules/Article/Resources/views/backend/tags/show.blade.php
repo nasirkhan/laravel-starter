@@ -50,6 +50,11 @@
             </div>
             <div class="col">
 
+                <div class="text-center">
+                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
+                </div>
+                <hr>
+
                 <h4>Posts</h4>
                 <ul>
                     @foreach($$module_name_singular->posts as $row)

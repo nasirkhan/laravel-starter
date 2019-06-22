@@ -44,7 +44,7 @@
             <div class="col">
 
                 <div class="text-center">
-                    <a href="{{route('frontend.posts.show', encode_id($$module_name_singular->id))}}" class="btn btn-success"><i class="fas fa-link"></i> Public View</a>
+                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
                 </div>
                 <hr>
 
