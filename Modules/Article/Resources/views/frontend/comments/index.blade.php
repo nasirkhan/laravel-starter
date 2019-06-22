@@ -38,7 +38,7 @@ Comments
             <div class="col-12 col-sm-6">
                 <div class="card">
                     @php
-                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->code]);
+                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
                     @endphp
 
                     <div class="card-body">
@@ -52,9 +52,7 @@ Comments
                         <hr>
 
                         <h6>
-                            {{$$module_name_singular->id}}
-                            {{$$module_name_singular->post_id}}
-                            Post: <a href="{{route('frontend.posts.show', encode_id($$module_name_singular->post_id))}}">{{$$module_name_singular->post->name}}</a>
+                            Post: <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->title}}</a>
                         </h6>
 
                         <p class="card-text">

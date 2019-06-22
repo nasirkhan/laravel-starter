@@ -108,7 +108,7 @@
 
                         <p class="card-text">
                             @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', encode_id($tag->id))}}" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->code])}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
 
