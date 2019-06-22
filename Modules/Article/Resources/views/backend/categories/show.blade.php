@@ -47,7 +47,7 @@
                 <ul>
                     @foreach($$module_name_singular->posts as $row)
                     <li>
-                        <a href="{{route('backend.posts.show', $row->id)}}">{{$row->title}}</a>
+                        <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a>
                     </li>
                     @endforeach
                 </ul>

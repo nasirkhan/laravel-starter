@@ -107,4 +107,29 @@ class BaseModel extends Model implements HasMedia
                 break;
         }
     }
+
+    /**
+     *  Set 'Name' attribute value
+     *
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = trim($value);
+    }
+
+    /**
+     * Set the 'Slug'.
+     * If no value submitted 'Name' will be used as slug
+     * str_slug helper method was used to format the text.
+     *
+     * @param [type]
+     */
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = slug_format($value);
+
+        if (empty($value)) {
+            $this->attributes['slug'] = slug_format(request()->name);
+        }
+    }
 }

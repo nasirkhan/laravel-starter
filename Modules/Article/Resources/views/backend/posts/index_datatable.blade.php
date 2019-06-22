@@ -53,7 +53,7 @@
                                 Name
                             </th>
                             <th>
-                                Code
+                                Slug
                             </th>
                             <th>
                                 Updated At
@@ -105,7 +105,7 @@
         ajax: '{{ route("backend.$module_name.index_data") }}',
         columns: [
             {data: 'id', name: 'id'},
-            {data: 'title', name: 'title'},
+            {data: 'name', name: 'name'},
             {data: 'slug', name: 'slug'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}

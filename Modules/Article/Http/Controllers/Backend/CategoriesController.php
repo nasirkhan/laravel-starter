@@ -89,7 +89,7 @@ class CategoriesController extends Controller
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id'   => $row->id,
-                'text' => $row->name.' (Code: '.$row->code.')',
+                'text' => $row->name.' (Code: '.$row->slug.')',
             ];
         }
 
@@ -107,7 +107,7 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
 
         $data = $$module_name;
 

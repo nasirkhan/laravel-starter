@@ -39,7 +39,7 @@ Tags
             <div class="col-12 col-sm-6">
                 <div class="card">
                     @php
-                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->code]);
+                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
                     @endphp
 
                     <div class="card-body">

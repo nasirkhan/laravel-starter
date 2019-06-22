@@ -71,7 +71,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'title', 'slug', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
 
         $data = $$module_name;
 
@@ -120,14 +120,14 @@ class PostsController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('title', 'LIKE', "%$term%")->published()->limit(10)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->published()->limit(10)->get();
 
         $$module_name = [];
 
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id'   => $row->id,
-                'text' => $row->title,
+                'text' => $row->name,
             ];
         }
 

@@ -90,7 +90,7 @@ class CommentsController extends Controller
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id'   => $row->id,
-                'text' => $row->name.' (Code: '.$row->code.')',
+                'text' => $row->name.' (Code: '.$row->slug.')',
             ];
         }
 

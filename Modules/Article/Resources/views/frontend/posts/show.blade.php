@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-{{$$module_name_singular->title}}
+{{$$module_name_singular->name}}
 @stop
 
 
@@ -13,7 +13,7 @@
     <div class="content-center">
         <div class="container">
             <h1 class="title">
-                {{$$module_name_singular->title}}
+                {{$$module_name_singular->name}}
             </h1>
 
             @include('flash::message')
@@ -46,10 +46,10 @@
                     @php
                     $post_details_url = route('frontend.posts.show',[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
                     @endphp
-                    <img class="card-img-top" src="{{$$module_name_singular->featured_image}}" alt="{{$$module_name_singular->title}}">
+                    <img class="card-img-top" src="{{$$module_name_singular->featured_image}}" alt="{{$$module_name_singular->name}}">
                     <div class="card-body">
                         <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$$module_name_singular->title}}</h4>
+                            <h4 class="card-title">{{$$module_name_singular->name}}</h4>
                         </a>
                         <h6 class="card-subtitle mb-2 text-muted">
                             {{$$module_name_singular->author_name}}
@@ -61,12 +61,12 @@
                         <hr>
 
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->code])}}" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge badge-primary">{{$$module_name_singular->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($$module_name_singular->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->code])}}" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
 

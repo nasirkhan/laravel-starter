@@ -87,11 +87,11 @@
                     $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
                     @endphp
                     <a href="{{$post_details_url}}">
-                        <img class="card-img-top" src="{{$post->featured_image}}" alt="{{$post->title}}">
+                        <img class="card-img-top" src="{{$post->featured_image}}" alt="{{$post->name}}">
                     </a>
                     <div class="card-body">
                         <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$post->title}}</h4>
+                            <h4 class="card-title">{{$post->name}}</h4>
                         </a>
                         <h6 class="card-subtitle mb-2 text-muted">
                             {{$post->author_name}}
@@ -103,12 +103,12 @@
                         <hr>
 
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->code])}}" class="badge badge-primary">{{$post->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge badge-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->code])}}" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-warning">{{$tag->name}}</a>
                             @endforeach
                         </p>
 

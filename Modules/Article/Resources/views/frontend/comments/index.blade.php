@@ -52,7 +52,7 @@ Comments
                         <hr>
 
                         <h6>
-                            Post: <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->title}}</a>
+                            Post: <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
                         </h6>
 
                         <p class="card-text">

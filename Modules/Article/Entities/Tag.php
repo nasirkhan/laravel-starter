@@ -21,22 +21,6 @@ class Tag extends BaseModel
     }
 
     /**
-     * Set the 'Slug'.
-     * If no value submitted 'Title' will be used as slug
-     * str_slug helper method was used to format the text.
-     *
-     * @param [type]
-     */
-    public function setCodeAttribute($value)
-    {
-        $this->attributes['code'] = str_slug(trim($value));
-
-        if (empty($value)) {
-            $this->attributes['code'] = str_slug(trim($this->attributes['name']));
-        }
-    }
-
-    /**
      * Set the 'meta title'.
      * If no value submitted use the 'Title'.
      *

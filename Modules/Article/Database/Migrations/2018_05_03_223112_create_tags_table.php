@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->increments('id')->unsigned();
 
             $table->string('name');
-            $table->string('code')->nullable();
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
 
             $table->string('order')->nullable();

@@ -92,7 +92,7 @@ class TagsController extends Controller
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id'   => $row->id,
-                'text' => $row->name.' (Code: '.$row->code.')',
+                'text' => $row->name.' (Code: '.$row->slug.')',
             ];
         }
 
@@ -113,7 +113,7 @@ class TagsController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        $$module_name = $module_model::select('id', 'name', 'code', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
 
         $data = $$module_name;
 

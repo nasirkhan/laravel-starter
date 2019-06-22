@@ -39,16 +39,6 @@ class Post extends BaseModel
         return $this->hasMany('Modules\Article\Entities\Comment');
     }
 
-    /**
-     *  set post 'Title' and update the 'slug'.
-     *
-     * @param [type]
-     */
-    public function setTitleAttribute($value)
-    {
-        $this->attributes['title'] = trim($value);
-    }
-
     public function setCategoryIdAttribute($value)
     {
         $this->attributes['category_id'] = $value;
@@ -58,22 +48,6 @@ class Post extends BaseModel
             $this->attributes['category_name'] = $category->name;
         } catch (\Exception $e) {
             $this->attributes['category_name'] = null;
-        }
-    }
-
-    /**
-     * Set the 'Slug'.
-     * If no value submitted 'Title' will be used as slug
-     * str_slug helper method was used to format the text.
-     *
-     * @param [type]
-     */
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = str_slug(trim($value));
-
-        if (empty($value)) {
-            $this->attributes['slug'] = str_slug(trim($this->attributes['title']));
         }
     }
 
@@ -88,7 +62,7 @@ class Post extends BaseModel
         $this->attributes['meta_title'] = trim(title_case($value));
 
         if (empty($value)) {
-            $this->attributes['meta_title'] = trim(title_case($this->attributes['title']));
+            $this->attributes['meta_title'] = trim(title_case(request()->name));
         }
     }
 

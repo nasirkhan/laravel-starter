@@ -60,7 +60,7 @@
                                 Name
                             </th>
                             <th>
-                                Code
+                                Slug
                             </th>
                             <th>
                                 Updated At
@@ -113,7 +113,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'code', name: 'code'},
+            {data: 'slug', name: 'slug'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]

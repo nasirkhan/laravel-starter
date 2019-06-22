@@ -38,7 +38,7 @@ class Comment extends BaseModel
     {
         $this->attributes['post_id'] = $value;
 
-        $this->attributes['post_name'] = Post::findOrFail($value)->title;
+        $this->attributes['post_name'] = Post::findOrFail($value)->name;
     }
 
     public function setUserIdAttribute($value)
@@ -46,22 +46,6 @@ class Comment extends BaseModel
         $this->attributes['user_id'] = $value;
 
         $this->attributes['user_name'] = User::findOrFail($value)->name;
-    }
-
-    /**
-     * Set the 'Slug'.
-     * If no value submitted 'Title' will be used as slug
-     * str_slug helper method was used to format the text.
-     *
-     * @param [type]
-     */
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = str_slug(trim($value));
-
-        if (empty($value)) {
-            $this->attributes['slug'] = str_slug(trim($this->attributes['name']));
-        }
     }
 
     /**

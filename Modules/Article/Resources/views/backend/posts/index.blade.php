@@ -52,7 +52,7 @@
                                 #
                             </th>
                             <th>
-                                Title
+                                Name
                             </th>
                             <th>
                                 Category
@@ -76,7 +76,7 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <strong>{{ $module_name_singular->title }}</strong>
+                                <strong>{{ $module_name_singular->name }}</strong>
                                 <br>
                                 <small class="text-muted">Updated At: {{ $module_name_singular->updated_at->diffForHumans() }}</small>
                             </td>
@@ -87,7 +87,7 @@
                                 {{ $module_name_singular->type }}
                             </td>
                             <td>
-                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->title }}">
+                                <img src="{{ asset($module_name_singular->featured_image) }}" class="img-fluid img-thumbnail" style="max-width:200px;" alt="{{ $module_name_singular->name }}">
                             </td>
                             <td class="text-right">
                                 <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ title_case(str_singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
