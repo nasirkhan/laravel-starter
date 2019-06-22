@@ -55,7 +55,7 @@ class TagsController extends Controller
         $$module_name = $module_model::paginate();
 
         return view("article::frontend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
     }
 
     /**
