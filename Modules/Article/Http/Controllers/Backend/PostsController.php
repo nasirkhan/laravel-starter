@@ -71,7 +71,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'category_name', 'status','updated_at');
 
         $data = $$module_name;
 
@@ -81,7 +81,9 @@ class PostsController extends Controller
 
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
-                        ->editColumn('name', '<strong>{{$name}}</strong>')
+                        ->editColumn('name', function ($data) {
+                            return $data->name ." ". $data->status_label;
+                        })
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
 
@@ -93,7 +95,7 @@ class PostsController extends Controller
                                 return $data->updated_at->toCookieString();
                             }
                         })
-                        ->rawColumns(['name', 'action'])
+                        ->rawColumns(['name', 'status', 'action'])
                         ->orderColumns(['id'], '-:column $1')
                         ->make(true);
     }

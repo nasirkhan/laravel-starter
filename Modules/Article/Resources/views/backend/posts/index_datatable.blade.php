@@ -53,10 +53,7 @@
                                 Name
                             </th>
                             <th>
-                                Slug
-                            </th>
-                            <th>
-                                Updated At
+                                Categoty
                             </th>
                             <th class="text-right">
                                 Action
@@ -106,8 +103,7 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'slug', name: 'slug'},
-            {data: 'updated_at', name: 'updated_at'},
+            {data: 'category_name', name: 'category_name'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
