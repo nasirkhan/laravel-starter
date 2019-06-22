@@ -5,15 +5,17 @@ namespace App;
 trait Authorizable
 {
     private $abilities = [
-        'index'   => 'view',
-        'edit'    => 'edit',
-        'show'    => 'view',
-        'update'  => 'edit',
-        'create'  => 'add',
-        'store'   => 'add',
-        'destroy' => 'delete',
-        'restore' => 'restore',
-        'trashed' => 'restore',
+        'index'     => 'view',
+        'index_data'=> 'view',
+        'index_list'=> 'view',
+        'edit'      => 'edit',
+        'show'      => 'view',
+        'update'    => 'edit',
+        'create'    => 'add',
+        'store'     => 'add',
+        'destroy'   => 'delete',
+        'restore'   => 'restore',
+        'trashed'   => 'restore',
     ];
 
     /**
