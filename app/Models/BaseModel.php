@@ -129,7 +129,7 @@ class BaseModel extends Model implements HasMedia
         $this->attributes['slug'] = slug_format($value);
 
         if (empty($value)) {
-            $this->attributes['slug'] = slug_format(request()->name);
+            $this->attributes['slug'] = slug_format($this->attributes['name']);
         }
     }
 }
