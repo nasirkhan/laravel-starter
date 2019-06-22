@@ -109,8 +109,7 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     *  Set 'Name' attribute value
-     *
+     *  Set 'Name' attribute value.
      */
     public function setNameAttribute($value)
     {
