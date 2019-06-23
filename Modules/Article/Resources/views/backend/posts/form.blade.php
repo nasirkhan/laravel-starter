@@ -2,7 +2,7 @@
     <div class="col-6">
         <div class="form-group">
             <?php
-            $field_name = 'title';
+            $field_name = 'name';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "required";

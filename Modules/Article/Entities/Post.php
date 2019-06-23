@@ -6,12 +6,17 @@ use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Article\Entities\Presenters\PostPresenter;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Post extends BaseModel
 {
-    use SoftDeletes, PostPresenter;
+    use LogsActivity, SoftDeletes, PostPresenter;
 
     protected $table = 'posts';
+
+    protected static $logName = 'posts';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = ['name', 'intro', 'content', 'type', 'category_id', 'category_name', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status'];
 
     public function category()
     {

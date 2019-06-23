@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Log;
 use Modules\Article\Entities\Category;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
+use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
 class PostsController extends Controller
@@ -208,10 +209,16 @@ class PostsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $activities = Activity::where('subject_type', '=', $module_model)
+                                ->where('log_name', '=', $module_name)
+                                ->where('subject_id', '=', $id)
+                                ->latest()
+                                ->get();
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities'));
     }
 
     /**
