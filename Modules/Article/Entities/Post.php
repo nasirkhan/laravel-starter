@@ -67,7 +67,7 @@ class Post extends BaseModel
         $this->attributes['meta_title'] = trim(title_case($value));
 
         if (empty($value)) {
-            $this->attributes['meta_title'] = trim(title_case(request()->name));
+            $this->attributes['meta_title'] = trim(title_case($this->attributes['name']));
         }
     }
 
