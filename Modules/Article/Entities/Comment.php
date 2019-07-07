@@ -34,6 +34,22 @@ class Comment extends BaseModel
         return $this->belongsTo('App\Models\User');
     }
 
+    /**
+     * Purifiy Name field value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = clean($value);
+    }
+
+    /**
+     * Purifiy Comment field value
+     */
+    public function setCommentAttribute($value)
+    {
+        $this->attributes['comment'] = clean($value);
+    }
+
     public function setPostIdAttribute($value)
     {
         $this->attributes['post_id'] = $value;

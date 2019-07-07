@@ -16,6 +16,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "lavary/laravel-menu": "^1.7",
+        "mews/purifier": "^2.1",
         "nwidart/laravel-modules": "^5.0",
         "predis/predis": "^1.1",
         "spatie/laravel-activitylog": "^3.6",
