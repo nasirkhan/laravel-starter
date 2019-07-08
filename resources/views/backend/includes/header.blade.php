@@ -14,12 +14,35 @@
             <a class="nav-link" href="{{ route('frontend.index') }}" target="_blank"> {{ app_name() }} </a>
         </li>
     </ul>
+    <?php
+    $notifications = optional(auth()->user())->unreadNotifications;
+    $notifications_count = optional($notifications)->count();
+    $notifications_latest = $notifications->take(5);
+
+
+    ?>
     <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
-            <a class="nav-link" href="#">
+        <li class="nav-item dropdown d-md-down-none">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                 <i class="icon-bell"></i>
-                <span class="badge badge-pill badge-danger">5</span>
+                <span class="badge badge-pill badge-danger">{{$notifications_count}}</span>
             </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+                <div class="dropdown-header text-center">
+                    <strong>You have {{$notifications_count}} notifications</strong>
+                </div>
+                @foreach($notifications_latest as $notification)
+                @php
+                $notification_text = isset($notification->data['title'])? $notification->data['title'] : $notification->data['module'];
+                @endphp
+                <a class="dropdown-item" href="#">
+                    <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fas fa-flag'}}"></i> {{$notification_text}}
+                </a>
+                @endforeach
+                <a class="dropdown-item text-center" href="{{route('backend.notifications.index')}}">
+                    <strong>View all</strong>
+                </a>
+            </div>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

@@ -85,20 +85,23 @@ class NewCommentAdded extends Notification implements ShouldQueue
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         $comment = $this->comment;
         $user = $notifiable;
 
+        $text = 'New Comment | <strong>'.$comment->name.'</strong> on <strong>'.$comment->post_name.'</strong>  by <strong>'.$comment->user_name.'</strong>';
+
+        $url_backend = route('backend.comments.show', $comment->id);
+
         return [
-            'id' => $comment->id,
-            'name' => $comment->name,
-            'comment' => $comment->comment,
-            'post_id' => $comment->post_id,
-            'post_name' => $comment->post_name,
-            'user_id' => $comment->user_id,
-            'user_name' => $comment->user_name,
-            'status' => $comment->status,
+            'title' => 'New Comment for review!',
+            'module'=> 'Comment',
+            'type'  => 'created', // created, published, viewed,
+            'icon'  => 'fas fa-comments',
+            'text'  => $text,
+            'url_backend'   => $url_backend,
+            'url_frontend'  => '',
         ];
     }
 }

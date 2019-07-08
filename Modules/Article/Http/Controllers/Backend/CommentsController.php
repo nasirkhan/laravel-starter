@@ -207,6 +207,8 @@ class CommentsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        auth()->user()->notify(new NewCommentAdded($$module_name_singular));
+
         $activities = Activity::where('subject_type', '=', $module_model)
                                 ->where('log_name', '=', $module_name)
                                 ->where('subject_id', '=', $id)

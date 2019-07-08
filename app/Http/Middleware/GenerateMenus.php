@@ -51,6 +51,20 @@ class GenerateMenus
             ]);
 
             // Backup
+            $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
+                'route' => 'backend.notifications.index',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 92,
+                'activematches' => 'admin/notifications*',
+                'permission'    => [],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
+            // Backup
             $menu->add('<i class="nav-icon fas fa-archive"></i> Backups', [
                 'route' => 'backend.backups.index',
                 'class' => 'nav-item',
