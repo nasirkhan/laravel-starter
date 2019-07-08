@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Modules\Article\Http\Requests\Backend\CommentsRequest;
+use Modules\Article\Notifications\NewCommentAdded;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
@@ -176,6 +177,8 @@ class CommentsController extends Controller
         $module_action = 'Store';
 
         $$module_name_singular = $module_model::create($request->all());
+
+        auth()->user()->notify(new NewCommentAdded($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 

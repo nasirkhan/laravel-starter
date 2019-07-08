@@ -85,4 +85,15 @@ class User extends Authenticatable implements HasMedia
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return env('SLACK_NOTIFICATION_WEBHOOK');
+    }
 }

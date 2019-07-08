@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Modules\Article\Http\Requests\Frontend\CommentsRequest;
+use Modules\Article\Notifications\NewCommentAdded;
 
 class CommentsController extends Controller
 {
@@ -103,7 +104,11 @@ class CommentsController extends Controller
             'user_id' => decode_id($request->user_id),
         ];
         // $$module_name_singular = $module_model::create($request->all());
+
         $$module_name_singular = $module_model::create($data);
+
+        auth()->user()->notify(new NewCommentAdded($$module_name_singular));
+
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 

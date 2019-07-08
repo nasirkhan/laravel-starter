@@ -99,11 +99,37 @@ class BaseModel extends Model implements HasMedia
                 break;
 
             case '2':
-                return '<span class="badge badge-warning">Blocked</span>';
+                return '<span class="badge badge-warning">Pending</span>';
                 break;
 
             default:
                 return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                break;
+        }
+    }
+
+    /**
+     * Get Status Label.
+     *
+     * @return [type] [description]
+     */
+    public function getStatusLabelTextAttribute()
+    {
+        switch ($this->status) {
+            case '0':
+                return 'Inactive';
+                break;
+
+            case '1':
+                return 'Active';
+                break;
+
+            case '2':
+                return 'Pending';
+                break;
+
+            default:
+                return $this->status;
                 break;
         }
     }
