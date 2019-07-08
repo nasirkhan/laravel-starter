@@ -35,7 +35,7 @@ class Comment extends BaseModel
     }
 
     /**
-     * Purifiy Name field value
+     * Purifiy Name field value.
      */
     // public function setNameAttribute($value)
     // {
@@ -43,7 +43,7 @@ class Comment extends BaseModel
     // }
 
     /**
-     * Purifiy Comment field value
+     * Purifiy Comment field value.
      */
     public function setCommentAttribute($value)
     {
