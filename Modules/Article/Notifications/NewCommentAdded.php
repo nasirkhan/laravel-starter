@@ -99,11 +99,11 @@ class NewCommentAdded extends Notification implements ShouldQueue
         $url_backend = route('backend.comments.show', $comment->id);
 
         return [
-            'title' => 'New Comment for review!',
-            'module'=> 'Comment',
-            'type'  => 'created', // created, published, viewed,
-            'icon'  => 'fas fa-comments',
-            'text'  => $text,
+            'title'         => 'New Comment for review!',
+            'module'        => 'Comment',
+            'type'          => 'created', // created, published, viewed,
+            'icon'          => 'fas fa-comments',
+            'text'          => $text,
             'url_backend'   => $url_backend,
             'url_frontend'  => '',
         ];
