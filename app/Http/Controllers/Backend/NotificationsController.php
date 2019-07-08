@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use Auth;
 use Carbon\Carbon;
-use Flash;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 use Log;
-use App\Models\Notification;
 
 class NotificationsController extends Controller
 {
@@ -81,7 +78,7 @@ class NotificationsController extends Controller
             $$module_name_singular->read_at = Carbon::now();
             $$module_name_singular->save();
         }
-        
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.show",
