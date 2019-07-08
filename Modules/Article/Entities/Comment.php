@@ -37,10 +37,10 @@ class Comment extends BaseModel
     /**
      * Purifiy Name field value
      */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = clean($value);
-    }
+    // public function setNameAttribute($value)
+    // {
+    //     $this->attributes['name'] = clean($value);
+    // }
 
     /**
      * Purifiy Comment field value
