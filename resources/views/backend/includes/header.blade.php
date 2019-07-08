@@ -25,11 +25,11 @@
         <li class="nav-item dropdown d-md-down-none">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                 <i class="icon-bell"></i>
-                <span class="badge badge-pill badge-danger">{{$notifications_count}}</span>
+                @if($notifications_count)<span class="badge badge-pill badge-danger">{{$notifications_count}}</span>@endif
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
                 <div class="dropdown-header text-center">
-                    <strong>You have {{$notifications_count}} notifications</strong>
+                    <strong>You have {{$notifications_count}} unread notifications!</strong>
                 </div>
                 @foreach($notifications_latest as $notification)
                 @php

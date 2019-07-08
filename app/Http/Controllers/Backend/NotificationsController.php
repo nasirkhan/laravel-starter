@@ -81,7 +81,7 @@ class NotificationsController extends Controller
             $$module_name_singular->read_at = Carbon::now();
             $$module_name_singular->save();
         }
-        
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view("backend.$module_name.show",
