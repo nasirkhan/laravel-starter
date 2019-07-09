@@ -48,7 +48,9 @@ Route::get("$module_name/delete/{file_name}", ['as' => "$module_name.delete", 'u
  *
  * ---------------------------------------------------------------------
  */
-Route::resource('roles', 'RolesController');
+$module_name = 'roles';
+$controller_name = 'RolesController';
+Route::resource("$module_name", "$controller_name");
 
 /*
  *

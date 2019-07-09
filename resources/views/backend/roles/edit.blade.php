@@ -28,7 +28,7 @@ $module_name_singular = str_singular($module_name);
         </div>
 
         <hr>
-        <div class="row mt-4 mb-4">
+        <div class="row mt-4">
             <div class="col">
                 {{ html()->modelForm($$module_name_singular, 'PATCH', route("backend.$module_name.update", $$module_name_singular->id))->class('form-horizontal')->open() }}
 
@@ -60,16 +60,24 @@ $module_name_singular = str_singular($module_name);
                     </div>
 
                     <div class="row">
-                        <div class="col">
-                            {{ form_cancel(route("backend.$module_name.index"), __('labels.buttons.general.cancel')) }}
-                            {{ form_submit(__('labels.buttons.general.update')) }}
+                        <div class="col-4">
+                            <div class="form-group">
+                                {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-8">
+                            <div class="float-right">
+                                <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
+                            </div>
                         </div>
                     </div>
-                {{ html()->closeModelForm() }}
+                {{ html()->form()->close() }}
             </div>
 
         </div>
-        
+
     </div>
     <div class="card-footer">
         <div class="row">

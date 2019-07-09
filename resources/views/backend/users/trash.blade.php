@@ -1,19 +1,6 @@
 @extends ('backend.layouts.app')
 
-<?php
-$module_name_singular = str_singular($module_name);
-?>
-
 @section ('title', ucfirst($module_name) . ' ' . ucfirst($module_action))
-
-@section('page_heading')
-<h1>
-    <i class="{{$module_icon}}"></i> {{ ucfirst($module_name) }}
-    <small>
-        {{ ucfirst($module_action) }}
-    </small>
-</h1>
-@stop
 
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
@@ -26,7 +13,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Trashed {{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
                     {{ title_case($module_name) }} Management Dashboard

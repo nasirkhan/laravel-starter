@@ -8,19 +8,18 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> {{ __('labels.backend.roles.index.title') }}
-                    <small class="text-muted">{{ __('labels.backend.roles.index.action') }} </small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
                     {{ __('labels.backend.roles.index.sub-title') }}
                 </div>
             </div>
-            <!--/.col-->
+
             <div class="col-4">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{route("backend.$module_name.create")}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i></a>
+                <div class="float-right">
+                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
                 </div>
             </div>
             <!--/.col-->
@@ -41,7 +40,9 @@
                         @foreach ($$module_name as $module_name_singular)
                         <tr>
                             <td>
-                                {{ $module_name_singular->name }}
+                                <strong>
+                                    {{ $module_name_singular->name }}
+                                </strong>
                             </td>
                             <td>
                                 @foreach ($module_name_singular->permissions as $permission)
