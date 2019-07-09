@@ -41,8 +41,6 @@ class RolesController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        // Log::info($module_name . ' Index View');
-
         return view("backend.$module_name.index", compact('title', 'page_heading', 'module_icon', 'module_action', 'module_name', "$module_name"));
     }
 
@@ -112,13 +110,10 @@ class RolesController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view("backend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
     /**
@@ -142,7 +137,7 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'permissions'));
+        return view("backend.$module_name.edit", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
