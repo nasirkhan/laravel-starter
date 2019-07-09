@@ -1,7 +1,9 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 # Laravel Starter
-Laravel 5.8 based simple starter project to build all type of applications.
+Laravel 5.8 based simple starter project to build all type of applications. Almost all the necessary functionalities are added. Continuously working on more features and improvements.
+
+Please let me know your feedback and comments.
 
 > Current Build Status
 
@@ -14,11 +16,19 @@ http://laravel.nasirkhn.com/
 
 ## Features
 
+* Admin feature and public views are completely separated as `Backend` and `Frontend`.
+* Major feature are developed as `Modules`. Module like Posts, Comments are separated from the core features like User, Role, Permission
+
+
+### All features
+
 * User Authentication
 * Social Login
   * Facebook
   * Github
+  * Build in a way adding more is much easy now
 * User Profile with Avatar
+  * Separate User Profile table
 * Role-Permissions for Users
 * Dynamic Menu System
 * Backend Theme
@@ -31,6 +41,7 @@ http://laravel.nasirkhn.com/
   * Posts
   * Categories
   * Tags
+  * Comments
   * wysiwyg editor
   * file browser
 * Application Settings
@@ -44,6 +55,9 @@ http://laravel.nasirkhn.com/
   * Date Time Picker
 * Backup (Source, Files, Database as Zip)
 * Log Viewer
+* Newsletter
+* Notification
+  * Dashboard and details view
 
 ## Installation
 
