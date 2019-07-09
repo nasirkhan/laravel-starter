@@ -6,8 +6,8 @@ use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Log;
 
 class RolesController extends Controller
@@ -243,14 +243,14 @@ class RolesController extends Controller
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->route("backend.$module_name.index");
-        } else if (in_array($id, $user_roles->toArray())) {
+        } elseif (in_array($id, $user_roles->toArray())) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete your Role!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->route("backend.$module_name.index");
-        } else if ($role_users->count()) {
-            Flash::warning("<i class='fas fa-exclamation-triangle'></i> Can not be deleted! ".$role_users->count()." user found!")->important();
+        } elseif ($role_users->count()) {
+            Flash::warning("<i class='fas fa-exclamation-triangle'></i> Can not be deleted! ".$role_users->count().' user found!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -268,8 +268,7 @@ class RolesController extends Controller
         } catch (\Exception $e) {
             Log::error($e);
 
-            Log::error('Can not delete role with id '. $id);
+            Log::error('Can not delete role with id '.$id);
         }
-
     }
 }
