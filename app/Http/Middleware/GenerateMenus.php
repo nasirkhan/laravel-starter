@@ -188,7 +188,7 @@ class GenerateMenus
                         if (Str::is($pattern, \Request::path())) {
                             $item->activate();
                             $item->active();
-                            if ($item->hasParent()){
+                            if ($item->hasParent()) {
                                 $item->parent()->activate();
                                 $item->parent()->active();
                             }
