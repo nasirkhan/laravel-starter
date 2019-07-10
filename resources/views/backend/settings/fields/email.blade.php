@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has($field['name']) ? ' has-error' : '' }}">
-    <label for="{{ $field['name'] }}">{{ $field['label'] }}</label>
+    <label for="{{ $field['name'] }}"> <strong>{{ $field['label'] }}</strong> ({{ $field['name'] }})</label>
     <input type="{{ $field['type'] }}"
            name="{{ $field['name'] }}"
            value="{{ old($field['name'], setting($field['name'])) }}"
