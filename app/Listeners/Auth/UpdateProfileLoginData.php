@@ -4,6 +4,7 @@ namespace App\Listeners\Auth;
 
 use App\Events\Auth\UserLoginSuccess;
 use Carbon\Carbon;
+use Log;
 
 class UpdateProfileLoginData
 {
@@ -37,5 +38,7 @@ class UpdateProfileLoginData
         $user_profile->last_ip = $request->getClientIp();
         $user_profile->login_count = $user_profile->login_count + 1;
         $user_profile->save();
+
+        Log::debug('UpdateProfileLoginData: '.$user->name.' IP:'.$request->getClientIp());
     }
 }
