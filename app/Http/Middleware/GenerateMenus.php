@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Str;
 
 class GenerateMenus
 {
@@ -85,8 +86,8 @@ class GenerateMenus
             ->data([
                 'order'         => 93,
                 'activematches' => [
-                    'admin/roles*',
                     'admin/users*',
+                    'admin/roles*',
                 ],
                 'permission'    => ['view_users', 'view_roles'],
             ]);
@@ -180,30 +181,18 @@ class GenerateMenus
             });
 
             $menu->filter(function ($item) {
-                // if ($item->title === '<i class="icon-key"></i> Access Control') {
-                //     if ($item->activematches) {
-                //
-                //         $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
-                //
-                //         foreach ($matches as $pattern) {
-                //             // dd(\Request::path());
-                //             // dd($pattern);
-                //             if (str_is($pattern, \Request::path())) {
-                //                 $item->activate();
-                //                 $item->isActive = true;
-                //                 dd($item);
-                //             }
-                //             // dd($item);
-                //         }
-                //     }
-                // }
                 if ($item->activematches) {
                     $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
 
                     foreach ($matches as $pattern) {
-                        if (str_is($pattern, \Request::path())) {
+                        if (Str::is($pattern, \Request::path())) {
                             $item->activate();
-                            // dd($item);
+                            $item->active();
+                            if ($item->hasParent()){
+                                $item->parent()->activate();
+                                $item->parent()->active();
+                            }
+                            // dd($pattern);
                         }
                     }
                 }
