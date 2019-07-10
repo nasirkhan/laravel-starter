@@ -126,7 +126,7 @@ class Post extends BaseModel
     public function scopePublished($query)
     {
         return $query->where('status', '=', '1')
-                        ->whereDate('published_at', '<=', Carbon::today()->toDateString());
+                        ->where('published_at', '<=', Carbon::now());
     }
 
     /**
