@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Authorizable;
 use App\Events\Backend\User\UserCreated;
 use App\Events\Backend\User\UserProfileUpdated;
+use App\Events\Auth\UserLoginSuccess;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
@@ -280,7 +281,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile($id)
+    public function profile(Request $request, $id)
     {
         $title = $this->module_title;
         $module_title = $this->module_title;

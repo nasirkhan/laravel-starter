@@ -42,6 +42,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Frontend\User\UserProfileUpdatedNotifyUser',
             'App\Listeners\Frontend\User\UserProfileUpdatedUserUpdate',
         ],
+        'App\Events\Auth\UserLoginSuccess' => [
+            'App\Listeners\Auth\UpdateProfileLoginData',
+        ],
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],

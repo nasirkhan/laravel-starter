@@ -49,6 +49,14 @@ class User extends Authenticatable implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Userprofile');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function userprofile()
     {
         return $this->hasOne('App\Models\Userprofile');

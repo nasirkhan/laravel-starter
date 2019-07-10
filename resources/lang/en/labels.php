@@ -9,6 +9,12 @@ return [
                 'title'     => 'Users',
                 'sub-title' => 'Users Management',
             ],
+            'profile' => [
+                'action'    => 'Show',
+                'title'     => 'User Profile',
+                'sub-title' => 'Users Management',
+                'profile'   => 'Profile',
+            ],
             'show' => [
                 'action'    => 'Show',
                 'title'     => 'Users',
@@ -42,7 +48,8 @@ return [
                 'profile_privecy'       => 'Profile Privecy',
                 'address'               => 'Address',
                 'bio'                   => 'Bio',
-                'logins_count'          => 'Login Count',
+                'login_count'           => 'Login Count',
+                'last_ip'               => 'Last IP',
                 'last_login'            => 'Last Login',
                 'password'              => 'Password',
                 'password_confirmation' => 'Password Confirmation',

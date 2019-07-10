@@ -42,36 +42,59 @@
             <table class="table table-hover">
                 <tbody>
                     <?php $fields_array = [
-                        'name',
-                        'email',
-                        'mobile',
-                        'gender',
-                        'date_of_birth',
-                        'url_website',
-                        'url_facebook',
-                        'url_twitter',
-                        'url_googleplus',
-                        'url_linkedin',
-                        'url_1',
-                        'url_2',
-                        'url_3',
-                        'profile_privecy',
-                        'address',
-                        'bio',
-                        'logins_count',
-                        'last_login',
+                        [ 'name' => 'name' ],
+                        [ 'name' => 'email' ],
+                        [ 'name' => 'mobile' ],
+                        [ 'name' => 'gender' ],
+                        [ 'name' => 'date_of_birth', 'type' => 'date'],
+                        [ 'name' => 'url_website', 'type' => 'url' ],
+                        [ 'name' => 'url_facebook', 'type' => 'url' ],
+                        [ 'name' => 'url_twitter', 'type' => 'url' ],
+                        [ 'name' => 'url_linkedin', 'type' => 'url' ],
+                        [ 'name' => 'url_1', 'type' => 'url' ],
+                        [ 'name' => 'url_2', 'type' => 'url' ],
+                        [ 'name' => 'url_3', 'type' => 'url' ],
+                        [ 'name' => 'profile_privecy' ],
+                        [ 'name' => 'address' ],
+                        [ 'name' => 'bio' ],
+                        [ 'name' => 'login_count' ],
+                        [ 'name' => 'last_login', 'type' => 'datetime' ],
+                        [ 'name' => 'last_ip' ],
                     ]; ?>
-                    <?php foreach ($fields_array as $field): ?>
+                    @foreach ($fields_array as $field)
                         <tr>
-                            @if (starts_with($field, 'url_'))
-                            <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
-                            <td><a href="{{ $userprofile->$field }}" target="_blank">{{ $userprofile->$field }}</a></td>
+                            @php
+                            $field_name = $field['name'];
+                            $field_type = isset($field['type'])? $field['type'] : '';
+                            @endphp
+
+                            <th>{{ __("labels.backend.users.fields.".$field_name) }}</th>
+
+                            @if ($field_name == 'date_of_birth' && $userprofile->$field_name != '')
+                            <td>
+                                @if(auth()->user()->id == $userprofile->user_id)
+                                {{ $userprofile->$field_name->toFormattedDateString() }}
+                                @else
+                                {{ $userprofile->$field_name->format('jS \\of F') }}
+                                @endif
+                            </td>
+                            @elseif ($field_type == 'date' && $userprofile->$field_name != '')
+                            <td>
+                                {{ $userprofile->$field_name->toFormattedDateString() }}
+                            </td>
+                            @elseif ($field_type == 'datetime' && $userprofile->$field_name != '')
+                            <td>
+                                {{ $userprofile->$field_name->toDayDateTimeString() }}
+                            </td>
+                            @elseif ($field_type == 'url')
+                            <td>
+                                <a href="{{ $userprofile->$field_name }}" target="_blank">{{ $userprofile->$field_name }}</a>
+                            </td>
                             @else
-                            <th>{{ __('labels.backend.users.fields.'.$field) }}</th>
-                            <td>{{ $userprofile->$field }}</td>
+                            <td>{{ $userprofile->$field_name }}</td>
                             @endif
                         </tr>
-                    <?php endforeach; ?>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -25,7 +25,6 @@ class CreateUserprofilesTable extends Migration
             $table->string('url_website')->nullable();
             $table->string('url_facebook')->nullable();
             $table->string('url_twitter')->nullable();
-            $table->string('url_googleplus')->nullable();
             $table->string('url_linkedin')->nullable();
             $table->string('url_1')->nullable();
             $table->string('url_2')->nullable();
@@ -38,7 +37,7 @@ class CreateUserprofilesTable extends Migration
             $table->string('avatar')->nullable();
             $table->text('user_metadata')->nullable();
             $table->string('last_ip')->nullable();
-            $table->integer('logins_count')->default(0);
+            $table->integer('login_count')->default(0);
             $table->timestamp('last_login')->nullable();
             $table->timestamp('confirmed_at')->nullable();
             $table->tinyInteger('status')->default(1)->unsigned();
