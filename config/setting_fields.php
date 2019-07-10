@@ -45,6 +45,51 @@ return [
         ],
 
     ],
+    'social' => [
+        'title' => 'Social Profiles',
+        'desc'  => 'Link of all the social profiles.',
+        'icon'  => 'fas fa-users',
+
+        'elements' => [
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'facebook_url', // unique name for field
+                'label' => 'Facebook Page URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'twitter_url', // unique name for field
+                'label' => 'Twitter Profile URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'linkedin_url', // unique name for field
+                'label' => 'LinkedIn URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'youtube_url', // unique name for field
+                'label' => 'Youtube Channel URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
+        ],
+
+    ],
     'meta' => [
         'title' => 'Meta ',
         'desc'  => 'Application Meta Data',
