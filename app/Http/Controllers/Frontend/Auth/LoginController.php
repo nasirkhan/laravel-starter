@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
-use App\Events\Frontend\User\UserRegistered;
 use App\Events\Auth\UserLoginSuccess;
+use App\Events\Frontend\User\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
@@ -71,7 +71,7 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
             flash('<i class="fas fa-check"></i> Welcome '.auth()->user()->name.', <br>You successfully logged in!')->success();
-            
+
             $user = Auth::user();
 
             event(new UserLoginSuccess($request, $user));
