@@ -35,6 +35,7 @@ mix.scripts([
    "node_modules/bootstrap/dist/js/bootstrap.min.js",
    "node_modules/pace-progress/pace.min.js",
    "node_modules/chart.js/dist/Chart.min.js",
+   "node_modules/sharer.js/sharer.min.js",
    "resources/assets/js/laravel.js",
    "resources/assets/coreui/js/app.js"
 ], "public/js/app_frontend.js");

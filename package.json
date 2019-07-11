@@ -25,5 +25,7 @@
         "simple-line-icons": "^2.4.1",
         "vue": "^2.6.7"
     },
-    "dependencies": {}
+    "dependencies": {
+        "sharer.js": "^0.3.8"
+    }
 }
