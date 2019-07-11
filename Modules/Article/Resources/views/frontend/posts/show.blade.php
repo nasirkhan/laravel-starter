@@ -23,15 +23,13 @@
             <!-- / Errors block -->
 
             <div class="text-center">
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-facebook-square"></i>
-                </a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-google-plus"></i>
-                </a>
+
+                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
+
+                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+
+                <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
+
             </div>
         </div>
     </div>
@@ -74,15 +72,13 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="text-center">
-                                        <a href="#" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-facebook-square"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-primary btn-icon btn-round">
-                                            <i class="fab fa-google-plus"></i>
-                                        </a>
+
+                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
+
+                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+
+                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
+
                                     </div>
                                 </div>
                             </div>
@@ -115,92 +111,88 @@
                             @endforeach
                         </p>
                         <div class="row justify-content-md-center">
-                                @auth
-                                <div class="col-4 align-self-center">
-                                    <p>
-                                        <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#commentForm" role="button" aria-expanded="false" aria-controls="commentForm"><i class="far fa-comment-alt"></i> Write new comment</a>
-                                    </p>
-                                </div>
-                                <div class="row justify-content-md-center">
-                                    <div class="col-8 align-self-center">
-                                        <div class="collapse multi-collapse" id="commentForm">
-                                            <div class="card card-body">
-                                                <p>
-                                                    Your comment will be in the moderation queue. If your comment will be approved, you will get notification and it will be displayed here.
-                                                    <br>
-                                                    Please submit once & wait till published.
-                                                </p>
+                            @auth
+                            <div class="col-4 align-self-center">
+                                <p>
+                                    <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#commentForm" role="button" aria-expanded="false" aria-controls="commentForm"><i class="far fa-comment-alt"></i> Write new comment</a>
+                                </p>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <div class="col-8 align-self-center">
+                                    <div class="collapse multi-collapse" id="commentForm">
+                                        <div class="card card-body">
+                                            <p>
+                                                Your comment will be in the moderation queue. If your comment will be approved, you will get notification and it will be displayed here.
+                                                <br>
+                                                Please submit once & wait till published.
+                                            </p>
 
-                                                {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <?php
-                                                            $field_name = 'name';
-                                                            $field_lable = "Subject";
-                                                            $field_placeholder = $field_lable;
-                                                            $required = "required";
-                                                            ?>
-                                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <?php
-                                                            $field_name = 'comment';
-                                                            $field_lable = "Details Comment";
-                                                            $field_placeholder = $field_lable;
-                                                            $required = "required";
-                                                            ?>
-                                                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                                            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                                        </div>
+                                            {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <?php
+                                                        $field_name = 'name';
+                                                        $field_lable = "Subject";
+                                                        $field_placeholder = $field_lable;
+                                                        $required = "required";
+                                                        ?>
+                                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                        {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                                     </div>
                                                 </div>
-
-                                                <?php
-                                                $field_name = 'post_id';
-                                                $field_lable = label_case($field_name);
-                                                $field_placeholder = $field_lable;
-                                                $required = "required";
-                                                ?>
-                                                {{ html()->hidden($field_name)->value(encode_id($$module_name_singular->id))->attributes(["$required"]) }}
-
-                                                <?php
-                                                $field_name = 'user_id';
-                                                $field_lable = label_case($field_name);
-                                                $field_placeholder = $field_lable;
-                                                $required = "required";
-                                                ?>
-                                                {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            {{ html()->button($text = "<i class='fas fa-save'></i> Submit", $type = 'submit')->class('btn btn-success') }}
-                                                        </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <?php
+                                                        $field_name = 'comment';
+                                                        $field_lable = "Details Comment";
+                                                        $field_placeholder = $field_lable;
+                                                        $required = "required";
+                                                        ?>
+                                                        {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                                        {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                                     </div>
                                                 </div>
-
-                                                {{ html()->form()->close() }}
                                             </div>
+
+                                            <?php
+                                            $field_name = 'post_id';
+                                            $field_lable = label_case($field_name);
+                                            $field_placeholder = $field_lable;
+                                            $required = "required";
+                                            ?>
+                                            {{ html()->hidden($field_name)->value(encode_id($$module_name_singular->id))->attributes(["$required"]) }}
+
+                                            <?php
+                                            $field_name = 'user_id';
+                                            $field_lable = label_case($field_name);
+                                            $field_placeholder = $field_lable;
+                                            $required = "required";
+                                            ?>
+                                            {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        {{ html()->button($text = "<i class='fas fa-save'></i> Submit", $type = 'submit')->class('btn btn-success') }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{ html()->form()->close() }}
                                         </div>
                                     </div>
                                 </div>
-                                @endauth
-                                @guest
-                                <div class="col-4 align-self-center">
-                                    <p>
-                                        <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
-                                    </p>
-                                </div>
-                                @endguest
-
-
-
+                            </div>
+                            @endauth
+                            @guest
+                            <div class="col-4 align-self-center">
+                                <p>
+                                    <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
+                                </p>
+                            </div>
+                            @endguest
                         </div>
-
 
                         <p class="card-text">
                             <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
@@ -211,6 +203,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

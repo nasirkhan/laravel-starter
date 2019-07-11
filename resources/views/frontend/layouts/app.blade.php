@@ -85,6 +85,8 @@
 <script src="{{ asset('vendor/now-ui-kit/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
 <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
 <script src="{{ asset('vendor/now-ui-kit/js/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<!-- Share Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
 
