@@ -66,9 +66,11 @@ class PostsController extends Controller
 
         $module_action = 'Show';
 
+        $meta_page_type = 'article';
+
         $$module_name_singular = $module_model::with(['category', 'tags', 'comments'])->findOrFail($id);
 
         return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type'));
     }
 }

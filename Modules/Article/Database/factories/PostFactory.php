@@ -19,6 +19,7 @@ $factory->define(Modules\Article\Entities\Post::class, function (Faker $faker) {
         'meta_description'  => '',
         'meta_og_image'     => '',
         'meta_og_url'       => '',
+        'created_by_name'   => '',
         'created_at'        => Carbon::now(),
         'updated_at'        => Carbon::now(),
         'published_at'      => Carbon::now(),

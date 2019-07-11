@@ -56,6 +56,15 @@ class Post extends BaseModel
         }
     }
 
+    public function setCreatedByNameAttribute($value)
+    {
+        $this->attributes['created_by_name'] = trim(title_case($value));
+
+        if (empty($value)) {
+            $this->attributes['created_by_name'] = auth()->name;
+        }
+    }
+
     /**
      * Set the 'meta title'.
      * If no value submitted use the 'Title'.

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-5">
         <div class="form-group">
             <?php
             $field_name = 'name';
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="col-6">
+    <div class="col">
         <div class="form-group">
             <?php
             $field_name = 'slug';
@@ -22,6 +22,19 @@
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form-group">
+            <?php
+            $field_name = 'created_by_name';
+            $field_lable = 'Author Name';
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value(auth()->user()->name) }}
         </div>
     </div>
 </div>

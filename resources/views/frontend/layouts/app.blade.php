@@ -10,9 +10,13 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <meta name="description" content="{{ setting('meta_description') }}">
     <meta name="keyword" content="{{ setting('meta_keyword') }}">
+
+    @include('frontend.includes.meta')
     <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
 
+    <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
     <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
 
     <!-- CSRF Token -->

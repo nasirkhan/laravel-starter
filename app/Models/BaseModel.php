@@ -34,7 +34,7 @@ class BaseModel extends Model implements HasMedia
         // create a event to happen on creating
         static::creating(function ($table) {
             $table->created_by = Auth::id();
-            $table->created_at = Carbon::now()->toDateTimeString();
+            $table->created_at = Carbon::now();
         });
 
         // create a event to happen on updating

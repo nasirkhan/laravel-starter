@@ -99,6 +99,15 @@ return [
             [
                 'type'  => 'text', // input fields type
                 'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_site_name', // unique name for field
+                'label' => 'Meta Site Name', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Awesome Laravel | A Laravel Starter Project', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
                 'name'  => 'meta_description', // unique name for field
                 'label' => 'Meta Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
@@ -113,6 +122,42 @@ return [
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, nasir khan, nasirkhan', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_image', // unique name for field
+                'label' => 'Meta Image', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'img/default_banner.jpg', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_fb_app_id', // unique name for field
+                'label' => 'Meta Facebook App Id', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '569561286532601', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_twitter_site', // unique name for field
+                'label' => 'Meta Twitter Site Account', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '@nasir8891', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'meta_twitter_creator', // unique name for field
+                'label' => 'Meta Twitter Creator Account', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '@nasir8891', // default value if you want
             ],
         ],
 

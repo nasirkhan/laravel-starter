@@ -41,7 +41,7 @@ class TagsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::paginate();
+        $$module_name = $module_model::with('posts')->paginate();
 
         return view("article::frontend.$module_path.index",
         compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular'));
