@@ -26,11 +26,18 @@
                         </h5>
                     </div>
                     <div class="content">
-                        <div class="input-group mb-3 input-lg {{ $errors->has('name') ? ' has-danger' : '' }}">
+                        <div class="input-group mb-3 input-lg {{ $errors->has('first_name') ? ' has-danger' : '' }}">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="input-name"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text" id="input-first_name"><i class="fas fa-user"></i></span>
                             </div>
-                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name" aria-label="Name" aria-describedby="input-name" required>
+                            <input id="name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" aria-label="First Name" aria-describedby="input-first_name" required>
+                        </div>
+
+                        <div class="input-group mb-3 input-lg {{ $errors->has('last_name') ? ' has-danger' : '' }}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="input-last_name"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input id="name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" aria-label="Last Name" aria-describedby="input-last_name" required>
                         </div>
 
                         <div class="input-group mb-3 input-lg {{ $errors->has('email') ? ' has-danger' : '' }}">

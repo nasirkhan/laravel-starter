@@ -45,9 +45,16 @@
                         {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
 
                         <div class="col-md-10">
-                            {{ html()->text('name')
+                            {{ html()->text('first_name')
                                 ->class('form-control')
-                                ->placeholder(__('labels.backend.users.fields.name'))
+                                ->placeholder(__('labels.backend.users.fields.first_name'))
+                                ->attribute('maxlength', 191)
+                                ->required() }}
+                        </div>
+                        <div class="col-md-10">
+                            {{ html()->text('last_name')
+                                ->class('form-control')
+                                ->placeholder(__('labels.backend.users.fields.last_name'))
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div>

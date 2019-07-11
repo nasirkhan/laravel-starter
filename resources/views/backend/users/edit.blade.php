@@ -147,9 +147,28 @@
                     </div>
 
                     <div class="row">
-                        <div class="col">
-                            {{ form_cancel(route('backend.users.index'), __('labels.buttons.general.cancel')) }}
-                            {{ form_submit(__('labels.buttons.general.update')) }}
+                        <div class="col-4">
+                            <div class="form-group">
+                                {{ html()->submit($text = icon('fas fa-save')." Save")->class('btn btn-success') }}
+                            </div>
+                        </div>
+
+                        <div class="col-8">
+                            <div class="float-right">
+                                @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
+                                <a href="{{route('backend.users.block', $$module_name_singular)}}" class="btn btn-danger" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.block')}}" data-confirm="Are you sure?"><i class="fas fa-ban"></i></a>
+                                @endif
+                                @if ($$module_name_singular->status == 2)
+                                <a href="{{route('backend.users.unblock', $$module_name_singular)}}" class="btn btn-info" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}" data-confirm="Are you sure?"><i class="fas fa-check"></i> Unblock</a>
+                                @endif
+                                @if ($$module_name_singular->confirmed_at == null)
+                                <a href="{{route('backend.users.emailConfirmationResend', $$module_name_singular->id)}}" class="btn btn-primary" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i></a>
+                                @endif
+                                @if($$module_name_singular->id != 1)
+                                <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                @endif
+                                <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
+                            </div>
                         </div>
                     </div>
                 {{ html()->closeModelForm() }}

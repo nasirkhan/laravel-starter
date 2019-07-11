@@ -31,6 +31,8 @@ class UserUpdatedProfileUpdate implements ShouldQueue
 
         $userprofile = Userprofile::where('user_id', '=', $user->id)->first();
         $userprofile->name = $user->name;
+        $userprofile->first_name = $user->first_name;
+        $userprofile->last_name = $user->last_name;
         $userprofile->email = $user->email;
         $userprofile->mobile = $user->mobile;
         $userprofile->gender = $user->gender;

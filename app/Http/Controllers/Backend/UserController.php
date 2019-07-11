@@ -201,12 +201,14 @@ class UserController extends Controller
         $module_action = 'Details';
 
         $request->validate([
-            'name'     => 'required|min:3|max:191',
-            'email'    => 'email|unique:users',
-            'password' => 'required|confirmed|min:4',
+            'first_name'=> 'required|min:3|max:191',
+            'last_name' => 'required|min:3|max:191',
+            'email'     => 'email|unique:users',
+            'password'  => 'required|confirmed|min:4',
         ]);
 
         $data_array = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
 
         if ($request->confirmed == 1) {
             $data_array = array_add($data_array, 'confirmed_at', Carbon::now());
@@ -352,7 +354,10 @@ class UserController extends Controller
         $module_action = 'Edit Profile';
 
         $this->validate($request, [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'first_name'=> 'required|min:3|max:191',
+            'last_name' => 'required|min:3|max:191',
+            'email'     => 'email|unique:users',
         ]);
 
         if (!auth()->user()->can('edit_users')) {
@@ -375,20 +380,9 @@ class UserController extends Controller
             $$module_name_singular->save();
         }
 
-        // return $$module_name_singular->avatar;
-        // if ($request->hasFile('avatar')) {
-        //     $avatar = $request->file('avatar');
-        //     $filename = 'avatar-'.$$module_name_singular->id.'.'.$avatar->getClientOriginalExtension();
-        //     $img = Image::make($avatar)->resize(null, 400, function ($constraint) {
-        //         $constraint->aspectRatio();
-        //     })->save(public_path('/photos/avatars/'.$filename));
-        //     $$module_name_singular->avatar = $filename;
-        //     $$module_name_singular->save();
-        //     return $filename;
-        // }
-
         $data_array = $request->except('avatar');
         $data_array['avatar'] = $$module_name_singular->avatar;
+        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
 
         $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
         $user_profile->update($data_array);
@@ -448,7 +442,7 @@ class UserController extends Controller
 
         $$module_name_singular->update($request->only('password'));
 
-        Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
+        Flash::success(icon()." '".str_singular($module_title)."' Updated Successfully")->important();
 
         return redirect("admin/$module_name/profile");
     }
@@ -614,8 +608,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (auth()->id() == $id || $id == 1) {
-            throw new GeneralException('You can not delete yourself.');
+        if (auth()->user()->id == $id || $id == 1) {
+            Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete this user!")->important();
+
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
         }
 
         $module_name = $this->module_name;
@@ -704,12 +700,20 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (auth()->user()->id == $id) {
-            throw new GeneralException('You can not `Block` yourself.');
-        }
-
         $module_name = $this->module_name;
+        $module_title = $this->module_title;
         $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+
+        $module_action = 'Block';
+
+        if (auth()->user()->id == $id || $id == 1) {
+            Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not 'Block' this user!")->important();
+
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        }
 
         $$module_name_singular = User::withTrashed()->find($id);
         // $$module_name_singular = $this->findOrThrowException($id);
@@ -737,12 +741,20 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (auth()->user()->id == $id) {
-            throw new GeneralException('You can not `Unblocked` yourself.');
-        }
-
         $module_name = $this->module_name;
+        $module_title = $this->module_title;
         $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+
+        $module_action = 'Unblock';
+
+        if (auth()->user()->id == $id || $id == 1) {
+            Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not 'Unblock' this user!")->important();
+
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+        }
 
         $$module_name_singular = User::withTrashed()->find($id);
         // $$module_name_singular = $this->findOrThrowException($id);
@@ -755,9 +767,14 @@ class UserController extends Controller
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Unblocked!')->success();
 
+            Log::notice(label_case($module_title.' '.$module_action).' Success | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
             return redirect()->back();
         } catch (\Exception $e) {
-            throw new GeneralException('There was a problem updating this user. Please try again.');
+            flash('<i class="fas fa-check"></i> There was a problem updating this user. Please try again.!')->error();
+
+            Log::error(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+            Log::error($e);
         }
     }
 

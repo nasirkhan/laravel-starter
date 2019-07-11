@@ -371,3 +371,16 @@ if (!function_exists('slug_format')) {
         return $slug_string;
     }
 }
+
+if (!function_exists('icon')) {
+
+    /**
+     * Format a string to Slug.
+     */
+    function icon($string = 'fas fa-check')
+    {
+        $return_string = "<i class='".$string."'></i>";
+
+        return $return_string;
+    }
+}

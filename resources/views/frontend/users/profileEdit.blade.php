@@ -54,10 +54,10 @@
                     </div><!--form-group-->
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <?php
-                                $field_name = 'name';
+                                $field_name = 'first_name';
                                 $field_lable = label_case($field_name);
                                 $field_placeholder = $field_lable;
                                 $required = "required";
@@ -66,7 +66,19 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                $field_name = 'last_name';
+                                $field_lable = label_case($field_name);
+                                $field_placeholder = $field_lable;
+                                $required = "required";
+                                ?>
+                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'email';
@@ -78,7 +90,7 @@
                                 {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->disabled() }}
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'mobile';
@@ -135,7 +147,7 @@
                                 $field_name = 'profile_privecy';
                                 $field_lable = label_case($field_name);
                                 $field_placeholder = "-- Select an option --";
-                                $required = "required";
+                                $required = "";
                                 $select_options = [
                                     'Public'=>'Public',
                                     'Private'=>'Private',
@@ -174,7 +186,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-12 col-sm-3">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_website';
@@ -186,7 +198,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-3">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_facebook';
@@ -198,7 +210,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-3">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_twitter';
@@ -210,19 +222,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'url_googleplus';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-3">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_linkedin';
@@ -234,7 +234,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-4">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_1';
@@ -246,7 +246,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-4">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_2';
@@ -258,7 +258,7 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-sm-4">
                             <div class="form-group">
                                 <?php
                                 $field_name = 'url_3';

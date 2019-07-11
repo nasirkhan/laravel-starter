@@ -32,6 +32,8 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile = new Userprofile();
         $userprofile->user_id = $user->id;
         $userprofile->name = $user->name;
+        $userprofile->first_name = $user->first_name;
+        $userprofile->last_name = $user->last_name;
         $userprofile->email = $user->email;
         $userprofile->mobile = $user->mobile;
         $userprofile->gender = $user->gender;
@@ -40,6 +42,6 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->status = ($user->status > 0) ? $user->status : 0;
         $userprofile->save();
 
-        \Log::debug('UserRegisteredProfileCreate');
+        \Log::debug('UserRegisteredProfileCreate:'.$user->name);
     }
 }

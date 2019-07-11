@@ -43,8 +43,12 @@
                         </tr>
 
                         <tr>
-                            <th>{{ __('labels.backend.users.fields.name') }}</th>
-                            <td>{{ $user->name }}</td>
+                            <th>{{ __('labels.backend.users.fields.first_name') }}</th>
+                            <td>{{ $user->first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('labels.backend.users.fields.last_name') }}</th>
+                            <td>{{ $user->last_name }}</td>
                         </tr>
 
                         <tr>

@@ -2,7 +2,7 @@
 
 namespace App\Events\Frontend\User;
 
-use App\Models\User;
+use App\Models\Userprofile;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -12,16 +12,16 @@ class UserProfileUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $user_profile;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Userprofile $user_profile)
     {
-        $this->user = $user;
+        $this->user_profile = $user_profile;
     }
 
     /**

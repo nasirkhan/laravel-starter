@@ -49,10 +49,10 @@
                 </div><!--form-group-->
 
                 <div class="row">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <?php
-                            $field_name = 'name';
+                            $field_name = 'first_name';
                             $field_lable = label_case($field_name);
                             $field_placeholder = $field_lable;
                             $required = "required";
@@ -61,7 +61,19 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <?php
+                            $field_name = 'last_name';
+                            $field_lable = label_case($field_name);
+                            $field_placeholder = $field_lable;
+                            $required = "required";
+                            ?>
+                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <?php
                             $field_name = 'email';
@@ -73,7 +85,7 @@
                             {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->disabled() }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <?php
                             $field_name = 'mobile';
@@ -88,6 +100,25 @@
                 </div>
 
                 <div class="row">
+
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <?php
+                            $field_name = 'gender';
+                            $field_lable = label_case($field_name);
+                            $field_placeholder = "-- Select an option --";
+                            $required = "required";
+                            $select_options = [
+                                'Man'=>'Man',
+                                'Woman'=>'Woman',
+                                'Other'=>'Other'
+                            ];
+                            ?>
+                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+                        </div>
+                    </div>
+
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <?php
@@ -109,28 +140,10 @@
                     <div class="col-12 col-md-4">
                         <div class="form-group">
                             <?php
-                            $field_name = 'gender';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = "-- Select an option --";
-                            $required = "";
-                            $select_options = [
-                                'Man'=>'Man',
-                                'Woman'=>'Woman',
-                                'Other'=>'Other'
-                            ];
-                            ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <?php
                             $field_name = 'profile_privecy';
                             $field_lable = label_case($field_name);
                             $field_placeholder = "-- Select an option --";
-                            $required = "required";
+                            $required = "";
                             $select_options = [
                                 'Public'=>'Public',
                                 'Private'=>'Private',
@@ -208,18 +221,6 @@
                     <div class="col-12 col-md-3">
                         <div class="form-group">
                             <?php
-                            $field_name = 'url_googleplus';
-                            $field_lable = label_case($field_name);
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <?php
                             $field_name = 'url_linkedin';
                             $field_lable = label_case($field_name);
                             $field_placeholder = $field_lable;
@@ -229,7 +230,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_1';
@@ -241,7 +242,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_2';
@@ -253,7 +254,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_3';
@@ -269,12 +270,8 @@
 
                 <div class="row">
                     <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            {{ html()->submit($text = icon('fas fa-save')." Save")->class('btn btn-success') }}
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 <?php
 
+use Auth;
 use App\Events\Backend\User\UserCreated;
 use App\Models\User;
 use Carbon\Carbon as Carbon;
@@ -19,6 +20,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        Auth::loginUsingId(1);
+
         $this->disableForeignKeys();
 
         $faker = Faker\Factory::create();
@@ -26,7 +29,9 @@ class UserTableSeeder extends Seeder
         // Add the master administrator, user id of 1
         $users = [
             [
-                'name'              => 'Admin User',
+                'first_name'        => 'Admin',
+                'last_name'         => 'Istrator',
+                'name'              => '',
                 'email'             => 'admin@admin.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -39,7 +44,9 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'name'              => 'Manager User',
+                'first_name'        => 'Manager',
+                'last_name'         => 'User',
+                'name'              => '',
                 'email'             => 'manager@manager.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -52,7 +59,9 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'name'              => 'Executive User',
+                'first_name'        => 'Executive',
+                'last_name'         => 'User',
+                'name'              => '',
                 'email'             => 'executive@executive.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -65,7 +74,9 @@ class UserTableSeeder extends Seeder
                 'updated_at'        => Carbon::now(),
             ],
             [
-                'name'              => 'General User',
+                'first_name'        => 'General',
+                'last_name'         => 'User',
+                'name'              => '',
                 'email'             => 'user@user.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,

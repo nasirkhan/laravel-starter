@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="form-group">
-                            {!! Form::button("<i class='fas fa-save'></i> Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
+                            {{ html()->submit($text = icon('fas fa-save')." Save")->class('btn btn-success') }}
                         </div>
                     </div>
                     {{ html()->form()->close() }}

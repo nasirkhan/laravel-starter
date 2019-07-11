@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
-use App\Events\Backend\User\UserProfileUpdated;
+use App\Events\Frontend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Mail\EmailVerificationMail;
@@ -57,15 +57,12 @@ class UserController extends Controller
 
         $module_action = 'Show';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name_singular = $module_model::findOrFail($id);
 
         $body_class = 'profile-page';
 
         return view("frontend.$module_name.show",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'body_class'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
     }
 
     /**
@@ -83,6 +80,7 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = str_singular($module_name);
+
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -124,7 +122,7 @@ class UserController extends Controller
         $body_class = 'profile-page';
 
         return view("frontend.$module_name.profileEdit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'userprofile', 'body_class'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class'));
     }
 
     /**
@@ -143,7 +141,7 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = str_singular($module_name);
-        $module_action = 'Edit';
+        $module_action = 'Profile Update';
 
         $this->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -174,6 +172,7 @@ class UserController extends Controller
 
         $data_array = $request->except('avatar');
         $data_array['avatar'] = $$module_name_singular->avatar;
+        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
 
         $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
         $user_profile->update($data_array);
@@ -236,10 +235,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $title = $this->module_title;
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
         $module_action = 'Edit';
 
         $roles = Role::get();

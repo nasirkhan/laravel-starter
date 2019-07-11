@@ -18,6 +18,8 @@ class CreateUserprofilesTable extends Migration
             $table->integer('user_id');
 
             $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->string('mobile')->nullable();
             $table->string('gender')->nullable();
