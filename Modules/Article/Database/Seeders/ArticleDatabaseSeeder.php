@@ -3,6 +3,7 @@
 namespace Modules\Article\Database\Seeders;
 
 use Artisan;
+use Auth;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
@@ -19,6 +20,9 @@ class ArticleDatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Auth::loginUsingId(1);
+
         // Disable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 

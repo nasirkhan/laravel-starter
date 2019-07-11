@@ -14,6 +14,8 @@
         <div class="container">
             <h1 class="title">
                 {{$$module_name_singular->name}}
+                <br>
+                <small>{{isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : $$module_name_singular->created_by_name}}</small>
             </h1>
 
             @include('flash::message')
@@ -50,7 +52,7 @@
                             <h4 class="card-title">{{$$module_name_singular->name}}</h4>
                         </a>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            {{$$module_name_singular->author_name}}
+                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">'.$$module_name_singular->created_by_name.'</a>'!!}
                         </h6>
                         <hr>
                         <p class="card-text">

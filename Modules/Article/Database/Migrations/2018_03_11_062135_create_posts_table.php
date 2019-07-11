@@ -31,7 +31,7 @@ class CreatePostsTable extends Migration
             $table->string('meta_og_image')->nullable();
             $table->string('meta_og_url')->nullable();
 
-            $table->string('order')->nullable();
+            $table->integer('order')->nullable();
             $table->tinyInteger('status')->default(1);
 
             $table->integer('moderated_by')->unsigned()->nullable();
@@ -39,6 +39,7 @@ class CreatePostsTable extends Migration
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->string('created_by_name')->nullable();
+            $table->string('created_by_alias')->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
 

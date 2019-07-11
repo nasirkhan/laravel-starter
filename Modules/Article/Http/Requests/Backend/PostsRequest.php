@@ -24,11 +24,17 @@ class PostsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => 'required|max:191',
-            'featured_image' => 'required',
-            'type'           => 'required',
-            'is_featured'    => 'required',
-            'status'         => 'required',
+            'name'              => 'required|max:191',
+            'slug'              => 'required|max:191',
+            'type'              => 'required|max:191',
+            'category_id'       => 'required|numeric',
+            'created_by_alias'  => 'required|max:191',
+            'featured_image'    => 'required|max:191',
+            'featured_image'    => 'required',
+            'type'              => 'required',
+            'is_featured'       => 'required',
+            'order'             => 'numeric',
+            'status'            => 'required',
         ];
     }
 }

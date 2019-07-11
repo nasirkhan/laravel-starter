@@ -48,7 +48,7 @@ Posts
                             <h4 class="card-title">{{$$module_name_singular->name}}</h4>
                         </a>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            {{$$module_name_singular->author_name}}
+                            {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">'.$$module_name_singular->created_by_name.'</a>'!!}
                         </h6>
                         <hr>
                         <p class="card-text">
@@ -76,7 +76,7 @@ Posts
                             <div class="row">
                                 <div class="col">
                                     <div class="float-right">
-                                        <a href="{{$post_details_url}}" class="btn btn-primary">Continue Reading</a>
+                                        <a href="{{$post_details_url}}" class="btn btn-primary"><i class="fas fa-long-arrow-alt-right"></i> Continue Reading</a>
                                     </div>
                                 </div>
                             </div>

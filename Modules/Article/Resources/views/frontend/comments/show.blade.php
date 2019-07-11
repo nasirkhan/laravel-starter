@@ -118,7 +118,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="float-right">
-                                        <a href="{{$post_details_url}}" class="btn btn-primary">Continue Reading</a>
+                                        <a href="{{$post_details_url}}" class="btn btn-primary"><i class="fas fa-long-arrow-alt-right"></i> Continue Reading</a>
                                     </div>
                                 </div>
                             </div>

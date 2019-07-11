@@ -179,7 +179,10 @@ class PostsController extends Controller
 
         $module_action = 'Store';
 
-        $$module_name_singular = $module_model::create($request->except('tags_list'));
+        $data = $request->except('tags_list');
+        $data['created_by_name'] = auth()->user()->name;
+        
+        $$module_name_singular = $module_model::create($data);
         $$module_name_singular->tags()->attach($request->input('tags_list'));
 
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();

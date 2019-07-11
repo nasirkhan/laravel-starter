@@ -16,7 +16,7 @@ class Post extends BaseModel
 
     protected static $logName = 'posts';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['name', 'intro', 'content', 'type', 'category_id', 'category_name', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status'];
+    protected static $logAttributes = ['name', 'intro', 'content', 'type', 'category_id', 'category_name', 'is_featured', 'meta_title', 'meta_keywords', 'meta_description', 'published_at', 'moderated_at', 'moderated_by', 'status', 'created_by_alias'];
 
     public function category()
     {
@@ -58,10 +58,10 @@ class Post extends BaseModel
 
     public function setCreatedByNameAttribute($value)
     {
-        $this->attributes['created_by_name'] = trim(title_case($value));
+        $this->attributes['created_by_name'] = trim(label_case($value));
 
         if (empty($value)) {
-            $this->attributes['created_by_name'] = auth()->name;
+            $this->attributes['created_by_name'] = auth()->user()->name;
         }
     }
 

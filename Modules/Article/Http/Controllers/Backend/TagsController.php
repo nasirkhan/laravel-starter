@@ -233,13 +233,10 @@ class TagsController extends Controller
 
         $module_action = 'Edit';
 
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view("article::backend.$module_name.edit",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'page_heading', 'title', 'now'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
     }
 
     /**
