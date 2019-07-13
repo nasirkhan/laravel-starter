@@ -10,19 +10,12 @@ class LoginPageTest extends TestCase
 {
     use DatabaseTransactions;
 
-    // public function setUp()
-    // {
-    //     parent::setUp();
-    //     \Artisan::call('migrate');
-    //     \Artisan::call('db:seed');
-    // }
-
     /**
      * The login form can be displayed.
      *
      * @test
      */
-    public function visit_home_page()
+    public function visit_login_page()
     {
         $response = $this->get('/login');
         $response->assertSeeText(app_name());
@@ -56,33 +49,4 @@ class LoginPageTest extends TestCase
         $this->loginAsAdmin();
         $this->get('/admin/dashboard')->assertStatus(200);
     }
-
-    // /**
-    // * An invalid user cannot be logged in.
-    // *
-    // * @return void
-    // */
-    // public function testDoesNotLoginAnInvalidUser()
-    // {
-    //     $this->session();
-    //     $user = factory(User::class)->create();
-    //     $response = $this->post('/login', [
-    //         'email' => $user->email,
-    //         'password' => 'invalid'
-    //     ]);
-    //     $response->assertSessionHasErrors();
-    //     $this->dontSeeIsAuthenticated();
-    // }
-    // /**
-    // * A logged in user can be logged out.
-    // *
-    // * @return void
-    // */
-    // public function testLogoutAnAuthenticatedUser()
-    // {
-    //     $user = factory(User::class)->create();
-    //     $response = $this->actingAs($user)->post('/logout');
-    //     $response->assertStatus(302);
-    //     $this->dontSeeIsAuthenticated();
-    // }
 }
