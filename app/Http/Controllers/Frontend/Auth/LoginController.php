@@ -103,6 +103,7 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         $errors = [$this->username() => __('auth.failed')];
+
         // Load user from database
         $user = User::where($this->username(), $request->{$this->username()})->first();
 
@@ -138,6 +139,7 @@ class LoginController extends Controller
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::login($authUser, true);
+
         } catch (Exception $e) {
             return redirect($this->redirectTo);
         }
@@ -154,10 +156,12 @@ class LoginController extends Controller
      */
     private function findOrCreateUser($socialUser, $provider)
     {
+        // Check Provider User Id
         if ($authUser = UserProvider::where('provider_id', $socialUser->getId())->first()) {
             $authUser = User::findOrFail($authUser->user->id);
 
             return $authUser;
+
         } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             $media = $authUser->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
             $avatar_url = $media->getUrl();
@@ -171,9 +175,16 @@ class LoginController extends Controller
 
             return $authUser;
         } else {
+            $socialUserName = $socialUser->getName();
+            $nameParts = explode(" ", $socialUserName);
+            $socialUserLastName = array_pop($nameParts);;
+            $socialUserFirstName = implode(" ", $nameParts);
+
             $user = User::create([
-                'name'  => $socialUser->getName(),
-                'email' => $socialUser->getEmail(),
+                'name'          => $socialUserName,
+                'first_name'    => $socialUserFirstName,
+                'last_name'     => $socialUserLastName,
+                'email'         => $socialUser->getEmail(),
             ]);
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
