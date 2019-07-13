@@ -42,7 +42,8 @@
             <table class="table table-hover">
                 <tbody>
                     <?php $fields_array = [
-                        [ 'name' => 'name' ],
+                        [ 'name' => 'first_name' ],
+                        [ 'name' => 'last_name' ],
                         [ 'name' => 'email' ],
                         [ 'name' => 'mobile' ],
                         [ 'name' => 'gender' ],

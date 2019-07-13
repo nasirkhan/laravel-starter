@@ -22,6 +22,14 @@ if(!isset($meta_page_type)){
 
         @break
 
+    @case('profile')
+        <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content="{{$$module_name_singular->first_name}}" />
+        <meta property="profile:last_name" content="{{$$module_name_singular->last_name}}" />
+        <meta property="profile:username" content="{{$$module_name_singular->email}}" />
+        <meta property="profile:gender" content="{{$$module_name_singular->gender}}" />
+        @break
+
     @case(2)
         <span>Type 2</span>
         @break

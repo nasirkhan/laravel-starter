@@ -61,8 +61,10 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
+        $meta_page_type = 'profile';
+
         return view("frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
+        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type'));
     }
 
     /**
@@ -88,7 +90,9 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile'));
+        $meta_page_type = 'profile';
+
+        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
     }
 
     /**
