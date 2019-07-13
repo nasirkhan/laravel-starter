@@ -43,8 +43,7 @@
             <div class="col-12 col-md-5">
                 <div class="copyright float-right">
                     &copy;
-                    <script> document.write(new Date().getFullYear()) </script> {{ config('app.name', 'Laravel Starter') }}, Developed by
-                    <a href="https://nasirkhn.com" target="_blank">Nasir Khan Saikat</a>
+                    <script> document.write(new Date().getFullYear()) </script> {{ config('app.name', 'Laravel Starter') }}, {!! setting('footer_text') !!}
                 </div></div>
             </div>
         </div>
