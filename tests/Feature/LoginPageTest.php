@@ -46,18 +46,18 @@ class LoginPageTest extends TestCase
     public function test_remember_me_functionality()
     {
         $user = factory(User::class)->create([
-            'id' => random_int(1, 100),
+            'id'       => random_int(1, 100),
             'password' => bcrypt($password = 'bangladesh'),
         ]);
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => $password,
             'remember' => 'on',
         ]);
 
         $response->assertStatus(302);
-        
+
         // cookie assertion goes here
         $this->assertAuthenticatedAs($user);
     }
