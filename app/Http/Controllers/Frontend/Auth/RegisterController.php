@@ -92,7 +92,7 @@ class RegisterController extends Controller
         $user = User::create([
             'first_name'        => $data['first_name'],
             'last_name'         => $data['last_name'],
-            'name'              => $data['first_name'] . ' ' . $data['last_name'],
+            'name'              => $data['first_name'].' '.$data['last_name'],
             'email'             => $data['email'],
             'password'          => $data['password'],
             'confirmation_code' => md5(uniqid(mt_rand(), true)),

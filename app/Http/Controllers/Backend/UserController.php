@@ -18,7 +18,6 @@ use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Image;
 use Log;
 use Yajra\DataTables\DataTables;
 
@@ -208,7 +207,7 @@ class UserController extends Controller
         ]);
 
         $data_array = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
-        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
+        $data_array['name'] = $request->first_name.' '.$request->last_name;
 
         if ($request->confirmed == 1) {
             $data_array = array_add($data_array, 'confirmed_at', Carbon::now());
@@ -382,7 +381,7 @@ class UserController extends Controller
 
         $data_array = $request->except('avatar');
         $data_array['avatar'] = $$module_name_singular->avatar;
-        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
+        $data_array['name'] = $request->first_name.' '.$request->last_name;
 
         $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
         $user_profile->update($data_array);
