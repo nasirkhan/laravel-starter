@@ -20,7 +20,6 @@ class ArticleDatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         Auth::loginUsingId(1);
 
         // Disable foreign key checks!
