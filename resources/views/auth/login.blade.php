@@ -7,74 +7,7 @@
 <div class="content-center">
     <div class="container">
 
-        @include('flash::message')
-
         <div class="col-md-4 content-center">
-            @if ($errors->has('email'))
-            <div class="row justify-content-center">
-                <div class="col-md-8 align-self-center">
-                    <div class="alert alert-danger" role="alert">
-                        <div class="container">
-                            <div class="alert-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-
-                            <strong>{!! $errors->first('email') !!}</strong>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if ($errors->has('password'))
-            <div class="row justify-content-center">
-                <div class="col-md-8 align-self-center">
-                    <div class="alert alert-danger" role="alert">
-                        <div class="container">
-                            <div class="alert-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-
-                            <strong>{!! $errors->first('password') !!}</strong>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            @if (session('status'))
-            <div class="row justify-content-center">
-                <div class="col-md-8 align-self-center">
-                    <div class="alert alert-success" role="alert">
-                        <div class="container">
-                            <div class="alert-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-
-                            <strong>{{ session('status') }}</strong>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">
-                                    <i class="now-ui-icons ui-1_simple-remove"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
 
             <div class="card card-login card-plain">
                 <form class="form" method="POST" action="{{ route('frontend.auth.login.post') }}">
@@ -87,6 +20,74 @@
                         <h5>
                             Login to Account
                         </h5>
+
+                        @include('flash::message')
+
+                        @if ($errors->has('email'))
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 align-self-center">
+                                <div class="alert alert-danger" role="alert">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </div>
+
+                                        <strong>{!! $errors->first('email') !!}</strong>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if ($errors->has('password'))
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 align-self-center">
+                                <div class="alert alert-danger" role="alert">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </div>
+
+                                        <strong>{!! $errors->first('password') !!}</strong>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if (session('status'))
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 align-self-center">
+                                <div class="alert alert-success" role="alert">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </div>
+
+                                        <strong>{{ session('status') }}</strong>
+
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     <div class="content">
                         <input type="hidden" name="redirectTo" value="{{request('redirectTo')}}">
