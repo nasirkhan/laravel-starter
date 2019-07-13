@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Backend;
 
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 /**
  * Class DashboardRouteTest.
@@ -26,7 +26,7 @@ class AdminDashboardTest extends TestCase
 
         $response = $this->get('/admin/dashboard');
 
-        $response->assertStatus(403);        
+        $response->assertStatus(403);
     }
 
     /** @test */

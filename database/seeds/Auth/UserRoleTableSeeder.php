@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
  */
 class UserRoleTableSeeder extends Seeder
 {
-
     use DisableForeignKeys;
 
     /**

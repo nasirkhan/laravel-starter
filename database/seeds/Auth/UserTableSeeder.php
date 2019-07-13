@@ -2,7 +2,6 @@
 
 use App\Events\Backend\User\UserCreated;
 use App\Models\User;
-use Auth;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
 
