@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Auth;
 use Illuminate\Database\Seeder;
 
 /**
@@ -9,7 +8,6 @@ use Illuminate\Database\Seeder;
  */
 class UserRoleTableSeeder extends Seeder
 {
-    Auth::loginUsingId(1);
 
     use DisableForeignKeys;
 

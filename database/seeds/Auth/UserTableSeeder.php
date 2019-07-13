@@ -1,6 +1,5 @@
 <?php
 
-use Auth;
 use App\Events\Backend\User\UserCreated;
 use App\Models\User;
 use Carbon\Carbon as Carbon;
@@ -20,8 +19,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        Auth::loginUsingId(1);
-
         $this->disableForeignKeys();
 
         $faker = Faker\Factory::create();
@@ -31,7 +28,7 @@ class UserTableSeeder extends Seeder
             [
                 'first_name'        => 'Admin',
                 'last_name'         => 'Istrator',
-                'name'              => '',
+                'name'              => 'Admin Istrator',
                 'email'             => 'admin@admin.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -45,8 +42,8 @@ class UserTableSeeder extends Seeder
             ],
             [
                 'first_name'        => 'Manager',
-                'last_name'         => 'User',
-                'name'              => '',
+                'last_name'         => 'User User',
+                'name'              => 'Manager',
                 'email'             => 'manager@manager.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -61,7 +58,7 @@ class UserTableSeeder extends Seeder
             [
                 'first_name'        => 'Executive',
                 'last_name'         => 'User',
-                'name'              => '',
+                'name'              => 'Executive User',
                 'email'             => 'executive@executive.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,
@@ -76,7 +73,7 @@ class UserTableSeeder extends Seeder
             [
                 'first_name'        => 'General',
                 'last_name'         => 'User',
-                'name'              => '',
+                'name'              => 'General User',
                 'email'             => 'user@user.com',
                 'password'          => '1234',
                 'mobile'            => $faker->phoneNumber,

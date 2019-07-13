@@ -2,7 +2,6 @@
 
 use App\Models\Permission;
 use App\Models\Role;
-use Auth;
 use Illuminate\Database\Seeder;
 
 /**
@@ -19,8 +18,6 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Auth::loginUsingId(1);
-
         $this->disableForeignKeys();
 
         // Create Roles
