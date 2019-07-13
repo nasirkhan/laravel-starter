@@ -20,14 +20,4 @@ class HomepageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /**
-     * Homepage footer text.
-     *
-     * @test
-     */
-    public function check_home_page_footer_text()
-    {
-        $response = $this->get('/');
-        $response->assertSeeText('Built with ♥ by');
-    }
 }

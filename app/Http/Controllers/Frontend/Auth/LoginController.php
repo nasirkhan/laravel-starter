@@ -69,8 +69,17 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
-            flash('<i class="fas fa-check"></i> Welcome '.auth()->user()->name.', <br>You successfully logged in!')->success();
+        $this->validate($request, [
+            'email'     => 'required|email',
+            'password'  => 'required',
+
+        ]);
+
+        $remember = ($request->get('remember') == 'on') ? true : false;
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1], $remember)) {
+
+            flash('<i class="fas fa-check"></i> Welcome '.auth()->user()->name.', <br>You successfully logged in!')->success()->important();
 
             $user = Auth::user();
 
@@ -78,7 +87,7 @@ class LoginController extends Controller
 
             return redirect()->intended($this->redirectTo);
         } else {
-            flash('<i class="fas fa-exclamation-triangle"></i> Login Failed. Please Contact Administrator.')->error();
+            flash('<i class="fas fa-exclamation-triangle"></i> Login Failed. Email or password incorrect. Please try again!')->error()->important();
 
             return redirect()->back();
         }

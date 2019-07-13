@@ -4,7 +4,7 @@
     "keywords": ["framework", "laravel", "cms", "starter", "admin"],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "version": "v3.0.0",
+    "version": "v3.1.0",
     "require": {
         "php": "^7.1.3",
         "arcanedev/log-viewer": "^4.7",
