@@ -78,7 +78,6 @@ class LoginController extends Controller
         $remember = ($request->get('remember') == 'on') ? true : false;
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1], $remember)) {
-
             flash('<i class="fas fa-check"></i> Welcome '.auth()->user()->name.', <br>You successfully logged in!')->success()->important();
 
             $user = Auth::user();

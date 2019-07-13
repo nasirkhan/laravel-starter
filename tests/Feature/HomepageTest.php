@@ -19,5 +19,4 @@ class HomepageTest extends TestCase
 
         $response->assertStatus(200);
     }
-
 }
