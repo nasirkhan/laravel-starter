@@ -23,7 +23,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'first_name'        => $firstName,
         'last_name'         => $lastName,
-        'name'              => $firstName . ' ' . $lastName,
+        'name'              => $firstName.' '.$lastName,
         'email'             => $faker->unique()->safeEmail,
         'mobile'            => $faker->phoneNumber,
         'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
