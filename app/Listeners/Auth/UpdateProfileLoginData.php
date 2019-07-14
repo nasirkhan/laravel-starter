@@ -39,7 +39,6 @@ class UpdateProfileLoginData
             $user_profile->last_ip = $request->getClientIp();
             $user_profile->login_count = $user_profile->login_count + 1;
             $user_profile->save();
-
         } catch (\Exception $e) {
             Log::error($e);
         }
