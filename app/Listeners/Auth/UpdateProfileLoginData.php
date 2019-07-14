@@ -27,17 +27,22 @@ class UpdateProfileLoginData
      */
     public function handle(UserLoginSuccess $event)
     {
-        $user = $event->user;
-        $request = $event->request;
-        $user_profile = $user->userprofile;
+        try {
+            $user = $event->user;
+            $request = $event->request;
+            $user_profile = $user->userprofile;
 
-        /*
-         * Updating user profile data after successful login
-         */
-        $user_profile->last_login = Carbon::now();
-        $user_profile->last_ip = $request->getClientIp();
-        $user_profile->login_count = $user_profile->login_count + 1;
-        $user_profile->save();
+            /*
+             * Updating user profile data after successful login
+             */
+            $user_profile->last_login = Carbon::now();
+            $user_profile->last_ip = $request->getClientIp();
+            $user_profile->login_count = $user_profile->login_count + 1;
+            $user_profile->save();
+
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
 
         Log::debug('UpdateProfileLoginData: '.$user->name.' IP:'.$request->getClientIp());
     }

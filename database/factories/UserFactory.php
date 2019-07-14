@@ -17,14 +17,17 @@ use Faker\Generator as Faker;
 $factory->define(App\Models\User::class, function (Faker $faker) {
     static $password;
 
+    $firstName = $faker->firstName;
+    $lastName = $faker->lastName;
+
     return [
-        'first_name'        => $faker->firstName,
-        'last_name'         => $faker->lastName,
-        'name'              => $faker->name,
+        'first_name'        => $firstName,
+        'last_name'         => $lastName,
+        'name'              => $firstName . ' ' . $lastName,
         'email'             => $faker->unique()->safeEmail,
         'mobile'            => $faker->phoneNumber,
         'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-        'password'          => $password ?: $password = bcrypt('secret'),
+        'password'          => $password ?: $password = 'secret',
         'remember_token'    => str_random(10),
         'confirmation_code' => md5(uniqid(mt_rand(), true)),
         'confirmed_at'      => Carbon::now(),

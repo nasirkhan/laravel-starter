@@ -45,14 +45,11 @@ class LoginPageTest extends TestCase
 
     public function test_remember_me_functionality()
     {
-        $user = factory(User::class)->create([
-            'id'       => random_int(1, 100),
-            'password' => bcrypt($password = 'bangladesh'),
-        ]);
+        $user = factory(User::class)->create();
 
         $response = $this->post('/login', [
             'email'    => $user->email,
-            'password' => $password,
+            'password' => 'secret',
             'remember' => 'on',
         ]);
 
