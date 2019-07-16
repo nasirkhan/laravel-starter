@@ -30,4 +30,14 @@ class Permission extends \Spatie\Permission\Models\Permission
             'delete_backups',
         ];
     }
+
+    /**
+     * Name should be lowercase
+     *
+     * @param String $value Name value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
 }
