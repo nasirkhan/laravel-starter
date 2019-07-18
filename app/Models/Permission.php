@@ -32,9 +32,9 @@ class Permission extends \Spatie\Permission\Models\Permission
     }
 
     /**
-     * Name should be lowercase
+     * Name should be lowercase.
      *
-     * @param String $value Name value
+     * @param string $value Name value
      */
     public function setNameAttribute($value)
     {
