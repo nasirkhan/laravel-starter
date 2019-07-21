@@ -24,28 +24,28 @@ return [
 
     'stubs' => [
         'enabled' => false,
-        'path'    => base_path().'/vendor/nwidart/laravel-modules/src/Commands/stubs',
-        'files'   => [
-            'start'           => 'start.php',
-            'routes'          => 'Http/routes.php',
-            'views/index'     => 'Resources/views/index.blade.php',
-            'views/master'    => 'Resources/views/layouts/master.blade.php',
+        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
+        'files' => [
+            'routes/web' => 'Routes/web.php',
+            'routes/api' => 'Routes/api.php',
+            'views/index' => 'Resources/views/index.blade.php',
+            'views/master' => 'Resources/views/layouts/master.blade.php',
             'scaffold/config' => 'Config/config.php',
-            'composer'        => 'composer.json',
-            'assets/js/app'   => 'Resources/assets/js/app.js',
+            'composer' => 'composer.json',
+            'assets/js/app' => 'Resources/assets/js/app.js',
             'assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'webpack'         => 'webpack.mix.js',
-            'package'         => 'package.json',
+            'webpack' => 'webpack.mix.js',
+            'package' => 'package.json',
         ],
         'replacements' => [
-            'start'           => ['LOWER_NAME', 'ROUTES_LOCATION'],
-            'routes'          => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'webpack'         => ['LOWER_NAME'],
-            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'views/index'     => ['LOWER_NAME'],
-            'views/master'    => ['STUDLY_NAME', 'LOWER_NAME'],
+            'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
+            'routes/api' => ['LOWER_NAME'],
+            'webpack' => ['LOWER_NAME'],
+            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'views/index' => ['LOWER_NAME'],
+            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
-            'composer'        => [
+            'composer' => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
                 'VENDOR',
@@ -110,7 +110,8 @@ return [
             'assets'        => ['path' => 'Resources/assets', 'generate' => true],
             'lang'          => ['path' => 'Resources/lang', 'generate' => true],
             'views'         => ['path' => 'Resources/views', 'generate' => true],
-            'test'          => ['path' => 'Tests', 'generate' => true],
+            'test'          => ['path' => 'Tests/Unit', 'generate' => true],
+            'test-feature'  => ['path' => 'Tests/Feature', 'generate' => true],
             'repository'    => ['path' => 'Repositories', 'generate' => false],
             'event'         => ['path' => 'Events', 'generate' => false],
             'listener'      => ['path' => 'Listeners', 'generate' => false],
@@ -133,8 +134,8 @@ return [
     */
 
     'scan' => [
-        'enabled' => false,
-        'paths'   => [
+        'enabled'   => false,
+        'paths'     => [
             base_path('vendor/*/*'),
         ],
     ],
@@ -148,10 +149,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nasirkhan',
+        'vendor' => 'nwidart',
         'author' => [
-            'name'  => 'Nasir Khan Saikat',
-            'email' => 'nasir8891@gmail.com',
+            'name'  => 'Nicolas Widart',
+            'email' => 'n.widart@gmail.com',
         ],
     ],
     /*
@@ -163,9 +164,9 @@ return [
     |
     */
     'cache' => [
-        'enabled'  => false,
-        'key'      => 'laravel-modules',
-        'lifetime' => 60,
+        'enabled'   => false,
+        'key'       => 'laravel-modules',
+        'lifetime'  => 60,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -176,7 +177,7 @@ return [
     */
     'register' => [
         'translations' => true,
-        /*
+        /**
          * load files on boot or register method
          *
          * Note: boot not compatible with asgardcms
