@@ -28,12 +28,12 @@ class PostsRequest extends FormRequest
             'slug'              => 'required|max:191',
             'type'              => 'required|max:191',
             'category_id'       => 'required|numeric',
-            'created_by_alias'  => 'required|max:191',
+            'created_by_alias'  => 'nullable|max:191',
             'featured_image'    => 'required|max:191',
             'featured_image'    => 'required',
             'type'              => 'required',
             'is_featured'       => 'required',
-            'order'             => 'numeric',
+            'order'             => 'nullable|numeric',
             'status'            => 'required',
         ];
     }
