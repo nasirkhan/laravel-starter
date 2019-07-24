@@ -14,7 +14,7 @@
     <div class="col-6 col-md-4">
         <div class="form-group">
             <?php
-            $field_name = 'code';
+            $field_name = 'slug';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
             $required = "";
