@@ -120,7 +120,7 @@
                                 </p>
                             </div>
                             <div class="row justify-content-md-center">
-                                <div class="col-8 align-self-center">
+                                <div class="col-12 col-sm-8 align-self-center">
                                     <div class="collapse multi-collapse" id="commentForm">
                                         <div class="card card-body">
                                             <p>
@@ -188,7 +188,7 @@
                             </div>
                             @endauth
                             @guest
-                            <div class="col-4 align-self-center">
+                            <div class="col-12 col-sm-4 align-self-center">
                                 <p>
                                     <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
                                 </p>
