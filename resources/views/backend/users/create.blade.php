@@ -42,8 +42,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group row">
-                        {{ html()->label(__('labels.backend.users.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
-
+                        {{ html()->label(__('labels.backend.users.fields.first_name'))->class('col-md-2 form-control-label')->for('first_name') }}
                         <div class="col-md-10">
                             {{ html()->text('first_name')
                                 ->class('form-control')
@@ -51,6 +50,9 @@
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div>
+                    </div><!--form-group-->
+                    <div class="form-group row">
+                        {{ html()->label(__('labels.backend.users.fields.last_name'))->class('col-md-2 form-control-label')->for('last_name') }}
                         <div class="col-md-10">
                             {{ html()->text('last_name')
                                 ->class('form-control')
