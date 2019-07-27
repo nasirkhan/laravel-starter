@@ -35,7 +35,10 @@ class GenerateMenus
             $menu->add('Management', [
                 'class' => 'nav-title',
             ])
-            ->data('order', 90);
+            ->data([
+                'order'         => 90,
+                'permission'    => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
+            ]);
 
             // Settings
             $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
@@ -51,7 +54,7 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
-            // Backup
+            // Notifications
             $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
                 'route' => 'backend.notifications.index',
                 'class' => 'nav-item',
