@@ -4,9 +4,10 @@
     "keywords": ["framework", "laravel", "cms", "starter", "admin"],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "version": "v3.1.1",
+    "version": "v3.2.0",
     "require": {
         "php": "^7.1.3",
+        "alexusmai/laravel-file-manager": "^2.4",
         "arcanedev/log-viewer": "^4.7",
         "fideloper/proxy": "^4.1",
         "hashids/hashids": "^4.0",
@@ -25,7 +26,6 @@
         "spatie/laravel-html": "^2.21",
         "spatie/laravel-medialibrary": "^7.6",
         "spatie/laravel-permission": "^2.37",
-        "unisharp/laravel-filemanager": "^1.9",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {

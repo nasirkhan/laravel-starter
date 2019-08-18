@@ -36,12 +36,12 @@
         <hr>
 
         <div class="row mt-4">
-            <div class="col">
+            <div class="col-12 col-sm-6">
 
                 @include('backend.includes.show')
 
             </div>
-            <div class="col">
+            <div class="col-12 col-sm-6">
 
                 <div class="text-center">
                     <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
