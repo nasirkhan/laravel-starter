@@ -7,7 +7,7 @@ use Alexusmai\LaravelFileManager\Services\ACLService\ACLRepository;
 class UsersACLRepository implements ACLRepository
 {
     /**
-     * Get user ID
+     * Get user ID.
      *
      * @return mixed
      */
@@ -17,7 +17,7 @@ class UsersACLRepository implements ACLRepository
     }
 
     /**
-     * Get ACL rules list for user
+     * Get ACL rules list for user.
      *
      * @return array
      */
@@ -32,8 +32,8 @@ class UsersACLRepository implements ACLRepository
         return [
             ['disk' => 'images', 'path' => '/', 'access' => 1],                                  // main folder - read
             ['disk' => 'images', 'path' => 'users', 'access' => 1],                              // only read
-            ['disk' => 'images', 'path' => 'users/'. \Auth::user()->name, 'access' => 1],        // only read
-            ['disk' => 'images', 'path' => 'users/'. \Auth::user()->name .'/*', 'access' => 2],  // read and write
+            ['disk' => 'images', 'path' => 'users/'.\Auth::user()->name, 'access' => 1],        // only read
+            ['disk' => 'images', 'path' => 'users/'.\Auth::user()->name.'/*', 'access' => 2],  // read and write
         ];
     }
 }
