@@ -40,7 +40,7 @@
                 </a>
                 @endforeach
                 <a class="dropdown-item text-center" href="{{route('backend.notifications.index')}}">
-                    <strong>View all</strong>
+                    View all
                 </a>
             </div>
         </li>
