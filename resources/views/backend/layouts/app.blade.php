@@ -48,10 +48,7 @@
                 <!-- Breadcrumb Menu-->
                 <li class="breadcrumb-menu d-md-down-none">
                     <div class="btn-group" role="group" aria-label="Button group">
-                        <a class="btn" href="#"><i class="icon-speech"></i></a>
-                        <a class="btn" href="{{ route('backend.users.profile', auth()->user()->id) }}">
-                            <i class="fas fa-user"></i> &nbsp;Profile
-                        </a>
+                        {{ date('l, F d, Y') }}&nbsp;<div id="openClockDisplay" class="clock" onload="showTime()"></div>
                     </div>
                 </li>
             </ol>
@@ -98,7 +95,28 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         $('#flash-overlay-modal').modal();
+
+        showTime();
     })
+
+    function showTime(){
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+
+        var session = hours >= 12 ? 'pm' : 'am';
+
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+
+        var time = hours + ":" + minutes + ":" + seconds + " " + session;
+        document.getElementById("openClockDisplay").innerText = time;
+        document.getElementById("openClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
+    }
 
     </script>
 
