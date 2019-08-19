@@ -86,7 +86,7 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Mark All Notifications As Read
+     * Mark All Notifications As Read.
      *
      * @return [type] [description]
      */
@@ -117,5 +117,4 @@ class NotificationsController extends Controller
 
         return back();
     }
-
 }

@@ -106,12 +106,11 @@ class Post extends BaseModel
         $this->attributes['meta_og_image'] = $value;
 
         if (empty($value)) {
-            if(isset($this->attributes['featured_image'])) {
+            if (isset($this->attributes['featured_image'])) {
                 $this->attributes['meta_og_image'] = $this->attributes['featured_image'];
             } else {
                 $this->attributes['meta_og_image'] = setting('meta_image');
             }
-            
         }
     }
 
