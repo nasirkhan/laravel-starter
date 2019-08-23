@@ -1,4 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 # Laravel Starter
 Laravel 5.8 based simple starter project to build all type of applications. Almost all the necessary functionalities are added. Continuously working on more features and improvements.
