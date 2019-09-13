@@ -430,12 +430,16 @@ class UserController extends Controller
      */
     public function changeProfilePasswordUpdate(Request $request, $id)
     {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
         if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
-
-        $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
 
         $$module_name_singular = User::findOrFail($id);
 

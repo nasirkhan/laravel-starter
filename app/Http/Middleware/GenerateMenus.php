@@ -173,16 +173,20 @@ class GenerateMenus
             // Access Permission Check
             $menu->filter(function ($item) {
                 if ($item->data('permission')) {
-                    if (auth()->check() && auth()->user()->hasAnyPermission($item->data('permission'))) {
-                        return true;
+                    if (auth()->check()) {
+                        if (auth()->user()->hasRole('super admin')) {
+                            return true;
+                        } else if (auth()->user()->hasAnyPermission($item->data('permission'))) {
+                            return true;
+                        }
                     }
-
                     return false;
                 } else {
                     return true;
                 }
             });
 
+            // Set Active Menu
             $menu->filter(function ($item) {
                 if ($item->activematches) {
                     $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];

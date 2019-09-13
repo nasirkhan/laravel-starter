@@ -21,6 +21,7 @@ class PermissionRoleTableSeeder extends Seeder
         $this->disableForeignKeys();
 
         // Create Roles
+        $super_admin = Role::create(['name' => 'super admin']);
         $admin = Role::create(['name' => 'administrator']);
         $manager = Role::create(['name' => 'manager']);
         $executive = Role::create(['name' => 'executive']);

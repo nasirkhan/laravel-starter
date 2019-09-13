@@ -26,6 +26,21 @@ class UserTableSeeder extends Seeder
         // Add the master administrator, user id of 1
         $users = [
             [
+                'first_name'        => 'Super',
+                'last_name'         => 'Admin',
+                'name'              => 'Super Admin',
+                'email'             => 'super@admin.com',
+                'password'          => '1234',
+                'mobile'            => $faker->phoneNumber,
+                'date_of_birth'     => $faker->date,
+                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
+                'confirmation_code' => md5(uniqid(mt_rand(), true)),
+                'confirmed_at'      => Carbon::now(),
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
+            ],
+            [
                 'first_name'        => 'Admin',
                 'last_name'         => 'Istrator',
                 'name'              => 'Admin Istrator',
