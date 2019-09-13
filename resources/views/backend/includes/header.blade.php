@@ -18,8 +18,6 @@
     $notifications = optional(auth()->user())->unreadNotifications;
     $notifications_count = optional($notifications)->count();
     $notifications_latest = $notifications->take(5);
-
-
     ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown d-md-down-none">
@@ -52,15 +50,15 @@
                 <div class="dropdown-header text-center">
                     <strong>Account</strong>
                 </div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
                     <i class="fas fa-user"></i> {{ Auth::user()->name }}
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
                     <i class="fas fa-at"></i> {{ Auth::user()->email }}
                 </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-comments"></i> Comments
-                    <span class="badge badge-warning">42</span>
+                <a class="dropdown-item" href="{{ route("backend.$module_name.index") }}">
+                    <i class="fa fa-bell"></i> Notifications
+                    <span class="badge badge-warning">{{$notifications_count}}</span>
                 </a>
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>

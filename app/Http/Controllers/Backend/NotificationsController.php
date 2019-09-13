@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use Auth;
 use Carbon\Carbon;
+use Flash;
 use Illuminate\Http\Response;
 use Log;
 
