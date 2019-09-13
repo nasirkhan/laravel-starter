@@ -176,10 +176,11 @@ class GenerateMenus
                     if (auth()->check()) {
                         if (auth()->user()->hasRole('super admin')) {
                             return true;
-                        } else if (auth()->user()->hasAnyPermission($item->data('permission'))) {
+                        } elseif (auth()->user()->hasAnyPermission($item->data('permission'))) {
                             return true;
                         }
                     }
+
                     return false;
                 } else {
                     return true;
