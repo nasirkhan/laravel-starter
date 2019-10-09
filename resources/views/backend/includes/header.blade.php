@@ -56,7 +56,7 @@
                 <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
                     <i class="fas fa-at"></i> {{ Auth::user()->email }}
                 </a>
-                <a class="dropdown-item" href="{{ route("backend.$module_name.index") }}">
+                <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
                     <i class="fa fa-bell"></i> Notifications
                     <span class="badge badge-warning">{{$notifications_count}}</span>
                 </a>
