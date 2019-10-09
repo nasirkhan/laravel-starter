@@ -33,7 +33,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '1', // default value if you want
-            ]
+            ],
         ],
     ],
     'email' => [
@@ -167,7 +167,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '@nasir8891', // default value if you want
-            ]
+            ],
         ],
 
     ],
