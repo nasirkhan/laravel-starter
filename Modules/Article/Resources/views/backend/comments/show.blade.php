@@ -51,7 +51,9 @@
                 <h4>Post</h4>
                 <ul>
                     <li>
-                        <a href="{{route('backend.posts.show', $$module_name_singular->post_id)}}">{{$$module_name_singular->post_name}}</a>
+                        <a href="{{route('backend.posts.show', $$module_name_singular->post_id)}}">{{$$module_name_singular->post_name}}</a>&nbsp;
+
+                        <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post->id), $$module_name_singular->post->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View" > <i class="fas fa-external-link-square-alt"></i> </a>
                     </li>
                 </ul>
                 <hr>
