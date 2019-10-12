@@ -45,7 +45,7 @@
             $field_name = 'intro';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
-            $required = "";
+            $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
@@ -59,7 +59,7 @@
             $field_name = 'content';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
-            $required = "";
+            $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
@@ -226,7 +226,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-6">
         <div class="form-group">
             <?php
             $field_name = 'meta_description';
@@ -238,9 +238,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-6">
         <div class="form-group">
             <?php
             $field_name = 'meta_og_image';
