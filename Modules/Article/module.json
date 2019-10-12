@@ -7,7 +7,8 @@
     "active": 1,
     "order": 0,
     "providers": [
-        "Modules\\Article\\Providers\\ArticleServiceProvider"
+        "Modules\\Article\\Providers\\ArticleServiceProvider",
+        "Modules\\Article\\Providers\\EventServiceProvider"
     ],
     "aliases": {},
     "files": [
