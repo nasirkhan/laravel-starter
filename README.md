@@ -95,4 +95,4 @@ __Login Page__
 
 __Backend Dashboard__
 
-![Backend Dashboard](https://user-images.githubusercontent.com/396987/42303738-6bbe11c0-8044-11e8-9952-37f5587e59fd.png)
+![Backend Dashboard](https://user-images.githubusercontent.com/396987/66694968-4e2c5800-ecdc-11e9-82a6-585d2082f4d1.png)
