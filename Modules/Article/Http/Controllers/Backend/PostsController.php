@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Modules\Article\Entities\Category;
-use Modules\Article\Http\Requests\Backend\PostsRequest;
 use Modules\Article\Events\PostCreated;
 use Modules\Article\Events\PostUpdated;
+use Modules\Article\Http\Requests\Backend\PostsRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
 
