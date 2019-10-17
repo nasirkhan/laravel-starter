@@ -31,11 +31,28 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
 
+            // Notifications
+            $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
+                'route' => 'backend.notifications.index',
+                'class' => 'nav-item',
+            ])
+            ->data([
+                'order'         => 99,
+                'activematches' => 'admin/notifications*',
+                'permission'    => [],
+            ])
+            ->link->attr([
+                'class' => 'nav-link',
+            ]);
+
             // Separator: Access Management
             $menu->add('Management', [
                 'class' => 'nav-title',
             ])
-            ->data('order', 90);
+            ->data([
+                'order'         => 101,
+                'permission'    => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
+            ]);
 
             // Settings
             $menu->add('<i class="nav-icon fas fa-cogs"></i> Settings', [
@@ -43,23 +60,9 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 91,
+                'order'         => 102,
                 'activematches' => 'admin/settings*',
                 'permission'    => ['edit_settings'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
-
-            // Backup
-            $menu->add('<i class="nav-icon fas fa-bell"></i> Notifications', [
-                'route' => 'backend.notifications.index',
-                'class' => 'nav-item',
-            ])
-            ->data([
-                'order'         => 92,
-                'activematches' => 'admin/notifications*',
-                'permission'    => [],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -71,7 +74,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 92,
+                'order'         => 103,
                 'activematches' => 'admin/backups*',
                 'permission'    => ['view_backups'],
             ])
@@ -84,7 +87,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 93,
+                'order'         => 104,
                 'activematches' => [
                     'admin/users*',
                     'admin/roles*',
@@ -102,7 +105,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 94,
+                'order'         => 105,
                 'activematches' => 'admin/users*',
                 'permission'    => ['view_users'],
             ])
@@ -116,7 +119,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 95,
+                'order'         => 106,
                 'activematches' => 'admin/roles*',
                 'permission'    => ['view_roles'],
             ])
@@ -130,7 +133,7 @@ class GenerateMenus
                 'class' => 'nav-item nav-dropdown',
             ])
             ->data([
-                'order'         => 96,
+                'order'         => 107,
                 'activematches' => [
                     'log-viewer*',
                 ],
@@ -147,7 +150,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 97,
+                'order'         => 108,
                 'activematches' => 'admin/log-viewer',
             ])
             ->link->attr([
@@ -160,7 +163,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 98,
+                'order'         => 109,
                 'activematches' => 'admin/log-viewer/logs*',
             ])
             ->link->attr([
@@ -170,8 +173,12 @@ class GenerateMenus
             // Access Permission Check
             $menu->filter(function ($item) {
                 if ($item->data('permission')) {
-                    if (auth()->check() && auth()->user()->hasAnyPermission($item->data('permission'))) {
-                        return true;
+                    if (auth()->check()) {
+                        if (auth()->user()->hasRole('super admin')) {
+                            return true;
+                        } elseif (auth()->user()->hasAnyPermission($item->data('permission'))) {
+                            return true;
+                        }
                     }
 
                     return false;
@@ -180,6 +187,7 @@ class GenerateMenus
                 }
             });
 
+            // Set Active Menu
             $menu->filter(function ($item) {
                 if ($item->activematches) {
                     $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];

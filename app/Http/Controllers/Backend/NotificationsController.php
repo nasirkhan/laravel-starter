@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use Auth;
 use Carbon\Carbon;
+use Flash;
 use Illuminate\Http\Response;
 use Log;
 
@@ -83,5 +84,38 @@ class NotificationsController extends Controller
 
         return view("backend.$module_name.show",
         compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
+    }
+
+    /**
+     * Mark All Notifications As Read.
+     *
+     * @return [type] [description]
+     */
+    public function markAllAsRead()
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = str_singular($module_name);
+
+        $module_action = 'Mark All As Read';
+
+        $$module_name_singular = Notification::whereNull('read_at')->where('notifiable_id', '=', auth()->user()->id)->get();
+        // dd($$module_name_singular);
+
+        foreach ($$module_name_singular as $row) {
+            if ($row->read_at == '') {
+                $row->read_at = Carbon::now();
+                $row->save();
+            }
+        }
+
+        Flash::success("<i class='fas fa-check'></i> All Notifications Marked As Read")->important();
+
+        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+
+        return back();
     }
 }

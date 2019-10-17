@@ -82,14 +82,14 @@ class CategoriesController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('name', 'LIKE', "%$term%")->limit(5)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%$term%")->orWhere('slug', 'LIKE', "%$term%")->limit(7)->get();
 
         $$module_name = [];
 
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id'   => $row->id,
-                'text' => $row->name.' (Code: '.$row->slug.')',
+                'text' => $row->name.' (Slug: '.$row->slug.')',
             ];
         }
 
@@ -203,10 +203,12 @@ class CategoriesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $posts = $$module_name_singular->posts()->paginate();
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
+        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts'));
     }
 
     /**

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['permission:edit_settings']], function () {
 $module_name = 'notifications';
 $controller_name = 'NotificationsController';
 Route::get("$module_name", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
+Route::get("$module_name/markAllAsRead", ['as' => "$module_name.markAllAsRead", 'uses' => "$controller_name@markAllAsRead"]);
 Route::get("$module_name/{id}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
 
 /*

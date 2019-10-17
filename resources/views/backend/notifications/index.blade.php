@@ -22,6 +22,13 @@
                     {{ title_case($module_name) }} Management Dashboard
                 </div>
             </div>
+            <!--/.col-->
+            <div class="col-4">
+                <div class="float-right">
+                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="Notifications Mark All As Read"><i class="fas fa-check-square"></i> Mark All As Read</a>
+                </div>
+            </div>
+            <!--/.col-->
         </div>
         <!--/.row-->
 

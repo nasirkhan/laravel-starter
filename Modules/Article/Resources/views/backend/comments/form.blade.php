@@ -1,9 +1,10 @@
 <?php
 $post_id_value = '';
+$user_id_value = '';
 $published_at_value = '';
 $moderated_at_value = '';
 
-if ($$module_name_singular){
+if (isset($$module_name_singular)){
     $post_id_value = ($$module_name_singular->post_name != '')? $$module_name_singular->post_name : '';
 
     $user_id_value = ($$module_name_singular->user_name != '')? $$module_name_singular->user_name : '';

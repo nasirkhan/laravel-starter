@@ -1,7 +1,7 @@
 {
     "name": "nasirkhan/article-module",
     "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
-    "version": "v1.1.0",
+    "version": "v2.0.0",
     "type": "laravel-module",
     "license": "GPL-3.0-or-later",
     "authors": [

@@ -25,6 +25,15 @@ return [
                 'class' => '', // any class for input
                 'value' => '<a href="https://github.com/nasirkhan/laravel-starter/">Built with ♥ from Bangladesh</a>', // default value if you want
             ],
+            [
+                'type'  => 'checkbox', // input fields type
+                'data'  => 'text', // data type, string, int, boolean
+                'name'  => 'show_copyright', // unique name for field
+                'label' => 'Show Copyright', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '1', // default value if you want
+            ],
         ],
     ],
     'email' => [

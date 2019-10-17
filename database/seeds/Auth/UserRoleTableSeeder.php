@@ -19,10 +19,11 @@ class UserRoleTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
-        User::findOrFail(1)->assignRole('administrator');
-        User::findOrFail(2)->assignRole('manager');
-        User::findOrFail(3)->assignRole('executive');
-        User::findOrFail(4)->assignRole('user');
+        User::findOrFail(1)->assignRole('super admin');
+        User::findOrFail(2)->assignRole('administrator');
+        User::findOrFail(3)->assignRole('manager');
+        User::findOrFail(4)->assignRole('executive');
+        User::findOrFail(5)->assignRole('user');
 
         $this->enableForeignKeys();
     }

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
 use Modules\Article\Entities\Category;
+use Modules\Article\Events\PostCreated;
+use Modules\Article\Events\PostUpdated;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
@@ -185,6 +187,8 @@ class PostsController extends Controller
         $$module_name_singular = $module_model::create($data);
         $$module_name_singular->tags()->attach($request->input('tags_list'));
 
+        event(new PostCreated($$module_name_singular));
+
         Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
@@ -281,6 +285,8 @@ class PostsController extends Controller
             $tags_list = $request->input('tags_list');
         }
         $$module_name_singular->tags()->sync($tags_list);
+
+        event(new PostUpdated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> '".str_singular($module_title)."' Updated Successfully")->important();
 

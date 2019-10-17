@@ -45,7 +45,7 @@
             $field_name = 'intro';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
-            $required = "";
+            $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
@@ -59,7 +59,7 @@
             $field_name = 'content';
             $field_lable = label_case($field_name);
             $field_placeholder = $field_lable;
-            $required = "";
+            $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
@@ -77,9 +77,9 @@
             ?>
             {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
             <div class="input-group mb-3">
-                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
-                    <button id="btn_{{$field_name}}" data-input="{{$field_name}}" data-preview="holder" class="btn btn-info" type="button"><i class="fas fa-folder-open"></i> Browse</button>
+                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> Browse</button>
                 </div>
             </div>
         </div>
@@ -226,7 +226,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-6">
         <div class="form-group">
             <?php
             $field_name = 'meta_description';
@@ -238,9 +238,7 @@
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
+    <div class="col-12 col-sm-6">
         <div class="form-group">
             <?php
             $field_name = 'meta_og_image';
@@ -276,6 +274,8 @@
 <!-- Date Time Picker -->
 <link rel="stylesheet" href="{{ asset('vendor/bootstrap-4-datetime-picker/css/tempusdominus-bootstrap-4.min.css') }}" />
 
+<!-- File Manager -->
+<link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endpush
 
 @push ('after-scripts')
@@ -354,18 +354,24 @@ $(function() {
 </script>
 
 <script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
-<script type="text/javascript" src="/vendor/laravel-filemanager/js/lfm.js"></script>
+<script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
 
-$('#btn_featured_image').filemanager('image');
+CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 
-CKEDITOR.replace( 'content', {
-    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+document.addEventListener("DOMContentLoaded", function() {
+
+  document.getElementById('button-image').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+  });
 });
 
+// set file link
+function fmSetLink($url) {
+  document.getElementById('featured_image').value = $url;
+}
 </script>
 @endpush
