@@ -152,11 +152,11 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
-        Spatie\Html\HtmlServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
+        // Laracasts\Flash\FlashServiceProvider::class,
+        // Laravel\Socialite\SocialiteServiceProvider::class,
+        // Spatie\Permission\PermissionServiceProvider::class,
+        // Spatie\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
