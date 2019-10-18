@@ -1,5 +1,7 @@
 <?php
 
+use Nwidart\Modules\Activators\FileActivator;
+
 return [
 
     /*
@@ -134,8 +136,8 @@ return [
     */
 
     'scan' => [
-        'enabled'   => false,
-        'paths'     => [
+        'enabled' => false,
+        'paths'   => [
             base_path('vendor/*/*'),
         ],
     ],
@@ -149,10 +151,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nasirkhan',
+        'vendor' => 'nwidart',
         'author' => [
-            'name'  => 'Nasir Khan',
-            'email' => 'nasir8891@gmail.com',
+            'name'  => 'Nicolas Widart',
+            'email' => 'n.widart@gmail.com',
         ],
     ],
     /*
@@ -164,9 +166,9 @@ return [
     |
     */
     'cache' => [
-        'enabled'   => false,
-        'key'       => 'laravel-modules',
-        'lifetime'  => 60,
+        'enabled'  => false,
+        'key'      => 'laravel-modules',
+        'lifetime' => 60,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -186,4 +188,24 @@ return [
          */
         'files' => 'register',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Activators
+    |--------------------------------------------------------------------------
+    |
+    | You can define new types of activators here, file, database etc. The only
+    | required parameter is 'class'.
+    | The file activator will store the activation status in storage/installed_modules
+    */
+    'activators' => [
+        'file' => [
+            'class'          => FileActivator::class,
+            'statuses-file'  => storage_path('app/modules_statuses.json'),
+            'cache-key'      => 'activator.installed',
+            'cache-lifetime' => 604800,
+        ],
+    ],
+
+    'activator' => 'file',
 ];
