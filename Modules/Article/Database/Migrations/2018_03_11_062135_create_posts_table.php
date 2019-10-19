@@ -31,6 +31,7 @@ class CreatePostsTable extends Migration
             $table->string('meta_og_image')->nullable();
             $table->string('meta_og_url')->nullable();
 
+            $table->integer('hits')->default(0)->unsigned();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->default(1);
 
