@@ -18,8 +18,8 @@ return [
              */
             'url' => '',
 
-            'title'       => env(RSS_FEED_TITLE, 'Awesome Feed'),
-            'description' => env(RSS_FEED_DESCRIPTION, 'The description of the feed.'),
+            'title'       => env('RSS_FEED_TITLE', 'Awesome Feed'),
+            'description' => env('RSS_FEED_DESCRIPTION', 'The description of the feed.'),
             'language'    => 'en-US',
 
             /*
