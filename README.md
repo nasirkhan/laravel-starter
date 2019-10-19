@@ -58,6 +58,7 @@ http://laravel.nasirkhn.com/
 * Newsletter
 * Notification
   * Dashboard and details view
+* RSS Feed
 
 ## Installation
 
