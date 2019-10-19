@@ -3,6 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Modules\Article\Events\PostViewed;
 
 class PostsController extends Controller
 {
@@ -69,6 +70,8 @@ class PostsController extends Controller
         $meta_page_type = 'article';
 
         $$module_name_singular = $module_model::with(['category', 'tags', 'comments'])->findOrFail($id);
+
+        event(new PostViewed($$module_name_singular));
 
         return view("article::frontend.$module_name.show",
         compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type'));

@@ -10,7 +10,7 @@ $factory->define(Modules\Article\Entities\Post::class, function (Faker $faker) {
         'intro'             => $faker->paragraph,
         'content'           => $faker->paragraphs(rand(5, 7), true),
         'type'              => $faker->randomElement(['Article', 'Blog', 'News']),
-        'is_featured'       => $faker->randomElement(['Yes', 'No']),
+        'is_featured'       => $faker->randomElement([1, 0]),
         'featured_image'    => $faker->imageUrl($width = 1200, $height = 630),
         'status'            => 1,
         'category_id'       => $faker->numberBetween(1, 5),

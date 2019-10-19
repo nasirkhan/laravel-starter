@@ -13,5 +13,8 @@ class EventServiceProvider extends ServiceProvider
         'Modules\Article\Events\PostUpdated' => [
             'Modules\Article\Listeners\PostUpdated\UpdatePostData',
         ],
+        'Modules\Article\Events\PostViewed' => [
+            'Modules\Article\Listeners\PostViewed\IncrementHitCount',
+        ],
     ];
 }
