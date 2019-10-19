@@ -5,11 +5,11 @@ namespace Modules\Article\Entities;
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Illuminate\Notifications\Notifiable;
 
 class Post extends BaseModel implements Feedable
 {
@@ -109,12 +109,11 @@ class Post extends BaseModel implements Feedable
         $this->attributes['meta_og_image'] = $value;
 
         if (empty($value)) {
-            if(isset($this->attributes['featured_image'])) {
+            if (isset($this->attributes['featured_image'])) {
                 $this->attributes['meta_og_image'] = $this->attributes['featured_image'];
             } else {
                 $this->attributes['meta_og_image'] = setting('meta_image');
             }
-
         }
     }
 
@@ -187,6 +186,6 @@ class Post extends BaseModel implements Feedable
 
     public static function getFeedItems()
     {
-        return \Modules\Article\Entities\Post::latest()->published()->take('5')->get();
+        return self::latest()->published()->take('5')->get();
     }
 }

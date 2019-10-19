@@ -43,6 +43,7 @@ trait PostPresenter
                 if ($this->published_at >= Carbon::now()) {
                     return '<span class="badge badge-warning">Scheduled ('.$this->published_at_formatted.')</span>';
                 }
+
                 return '<span class="badge badge-success">Pubished</span>';
                 break;
 
