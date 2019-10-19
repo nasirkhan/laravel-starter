@@ -74,7 +74,7 @@ class PostsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::select('id', 'name', 'category_name', 'status', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'category_name', 'status', 'updated_at', 'published_at', 'is_featured');
 
         $data = $$module_name;
 
@@ -85,7 +85,9 @@ class PostsController extends Controller
                             return view('backend.includes.action_column', compact('module_name', 'data'));
                         })
                         ->editColumn('name', function ($data) {
-                            return $data->name.' '.$data->status_label;
+                            $is_featured = ($data->is_featured) ? '<span class="badge badge-primary">Featured</span>' : '';
+
+                            return $data->name.' '.$data->status_formatted.' '.$is_featured;
                         })
                         ->editColumn('updated_at', function ($data) {
                             $module_name = $this->module_name;
