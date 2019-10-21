@@ -34,13 +34,10 @@ class Comment extends BaseModel
         return $this->belongsTo('App\Models\User');
     }
 
-    /**
-     * Purifiy Name field value.
-     */
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = clean($value);
-    // }
+    public function parent()
+    {
+        return $this->belongsTo('Modules\Article\Entities\Comment', 'parent_id');
+    }
 
     /**
      * Purifiy Comment field value.
@@ -52,16 +49,16 @@ class Comment extends BaseModel
 
     public function setPostIdAttribute($value)
     {
-        $this->attributes['post_id'] = $value;
+        $this->attributes['post_id'] = decode_id($value);
 
-        $this->attributes['post_name'] = Post::findOrFail($value)->name;
+        $this->attributes['post_name'] = Post::findOrFail(decode_id($value))->name;
     }
 
     public function setUserIdAttribute($value)
     {
-        $this->attributes['user_id'] = $value;
+        $this->attributes['user_id'] = decode_id($value);
 
-        $this->attributes['user_name'] = User::findOrFail($value)->name;
+        $this->attributes['user_name'] = User::findOrFail(decode_id($value))->name;
     }
 
     public function setParentIdAttribute($value)
