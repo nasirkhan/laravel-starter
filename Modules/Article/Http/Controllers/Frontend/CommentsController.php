@@ -95,7 +95,7 @@ class CommentsController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = str_singular($module_name);
-        
+
         $module_action = 'Store';
 
         $$module_name_singular = $module_model::create($request->all());
