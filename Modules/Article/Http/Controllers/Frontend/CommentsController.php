@@ -102,6 +102,7 @@ class CommentsController extends Controller
             'comment' => $request->comment,
             'post_id' => decode_id($request->post_id),
             'user_id' => decode_id($request->user_id),
+            'parent_id' => $request->parent_id,
         ];
         // $$module_name_singular = $module_model::create($request->all());
 

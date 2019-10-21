@@ -16,7 +16,7 @@ class Comment extends BaseModel
 
     protected static $logName = 'comments';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['post_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
+    protected static $logAttributes = ['parent_id', 'post_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
 
     protected $dates = [
         'deleted_at',
@@ -62,6 +62,13 @@ class Comment extends BaseModel
         $this->attributes['user_id'] = $value;
 
         $this->attributes['user_name'] = User::findOrFail($value)->name;
+    }
+
+    public function setParentIdAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['parent_id'] = decode_id($value);
+        }
     }
 
     /**
