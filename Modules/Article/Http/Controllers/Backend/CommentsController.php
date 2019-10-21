@@ -211,7 +211,7 @@ class CommentsController extends Controller
                                 ->where('log_name', '=', $module_name)
                                 ->where('subject_id', '=', $id)
                                 ->latest()
-                                ->get();
+                                ->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
