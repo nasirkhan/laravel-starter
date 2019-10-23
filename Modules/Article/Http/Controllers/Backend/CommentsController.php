@@ -121,7 +121,7 @@ class CommentsController extends Controller
                         })
                         // ->editColumn('name', '<strong>{{$name}}</strong> | {{$status_formatted}}')
                         ->editColumn('name', function ($data) {
-                            $return_string = "<strong>".$data->name."</strong> | ".$data->status_formatted;
+                            $return_string = '<strong>'.$data->name.'</strong> | '.$data->status_formatted;
 
                             return $return_string;
                         })
