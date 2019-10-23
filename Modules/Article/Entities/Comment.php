@@ -7,10 +7,11 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Modules\Article\Entities\Presenters\CommentPresenter;
 
 class Comment extends BaseModel
 {
-    use LogsActivity, SoftDeletes;
+    use LogsActivity, CommentPresenter, SoftDeletes;
 
     protected $table = 'comments';
 
