@@ -112,7 +112,13 @@
                                         - {{$comment->user_name}}
                                     </small>
 
+                                    @guest
+                                    <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-right m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
+                                    @endguest
+
+                                    @auth
                                     <button type="button" id="replyBtn{{encode_id($comment->id)}}" class="btn btn-primary btn-sm float-right m-0" data-toggle="collapse" href="#replyForm{{encode_id($comment->id)}}" role="button" aria-expanded="false" aria-controls="replyForm{{encode_id($comment->id)}}">Reply</button>
+                                    @endauth
 
                                     <?php
                                     $comments_of_comment = $comments_all->where('parent_id', $comment->id);
@@ -129,7 +135,7 @@
                                     </ul>
                                     @endif
                                 </div>
-
+                                @auth
                                 <div class="collapse multi-collapse" id="replyForm{{encode_id($comment->id)}}">
                                     <p>
                                         {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
@@ -193,6 +199,7 @@
                                         {{ html()->form()->close() }}
                                     </p>
                                 </div>
+                                @endauth
 
                             </blockquote>
                             @endforeach
