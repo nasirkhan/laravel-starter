@@ -6,8 +6,8 @@ use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Modules\Article\Entities\Presenters\CommentPresenter;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
