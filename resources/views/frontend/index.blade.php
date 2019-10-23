@@ -26,9 +26,6 @@
                 <a href="#" class="btn btn-primary btn-icon btn-round">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="#" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-google-plus"></i>
-                </a>
             </div>
         </div>
     </div>

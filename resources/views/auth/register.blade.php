@@ -8,18 +8,18 @@
     <div class="container">
 
         <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
+            <div class="card card-login card-plain mb-0">
                 <form class="form" method="POST" action="{{ route('frontend.auth.register.post') }}">
                     {{ csrf_field() }}
 
                     <div class="header header-primary text-center">
-                        <div class="logo-container">
+                        <!-- <div class="logo-container">
                             <img src="{{asset('img/logo-square.png')}}" alt="">
-                        </div>
+                        </div> -->
                         <h5>
                             Create an Account
                         </h5>
-                    
+
                         @include('flash::message')
                         <!-- Errors block -->
                         @include('frontend.includes.errors')
@@ -62,7 +62,7 @@
                             <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Password" aria-label="Password" aria-describedby="input-password_confirmation" required>
                         </div>
                     </div>
-                    <div class="footer text-center">
+                    <div class="footer text-center py-0">
                         <button type="submit" class="btn btn-primary btn-round btn-block">Create Account</button>
                     </div>
                     <div class="pull-left">
