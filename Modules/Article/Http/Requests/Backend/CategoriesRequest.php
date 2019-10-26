@@ -24,8 +24,8 @@ class CategoriesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:191|unique:categories,name,' . $this->category,
-            'slug' => 'nullable|max:191|unique:categories,slug,' . $this->category,
+            'name' => 'required|max:191|unique:categories,name,'.$this->category,
+            'slug' => 'nullable|max:191|unique:categories,slug,'.$this->category,
         ];
     }
 }
