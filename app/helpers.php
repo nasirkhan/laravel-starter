@@ -373,9 +373,10 @@ if (!function_exists('bn2enNumber')) {
     /**
      * Prepare the Column Name for Lables.
      */
-    function bn2enNumber ($number){
-        $search_array = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
-        $replace_array = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+    function bn2enNumber($number)
+    {
+        $search_array = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
+        $replace_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
         $en_number = str_replace($search_array, $replace_array, $number);
 
@@ -395,9 +396,10 @@ if (!function_exists('en2bnNumber')) {
     /**
      * Prepare the Column Name for Lables.
      */
-    function en2bnNumber ($number){
-        $search_array = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
-        $replace_array = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
+    function en2bnNumber($number)
+    {
+        $search_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        $replace_array = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
 
         $bn_number = str_replace($search_array, $replace_array, $number);
 
@@ -415,32 +417,33 @@ if (!function_exists('en2bnNumber')) {
 if (!function_exists('en2bnDate')) {
 
     /**
-     * Convert a English number to Bengali
+     * Convert a English number to Bengali.
      */
-    function en2bnDate ($date){
+    function en2bnDate($date)
+    {
         // Convert numbers
-        $search_array = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
-        $replace_array = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
+        $search_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        $replace_array = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
         $bn_date = str_replace($search_array, $replace_array, $date);
 
         // Convert Short Week Day Names
-        $search_array = array('Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu');
-        $replace_array = array('শুক্র', 'শনি', 'রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহঃ');
+        $search_array = ['Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+        $replace_array = ['শুক্র', 'শনি', 'রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহঃ'];
         $bn_date = str_replace($search_array, $replace_array, $bn_date);
 
         // Convert Month Names
-        $search_array = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-        $replace_array = array("জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগষ্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর");
+        $search_array = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $replace_array = ['জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগষ্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
         $bn_date = str_replace($search_array, $replace_array, $bn_date);
 
         // Convert Short Month Names
-        $search_array = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
-        $replace_array = array("জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগষ্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর");
+        $search_array = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        $replace_array = ['জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগষ্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
         $bn_date = str_replace($search_array, $replace_array, $bn_date);
 
         // Convert AM-PM
-        $search_array = array( 'am', 'pm', 'AM', 'PM' );
-        $replace_array = array( 'পূর্বাহ্ন', 'অপরাহ্ন', 'পূর্বাহ্ন', 'অপরাহ্ন' );
+        $search_array = ['am', 'pm', 'AM', 'PM'];
+        $replace_array = ['পূর্বাহ্ন', 'অপরাহ্ন', 'পূর্বাহ্ন', 'অপরাহ্ন'];
         $bn_date = str_replace($search_array, $replace_array, $bn_date);
 
         return $bn_date;
@@ -456,7 +459,8 @@ if (!function_exists('en2bnDate')) {
  * ------------------------------------------------------------------------
  */
 if (!function_exists('banglaDate')) {
-    function banglaDate ($date_input = '') {
+    function banglaDate($date_input = '')
+    {
         if ($date_input == '') {
             $date_input = date('Y-m-d');
         }
@@ -467,22 +471,22 @@ if (!function_exists('banglaDate')) {
         $en_month = date('m', $date_input);
         $en_year = date('Y', $date_input);
 
-        $bn_month_days = array(30,30,30,30, 31,31,31,31, 31,31,29,30);
-        $bn_month_middate = array(13,12,14,13, 14,14,15,15, 15,16,14,14);
-        $bn_months = array("পৌষ", "মাঘ", "ফাল্গুন", "চৈত্র", "বৈশাখ", "জ্যৈষ্ঠ", "আষাঢ়", "শ্রাবণ", "ভাদ্র", "আশ্বিন", "কার্তিক", "অগ্রহায়ণ");
+        $bn_month_days = [30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 29, 30];
+        $bn_month_middate = [13, 12, 14, 13, 14, 14, 15, 15, 15, 16, 14, 14];
+        $bn_months = ['পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র', 'বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ'];
 
         // Day & Month
-        if($en_day <= $bn_month_middate[$en_month - 1]) {
+        if ($en_day <= $bn_month_middate[$en_month - 1]) {
             $bn_day = $en_day + $bn_month_days[$en_month - 1] - $bn_month_middate[$en_month - 1];
             $bn_month = $bn_months[$en_month - 1];
 
             // Leap Year
-            if (( $en_year % 400 == 0 || ($en_year % 100 != 0 && $en_year % 4 == 0) ) && $en_month == 3) {
+            if (($en_year % 400 == 0 || ($en_year % 100 != 0 && $en_year % 4 == 0)) && $en_month == 3) {
                 $bn_day += 1;
             }
         } else {
             $bn_day = $en_day - $bn_month_middate[$en_month - 1];
-            $bn_month = $bn_months[$en_month%12];
+            $bn_month = $bn_months[$en_month % 12];
         }
 
         // Year
@@ -491,7 +495,7 @@ if (!function_exists('banglaDate')) {
             $bn_year -= 1;
         }
 
-        $return_bn_date = $bn_day . ' ' . $bn_month . ' ' . $bn_year;
+        $return_bn_date = $bn_day.' '.$bn_month.' '.$bn_year;
         $return_bn_date = en2bnNumber($return_bn_date);
 
         return $return_bn_date;
