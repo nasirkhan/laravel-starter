@@ -153,8 +153,8 @@ return [
     'composer' => [
         'vendor' => 'nwidart',
         'author' => [
-            'name'  => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name'  => 'Nasir Khan',
+            'email' => 'nasir8891@gmail.com',
         ],
     ],
     /*
