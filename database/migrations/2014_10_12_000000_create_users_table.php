@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable()->default('img/default-avatar.jpg');
             $table->tinyInteger('status')->default(1)->unsigned();
             $table->string('confirmation_code')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('confirmed_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

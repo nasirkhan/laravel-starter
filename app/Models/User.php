@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Presenters\UserPresenter;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
 
@@ -36,6 +37,15 @@ class User extends Authenticatable implements HasMedia
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -89,10 +99,10 @@ class User extends Authenticatable implements HasMedia
      *
      * @param string $password Password Text
      */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 
     /**
      * Route notifications for the Slack channel.

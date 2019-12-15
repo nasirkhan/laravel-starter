@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+
 /*
 *
 * Frontend Routes

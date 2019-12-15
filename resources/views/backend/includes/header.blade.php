@@ -63,9 +63,12 @@
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>
                 </div>
-                <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-lock"></i> Logout
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
     </ul>

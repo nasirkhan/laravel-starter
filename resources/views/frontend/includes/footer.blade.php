@@ -14,12 +14,12 @@
                 </li>
                 @guest
                 <li>
-                    <a href="{{ route('frontend.auth.register') }}">
+                    <a href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.auth.login') }}">
+                    <a href="{{ route('login') }}">
                         Login
                     </a>
                 </li>
@@ -30,9 +30,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.auth.logout') }}">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
                 @endguest
             </ul>

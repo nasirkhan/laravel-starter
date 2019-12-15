@@ -39,12 +39,12 @@
 
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.register') }}">
+                    <a class="nav-link" href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.login') }}">
+                    <a class="nav-link" href="{{ route('login') }}">
                         <i class="now-ui-icons objects_key-25"></i> Login
                     </a>
                 </li>
@@ -59,9 +59,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.logout') }}">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="now-ui-icons sport_user-run"></i> Logout
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
                 @endguest
 
