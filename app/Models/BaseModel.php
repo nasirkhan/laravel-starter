@@ -13,8 +13,8 @@ use Spatie\MediaLibrary\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
-
+    use SoftDeletes;
+    use HasMediaTrait;
     protected $guarded = [
         'id',
         'updated_at',

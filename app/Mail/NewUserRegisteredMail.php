@@ -10,8 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NewUserRegisteredMail extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
-
+    use Queueable;
+    use SerializesModels;
     public $user;
 
     /**

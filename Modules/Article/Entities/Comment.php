@@ -11,8 +11,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
-    use LogsActivity, CommentPresenter, SoftDeletes;
-
+    use LogsActivity;
+    use CommentPresenter;
+    use SoftDeletes;
     protected $table = 'comments';
 
     protected static $logName = 'comments';

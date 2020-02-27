@@ -13,8 +13,10 @@ use Spatie\Feed\FeedItem;
 
 class Post extends BaseModel implements Feedable
 {
-    use LogsActivity, SoftDeletes, PostPresenter, Notifiable;
-
+    use LogsActivity;
+    use SoftDeletes;
+    use PostPresenter;
+    use Notifiable;
     protected $table = 'posts';
 
     protected static $logName = 'posts';

@@ -14,8 +14,11 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
-
+    use HasRoles;
+    use Notifiable;
+    use SoftDeletes;
+    use HasMediaTrait;
+    use UserPresenter;
     protected $guarded = [
         'id',
         'updated_at',
