@@ -7,8 +7,8 @@ use Illuminate\Database\Seeder;
  */
 class AuthTableSeeder extends Seeder
 {
-    use DisableForeignKeys, TruncateTable;
-
+    use DisableForeignKeys;
+    use TruncateTable;
     /**
      * Run the database seeds.
      *

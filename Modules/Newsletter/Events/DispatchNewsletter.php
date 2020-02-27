@@ -13,8 +13,9 @@ use Modules\Article\Entities\Newsletter;
  */
 class DispatchNewsletter
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
     public $newsletter;
     public $user;
 
