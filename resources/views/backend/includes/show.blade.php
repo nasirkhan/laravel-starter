@@ -1,5 +1,5 @@
 <p>
-    Displaing all the values of <strong>{{ title_case($module_name_singular) }} (Id: {{$$module_name_singular->id}})</strong>.
+    Displaing all the values of <strong>{{ ucwords($module_name_singular) }} (Id: {{$$module_name_singular->id}})</strong>.
 </p>
 <table class="table table-responsive-sm table-hover table-bordered">
     <?php

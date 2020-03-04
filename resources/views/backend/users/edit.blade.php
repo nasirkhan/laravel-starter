@@ -69,10 +69,8 @@
                         {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
 
                         <div class="col-md-10">
-                            @if ($user->confirmed_at == null)
+                            @if ($user->email_verified_at == null)
                             <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-outline-primary btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Send Confirmation Email</a>
-
-                            <a href="{{route('backend.users.emailConfirmation', $user->confirmation_code)}}" class="btn btn-outline-info btn-sm " data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Confirm Email</a>
                             @else
                             {!! $user->confirmed_label !!}
                             @endif
@@ -161,7 +159,7 @@
                                 @if ($$module_name_singular->status == 2)
                                 <a href="{{route('backend.users.unblock', $$module_name_singular)}}" class="btn btn-info" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}" data-confirm="Are you sure?"><i class="fas fa-check"></i> Unblock</a>
                                 @endif
-                                @if ($$module_name_singular->confirmed_at == null)
+                                @if ($$module_name_singular->email_verified_at == null)
                                 <a href="{{route('backend.users.emailConfirmationResend', $$module_name_singular->id)}}" class="btn btn-primary" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i></a>
                                 @endif
                                 @if($$module_name_singular->id != 1)

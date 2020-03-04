@@ -8,15 +8,15 @@
     @else
         <div class="alert
                     alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-dismissible' : '' }} fade show"
+                    {{ $message['important'] ? 'alert-important' : '' }}"
                     role="alert"
         >
             @if ($message['important'])
                 <button type="button"
                         class="close"
                         data-dismiss="alert"
-                        aria-label="Close"
-                ><span aria-hidden="true">&times;</span></button>
+                        aria-hidden="true"
+                >&times;</button>
             @endif
 
             {!! $message['message'] !!}
