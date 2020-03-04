@@ -26,7 +26,7 @@
                     <i class="{{ $module_icon }}"></i>  {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ title_case($module_name) }} Management Dashboard
+                    {{ ucwords($module_name) }} Management Dashboard
                 </div>
             </div>
             <!--/.col-->

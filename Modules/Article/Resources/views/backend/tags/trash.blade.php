@@ -1,7 +1,7 @@
 @extends ('backend.layouts.app')
 
 <?php
-$module_name_singular = str_singular($module_name);
+$module_name_singular = Str::singular($module_name);
 ?>
 
 @section ('title', ucfirst($module_name) . ' ' . ucfirst($module_action))
@@ -29,13 +29,13 @@ $module_name_singular = str_singular($module_name);
                     <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ title_case($module_name) }} Management Dashboard
+                    {{ ucwords($module_name) }} Management Dashboard
                 </div>
             </div>
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ title_case($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
                 </div>
             </div>
             <!--/.col-->
@@ -100,7 +100,7 @@ $module_name_singular = str_singular($module_name);
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    Total {{ $$module_name->total() }} {{ title_case($module_name) }}
+                    Total {{ $$module_name->total() }} {{ ucwords($module_name) }}
                 </div>
             </div>
             <div class="col-5">

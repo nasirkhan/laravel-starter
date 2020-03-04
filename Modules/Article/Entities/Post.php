@@ -76,10 +76,10 @@ class Post extends BaseModel implements Feedable
      */
     public function setMetaTitleAttribute($value)
     {
-        $this->attributes['meta_title'] = trim(title_case($value));
+        $this->attributes['meta_title'] = trim(ucwords($value));
 
         if (empty($value)) {
-            $this->attributes['meta_title'] = trim(title_case($this->attributes['name']));
+            $this->attributes['meta_title'] = trim(ucwords($this->attributes['name']));
         }
     }
 
