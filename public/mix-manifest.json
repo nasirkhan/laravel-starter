@@ -16,8 +16,8 @@
     "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf",
     "/webfonts/fa-solid-900.woff": "/webfonts/fa-solid-900.woff",
     "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
-    "/css/app_frontend.css": "/css/app_frontend.css",
-    "/js/app_frontend.js": "/js/app_frontend.js",
-    "/css/app_backend.css": "/css/app_backend.css",
-    "/js/app_backend.js": "/js/app_backend.js"
+    "/css/backend.css": "/css/backend.css",
+    "/js/backend.js": "/js/backend.js",
+    "/css/frontend.css": "/css/frontend.css",
+    "/js/frontend.js": "/js/frontend.js"
 }
