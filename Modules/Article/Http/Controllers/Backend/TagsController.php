@@ -207,7 +207,7 @@ class TagsController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $posts = $$module_name_singular->posts()->paginate();
+        $posts = $$module_name_singular->posts()->latest()->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
