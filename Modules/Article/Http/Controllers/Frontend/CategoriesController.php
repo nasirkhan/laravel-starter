@@ -3,6 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Http\Response;
 
 class CategoriesController extends Controller

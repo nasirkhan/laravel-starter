@@ -8,6 +8,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Log;
 use Modules\Article\Http\Requests\Frontend\CommentsRequest;
 use Modules\Article\Notifications\NewCommentAdded;

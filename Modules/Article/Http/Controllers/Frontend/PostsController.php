@@ -3,6 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Modules\Article\Events\PostViewed;
 
 class PostsController extends Controller
