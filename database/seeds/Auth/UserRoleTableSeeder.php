@@ -2,14 +2,13 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class UserRoleTableSeeder.
  */
 class UserRoleTableSeeder extends Seeder
 {
-    use DisableForeignKeys;
-
     /**
      * Run the database seed.
      *
@@ -17,7 +16,7 @@ class UserRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->disableForeignKeys();
+        Schema::disableForeignKeyConstraints();
 
         User::findOrFail(1)->assignRole('super admin');
         User::findOrFail(2)->assignRole('administrator');
@@ -25,6 +24,7 @@ class UserRoleTableSeeder extends Seeder
         User::findOrFail(4)->assignRole('executive');
         User::findOrFail(5)->assignRole('user');
 
-        $this->enableForeignKeys();
+        Schema::enableForeignKeyConstraints();
+
     }
 }

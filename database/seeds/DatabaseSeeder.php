@@ -1,23 +1,23 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
-    use TruncateTable;
-
     /**
-     * Run the database seeds.
+     * Seed the application's database.
      *
      * @return void
      */
     public function run()
     {
-        Model::unguard();
+        Schema::disableForeignKeyConstraints();
 
         $this->call(AuthTableSeeder::class);
 
-        Model::reguard();
+        Schema::enableForeignKeyConstraints();
+
     }
 }

@@ -1,7 +1,11 @@
 <?php
 
-use Carbon\Carbon;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,23 +19,20 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
-    static $password;
-
-    $firstName = $faker->firstName;
-    $lastName = $faker->lastName;
-
+    $first_name = $faker->firstName;
+    $last_name = $faker->lastName;
+    
     return [
-        'first_name'        => $firstName,
-        'last_name'         => $lastName,
-        'name'              => $firstName.' '.$lastName,
-        'email'             => $faker->unique()->safeEmail,
-        'mobile'            => $faker->phoneNumber,
-        'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-        'password'          => $password ?: $password = 'secret',
-        'remember_token'    => str_random(10),
-        'confirmation_code' => md5(uniqid(mt_rand(), true)),
-        'confirmed_at'      => Carbon::now(),
-        'created_at'        => Carbon::now(),
-        'updated_at'        => Carbon::now(),
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'name' => $first_name . ' ' . $last_name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => Hash::make('000000'),
+        'mobile' => $faker->phoneNumber,
+        'date_of_birth' => $faker->date,
+        'avatar' => 'img/default-avatar.jpg',
+        'gender' => $faker->randomElement(['Man', 'Woman', 'Other']),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
     ];
 });

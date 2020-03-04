@@ -14,13 +14,14 @@ class CreateUserprofilesTable extends Migration
     public function up()
     {
         Schema::create('userprofiles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('user_id');
 
             $table->string('name');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('username')->nullable();
+            $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('gender')->nullable();
 
@@ -41,7 +42,7 @@ class CreateUserprofilesTable extends Migration
             $table->string('last_ip')->nullable();
             $table->integer('login_count')->default(0);
             $table->timestamp('last_login')->nullable();
-            $table->timestamp('confirmed_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('status')->default(1)->unsigned();
 
             $table->integer('created_by')->unsigned()->nullable();
