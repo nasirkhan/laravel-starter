@@ -1,6 +1,6 @@
 {
     "name": "nasirkhan/laravel-starter",
-    "description": "CMS like a modular Laravel Starter project.",
+    "description": "CMS like a modular Laravel starter project.",
     "keywords": ["framework", "laravel", "cms", "starter", "admin"],
     "license": "GPL-3.0-or-later",
     "type": "project",
