@@ -20,18 +20,18 @@ use Illuminate\Support\Facades\Hash;
 $factory->define(App\Models\User::class, function (Faker $faker) {
     $first_name = $faker->firstName;
     $last_name = $faker->lastName;
-    
+
     return [
-        'first_name' => $first_name,
-        'last_name' => $last_name,
-        'name' => $first_name . ' ' . $last_name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => Hash::make('000000'),
-        'mobile' => $faker->phoneNumber,
+        'first_name'    => $first_name,
+        'last_name'     => $last_name,
+        'name'          => $first_name.' '.$last_name,
+        'email'         => $faker->unique()->safeEmail,
+        'password'      => Hash::make('000000'),
+        'mobile'        => $faker->phoneNumber,
         'date_of_birth' => $faker->date,
-        'avatar' => 'img/default-avatar.jpg',
-        'gender' => $faker->randomElement(['Man', 'Woman', 'Other']),
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now(),
+        'avatar'        => 'img/default-avatar.jpg',
+        'gender'        => $faker->randomElement(['Man', 'Woman', 'Other']),
+        'created_at'    => Carbon::now(),
+        'updated_at'    => Carbon::now(),
     ];
 });

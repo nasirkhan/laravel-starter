@@ -537,8 +537,8 @@ if (!function_exists('generate_rgb_code')) {
      */
     function generate_rgb_code($opacity = '0.9')
     {
-        $str = "";
-        for ($i = 1; $i <=3; $i++) {
+        $str = '';
+        for ($i = 1; $i <= 3; $i++) {
             $num = mt_rand(0, 255);
             $str .= "$num,";
         }

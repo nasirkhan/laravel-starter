@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
-     * Create And Login as Super Admin
+     * Create And Login as Super Admin.
      *
      * @return bool|mixed
      */

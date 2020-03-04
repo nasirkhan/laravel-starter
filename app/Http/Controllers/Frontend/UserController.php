@@ -91,7 +91,7 @@ class UserController extends Controller
         if ($$module_name_singular) {
             $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
         } else {
-            Log::error("UserProfile Exception for Username: ".$username);
+            Log::error('UserProfile Exception for Username: '.$username);
             abort(404);
         }
 

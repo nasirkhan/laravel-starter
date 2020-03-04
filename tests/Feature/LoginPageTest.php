@@ -9,8 +9,8 @@ use Tests\TestCase;
 
 class LoginPageTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
-
+    use DatabaseMigrations;
+    use DatabaseTransactions;
     /**
      * The login form can be displayed.
      *
@@ -37,7 +37,7 @@ class LoginPageTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => $user->password,
         ]);
 
@@ -47,14 +47,14 @@ class LoginPageTest extends TestCase
     }
 
     /**
-     * Remember Me Check
+     * Remember Me Check.
      */
     public function test_remember_me_functionality()
     {
         $user = factory(User::class)->create();
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => $user->password,
             'remember' => 'on',
         ]);

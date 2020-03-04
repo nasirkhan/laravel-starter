@@ -28,7 +28,6 @@ class FrontendController extends Controller
 
         $questionset_status = true;
 
-
         // flash("Registration will start from January 10, 2020. Thank You - BdMO")->success();
 
         // if (Auth::check()) {
@@ -134,6 +133,7 @@ class FrontendController extends Controller
             return view('auth.setPassword', compact('token'));
         } else {
             flash('Token Invalid!')->warning()->important();
+
             return redirect()->back();
         }
     }
@@ -166,6 +166,7 @@ class FrontendController extends Controller
             return redirect()->route('frontend.index');
         } else {
             flash('Token or Username Invalid!')->warning()->important();
+
             return redirect()->back();
         }
     }
@@ -195,10 +196,12 @@ class FrontendController extends Controller
         //
         // Log::info($message['SubscribeURL']);
     }
+
     public function emailBounced(Request $request)
     {
         Log::info($request);
     }
+
     public function emailComplaint(Request $request)
     {
         Log::info($request);
