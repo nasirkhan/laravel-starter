@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Backend\User;
+namespace App\Listeners\Backend\UserCreated;
 
-use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\UserCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserCreatedNotifyUser implements ShouldQueue

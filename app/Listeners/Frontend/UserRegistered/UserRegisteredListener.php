@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Frontend\User;
+namespace App\Listeners\Frontend\UserRegistered;
 
-use App\Events\Frontend\User\UserRegistered;
+use App\Events\Frontend\UserRegistered;
 use App\Mail\NewUserRegisteredMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;

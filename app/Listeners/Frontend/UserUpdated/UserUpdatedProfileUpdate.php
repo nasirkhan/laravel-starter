@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Frontend\User;
+namespace App\Listeners\Frontend\UserUpdated;
 
-use App\Events\Frontend\User\UserUpdated;
+use App\Events\Frontend\UserUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserUpdatedNotifyUser implements ShouldQueue
+class UserUpdatedProfileUpdate implements ShouldQueue
 {
     /**
      * Create the event listener.

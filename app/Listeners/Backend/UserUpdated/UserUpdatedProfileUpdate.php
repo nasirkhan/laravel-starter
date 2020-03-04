@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Listeners\Backend\User;
+namespace App\Listeners\Backend\UserUpdated;
 
-use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\UserUpdated;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Log;
 
-class UserCreatedProfileCreate implements ShouldQueue
+class UserUpdatedProfileUpdate implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -22,16 +21,15 @@ class UserCreatedProfileCreate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param UserCreated $event
+     * @param UserUpdated $event
      *
      * @return void
      */
-    public function handle(UserCreated $event)
+    public function handle(UserUpdated $event)
     {
         $user = $event->user;
 
-        $userprofile = new Userprofile();
-        $userprofile->user_id = $user->id;
+        $userprofile = Userprofile::where('user_id', '=', $user->id)->first();
         $userprofile->name = $user->name;
         $userprofile->first_name = $user->first_name;
         $userprofile->last_name = $user->last_name;
@@ -40,9 +38,11 @@ class UserCreatedProfileCreate implements ShouldQueue
         $userprofile->gender = $user->gender;
         $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
-        $userprofile->status = ($user->status > 0) ? $user->status : 0;
+        $userprofile->status = $user->status;
+        $userprofile->updated_at = $user->updated_at;
+        $userprofile->updated_by = $user->updated_by;
+        $userprofile->deleted_at = $user->deleted_at;
+        $userprofile->deleted_by = $user->deleted_by;
         $userprofile->save();
-
-        Log::info('UserCreatedProfileCreate: '.$userprofile->name.'(Id:'.$userprofile->user_id.')');
     }
 }

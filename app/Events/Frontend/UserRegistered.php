@@ -1,30 +1,27 @@
 <?php
 
-namespace App\Events\Auth;
+namespace App\Events\Frontend;
 
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 
-class UserLoginSuccess
+class UserRegistered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
-    public $request;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Request $request, User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->request = $request;
     }
 
     /**

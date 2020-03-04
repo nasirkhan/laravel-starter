@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Backend\User;
+namespace App\Listeners\Frontend\UserProfileUpdated;
 
-use App\Events\Backend\User\UserProfileUpdated;
+use App\Events\Frontend\UserProfileUpdated;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -30,6 +30,7 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
         $user_profile = $event->user_profile;
 
         $user = User::where('id', '=', $user_profile->user_id)->first();
+
         $user->name = $user_profile->name;
         $user->first_name = $user_profile->first_name;
         $user->last_name = $user_profile->last_name;

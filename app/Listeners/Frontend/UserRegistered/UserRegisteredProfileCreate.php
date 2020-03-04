@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\Backend\User;
+namespace App\Listeners\Frontend\UserRegistered;
 
-use App\Events\Backend\User\UserUpdated;
+use App\Events\Frontend\UserRegistered;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserUpdatedProfileUpdate implements ShouldQueue
+class UserRegisteredProfileCreate implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,15 +21,16 @@ class UserUpdatedProfileUpdate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param UserUpdated $event
+     * @param UserRegistered $event
      *
      * @return void
      */
-    public function handle(UserUpdated $event)
+    public function handle(UserRegistered $event)
     {
         $user = $event->user;
 
-        $userprofile = Userprofile::where('user_id', '=', $user->id)->first();
+        $userprofile = new Userprofile();
+        $userprofile->user_id = $user->id;
         $userprofile->name = $user->name;
         $userprofile->first_name = $user->first_name;
         $userprofile->last_name = $user->last_name;
@@ -38,11 +39,9 @@ class UserUpdatedProfileUpdate implements ShouldQueue
         $userprofile->gender = $user->gender;
         $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
-        $userprofile->status = $user->status;
-        $userprofile->updated_at = $user->updated_at;
-        $userprofile->updated_by = $user->updated_by;
-        $userprofile->deleted_at = $user->deleted_at;
-        $userprofile->deleted_by = $user->deleted_by;
+        $userprofile->status = ($user->status > 0) ? $user->status : 0;
         $userprofile->save();
+
+        \Log::debug('UserRegisteredProfileCreate:'.$user->name);
     }
 }

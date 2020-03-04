@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Frontend\User;
+namespace App\Events\Backend;
 
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -8,7 +8,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegistered
+class UserUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Frontend\User;
+namespace App\Listeners\Backend\UserProfileUpdated;
 
-use App\Events\Frontend\User\UserProfileUpdated;
+use App\Events\Backend\UserProfileUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserProfileUpdatedNotifyUser implements ShouldQueue
@@ -26,6 +26,7 @@ class UserProfileUpdatedNotifyUser implements ShouldQueue
      */
     public function handle(UserProfileUpdated $event)
     {
-        $user_profile = $event->user_profile;
+        $user = $event->user_profile;
+        //
     }
 }

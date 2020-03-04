@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Listeners\Frontend\User;
+namespace App\Listeners\Backend\UserCreated;
 
-use App\Events\Frontend\User\UserRegistered;
+use App\Events\Backend\UserCreated;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Log;
 
-class UserRegisteredProfileCreate implements ShouldQueue
+class UserCreatedProfileCreate implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,11 +22,11 @@ class UserRegisteredProfileCreate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param UserRegistered $event
+     * @param UserCreated $event
      *
      * @return void
      */
-    public function handle(UserRegistered $event)
+    public function handle(UserCreated $event)
     {
         $user = $event->user;
 
@@ -42,6 +43,6 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->status = ($user->status > 0) ? $user->status : 0;
         $userprofile->save();
 
-        \Log::debug('UserRegisteredProfileCreate:'.$user->name);
+        Log::info('UserCreatedProfileCreate: '.$userprofile->name.'(Id:'.$userprofile->user_id.')');
     }
 }
