@@ -6,6 +6,7 @@ use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Artisan;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Log;
 use Storage;
 
@@ -39,7 +40,7 @@ class BackupController extends Controller
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
@@ -86,10 +87,11 @@ class BackupController extends Controller
             // start the backup process
             Artisan::call('backup:run');
             $output = Artisan::output();
-            // log the results
+            
+            // Log the results
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
+
             // return the results as a response to the ajax call
-            // Alert::success('New backup created');
             flash("<i class='fas fa-check'></i> New backup created")->success()->important();
 
             return redirect()->back();

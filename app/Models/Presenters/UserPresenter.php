@@ -35,7 +35,7 @@ trait UserPresenter
      */
     public function getConfirmedLabelAttribute()
     {
-        if ($this->confirmed_at != null) {
+        if ($this->email_verified_at != null) {
             return '<span class="badge badge-success">Confirmed</span>';
         } else {
             return '<span class="badge badge-danger">Not Confirmed</span>';

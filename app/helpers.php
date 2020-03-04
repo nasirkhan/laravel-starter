@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\General\HtmlHelper;
+use Illuminate\Support\Str;
 
 /*
  * Global helpers file with misc functions.
@@ -14,6 +15,27 @@ if (!function_exists('app_name')) {
     function app_name()
     {
         return config('app.name');
+    }
+}
+
+/*
+ * Global helpers file with misc functions.
+ */
+if (!function_exists('user_registration')) {
+    /**
+     * Helper to grab the application name.
+     *
+     * @return mixed
+     */
+    function user_registration()
+    {
+        $user_registration = false;
+
+        if (env('USER_REGISTRATION') == 'true') {
+            $user_registration = true;
+        }
+
+        return $user_registration;
     }
 }
 
@@ -140,8 +162,8 @@ if (!function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = trim(title_case(str_replace('"', '', $text)));
-        $new_text = trim(title_case(str_replace($order, $replace, $text)));
+        $new_text = trim(Str::title(str_replace('"', '', $text)));
+        $new_text = trim(Str::title(str_replace($order, $replace, $text)));
         $new_text = preg_replace('!\s+!', ' ', $new_text);
 
         return $new_text;
@@ -185,7 +207,7 @@ if (!function_exists('show_column_value')) {
             return $datetime->toDayDateTimeString();
         } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && ends_with(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } elseif ($column_type != 'json' && Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -249,7 +271,7 @@ if (!function_exists('setting')) {
 }
 
 /*
- * Get or Set the Settings Values
+ * Show Human readable file size
  *
  * @var [type]
  */
@@ -282,7 +304,7 @@ if (!function_exists('encode_id')) {
      */
     function encode_id($id)
     {
-        $hashids = new Hashids\Hashids(config('app.salf'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $hashids = new Hashids\Hashids(config('app.salt'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
         $hashid = $hashids->encode($id);
 
         return $hashid;
@@ -302,7 +324,7 @@ if (!function_exists('decode_id')) {
      */
     function decode_id($hashid)
     {
-        $hashids = new Hashids\Hashids(config('app.salf'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $hashids = new Hashids\Hashids(config('app.salt'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
         $id = $hashids->decode($hashid);
 
         if (count($id)) {
@@ -499,5 +521,30 @@ if (!function_exists('banglaDate')) {
         $return_bn_date = en2bnNumber($return_bn_date);
 
         return $return_bn_date;
+    }
+}
+
+/*
+ *
+ * Decode Id to a Hashids\Hashids
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('generate_rgb_code')) {
+
+    /**
+     * Prepare the Column Name for Lables.
+     */
+    function generate_rgb_code($opacity = '0.9')
+    {
+        $str = "";
+        for ($i = 1; $i <=3; $i++) {
+            $num = mt_rand(0, 255);
+            $str .= "$num,";
+        }
+        $str .= "$opacity,";
+        $str = substr($str, 0, -1);
+
+        return $str;
     }
 }

@@ -7,7 +7,7 @@ class Userprofile extends BaseModel
     protected $dates = [
         'date_of_birth',
         'last_login',
-        'confirmed_at',
+        'email_verified_at',
     ];
 
     /**

@@ -8,6 +8,7 @@ use Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Log;
 
 class NotificationsController extends Controller
@@ -42,7 +43,7 @@ class NotificationsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
@@ -69,7 +70,7 @@ class NotificationsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
@@ -98,7 +99,7 @@ class NotificationsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Mark All As Read';
 
