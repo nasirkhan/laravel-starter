@@ -53,9 +53,6 @@
                                 Name
                             </th>
                             <th>
-                                Slug
-                            </th>
-                            <th>
                                 Updated At
                             </th>
                             <th class="text-right">
@@ -106,7 +103,6 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'slug', name: 'slug'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]

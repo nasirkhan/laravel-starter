@@ -55,7 +55,7 @@
 
                     <div class="card-body">
                         <ul class="fa-ul">
-                            @foreach($posts as $row)
+                            @forelse($posts as $row)
                             @php
                             switch ($row->status) {
                                 case 0:
@@ -82,7 +82,11 @@
                             <li>
                                 <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View" > <i class="fas fa-external-link-square-alt"></i> </a>
                             </li>
-                            @endforeach
+                            @empty
+                            <p class="text-center">
+                                No post found.
+                            </p>
+                            @endforelse
                         </ul>
                         {{$posts->links()}}
                     </div>
