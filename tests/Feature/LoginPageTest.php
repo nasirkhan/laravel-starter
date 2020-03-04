@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LoginPageTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations, DatabaseTransactions;
 
     /**
      * The login form can be displayed.
@@ -18,8 +20,10 @@ class LoginPageTest extends TestCase
     public function visit_login_page()
     {
         $response = $this->get('/login');
+
         $response->assertSeeText(app_name());
-        $response->assertSeeText('Login to Account');
+
+        $response->assertSeeText('Login');
 
         $response->assertStatus(200);
     }
@@ -31,10 +35,10 @@ class LoginPageTest extends TestCase
      */
     public function testLoginAValidUser()
     {
-        $user = User::find(1);
+        $user = factory(User::class)->create();
 
         $response = $this->post('/login', [
-            'email'    => $user->email,
+            'email' => $user->email,
             'password' => $user->password,
         ]);
 
@@ -43,26 +47,21 @@ class LoginPageTest extends TestCase
         $response = $this->actingAs($user, 'web');
     }
 
+    /**
+     * Remember Me Check
+     */
     public function test_remember_me_functionality()
     {
         $user = factory(User::class)->create();
 
         $response = $this->post('/login', [
-            'email'    => $user->email,
-            'password' => 'secret',
+            'email' => $user->email,
+            'password' => $user->password,
             'remember' => 'on',
         ]);
 
         $response->assertStatus(302);
 
-        // cookie assertion goes here
-        $this->assertAuthenticatedAs($user);
-    }
-
-    /** @test */
-    public function admin_can_access_admin_dashboard()
-    {
-        $this->loginAsAdmin();
-        $this->get('/admin/dashboard')->assertStatus(200);
+        $this->be($user);
     }
 }
