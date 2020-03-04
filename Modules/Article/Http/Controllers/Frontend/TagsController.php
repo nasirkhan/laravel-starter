@@ -3,8 +3,8 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class TagsController extends Controller
 {
@@ -44,8 +44,10 @@ class TagsController extends Controller
 
         $$module_name = $module_model::with('posts')->paginate();
 
-        return view("article::frontend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "article::frontend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     /**
@@ -71,7 +73,9 @@ class TagsController extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
-        return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts'));
+        return view(
+            "article::frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+        );
     }
 }

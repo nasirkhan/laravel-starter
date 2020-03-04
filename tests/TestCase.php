@@ -81,6 +81,4 @@ abstract class TestCase extends BaseTestCase
 
         return $admin;
     }
-
-
 }

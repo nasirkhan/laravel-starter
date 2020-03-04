@@ -70,8 +70,10 @@ class BackupController extends Controller
         $$module_name = array_reverse($$module_name);
 
         // return view("backend.backups.backups")->with(compact('backups'));
-        return view("backend.$module_path.backups",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "backend.$module_path.backups",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     /**

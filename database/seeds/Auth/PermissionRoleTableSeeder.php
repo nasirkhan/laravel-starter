@@ -17,7 +17,6 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-
         Schema::disableForeignKeyConstraints();
 
         // Create Roles

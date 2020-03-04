@@ -57,7 +57,7 @@
                         <?php
                         $row_class = '';
                         $span_class = '';
-                        if ($module_name_singular->read_at == ''){
+                        if ($module_name_singular->read_at == '') {
                             $row_class = 'table-info';
                             $span_class = 'font-weight-bold';
                         }

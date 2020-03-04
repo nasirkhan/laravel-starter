@@ -3,7 +3,6 @@
 namespace Modules\Article\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Str;
 
 class GenerateMenus
 {
@@ -17,7 +16,6 @@ class GenerateMenus
      */
     public function handle($request, Closure $next)
     {
-
         \Menu::makeOnce('admin_sidebar', function ($menu) {
             // Separator: Module Management
             $all_modules = $menu->add('Modules', [

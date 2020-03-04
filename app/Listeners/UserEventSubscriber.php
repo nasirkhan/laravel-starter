@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Listeners;
+
 use Carbon\Carbon;
 use Log;
 
@@ -9,7 +10,8 @@ class UserEventSubscriber
     /**
      * Handle user login events.
      */
-    public function handleUserLogin($event) {
+    public function handleUserLogin($event)
+    {
         try {
             $user = $event->user;
             $user_profile = $user->userprofile;
@@ -21,7 +23,6 @@ class UserEventSubscriber
             $user_profile->last_ip = request()->getClientIp();
             $user_profile->login_count = $user_profile->login_count + 1;
             $user_profile->save();
-
         } catch (\Exception $e) {
             Log::error($e);
         }
@@ -32,7 +33,8 @@ class UserEventSubscriber
     /**
      * Handle user logout events.
      */
-    public function handleUserLogout($event) {
+    public function handleUserLogout($event)
+    {
         $user = $event->user;
 
         Log::debug('Logout Success. '.$user->name);

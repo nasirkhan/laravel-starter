@@ -60,8 +60,10 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
+        return view(
+            "article::backend.$module_path.index_datatable",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+        );
     }
 
     public function index_data()
@@ -162,8 +164,10 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.create",
-                compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories'));
+        return view(
+            "article::backend.$module_name.create",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
+        );
     }
 
     /**
@@ -227,8 +231,10 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities'));
+        return view(
+            "article::backend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
+        );
     }
 
     /**
@@ -255,8 +261,10 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("article::backend.$module_name.edit",
-        compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
+        return view(
+            "article::backend.$module_name.edit",
+            compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+        );
     }
 
     /**
@@ -348,8 +356,10 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
-        return view("article::backend.$module_name.trash",
-        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
+        return view(
+            "article::backend.$module_name.trash",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+        );
     }
 
     /**

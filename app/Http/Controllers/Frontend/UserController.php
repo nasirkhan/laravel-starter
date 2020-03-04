@@ -6,16 +6,13 @@ use App\Authorizable;
 use App\Events\Frontend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Userprofile;
 use App\Models\UserProvider;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Log;
 
@@ -65,8 +62,10 @@ class UserController extends Controller
 
         $meta_page_type = 'profile';
 
-        return view("frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type'));
+        return view(
+            "frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type')
+        );
     }
 
     /**
@@ -133,8 +132,10 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profileEdit",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class'));
+        return view(
+            "frontend.$module_name.profileEdit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
+        );
     }
 
     /**
@@ -378,7 +379,7 @@ class UserController extends Controller
 
         $user = User::where('id', 'LIKE', $id)->first();
 
-        if($user) {
+        if ($user) {
             if ($user->email_verified_at == null) {
                 Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
 

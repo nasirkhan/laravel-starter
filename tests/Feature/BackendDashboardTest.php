@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class BackendDashboardTest extends TestCase
@@ -26,5 +25,4 @@ class BackendDashboardTest extends TestCase
 
         $response->assertStatus(200);
     }
-
 }

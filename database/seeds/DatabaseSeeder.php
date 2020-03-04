@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +17,5 @@ class DatabaseSeeder extends Seeder
         $this->call(AuthTableSeeder::class);
 
         Schema::enableForeignKeyConstraints();
-
     }
 }

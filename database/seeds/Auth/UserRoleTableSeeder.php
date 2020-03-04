@@ -25,6 +25,5 @@ class UserRoleTableSeeder extends Seeder
         User::findOrFail(5)->assignRole('user');
 
         Schema::enableForeignKeyConstraints();
-
     }
 }

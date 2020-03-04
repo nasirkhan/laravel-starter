@@ -32,6 +32,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.2",
         "mockery/mockery": "^1.0",
@@ -88,6 +89,9 @@
             "@php artisan view:clear",
             "@php artisan config:clear",
             "@php artisan cache:forget spatie.permission.cache"
+        ],
+        "fix-cs": [
+            "vendor/bin/php-cs-fixer fix"
         ]
     }
 }

@@ -8,7 +8,6 @@ use App\Events\Backend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
-use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -17,7 +16,6 @@ use App\Models\UserProvider;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Log;
@@ -68,8 +66,10 @@ class UserController extends Controller
 
         Log::info("'$title' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_path.index_datatable",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title'));
+        return view(
+            "backend.$module_path.index_datatable",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
+        );
     }
 
     public function index_data()
@@ -179,8 +179,10 @@ class UserController extends Controller
         $roles = Role::get();
         $permissions = Permission::select('name', 'id')->get();
 
-        return view("backend.$module_name.create",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'roles', 'permissions'));
+        return view(
+            "backend.$module_name.create",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'roles', 'permissions')
+        );
     }
 
     /**
@@ -270,8 +272,10 @@ class UserController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile'));
+        return view(
+            "backend.$module_name.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile')
+        );
     }
 
     /**
@@ -329,8 +333,10 @@ class UserController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.profileEdit",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile'));
+        return view(
+            "backend.$module_name.profileEdit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile')
+        );
     }
 
     /**
@@ -484,8 +490,10 @@ class UserController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("backend.$module_name.changePassword",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        return view(
+            "backend.$module_name.changePassword",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+        );
     }
 
     /**
@@ -557,8 +565,10 @@ class UserController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.edit",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'roles', 'permissions', 'userRoles', 'userPermissions'));
+        return view(
+            "backend.$module_name.edit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'roles', 'permissions', 'userRoles', 'userPermissions')
+        );
     }
 
     /**
@@ -677,8 +687,10 @@ class UserController extends Controller
 
         Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.auth()->user()->name);
 
-        return view("backend.$module_name.trash",
-        compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action'));
+        return view(
+            "backend.$module_name.trash",
+            compact('module_name', 'module_title', "$module_name", 'module_icon', 'page_heading', 'module_action')
+        );
     }
 
     /**

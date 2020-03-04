@@ -1,7 +1,7 @@
 <?php
 
-return array(
-    'default' => array(
+return [
+    'default' => [
         'auto_activate' => true,
         'activate_parents' => true,
         'active_class' => 'active',
@@ -9,5 +9,5 @@ return array(
         'cascade_data' => true,
         'rest_base' => '',      // string|array
         'active_element' => 'item',  // item|link
-    ),
-);
+    ],
+];

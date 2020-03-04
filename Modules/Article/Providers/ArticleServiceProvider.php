@@ -2,8 +2,8 @@
 
 namespace Modules\Article\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\ServiceProvider;
 
 class ArticleServiceProvider extends ServiceProvider
 {
@@ -46,7 +46,8 @@ class ArticleServiceProvider extends ServiceProvider
             module_path('Article', 'Config/config.php') => config_path('article.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            module_path('Article', 'Config/config.php'), 'article'
+            module_path('Article', 'Config/config.php'),
+            'article'
         );
     }
 
@@ -63,7 +64,7 @@ class ArticleServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/article';

@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Notifications\PasswordRecoverNotification;
 use App\Models\User;
+use App\Notifications\PasswordRecoverNotification;
 use Carbon\Carbon;
 use DB;
-use Modules\Bdmo\Entities\Festival;
-use Modules\Bdmo\Entities\Questionset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Log;
+use Modules\Bdmo\Entities\Festival;
+use Modules\Bdmo\Entities\Questionset;
 
 class FrontendController extends Controller
 {
@@ -119,7 +119,6 @@ class FrontendController extends Controller
             flash('Reset link sent yo your email. Please check your inbox.')->success()->important();
 
             $user->notify(new PasswordRecoverNotification($token));
-
         } else {
             flash('No User found. Please use a valid username.')->warning()->important();
         }
@@ -151,7 +150,6 @@ class FrontendController extends Controller
         $result = DB::select('select * from password_resets where token = :token AND username = :username LIMIT 1', ['token' => $token, 'username'=> $username]);
 
         if ($result) {
-
             $hashedPassword = Hash::make($request->password);
 
             $user = User::where('status', 1)->where('username', 'LIKE', $username)->first();
@@ -197,11 +195,12 @@ class FrontendController extends Controller
         //
         // Log::info($message['SubscribeURL']);
     }
-    public function emailBounced(Request $request) {
+    public function emailBounced(Request $request)
+    {
         Log::info($request);
     }
-    public function emailComplaint(Request $request) {
+    public function emailComplaint(Request $request)
+    {
         Log::info($request);
     }
-
 }

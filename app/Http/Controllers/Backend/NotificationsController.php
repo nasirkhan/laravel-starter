@@ -52,8 +52,10 @@ class NotificationsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'unread_notifications_count'));
+        return view(
+            "backend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'unread_notifications_count')
+        );
     }
 
     /**
@@ -83,8 +85,10 @@ class NotificationsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular"));
+        return view(
+            "backend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+        );
     }
 
     /**

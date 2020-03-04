@@ -53,8 +53,10 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
+        return view(
+            "backend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+        );
     }
 
     /**
@@ -138,8 +140,10 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        return view(
+            "backend.$module_name.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+        );
     }
 
     /**

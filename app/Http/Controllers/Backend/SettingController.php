@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
-use Illuminate\Support\Str;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Log;
 
 class SettingController extends Controller
@@ -49,8 +49,10 @@ class SettingController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "backend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     public function store(Request $request)

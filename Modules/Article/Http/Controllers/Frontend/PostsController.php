@@ -44,8 +44,10 @@ class PostsController extends Controller
 
         $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate();
 
-        return view("article::frontend.$module_path.index",
-                compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "article::frontend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     /**
@@ -74,7 +76,9 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
-        return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type'));
+        return view(
+            "article::frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+        );
     }
 }
