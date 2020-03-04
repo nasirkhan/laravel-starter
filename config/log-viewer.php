@@ -36,7 +36,7 @@ return [
      |  Theme
      | -----------------------------------------------------------------
      |  Supported themes :
-     |    'bootstrap-3', 'bootstrap-4', 'laravel-starter'
+     |    'bootstrap-3', 'bootstrap-4'
      |  Make your own theme by adding a folder to the views directory and specifying it here.
      */
 
@@ -55,6 +55,12 @@ return [
             'prefix'     => 'admin/log-viewer',
             'middleware' => ['web', 'auth', 'permission:view_logs'],
         ],
+
+        // 'attributes' => [
+        //     'prefix'     => 'log-viewer',
+        //
+        //     'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+        // ],
     ],
 
     /* -----------------------------------------------------------------
@@ -64,13 +70,6 @@ return [
      */
 
     'per-page'      => 30,
-
-    /* -----------------------------------------------------------------
-     |  LogViewer's Facade
-     | -----------------------------------------------------------------
-     */
-
-    'facade'        => 'LogViewer',
 
     /* -----------------------------------------------------------------
      |  Download settings
@@ -99,8 +98,8 @@ return [
      | -----------------------------------------------------------------
      */
 
-    'icons' => [
-        /*
+    'icons' =>  [
+        /**
          * Font awesome >= 4.3
          * http://fontawesome.io/icons/
          */
@@ -120,7 +119,7 @@ return [
      | -----------------------------------------------------------------
      */
 
-    'colors' => [
+    'colors' =>  [
         'levels'    => [
             'empty'     => '#D1D1D1',
             'all'       => '#8A8A8A',

@@ -18,9 +18,9 @@ return [
              */
             'url' => '',
 
-            'title'       => env('RSS_FEED_TITLE', 'Awesome Feed'),
+            'title' => env('RSS_FEED_TITLE', 'Awesome Feed'),
             'description' => env('RSS_FEED_DESCRIPTION', 'The description of the feed.'),
-            'language'    => 'en-US',
+            'language' => 'en-US',
 
             /*
              * The view that will render the feed.
