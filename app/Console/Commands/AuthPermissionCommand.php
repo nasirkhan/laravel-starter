@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class AuthPermissionCommand extends Command
 {
@@ -77,6 +78,6 @@ class AuthPermissionCommand extends Command
 
     private function getNameArgument()
     {
-        return strtolower(str_plural($this->argument('name')));
+        return strtolower(Str::plural($this->argument('name')));
     }
 }

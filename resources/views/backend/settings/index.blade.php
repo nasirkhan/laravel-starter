@@ -18,7 +18,7 @@
                     <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ title_case($module_name) }} Management Dashboard
+                    {{ Str::title($module_name) }} Management Dashboard
                 </div>
             </div>
             <!--/.col-->
@@ -43,7 +43,7 @@
                         @foreach(config('setting_fields') as $section => $fields)
                         <div class="card card-accent-primary">
                             <div class="card-header">
-                                <i class="{{ array_get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
+                                <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
                                 {{ $fields['title'] }}
                             </div>
                             <div class="card-body">

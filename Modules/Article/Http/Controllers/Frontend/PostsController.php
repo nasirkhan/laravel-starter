@@ -3,6 +3,7 @@
 namespace Modules\Article\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Modules\Article\Events\PostViewed;
 
 class PostsController extends Controller
@@ -37,14 +38,16 @@ class PostsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
         $$module_name = $module_model::latest()->with(['category', 'tags', 'comments'])->paginate();
 
-        return view("article::frontend.$module_path.index",
-                compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "article::frontend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     /**
@@ -63,7 +66,7 @@ class PostsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
@@ -73,7 +76,9 @@ class PostsController extends Controller
 
         event(new PostViewed($$module_name_singular));
 
-        return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type'));
+        return view(
+            "article::frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'meta_page_type')
+        );
     }
 }

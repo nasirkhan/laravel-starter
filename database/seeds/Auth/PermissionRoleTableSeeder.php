@@ -3,14 +3,13 @@
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class PermissionRoleTableSeeder.
  */
 class PermissionRoleTableSeeder extends Seeder
 {
-    use DisableForeignKeys;
-
     /**
      * Run the database seed.
      *
@@ -18,7 +17,7 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->disableForeignKeys();
+        Schema::disableForeignKeyConstraints();
 
         // Create Roles
         $super_admin = Role::create(['name' => 'super admin']);
@@ -58,11 +57,6 @@ class PermissionRoleTableSeeder extends Seeder
         ]);
         echo "\n _Comments_ Permissions Created.";
 
-        \Artisan::call('auth:permission', [
-            'name' => 'newsletters',
-        ]);
-        echo "\n _Newsletters_ Permissions Created.";
-
         echo "\n\n";
 
         // Assign Permissions to Roles
@@ -70,6 +64,6 @@ class PermissionRoleTableSeeder extends Seeder
         $manager->givePermissionTo('view_backend');
         $executive->givePermissionTo('view_backend');
 
-        $this->enableForeignKeys();
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -8,6 +8,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Log;
 use Modules\Article\Http\Requests\Frontend\CommentsRequest;
 use Modules\Article\Notifications\NewCommentAdded;
@@ -44,14 +45,16 @@ class CommentsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
         $$module_name = $module_model::with('post')->paginate();
 
-        return view("article::frontend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "article::frontend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     /**
@@ -70,14 +73,16 @@ class CommentsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        return view("article::frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        return view(
+            "article::frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+        );
     }
 
     /**
@@ -94,7 +99,7 @@ class CommentsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Store';
 
@@ -102,7 +107,7 @@ class CommentsController extends Controller
 
         auth()->user()->notify(new NewCommentAdded($$module_name_singular));
 
-        Flash::success("<i class='fas fa-check'></i> New '".str_singular($module_title)."' Added")->important();
+        Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return redirect()->back();

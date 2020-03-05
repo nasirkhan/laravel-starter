@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-<?php $module_name_singular = str_singular($module_name); ?>
+<?php $module_name_singular = Str::singular($module_name); ?>
 
 @section ('title', __("labels.backend.$module_name.index.title") . " - " . __("labels.backend.$module_name.index.action"))
 

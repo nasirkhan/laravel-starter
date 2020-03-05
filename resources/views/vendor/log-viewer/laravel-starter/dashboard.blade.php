@@ -28,7 +28,7 @@ Log Viewer Dashboard | {{ app_name() }}
 
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i> Back</button>
                 </div>
             </div>
             <!--/.col-->
@@ -65,7 +65,7 @@ Log Viewer Dashboard | {{ app_name() }}
                                 </div>
                             </div>
                         </div>
-                    @endforeach                    
+                    @endforeach
                 </div>
             </div>
         </div>

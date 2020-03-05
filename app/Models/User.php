@@ -14,8 +14,11 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
-
+    use HasRoles;
+    use Notifiable;
+    use SoftDeletes;
+    use HasMediaTrait;
+    use UserPresenter;
     protected $guarded = [
         'id',
         'updated_at',
@@ -26,8 +29,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     protected $dates = [
         'deleted_at',
-        'confirmed_at',
         'date_of_birth',
+        'email_verified_at',
     ];
 
     /**
@@ -37,15 +40,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -93,16 +87,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
     }
-
-    /**
-     * Set Password and bcrypt before that.
-     *
-     * @param string $password Password Text
-     */
-    // public function setPasswordAttribute($password)
-    // {
-    //     $this->attributes['password'] = bcrypt($password);
-    // }
 
     /**
      * Route notifications for the Slack channel.

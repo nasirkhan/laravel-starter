@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <meta name="description" content="{{ setting('meta_description') }}">
-    <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
     <meta name="keyword" content="{{ setting('meta_keyword') }}">
-    <link rel="shortcut icon" href="/img/favicon.png">
-    <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
+
+    <!-- Shortcut Icon -->
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
+    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,10 +20,13 @@
 
     @stack('before-styles')
 
-    <link rel="stylesheet" href="{{ mix('css/app_backend.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
 
     <!-- simple-line-icons -->
-    <link rel="stylesheet" href="{{asset('plugins/simple-line-icons/css/simple-line-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/simple-line-icons/css/simple-line-icons.css')}}">
+
+    <link rel="stylesheet" href="{{ mix('css/backend.css') }}">
 
     @stack('after-styles')
 </head>
@@ -87,7 +92,7 @@
     <!-- Scripts -->
     @stack('before-scripts')
 
-    <script src="{{ mix('js/app_backend.js') }}"></script>
+    <script src="{{ mix('js/backend.js') }}"></script>
 
     <script type="text/javascript">
 

@@ -3,9 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Response;
 
 class Handler extends ExceptionHandler
 {
@@ -31,9 +29,9 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
      * @param \Exception $exception
+     *
+     * @throws \Exception
      *
      * @return void
      */
@@ -48,34 +46,12 @@ class Handler extends ExceptionHandler
      * @param \Illuminate\Http\Request $request
      * @param \Exception               $exception
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof AuthorizationException) {
-            return $this->unauthorized($request, $exception);
-        }
-
         return parent::render($request, $exception);
-    }
-
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
-
-        return redirect()->guest(route('frontend.auth.login'));
-    }
-
-    private function unauthorized($request, Exception $exception)
-    {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => $exception->getMessage()], 403);
-        }
-
-        flash()->warning($exception->getMessage());
-
-        return redirect()->route('backend.home');
     }
 }

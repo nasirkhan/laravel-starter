@@ -30,10 +30,6 @@ if(!isset($meta_page_type)){
         <meta property="profile:gender" content="{{$$module_name_singular->gender}}" />
         @break
 
-    @case(2)
-        <span>Type 2</span>
-        @break
-
     @default
 
 @endswitch
@@ -57,4 +53,5 @@ if(!isset($meta_page_type)){
     <meta name="twitter:image" content="{{ asset(setting('meta_image')) }}">
 
     <!--canonical link-->
+    <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
     <link rel="canonical" href="{{url()->full()}}">

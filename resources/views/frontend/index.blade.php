@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+@section('title')
+{{app_name()}}
+@endsection
+
 @section('content')
 
 <div class="page-header">
@@ -11,22 +15,21 @@
                 {{ config('app.name', 'Laravel Starter') }}
             </h1>
             <h3 class="category">
-                An awesome starter project based on Laravel
+                An awesome project based on Laravel!
             </h3>
 
             @include('flash::message')
+            @if (session('status'))
+            <p class="alert alert-success">{{ session('status') }}</p>
+            @endif
 
-            @can('view_backend')
-            <a href="{{ route('backend.dashboard') }}" class="btn btn-primary btn-lg btn-round">Dashboard</a>
-            @endcan
-            <div class="text-center">
-                <a href="#" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-facebook-square"></i>
-                </a>
-                <a href="#" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </div>
+            @guest
+            <a href="{{ route('login') }}" class="btn btn-success btn-lg"><i class="now-ui-icons objects_key-25"></i>  Login </a>
+
+            @if(user_registration())
+            <a href="{{ route('register') }}" class="btn btn-primary btn-lg"><i class="now-ui-icons business_badge"></i>  Register </a>
+            @endif
+            @endguest
         </div>
     </div>
 </div>

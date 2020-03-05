@@ -43,7 +43,7 @@ return [
             'routes/web'      => ['LOWER_NAME', 'STUDLY_NAME'],
             'routes/api'      => ['LOWER_NAME'],
             'webpack'         => ['LOWER_NAME'],
-            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             'views/index'     => ['LOWER_NAME'],
             'views/master'    => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
@@ -54,6 +54,7 @@ return [
                 'AUTHOR_NAME',
                 'AUTHOR_EMAIL',
                 'MODULE_NAMESPACE',
+                'PROVIDER_NAMESPACE',
             ],
         ],
         'gitkeep' => true,
@@ -105,6 +106,7 @@ return [
             'seeder'        => ['path' => 'Database/Seeders', 'generate' => true],
             'factory'       => ['path' => 'Database/factories', 'generate' => true],
             'model'         => ['path' => 'Entities', 'generate' => true],
+            'routes'        => ['path' => 'Routes', 'generate' => true],
             'controller'    => ['path' => 'Http/Controllers', 'generate' => true],
             'filter'        => ['path' => 'Http/Middleware', 'generate' => true],
             'request'       => ['path' => 'Http/Requests', 'generate' => true],
@@ -151,10 +153,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nasirkhan',
+        'vendor' => 'nwidart',
         'author' => [
-            'name'  => 'Nasir Khan',
-            'email' => 'nasir8891@gmail.com',
+            'name'  => 'Nicolas Widart',
+            'email' => 'n.widart@gmail.com',
         ],
     ],
     /*
@@ -179,8 +181,8 @@ return [
     */
     'register' => [
         'translations' => true,
-        /*
-         * load files on boot or register method
+        /**
+         * load files on boot or register method.
          *
          * Note: boot not compatible with asgardcms
          *
@@ -201,7 +203,7 @@ return [
     'activators' => [
         'file' => [
             'class'          => FileActivator::class,
-            'statuses-file'  => storage_path('app/modules_statuses.json'),
+            'statuses-file'  => base_path('modules_statuses.json'),
             'cache-key'      => 'activator.installed',
             'cache-lifetime' => 604800,
         ],

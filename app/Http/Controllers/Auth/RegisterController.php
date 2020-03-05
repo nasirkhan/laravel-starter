@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Frontend\UserCreated;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:191'],
             'last_name'  => ['required', 'string', 'max:191'],
             'email'      => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password'   => ['required', 'string', 'min:4', 'confirmed'],
+            'password'   => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -66,12 +67,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name'  => $data['last_name'],
             'name'       => $data['first_name'].' '.$data['last_name'],
             'email'      => $data['email'],
             'password'   => Hash::make($data['password']),
         ]);
+
+        event(new UserCreated($user));
+
+        return $user;
     }
 }
