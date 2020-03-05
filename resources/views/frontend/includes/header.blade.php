@@ -34,11 +34,13 @@
                 @endcan
 
                 @guest
+                @if(user_registration())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">
                         <i class="now-ui-icons objects_key-25"></i> Login
