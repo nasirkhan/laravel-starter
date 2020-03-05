@@ -89,7 +89,7 @@ class BackupController extends Controller
             // start the backup process
             Artisan::call('backup:run');
             $output = Artisan::output();
-            
+
             // Log the results
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
 

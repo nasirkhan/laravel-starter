@@ -8,10 +8,10 @@ use Tests\TestCase;
 
 class BackendDashboardTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
-
+    use DatabaseMigrations;
+    use DatabaseTransactions;
     /**
-     * An admin can access the admin dashboard
+     * An admin can access the admin dashboard.
      *
      * @test
      */

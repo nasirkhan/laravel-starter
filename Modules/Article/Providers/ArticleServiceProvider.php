@@ -63,11 +63,11 @@ class ArticleServiceProvider extends ServiceProvider
         $sourcePath = module_path('Article', 'Resources/views');
 
         $this->publishes([
-            $sourcePath => $viewPath
+            $sourcePath => $viewPath,
         ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/article';
+            return $path.'/modules/article';
         }, \Config::get('view.paths')), [$sourcePath]), 'article');
     }
 
@@ -94,7 +94,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production') && $this->app->runningInConsole()) {
+        if (!app()->environment('production') && $this->app->runningInConsole()) {
             app(Factory::class)->load(module_path('Article', 'Database/factories'));
         }
     }

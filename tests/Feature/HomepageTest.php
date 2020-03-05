@@ -8,8 +8,8 @@ use Tests\TestCase;
 
 class HomepageTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
-
+    use DatabaseMigrations;
+    use DatabaseTransactions;
     /**
      * Home Page visiting.
      *
