@@ -13,11 +13,13 @@
                     </a>
                 </li>
                 @guest
+                @if(user_registration())
                 <li>
                     <a href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
+                @endif
                 <li>
                     <a href="{{ route('login') }}">
                         Login
