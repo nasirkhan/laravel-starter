@@ -30,7 +30,9 @@
             <div class="col-4">
                 <div class="float-right">
                     <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                    @can('edit_'.$module_name)
                     <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
+                    @endcan
                 </div>
             </div>
             <!--/.col-->
