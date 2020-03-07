@@ -4,10 +4,10 @@ return [
     'default' => [
         'auto_activate'    => true,
         'activate_parents' => true,
-        'active_class'     => 'active',
+        'active_class'     => 'open active',
         'restful'          => false,
         'cascade_data'     => true,
         'rest_base'        => '',      // string|array
-        'active_element'   => 'item',  // item|link
+        'active_element'   => 'link',  // item|link
     ],
 ];
