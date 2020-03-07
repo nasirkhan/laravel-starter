@@ -78,9 +78,17 @@ $module_name_singular = Str::singular($module_name);
                     </div><!--form-group-->
 
                     <div class="row">
-                        <div class="col">
-                            {{ form_cancel(route('backend.roles.index'), __('labels.buttons.general.cancel')) }}
-                            {{ form_submit(__('labels.buttons.general.create')) }}
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst($module_action) . "", $type = 'submit')->class('btn btn-success') }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="float-right">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {{ html()->form()->close() }}
