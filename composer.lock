@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd4d9608a53e2a76356ad099cb689187",
+    "content-hash": "965080237b559c306c8a3c1fdf99bc37",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -2345,23 +2345,23 @@
         },
         {
             "name": "mews/purifier",
-            "version": "3.1.3",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/Purifier.git",
-                "reference": "f0a258d04e681267cfc8b8e0711050fad6fec2c0"
+                "reference": "261ac8abb0298e853af22ca4ef57bc2a5a723d22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/f0a258d04e681267cfc8b8e0711050fad6fec2c0",
-                "reference": "f0a258d04e681267cfc8b8e0711050fad6fec2c0",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/261ac8abb0298e853af22ca4ef57bc2a5a723d22",
+                "reference": "261ac8abb0298e853af22ca4ef57bc2a5a723d22",
                 "shasum": ""
             },
             "require": {
                 "ezyang/htmlpurifier": "4.12.*",
-                "illuminate/config": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
-                "illuminate/filesystem": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
-                "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
+                "illuminate/config": "^5.1|^6.0|^7.0",
+                "illuminate/filesystem": "^5.1|^6.0|^7.0",
+                "illuminate/support": "^5.1|^6.0|^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -2405,7 +2405,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Laravel 5/6 HtmlPurifier Package",
+            "description": "Laravel 5/6/7 HtmlPurifier Package",
             "homepage": "https://github.com/mewebstudio/purifier",
             "keywords": [
                 "Purifier",
@@ -2419,7 +2419,7 @@
                 "security",
                 "xss"
             ],
-            "time": "2019-12-05T11:14:40+00:00"
+            "time": "2020-03-06T00:05:13+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6126,16 +6126,16 @@
         },
         {
             "name": "yajra/laravel-datatables-html",
-            "version": "v4.23.0",
+            "version": "v4.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables-html.git",
-                "reference": "de1426ecfda184ea143073c08ba9cab6a9a04444"
+                "reference": "00195f383f4ecf4257c761712eda2f6510f3102d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/de1426ecfda184ea143073c08ba9cab6a9a04444",
-                "reference": "de1426ecfda184ea143073c08ba9cab6a9a04444",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/00195f383f4ecf4257c761712eda2f6510f3102d",
+                "reference": "00195f383f4ecf4257c761712eda2f6510f3102d",
                 "shasum": ""
             },
             "require": {
@@ -6182,7 +6182,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2020-03-03T16:34:31+00:00"
+            "time": "2020-03-07T02:47:38+00:00"
         },
         {
             "name": "yajra/laravel-datatables-oracle",
@@ -6610,16 +6610,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.16.0",
+            "version": "1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "37f094775814b68d0c6cc8b8ff3c3be243f20725"
+                "reference": "af05ac5ee8587395d7474ec0681c08776a2cb09d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/37f094775814b68d0c6cc8b8ff3c3be243f20725",
-                "reference": "37f094775814b68d0c6cc8b8ff3c3be243f20725",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/af05ac5ee8587395d7474ec0681c08776a2cb09d",
+                "reference": "af05ac5ee8587395d7474ec0681c08776a2cb09d",
                 "shasum": ""
             },
             "require": {
@@ -6646,7 +6646,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "v2.x-dev"
+                    "dev-master": "1.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -6677,7 +6677,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2020-01-21T17:46:02+00:00"
+            "time": "2020-03-05T12:39:07+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -7569,16 +7569,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.10.2",
+            "version": "v1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9"
+                "reference": "451c3cd1418cf640de218914901e51b064abb093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/451c3cd1418cf640de218914901e51b064abb093",
+                "reference": "451c3cd1418cf640de218914901e51b064abb093",
                 "shasum": ""
             },
             "require": {
@@ -7628,7 +7628,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-01-20T15:57:02+00:00"
+            "time": "2020-03-05T15:02:03+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
