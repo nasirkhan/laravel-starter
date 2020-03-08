@@ -3,7 +3,7 @@
     <input type="{{ $field['type'] }}"
            name="{{ $field['name'] }}"
            value="{{ old($field['name'], setting($field['name'])) }}"
-           class="form-control {{ array_get( $field, 'class') }} {{ $errors->has($field['name']) ? ' is-invalid' : '' }}"
+           class="form-control {{ Arr::get( $field, 'class') }} {{ $errors->has($field['name']) ? ' is-invalid' : '' }}"
            id="{{ $field['name'] }}"
            placeholder="{{ $field['label'] }}">
 

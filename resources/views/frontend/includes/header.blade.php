@@ -1,6 +1,16 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top bg-primary navbar-transparent" color-on-scroll="400">
     <div class="container">
+        <div class="dropdown button-dropdown">
+            <a href="#" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                <span class="button-bar"></span>
+                <span class="button-bar"></span>
+                <span class="button-bar"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#" target="_blank">About</a>
+            </div>
+        </div>
         <div class="navbar-translate">
             <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name', 'Laravel Starter') }} - Application Landing Page" data-placement="bottom">
                 {{ config('app.name', 'Laravel Starter') }}
@@ -14,20 +24,6 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('/vendor/now-ui-kit/img/blurred-image-1.jpg')}}">
             <ul class="navbar-nav">
 
-                @if(Modules\Article\Entities\Post::count())
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="now-ui-icons files_paper"></i> Articles
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('frontend.posts.index') }}">Posts</a>
-                        <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">Categories</a>
-                        <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">Tags</a>
-                        <a class="dropdown-item" href="{{ route('frontend.comments.index') }}">Comments</a>
-                    </div>
-                </li>
-                @endif
-
                 @can('view_backend')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('backend.dashboard') }}">
@@ -38,13 +34,15 @@
                 @endcan
 
                 @guest
+                @if(user_registration())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.register') }}">
+                    <a class="nav-link" href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.login') }}">
+                    <a class="nav-link" href="{{ route('login') }}">
                         <i class="now-ui-icons objects_key-25"></i> Login
                     </a>
                 </li>
@@ -59,9 +57,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('frontend.auth.logout') }}">
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="now-ui-icons sport_user-run"></i> Logout
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
                 @endguest
 

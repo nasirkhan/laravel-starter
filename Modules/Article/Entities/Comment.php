@@ -6,17 +6,19 @@ use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Article\Entities\Presenters\CommentPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
-    use LogsActivity, SoftDeletes;
-
+    use LogsActivity;
+    use CommentPresenter;
+    use SoftDeletes;
     protected $table = 'comments';
 
     protected static $logName = 'comments';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['post_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
+    protected static $logAttributes = ['parent_id', 'post_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
 
     protected $dates = [
         'deleted_at',
@@ -34,13 +36,10 @@ class Comment extends BaseModel
         return $this->belongsTo('App\Models\User');
     }
 
-    /**
-     * Purifiy Name field value.
-     */
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = clean($value);
-    // }
+    public function parent()
+    {
+        return $this->belongsTo('Modules\Article\Entities\Comment', 'parent_id');
+    }
 
     /**
      * Purifiy Comment field value.
@@ -52,16 +51,23 @@ class Comment extends BaseModel
 
     public function setPostIdAttribute($value)
     {
-        $this->attributes['post_id'] = $value;
+        $this->attributes['post_id'] = decode_id($value);
 
-        $this->attributes['post_name'] = Post::findOrFail($value)->name;
+        $this->attributes['post_name'] = Post::findOrFail(decode_id($value))->name;
     }
 
     public function setUserIdAttribute($value)
     {
-        $this->attributes['user_id'] = $value;
+        $this->attributes['user_id'] = decode_id($value);
 
-        $this->attributes['user_name'] = User::findOrFail($value)->name;
+        $this->attributes['user_name'] = User::findOrFail(decode_id($value))->name;
+    }
+
+    public function setParentIdAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['parent_id'] = decode_id($value);
+        }
     }
 
     /**

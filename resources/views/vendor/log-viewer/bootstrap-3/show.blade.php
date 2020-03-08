@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var  Arcanedev\LogViewer\Entities\Log            $log
+ * @var  Illuminate\Pagination\LengthAwarePaginator  $entries
+ * @var  string|null                                 $query
+ */
+?>
+
 @extends('log-viewer::bootstrap-3._master')
 
 @section('content')
@@ -55,7 +63,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Log entries : </td>
+                                <td>Log entries :</td>
                                 <td>
                                     <span class="label label-primary">{{ $entries->total() }}</span>
                                 </td>
@@ -80,12 +88,16 @@
                     <form action="{{ route('log-viewer::logs.search', [$log->date, $level]) }}" method="GET">
                         <div class=form-group">
                             <div class="input-group">
-                                <input id="query" name="query" class="form-control"  value="{!! request('query') !!}" placeholder="Type here to search">
+                                <input id="query" name="query" class="form-control" value="{{ $query }}" placeholder="Type here to search">
                                 <span class="input-group-btn">
-                                    @if (request()->has('query'))
-                                        <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>
-                                    @endif
-                                    <button id="search-btn" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                                    @unless (is_null($query))
+                                        <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-default">
+                                            ({{ $entries->count() }} results) <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    @endunless
+                                    <button id="search-btn" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
                                 </span>
                             </div>
                         </div>
@@ -97,10 +109,10 @@
             <div class="panel panel-default">
                 @if ($entries->hasPages())
                     <div class="panel-heading">
-                        {!! $entries->appends(compact('query'))->render() !!}
+                        {{ $entries->appends(compact('query'))->render() }}
 
                         <span class="label label-info pull-right">
-                            Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
+                            Page {{ $entries->currentPage() }} of {{ $entries->lastPage() }}
                         </span>
                     </div>
                 @endif
@@ -118,14 +130,13 @@
                         </thead>
                         <tbody>
                             @forelse($entries as $key => $entry)
+                                <?php /** @var  Arcanedev\LogViewer\Entities\LogEntry  $entry */ ?>
                                 <tr>
                                     <td>
                                         <span class="label label-env">{{ $entry->env }}</span>
                                     </td>
                                     <td>
-                                        <span class="level level-{{ $entry->level }}">
-                                            {!! $entry->level() !!}
-                                        </span>
+                                        <span class="level level-{{ $entry->level }}">{!! $entry->level() !!}</span>
                                     </td>
                                     <td>
                                         <span class="label label-default">
@@ -137,18 +148,34 @@
                                     </td>
                                     <td class="text-right">
                                         @if ($entry->hasStack())
-                                            <a class="btn btn-xs btn-default" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                <i class="fa fa-toggle-on"></i> Stack
-                                            </a>
+                                        <a class="btn btn-xs btn-default" role="button" data-toggle="collapse"
+                                           href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                            <i class="fa fa-toggle-on"></i> Stack
+                                        </a>
+                                        @endif
+
+                                        @if ($entry->hasContext())
+                                        <a class="btn btn-xs btn-default" role="button" data-toggle="collapse"
+                                           href="#log-context-{{ $key }}" aria-expanded="false" aria-controls="log-context-{{ $key }}">
+                                            <i class="fa fa-toggle-on"></i> Context
+                                        </a>
                                         @endif
                                     </td>
                                 </tr>
-                                @if ($entry->hasStack())
+                                @if ($entry->hasStack() || $entry->hasContext())
                                     <tr>
                                         <td colspan="5" class="stack">
+                                            @if ($entry->hasStack())
                                             <div class="stack-content collapse" id="log-stack-{{ $key }}">
                                                 {!! $entry->stack() !!}
                                             </div>
+                                            @endif
+
+                                            @if ($entry->hasContext())
+                                            <div class="stack-content collapse" id="log-context-{{ $key }}">
+                                                <pre>{{ $entry->context() }}</pre>
+                                            </div>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endif
@@ -168,7 +195,7 @@
                         {!! $entries->appends(compact('query'))->render() !!}
 
                         <span class="label label-info pull-right">
-                            Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
+                            Page {{ $entries->currentPage() }} of {{ $entries->lastPage() }}
                         </span>
                     </div>
                 @endif
@@ -242,13 +269,18 @@
             });
 
             @unless (empty(log_styler()->toHighlight()))
-            $('.stack-content').each(function() {
-                var $this = $(this);
-                var html = $this.html().trim()
-                    .replace(/({!! join(log_styler()->toHighlight(), '|') !!})/gm, '<strong>$1</strong>');
+                @php
+                    $htmlHighlight = version_compare(PHP_VERSION, '7.4.0') >= 0
+                        ? join('|', log_styler()->toHighlight())
+                        : join(log_styler()->toHighlight(), '|');
+                @endphp
+                $('.stack-content').each(function() {
+                    var $this = $(this);
+                    var html = $this.html().trim()
+                        .replace(/({!! $htmlHighlight !!})/gm, '<strong>$1</strong>');
 
-                $this.html(html);
-            });
+                    $this.html(html);
+                });
             @endunless
         });
     </script>

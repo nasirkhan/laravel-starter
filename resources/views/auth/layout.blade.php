@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <meta name="description" content="">
-    <meta name="author" content="Nasir Khan Saikat http://nasirkhn.com">
+    <meta name="description" content="{{ setting('meta_description') }}">
+    <meta name="keyword" content="{{ setting('meta_keyword') }}">
 
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
@@ -17,16 +17,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @stack('before-styles')
+
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
 
     <!-- CSS Files -->
-    <!-- <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" /> -->
-    <link href="{{asset('vendor/now-ui-kit/css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('vendor/now-ui-kit/css/now-ui-kit.css?v=1.2.0')}}" rel="stylesheet" />
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
+
+    @stack('after-styles')
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20163741-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '');
+    </script>
 
 </head>
 
@@ -41,25 +50,28 @@
                     <span class="button-bar"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-header">Home</a>
-                    <a class="dropdown-item" href="#">About</a>
+                    <a class="dropdown-item" href="#" target="_blank">About</a>
                 </div>
             </div>
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name') }} " data-placement="bottom">
-                    {{ config('app.name') }}
+                <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name', 'Laravel Starter') }} - Application Login Page" data-placement="bottom">
+                    {{app_name()}}
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
                 </button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('img/blurred-image-1.jpg')}}">
                 <ul class="navbar-nav">
+                    @if(user_registration())
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link btn btn-primary" href="{{ route('register') }}">
+                            <strong><i class="now-ui-icons business_badge"></i> {{ __("labels.text.register") }}</strong>
+                        </a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -73,10 +85,11 @@
     </div>
 </body>
 
-<!--   Core JS Files   -->
-<script src="{{ asset('vendor/now-ui-kit/js/core/jquery.3.3.1.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/now-ui-kit/js/core/popper.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/now-ui-kit/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('vendor/now-ui-kit/js/now-ui-kit.js?v=1.2.0') }}" type="text/javascript"></script>
+<!-- Scripts -->
+@stack('before-scripts')
 
+<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+<script src="{{ mix('js/frontend.js') }}"></script>
+
+@stack('after-scripts')
 </html>

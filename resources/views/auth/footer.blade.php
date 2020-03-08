@@ -1,50 +1,53 @@
 <footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-7">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="/">
-                                {{ config('app.name', 'Laravel Starter') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                About Us
-                            </a>
-                        </li>
-                        @guest
-                        <li>
-                            <a href="{{ route('frontend.auth.login') }}">
-                                Login
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('frontend.auth.register') }}">
-                                Register
-                            </a>
-                        </li>
-                        @else
-                        <li>
-                            <a href="#">
-                                {{ Auth::user()->name }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('frontend.auth.logout') }}">
-                                Logout
-                            </a>
-                        </li>
-                        @endguest
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-12 col-md-5">
-                <div class="copyright float-right">
-                    &copy;
-                    <script> document.write(new Date().getFullYear()) </script> {{ config('app.name', 'Laravel Starter') }}, {!! setting('footer_text') !!}
-                </div></div>
-            </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">
+                        {{ config('app.name', 'Laravel Starter') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        About Us
+                    </a>
+                </li>
+                @guest
+                @if(user_registration())
+                <li>
+                    <a href="{{ route('register') }}">
+                        Register
+                    </a>
+                </li>
+                @endif
+                <li>
+                    <a href="{{ route('login') }}">
+                        Login
+                    </a>
+                </li>
+                @else
+                <li>
+                    <a href="#">
+                        {{ Auth::user()->name }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+                @endguest
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script> {{ config('app.name', 'Laravel Starter') }}, {!! setting('footer_text') !!}
         </div>
-    </footer>
+    </div>
+</footer>

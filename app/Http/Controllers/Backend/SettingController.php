@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Log;
 
 class SettingController extends Controller
@@ -40,7 +41,7 @@ class SettingController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
@@ -48,8 +49,10 @@ class SettingController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return view("backend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular'));
+        return view(
+            "backend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+        );
     }
 
     public function store(Request $request)

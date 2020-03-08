@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class AuthTableSeeder.
  */
 class AuthTableSeeder extends Seeder
 {
-    use DisableForeignKeys, TruncateTable;
-
     /**
      * Run the database seeds.
      *
@@ -16,7 +15,7 @@ class AuthTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->disableForeignKeys();
+        Schema::disableForeignKeyConstraints();
 
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
@@ -25,6 +24,6 @@ class AuthTableSeeder extends Seeder
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(UserRoleTableSeeder::class);
 
-        $this->enableForeignKeys();
+        Schema::enableForeignKeyConstraints();
     }
 }

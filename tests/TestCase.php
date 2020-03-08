@@ -12,6 +12,28 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
+     * Create And Login as Super Admin.
+     *
+     * @return bool|mixed
+     */
+    protected function loginAsSuperAdmin()
+    {
+        $super_admin = factory(User::class)->create();
+
+        if ($super_admin_role = Role::whereName('super admin')->first()) {
+            dd($super_admin_role);
+        } else {
+            $super_admin_role = Role::create(['name' => 'super admin']);
+        }
+
+        $super_admin->assignRole($super_admin_role);
+
+        $this->actingAs($super_admin);
+
+        return $super_admin;
+    }
+
+    /**
      * Create the admin role or return it if it already exists.
      *
      * @return mixed

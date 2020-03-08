@@ -5,13 +5,18 @@ namespace Modules\Article\Entities;
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Post extends BaseModel
+class Post extends BaseModel implements Feedable
 {
-    use LogsActivity, SoftDeletes, PostPresenter;
-
+    use LogsActivity;
+    use SoftDeletes;
+    use PostPresenter;
+    use Notifiable;
     protected $table = 'posts';
 
     protected static $logName = 'posts';
@@ -73,10 +78,10 @@ class Post extends BaseModel
      */
     public function setMetaTitleAttribute($value)
     {
-        $this->attributes['meta_title'] = trim(title_case($value));
+        $this->attributes['meta_title'] = trim(ucwords($value));
 
         if (empty($value)) {
-            $this->attributes['meta_title'] = trim(title_case($this->attributes['name']));
+            $this->attributes['meta_title'] = trim(ucwords($this->attributes['name']));
         }
     }
 
@@ -142,6 +147,18 @@ class Post extends BaseModel
                         ->where('published_at', '<=', Carbon::now());
     }
 
+    public function scopePublishedAndScheduled($query)
+    {
+        return $query->where('status', '=', '1');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', '=', 'Yes')
+                        ->where('status', '=', '1')
+                        ->where('published_at', '<=', Carbon::now());
+    }
+
     /**
      * Get the list of Recently Published Articles.
      *
@@ -154,5 +171,23 @@ class Post extends BaseModel
         return $query->where('status', '=', '1')
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString())
                         ->orderBy('published_at', 'desc');
+    }
+
+    public function toFeedItem()
+    {
+        $author = ($this->created_by_alias != '') ? $this->created_by_alias : $this->created_by_name;
+
+        return FeedItem::create()
+                        ->id(encode_id($this->id))
+                        ->title($this->name)
+                        ->summary($this->intro)
+                        ->updated($this->updated_at)
+                        ->link(route('frontend.posts.show', encode_id($this->id)))
+                        ->author($author);
+    }
+
+    public static function getFeedItems()
+    {
+        return self::latest()->published()->take('5')->get();
     }
 }

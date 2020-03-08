@@ -13,8 +13,8 @@ use Spatie\MediaLibrary\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
-
+    use SoftDeletes;
+    use HasMediaTrait;
     protected $guarded = [
         'id',
         'updated_at',
@@ -151,10 +151,10 @@ class BaseModel extends Model implements HasMedia
      */
     public function setSlugAttribute($value)
     {
-        $this->attributes['slug'] = slug_format($value);
+        $this->attributes['slug'] = slug_format(trim($value));
 
         if (empty($value)) {
-            $this->attributes['slug'] = slug_format($this->attributes['name']);
+            $this->attributes['slug'] = slug_format(trim($this->attributes['name']));
         }
     }
 }

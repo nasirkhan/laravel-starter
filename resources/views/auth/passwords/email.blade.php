@@ -2,69 +2,73 @@
 
 @section('content')
 
-<div class="page-header-image" style="background-image:url('/img/cover-01.jpg')"></div>
+<div class="page-header-image" style="background-image:url('{{asset('img/cover-01.jpg')}}')"></div>
 
 <div class="content-center">
+
     <div class="container">
-        @if ($errors->has('email'))
-        <div class="row justify-content-center">
-            <div class="col-md-8 align-self-center">
-                <div class="alert alert-danger" role="alert">
-                    <div class="container">
-                        <div class="alert-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-
-                        <strong>{{ $errors->first('email') }}</strong>
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                <i class="now-ui-icons ui-1_simple-remove"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
 
         <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
-                <form class="form" method="POST" action="{{ route('frontend.auth.password.email.post') }}">
-                    {{ csrf_field() }}
 
+            <div class="card card-login card-plain">
+
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
                     <div class="header header-primary text-center">
-                        <div class="logo-container">
-                            <img src="img/login-logo.png" alt="">
-                        </div>
                         <h5>
-                            Reset Password
+                            {{ __('Reset Password') }}
                         </h5>
+
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @error('email')
+                            <div class="alert alert-danger" role="alert">
+                                <div class="container">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            </div>
+                        @enderror
+
                     </div>
                     <div class="content">
-                        <div class="input-group mb-3 input-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="input-email"><i class="fas fa-at"></i></span>
+                        <div class="form-check">
+                            <div class="input-group mb-3 input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input-email"><i class="now-ui-icons users_single-02"></i></span>
+                                </div>
+                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
                             </div>
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" aria-label="Email" aria-describedby="input-email">
+                        </div>
+
+                        <div class="footer text-center">
+                            <button type="submit" class="btn btn-primary btn-round btn-block"> <strong>Submit</strong> </button>
                         </div>
                     </div>
-                    <div class="footer text-center">
-                        <button type="submit" class="btn btn-primary btn-round btn-block">Send Password Reset Link</button>
-                    </div>
+
+                    @if (Route::has('register'))
                     <div class="pull-left">
                         <h6>
-                            <a href="{{ route('frontend.auth.register') }}" class="link">Create Account</a>
+                            <a href="{{ route('register') }}" class="link">Create Account</a>
                         </h6>
                     </div>
-                    <div class="float-right">
-                        <h6>
-                            <a href="{{ route('frontend.auth.login') }}" class="link">Login</a>
-                        </h6>
-                    </div>
+                    @endif
+                    @if (Route::has('password.request'))
+                        <div class="float-right">
+                            <h6>
+                                <a class="link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            </h6>
+                        </div>
+                    @endif
+
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

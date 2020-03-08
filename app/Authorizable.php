@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Arr;
+
 trait Authorizable
 {
     /**
@@ -41,7 +43,7 @@ trait Authorizable
     public function getAbility($method)
     {
         $routeName = explode('.', \Request::route()->getName());
-        $action = array_get($this->getAbilities(), $method);
+        $action = Arr::get($this->getAbilities(), $method);
 
         return $action ? $action.'_'.$routeName[1] : null;
     }

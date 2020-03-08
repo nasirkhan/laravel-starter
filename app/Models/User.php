@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Presenters\UserPresenter;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,10 +12,13 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use HasRoles, Notifiable, SoftDeletes, HasMediaTrait, UserPresenter;
-
+    use HasRoles;
+    use Notifiable;
+    use SoftDeletes;
+    use HasMediaTrait;
+    use UserPresenter;
     protected $guarded = [
         'id',
         'updated_at',
@@ -25,8 +29,8 @@ class User extends Authenticatable implements HasMedia
 
     protected $dates = [
         'deleted_at',
-        'confirmed_at',
         'date_of_birth',
+        'email_verified_at',
     ];
 
     /**
@@ -82,16 +86,6 @@ class User extends Authenticatable implements HasMedia
     public function getRolesListAttribute()
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     * Set Password and bcrypt before that.
-     *
-     * @param string $password Password Text
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
     }
 
     /**

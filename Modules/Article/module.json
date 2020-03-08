@@ -1,18 +1,14 @@
 {
     "name": "Article",
     "alias": "article",
-    "description": "Article Module for Laravel Starter project. https://github.com/nasirkhan/laravel-starter",
-    "keywords": ["blog", "articles","posts"],
-    "version": "1.1.0",
-    "active": 1,
+    "description": "",
+    "keywords": [],
     "order": 0,
     "providers": [
         "Modules\\Article\\Providers\\ArticleServiceProvider",
         "Modules\\Article\\Providers\\EventServiceProvider"
     ],
     "aliases": {},
-    "files": [
-        "start.php"
-    ],
+    "files": [],
     "requires": []
 }

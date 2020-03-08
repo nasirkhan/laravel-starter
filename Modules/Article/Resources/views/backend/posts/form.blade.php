@@ -108,7 +108,7 @@
             $required = "required";
             $select_options = [
                 'Article'=>'Article',
-                'Blog'=>'Blog',
+                'Feature'=>'Feature',
                 'News'=>'News',
             ];
             ?>
@@ -124,8 +124,8 @@
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
-                'Yes'=>'Yes',
-                'No'=>'No',
+                '1'=>'Yes',
+                '0'=>'No',
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -265,6 +265,7 @@
         </div>
     </div>
 </div>
+<div></div>
 
 @push('after-styles')
 
@@ -353,7 +354,7 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript" src="{{ asset('/plugins/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">

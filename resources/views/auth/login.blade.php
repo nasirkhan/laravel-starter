@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="page-header-image" style="background-image:url('/img/cover-01.jpg')"></div>
+<div class="page-header-image" style="background-image:url('{{asset('img/cover-01.jpg')}}')"></div>
 
 <div class="content-center">
 
@@ -11,13 +11,10 @@
         <div class="col-md-4 content-center">
 
             <div class="card card-login card-plain">
-                <form class="form" method="POST" action="{{ route('frontend.auth.login.post') }}">
+                <form class="form" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="header header-primary text-center">
-                        <div class="logo-container">
-                            <img src="{{asset('img/logo.png')}}" alt="">
-                        </div>
                         <h5>
                             Login to Account
                         </h5>
@@ -55,18 +52,18 @@
                     <div class="content">
                         <div class="form-check">
                             <input type="hidden" name="redirectTo" value="{{request('redirectTo')}}">
-                            <div class="input-group mb-3 input-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
+                            <div class="input-group mb-3 input-lg">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="input-email"><i class="fas fa-at"></i></span>
+                                    <span class="input-group-text" id="input-email"><i class="now-ui-icons users_single-02"></i></span>
                                 </div>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" aria-label="Email" aria-describedby="input-email" required>
+                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
                             </div>
                         </div>
 
                         <div class="form-check">
-                            <div class="input-group mb-3 input-lg {{ $errors->has('password') ? ' has-danger' : '' }}">
+                            <div class="input-group mb-3 input-lg">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="input-password"><i class="fas fa-key"></i></span>
+                                    <span class="input-group-text" id="input-password"><i class="now-ui-icons objects_key-25"></i></span>
                                 </div>
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="input-password" required>
                             </div>
@@ -74,7 +71,7 @@
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <span class="form-check-sign"></span>
                                 Remember my login
                             </label>
@@ -84,16 +81,23 @@
                         </div>
                     </div>
 
+                    @if (Route::has('register'))
                     <div class="pull-left">
                         <h6>
-                            <a href="{{ route('frontend.auth.register') }}" class="link">Create Account</a>
+                            <a href="{{ route('register') }}" class="link">Create Account</a>
                         </h6>
                     </div>
-                    <div class="float-right">
-                        <h6>
-                            <a href="{{route('frontend.auth.password.email')}}" class="link">Need Help?</a>
-                        </h6>
-                    </div>
+                    @endif
+                    @if (Route::has('password.request'))
+                        <div class="float-right">
+                            <h6>
+                                <a class="link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            </h6>
+                        </div>
+                    @endif
+
                 </form>
             </div>
         </div>

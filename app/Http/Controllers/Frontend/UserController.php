@@ -6,15 +6,14 @@ use App\Authorizable;
 use App\Events\Frontend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Mail\EmailVerificationMail;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Userprofile;
 use App\Models\UserProvider;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Log;
 
 class UserController extends Controller
@@ -46,25 +45,27 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function show($id)
+    public function show($username)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
 
         $body_class = 'profile-page';
 
         $meta_page_type = 'profile';
 
-        return view("frontend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type'));
+        return view(
+            "frontend.$module_name.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type')
+        );
     }
 
     /**
@@ -74,19 +75,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile($id)
+    public function profile($username)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
-        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
+
+        if ($$module_name_singular) {
+            $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+        } else {
+            Log::error('UserProfile Exception for Username: '.$username);
+            abort(404);
+        }
 
         $body_class = 'profile-page';
 
@@ -102,14 +109,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit($id)
+    public function profileEdit($username)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Edit Profile';
 
@@ -117,16 +124,18 @@ class UserController extends Controller
         $title = $page_heading.' '.ucfirst($module_action);
 
         if (!auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+            $username = auth()->user()->username;
         }
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
         $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.profileEdit",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class'));
+        return view(
+            "frontend.$module_name.profileEdit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
+        );
     }
 
     /**
@@ -137,14 +146,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request, $id)
+    public function profileUpdate(Request $request, $username)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
 
         $this->validate($request, [
@@ -152,13 +161,14 @@ class UserController extends Controller
         ]);
 
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name_singular = Str::singular($this->module_name);
 
         if (!auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
+            $username = auth()->user()->username;
         }
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
         $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
@@ -183,7 +193,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        return redirect()->route('frontend.users.profile', $$module_name_singular->id)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', $$module_name_singular->username)->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -193,17 +203,21 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword($id)
+    public function changePassword($username)
     {
         $title = $this->module_title;
+
+        $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
         $module_action = 'Edit';
 
-        $id = auth()->user()->id;
+        $username = auth()->user()->username;
 
-        $$module_name_singular = User::findOrFail($id);
+        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
 
         $body_class = 'profile-page';
 
@@ -218,16 +232,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request, $id)
+    public function changePasswordUpdate(Request $request, $username)
     {
+        $this->validate($request, [
+            'password' => 'required|confirmed|min:6',
+        ]);
+
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name_singular = Str::singular($this->module_name);
 
         $$module_name_singular = auth()->user();
 
-        $$module_name_singular->update($request->only('password'));
+        $request_data = $request->only('password');
+        $request_data['password'] = Hash::make($request_data['password']);
 
-        return redirect()->route('frontend.users.profile')->with('flash_success', 'Update successful!');
+        $$module_name_singular->update($request_data);
+
+        return redirect()->route('frontend.users.profile', auth()->user()->username)->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -244,7 +265,7 @@ class UserController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
         $module_action = 'Edit';
 
         $roles = Role::get();
@@ -271,7 +292,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $module_name = $this->module_name;
-        $module_name_singular = str_singular($this->module_name);
+        $module_name_singular = Str::singular($this->module_name);
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -338,62 +359,16 @@ class UserController extends Controller
     }
 
     /**
-     * Confirm Email Address of a User.
-     *
-     * @param string $confirmation_code Auto Generated Confirmation Code
-     *
-     * @return [type] [description]
-     */
-    public function emailConfirmation($confirmation_code)
-    {
-        // Find if the confirmation_code belongs to an user.
-        $user = User::where('confirmation_code', '=', $confirmation_code)->first();
-
-        // If there is a user continue else redirect back
-        if ($user) {
-            // Check if email is confirmed by right user
-            if ($user->id != auth()->user()->id) {
-                if (auth()->user()->hasRole('administrator')) {
-                    Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
-                } else {
-                    Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
-
-                    abort('404');
-                }
-            } elseif ($user->confirmed_at != null) {
-                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->confirmed_at);
-
-                flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
-
-                return redirect()->back();
-            }
-
-            $user->confirmed_at = Carbon::now();
-            $user->save();
-
-            flash('You have successfully confirmed your email address!')->success()->important();
-
-            return redirect()->back();
-        } else {
-            flash('Invalid email confirmation code!')->warning()->important();
-
-            return redirect()->back();
-        }
-    }
-
-    /**
      * Resend Email Confirmation Code to User.
      *
      * @param [type] $hashid [description]
      *
      * @return [type] [description]
      */
-    public function emailConfirmationResend($hashid)
+    public function emailConfirmationResend($id)
     {
-        $id = $hashid;
-
         if ($id != auth()->user()->id) {
-            if (auth()->user()->hasRole('administrator')) {
+            if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
                 Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
             } else {
                 Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
@@ -402,23 +377,25 @@ class UserController extends Controller
             }
         }
 
-        $user = User::findOrFail($id);
+        $user = User::where('id', 'LIKE', $id)->first();
 
-        if ($user->confirmed_at == null) {
-            Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
+        if ($user) {
+            if ($user->email_verified_at == null) {
+                Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
 
-            // Send Email To Registered User
-            Mail::to($user->email)->send(new EmailVerificationMail($user));
+                // Send Email To Registered User
+                $user->sendEmailVerificationNotification();
 
-            flash('Email Sent! Please Check Your Inbox.')->success()->important();
+                flash('Email Sent! Please Check Your Inbox.')->success()->important();
 
-            return redirect()->back();
-        } else {
-            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->confirmed_at);
+                return redirect()->back();
+            } else {
+                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
-            flash($user->name.', You already confirmed your email address at '.$user->confirmed_at->toFormattedDateString())->success()->important();
+                flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->toFormattedDateString())->success()->important();
 
-            return redirect()->back();
+                return redirect()->back();
+            }
         }
     }
 }

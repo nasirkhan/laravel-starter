@@ -26,7 +26,7 @@
                 <div class="float-right">
                     <a href="{{ route("backend.users.index") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
                     <a href="{{ route("backend.users.profile", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Profile"><i class="fas fa-user"></i> Profile</a>
-                    <a href="{{ route("backend.users.edit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ str_singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
+                    <a href="{{ route("backend.users.edit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
             <!--/.col-->
@@ -90,7 +90,7 @@
                             <th>{{ __('labels.backend.users.fields.confirmed') }}</th>
                             <td>
                                 {!! $user->confirmed_label !!}
-                                @if ($user->confirmed_at == null)
+                                @if ($user->email_verified_at == null)
                                 <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Send Confirmation Reminder</a>
                                 @endif
                             </td>
@@ -143,7 +143,7 @@
                 <a href="{{route('backend.users.unblock', $user)}}" class="btn btn-info mt-1" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.unblock')}}" data-confirm="Are you sure?"><i class="fas fa-check"></i> Unblock</a>
                 @endif
                 <a href="{{route('backend.users.destroy', $user)}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}" data-confirm="Are you sure?"><i class="fas fa-trash-alt"></i> Delete</a>
-                @if ($user->confirmed_at == null)
+                @if ($user->email_verified_at == null)
                 <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-primary mt-1" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Email Confirmation</a>
                 @endif
             </div><!--/col-->

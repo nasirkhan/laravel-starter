@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('type')->nullable();
             $table->integer('category_id')->unsigned()->nullable();
             $table->string('category_name')->nullable();
-            $table->string('is_featured')->nullable();
+            $table->integer('is_featured')->nullable();
             $table->string('featured_image')->nullable();
 
             $table->string('meta_title')->nullable();
@@ -31,6 +31,7 @@ class CreatePostsTable extends Migration
             $table->string('meta_og_image')->nullable();
             $table->string('meta_og_url')->nullable();
 
+            $table->integer('hits')->default(0)->unsigned();
             $table->integer('order')->nullable();
             $table->tinyInteger('status')->default(1);
 

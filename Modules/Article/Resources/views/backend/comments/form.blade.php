@@ -3,6 +3,7 @@ $post_id_value = '';
 $user_id_value = '';
 $published_at_value = '';
 $moderated_at_value = '';
+$parent_name = '';
 
 if (isset($$module_name_singular)){
     $post_id_value = ($$module_name_singular->post_name != '')? $$module_name_singular->post_name : '';
@@ -12,6 +13,8 @@ if (isset($$module_name_singular)){
     $published_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
 
     $moderated_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
+
+    $parent_name = ($$module_name_singular->parent_id != '')? $$module_name_singular->parent->name : '';
 
 }
 ?>
@@ -41,6 +44,22 @@ if (isset($$module_name_singular)){
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $value = $user_id_value;
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}
+            {{ html()->hidden($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <?php
+            $field_name = 'parent_id';
+            $field_lable = "Parent Comment";
+            $field_relation = "parent";
+            $field_placeholder = "-- Select an option --";
+            $required = "required";
+            $value = $parent_name;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->value($value)->disabled() }}

@@ -19,7 +19,7 @@
                     <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ title_case($module_name) }} Management Dashboard
+                    {{ ucwords($module_name) }} Management Dashboard
                 </div>
             </div>
             <!--/.col-->
@@ -57,7 +57,7 @@
                         <?php
                         $row_class = '';
                         $span_class = '';
-                        if ($module_name_singular->read_at == ''){
+                        if ($module_name_singular->read_at == '') {
                             $row_class = 'table-info';
                             $span_class = 'font-weight-bold';
                         }
@@ -77,7 +77,7 @@
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ title_case(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    Total {{ $$module_name->total() }} {{ title_case($module_name) }}
+                    Total {{ $$module_name->total() }} {{ ucwords($module_name) }}
                 </div>
             </div>
             <div class="col-5">

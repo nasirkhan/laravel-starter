@@ -25,7 +25,7 @@
                     <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ title_case($module_name) }} Management Dashboard
+                    {{ Str::title($module_name) }} Management Dashboard
                 </div>
             </div>
             <div class="col-4">
@@ -58,9 +58,6 @@
                             </th>
                             <th>
                                 Name
-                            </th>
-                            <th>
-                                Slug
                             </th>
                             <th>
                                 Updated At
@@ -113,7 +110,6 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'slug', name: 'slug'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]

@@ -1,17 +1,17 @@
 <?php
 
-use App\Events\Backend\User\UserCreated;
+use App\Events\Backend\UserCreated;
 use App\Models\User;
 use Carbon\Carbon as Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class UserTableSeeder.
  */
 class UserTableSeeder extends Seeder
 {
-    use DisableForeignKeys;
-
     /**
      * Run the database seed.
      *
@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->disableForeignKeys();
+        Schema::disableForeignKeyConstraints();
 
         $faker = Faker\Factory::create();
 
@@ -30,13 +30,13 @@ class UserTableSeeder extends Seeder
                 'last_name'         => 'Admin',
                 'name'              => 'Super Admin',
                 'email'             => 'super@admin.com',
-                'password'          => '1234',
+                'password'          => Hash::make('1234'),
+                'username'          => '100001',
                 'mobile'            => $faker->phoneNumber,
                 'date_of_birth'     => $faker->date,
-                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed_at'      => Carbon::now(),
+                'email_verified_at' => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
@@ -45,13 +45,13 @@ class UserTableSeeder extends Seeder
                 'last_name'         => 'Istrator',
                 'name'              => 'Admin Istrator',
                 'email'             => 'admin@admin.com',
-                'password'          => '1234',
+                'password'          => Hash::make('1234'),
+                'username'          => '100002',
                 'mobile'            => $faker->phoneNumber,
                 'date_of_birth'     => $faker->date,
-                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed_at'      => Carbon::now(),
+                'email_verified_at' => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
@@ -60,13 +60,13 @@ class UserTableSeeder extends Seeder
                 'last_name'         => 'User User',
                 'name'              => 'Manager',
                 'email'             => 'manager@manager.com',
-                'password'          => '1234',
+                'password'          => Hash::make('1234'),
+                'username'          => '100003',
                 'mobile'            => $faker->phoneNumber,
                 'date_of_birth'     => $faker->date,
-                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed_at'      => Carbon::now(),
+                'email_verified_at' => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
@@ -75,13 +75,13 @@ class UserTableSeeder extends Seeder
                 'last_name'         => 'User',
                 'name'              => 'Executive User',
                 'email'             => 'executive@executive.com',
-                'password'          => '1234',
+                'password'          => Hash::make('1234'),
+                'username'          => '100004',
                 'mobile'            => $faker->phoneNumber,
                 'date_of_birth'     => $faker->date,
-                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed_at'      => Carbon::now(),
+                'email_verified_at' => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
@@ -90,13 +90,12 @@ class UserTableSeeder extends Seeder
                 'last_name'         => 'User',
                 'name'              => 'General User',
                 'email'             => 'user@user.com',
-                'password'          => '1234',
+                'password'          => Hash::make('1234'),
+                'username'          => '100005',
                 'mobile'            => $faker->phoneNumber,
                 'date_of_birth'     => $faker->date,
-                'avatar'            => 'img/1000px-blue-cube-logo.jpg',
+                'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
-                'confirmation_code' => md5(uniqid(mt_rand(), true)),
-                'confirmed_at'      => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
@@ -108,6 +107,6 @@ class UserTableSeeder extends Seeder
             event(new UserCreated($user));
         }
 
-        $this->enableForeignKeys();
+        Schema::enableForeignKeyConstraints();
     }
 }

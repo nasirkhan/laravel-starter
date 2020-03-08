@@ -2,24 +2,21 @@
 
 @section('content')
 
-<div class="page-header-image" style="background-image:url('img/cover-01.jpg')"></div>
+<div class="page-header-image" style="background-image:url('{{asset('img/cover-01.jpg')}}')"></div>
 
 <div class="content-center">
     <div class="container">
 
         <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
-                <form class="form" method="POST" action="{{ route('frontend.auth.register.post') }}">
-                    {{ csrf_field() }}
+            <div class="card card-login card-plain mb-0">
+                <form class="form" method="POST" action="{{ route('register') }}">
+                    @csrf
 
                     <div class="header header-primary text-center">
-                        <div class="logo-container">
-                            <img src="{{asset('img/logo-square.png')}}" alt="">
-                        </div>
                         <h5>
                             Create an Account
                         </h5>
-                    
+
                         @include('flash::message')
                         <!-- Errors block -->
                         @include('frontend.includes.errors')
@@ -59,26 +56,30 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="input-password_confirmation"><i class="fas fa-key"></i></span>
                             </div>
-                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Password" aria-label="Password" aria-describedby="input-password_confirmation" required>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Password (Enter Again)" aria-label="Password" aria-describedby="input-password_confirmation" required>
                         </div>
                     </div>
-                    <div class="footer text-center">
+                    <div class="footer text-center py-0">
                         <button type="submit" class="btn btn-primary btn-round btn-block">Create Account</button>
                     </div>
                     <div class="pull-left">
                         <h6>
-                            <a href="{{ route('frontend.auth.login') }}" class="link">Login to Account</a>
+                            <a href="{{ route('login') }}" class="link">Login to Account</a>
                         </h6>
                     </div>
+                    @if (Route::has('password.request'))
                     <div class="float-right">
                         <h6>
-                            <a href="{{route('frontend.auth.password.email')}}" class="link">Need Help?</a>
+                            <a class="link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
                         </h6>
                     </div>
+                    @endif
                 </form>
             </div>
 
-            @include('auth.social_login_buttons')
+            {{-- @include('auth.social_login_buttons') --}}
         </div>
     </div>
 </div>

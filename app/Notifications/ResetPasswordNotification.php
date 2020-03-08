@@ -2,19 +2,30 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
-class ResetPasswordNotification extends Notification implements ShouldQueue
+class ResetPasswordNotification extends Notification
 {
-    use Queueable;
-
-    protected $token;
+    /**
+     * The password reset token.
+     *
+     * @var string
+     */
+    public $token;
 
     /**
-     * Create a new notification instance.
+     * The callback that should be used to build the mail message.
+     *
+     * @var \Closure|null
+     */
+    public static $toMailCallback;
+
+    /**
+     * Create a notification instance.
+     *
+     * @param string $token
      *
      * @return void
      */
@@ -24,11 +35,11 @@ class ResetPasswordNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the notification's delivery channels.
+     * Get the notification's channels.
      *
      * @param mixed $notifiable
      *
-     * @return array
+     * @return array|string
      */
     public function via($notifiable)
     {
@@ -36,7 +47,7 @@ class ResetPasswordNotification extends Notification implements ShouldQueue
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Build the mail representation of the notification.
      *
      * @param mixed $notifiable
      *
@@ -44,25 +55,27 @@ class ResetPasswordNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $token = $this->token;
+        if (static::$toMailCallback) {
+            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
+        }
 
         return (new MailMessage())
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', url(config('app.url').route('frontend.auth.password.reset.form', $token, false)))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->subject(Lang::get('Reset Password Notification Email'))
+            ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
+            ->action(Lang::get('Reset Password'), url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
+            ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+            ->line(Lang::get('If you did not request a password reset, no further action is required.'));
     }
 
     /**
-     * Get the array representation of the notification.
+     * Set a callback that should be used when building the notification mail message.
      *
-     * @param mixed $notifiable
+     * @param \Closure $callback
      *
-     * @return array
+     * @return void
      */
-    public function toArray($notifiable)
+    public static function toMailUsing($callback)
     {
-        return [
-            //
-        ];
+        static::$toMailCallback = $callback;
     }
 }

@@ -89,9 +89,13 @@
                         <p class="card-text">
                             Comments (Total {{$$module_name_singular->comments->count()}})
                             <br>
-                            @foreach ($$module_name_singular->comments as $comment)
+                            <?php
+                            $comments_all = $$module_name_singular->comments;
+                            $comments_level1 = $comments_all->where('parent_id','');
+                            ?>
+                            @foreach ($comments_level1 as $comment)
                             <blockquote>
-                                <p class="blockquote blockquote-primary">
+                                <div class="blockquote blockquote-primary">
                                     <a href="{{route('frontend.comments.show', encode_id($comment->id))}}">
                                         <!-- <i class="now-ui-icons ui-2_chat-round"></i> -->
                                         <i class="far fa-comment-alt"></i>
@@ -99,15 +103,103 @@
                                     {{$comment->name}}
                                     <br>
 
-                                    {{$comment->comment}}
+                                    {!!$comment->comment!!}
 
-                                    <br>
-                                    <br>
+                                    <!-- <br>
+                                    <br> -->
 
                                     <small>
                                         - {{$comment->user_name}}
                                     </small>
-                                </p>
+
+                                    @guest
+                                    <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-right m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
+                                    @endguest
+
+                                    @auth
+                                    <button type="button" id="replyBtn{{encode_id($comment->id)}}" class="btn btn-primary btn-sm float-right m-0" data-toggle="collapse" href="#replyForm{{encode_id($comment->id)}}" role="button" aria-expanded="false" aria-controls="replyForm{{encode_id($comment->id)}}">Reply</button>
+                                    @endauth
+
+                                    <?php
+                                    $comments_of_comment = $comments_all->where('parent_id', $comment->id);
+                                    ?>
+                                    @if ($comments_of_comment)
+                                    <hr>
+                                    <strong>Replies</strong>
+                                    <ul>
+                                        @foreach ($comments_of_comment as $comment_reply)
+                                        <li>
+                                            {!!$comment_reply->comment!!} - {{$comment->user_name}}
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </div>
+                                @auth
+                                <div class="collapse multi-collapse" id="replyForm{{encode_id($comment->id)}}">
+                                    <p>
+                                        {{ html()->form('POST', route("frontend.comments.store"))->class('form')->open() }}
+
+                                        <?php
+                                        $field_name = 'parent_id';
+                                        $field_lable = label_case($field_name);
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
+                                        ?>
+                                        {{ html()->hidden($field_name)->value(encode_id($comment->id))->attributes(["$required"]) }}
+
+                                        <?php
+                                        $field_name = 'post_id';
+                                        $field_lable = label_case($field_name);
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
+                                        ?>
+                                        {{ html()->hidden($field_name)->value(encode_id($$module_name_singular->id))->attributes(["$required"]) }}
+
+                                        <?php
+                                        $field_name = 'user_id';
+                                        $field_lable = label_case($field_name);
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
+                                        ?>
+                                        {{ html()->hidden($field_name)->value(encode_id(auth()->user()->id))->attributes(["$required"]) }}
+
+                                        <?php
+                                        $field_name = 'name';
+                                        $field_lable = label_case($field_name);
+                                        $field_placeholder = $field_lable;
+                                        $required = "required";
+                                        ?>
+                                        {{ html()->hidden($field_name)->value("Reply of ".$comment->name)->attributes(["$required"]) }}
+
+                                        <div class="row">
+                                            <div class="col-1">
+                                                &nbsp;
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <?php
+                                                    $field_name = 'comment';
+                                                    $field_lable = "Reply";
+                                                    $field_placeholder = $field_lable;
+                                                    $required = "required";
+                                                    ?>
+                                                    <!-- {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!} -->
+                                                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-2">
+                                                <div class="form-group">
+                                                    {{ html()->button($text = "<i class='fas fa-save'></i> Submit", $type = 'submit')->class('btn btn-success m-0') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{ html()->form()->close() }}
+                                    </p>
+                                </div>
+                                @endauth
 
                             </blockquote>
                             @endforeach

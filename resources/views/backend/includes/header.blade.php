@@ -17,7 +17,7 @@
     <?php
     $notifications = optional(auth()->user())->unreadNotifications;
     $notifications_count = optional($notifications)->count();
-    $notifications_latest = $notifications->take(5);
+    $notifications_latest = optional($notifications)->take(5);
     ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown d-md-down-none">
@@ -29,6 +29,7 @@
                 <div class="dropdown-header text-center">
                     <strong>You have {{$notifications_count}} unread notifications!</strong>
                 </div>
+                @if($notifications_latest)
                 @foreach($notifications_latest as $notification)
                 @php
                 $notification_text = isset($notification->data['title'])? $notification->data['title'] : $notification->data['module'];
@@ -37,6 +38,7 @@
                     <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fas fa-flag'}}"></i> {{$notification_text}}
                 </a>
                 @endforeach
+                @endif
                 <a class="dropdown-item text-center" href="{{route('backend.notifications.index')}}">
                     View all
                 </a>
@@ -63,9 +65,13 @@
                 <div class="dropdown-header text-center">
                     <strong>Settings</strong>
                 </div>
-                <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-lock"></i> Logout
                 </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </li>
     </ul>

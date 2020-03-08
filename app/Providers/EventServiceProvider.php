@@ -18,36 +18,42 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        'App\Events\Backend\User\UserCreated' => [
-            'App\Listeners\Backend\User\UserCreatedNotifyUser',
-            'App\Listeners\Backend\User\UserCreatedProfileCreate',
+        'App\Events\Backend\UserCreated' => [
+            'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
+            'App\Listeners\Backend\UserCreated\UserCreatedNotifyUser',
         ],
-        'App\Events\Backend\User\UserUpdated' => [
-            'App\Listeners\Backend\User\UserUpdatedNotifyUser',
-            'App\Listeners\Backend\User\UserUpdatedProfileUpdate',
+        'App\Events\Backend\UserUpdated' => [
+            'App\Listeners\Backend\UserUpdated\UserUpdatedNotifyUser',
+            'App\Listeners\Backend\UserUpdated\UserUpdatedProfileUpdate',
         ],
-        'App\Events\Backend\User\UserProfileUpdated' => [
-            'App\Listeners\Backend\User\UserProfileUpdatedNotifyUser',
-            'App\Listeners\Backend\User\UserProfileUpdatedUserUpdate',
+        'App\Events\Backend\UserProfileUpdated' => [
+            'App\Listeners\Backend\UserProfileUpdated\UserProfileUpdatedNotifyUser',
+            'App\Listeners\Backend\UserProfileUpdated\UserProfileUpdatedUserUpdate',
         ],
-        'App\Events\Frontend\User\UserRegistered' => [
-            'App\Listeners\Frontend\User\UserRegisteredListener',
-            'App\Listeners\Frontend\User\UserRegisteredProfileCreate',
+        'App\Events\Frontend\UserRegistered' => [
+            'App\Listeners\Frontend\UserRegistered\UserRegisteredListener',
+            'App\Listeners\Frontend\UserRegistered\UserRegisteredProfileCreate',
         ],
-        'App\Events\Frontend\User\UserUpdated' => [
-            'App\Listeners\Frontend\User\UserUpdatedNotifyUser',
-            'App\Listeners\Frontend\User\UserUpdatedProfileUpdate',
+        'App\Events\Frontend\UserUpdated' => [
+            'App\Listeners\Frontend\UserUpdated\UserUpdatedNotifyUser',
+            'App\Listeners\Frontend\UserUpdated\UserUpdatedProfileUpdate',
         ],
-        'App\Events\Frontend\User\UserProfileUpdated' => [
-            'App\Listeners\Frontend\User\UserProfileUpdatedNotifyUser',
-            'App\Listeners\Frontend\User\UserProfileUpdatedUserUpdate',
-        ],
-        'App\Events\Auth\UserLoginSuccess' => [
-            'App\Listeners\Auth\UpdateProfileLoginData',
+        'App\Events\Frontend\UserProfileUpdated' => [
+            'App\Listeners\Frontend\UserProfileUpdated\UserProfileUpdatedNotifyUser',
+            'App\Listeners\Frontend\UserProfileUpdated\UserProfileUpdatedUserUpdate',
         ],
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\UserEventSubscriber',
     ];
 
     /**

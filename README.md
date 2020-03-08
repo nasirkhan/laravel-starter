@@ -1,22 +1,35 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 # Laravel Starter
-Laravel 5.8 based simple starter project to build all type of applications. Almost all the necessary functionalities are added. Continuously working on more features and improvements.
+**Laravel Starter** is a Laravel 6.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the Laravel starter based projects. New features and functionalities are being added on a regular basis.
 
 Please let me know your feedback and comments.
-
-> Current Build Status
-
-[![StyleCI](https://github.styleci.io/repos/105638882/shield)](https://github.styleci.io/repos/105638882)
 
 
 # Demo
 
 http://laravel.nasirkhn.com/
 
+
+
+## Custom Commands
+
+### Clear All Cache
+
+`composer clear-all`
+
+this is a shortcut command clear all cache including config, route and more
+
+### Code Style Fix
+
+`composer fix-cs`
+
+apply the code style fix by this command.
+
+
 ## Features
 
-* Admin feature and public views are completely separated as `Backend` and `Frontend`.
+* Admin feature and public views are completely separated as `Backend` and `Frontend` namespace.
 * Major feature are developed as `Modules`. Module like Posts, Comments are separated from the core features like User, Role, Permission
 
 
@@ -58,6 +71,7 @@ http://laravel.nasirkhn.com/
 * Newsletter
 * Notification
   * Dashboard and details view
+* RSS Feed
 
 ## Installation
 
@@ -87,11 +101,11 @@ Follow the steps mentioned below to install and run the project.
 
 __Home Page__
 
-![Laravel Starter Home](https://user-images.githubusercontent.com/396987/42303564-d533b1e2-8043-11e8-9672-ba557b36c079.png)
+![Laravel Starter Home](https://user-images.githubusercontent.com/396987/67085331-74606500-f1c0-11e9-8187-99fe49134075.png)
 
 __Login Page__
 
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/42303563-d33f0576-8043-11e8-8a46-b4af32320b69.png)
+![Laravel Starter Login](https://user-images.githubusercontent.com/396987/67085329-74606500-f1c0-11e9-8669-3638e30cb449.png)
 
 __Backend Dashboard__
 

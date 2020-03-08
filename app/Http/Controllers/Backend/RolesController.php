@@ -8,6 +8,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Log;
 
 class RolesController extends Controller
@@ -44,7 +45,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'List';
 
@@ -52,8 +53,10 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_path.index",
-        compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action'));
+        return view(
+            "backend.$module_path.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+        );
     }
 
     /**
@@ -68,7 +71,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Create';
 
@@ -94,7 +97,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Store';
 
@@ -129,7 +132,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Show';
 
@@ -137,8 +140,10 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.show",
-        compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular"));
+        return view(
+            "backend.$module_name.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+        );
     }
 
     /**
@@ -155,7 +160,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Edit';
 
@@ -183,7 +188,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Update';
 
@@ -228,7 +233,7 @@ class RolesController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Destroy';
 
