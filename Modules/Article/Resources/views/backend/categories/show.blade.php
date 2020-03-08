@@ -5,11 +5,15 @@
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="breadcrumb-item active"> {{ $module_action }}</li>
+@backendBreadcrumbs
+    @slot('level_1')
+        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+    @endslot
+    @slot('level_2')
+        <li class="breadcrumb-item active"> {{ $module_action }}</li>
+    @endslot
+@endbackendBreadcrumbs
 @stop
-
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -26,7 +30,9 @@
             <div class="col-4">
                 <div class="float-right">
                     <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                    @can('edit_'.$module_name)
                     <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
+                    @endcan
                 </div>
             </div>
             <!--/.col-->

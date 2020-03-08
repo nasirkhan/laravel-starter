@@ -1,10 +1,19 @@
 @extends ('backend.layouts.app')
 
-<?php
-$module_name_singular = Str::singular($module_name);
-?>
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
 
-@section ('title', __('labels.backend.roles.create.title') . ' | ' . __('labels.backend.roles.create.sub-title'))
+@section('breadcrumbs')
+@backendBreadcrumbs
+    @slot('level_1')
+        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+    @endslot
+    @slot('level_2')
+        <li class="breadcrumb-item active"> {{ $module_action }}</li>
+    @endslot
+@endbackendBreadcrumbs
+@stop
 
 @section('content')
 
@@ -53,41 +62,49 @@ $module_name_singular = Str::singular($module_name);
                     <div class="form-group row">
                         {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
 
-                        <div class="col-md-10">
-                        <table class="table table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th>Permissions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                       <td>
-                                           @if ($permissions->count())
-                                               @foreach($permissions as $permission)
-                                                   <div class="checkbox">
-                                                       {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
-                                                   </div>
-                                               @endforeach
-                                           @endif
-                                       </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-12 col-sm-10">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Permissions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                           <td>
+                                               @if ($permissions->count())
+                                                   @foreach($permissions as $permission)
+                                                       <div class="checkbox">
+                                                           {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
+                                                       </div>
+                                                   @endforeach
+                                               @endif
+                                           </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div><!--form-group-->
 
                     <div class="row">
-                        <div class="col">
-                            {{ form_cancel(route('backend.roles.index'), __('labels.buttons.general.cancel')) }}
-                            {{ form_submit(__('labels.buttons.general.create')) }}
+                        <div class="col-6">
+                            <div class="form-group">
+                                {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst($module_action) . "", $type = 'submit')->class('btn btn-success') }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="float-right">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {{ html()->form()->close() }}
-
             </div>
         </div>
-
     </div>
 
     <div class="card-footer">

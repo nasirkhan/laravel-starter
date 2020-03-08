@@ -5,8 +5,11 @@
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+@backendBreadcrumbs
+    @slot('level_1')
+        <li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+    @endslot
+@endbackendBreadcrumbs
 @stop
 
 @section('content')

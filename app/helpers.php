@@ -1,6 +1,5 @@
 <?php
 
-use App\Helpers\General\HtmlHelper;
 use Illuminate\Support\Str;
 
 /*
@@ -36,113 +35,6 @@ if (!function_exists('user_registration')) {
         }
 
         return $user_registration;
-    }
-}
-
-if (!function_exists('includeRouteFiles')) {
-
-    /**
-     * Loops through a folder and requires all PHP files
-     * Searches sub-directories as well.
-     *
-     * @param $folder
-     */
-    function includeRouteFiles($folder)
-    {
-        try {
-            $rdi = new recursiveDirectoryIterator($folder);
-            $it = new recursiveIteratorIterator($rdi);
-
-            while ($it->valid()) {
-                if (!$it->isDot() && $it->isFile() && $it->isReadable() && $it->current()->getExtension() === 'php') {
-                    require $it->key();
-                }
-
-                $it->next();
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
-}
-
-if (!function_exists('homeRoute')) {
-
-    /**
-     * Return the route to the "home" page depending on authentication/authorization status.
-     *
-     * @return string
-     */
-    function homeRoute()
-    {
-        if (auth()->check()) {
-            if (auth()->user()->can('view backend')) {
-                return 'admin.dashboard';
-            } else {
-                return 'frontend.user.dashboard';
-            }
-        }
-
-        return 'frontend.index';
-    }
-}
-
-if (!function_exists('style')) {
-
-    /**
-     * @param       $url
-     * @param array $attributes
-     * @param null  $secure
-     *
-     * @return mixed
-     */
-    function style($url, $attributes = [], $secure = null)
-    {
-        return resolve(HtmlHelper::class)->style($url, $attributes, $secure);
-    }
-}
-
-if (!function_exists('script')) {
-
-    /**
-     * @param       $url
-     * @param array $attributes
-     * @param null  $secure
-     *
-     * @return mixed
-     */
-    function script($url, $attributes = [], $secure = null)
-    {
-        return resolve(HtmlHelper::class)->script($url, $attributes, $secure);
-    }
-}
-
-if (!function_exists('form_cancel')) {
-
-    /**
-     * @param        $cancel_to
-     * @param        $title
-     * @param string $classes
-     *
-     * @return mixed
-     */
-    function form_cancel($cancel_to, $title, $classes = 'btn btn-warning pull-right')
-    {
-        return resolve(HtmlHelper::class)->formCancel($cancel_to, $title, $classes);
-    }
-}
-
-if (!function_exists('form_submit')) {
-
-    /**
-     * @param        $title
-     * @param string $classes
-     *
-     * @return mixed
-     */
-    function form_submit($title, $classes = 'btn btn-success')
-    {
-        return resolve(HtmlHelper::class)->formSubmit($title, $classes);
     }
 }
 

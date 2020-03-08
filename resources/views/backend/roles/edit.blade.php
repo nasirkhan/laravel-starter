@@ -1,10 +1,19 @@
 @extends ("backend.layouts.app")
 
-<?php
-$module_name_singular = Str::singular($module_name);
-?>
+@section('title')
+{{ $module_action }} {{ $module_title }} | {{ app_name() }}
+@stop
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('breadcrumbs')
+@backendBreadcrumbs
+    @slot('level_1')
+        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+    @endslot
+    @slot('level_2')
+        <li class="breadcrumb-item active"> {{ $module_action }}</li>
+    @endslot
+@endbackendBreadcrumbs
+@stop
 
 @section("content")
 <div class="card">

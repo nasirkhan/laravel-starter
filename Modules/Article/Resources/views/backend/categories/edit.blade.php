@@ -5,9 +5,14 @@
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="breadcrumb-item active"> {{ $module_action }}</li>
+@backendBreadcrumbs
+    @slot('level_1')
+        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
+    @endslot
+    @slot('level_2')
+        <li class="breadcrumb-item active"> {{ $module_action }}</li>
+    @endslot
+@endbackendBreadcrumbs
 @stop
 
 @section('content')
@@ -49,7 +54,9 @@
 
                     <div class="col-8">
                         <div class="float-right">
+                            @can('delete_'.$module_name)
                             <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
+                            @endcan
                             <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
                         </div>
                     </div>

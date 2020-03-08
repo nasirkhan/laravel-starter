@@ -1,15 +1,24 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 # Laravel Starter
-**Laravel Starter** is a Laravel 6.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the Laravel starter based projects. New features and functionalities are being added on a regular basis.
+**Laravel Starter** is a Laravel 7.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the Laravel starter based projects. New features and functionalities are being added on a regular basis.
 
 Please let me know your feedback and comments.
 
 
 # Demo
+Check the following demo project. It is just a straight installation of the project without any modification.
+
+```
+User: super@admin.com
+Pass: 1234
+
+User: user@user.com
+Pass: 1234
+
+```
 
 http://laravel.nasirkhn.com/
-
 
 
 ## Custom Commands
