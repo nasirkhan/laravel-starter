@@ -96,6 +96,7 @@ class UserTableSeeder extends Seeder
                 'date_of_birth'     => $faker->date,
                 'avatar'            => 'img/default-avatar.jpg',
                 'gender'            => $faker->randomElement(['Man', 'Woman', 'Other']),
+                'email_verified_at' => Carbon::now(),
                 'created_at'        => Carbon::now(),
                 'updated_at'        => Carbon::now(),
             ],
