@@ -43,7 +43,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         Route::patch('profile/{id}/edit', ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);
         Route::get("$module_name/emailConfirmationResend/{id}", ['as' => "$module_name.emailConfirmationResend", 'uses' => "$controller_name@emailConfirmationResend"]);
         Route::get("profile/changePassword/{username}", ['as' => "$module_name.changePassword", 'uses' => "$controller_name@changePassword"]);
-        Route::patch("profile/changePassword/{username}", ['as' => "$module_name.changePasswordUpdate', 'uses" => "$controller_name@changePasswordUpdate"]);
+        Route::patch("profile/changePassword/{username}", ['as' => "$module_name.changePasswordUpdate", 'uses' => "$controller_name@changePasswordUpdate"]);
         Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
     });
 });
@@ -69,9 +69,9 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
      *
      * ---------------------------------------------------------------------
      */
-    $module_name = 'settings';
-    $controller_name = 'SettingController';
     Route::group(['middleware' => ['permission:edit_settings']], function () {
+        $module_name = 'settings';
+        $controller_name = 'SettingController';
         Route::get("$module_name", "$controller_name@index")->name("$module_name");
         Route::post("$module_name", "$controller_name@store")->name("$module_name.store");
     });
