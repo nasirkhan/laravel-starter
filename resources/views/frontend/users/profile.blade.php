@@ -14,14 +14,6 @@
         </div>
         <h3 class="title">
             {{$$module_name_singular->name}}
-            @auth
-            @if(auth()->user()->id == $$module_name_singular->id)
-            <a href="{{route('frontend.users.profileEdit', $$module_name_singular->id)}}">
-                [edit]
-            </a>
-            @endif
-            @endauth
-            
             <br>
             Username:{{$$module_name_singular->username}}
         </h3>
@@ -35,6 +27,21 @@
 
 <div class="section">
     <div class="container">
+        <div class="button-container">
+            @auth
+            @if(auth()->user()->id == $$module_name_singular->id)
+            <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">Edit Profile</a>
+            @endif
+            @endauth
+
+            <!-- <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a> -->
+        </div>
+
         <h3 class="title">প্রোফাইল</h3>
         @if($userprofile->bio)
         <h5 class="description">

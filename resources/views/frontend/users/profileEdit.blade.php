@@ -25,7 +25,7 @@
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="{{ route('frontend.users.profile', $$module_name_singular->username) }}" class="btn btn-primary btn-round btn-lg">View Profile</a>
+            <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">View Profile</a>
             <!-- <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
@@ -37,7 +37,7 @@
 
         <div class="row mt-4 mb-4">
             <div class="col">
-                {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', $$module_name_singular->username))->class('form-horizontal')->acceptsFiles()->open() }}
+                {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->acceptsFiles()->open() }}
 
                     <div class="form-group row">
                         {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }}
@@ -104,32 +104,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'father_name';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'mother_name';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?php
@@ -185,57 +159,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'institute_name';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "required";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'class';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = "-- Select an option --";
-                                $required = "required";
-                                $select_options = [
-                                    'Class 3' => 'Class 3',
-                                    'Class 4' => 'Class 4',
-                                    'Class 5' => 'Class 5',
-                                    'Class 6' => 'Class 6',
-                                    'Class 7' => 'Class 7',
-                                    'Class 8' => 'Class 8',
-                                    'Class 9' => 'Class 9',
-                                    'Class 10' => 'Class 10',
-                                    'Class 11' => 'Class 11',
-                                    'Class 12' => 'Class 12',
-                                ];
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required", 'disabled']) }}
-                            </div>
-                        </div>
 
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'institute_address';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "required";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -353,7 +277,7 @@
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            <a href="{{ route('frontend.users.changePassword', $$module_name_singular->username) }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                            <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-primary btn-sm">Change password</a>
                         </div>
                     </div><!--form-group-->
 

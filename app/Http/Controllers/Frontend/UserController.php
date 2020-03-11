@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
-use App\Events\Frontend\User\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
@@ -15,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Log;
+use App\Events\Frontend\UserProfileUpdated;
 
 class UserController extends Controller
 {
@@ -109,7 +109,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileEdit($username)
+    public function profileEdit($id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -124,11 +124,11 @@ class UserController extends Controller
         $title = $page_heading.' '.ucfirst($module_action);
 
         if (!auth()->user()->can('edit_users')) {
-            $username = auth()->user()->username;
+            $id = auth()->user()->id;
         }
 
-        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
-        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+        $$module_name_singular = $module_model::findOrFail($id);
+        $userprofile = Userprofile::where('user_id', $id)->first();
 
         $body_class = 'profile-page';
 
@@ -146,7 +146,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request, $username)
+    public function profileUpdate(Request $request, $id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -168,7 +168,7 @@ class UserController extends Controller
             $username = auth()->user()->username;
         }
 
-        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
+        $$module_name_singular = $module_model::findOrFail($id);
         $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
@@ -193,7 +193,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        return redirect()->route('frontend.users.profile', $$module_name_singular->username)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', $$module_name_singular->id)->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -203,25 +203,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePassword($username)
+    public function changePassword($id)
     {
-        $title = $this->module_title;
-
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
-        $module_action = 'Edit';
-
-        $username = auth()->user()->username;
-
-        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
+        $module_action = 'change Password';
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.changePassword", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'body_class'));
+        $id = auth()->user()->id;
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        $body_class = 'profile-page';
+
+        return view("frontend.$module_name.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
     }
 
     /**
@@ -248,7 +248,7 @@ class UserController extends Controller
 
         $$module_name_singular->update($request_data);
 
-        return redirect()->route('frontend.users.profile', auth()->user()->username)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', auth()->user()->id)->with('flash_success', 'Update successful!');
     }
 
     /**
