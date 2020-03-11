@@ -62,7 +62,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
      */
     Route::get('/', 'BackendController@index')->name('home');
     Route::get('dashboard', 'BackendController@index')->name('dashboard');
-    Route::get('stat', 'BackendController@stat')->name('stat');
 
     /*
      *
@@ -70,9 +69,11 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.',
      *
      * ---------------------------------------------------------------------
      */
+    $module_name = 'settings';
+    $controller_name = 'SettingController';
     Route::group(['middleware' => ['permission:edit_settings']], function () {
-        Route::get('settings', 'SettingController@index')->name('settings');
-        Route::post('settings', 'SettingController@store')->name('settings.store');
+        Route::get("$module_name", "$controller_name@index")->name("$module_name");
+        Route::post("$module_name", "$controller_name@store")->name("$module_name.store");
     });
 
     /*
