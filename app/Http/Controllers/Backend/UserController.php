@@ -287,23 +287,26 @@ class UserController extends Controller
      */
     public function profile(Request $request, $id)
     {
-        $title = $this->module_title;
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_name_singular = Str::singular($this->module_name);
+        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
-        $module_action = 'Profile';
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+        $module_action = 'Profile Show';
 
-        if (!auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        if ($$module_name_singular) {
+            $userprofile = Userprofile::where('user_id', $id)->first();
+        } else {
+            Log::error('UserProfile Exception for Username: '.$username);
+            abort(404);
         }
-
-        $$module_name_singular = User::findOrFail($id);
-        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.profile", compact('module_name', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'userprofile'));
+        return view("backend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'userprofile'));
     }
 
     /**

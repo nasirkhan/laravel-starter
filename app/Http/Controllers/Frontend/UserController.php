@@ -83,8 +83,7 @@ class UserController extends Controller
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'Show';
+        $module_action = 'Profile';
 
         $$module_name_singular = $module_model::findOrFail($id);
 

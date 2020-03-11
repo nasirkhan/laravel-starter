@@ -29,15 +29,25 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('home', 'FrontendController@index')->name('home');
 
     Route::group(['middleware' => ['auth']], function () {
-        Route::get('users/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
-        Route::get('users/emailConfirmationResend/{hashid}', ['as' => 'users.emailConfirmationResend', 'uses' => 'UserController@emailConfirmationResend']);
+        /*
+        *
+        *  Users Routes
+        *
+        * ---------------------------------------------------------------------
+        */
+        $module_name = 'users';
+        $controller_name = 'UserController';
+        // Route::get("$module_name/{id}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
+        Route::get("profile/{id}", ['as' => "$module_name.profile", 'uses' => "$controller_name@profile"]);
+        Route::get('profile/{id}/edit', ['as' => "$module_name.profileEdit", 'uses' => "$controller_name@profileEdit"]);
+        Route::patch('profile/{id}/edit', ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);
+        Route::get("$module_name/emailConfirmationResend/{id}", ['as' => "$module_name.emailConfirmationResend", 'uses' => "$controller_name@emailConfirmationResend"]);
 
-        Route::get('profile/{id}', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
-        Route::get('profile/{id}/edit', ['as' => 'users.profileEdit', 'uses' => 'UserController@profileEdit']);
-        Route::patch('profile/{id}/edit', ['as' => 'users.profileUpdate', 'uses' => 'UserController@profileUpdate']);
-        Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
         Route::get('users/profile/changePassword/{username}', ['as' => 'users.changePassword', 'uses' => 'UserController@changePassword']);
         Route::patch('users/profile/changePassword/{username}', ['as' => 'users.changePasswordUpdate', 'uses' => 'UserController@changePasswordUpdate']);
+
+
+        Route::delete('users/userProviderDestroy', ['as' => 'users.userProviderDestroy', 'uses' => 'UserController@userProviderDestroy']);
     });
 });
 
