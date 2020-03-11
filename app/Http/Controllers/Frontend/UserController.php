@@ -75,7 +75,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile($username)
+    public function profile($id)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -86,10 +86,10 @@ class UserController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::where('username', 'LIKE', $username)->first();
+        $$module_name_singular = $module_model::findOrFail($id);
 
         if ($$module_name_singular) {
-            $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
+            $userprofile = Userprofile::where('user_id', $id)->first();
         } else {
             Log::error('UserProfile Exception for Username: '.$username);
             abort(404);

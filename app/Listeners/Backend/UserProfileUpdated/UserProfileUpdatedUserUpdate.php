@@ -33,6 +33,7 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
         $user->name = $user_profile->name;
         $user->first_name = $user_profile->first_name;
         $user->last_name = $user_profile->last_name;
+        $user->username = $user_profile->username;
         $user->email = $user_profile->email;
         $user->mobile = $user_profile->mobile;
         $user->gender = $user_profile->gender;

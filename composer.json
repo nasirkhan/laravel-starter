@@ -4,7 +4,7 @@
     "keywords": ["framework", "laravel", "cms", "starter", "admin"],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "version": "v6.0.0",
+    "version": "v6.1.0",
     "require": {
         "php": "^7.2.5",
         "alexusmai/laravel-file-manager": "^2.4",

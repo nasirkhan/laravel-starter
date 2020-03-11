@@ -4,7 +4,6 @@
 {{$$module_name_singular->name}}'s Profile  | {{ app_name() }}
 @stop
 
-
 @section('content')
 <div class="page-header page-header-small clear-filter" filter-color="orange">
     <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
@@ -13,7 +12,19 @@
         <div class="photo-container">
             <img src="{{asset($user->avatar)}}" alt="{{$$module_name_singular->name}}">
         </div>
-        <h3 class="title">{{$$module_name_singular->name}} <br>Username:{{$$module_name_singular->username}}</h3>
+        <h3 class="title">
+            {{$$module_name_singular->name}}
+            @auth
+            @if(auth()->user()->id == $$module_name_singular->id)
+            <a href="{{route('frontend.users.profileEdit', $$module_name_singular->id)}}">
+                [edit]
+            </a>
+            @endif
+            @endauth
+            
+            <br>
+            Username:{{$$module_name_singular->username}}
+        </h3>
         <p class="category">
             @if ($$module_name_singular->email_verified_at == null)
             <a href="{{route('frontend.users.emailConfirmationResend', $$module_name_singular->id)}}">Confirm Email</a>
@@ -25,9 +36,11 @@
 <div class="section">
     <div class="container">
         <h3 class="title">প্রোফাইল</h3>
+        @if($userprofile->bio)
         <h5 class="description">
             {{$userprofile->bio}}
         </h5>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-hover">
@@ -37,11 +50,10 @@
                         [ 'name' => 'last_name' ],
                         // [ 'name' => 'email' ],
                         // [ 'name' => 'mobile' ],
+                        [ 'name' => 'username' ],
                         [ 'name' => 'gender' ],
-                        [ 'name' => 'institute_name' ],
-                        [ 'name' => 'class' ],
                         // [ 'name' => 'date_of_birth', 'type' => 'date'],
-                        // [ 'name' => 'url_website', 'type' => 'url' ],
+                        [ 'name' => 'url_website', 'type' => 'url' ],
                         // [ 'name' => 'url_facebook', 'type' => 'url' ],
                         // [ 'name' => 'url_twitter', 'type' => 'url' ],
                         // [ 'name' => 'url_linkedin', 'type' => 'url' ],
