@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
+use App\Events\Frontend\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
@@ -14,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Log;
-use App\Events\Frontend\UserProfileUpdated;
 
 class UserController extends Controller
 {
