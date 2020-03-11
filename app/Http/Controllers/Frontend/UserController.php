@@ -127,6 +127,10 @@ class UserController extends Controller
             $id = auth()->user()->id;
         }
 
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
+
         $$module_name_singular = $module_model::findOrFail($id);
         $userprofile = Userprofile::where('user_id', $id)->first();
 
@@ -155,6 +159,10 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
+
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
 
         $this->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -215,6 +223,10 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
+
         $id = auth()->user()->id;
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -234,6 +246,10 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request, $username)
     {
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
+
         $this->validate($request, [
             'password' => 'required|confirmed|min:6',
         ]);
@@ -268,6 +284,10 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Edit';
 
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
+
         $roles = Role::get();
         $permissions = Permission::select('name', 'id')->get();
 
@@ -293,6 +313,10 @@ class UserController extends Controller
     {
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
+
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', $id);
+        }
 
         $$module_name_singular = User::findOrFail($id);
 

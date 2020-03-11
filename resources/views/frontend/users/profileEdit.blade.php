@@ -25,7 +25,7 @@
 <div class="section">
     <div class="container">
         <div class="button-container">
-            <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-primary btn-round btn-lg">View Profile</a>
+            <a href="{{ route('frontend.users.profile', auth()->user()->id) }}" class="btn btn-primary btn-round btn-lg"><i class="now-ui-icons users_single-02"></i>&nbsp;View Profile</a>
             <!-- <a href="#" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="" data-original-title="Follow me on Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
@@ -277,7 +277,7 @@
                         {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                         <div class="col-md-10">
-                            <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-primary btn-sm">Change password</a>
+                            <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-primary btn-sm"><i class="now-ui-icons objects_key-25"></i>&nbsp;Change password</a>
                         </div>
                     </div><!--form-group-->
 
