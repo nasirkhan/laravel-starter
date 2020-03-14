@@ -25,10 +25,10 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="Notifications Mark All As Read"><i class="fas fa-check-square"></i> Mark All As Read</a>
+                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="Mark All As Read"><i class="fas fa-check-square"></i> Mark All As Read</a>
+                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1 btn-sm" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Delete All Notifications"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
-            <!--/.col-->
         </div>
         <!--/.row-->
 
@@ -57,7 +57,7 @@
                         <?php
                         $row_class = '';
                         $span_class = '';
-                        if ($module_name_singular->read_at == '') {
+                        if ($module_name_singular->read_at == ''){
                             $row_class = 'table-info';
                             $span_class = 'font-weight-bold';
                         }
@@ -77,7 +77,7 @@
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
