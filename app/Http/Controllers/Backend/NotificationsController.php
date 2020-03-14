@@ -78,7 +78,7 @@ class NotificationsController extends Controller
 
         $$module_name_singular = Notification::where('id', '=', $id)->where('notifiable_id', '=', auth()->user()->id)->first();
 
-        if ($$module_name_singular){
+        if ($$module_name_singular) {
             if ($$module_name_singular->read_at == '') {
                 $$module_name_singular->read_at = Carbon::now();
                 $$module_name_singular->save();
