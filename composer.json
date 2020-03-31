@@ -32,6 +32,7 @@
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.9.1",
