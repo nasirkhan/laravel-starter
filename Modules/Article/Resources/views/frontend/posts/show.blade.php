@@ -282,7 +282,7 @@
                             @guest
                             <div class="col-12 col-sm-4 align-self-center">
                                 <p>
-                                    <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
+                                    <a href="{{route('login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-lg btn-block"><i class="fas fa-user-shield"></i> Login & Write new comment</a>
                                 </p>
                             </div>
                             @endguest
