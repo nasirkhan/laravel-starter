@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Models\Presenters\UserPresenter;
-use App\Models\Role;
-use App\Models\Permission;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -96,8 +94,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      * Cache Permissions
      *
      */
-    public function getPermissionsAttribute() {
-        $permissions = Cache::rememberForever('permissions_cache', function() {
+    public function getPermissionsAttribute()
+    {
+        $permissions = Cache::rememberForever('permissions_cache', function () {
             return Permission::select('permissions.*', 'model_has_permissions.*')
             ->join('model_has_permissions', 'permissions.id', '=', 'model_has_permissions.permission_id')
             ->get();
@@ -111,7 +110,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      * Cache Roles
      *
      */
-    public function getRolesAttribute() {
+    public function getRolesAttribute()
+    {
         $roles = Cache::rememberForever('roles_cache', function () {
             return Role::select('roles.*', 'model_has_roles.*')
             ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
