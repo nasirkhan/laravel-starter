@@ -72,7 +72,7 @@ class PostsController extends Controller
 
         $meta_page_type = 'article';
 
-        $$module_name_singular = $module_model::with(['category', 'tags', 'comments'])->findOrFail($id);
+        $$module_name_singular = $module_model::findOrFail($id);
 
         event(new PostViewed($$module_name_singular));
 

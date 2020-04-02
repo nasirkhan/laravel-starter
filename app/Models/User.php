@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Permission\Traits\HasRoles;
@@ -87,38 +86,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function getRolesListAttribute()
     {
         return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     *
-     * Cache Permissions
-     *
-     */
-    public function getPermissionsAttribute()
-    {
-        $permissions = Cache::rememberForever('permissions_cache', function () {
-            return Permission::select('permissions.*', 'model_has_permissions.*')
-            ->join('model_has_permissions', 'permissions.id', '=', 'model_has_permissions.permission_id')
-            ->get();
-        });
-
-        return $permissions->where('model_id', $this->id);
-    }
-
-    /**
-     *
-     * Cache Roles
-     *
-     */
-    public function getRolesAttribute()
-    {
-        $roles = Cache::rememberForever('roles_cache', function () {
-            return Role::select('roles.*', 'model_has_roles.*')
-            ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
-            ->get();
-        });
-
-        return $roles->where('model_id', $this->id);
     }
 
     /**
