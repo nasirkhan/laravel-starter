@@ -3,9 +3,22 @@
 namespace Modules\Article\Entities\Presenters;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 trait PostPresenter
 {
+    public function getFeaturedImageAttribute($value)
+    {
+        $featured_image = $value;
+
+        if (Str::startsWith($featured_image, 'https://picsum.photos')) {
+            $return_text = $featured_image.'?random='.$this->id;
+        } else {
+            $return_text = $featured_image;
+        }
+        return $return_text;
+    }
+
     public function getPublishedAtFormattedAttribute()
     {
         $diff = Carbon::now()->diffInHours($this->published_at);
