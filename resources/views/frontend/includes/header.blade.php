@@ -24,6 +24,12 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('/vendor/now-ui-kit/img/blurred-image-1.jpg')}}">
             <ul class="navbar-nav">
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('frontend.posts.index') }}">
+                        <i class="now-ui-icons files_paper"></i>
+                        Posts
+                    </a>
+                </li>
                 @can('view_backend')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('backend.dashboard') }}">
