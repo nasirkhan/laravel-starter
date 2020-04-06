@@ -2,9 +2,9 @@
 
 namespace App\Models\Presenters;
 
-use Illuminate\Support\Facades\Cache;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Presenter Class for Book Module.
