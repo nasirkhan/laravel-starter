@@ -15,7 +15,7 @@
                 {{ config('app.name', 'Laravel Starter') }}
             </h1>
             <h3 class="category">
-                An awesome project based on Laravel!
+                "The best way to predict your future is to create it"
             </h3>
 
             @include('flash::message')
