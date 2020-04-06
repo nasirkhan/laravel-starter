@@ -113,7 +113,7 @@
                                     </small>
 
                                     @guest
-                                    <a href="{{route('frontend.auth.login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-right m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
+                                    <a href="{{route('login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-right m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
                                     @endguest
 
                                     @auth
