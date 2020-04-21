@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
 use App\Models\User;
 use App\Models\UserProvider;
+use App\Providers\RouteServiceProvider;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -66,8 +66,6 @@ class LoginController extends Controller
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::login($authUser, true);
-
-            event(new UserRegistered($authUser));
         } catch (Exception $e) {
             return redirect('/');
         }
@@ -115,6 +113,8 @@ class LoginController extends Controller
             $user->avatar = $media->getUrl();
             $user->save();
 
+            event(new UserRegistered($user));
+
             UserProvider::create([
                 'user_id'     => $user->id,
                 'provider_id' => $socialUser->getId(),
@@ -129,12 +129,13 @@ class LoginController extends Controller
     /**
      * Split Name into first name and last name
      */
-    function split_name($name) {
+    public function split_name($name)
+    {
         $name = trim($name);
 
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
-        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+        $first_name = trim(preg_replace('#'.$last_name.'#', '', $name));
 
-        return array($first_name, $last_name);
+        return [$first_name, $last_name];
     }
 }

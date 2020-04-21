@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Notifications\NewRegistrationFromSocial;
 
 class FrontendController extends Controller
 {

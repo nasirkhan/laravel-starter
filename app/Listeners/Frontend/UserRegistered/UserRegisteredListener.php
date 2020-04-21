@@ -3,11 +3,9 @@
 namespace App\Listeners\Frontend\UserRegistered;
 
 use App\Events\Frontend\UserRegistered;
-use App\Mail\NewUserRegisteredMail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
 use App\Notifications\NewRegistration;
 use App\Notifications\NewRegistrationFromSocial;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Log;
 
 class UserRegisteredListener implements ShouldQueue
@@ -40,8 +38,7 @@ class UserRegisteredListener implements ShouldQueue
         if ($user->password == '') {
             // Register via social do not have passwords
             $user->notify(new NewRegistrationFromSocial());
-        }
-        else {
+        } else {
             $user->notify(new NewRegistration());
         }
     }
