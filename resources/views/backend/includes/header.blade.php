@@ -34,7 +34,7 @@
                 @php
                 $notification_text = isset($notification->data['title'])? $notification->data['title'] : $notification->data['module'];
                 @endphp
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{$notification->data['url_backend']}}">
                     <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fas fa-flag'}}"></i> {{$notification_text}}
                 </a>
                 @endforeach
