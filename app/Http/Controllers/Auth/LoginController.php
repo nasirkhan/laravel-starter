@@ -66,7 +66,6 @@ class LoginController extends Controller
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::login($authUser, true);
-            event(new UserRegistered($authUser));
         } catch (Exception $e) {
             return redirect('/');
         }
