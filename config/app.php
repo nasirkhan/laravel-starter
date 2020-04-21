@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'salt' => 'nGqhzPOVRpysbY5jlqe609e',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
