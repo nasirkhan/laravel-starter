@@ -6,6 +6,7 @@ use App\Events\Frontend\UserRegistered;
 use App\Mail\NewUserRegisteredMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\NewRegistration;
 use Log;
 
 class UserRegisteredListener implements ShouldQueue
@@ -35,6 +36,7 @@ class UserRegisteredListener implements ShouldQueue
         Log::info('New User Registered as '.$user->name);
 
         // Send Email To Registered User
-        Mail::to($user->email)->send(new NewUserRegisteredMail($user));
+        // Mail::to($user->email)->send(new NewUserRegisteredMail($user));
+        $user->notify(new NewRegistration($user));
     }
 }
