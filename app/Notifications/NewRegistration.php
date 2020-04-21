@@ -11,6 +11,13 @@ class NewRegistration extends Notification
     use Queueable;
 
     /**
+     * The callback that should be used to build the mail message.
+     *
+     * @var \Closure|null
+     */
+    public static $toMailCallback;
+
+    /**
      * Create a new notification instance.
      *
      * @return void

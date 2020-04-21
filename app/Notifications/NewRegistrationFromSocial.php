@@ -6,12 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 
 class NewRegistrationFromSocial extends Notification
 {
     use Queueable;
+
+    /**
+     * The callback that should be used to build the mail message.
+     *
+     * @var \Closure|null
+     */
+    public static $toMailCallback;
 
     /**
      * Create a new notification instance.
@@ -46,9 +53,6 @@ class NewRegistrationFromSocial extends Notification
         if ($user->email_verified_at == '') {
             $verificationUrl = $this->verificationUrl($notifiable);
 
-            if (static::$toMailCallback) {
-                return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
-            }
             return (new MailMessage())
                 ->subject('Verify Email Address')
                 ->line('Please click the button below to verify your email address.')
