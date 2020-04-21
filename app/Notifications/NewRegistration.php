@@ -29,7 +29,7 @@ class NewRegistration extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -40,6 +40,8 @@ class NewRegistration extends Notification
      */
     public function toMail($notifiable)
     {
+        $user = $notifiable;
+
         return (new MailMessage)
                     ->subject("Thank you for registration!")
                     ->line("Thank you for registration at ".app_name().".")
@@ -50,13 +52,27 @@ class NewRegistration extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
+        $user = $notifiable;
+
+        $text = 'Registration Completed! | New registration completed for <strong>'.$user->name.'</strong>';
+
+        $url_backend = route('backend.users.profile', $user->id);
+        $url_frontend = route('frontend.users.profile', $user->id);
+
         return [
-            //
+            'title'         => 'Registration Completed!',
+            'module'        => 'User',
+            'type'          => 'created', // created, published, viewed,
+            'icon'          => 'fas fa-user',
+            'text'          => $text,
+            'url_backend'   => $url_backend,
+            'url_frontend'  => $url_frontend,
         ];
     }
 }

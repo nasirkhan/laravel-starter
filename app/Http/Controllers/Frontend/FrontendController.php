@@ -15,8 +15,7 @@ class FrontendController extends Controller
     public function index()
     {
         $body_class = '';
-        $user = auth()->user() ;
-        auth()->user()->notify(new NewRegistrationFromSocial($user));
+        
         return view('frontend.index', compact('body_class'));
     }
 }

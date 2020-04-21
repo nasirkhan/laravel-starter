@@ -36,7 +36,12 @@ class UserRegisteredListener implements ShouldQueue
         Log::info('New User Registered as '.$user->name);
 
         // Send Email To Registered User
-        // Mail::to($user->email)->send(new NewUserRegisteredMail($user));
-        $user->notify(new NewRegistration($user));
+        if ($user->password == '') {
+            // Register via social do not have passwords
+            $user->notify(new NewRegistrationFromSocial());
+        }
+        else {
+            $user->notify(new NewRegistration());
+        }
     }
 }
