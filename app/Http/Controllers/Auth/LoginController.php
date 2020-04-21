@@ -97,7 +97,7 @@ class LoginController extends Controller
         } else {
             $name = $socialUser->getName();
 
-            $name_parts = split_name($name);
+            $name_parts = $this->split_name($name);
             $first_name = $name_parts[0];
             $last_name = $name_parts[1];
 
