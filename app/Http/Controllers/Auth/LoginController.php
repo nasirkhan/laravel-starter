@@ -66,6 +66,8 @@ class LoginController extends Controller
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::login($authUser, true);
+
+            event(new UserRegistered($authUser));
         } catch (Exception $e) {
             return redirect('/');
         }
@@ -119,8 +121,6 @@ class LoginController extends Controller
                 'avatar'      => $socialUser->getAvatar(),
                 'provider'    => $provider,
             ]);
-
-            event(new UserRegistered($user));
 
             return $user;
         }
