@@ -7,6 +7,7 @@ use App\Mail\NewUserRegisteredMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\NewRegistration;
+use App\Notifications\NewRegistrationFromSocial;
 use Log;
 
 class UserRegisteredListener implements ShouldQueue
