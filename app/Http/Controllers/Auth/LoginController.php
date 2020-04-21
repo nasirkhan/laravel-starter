@@ -66,6 +66,7 @@ class LoginController extends Controller
             $authUser = $this->findOrCreateUser($user, $provider);
 
             Auth::login($authUser, true);
+            event(new UserRegistered($user));
         } catch (Exception $e) {
             return redirect('/');
         }
@@ -86,7 +87,8 @@ class LoginController extends Controller
             $authUser = User::findOrFail($authUser->user->id);
 
             return $authUser;
-        } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+        }
+        elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             UserProvider::create([
                 'user_id'     => $authUser->id,
                 'provider_id' => $socialUser->getId(),
@@ -95,7 +97,8 @@ class LoginController extends Controller
             ]);
 
             return $authUser;
-        } else {
+        }
+        else {
             $name = $socialUser->getName();
 
             $name_parts = $this->split_name($name);
