@@ -77,7 +77,7 @@
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(str_singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
