@@ -54,7 +54,7 @@ class NewRegistrationFromSocial extends Notification
             $verificationUrl = $this->verificationUrl($notifiable);
 
             return (new MailMessage())
-                ->subject('Verify Email Address')
+                ->subject("Thank you for registration!")
                 ->line('Please click the button below to verify your email address.')
                 ->action('Verify Email Address', $verificationUrl)
                 ->line('If you did not create an account, no further action is required.');

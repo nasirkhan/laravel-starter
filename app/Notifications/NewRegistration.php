@@ -55,7 +55,7 @@ class NewRegistration extends Notification
                 return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
             }
             return (new MailMessage())
-                ->subject('Verify Email Address')
+                ->subject("Thank you for registration!")
                 ->line('Please click the button below to verify your email address.')
                 ->action('Verify Email Address', $verificationUrl)
                 ->line('If you did not create an account, no further action is required.');
