@@ -17,6 +17,7 @@ class Post extends BaseModel implements Feedable
     use SoftDeletes;
     use PostPresenter;
     use Notifiable;
+    
     protected $table = 'posts';
 
     protected static $logName = 'posts';
@@ -30,7 +31,7 @@ class Post extends BaseModel implements Feedable
 
     public function tags()
     {
-        return $this->belongsToMany('Modules\Article\Entities\Tag');
+        return $this->morphToMany('Modules\Tag\Entities\Tag', 'taggable');
     }
 
     /**
