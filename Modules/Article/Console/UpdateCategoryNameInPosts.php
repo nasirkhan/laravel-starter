@@ -3,8 +3,6 @@
 namespace Modules\Article\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
 
@@ -43,7 +41,7 @@ class UpdateCategoryNameInPosts extends Command
     {
         echo "\n\n UpdateCategoryNameInPosts \n\n";
 
-        // get all categories 
+        // get all categories
         $categories = Category::all();
 
         $total_update_count = 0;
