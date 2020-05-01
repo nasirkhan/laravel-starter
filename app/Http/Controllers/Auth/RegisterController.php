@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\Frontend\UserCreated;
+use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'password'   => Hash::make($data['password']),
         ]);
 
-        event(new UserCreated($user));
+        event(new UserRegistered($user));
 
         return $user;
     }

@@ -100,6 +100,7 @@
 
                 </form>
             </div>
+            @include('auth.social_login_buttons')
         </div>
     </div>
 </div>

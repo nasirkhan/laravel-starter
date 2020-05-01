@@ -17,4 +17,28 @@ class FrontendController extends Controller
 
         return view('frontend.index', compact('body_class'));
     }
+
+    /**
+     * Privacy Policy Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function privecy()
+    {
+        $body_class = '';
+
+        return view('frontend.privecy', compact('body_class'));
+    }
+
+    /**
+     * Terms & Conditions Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function terms()
+    {
+        $body_class = '';
+
+        return view('frontend.terms', compact('body_class'));
+    }
 }

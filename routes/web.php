@@ -15,6 +15,12 @@ $user_registration = user_registration();
 
 Auth::routes(['verify' => true, 'register' => $user_registration]);
 
+// Socialite routes
+Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
+    Route::get('login/{provider}', ['as' => 'social.login', 'uses' => 'LoginController@redirectToProvider']);
+    Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
+});
+
 // Atom/ RSS Feed Routes
 Route::feeds();
 
@@ -27,6 +33,8 @@ Route::feeds();
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
     Route::get('home', 'FrontendController@index')->name('home');
+    Route::get('privecy', 'FrontendController@privecy')->name('privecy');
+    Route::get('terms', 'FrontendController@terms')->name('terms');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
