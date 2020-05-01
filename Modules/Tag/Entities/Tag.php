@@ -1,9 +1,8 @@
 <?php
 
-namespace Modules\Article\Entities;
+namespace Modules\Tag\Entities;
 
 use App\Models\BaseModel;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends BaseModel
@@ -13,11 +12,11 @@ class Tag extends BaseModel
     protected $table = 'tags';
 
     /**
-     * Tags has Many posts.
+     * Get all of the posts that are assigned this tag.
      */
     public function posts()
     {
-        return $this->belongsToMany('Modules\Article\Entities\Post');
+        return $this->morphedByMany('Modules\Article\Entities\Post', 'taggable');
     }
 
     /**
@@ -51,32 +50,17 @@ class Tag extends BaseModel
     }
 
     /**
-     * Set the meta meta_og_image
-     * If no value submitted use the 'Title'.
+     * Set the 'meta description'
+     * If no value submitted use the default 'meta_description'.
      *
      * @param [type]
      */
-    public function setMetaOgImageAttribute($value)
+    public function setMetaKeywordAttribute($value)
     {
-        $this->attributes['meta_og_image'] = $value;
+        $this->attributes['meta_keyword'] = $value;
 
         if (empty($value)) {
-            $this->attributes['meta_og_image'] = config('settings.meta_og_image');
-        }
-    }
-
-    /**
-     * Set the published at
-     * If no value submitted use the 'Title'.
-     *
-     * @param [type]
-     */
-    public function setPublishedAtAttribute($value)
-    {
-        $this->attributes['published_at'] = $value;
-
-        if (empty($value) && $this->attributes['status'] == 1) {
-            $this->attributes['published_at'] = Carbon::now();
+            $this->attributes['meta_keyword'] = config('settings.meta_keyword');
         }
     }
 }

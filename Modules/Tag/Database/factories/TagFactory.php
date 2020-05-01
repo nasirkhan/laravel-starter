@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(Modules\Article\Entities\Tag::class, function (Faker $faker) {
+$factory->define(Modules\Tag\Entities\Tag::class, function (Faker $faker) {
     return [
         'name'              => $faker->sentence(2),
         'slug'              => '',

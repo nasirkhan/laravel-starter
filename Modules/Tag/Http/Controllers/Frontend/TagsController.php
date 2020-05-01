@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Article\Http\Controllers\Frontend;
+namespace Modules\Tag\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -23,7 +23,7 @@ class TagsController extends Controller
         $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Tag";
+        $this->module_model = "Modules\Tag\Entities\Tag";
     }
 
     /**
@@ -45,7 +45,7 @@ class TagsController extends Controller
         $$module_name = $module_model::with('posts')->paginate();
 
         return view(
-            "article::frontend.$module_path.index",
+            "tag::frontend.$module_path.index",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -74,7 +74,7 @@ class TagsController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "article::frontend.$module_name.show",
+            "tag::frontend.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
         );
     }

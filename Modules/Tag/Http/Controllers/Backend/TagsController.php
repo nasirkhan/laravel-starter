@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Article\Http\Controllers\Backend;
+namespace Modules\Tag\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
@@ -12,7 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Log;
-use Modules\Article\Http\Requests\Backend\TagsRequest;
+use Modules\Tag\Http\Requests\Backend\TagsRequest;
 use Yajra\DataTables\DataTables;
 
 class TagsController extends Controller
@@ -34,7 +34,7 @@ class TagsController extends Controller
         $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Tag";
+        $this->module_model = "Modules\Tag\Entities\Tag";
     }
 
     /**
@@ -58,7 +58,7 @@ class TagsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_path.index_datatable",
+            "tag::backend.$module_path.index_datatable",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -159,7 +159,7 @@ class TagsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.create",
+            "tag::backend.$module_name.create",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -216,7 +216,7 @@ class TagsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.show",
+            "tag::backend.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts')
         );
     }
@@ -242,7 +242,7 @@ class TagsController extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view(
-            "article::backend.$module_name.edit",
+            "tag::backend.$module_name.edit",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
         );
     }
@@ -331,7 +331,7 @@ class TagsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view(
-            "article::backend.$module_name.trash",
+            "tag::backend.$module_name.trash",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }

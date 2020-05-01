@@ -1,0 +1,27 @@
+{
+    "name": "nasirkhan/tag",
+    "description": "Tag module for Laravel Starter, nasirkhan/laravel-starter. It can be used with any other Models.",
+    "type": "project",
+    "version": "v1.0.0",
+    "authors": [
+        {
+            "name": "Nasir Khan",
+            "email": "nasir8891@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Tag\\Providers\\TagServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Tag\\": ""
+        }
+    }
+}
