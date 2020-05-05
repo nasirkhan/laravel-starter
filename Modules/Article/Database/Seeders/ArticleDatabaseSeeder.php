@@ -7,7 +7,6 @@ use Auth;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
-use Modules\Article\Entities\Comment;
 use Modules\Article\Entities\Post;
 
 class ArticleDatabaseSeeder extends Seeder
@@ -48,16 +47,6 @@ class ArticleDatabaseSeeder extends Seeder
             // );
         });
         echo " Insert: posts \n";
-
-        /*
-         * Comment Seed
-         * ------------------
-         */
-        DB::table('comments')->truncate();
-        echo "Truncate: comments \n";
-
-        factory(Comment::class, 50)->create();
-        echo " Insert: comments \n";
 
         // Artisan::call('auth:permission', [
         //     'name' => 'posts',
