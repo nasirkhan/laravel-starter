@@ -17,6 +17,7 @@ class Post extends BaseModel implements Feedable
     use SoftDeletes;
     use PostPresenter;
     use Notifiable;
+
     protected $table = 'posts';
 
     protected static $logName = 'posts';
@@ -30,15 +31,15 @@ class Post extends BaseModel implements Feedable
 
     public function tags()
     {
-        return $this->belongsToMany('Modules\Article\Entities\Tag');
+        return $this->morphToMany('Modules\Tag\Entities\Tag', 'taggable');
     }
-
+    
     /**
-     * All Published Comments.
+     * Get all of the post's comments.
      */
     public function comments()
     {
-        return $this->hasMany('Modules\Article\Entities\Comment')->where('status', '=', 1);
+        return $this->morphMany('Modules\Comment\Entities\Comment', 'commentable')->where('status', '=', 1);
     }
 
     /**

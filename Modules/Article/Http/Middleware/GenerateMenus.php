@@ -67,32 +67,6 @@ class GenerateMenus
             ->link->attr([
                 'class' => 'nav-link',
             ]);
-            // Submenu: Tags
-            $articles_menu->add('<i class="nav-icon fas fa-tags"></i> Tags', [
-                'route' => 'backend.tags.index',
-                'class' => 'nav-item',
-            ])
-            ->data([
-                'order'         => 84,
-                'activematches' => 'admin/tags*',
-                'permission'    => ['edit_tags'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
-            // Submenu: Comments
-            $articles_menu->add('<i class="nav-icon fas fa-comments"></i> Comments', [
-                'route' => 'backend.comments.index',
-                'class' => 'nav-item',
-            ])
-            ->data([
-                'order'         => 85,
-                'activematches' => 'admin/comments*',
-                'permission'    => ['edit_comments'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
         })->sortBy('order');
 
         return $next($request);
