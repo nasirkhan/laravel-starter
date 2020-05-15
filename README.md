@@ -7,7 +7,7 @@ Please let me know your feedback and comments.
 
 
 # Demo
-Check the following demo project. It is just a straight installation of the project without any modification.
+Check the following demo project. It is just a straight installation of the project without any modification. Demo URL: http://laravel.nasirkhn.com
 
 ```
 User: super@admin.com
@@ -17,8 +17,6 @@ User: user@user.com
 Pass: 1234
 
 ```
-
-http://laravel.nasirkhn.com/
 
 
 ## Custom Commands
@@ -91,7 +89,8 @@ Follow the steps mentioned below to install and run the project.
 3. Create `.env` file by copying the `.env.example`. You may use the command to to that `cp .env.example .env`
 4. Update the database name and credentials
 5. Run the command `php artisan migrate -seed`
-6. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
+6. Link storage directory. `php artisan storage:link`
+7. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
 
 ### Set Module Permissions
 1. Set Permissions for Posts, Categories, Tags: `php artisan article:create-permissions`
