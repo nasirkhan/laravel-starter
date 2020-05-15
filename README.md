@@ -7,7 +7,9 @@ Please let me know your feedback and comments.
 
 
 # Demo
-Check the following demo project. It is just a straight installation of the project without any modification. Demo URL: http://laravel.nasirkhn.com
+Check the following demo project. It is just a straight installation of the project without any modification. 
+
+Demo URL: http://laravel.nasirkhn.com
 
 ```
 User: super@admin.com
