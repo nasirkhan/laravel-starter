@@ -1,5 +1,5 @@
 {
-    "name": "nasirkhan/comment",
+    "name": "nasirkhan/comment-module",
     "description": "Comment module for Laravel Starter, nasirkhan/laravel-starter. It can be used with any other Models. One to many polymorphic relation.",
     "type": "laravel-module",
     "version": "v1.0.0",

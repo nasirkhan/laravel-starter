@@ -1,5 +1,5 @@
 {
-    "name": "nasirkhan/tag",
+    "name": "nasirkhan/tag-module",
     "description": "Tag module for Laravel Starter, nasirkhan/laravel-starter. It can be used with any other Models.",
     "type": "laravel-module",
     "version": "v1.0.0",
