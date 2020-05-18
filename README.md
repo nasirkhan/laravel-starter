@@ -7,7 +7,7 @@ Please let me know your feedback and comments.
 
 
 # Demo
-Check the following demo project. It is just a straight installation of the project without any modification. 
+Check the following demo project. It is just a straight installation of the project without any modification.
 
 Demo URL: http://laravel.nasirkhn.com
 
@@ -46,6 +46,7 @@ apply the code style fix by this command.
 
 * User Authentication
 * Social Login
+  * Google
   * Facebook
   * Github
   * Build in a way adding more is much easy now
@@ -65,7 +66,7 @@ apply the code style fix by this command.
   * Tags
   * Comments
   * wysiwyg editor
-  * file browser
+  * File browser
 * Application Settings
 * External Libraries
   * Bootstrap 4

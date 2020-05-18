@@ -49,7 +49,7 @@ class CommentsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::paginate();
+        $$module_name = $module_model::published()->paginate();
 
         return view(
             "comment::frontend.$module_path.index",
@@ -77,7 +77,11 @@ class CommentsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::whereId($id)->published()->first();
+
+        if (!$$module_name_singular) {
+            abort(404);
+        }
 
         return view(
             "comment::frontend.$module_name.show",
