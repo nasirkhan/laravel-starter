@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
+use Auth;
+use Log;
 
 /*
  * Global helpers file with misc functions.
@@ -272,6 +274,32 @@ if (!function_exists('icon')) {
         $return_string = "<i class='".$string."'></i>";
 
         return $return_string;
+    }
+}
+
+/*
+ *
+ * logUserAccess
+ * Get current user's `name` and `id` and
+ * log as debug data. Additional text can be added too.
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('logUserAccess')) {
+
+    /**
+     * Format a string to Slug.
+     */
+    function logUserAccess($text = "")
+    {
+        $auth_text = "";
+
+        if (Auth::check()) {
+            $auth_text = "User:{Auth::user()->name} (ID:{Auth::user()->id})'";
+        }
+
+        Log::debug(label_case($text)." | $auth_text");
+
     }
 }
 
