@@ -39,9 +39,9 @@ mix.scripts([
    "node_modules/pace-progress/pace.min.js",
    "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
    "node_modules/chart.js/dist/Chart.min.js",
-   "resources/assets/js/laravel.js",
    "node_modules/@coreui/coreui/dist/js/coreui.min.js",
-   "resources/assets/js/custom-backend.js"
+   "resources/js/laravel.js",
+   "resources/js/custom-backend.js"
 ], "public/js/backend.js");
 
 /**
