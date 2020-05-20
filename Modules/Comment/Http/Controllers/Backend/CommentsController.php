@@ -29,9 +29,6 @@ class CommentsController extends Controller
         // module name
         $this->module_name = 'comments';
 
-        // directory path of the module
-        $this->module_path = 'comments';
-
         // module icon
         $this->module_icon = 'fas fa-comments';
 
@@ -48,7 +45,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -60,7 +56,7 @@ class CommentsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "comment::backend.$module_path.index_datatable",
+            "comment::backend.$module_name.index_datatable",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -74,7 +70,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -105,7 +100,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -153,7 +147,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -179,7 +172,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -208,7 +200,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -242,7 +233,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -271,7 +261,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -300,7 +289,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -328,7 +316,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -357,7 +344,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);

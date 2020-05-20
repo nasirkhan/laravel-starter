@@ -23,9 +23,6 @@ class CommentsController extends Controller
         // module name
         $this->module_name = 'comments';
 
-        // directory path of the module
-        $this->module_path = 'comments';
-
         // module icon
         $this->module_icon = 'fas fa-comments';
 
@@ -42,7 +39,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -52,8 +48,8 @@ class CommentsController extends Controller
         $$module_name = $module_model::published()->paginate();
 
         return view(
-            "comment::frontend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+            "comment::frontend.$module_name.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -70,7 +66,6 @@ class CommentsController extends Controller
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
@@ -100,7 +95,6 @@ class CommentsController extends Controller
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
-        $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
