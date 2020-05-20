@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Auth;
-use Log;
 
 /*
  * Global helpers file with misc functions.
@@ -295,11 +295,10 @@ if (!function_exists('logUserAccess')) {
         $auth_text = "";
 
         if (Auth::check()) {
-            $auth_text = "User:{Auth::user()->name} (ID:{Auth::user()->id})'";
+            $auth_text = "User:".Auth::user()->name." (ID:".Auth::user()->id.")";
         }
 
         Log::debug(label_case($text)." | $auth_text");
-
     }
 }
 

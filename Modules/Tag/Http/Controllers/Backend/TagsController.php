@@ -4,16 +4,7 @@ namespace Modules\Tag\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
-// use Auth;
-// use Carbon\Carbon;
-// use Flash;
-// use Illuminate\Http\Request;
-// use Illuminate\Http\Response;
-// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-// use Log;
-// // use Modules\Tag\Http\Requests\Backend\Request;
-// use Yajra\DataTables\DataTables;
 
 class TagsController extends BackendBaseController
 {
@@ -59,12 +50,11 @@ class TagsController extends BackendBaseController
 
         $posts = $$module_name_singular->posts()->latest()->paginate();
 
-        logUserAccess($module_title.' '.$module_action);
+        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
 
         return view(
             "$module_path.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts')
         );
     }
-
 }
