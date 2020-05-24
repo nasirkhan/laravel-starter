@@ -43,7 +43,7 @@
 
         <div class="row mt-4">
             <div class="col">
-                {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->open() }}
+                {{ html()->form('POST', route("backend.$module_name.store"))->acceptsFiles()->class('form')->open() }}
 
                 @include ("tag::backend.$module_name.form")
 
