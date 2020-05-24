@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -157,7 +156,7 @@ class BackendBaseController extends Controller
 
         return view(
             "$module_path.$module_name.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -181,7 +180,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular = $module_model::create($request->all());
 
-        Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
+        flash("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->success()->important();
 
         logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
 
@@ -212,7 +211,7 @@ class BackendBaseController extends Controller
 
         return view(
             "$module_path.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
         );
     }
 
@@ -267,11 +266,11 @@ class BackendBaseController extends Controller
 
         $$module_name_singular->update($request->all());
 
-        Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
+        flash("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
 
-        return redirect("admin/$module_name");
+        return redirect()->back();
     }
 
     /**
@@ -296,7 +295,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular->delete();
 
-        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->important();
+        flash('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
 
@@ -326,7 +325,7 @@ class BackendBaseController extends Controller
 
         return view(
             "$module_path.$module_name.trash",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            compact('module_title', 'module_name', 'module_path', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -352,7 +351,7 @@ class BackendBaseController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->important();
+        flash('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
 
