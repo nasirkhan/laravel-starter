@@ -54,7 +54,7 @@ class TagsController extends BackendBaseController
 
         $$module_name_singular = $module_model::create($request->except('image'));
 
-        if ($request->image){
+        if ($request->image) {
             $media = $$module_name_singular->addMedia($request->file('image'))->toMediaCollection($module_name);
             $$module_name_singular->image = $media->getUrl();
             $$module_name_singular->save();
@@ -127,7 +127,7 @@ class TagsController extends BackendBaseController
 
         // Image
         if ($request->hasFile('image')) {
-            if ($$module_name_singular->getMedia($module_name)->first()){
+            if ($$module_name_singular->getMedia($module_name)->first()) {
                 $$module_name_singular->getMedia($module_name)->first()->delete();
             }
             $media = $$module_name_singular->addMedia($request->file('image'))->toMediaCollection($module_name);
@@ -136,8 +136,8 @@ class TagsController extends BackendBaseController
 
             $$module_name_singular->save();
         }
-        if ($request->image_remove == 'image_remove'){
-            if ($$module_name_singular->getMedia($module_name)->first()){
+        if ($request->image_remove == 'image_remove') {
+            if ($$module_name_singular->getMedia($module_name)->first()) {
                 $$module_name_singular->getMedia($module_name)->first()->delete();
 
                 $$module_name_singular->image = '';

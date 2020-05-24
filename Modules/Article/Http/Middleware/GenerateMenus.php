@@ -32,9 +32,8 @@ class GenerateMenus
                 'activematches' => [
                     'admin/posts*',
                     'admin/categories*',
-                    'admin/tags*',
                 ],
-                'permission' => ['view_posts', 'view_categories', 'view_tags'],
+                'permission' => ['view_posts', 'view_categories'],
             ]);
             $articles_menu->link->attr([
                 'class' => 'nav-link nav-dropdown-toggle',
