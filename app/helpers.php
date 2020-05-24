@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-
 /*
  * Global helpers file with misc functions.
  */
@@ -55,8 +52,8 @@ if (!function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = trim(Str::title(str_replace('"', '', $text)));
-        $new_text = trim(Str::title(str_replace($order, $replace, $text)));
+        $new_text = trim(Illuminate\Support\Str::title(str_replace('"', '', $text)));
+        $new_text = trim(Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
         $new_text = preg_replace('!\s+!', ' ', $new_text);
 
         return $new_text;
@@ -100,7 +97,7 @@ if (!function_exists('show_column_value')) {
             return $datetime->toDayDateTimeString();
         } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } elseif ($column_type != 'json' && Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
