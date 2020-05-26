@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
-use App\Events\Backend\User\UserCreated;
-use App\Events\Backend\User\UserProfileUpdated;
+use App\Events\Backend\UserCreated;
+use App\Events\Backend\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Listeners\Backend\User\UserUpdatedProfileUpdate;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -16,6 +15,7 @@ use App\Models\UserProvider;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Log;
@@ -214,9 +214,9 @@ class UserController extends Controller
         $data_array['name'] = $request->first_name.' '.$request->last_name;
 
         if ($request->confirmed == 1) {
-            $data_array = array_add($data_array, 'email_verified_at', Carbon::now());
+            $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
         } else {
-            $data_array = array_add($data_array, 'email_verified_at', null);
+            $data_array = Arr::add($data_array, 'email_verified_at', null);
         }
 
         $$module_name_singular = User::create($data_array);
@@ -659,7 +659,7 @@ class UserController extends Controller
 
         $$module_name_singular->delete();
 
-        event(new UserUpdatedProfileUpdate($$module_name_singular));
+        event(new UserUpdated($$module_name_singular));
 
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Deleted!')->success();
 
@@ -718,7 +718,7 @@ class UserController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        event(new UserUpdatedProfileUpdate($$module_name_singular));
+        event(new UserUpdated($$module_name_singular));
 
         flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' Successfully Restoreded!')->success();
 
@@ -758,7 +758,7 @@ class UserController extends Controller
             $$module_name_singular->status = 2;
             $$module_name_singular->save();
 
-            event(new UserUpdatedProfileUpdate($$module_name_singular));
+            event(new UserUpdated($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Blocked!')->success();
 
@@ -799,7 +799,7 @@ class UserController extends Controller
             $$module_name_singular->status = 1;
             $$module_name_singular->save();
 
-            event(new UserUpdatedProfileUpdate($$module_name_singular));
+            event(new UserUpdated($$module_name_singular));
 
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Unblocked!')->success();
 
