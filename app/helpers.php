@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth;
+use Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
