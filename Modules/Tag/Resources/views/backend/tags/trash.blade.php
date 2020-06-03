@@ -54,9 +54,6 @@ $module_name_singular = Str::singular($module_name);
                                 Name
                             </th>
                             <th>
-                                Page
-                            </th>
-                            <th>
                                 Updated At
                             </th>
                             <th>
@@ -75,13 +72,12 @@ $module_name_singular = Str::singular($module_name);
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                <strong>
+                                    {{ $module_name_singular->name }}
+                                </strong>
                             </td>
                             <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                                {{ $module_name_singular->updated_at->toDayDateTimeString() }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
@@ -111,8 +107,8 @@ $module_name_singular = Str::singular($module_name);
         </div>
     </div>
 </div>
-
 @stop
+
 @section ('after-scripts-end')
 
 @stop

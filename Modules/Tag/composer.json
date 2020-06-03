@@ -2,7 +2,7 @@
     "name": "nasirkhan/tag-module",
     "description": "Tag module for Laravel Starter, nasirkhan/laravel-starter. It can be used with any other Models.",
     "type": "laravel-module",
-    "version": "v2.0.0",
+    "version": "v3.0.0",
     "authors": [
         {
             "name": "Nasir Khan",
