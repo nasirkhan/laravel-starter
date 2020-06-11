@@ -1,7 +1,5 @@
 <?php
 
-
-use Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
