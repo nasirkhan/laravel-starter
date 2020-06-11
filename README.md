@@ -95,17 +95,9 @@ Follow the steps mentioned below to install and run the project.
 6. Link storage directory. `php artisan storage:link`
 7. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
 
-### Set Module Permissions
-1. Set Permissions for Posts, Categories, Tags: `php artisan article:create-permissions`
-1. Set Permissions for Newsletter:  `php artisan newsletter:create-permissions`
-
 *After creating the new permissions use the following commands to update cashed permissions.*
 
 `php artisan cache:forget spatie.permission.cache`
-
-### Seed Sample Data (Optional & should use only on testing)
-1. Add sample data on Posts, Categories, Tags with the following command `php artisan article:create-sample-data`
-1. Add sample data on Newsletter with the following command `php artisan newsletter:create-sample-data`
 
 
 ## Screenshots
