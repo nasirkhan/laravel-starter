@@ -37,9 +37,19 @@ class UserRegisteredListener implements ShouldQueue
         // Send Email To Registered User
         if ($user->password == '') {
             // Register via social do not have passwords
-            $user->notify(new NewRegistrationFromSocial());
+            try {
+                $user->notify(new NewRegistrationFromSocial());
+            } catch (\Exception $e) {
+                Log::error("UserRegisteredListener: Email Send Failed.");
+                Log::error($e);
+            }
         } else {
-            $user->notify(new NewRegistration());
+            try {
+                $user->notify(new NewRegistration());
+            } catch (\Exception $e) {
+                Log::error("UserRegisteredListener: Email Send Failed.");
+                Log::error($e);
+            }
         }
     }
 }
