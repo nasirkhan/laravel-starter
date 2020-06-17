@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
+use Log;
 
 class LoginController extends Controller
 {
