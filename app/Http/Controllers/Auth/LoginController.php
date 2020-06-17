@@ -101,12 +101,21 @@ class LoginController extends Controller
             $name_parts = $this->split_name($name);
             $first_name = $name_parts[0];
             $last_name = $name_parts[1];
+            $email = $socialUser->getEmail();
+
+            if ($email == "") {
+                Log::error("Social Login does not have email!");
+
+                flash("Email address is required!")->warning()->important();
+
+                return redirect('/');
+            }
 
             $user = User::create([
                 'first_name'  => $first_name,
                 'last_name'  => $last_name,
                 'name'  => $name,
-                'email' => $socialUser->getEmail(),
+                'email' => $email,
             ]);
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
