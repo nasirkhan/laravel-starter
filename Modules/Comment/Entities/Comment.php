@@ -71,15 +71,10 @@ class Comment extends BaseModel
 
     public function setUserIdAttribute($value)
     {
-        $this->attributes['user_id'] = decode_id($value);
+        $this->attributes['user_id'] = $value;
 
-        $this->attributes['user_name'] = User::findOrFail(decode_id($value))->name;
-    }
-
-    public function setParentIdAttribute($value)
-    {
         if ($value) {
-            $this->attributes['parent_id'] = decode_id($value);
+            $this->attributes['user_name'] = User::findOrFail($value)->name;
         }
     }
 
