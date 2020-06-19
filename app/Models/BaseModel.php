@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasHashedMediaTrait;
 use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
     use SoftDeletes;
-    use HasMediaTrait;
+    use HasHashedMediaTrait;
     protected $guarded = [
         'id',
         'updated_at',
