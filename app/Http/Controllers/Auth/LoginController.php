@@ -9,8 +9,8 @@ use App\Models\UserProvider;
 use App\Providers\RouteServiceProvider;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
 use Log;
+use Socialite;
 
 class LoginController extends Controller
 {
