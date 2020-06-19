@@ -27,6 +27,5 @@ class UserProfileUpdatedNotifyUser implements ShouldQueue
     public function handle(UserProfileUpdated $event)
     {
         $user = $event->user_profile;
-        //
     }
 }

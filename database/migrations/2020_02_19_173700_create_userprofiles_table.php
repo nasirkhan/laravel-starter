@@ -29,9 +29,6 @@ class CreateUserprofilesTable extends Migration
             $table->string('url_facebook')->nullable();
             $table->string('url_twitter')->nullable();
             $table->string('url_linkedin')->nullable();
-            $table->string('url_1')->nullable();
-            $table->string('url_2')->nullable();
-            $table->string('url_3')->nullable();
 
             $table->string('profile_privecy')->nullable();
             $table->date('date_of_birth')->nullable();

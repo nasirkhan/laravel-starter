@@ -235,42 +235,6 @@
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                             </div>
                         </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'url_1';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'url_2';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="form-group">
-                                <?php
-                                $field_name = 'url_3';
-                                $field_lable = label_case($field_name);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
-                                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                            </div>
-                        </div>
                     </div>
 
                     <div class="form-group row">

@@ -39,6 +39,7 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
         $user->gender = $user_profile->gender;
         $user->date_of_birth = $user_profile->date_of_birth;
         $user->gender = $user_profile->gender;
+        
         $user->save();
     }
 }

@@ -27,6 +27,5 @@ class UserUpdatedNotifyUser implements ShouldQueue
     public function handle(UserUpdated $event)
     {
         $user = $event->user;
-        //
     }
 }
