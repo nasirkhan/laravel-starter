@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="navbar-translate">
-            <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name', 'Laravel Starter') }} - Application Landing Page" data-placement="bottom">
-                {{ config('app.name', 'Laravel Starter') }}
+            <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name') }} - Application Landing Page" data-placement="bottom">
+                {{ config('app.name') }}
             </a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar bar1"></span>

@@ -4,7 +4,7 @@
             <ul>
                 <li>
                     <a href="/">
-                        {{ config('app.name', 'Laravel Starter') }}
+                        {{ config('app.name') }}
                     </a>
                 </li>
                 <li>
@@ -46,7 +46,7 @@
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-            </script> {{ config('app.name', 'Laravel Starter') }}, {!! setting('footer_text') !!}
+            </script> {{ config('app.name') }}, {!! setting('footer_text') !!}
         </div>
     </div>
 </footer>

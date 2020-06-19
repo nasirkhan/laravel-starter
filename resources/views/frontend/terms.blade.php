@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-Terms &amp; Conditions - {{ config('app.name', 'Laravel Starter') }}
+Terms &amp; Conditions - {{ config('app.name') }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Terms &amp; Conditions - {{ config('app.name', 'Laravel Starter') }}
     </div>
     <div class="container">
         <h3 class="title">
-            Terms &amp; Conditions - {{ config('app.name', 'Laravel Starter') }}
+            Terms &amp; Conditions - {{ config('app.name') }}
         </h3>
     </div>
 </div>

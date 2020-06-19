@@ -36,7 +36,7 @@ if(!isset($meta_page_type)){
 
     <!-- Facebook Meta -->
     <meta property="og:url" content="{{url()->full()}}" />
-    <meta property="og:title" content="@yield('title') | {{ config('app.name', 'Laravel Starter') }}" />
+    <meta property="og:title" content="@yield('title') | {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{setting('meta_site_name')}}" />
     <meta property="og:description" content="{{ setting('meta_description') }}" />
     <meta property="og:image" content="{{ asset(setting('meta_image')) }}" />
@@ -48,7 +48,7 @@ if(!isset($meta_page_type)){
     <meta name="twitter:site" content="{{ setting('meta_twitter_site') }}">
     <meta name="twitter:url" content="{{url()->full()}}" />
     <meta name="twitter:creator" content="{{ setting('meta_twitter_creator') }}">
-    <meta name="twitter:title" content="@yield('title') | {{ config('app.name', 'Laravel Starter') }}">
+    <meta name="twitter:title" content="@yield('title') | {{ config('app.name') }}">
     <meta name="twitter:description" content="{{ setting('meta_description') }}">
     <meta name="twitter:image" content="{{ asset(setting('meta_image')) }}">
 

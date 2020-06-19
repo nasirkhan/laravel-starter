@@ -12,7 +12,7 @@
     <div class="content-center">
         <div class="container">
             <h1 class="title text-center">
-                {{ config('app.name', 'Laravel Starter') }}
+                {{ config('app.name') }}
             </h1>
             <h3 class="category">
                 "The best way to predict your future is to create it"

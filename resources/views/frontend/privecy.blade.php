@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-Privacy Policy - {{ config('app.name', 'Laravel Starter') }}
+Privacy Policy - {{ config('app.name') }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Privacy Policy - {{ config('app.name', 'Laravel Starter') }}
     </div>
     <div class="container">
         <h3 class="title">
-            Privacy Policy - {{ config('app.name', 'Laravel Starter') }}
+            Privacy Policy - {{ config('app.name') }}
         </h3>
     </div>
 </div>
@@ -20,7 +20,7 @@ Privacy Policy - {{ config('app.name', 'Laravel Starter') }}
         <strong>Privacy Policy</strong>
 
         <p>
-            Nasir Khan Saikat built the {{ config('app.name', 'Laravel Starter') }} app as
+            Nasir Khan Saikat built the {{ config('app.name') }} app as
             an Open Source app. This SERVICE is provided by
             Nasir Khan Saikat at no cost and is intended for use as
             is.
