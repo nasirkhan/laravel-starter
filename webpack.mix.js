@@ -23,26 +23,35 @@ mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js")
  *
  * -----------------------------------------------------------------------------
  */
+// Build Backend SASS
+mix.sass("resources/sass/backend.scss", "public/css/backend-theme.css");
+
 // backend css
-mix.styles([
-    "node_modules/@coreui/coreui/dist/css/coreui.min.css",
-    "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-    "resources/assets/css/pace.min.css",
-    "resources/assets/css/custom-backend.css"
-], "public/css/backend.css");
+mix.styles(
+    [
+        "public/css/backend-theme.css",
+        "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+        "resources/assets/css/pace.min.css",
+        "resources/assets/css/custom-backend.css"
+    ],
+    "public/css/backend.css"
+);
 
 // backend js
-mix.scripts([
-   "node_modules/jquery/dist/jquery.min.js",
-   "node_modules/popper.js/dist/umd/popper.min.js",
-   "node_modules/bootstrap/dist/js/bootstrap.min.js",
-   "node_modules/pace-progress/pace.min.js",
-   "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
-   "node_modules/chart.js/dist/Chart.min.js",
-   "node_modules/@coreui/coreui/dist/js/coreui.min.js",
-   "resources/js/laravel.js",
-   "resources/js/custom-backend.js"
-], "public/js/backend.js");
+mix.scripts(
+    [
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/@popperjs/core/dist/umd/popper/popper.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "node_modules/pace-progress/pace.min.js",
+        "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+        "node_modules/chart.js/dist/Chart.min.js",
+        "node_modules/@coreui/coreui/dist/js/coreui.min.js",
+        "resources/js/laravel.js",
+        "resources/js/custom-backend.js"
+    ],
+    "public/js/backend.js"
+);
 
 /**
  *
