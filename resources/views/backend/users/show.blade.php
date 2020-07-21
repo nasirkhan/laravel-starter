@@ -3,7 +3,7 @@
 @section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
 <li class="breadcrumb-item active"> Profile</li>
 @stop

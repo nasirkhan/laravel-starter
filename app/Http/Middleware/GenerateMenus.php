@@ -83,8 +83,8 @@ class GenerateMenus
             ]);
 
             // Access Control Dropdown
-            $accessControl = $menu->add('<i class="c-sidebar-nav-icon icon-key"></i> Access Control', [
-                'class' => 'nav-item nav-dropdown',
+            $accessControl = $menu->add('<i class="c-sidebar-nav-icon cil-shield-alt"></i> Access Control', [
+                'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
                 'order'         => 104,
@@ -95,12 +95,12 @@ class GenerateMenus
                 'permission'    => ['view_users', 'view_roles'],
             ]);
             $accessControl->link->attr([
-                'class' => 'c-sidebar-nav-link nav-dropdown-toggle',
+                'class' => 'c-sidebar-nav-dropdown-toggle',
                 'href'  => '#',
             ]);
 
             // Submenu: Users
-            $accessControl->add('<i class="c-sidebar-nav-icon icon-people"></i> Users', [
+            $accessControl->add('<i class="c-sidebar-nav-icon cil-people"></i> Users', [
                 'route' => 'backend.users.index',
                 'class' => 'nav-item',
             ])
@@ -114,7 +114,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Roles
-            $accessControl->add('<i class="c-sidebar-nav-icon icon-people"></i> Roles', [
+            $accessControl->add('<i class="c-sidebar-nav-icon cil-people"></i> Roles', [
                 'route' => 'backend.roles.index',
                 'class' => 'nav-item',
             ])
@@ -129,8 +129,8 @@ class GenerateMenus
 
             // Log Viewer
             // Log Viewer Dropdown
-            $accessControl = $menu->add('<i class="c-sidebar-nav-icon fas fa-list"></i> Log Viewer', [
-                'class' => 'nav-item nav-dropdown',
+            $accessControl = $menu->add('<i class="c-sidebar-nav-icon cil-list-rich"></i> Log Viewer', [
+                'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
                 'order'         => 107,
@@ -140,12 +140,12 @@ class GenerateMenus
                 'permission'    => ['view_logs'],
             ]);
             $accessControl->link->attr([
-                'class' => 'c-sidebar-nav-link nav-dropdown-toggle',
+                'class' => 'c-sidebar-nav-dropdown-toggle',
                 'href'  => '#',
             ]);
 
             // Submenu: Log Viewer Dashboard
-            $accessControl->add('<i class="c-sidebar-nav-icon fas fa-list"></i> Dashboard', [
+            $accessControl->add('<i class="c-sidebar-nav-icon cil-list"></i> Dashboard', [
                 'route' => 'log-viewer::dashboard',
                 'class' => 'nav-item',
             ])
@@ -158,7 +158,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Log Viewer Logs by Days
-            $accessControl->add('<i class="c-sidebar-nav-icon fas fa-list-ol"></i> Logs by Days', [
+            $accessControl->add('<i class="c-sidebar-nav-icon cil-list-numbered"></i> Logs by Days', [
                 'route' => 'log-viewer::logs.list',
                 'class' => 'nav-item',
             ])

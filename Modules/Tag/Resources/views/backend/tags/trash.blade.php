@@ -16,7 +16,7 @@ $module_name_singular = Str::singular($module_name);
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
 @stop
 
