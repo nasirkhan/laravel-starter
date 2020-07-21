@@ -804,6 +804,11 @@
   resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-3.2.2.tgz#78e392175373779f6c2d613d85a70eb03beaa149"
   integrity sha512-LvQPLTigUeqOsZFmzXSl2Uz3Wx4Y0nvm3MJTVOEoyKl3tGhkBbe7P41He7277jxz3PyoiSX5vbRj8+WMHQIJTg==
 
+"@coreui/icons@^2.0.0-beta.5":
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@coreui/icons/-/icons-2.0.0-beta.5.tgz#bf2b3e06eb0d5abe1f28eee312e4af4210b4bf5b"
+  integrity sha512-R/uXCSagtjFD2E5DUvf5R2HtG4uWP6lnx4CKwSZmSXxVzxCFE1cMuBK97OrDq+f1n4ogE3wszScg395d0CzfTw==
+
 "@fortawesome/fontawesome-free@^5.13.1":
   version "5.13.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.13.1.tgz#c53b4066edae16cd1fd669f687baf031b45fb9d6"

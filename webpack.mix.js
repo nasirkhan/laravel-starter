@@ -14,9 +14,8 @@ const mix = require('laravel-mix');
 
 // copy assets
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js")
-    .copy("resources/js/laravel.js", "public/js/laravel.js")
-    .copy("node_modules/@fortawesome/fontawesome-free/webfonts/*", "public/webfonts");
-
+    .copy("node_modules/@fortawesome/fontawesome-free/webfonts/*", "public/webfonts")
+    .copy('node_modules/@coreui/icons/fonts', 'public/fonts');
 /**
  *
  * Backend
@@ -30,6 +29,7 @@ mix.sass("resources/sass/backend.scss", "public/css/backend-theme.css");
 mix.styles(
     [
         "public/css/backend-theme.css",
+        "node_modules/@coreui/icons/css/all.css",
         "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
         "resources/assets/css/pace.min.css",
         "resources/assets/css/custom-backend.css"
@@ -41,12 +41,10 @@ mix.styles(
 mix.scripts(
     [
         "node_modules/jquery/dist/jquery.min.js",
-        "node_modules/@popperjs/core/dist/umd/popper/popper.min.js",
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "node_modules/pace-progress/pace.min.js",
         "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
-        "node_modules/chart.js/dist/Chart.min.js",
-        "node_modules/@coreui/coreui/dist/js/coreui.min.js",
+        "node_modules/@coreui/coreui/dist/js/coreui.bundle.js",
         "resources/js/laravel.js",
         "resources/js/custom-backend.js"
     ],
