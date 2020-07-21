@@ -31,7 +31,7 @@ mix.styles(
         "public/css/backend-theme.css",
         "node_modules/@coreui/icons/css/all.css",
         "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-        "resources/assets/css/pace.min.css",
+        // "resources/assets/css/pace.min.css",
         "resources/assets/css/custom-backend.css"
     ],
     "public/css/backend.css"
@@ -42,7 +42,7 @@ mix.scripts(
     [
         "node_modules/jquery/dist/jquery.min.js",
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "node_modules/pace-progress/pace.min.js",
+        // "node_modules/pace-progress/pace.min.js",
         "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
         "node_modules/@coreui/coreui/dist/js/coreui.bundle.js",
         "resources/js/laravel.js",

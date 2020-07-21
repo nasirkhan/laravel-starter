@@ -1,8 +1,7 @@
-<div class="sidebar">
-    <nav class="sidebar-nav">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+    <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="{{asset("img/backend-logo.jpg")}}" height="40" alt="{{ app_name() }}"><img class="c-sidebar-brand-minimized" src="{{asset("img/backend-logo-square.jpg")}}" height="40" alt="{{ app_name() }}"></div>
 
-        {!! $admin_sidebar->asUl( ['class' => 'nav'], ['class' => 'nav-dropdown-items'] ) !!}
+    {!! $admin_sidebar->asUl( ['class' => 'c-sidebar-nav'], ['class' => 'c-sidebar-nav-dropdown-items'] ) !!}
 
-    </nav>
-    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>

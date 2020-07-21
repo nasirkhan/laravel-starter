@@ -19,13 +19,13 @@ class GenerateMenus
         \Menu::makeOnce('admin_sidebar', function ($menu) {
             // Separator: Module Management
             $all_modules = $menu->add('Modules', [
-                'class' => 'nav-title',
+                'class' => 'c-sidebar-nav-title',
             ])
             ->data('order', 80);
 
             // Articles Dropdown
-            $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> Article', [
-                'class' => 'nav-item nav-dropdown',
+            $articles_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Article', [
+                'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
                 'order'         => 81,
@@ -36,14 +36,14 @@ class GenerateMenus
                 'permission' => ['view_posts', 'view_categories'],
             ]);
             $articles_menu->link->attr([
-                'class' => 'nav-link nav-dropdown-toggle',
+                'class' => 'c-sidebar-nav-dropdown-toggle',
                 'href'  => '#',
             ]);
 
             // Submenu: Posts
-            $articles_menu->add('<i class="nav-icon fas fa-file-alt"></i> Posts', [
+            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Posts', [
                 'route' => 'backend.posts.index',
-                'class' => 'nav-item',
+                'class' => 'c-sidebar-nav-item',
             ])
             ->data([
                 'order'         => 82,
@@ -51,12 +51,12 @@ class GenerateMenus
                 'permission'    => ['edit_posts'],
             ])
             ->link->attr([
-                'class' => 'nav-link',
+                'class' => "c-sidebar-nav-link",
             ]);
             // Submenu: Categories
-            $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> Categories', [
+            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Categories', [
                 'route' => 'backend.categories.index',
-                'class' => 'nav-item',
+                'class' => 'c-sidebar-nav-item',
             ])
             ->data([
                 'order'         => 83,
@@ -64,7 +64,7 @@ class GenerateMenus
                 'permission'    => ['edit_categories'],
             ])
             ->link->attr([
-                'class' => 'nav-link',
+                'class' => "c-sidebar-nav-link",
             ]);
         })->sortBy('order');
 
