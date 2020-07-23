@@ -113,7 +113,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -129,7 +129,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -267,22 +267,17 @@
 </div>
 <div></div>
 
+
+<!-- Select2 Library -->
+<x-library.select2 />
+<x-library.datetime-picker />
+
 @push('after-styles')
-
-<!-- Select2 Bootstrap 4 Core UI -->
-<link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
-
-<!-- Date Time Picker -->
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap-4-datetime-picker/css/tempusdominus-bootstrap-4.min.css') }}" />
-
 <!-- File Manager -->
 <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
 @endpush
 
 @push ('after-scripts')
-<!-- Select2 Bootstrap 4 Core UI -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function() {
     $('.select2-category').select2({
@@ -332,9 +327,6 @@ $(document).ready(function() {
 </script>
 
 <!-- Date Time Picker & Moment Js-->
-<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
 <script type="text/javascript">
 $(function() {
     $('.datetime').datetimepicker({
