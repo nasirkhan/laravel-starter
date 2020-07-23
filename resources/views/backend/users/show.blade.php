@@ -6,7 +6,7 @@
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
 <li class="breadcrumb-item active"> Profile</li>
-@stop
+@endsection
 
 @section('content')
 <div class="card">

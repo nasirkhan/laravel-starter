@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <li class="breadcrumb-item active"> <i class="cil-speedometer c-icon"></i>&nbsp;Dashboard</li>
-@stop
+@endsection
 
 @section('content')
 <div class="card">

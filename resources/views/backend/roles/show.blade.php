@@ -1,8 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section('title')
-{{ $module_action }} {{ $module_title }} | {{ app_name() }}
-@stop
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 @backendBreadcrumbs
@@ -13,7 +11,7 @@
         <li class="breadcrumb-item active"> {{ $module_action }}</li>
     @endslot
 @endbackendBreadcrumbs
-@stop
+@endsection
 
 @section('content')
 <div class="card">

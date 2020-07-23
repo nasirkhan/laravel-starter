@@ -1,13 +1,11 @@
 @extends('backend.layouts.app')
 
-@section('title')
-{{ $module_action }} {{ $module_title }} | {{ app_name() }}
-@stop
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
 <li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
-@stop
+@endsection
 
 @section('content')
 <div class="card">
@@ -97,4 +95,4 @@
         </div>
     </div>
 </div>
-@stop
+@endsection
