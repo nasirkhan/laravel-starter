@@ -7,7 +7,6 @@
     <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
         {{ $module_title }}
     </x-backend-breadcrumb-item>
-
     <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
