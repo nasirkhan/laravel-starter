@@ -1,4 +1,4 @@
-@extends ('backend.layouts.app')
+@extends('backend.layouts.app')
 
 @section('title') {{ $module_action }} {{ $module_title }} @endsection
 
