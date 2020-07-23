@@ -5,5 +5,5 @@
         Copyright &copy; {{ date('Y') }}
         @endif
     </div>
-    <div class="ml-auto">{!! setting('footer_text') !!}</div>
+    <div class="ml-auto text-muted">{!! setting('footer_text') !!}</div>
 </footer>

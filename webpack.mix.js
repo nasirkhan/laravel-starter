@@ -1,21 +1,16 @@
 const mix = require('laravel-mix');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
+/**
+ *
+ * Copy Assets
+ *
+ * -----------------------------------------------------------------------------
  */
-
-
-// copy assets
+// jquery and icon fonts
 mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js")
     .copy("node_modules/@fortawesome/fontawesome-free/webfonts/*", "public/webfonts")
     .copy('node_modules/@coreui/icons/fonts', 'public/fonts');
+
 /**
  *
  * Backend
@@ -25,24 +20,22 @@ mix.copy("node_modules/jquery/dist/jquery.min.js", "public/js/jquery.min.js")
 // Build Backend SASS
 mix.sass("resources/sass/backend.scss", "public/css/backend-theme.css");
 
-// backend css
+// Backend CSS
 mix.styles(
     [
         "public/css/backend-theme.css",
         "node_modules/@coreui/icons/css/all.css",
         "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-        // "resources/assets/css/pace.min.css",
         "resources/assets/css/custom-backend.css"
     ],
     "public/css/backend.css"
 );
 
-// backend js
+// Backend JS
 mix.scripts(
     [
         "node_modules/jquery/dist/jquery.min.js",
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
-        // "node_modules/pace-progress/pace.min.js",
         "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
         "node_modules/@coreui/coreui/dist/js/coreui.bundle.js",
         "resources/js/laravel.js",

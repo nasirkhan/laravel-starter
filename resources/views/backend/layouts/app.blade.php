@@ -37,66 +37,68 @@
 
     <div class="c-wrapper">
 
-    <!-- Header Block -->
-    @include('backend.includes.header')
-    <!-- / Header Block -->
+        <!-- Header Block -->
+        @include('backend.includes.header')
+        <!-- / Header Block -->
 
-    <div class="c-body">
-        <main class="c-main">
-            <div class="container-fluid">
+        <div class="c-body">
+            <main class="c-main">
+                <div class="container-fluid">
 
-                <div class="animated fadeIn">
+                    <div class="animated fadeIn">
 
-                    @include('flash::message')
+                        @include('flash::message')
 
-                    <!-- Errors block -->
-                    @include('backend.includes.errors')
-                    <!-- / Errors block -->
+                        <!-- Errors block -->
+                        @include('backend.includes.errors')
+                        <!-- / Errors block -->
 
-                    @yield('content')
+                        <!-- Main content block -->
+                        @yield('content')
+                        <!-- / Main content block -->
 
+                    </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
 
-    <!-- Footer block -->
-    @include('backend.includes.footer')
-    <!-- / Footer block -->
+        <!-- Footer block -->
+        @include('backend.includes.footer')
+        <!-- / Footer block -->
 
-    <!-- Scripts -->
-    @stack('before-scripts')
-    <script src="{{ mix('js/backend.js') }}"></script>
+        <!-- Scripts -->
+        @stack('before-scripts')
+        <script src="{{ mix('js/backend.js') }}"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-    $(function () {
-        // Show the time
-        showTime();
-    })
+        $(function () {
+            // Show the time
+            showTime();
+        })
 
-    function showTime(){
-        var date = new Date();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var seconds = date.getSeconds();
+        function showTime(){
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
 
-        var session = hours >= 12 ? 'pm' : 'am';
+            var session = hours >= 12 ? 'pm' : 'am';
 
-        hours = hours % 12;
-        hours = hours ? hours : 12;
-        minutes = minutes < 10 ? '0'+minutes : minutes;
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0'+minutes : minutes;
 
-        var time = hours + ":" + minutes + ":" + seconds + " " + session;
-        document.getElementById("openClockDisplay").innerText = time;
-        document.getElementById("openClockDisplay").textContent = time;
+            var time = hours + ":" + minutes + ":" + seconds + " " + session;
+            document.getElementById("openClockDisplay").innerText = time;
+            document.getElementById("openClockDisplay").textContent = time;
 
-        setTimeout(showTime, 1000);
-    }
-    </script>
+            setTimeout(showTime, 1000);
+        }
+        </script>
 
-    @stack('after-scripts')
-    <!-- / Scripts -->
+        @stack('after-scripts')
+        <!-- / Scripts -->
 
     </body>
-</html>
+    </html>
