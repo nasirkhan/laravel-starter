@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::aliasComponent('components.backendBreadcrumbs', 'backendBreadcrumbs');
+        Blade::component('components.backend-breadcrumbs', 'backendBreadcrumbs');
     }
 }

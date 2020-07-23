@@ -3,7 +3,7 @@
 @section ('title', 'Dashboard' . " - " . config('app.name'))
 
 @section('breadcrumbs')
-<li class="breadcrumb-item active"> <i class="cil-speedometer c-icon"></i>&nbsp;Dashboard</li>
+<x-backend-breadcrumbs/>
 @endsection
 
 @section('content')

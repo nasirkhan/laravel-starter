@@ -3,14 +3,13 @@
 @section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-@backendBreadcrumbs
-    @slot('level_1')
-        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-    @endslot
-    @slot('level_2')
-        <li class="breadcrumb-item active"> {{ $module_action }}</li>
-    @endslot
-@endbackendBreadcrumbs
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+
+    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @endsection
 
 @section('content')

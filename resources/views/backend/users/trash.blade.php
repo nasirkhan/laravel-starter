@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', ucfirst($module_name) . ' ' . ucfirst($module_action))
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>

@@ -3,8 +3,12 @@
 @section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @endsection
 
 @section('content')

@@ -36,4 +36,4 @@
 </table>
 
 <!-- Lightbox2 Library -->
-@include("includes.library.lightbox")
+<x-library.lightbox/>

@@ -1,7 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{App::getLocale()}}">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -68,34 +67,8 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
+
         <script src="{{ mix('js/backend.js') }}"></script>
-
-        <script type="text/javascript">
-
-        $(function () {
-            // Show the time
-            showTime();
-        })
-
-        function showTime(){
-            var date = new Date();
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-
-            var session = hours >= 12 ? 'pm' : 'am';
-
-            hours = hours % 12;
-            hours = hours ? hours : 12;
-            minutes = minutes < 10 ? '0'+minutes : minutes;
-
-            var time = hours + ":" + minutes + ":" + seconds + " " + session;
-            document.getElementById("openClockDisplay").innerText = time;
-            document.getElementById("openClockDisplay").textContent = time;
-
-            setTimeout(showTime, 1000);
-        }
-        </script>
 
         @stack('after-scripts')
         <!-- / Scripts -->

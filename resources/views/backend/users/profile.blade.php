@@ -1,11 +1,15 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="breadcrumb-item active"> Profile</li>
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+
+    <x-backend-breadcrumb-item type="active">Profile</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @endsection
 
 @section('content')
