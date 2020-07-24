@@ -880,7 +880,7 @@ class UserController extends Controller
             } else {
                 Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
-                flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->toFormattedDateString())->success()->important();
+                flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
 
                 return redirect()->back();
             }

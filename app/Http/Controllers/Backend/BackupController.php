@@ -60,7 +60,7 @@ class BackupController extends Controller
                     'file_size_byte'          => $disk->size($f),
                     'file_size'               => humanFilesize($disk->size($f)),
                     'last_modified_timestamp' => $disk->lastModified($f),
-                    'date_created'            => Carbon::createFromTimestamp($disk->lastModified($f))->toDayDateTimeString(),
+                    'date_created'            => Carbon::createFromTimestamp($disk->lastModified($f))->isoFormat('llll'),
                     'date_ago'                => Carbon::createFromTimestamp($disk->lastModified($f))->diffForHumans(Carbon::now()),
                 ];
             }

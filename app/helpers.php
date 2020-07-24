@@ -93,7 +93,7 @@ if (!function_exists('show_column_value')) {
         if (($column_type == 'date') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 
-            return $datetime->isoFormat('LLLL');
+            return $datetime->isoFormat('LL');
         } elseif (($column_type == 'datetime' || $column_type == 'timestamp') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 

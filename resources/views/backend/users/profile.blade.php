@@ -73,18 +73,18 @@
                                 @if ($field_name == 'date_of_birth' && $userprofile->$field_name != '')
                                 <td>
                                     @if(auth()->user()->id == $userprofile->user_id)
-                                    {{ $userprofile->$field_name->toFormattedDateString() }}
+                                    {{ $userprofile->$field_name->isoFormat('LL') }}
                                     @else
                                     {{ $userprofile->$field_name->format('jS \\of F') }}
                                     @endif
                                 </td>
                                 @elseif ($field_type == 'date' && $userprofile->$field_name != '')
                                 <td>
-                                    {{ $userprofile->$field_name->toFormattedDateString() }}
+                                    {{ $userprofile->$field_name->isoFormat('LL') }}
                                 </td>
                                 @elseif ($field_type == 'datetime' && $userprofile->$field_name != '')
                                 <td>
-                                    {{ $userprofile->$field_name->toDayDateTimeString() }}
+                                    {{ $userprofile->$field_name->isoFormat('llll') }}
                                 </td>
                                 @elseif ($field_type == 'url')
                                 <td>
@@ -153,12 +153,12 @@
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.created_at') }}</th>
-                            <td>{{ $user->created_at->toDayDateTimeString() }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
+                            <td>{{ $user->created_at->isoFormat('llll') }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
                         </tr>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                            <td>{{ $user->updated_at->toDayDateTimeString() }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
+                            <td>{{ $user->updated_at->isoFormat('llll') }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
                         </tr>
 
                     </table>
