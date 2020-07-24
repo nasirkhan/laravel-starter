@@ -113,7 +113,7 @@ class UserController extends Controller
                             if ($diff < 25) {
                                 return $data->updated_at->diffForHumans();
                             } else {
-                                return $data->updated_at->toCookieString();
+                                return $data->updated_at->isoFormat('LLLL');
                             }
                         })
                         ->rawColumns(['name', 'action', 'status', 'user_roles'])

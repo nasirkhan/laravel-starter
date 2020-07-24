@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h4 class="card-title mb-0">Welcome to {{ config('app.name') }} Admin Dashboard.</h4>
-                <div class="small text-muted">{{ date('D, F d, Y') }}</div>
+                <div class="small text-muted">{{ date_today() }}</div>
             </div>
 
             <div class="col-sm-4 hidden-sm-down">

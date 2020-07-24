@@ -93,14 +93,14 @@ if (!function_exists('show_column_value')) {
         if (($column_type == 'date') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 
-            return $datetime->toFormattedDateString();
+            return $datetime->isoFormat('LLLL');
         } elseif (($column_type == 'datetime' || $column_type == 'timestamp') && $value != '') {
             $datetime = \Carbon\Carbon::parse($value);
 
-            return $datetime->toDayDateTimeString();
+            return $datetime->isoFormat('LLLL');
         } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif'])) {
+        } elseif ($column_type != 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -462,6 +462,30 @@ if (!function_exists('generate_rgb_code')) {
         }
         $str .= "$opacity,";
         $str = substr($str, 0, -1);
+
+        return $str;
+    }
+}
+
+/*
+ *
+ * Return Date with weekday
+ *
+ * ------------------------------------------------------------------------
+ */
+if (!function_exists('date_today')) {
+
+    /**
+     * Return Date with weekday
+     *
+     * Carbon Locale will be considered here
+     * Example:
+     * শুক্রবার, ২৪ জুলাই ২০২০
+     * Friday, July 24, 2020
+     */
+    function date_today()
+    {
+        $str = \Carbon\Carbon::now()->isoFormat('dddd, LL');
 
         return $str;
     }
