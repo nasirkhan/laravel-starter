@@ -43,5 +43,8 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->save();
 
         \Log::debug('UserRegisteredProfileCreate:'.$user->name);
+
+        // Clear Cache
+        \Artisan::call('cache:clear');
     }
 }
