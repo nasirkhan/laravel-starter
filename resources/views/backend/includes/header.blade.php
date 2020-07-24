@@ -13,6 +13,23 @@
 
     <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item dropdown d-md-down-none mx-2">
+            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="c-icon cil-language"></i>&nbsp; {{strtoupper(App::getLocale())}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
+                <div class="dropdown-header bg-light">
+                    <strong>Change the app language</strong>
+                </div>
+
+                <a class="dropdown-item" href="{{route("language.switch", "bn")}}">
+                    Bengali (BN)
+                </a>
+                <a class="dropdown-item" href="{{route("language.switch", "en")}}">
+                    English (EN)
+                </a>
+            </div>
+        </li>
+        <li class="c-header-nav-item dropdown d-md-down-none mx-2">
             <?php
             $notifications = optional(auth()->user())->unreadNotifications;
             $notifications_count = optional($notifications)->count();

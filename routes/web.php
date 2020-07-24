@@ -24,6 +24,9 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
 // Atom/ RSS Feed Routes
 Route::feeds();
 
+// Language Switch
+Route::get('language/{language}', 'LanguageController@switch')->name('language.switch');
+
 /*
 *
 * Frontend Routes
