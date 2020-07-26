@@ -52,7 +52,7 @@
 
                         @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $order->created_at->toDayDateTimeString() }}</td>
+                            <td>{{ $order->created_at->isoFormat('llll') }}</td>
                             <td>৳{{ $order->billing_total }}</td>
                             <td class="text-right">{!! $order->order_status_label !!}</td>
                         </tr>

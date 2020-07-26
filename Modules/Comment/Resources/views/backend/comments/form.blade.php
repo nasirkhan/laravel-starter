@@ -8,9 +8,9 @@ if (isset($$module_name_singular)){
 
     $user_id_value = ($$module_name_singular->user_name != '')? $$module_name_singular->user_name : '';
 
-    $published_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
+    $published_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->isoFormat('llll') : '';
 
-    $moderated_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->toDayDateTimeString() : '';
+    $moderated_at_value = ($$module_name_singular->moderated_at != '')? $$module_name_singular->moderated_at->isoFormat('llll') : '';
 
     $parent_name = ($$module_name_singular->parent_id != '')? $$module_name_singular->parent->name : '';
 

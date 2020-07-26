@@ -26,7 +26,7 @@ trait PostPresenter
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
         } else {
-            return $this->published_at->toDayDateTimeString();
+            return $this->published_at->isoFormat('llll');
         }
     }
 
@@ -37,7 +37,7 @@ trait PostPresenter
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
         } else {
-            $date_string = $this->published_at->toDayDateTimeString();
+            $date_string = $this->published_at->isoFormat('llll');
         }
 
         $return_string = en2bnDate($date_string);

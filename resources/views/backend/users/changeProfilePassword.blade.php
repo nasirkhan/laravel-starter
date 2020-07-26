@@ -101,7 +101,7 @@ $module_name_singular = Str::singular($module_name);
             <div class="col">
                 <small class="float-right text-muted">
                     Updated: {{$user->updated_at->diffForHumans()}},
-                    Created at: {{$user->created_at->toCookieString()}}
+                    Created at: {{$user->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

@@ -66,7 +66,7 @@
             <div class="col">
                 <small class="float-right text-muted">
                     Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
-                    Created at: {{$$module_name_singular->created_at->toCookieString()}}
+                    Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

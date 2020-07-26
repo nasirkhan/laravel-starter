@@ -69,7 +69,7 @@ $module_name_singular = Str::singular($module_name);
                                 </strong>
                             </td>
                             <td>
-                                {{ $module_name_singular->updated_at->toDayDateTimeString() }}
+                                {{ $module_name_singular->updated_at->isoFormat('llll') }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
