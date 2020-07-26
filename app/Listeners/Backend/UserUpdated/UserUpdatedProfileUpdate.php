@@ -45,5 +45,8 @@ class UserUpdatedProfileUpdate implements ShouldQueue
         $userprofile->deleted_at = $user->deleted_at;
         $userprofile->deleted_by = $user->deleted_by;
         $userprofile->save();
+
+        // Clear Cache
+        \Artisan::call('cache:clear');
     }
 }
