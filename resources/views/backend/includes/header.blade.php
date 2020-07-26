@@ -22,7 +22,7 @@
                 </div>
 
                 <a class="dropdown-item" href="{{route("language.switch", "bn")}}">
-                    Bengali (BN)
+                    বাংলা (BN)
                 </a>
                 <a class="dropdown-item" href="{{route("language.switch", "en")}}">
                     English (EN)
