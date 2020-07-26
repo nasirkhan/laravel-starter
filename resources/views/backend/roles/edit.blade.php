@@ -1,19 +1,16 @@
 @extends ("backend.layouts.app")
 
-@section('title')
-{{ $module_action }} {{ $module_title }} | {{ app_name() }}
-@stop
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-@backendBreadcrumbs
-    @slot('level_1')
-        <li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-    @endslot
-    @slot('level_2')
-        <li class="breadcrumb-item active"> {{ $module_action }}</li>
-    @endslot
-@endbackendBreadcrumbs
-@stop
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+
+    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
+@endsection
 
 @section("content")
 <div class="card">
@@ -93,7 +90,7 @@
             <div class="col">
                 <small class="float-right text-muted">
                     Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
-                    Created at: {{$$module_name_singular->created_at->toCookieString()}}
+                    Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

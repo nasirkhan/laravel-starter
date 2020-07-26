@@ -4,7 +4,17 @@
 $module_name_singular = Str::singular($module_name);
 ?>
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
+
+@section('breadcrumbs')
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+
+    <x-backend-breadcrumb-item type="active">Change Password</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
+@endsection
 
 @section('content')
 <div class="card">
@@ -91,7 +101,7 @@ $module_name_singular = Str::singular($module_name);
             <div class="col">
                 <small class="float-right text-muted">
                     Updated: {{$user->updated_at->diffForHumans()}},
-                    Created at: {{$user->created_at->toCookieString()}}
+                    Created at: {{$user->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

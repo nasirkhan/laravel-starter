@@ -1,15 +1,15 @@
 @extends ('backend.layouts.app')
 
 <?php
-$module_icon = "fas fa-list";
+$module_icon = "c-icon cil-list-rich";
 ?>
 @section('title')
 Log Viewer Dashboard | {{ app_name() }}
 @stop
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item active"><i class="{{$module_icon}}"></i> Log Viewer</li>
+<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
+<li class="breadcrumb-item active"><i class="{{$module_icon}}"></i>&nbsp;Log Viewer</li>
 @stop
 
 @section('content')

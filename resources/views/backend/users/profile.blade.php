@@ -1,12 +1,16 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __("labels.backend.$module_name.".strtolower($module_action).".title") . " - " . __("labels.backend.$module_name.".strtolower($module_action).".action"))
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href='{!!route("backend.$module_name.index")!!}'><i class="{{ $module_icon }}"></i> {{ $module_title }}</a></li>
-<li class="breadcrumb-item active"> Profile</li>
-@stop
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+        {{ $module_title }}
+    </x-backend-breadcrumb-item>
+
+    <x-backend-breadcrumb-item type="active">Profile</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
+@endsection
 
 @section('content')
 <div class="card">
@@ -69,18 +73,18 @@
                                 @if ($field_name == 'date_of_birth' && $userprofile->$field_name != '')
                                 <td>
                                     @if(auth()->user()->id == $userprofile->user_id)
-                                    {{ $userprofile->$field_name->toFormattedDateString() }}
+                                    {{ $userprofile->$field_name->isoFormat('LL') }}
                                     @else
                                     {{ $userprofile->$field_name->format('jS \\of F') }}
                                     @endif
                                 </td>
                                 @elseif ($field_type == 'date' && $userprofile->$field_name != '')
                                 <td>
-                                    {{ $userprofile->$field_name->toFormattedDateString() }}
+                                    {{ $userprofile->$field_name->isoFormat('LL') }}
                                 </td>
                                 @elseif ($field_type == 'datetime' && $userprofile->$field_name != '')
                                 <td>
-                                    {{ $userprofile->$field_name->toDayDateTimeString() }}
+                                    {{ $userprofile->$field_name->isoFormat('llll') }}
                                 </td>
                                 @elseif ($field_type == 'url')
                                 <td>
@@ -149,12 +153,12 @@
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.created_at') }}</th>
-                            <td>{{ $user->created_at->toDayDateTimeString() }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
+                            <td>{{ $user->created_at->isoFormat('llll') }}<br><small>({{ $user->created_at->diffForHumans() }})</small></td>
                         </tr>
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                            <td>{{ $user->updated_at->toDayDateTimeString() }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
+                            <td>{{ $user->updated_at->isoFormat('llll') }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
                         </tr>
 
                     </table>
@@ -169,7 +173,7 @@
             <div class="col">
                 <small class="float-right text-muted">
                     Updated: {{$user->updated_at->diffForHumans()}},
-                    Created at: {{$user->created_at->toCookieString()}}
+                    Created at: {{$user->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

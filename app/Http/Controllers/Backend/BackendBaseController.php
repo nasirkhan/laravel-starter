@@ -128,7 +128,7 @@ class BackendBaseController extends Controller
                             if ($diff < 25) {
                                 return $data->updated_at->diffForHumans();
                             } else {
-                                return $data->updated_at->toDayDateTimeString();
+                                return $data->updated_at->isoFormat('llll');
                             }
                         })
                         ->rawColumns(['name', 'action'])

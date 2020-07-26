@@ -25,7 +25,7 @@ class NotificationsController extends Controller
         $this->module_path = 'notifications';
 
         // module icon
-        $this->module_icon = 'fas fa-bell';
+        $this->module_icon = 'c-icon fas fa-bell';
 
         // module model name, path
         $this->module_model = "App\Models\User";

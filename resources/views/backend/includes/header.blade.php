@@ -1,33 +1,47 @@
-<header class="app-header navbar">
-    <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{{ route('backend.dashboard') }}">
-        <img class="navbar-brand-full" src="{{ asset('img/logo.png') }}" width="89" height="25" alt="Logo">
-        <img class="navbar-brand-minimized" src="{{ asset('img/favicon-cube.png') }}" width="30" height="30" alt="Logo">
-    </a>
-    <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <ul class="nav navbar-nav d-md-down-none">
-        <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('frontend.index') }}" target="_blank"> {{ app_name() }} </a>
+<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+    <button class="c-header-toggler c-class-toggler d-lg-none mr-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show"><span class="c-header-toggler-icon"></span></button><a class="c-header-brand d-sm-none" href="{{route("backend.dashboard")}}"><img class="c-header-brand" src="{{asset("img/backend-logo.jpg")}}" style="max-height:50px;min-height:40px;" alt="{{ app_name() }}"></a>
+    <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true"><span class="c-header-toggler-icon"></span></button>
+
+    <ul class="c-header-nav d-md-down-none">
+        <li class="c-header-nav-item px-3">
+            <a class="c-header-nav-link" href="{{ route('frontend.index') }}" target="_blank">
+                <i class="c-icon cil-external-link"></i>&nbsp;
+                {{ app_name() }}
+            </a>
         </li>
     </ul>
-    <?php
-    $notifications = optional(auth()->user())->unreadNotifications;
-    $notifications_count = optional($notifications)->count();
-    $notifications_latest = optional($notifications)->take(5);
-    ?>
-    <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item dropdown d-md-down-none">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                <i class="icon-bell"></i>
+
+    <ul class="c-header-nav ml-auto mr-4">
+        <li class="c-header-nav-item dropdown d-md-down-none mx-2">
+            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="c-icon cil-language"></i>&nbsp; {{strtoupper(App::getLocale())}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
+                <div class="dropdown-header bg-light">
+                    <strong>Change language</strong>
+                </div>
+
+                <a class="dropdown-item" href="{{route("language.switch", "bn")}}">
+                    বাংলা (BN)
+                </a>
+                <a class="dropdown-item" href="{{route("language.switch", "en")}}">
+                    English (EN)
+                </a>
+            </div>
+        </li>
+        <li class="c-header-nav-item dropdown d-md-down-none mx-2">
+            <?php
+            $notifications = optional(auth()->user())->unreadNotifications;
+            $notifications_count = optional($notifications)->count();
+            $notifications_latest = optional($notifications)->take(5);
+            ?>
+            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="c-icon cil-bell"></i>&nbsp;
                 @if($notifications_count)<span class="badge badge-pill badge-danger">{{$notifications_count}}</span>@endif
             </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                <div class="dropdown-header text-center">
-                    <strong>You have {{$notifications_count}} unread notifications!</strong>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
+                <div class="dropdown-header bg-light">
+                    <strong>You have {{$notifications_count}} notifications</strong>
                 </div>
                 @if($notifications_latest)
                 @foreach($notifications_latest as $notification)
@@ -35,50 +49,85 @@
                 $notification_text = isset($notification->data['title'])? $notification->data['title'] : $notification->data['module'];
                 @endphp
                 <a class="dropdown-item" href="{{route("backend.notifications.show", $notification)}}">
-                    <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fas fa-flag'}}"></i> {{$notification_text}}
+                    <i class="c-icon {{isset($notification->data['icon'])? $notification->data['icon'] : 'cil-bullhorn'}} "></i>&nbsp;{{$notification_text}}
                 </a>
                 @endforeach
                 @endif
-                <a class="dropdown-item text-center" href="{{route('backend.notifications.index')}}">
-                    View all
-                </a>
             </div>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ asset(auth()->user()->avatar) }}" class="img-avatar" alt="{{ auth()->user()->name }}">
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header text-center">
-                    <strong>Account</strong>
+
+        <li class="c-header-nav-item dropdown">
+            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <div class="c-avatar">
+                    <img class="c-avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
                 </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right pt-0">
+                <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
+
                 <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
-                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                    <i class="c-icon cil-user"></i>&nbsp;
+                    {{ Auth::user()->name }}
                 </a>
                 <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
-                    <i class="fas fa-at"></i> {{ Auth::user()->email }}
+                    <i class="c-icon cil-at"></i>&nbsp;
+                    {{ Auth::user()->email }}
                 </a>
                 <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
-                    <i class="fa fa-bell"></i> Notifications
-                    <span class="badge badge-warning">{{$notifications_count}}</span>
-                </a>
-                <div class="dropdown-header text-center">
-                    <strong>Settings</strong>
-                </div>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-lock"></i> Logout
+                    <i class="c-icon cil-bell"></i>&nbsp;
+                    Notifications <span class="badge badge-danger ml-auto">{{$notifications_count}}</span>
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
+
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="c-icon cil-account-logout"></i>&nbsp;
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
             </div>
         </li>
     </ul>
-    <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="c-subheader justify-content-between px-3">
+        <ol class="breadcrumb border-0 m-0">
+            @yield('breadcrumbs')
+        </ol>
+        <div class="c-subheader-nav d-md-down-none mfe-2">
+            <span class="c-subheader-nav-link">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    {{ date_today() }}&nbsp;<div id="liveClock" class="clock" onload="showTime()"></div>
+                </div>
+            </span>
+        </div>
+    </div>
 </header>
+
+@push('after-scripts')
+<script type="text/javascript">
+
+$(function () {
+    // Show the time
+    showTime();
+})
+
+function showTime(){
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    var session = hours >= 12 ? 'pm' : 'am';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    seconds = seconds < 10 ? '0'+seconds : seconds;
+
+    var time = hours + ":" + minutes + ":" + seconds + " " + session;
+    document.getElementById("liveClock").innerText = time;
+    document.getElementById("liveClock").textContent = time;
+
+    setTimeout(showTime, 1000);
+}
+</script>
+@endpush

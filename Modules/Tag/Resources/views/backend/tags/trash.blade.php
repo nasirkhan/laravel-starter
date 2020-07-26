@@ -4,21 +4,13 @@
 $module_name_singular = Str::singular($module_name);
 ?>
 
-@section ('title', ucfirst($module_name) . ' ' . ucfirst($module_action))
-
-@section('page_heading')
-<h1>
-    <i class="{{ $module_icon }}"></i> {{ ucfirst($module_name) }}
-    <small>
-        {{ ucfirst($module_action) }}
-    </small>
-</h1>
-@stop
+@section('title') {{ $module_action }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="icon-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item active"><i class="{{ $module_icon }}"></i> {{ $module_title }}</li>
-@stop
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ $module_title }}</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
+@endsection
 
 @section('content')
 <div class="card">
@@ -77,7 +69,7 @@ $module_name_singular = Str::singular($module_name);
                                 </strong>
                             </td>
                             <td>
-                                {{ $module_name_singular->updated_at->toDayDateTimeString() }}
+                                {{ $module_name_singular->updated_at->isoFormat('llll') }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
