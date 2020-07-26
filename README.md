@@ -60,6 +60,8 @@ It is a modular application, and a number of modules are installed by default. I
   * Separate User Profile table
 * Role-Permissions for Users
 * Dynamic Menu System
+* Language Switcher
+* Localization enable across the porject
 * Backend Theme
   * Bootstrap 4, CoreUI
   * Fontawesome 5
@@ -128,4 +130,5 @@ __Login Page__
 
 __Backend Dashboard__
 
-![Backend Dashboard](https://user-images.githubusercontent.com/396987/66694968-4e2c5800-ecdc-11e9-82a6-585d2082f4d1.png)
+![Backend Dashboard](https://user-images.githubusercontent.com/396987/88489727-f3889200-cfb7-11ea-819f-dc9a52bc8d82.jpg)
+
