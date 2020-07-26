@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Events\Backend\UserCreated;
+use App\Events\Backend\UserUpdated;
 use App\Events\Backend\UserProfileUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
@@ -626,6 +627,8 @@ class UserController extends Controller
             $$module_name_singular->syncPermissions($permissions);
         }
 
+        event(new UserUpdated($$module_name_singular));
+
         Flash::success("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
@@ -842,6 +845,8 @@ class UserController extends Controller
                 flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
             }
         }
+
+        event(new UserUpdated($$module_name_singular));
 
         throw new GeneralException('There was a problem updating this user. Please try again.');
     }

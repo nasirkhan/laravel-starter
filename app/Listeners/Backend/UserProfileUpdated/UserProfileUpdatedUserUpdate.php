@@ -40,7 +40,7 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
         $user->date_of_birth = $user_profile->date_of_birth;
         $user->gender = $user_profile->gender;
         $user->save();
-        
+
         // Clear Cache
         \Artisan::call('cache:clear');
     }
