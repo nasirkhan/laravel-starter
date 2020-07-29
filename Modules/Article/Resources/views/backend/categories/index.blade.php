@@ -23,7 +23,8 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
+                    <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
+                    
                     <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">
                             <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -24,7 +24,8 @@
 
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{route('backend.users.create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="Create New"><i class="fa fa-plus-circle"></i></a>
+                    <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
+                    
                     <div class="btn-group" role="group" aria-label="Toolbar button groups">
                         <div class="btn-group" role="group">
                             <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
