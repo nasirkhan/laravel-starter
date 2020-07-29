@@ -282,7 +282,7 @@
 $(document).ready(function() {
     $('.select2-category').select2({
         theme: "bootstrap",
-        placeholder: @lang("Select an option"),
+        placeholder: '@lang("Select an option")',
         minimumInputLength: 2,
         allowClear: true,
         ajax: {
@@ -304,7 +304,7 @@ $(document).ready(function() {
 
     $('.select2-tags').select2({
         theme: "bootstrap",
-        placeholder: @lang("Select an option"),
+        placeholder: '@lang("Select an option")',
         minimumInputLength: 2,
         allowClear: true,
         ajax: {
