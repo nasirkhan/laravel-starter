@@ -87,7 +87,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <x-buttons.create />
+                                <x-buttons.create-submit />
                             </div>
                         </div>
                         <div class="col-6">
