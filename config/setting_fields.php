@@ -146,7 +146,7 @@ return [
                 'data'  => 'text', // data type, string, int, boolean
                 'name'  => 'meta_fb_app_id', // unique name for field
                 'label' => 'Meta Facebook App Id', // you know what label it is
-                'rules' => 'required', // validation rule of laravel
+                'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '569561286532601', // default value if you want
             ],
@@ -155,7 +155,7 @@ return [
                 'data'  => 'text', // data type, string, int, boolean
                 'name'  => 'meta_twitter_site', // unique name for field
                 'label' => 'Meta Twitter Site Account', // you know what label it is
-                'rules' => 'required', // validation rule of laravel
+                'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '@nasir8891', // default value if you want
             ],
@@ -167,6 +167,23 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '@nasir8891', // default value if you want
+            ],
+        ],
+    ],
+    'analytics' => [
+        'title' => 'Analytics',
+        'desc'  => 'Application Analytics',
+        'icon'  => 'fas fa-chart-line',
+
+        'elements' => [
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'google_analytics', // unique name for field
+                'label' => 'Google Analytics', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'UA-36770598-2', // default value if you want
             ],
         ],
 

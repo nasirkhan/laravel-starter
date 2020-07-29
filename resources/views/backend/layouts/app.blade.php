@@ -27,8 +27,8 @@
     <style>body{font-family:Ubuntu,"Noto Sans Bengali UI", Arial, Helvetica, sans-serif}</style>
 
     @stack('after-styles')
-    
-    <x-google-analytics config="UA-36770598-2" />
+
+    <x-google-analytics config="{{ setting('google_analytics') }}" />
 </head>
 <body class="c-app">
 
