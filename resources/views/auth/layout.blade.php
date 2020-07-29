@@ -28,14 +28,7 @@
 
     @stack('after-styles')
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20163741-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '');
-    </script>
+    <x-google-analytics config="{{ setting('google_analytics') }}" />
 
 </head>
 

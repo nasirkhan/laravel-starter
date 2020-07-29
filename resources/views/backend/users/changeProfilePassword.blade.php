@@ -4,7 +4,7 @@
 $module_name_singular = Str::singular($module_name);
 ?>
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -12,7 +12,7 @@ $module_name_singular = Str::singular($module_name);
         {{ $module_title }}
     </x-backend-breadcrumb-item>
 
-    <x-backend-breadcrumb-item type="active">Change Password</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{__('Change Password')}}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -23,7 +23,7 @@ $module_name_singular = Str::singular($module_name);
             <div class="col-8">
                 <h4 class="card-title mb-0">
                     <i class="{{$module_icon}}"></i> Profile
-                    <small class="text-muted">Change Password </small>
+                    <small class="text-muted">@lang('Change Password') </small>
                 </h4>
                 <div class="small text-muted">
                     {{ __('labels.backend.users.edit.sub-title') }}
@@ -32,7 +32,7 @@ $module_name_singular = Str::singular($module_name);
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <x-buttons.return-back />
                 </div>
             </div>
             <!--/.col-->
@@ -42,13 +42,13 @@ $module_name_singular = Str::singular($module_name);
         <div class="row">
             <div class="col">
                 <strong>
-                    Name:
+                    @lang('Name'):
                 </strong>
                 {{ $$module_name_singular->name }}
             </div>
             <div class="col">
                 <strong>
-                    Email:
+                    @lang('Email'):
                 </strong>
                 {{ $$module_name_singular->email }}
             </div>
@@ -100,8 +100,8 @@ $module_name_singular = Str::singular($module_name);
         <div class="row">
             <div class="col">
                 <small class="float-right text-muted">
-                    Updated: {{$user->updated_at->diffForHumans()}},
-                    Created at: {{$user->created_at->isoFormat('LLLL')}}
+                    @lang('Updated'): {{$user->updated_at->diffForHumans()}},
+                    @lang('Created at'): {{$user->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>
