@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -8,7 +8,7 @@
         {{ $module_title }}
     </x-backend-breadcrumb-item>
 
-    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -28,7 +28,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <x-buttons.return-back />
                 </div>
             </div>
             <!--/.col-->
@@ -122,8 +122,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Roles</th>
-                                            <th>Permissions</th>
+                                            <th>@lang('Roles')</th>
+                                            <th>@lang('Permissions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,7 +147,7 @@
                                                                         None
                                                                     @endif
                                                                 @else
-                                                                    All Permissions
+                                                                    @lang('All Permissions')
                                                                 @endif
                                                             </div>
                                                         </div><!--card-->
@@ -173,13 +173,13 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                {{ html()->button($text = "<i class='fas fa-plus-circle'></i> " . ucfirst($module_action) . "", $type = 'submit')->class('btn btn-success') }}
+                                <x-buttons.create-submit />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="float-right">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
+                                    <x-buttons.cancel />
                                 </div>
                             </div>
                         </div>

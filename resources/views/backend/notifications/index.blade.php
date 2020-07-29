@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -14,18 +14,19 @@
         <div class="row">
             <div class="col">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} ({{$unread_notifications_count}} unread)
-                    <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }}
+                    (@lang(":count unread", ['count'=>$unread_notifications_count]))
+                    <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ ucwords($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="Mark All As Read"><i class="fas fa-check-square"></i> Mark All As Read</a>
-                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1 btn-sm" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="Delete All Notifications"><i class="fas fa-trash-alt"></i></a>
+                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="@lang('Mark All As Read')"><i class="fas fa-check-square"></i> @lang('Mark All As Read')</a>
+                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1 btn-sm" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete All Notifications')"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -37,16 +38,16 @@
                     <thead>
                         <tr>
                             <th>
-                                Text
+                                @lang('Text')
                             </th>
                             <th>
-                                Module
+                                @lang('Module')
                             </th>
                             <th>
-                                Updated At
+                                @lang('Updated At')
                             </th>
                             <th class="text-right">
-                                Action
+                                @lang('Action')
                             </th>
                         </tr>
                     </thead>
@@ -76,7 +77,7 @@
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td class="text-right">
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="@lang('Show') {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -89,7 +90,7 @@
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    Total {{ $$module_name->total() }} {{ ucwords($module_name) }}
+                    @lang('Total') {{ $$module_name->total() }} {{ ucwords($module_name) }}
                 </div>
             </div>
             <div class="col-5">

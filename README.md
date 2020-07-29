@@ -60,6 +60,8 @@ It is a modular application, and a number of modules are installed by default. I
   * Separate User Profile table
 * Role-Permissions for Users
 * Dynamic Menu System
+* Language Switcher
+* Localization enable across the porject
 * Backend Theme
   * Bootstrap 4, CoreUI
   * Fontawesome 5
@@ -98,11 +100,11 @@ Follow the steps mentioned below to install and run the project.
 
 1. Clone or download the repository
 2. Go to the project directory and run `composer install`
-3. Create `.env` file by copying the `.env.example`. You may use the command to to that `cp .env.example .env`
-4. Update the database name and credentials
-5. Run the command `php artisan migrate -seed`
-6. Link storage directory. `php artisan storage:link`
-7. You may create a virtualhost entry to access the application or run `php artisan serve` and visit `http://127.0.0.1:8000`
+3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
+4. Update the database name and credentials in `.env` file
+5. Run the command `php artisan migrate --seed`
+6. Link storage directory: `php artisan storage:link`
+7. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
 
 *After creating the new permissions use the following commands to update cashed permissions.*
 
@@ -128,4 +130,13 @@ __Login Page__
 
 __Backend Dashboard__
 
-![Backend Dashboard](https://user-images.githubusercontent.com/396987/66694968-4e2c5800-ecdc-11e9-82a6-585d2082f4d1.png)
+![Backend Dashboard](https://user-images.githubusercontent.com/396987/88489727-f3889200-cfb7-11ea-819f-dc9a52bc8d82.jpg)
+
+---
+
+![List-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519250-a0dcc380-d013-11ea-9dc5-9d731af611f1.jpg)
+
+---
+
+![Edit-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519360-d1bcf880-d013-11ea-9f6c-b5d33912057f.jpg)
+

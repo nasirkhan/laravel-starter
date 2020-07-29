@@ -17,16 +17,16 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ Str::title($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create New Backup</a>
+                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> @lang("Create new :module_name", ['module_name'=>Str::title($module_name)])</a>
                 </div>
             </div>
             <!--/.col-->
@@ -44,19 +44,19 @@
                                 #
                             </th>
                             <th>
-                                File
+                                @lang('File')
                             </th>
                             <th>
-                                Size
+                                @lang('Size')
                             </th>
                             <th>
-                                Date
+                                @lang('Date')
                             </th>
                             <th>
-                                Age
+                                @lang('Age')
                             </th>
                             <th class="text-right">
-                                Action
+                                @lang('Action')
                             </th>
                         </tr>
                     </thead>
@@ -80,9 +80,9 @@
                                 {{ $backup['date_ago'] }}
                             </td>
                             <td class="text-right">
-                                <a href="{{ route("backend.$module_name.download", $backup['file_name']) }}" class="btn btn-primary m-1 btn-sm" data-toggle="tooltip" title="Download Backup File"><i class="fas fa-cloud-download-alt"></i> Download</a>
+                                <a href="{{ route("backend.$module_name.download", $backup['file_name']) }}" class="btn btn-primary m-1 btn-sm" data-toggle="tooltip" title="@lang('Download File')"><i class="fas fa-cloud-download-alt"></i>&nbsp;@lang('Download')</a>
 
-                                <a href="{{ route("backend.$module_name.delete", $backup['file_name']) }}" class="btn btn-danger m-1 btn-sm" data-toggle="tooltip" title="Delete Backup File"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="{{ route("backend.$module_name.delete", $backup['file_name']) }}" class="btn btn-danger m-1 btn-sm" data-toggle="tooltip" title="@lang('Delete File')"><i class="fas fa-trash"></i>&nbsp;@lang('Delete')</a>
 
                             </td>
                         </tr>
@@ -91,7 +91,7 @@
                 </table>
                 @else
                     <div class="text-center">
-                        <h4>There are no backups</h4>
+                        <h4>@lang('There are no backups')</h4>
                     </div>
                 @endif
 

@@ -29,6 +29,7 @@
 
     @stack('after-styles')
 
+    <x-google-analytics config="{{ setting('google_analytics') }}" />
 </head>
 
 <body class="{{isset($body_class) ? $body_class : ''}} sidebar-collapse">

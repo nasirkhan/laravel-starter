@@ -18,7 +18,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light">
-                    <strong>Change language</strong>
+                    <strong>@lang('Change language')</strong>
                 </div>
 
                 <a class="dropdown-item" href="{{route("language.switch", "bn")}}">
@@ -41,7 +41,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light">
-                    <strong>You have {{$notifications_count}} notifications</strong>
+                    <strong>@lang("You have :count notifications", ['count'=>$notifications_count])</strong>
                 </div>
                 @if($notifications_latest)
                 @foreach($notifications_latest as $notification)
@@ -63,7 +63,7 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
-                <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
+                <div class="dropdown-header bg-light py-2"><strong>@lang('Account')</strong></div>
 
                 <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
                     <i class="c-icon cil-user"></i>&nbsp;
@@ -75,14 +75,14 @@
                 </a>
                 <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
                     <i class="c-icon cil-bell"></i>&nbsp;
-                    Notifications <span class="badge badge-danger ml-auto">{{$notifications_count}}</span>
+                    @lang('Notifications') <span class="badge badge-danger ml-auto">{{$notifications_count}}</span>
                 </a>
 
-                <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
+                <div class="dropdown-header bg-light py-2"><strong>@lang('Settings')</strong></div>
 
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="c-icon cil-account-logout"></i>&nbsp;
-                    Logout
+                    @lang('Logout')
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
             </div>

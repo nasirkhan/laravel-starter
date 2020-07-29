@@ -1,13 +1,13 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
     <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
         {{ $module_title }}
     </x-backend-breadcrumb-item>
-    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -17,16 +17,16 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ ucwords($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ __(ucwords($module_name)) }} List"><i class="fas fa-list"></i> List</a>
                 </div>
             </div>
             <!--/.col-->

@@ -1,5 +1,5 @@
 <p>
-    Displaing all the values of <strong>{{ ucwords($module_name_singular) }} (Id: {{$$module_name_singular->id}})</strong>.
+    @lang("Displaing all the values of :module_name (Id: :id)", ['module_name'=>ucwords($module_name_singular), 'id'=>$$module_name_singular->id]).
 </p>
 <table class="table table-responsive-sm table-hover table-bordered">
     <?php
@@ -9,12 +9,12 @@
         <tr>
             <th scope="col">
                 <strong>
-                    Name
+                    @lang('Name')
                 </strong>
             </th>
             <th scope="col">
                 <strong>
-                    Value
+                    @lang('Value')
                 </strong>
             </th>
         </tr>

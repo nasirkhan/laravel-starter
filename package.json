@@ -20,7 +20,7 @@
         "cross-env": "^5.1",
         "jquery": "^3.5",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "pace-progress": "^1.0.2",
         "perfect-scrollbar": "^1.5.0",
         "popper.js": "^1.12",

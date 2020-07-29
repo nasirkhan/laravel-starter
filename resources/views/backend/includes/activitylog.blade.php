@@ -2,7 +2,7 @@
     <div class="card card-accent-primary">
         <div class="card-header" id="activityLog">
             <button class="btn btn-outline-primary collapsed" type="button" data-toggle="collapse" data-target="#activityLogSection" aria-expanded="false" aria-controls="activityLogSection">
-                Show Activity Log
+                @lang('Activity Log')
             </button>
         </div>
         <div id="activityLogSection" class="collapse" aria-labelledby="activityLog" data-parent="#activityLogBlock">
@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="text-center">
-                            <h4>Activity Log</h4>
+                            <h4>@lang('Activity Log')</h4>
                         </div>
 
                         <div class="table-responsive">
@@ -18,19 +18,19 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">
-                                            Current
+                                            @lang('Current')
                                         </th>
                                         <th class="text-center">
-                                            Old
+                                            @lang('Old')
                                         </th>
                                         <th>
-                                            At
+                                            @lang('At')
                                         </th>
                                         <th>
-                                            User
+                                            @lang('User')
                                         </th>
                                         <th>
-                                            Type
+                                            @lang('Type')
                                         </th>
                                     </tr>
                                 </thead>
@@ -60,8 +60,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            Updated: {{$activity->updated_at->diffForHumans()}}<br>
-                                            At: {{$activity->updated_at->isoFormat('llll')}}
+                                            @lang('Updated'): {{$activity->updated_at->diffForHumans()}}<br>
+                                            @lang('At'): {{$activity->updated_at->isoFormat('llll')}}
                                         </td>
                                         <td>
                                             {{ label_case($activity->causer_id) }}

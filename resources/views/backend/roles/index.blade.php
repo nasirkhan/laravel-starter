@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">Data Table {{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
                     {{ __('labels.backend.roles.index.sub-title') }}
@@ -23,7 +23,7 @@
 
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> Create</a>
+                    <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
                 </div>
             </div>
             <!--/.col-->
