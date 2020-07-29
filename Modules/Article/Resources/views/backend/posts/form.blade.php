@@ -3,7 +3,7 @@
         <div class="form-group">
             <?php
             $field_name = 'name';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -16,7 +16,7 @@
         <div class="form-group">
             <?php
             $field_name = 'slug';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <?php
             $field_name = 'created_by_alias';
-            $field_lable = "Author Name Alias";
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = "Hide Author User's Name and use Alias";
             $required = "";
             ?>
@@ -43,7 +43,7 @@
         <div class="form-group">
             <?php
             $field_name = 'intro';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -57,7 +57,7 @@
         <div class="form-group">
             <?php
             $field_name = 'content';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -71,7 +71,7 @@
         <div class="form-group">
             <?php
             $field_name = 'featured_image';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
@@ -79,7 +79,7 @@
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
-                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> Browse</button>
+                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
                 </div>
             </div>
         </div>
@@ -90,9 +90,9 @@
         <div class="form-group">
             <?php
             $field_name = 'category_id';
-            $field_lable = "Category";
+            $field_lable = __("article::$module_name.$field_name");
             $field_relation = "category";
-            $field_placeholder = "-- Select an option --";
+            $field_placeholder = __("Select an option");
             $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -103,8 +103,8 @@
         <div class="form-group">
             <?php
             $field_name = 'type';
-            $field_lable = label_case($field_name);
-            $field_placeholder = "-- Select an option --";
+            $field_lable = __("article::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
                 'Article'=>'Article',
@@ -120,8 +120,8 @@
         <div class="form-group">
             <?php
             $field_name = 'is_featured';
-            $field_lable = label_case($field_name);
-            $field_placeholder = "-- Select an option --";
+            $field_lable = __("article::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
                 '1'=>'Yes',
@@ -138,9 +138,9 @@
         <div class="form-group">
             <?php
             $field_name = 'tags_list[]';
-            $field_lable = "Tags";
+            $field_lable = __("article::$module_name.tags");
             $field_relation = "tags";
-            $field_placeholder = "-- Select an option --";
+            $field_placeholder = __("Select an option");
             $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -156,8 +156,8 @@
         <div class="form-group">
             <?php
             $field_name = 'status';
-            $field_lable = label_case($field_name);
-            $field_placeholder = "-- Select an option --";
+            $field_lable = __("article::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
                 '1'=>'Published',
@@ -173,7 +173,7 @@
         <div class="form-group">
             <?php
             $field_name = 'published_at';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -192,7 +192,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_title';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -204,7 +204,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_keywords';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -216,7 +216,7 @@
         <div class="form-group">
             <?php
             $field_name = 'order';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -230,7 +230,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_description';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -242,7 +242,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_og_image';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -256,7 +256,7 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_og_url';
-            $field_lable = label_case($field_name);
+            $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "";
             ?>
@@ -282,7 +282,7 @@
 $(document).ready(function() {
     $('.select2-category').select2({
         theme: "bootstrap",
-        placeholder: "-- Select an option --",
+        placeholder: @lang("Select an option"),
         minimumInputLength: 2,
         allowClear: true,
         ajax: {
@@ -304,7 +304,7 @@ $(document).ready(function() {
 
     $('.select2-tags').select2({
         theme: "bootstrap",
-        placeholder: "-- Select an option --",
+        placeholder: @lang("Select an option"),
         minimumInputLength: 2,
         allowClear: true,
         ajax: {

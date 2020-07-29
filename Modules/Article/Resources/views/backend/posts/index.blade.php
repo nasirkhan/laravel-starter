@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @stop
+@section('title') {{ __($module_action) }} {{ $module_title }} @stop
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
@@ -14,10 +14,10 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-muted">
-                    {{ ucwords($module_name) }} Management Dashboard
+                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
                 </div>
             </div>
             <!--/.col-->
