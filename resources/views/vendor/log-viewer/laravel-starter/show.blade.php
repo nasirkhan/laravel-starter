@@ -7,10 +7,13 @@ $module_icon = "c-icon cil-list-rich";
 @section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href="{{ route('log-viewer::dashboard') }}"><i class="{{$module_icon}}"></i> Log Viewer Dashboard</a></li>
-<li class="breadcrumb-item"><a href="{{ route('log-viewer::logs.list') }}"><i class="{{$module_icon}}"></i> Log by Days</a></li>
-<li class="breadcrumb-item active"> Log [{{ $log->date }}]</li>
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::dashboard') }}" icon='{{ $module_icon }}' >
+        {{ __('Log Viewer Dashboard') }}
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::logs.list') }}">{{ __('Logs by Date') }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">@lang('Log') [{{ $log->date }}]</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @stop
 
 @section('content')

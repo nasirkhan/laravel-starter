@@ -7,7 +7,6 @@ $module_icon = "c-icon cil-list-rich";
 @section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
 @section('breadcrumbs')
-
 <x-backend-breadcrumbs>
     <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}' >
         @lang('Log Viewer')
