@@ -87,7 +87,9 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <x-buttons.create-submit />
+                                <x-buttons.create title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}">
+                                    {{__('Create')}}
+                                </x-buttons.create>
                             </div>
                         </div>
                         <div class="col-6">
