@@ -27,6 +27,7 @@
     "Deleted": "Deleted",
     "Deleted at": "Deleted at",
     "Trash": "Trash",
+    "Download": "Download",
 
     "Activity Log": "Activity Log",
     "Log": "Log",
@@ -75,6 +76,17 @@
     "Total": "Total",
     "Browse": "Browse",
     "Management": "Management",
+
+    "Log Viewer": "Log Viewer",
+    "Log Viewer Module": "Log Viewer Module",
+    "Logs by Date": "Logs by Date",
+    "Log Viewer Dashboard": "Log Viewer Dashboard",
+    "Delete Log File": "Delete Log File",
+    "Details": "Details",
+    "Levels": "Levels",
+    "Log Info": "Log Info",
+    
+    "": "",
 
     "Select an option": "-- Select an option --",
 

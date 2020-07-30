@@ -3,13 +3,16 @@
 <?php
 $module_icon = "c-icon cil-list-rich";
 ?>
-@section('title')
-Log Viewer Dashboard | {{ app_name() }}
-@stop
+
+@section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item active"><i class="{{$module_icon}}"></i>&nbsp;Log Viewer</li>
+
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}' >
+        @lang('Log Viewer')
+    </x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @stop
 
 @section('content')
@@ -18,17 +21,17 @@ Log Viewer Dashboard | {{ app_name() }}
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> Log Viewer
-                    <small class="text-muted">Dashboard </small>
+                    <i class="{{$module_icon}}"></i> @lang('Log Viewer')
+                    <small class="text-muted">@lang('Dashboard') </small>
                 </h4>
                 <div class="small text-muted">
-                    Log Viewer Module
+                    @lang('Log Viewer Module')
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i> Back</button>
+                    <x-buttons.return-back />
                 </div>
             </div>
             <!--/.col-->
@@ -41,7 +44,7 @@ Log Viewer Dashboard | {{ app_name() }}
 
                 <hr>
                 <a class="btn btn-primary btn-lg btn-block" href="{{ route('log-viewer::logs.list') }}" type="button">
-                    <i class="fas fa-list-ol"></i> Logs by Date
+                    <i class="fas fa-list-ol"></i> @lang('Logs by Date')
                 </a>
             </div>
 
@@ -69,11 +72,14 @@ Log Viewer Dashboard | {{ app_name() }}
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 @endsection
+
+@push('after-styles')
+@include('log-viewer::laravel-starter.partials.style')
+@endpush
 
 @push('after-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -90,8 +96,4 @@ Log Viewer Dashboard | {{ app_name() }}
         });
     });
 </script>
-@endpush
-
-@push('after-styles')
-@include('log-viewer::laravel-starter.partials.style')
 @endpush
