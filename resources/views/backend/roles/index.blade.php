@@ -54,8 +54,10 @@
                                 @endforeach
                             </td>
                             <td class="text-right">
-                                <a href="{{route("backend.$module_name.show", $module_name_singular)}}" class="btn btn-success btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-desktop"></i></a>
-                                <a href="{{route("backend.$module_name.edit", $module_name_singular)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
+                                @can('edit_'.$module_name)
+                                <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
+                                @endcan
+                                <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
                             </td>
                         </tr>
                         @endforeach

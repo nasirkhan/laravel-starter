@@ -3,15 +3,17 @@
 <?php
 $module_icon = "c-icon cil-list-rich";
 ?>
-@section('title')
-Log Viewer Dashboard | {{ app_name() }}
-@stop
+
+@section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href="{{ route('log-viewer::dashboard') }}"><i class="{{$module_icon}}"></i> Log Viewer Dashboard</a></li>
-<li class="breadcrumb-item"><a href="{{ route('log-viewer::logs.list') }}"><i class="{{$module_icon}}"></i> Log by Days</a></li>
-<li class="breadcrumb-item active"> Log [{{ $log->date }}]</li>
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::dashboard') }}" icon='{{ $module_icon }}' >
+        {{ __('Log Viewer Dashboard') }}
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::logs.list') }}">{{ __('Logs by Date') }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">@lang('Log') [{{ $log->date }}]</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @stop
 
 @section('content')
@@ -20,22 +22,20 @@ Log Viewer Dashboard | {{ app_name() }}
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> Log [{{ $log->date }}]
-                    <small class="text-muted">Details </small>
+                    <i class="{{$module_icon}}"></i> @lang('Log') [{{ $log->date }}]
+                    <small class="text-muted"> @lang('Details') </small>
                 </h4>
                 <div class="small text-muted">
-                    Log Viewer Module
+                    @lang('Log Viewer Module')
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <x-buttons.return-back />
                 </div>
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
 
         <div class="row mt-4">
             <div class="col">
@@ -44,7 +44,7 @@ Log Viewer Dashboard | {{ app_name() }}
                     <div class="col-lg-2">
                         {{-- Log Menu --}}
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fa fa-fw fa-flag"></i> Levels</div>
+                            <div class="card-header"><i class="fa fa-fw fa-flag"></i> @lang('Levels')</div>
                             <div class="list-group list-group-flush log-menu">
                                 @foreach($log->menu() as $levelKey => $item)
                                     @if ($item['count'] === 0)
@@ -62,17 +62,20 @@ Log Viewer Dashboard | {{ app_name() }}
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-10">
                         {{-- Log Details --}}
                         <div class="card mb-4">
                             <div class="card-header">
-                                Log info :
-                                <div class="group-btns pull-right">
-                                    <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-sm btn-success">
-                                        <i class="fa fa-download"></i> DOWNLOAD
+                                <strong>
+                                    @lang('Log Info')
+                                </strong>
+                                <div class="btn-toolbar float-right">
+                                    <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-success">
+                                        <i class="fas fa-download"></i>&nbsp;@lang('Download')
                                     </a>
-                                    <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal">
-                                        <i class="fa fa-trash-o"></i> DELETE
+                                    <a href="#delete-log-modal" class="btn btn-danger ml-1" data-toggle="modal">
+                                        <i class="fas fa-trash-alt"></i>&nbsp;@lang('Delete')
                                     </a>
                                 </div>
                             </div>

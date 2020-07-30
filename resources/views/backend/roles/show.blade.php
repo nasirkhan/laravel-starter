@@ -26,13 +26,13 @@
             </div>
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
-                    <a href="{{route("backend.$module_name.edit", $$module_name_singular)}}" class="btn btn-primary ml-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-pencil-alt"></i></a>
+                    <x-buttons.return-back />
+                    <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ml-1" />
                 </div>
             </div>
         </div>
 
-        <div class="row mt-4 mb-4">
+        <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table table-hover">

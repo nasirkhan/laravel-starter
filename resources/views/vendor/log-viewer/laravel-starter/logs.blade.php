@@ -3,14 +3,15 @@
 <?php
 $module_icon = "c-icon cil-list-rich";
 ?>
-@section('title')
-Log Viewer Dashboard | {{ app_name() }}
-@stop
+@section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
 @section('breadcrumbs')
-<li class="breadcrumb-item"><a href="{!!route('backend.dashboard')!!}"><i class="c-icon cil-speedometer"></i> Dashboard</a></li>
-<li class="breadcrumb-item"><a href="{{ route('log-viewer::dashboard') }}"><i class="{{$module_icon}}"></i> Log Viewer Dashboard</a></li>
-<li class="breadcrumb-item active"> Logs By Day</li>
+<x-backend-breadcrumbs>
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::dashboard') }}" icon='{{ $module_icon }}' >
+        {{ __('Log Viewer Dashboard') }}
+    </x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __('Logs by Date') }}</x-backend-breadcrumb-item>
+</x-backend-breadcrumbs>
 @stop
 
 @section('content')
@@ -19,22 +20,21 @@ Log Viewer Dashboard | {{ app_name() }}
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> Logs By Day
+                    <i class="{{$module_icon}}"></i> {{ __('Logs by Date') }}
                     <small class="text-muted">List </small>
                 </h4>
                 <div class="small text-muted">
-                    Log Viewer Module
+                    @lang('Log Viewer Module')
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <x-buttons.return-back />
                 </div>
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
+
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
@@ -105,7 +105,7 @@ Log Viewer Dashboard | {{ app_name() }}
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    Total {!! $rows->total() !!}
+                    @lang('Total') {!! $rows->total() !!}
                 </div>
             </div>
             <div class="col-5">
@@ -127,7 +127,7 @@ Log Viewer Dashboard | {{ app_name() }}
             <input type="hidden" name="date" value="">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">DELETE LOG FILE</h5>
+                    <h5 class="modal-title">@lang('Delete Log File')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -28,7 +28,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                    <button onclick="window.history.back();"class="btn btn-warning ml-1" data-toggle="tooltip" title="Return Back"><i class="fas fa-reply"></i></button>
+                    <x-buttons.return-back />
                 </div>
             </div>
             <!--/.col-->
@@ -37,7 +37,7 @@
 
         <hr>
 
-        <div class="row mt-4 mb-4">
+        <div class="row mt-4">
             <div class="col">
 
                 {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
@@ -87,7 +87,9 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <x-buttons.create-submit />
+                                <x-buttons.create title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}">
+                                    {{__('Create')}}
+                                </x-buttons.create>
                             </div>
                         </div>
                         <div class="col-6">
