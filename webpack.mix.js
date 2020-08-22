@@ -26,7 +26,7 @@ mix.styles(
         "public/css/backend-theme.css",
         "node_modules/@coreui/icons/css/all.css",
         "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-        "resources/assets/css/custom-backend.css"
+        "resources/css/custom-backend.css"
     ],
     "public/css/backend.css"
 );
