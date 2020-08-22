@@ -36,7 +36,7 @@ Route::get('language/{language}', 'LanguageController@switch')->name('language.s
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
     Route::get('home', 'FrontendController@index')->name('home');
-    Route::get('privecy', 'FrontendController@privecy')->name('privecy');
+    Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
 
     Route::group(['middleware' => ['auth']], function () {
