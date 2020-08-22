@@ -1,8 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-{{$$module_name_singular->name}}
-@stop
+@section('title') {{$$module_name_singular->name}} @endsection
 
 
 @section('content')
@@ -151,6 +149,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

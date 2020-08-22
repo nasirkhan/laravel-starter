@@ -1,8 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-Comments
-@stop
+@section('title') Comments @endsection
 
 @section('content')
 <div class="page-header page-header-small">
@@ -16,11 +14,11 @@ Comments
             </h1>
 
             <div class="text-center">
-                @php $title_text = 'Tags - Mukto Library'; @endphp
+                @php $title_text = 'Tags'; @endphp
 
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
+                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
 
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$title_text}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="LaravelStarter" data-title="{{$title_text}}" data-hashtags="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
 
                 <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$title_text}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
 
@@ -79,6 +77,5 @@ Comments
         </div>
     </div>
 </div>
-
 
 @endsection
