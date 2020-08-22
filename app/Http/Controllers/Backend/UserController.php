@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Events\Backend\UserCreated;
-use App\Events\Backend\UserUpdated;
 use App\Events\Backend\UserProfileUpdated;
+use App\Events\Backend\UserUpdated;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;

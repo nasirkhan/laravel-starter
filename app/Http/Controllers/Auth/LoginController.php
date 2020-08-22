@@ -42,7 +42,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public function redirectTo(){
+    public function redirectTo()
+    {
         $redirectTo = request()->redirectTo;
 
         if ($redirectTo) {
