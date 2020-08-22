@@ -81,6 +81,15 @@ return [
             [
                 'type'  => 'text', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
+                'name'  => 'instagram_url', // unique name for field
+                'label' => 'Instagram Account URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'https://instagram.com/shishuraishob', // default value if you want
+            ],
+            [
+                'type'  => 'text', // input fields type
+                'data'  => 'string', // data type, string, int, boolean
                 'name'  => 'linkedin_url', // unique name for field
                 'label' => 'LinkedIn URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
