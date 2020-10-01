@@ -1,8 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-Terms &amp; Conditions - {{ config('app.name') }}
-@endsection
+@section('title') Terms &amp; Conditions - {{ config('app.name') }} @endsection
 
 @section('content')
 <div class="page-header page-header-small clear-filter" filter-color="orange">

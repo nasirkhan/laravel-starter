@@ -6,83 +6,116 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>{{ config('app.name') }}</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <title>@yield('title') | {{ config('app.name') }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ setting('meta_description') }}">
     <meta name="keyword" content="{{ setting('meta_keyword') }}">
 
+    @include('frontend.includes.meta')
+
+    <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-    <link type="text/plain" rel="author" href="{{asset('humans.txt')}}" />
+    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @stack('before-styles')
 
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
 
     @stack('after-styles')
 
     <x-google-analytics config="{{ setting('google_analytics') }}" />
-
 </head>
 
-<body class="login-page sidebar-collapse">
+<body class="bg-white">
 
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+    <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
         <div class="container">
-            <div class="dropdown button-dropdown">
-                <a href="#" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
-                    <span class="button-bar"></span>
-                    <span class="button-bar"></span>
-                    <span class="button-bar"></span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" target="_blank">About</a>
+            <a class="navbar-brand" href="/">
+                <img src="{{asset('img/logo-with-text.jpg')}}" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+                <div class="navbar-collapse-header">
+                    <div class="row">
+                        <div class="col-6 collapse-brand">
+                            <a href="/">
+                                <img src="{{asset('img/logo-with-text-dark.png')}}" height="40">
+                            </a>
+                        </div>
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="/" rel="tooltip" title="{{ config('app.name') }} - Application Login Page" data-placement="bottom">
-                    {{app_name()}}
-                </a>
-                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar top-bar"></span>
-                    <span class="navbar-toggler-bar middle-bar"></span>
-                    <span class="navbar-toggler-bar bottom-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{asset('img/blurred-image-1.jpg')}}">
-                <ul class="navbar-nav">
-                    @if(user_registration())
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-primary" href="{{ route('register') }}">
-                            <strong><i class="now-ui-icons business_badge"></i> {{ __("labels.text.register") }}</strong>
+                        <a href="{{ route('login') }}" class="nav-link">
+                            <span class="nav-link-inner--text">Login</span>
                         </a>
                     </li>
-                    @endif
+                    <li class="nav-item">
+                        <a href="{{ route('register') }}" class="nav-link">
+                            <span class="nav-link-inner--text">Register</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class="d-lg-none" />
+                <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" data-original-title="Like us on Facebook">
+                            <i class="fab fa-facebook-square"></i>
+                            <span class="nav-link-inner--text d-lg-none">Facebook</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span class="nav-link-inner--text d-lg-none">Instagram</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Twitter">
+                            <i class="fab fa-twitter-square"></i>
+                            <span class="nav-link-inner--text d-lg-none">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
+                            <i class="fab fa-github"></i>
+                            <span class="nav-link-inner--text d-lg-none">Github</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ml-lg-4">
+                        <a href="#" target="_blank" class="btn btn-neutral btn-icon">
+                            <span class="btn-inner--icon">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                            </span>
+                            <span class="nav-link-inner--text">Upgrade to Pro</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="page-header" filter-color="orange">
+    @yield('content')
 
-        @yield('content')
+    @include('auth.footer')
 
-        @include('auth.footer')
-    </div>
+    @stack('before-scripts')
+
+    <script src="{{ mix('js/dashboard.js') }}"></script>
+
+    @stack('after-scripts')
+
 </body>
 
-<!-- Scripts -->
-@stack('before-scripts')
-
-<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
-<script src="{{ mix('js/frontend.js') }}"></script>
-
-@stack('after-scripts')
 </html>

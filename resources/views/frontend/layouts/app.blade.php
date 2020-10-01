@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@yield('title') | {{ config('app.name') }}</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{ setting('meta_description') }}">
     <meta name="keyword" content="{{ setting('meta_keyword') }}">
 
@@ -22,9 +22,6 @@
 
     @stack('before-styles')
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
 
     @stack('after-styles')
@@ -32,20 +29,18 @@
     <x-google-analytics config="{{ setting('google_analytics') }}" />
 </head>
 
-<body class="{{isset($body_class) ? $body_class : ''}} sidebar-collapse">
+<body>
 
-    <!-- Header Block -->
     @include('frontend.includes.header')
-    <!-- / Header Block -->
 
-    <div class="wrapper">
+    <x-preloader />
 
+    <main>
         @yield('content')
+    </main>
 
-        <!-- Footer block -->
-        @include('frontend.includes.footer')
-        <!-- / Footer block -->
-    </div>
+    @include('frontend.includes.footer')
+
 </body>
 
 <!-- Scripts -->

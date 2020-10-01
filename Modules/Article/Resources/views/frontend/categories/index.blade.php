@@ -1,85 +1,57 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-Categories
-@stop
-
+@section('title') {{ __("Categories") }} @endsection
 
 @section('content')
-<div class="page-header page-header-small">
 
-    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
-    </div>
-    <div class="content-center">
-        <div class="container">
-            <h1 class="title">
-                Categories
-            </h1>
+<section class="section-header bg-primary text-white pb-7 pb-lg-11">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
+                <h1 class="display-2 mb-4">
+                    Categories
+                </h1>
+                <p class="lead">
+                    All the article categories.
+                </p>
 
-            <div class="text-center">
-                @php $title_text = 'Tags - Mukto Library'; @endphp
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$title_text}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$title_text}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
-
+                @include('frontend.includes.messages')
             </div>
         </div>
     </div>
+    <div class="pattern bottom"></div>
+</section>
 
-</div>
-
-<div class="section">
-    <div class="container">
+<section class="section section-lg line-bottom-light">
+    <div class="container mt-n7 mt-lg-n12 z-2">
         <div class="row">
             @foreach ($$module_name as $$module_name_singular)
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    @php
-                    $post_details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-                    @endphp
-
-                    <div class="card-body">
-                        <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$$module_name_singular->name}}</h4>
+            @php
+            $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+            @endphp
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card bg-white border-light shadow-soft p-4 rounded">
+                    <div class="card-body p-0 pt-4">
+                        <a href="{{$details_url}}" class="h3">
+                            {{$$module_name_singular->name}}
                         </a>
-                        <hr>
-                        <p class="card-text">
+
+                        <p class="mb-3">
                             {{$$module_name_singular->description}}
                         </p>
-                        <hr>
-                        <p class="card-text">
+                        <p class="mb-3 font-weight-bold">
                             Total {{$$module_name_singular->posts->count()}} posts.
-                        </p>
-                        <hr>
-
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="float-right">
-                                        <a href="{{$post_details_url}}" class="btn btn-primary">Continue Reading</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </p>
-
-                        <p class="card-text">
-                            <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
                         </p>
                     </div>
                 </div>
             </div>
             @endforeach
+
         </div>
-        <div class="row">
-            <div class="col">
-                {{$$module_name->links()}}
-            </div>
+        <div class="d-flex justify-content-center w-100 mt-3">
+            {{$$module_name->links()}}
         </div>
     </div>
-</div>
-
+</section>
 
 @endsection

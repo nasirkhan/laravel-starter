@@ -50,25 +50,62 @@ mix.scripts(
  *
  * -----------------------------------------------------------------------------
  */
-// frontend css
-mix.styles([
-    "public/vendor/now-ui-kit/css/bootstrap.min.css",
-    "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-    "public/vendor/iziToast/css/iziToast.min.css",
-    "public/vendor/now-ui-kit/css/now-ui-kit.css",
-    "resources/css/custom-frontend.css",
-], "public/css/frontend.css");
+// frontend-theme
+mix.styles(
+    [
+        "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+        "public/vendor/impact-design/front/css/front.css",
+        "resources/css/custom-frontend.css",
+    ],
+    "public/css/frontend.css"
+);
 
 // frontend js
-mix.scripts([
-   "public/vendor/now-ui-kit/js/core/jquery.min.js",
-   "public/vendor/now-ui-kit/js/core/popper.min.js",
-   "public/vendor/now-ui-kit/js/core/bootstrap.min.js",
-   "public/vendor/iziToast/js/iziToast.min.js",
-   "public/vendor/now-ui-kit/js/now-ui-kit.js",
-   "resources/js/custom-frontend.js",
-], "public/js/frontend.js");
+mix.scripts(
+    [
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/popper.js/dist/umd/popper.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "node_modules/headroom.js/dist/headroom.min.js",
+
+        "node_modules/onscreen/dist/on-screen.umd.min.js",
+        "node_modules/waypoints/lib/jquery.waypoints.min.js",
+        "node_modules/jarallax/dist/jarallax.min.js",
+        "node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js",
+        "public/vendor/impact-design/front/assets/js/front.js",
+        "resources/js/custom-frontend.js"
+    ],
+    "public/js/frontend.js"
+);
+
+
+// frontend-dashboard-theme
+mix.styles(
+    [
+        "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+        "public/vendor/impact-design/dashboard/css/dashboard.css",
+        "resources/css/custom-dashboard.css",
+    ],
+    "public/css/dashboard.css"
+);
+
+// frontend-dashboard js
+mix.scripts(
+    [
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/popper.js/dist/umd/popper.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "public/vendor/impact-design/dashboard/assets/vendor/js-cookie/js.cookie.js",
+        "public/vendor/impact-design/dashboard/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js",
+        "public/vendor/impact-design/dashboard/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js",
+        "public/vendor/impact-design/dashboard/assets/vendor/chart.js/dist/Chart.min.js",
+        "public/vendor/impact-design/dashboard/assets/vendor/chart.js/dist/Chart.extension.js",
+        "public/vendor/impact-design/dashboard/assets/js/dashboard.js",
+        "resources/js/custom-dashboard.js"
+    ],
+    "public/js/dashboard.js"
+);
 
 if (mix.inProduction()) {
-   mix.version();
+    mix.version();
 }
