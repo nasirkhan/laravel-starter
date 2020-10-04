@@ -1,71 +1,108 @@
 @extends('auth.layout')
 
+@section('title') @lang('Reset Password') @endsection
+
 @section('content')
 
-<div class="page-header-image" style="background-image:url('{{asset('img/cover-01.jpg')}}')"></div>
+<div class="main-content">
 
-<div class="content-center">
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+        <div class="container">
+            <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                        <h1 class="text-white">
+                            @lang('Reset Password')
+                        </h1>
+                        <p class="text-lead text-white">
+                            Please enter your email here and details instructions will be sent to your email inbox.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
 
-    <div class="container">
+    <div class="container mt--9 pb-5">
 
-        <div class="col-md-4 content-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card bg-secondary border border-soft">
 
-            <div class="card card-login card-plain">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <small>Enter your email address</small>
+                        </div>
 
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
-                    <div class="header header-primary text-center">
-                        <h5>
-                            {{ __('Reset Password') }}
-                        </h5>
+                        @include('flash::message')
 
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
+                        @if (Session::has('status'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <p>
+                                <i class="fas fa-bolt"></i> {{ Session::get('status') }}
+                            </p>
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         @endif
-                        @error('email')
-                            <div class="alert alert-danger" role="alert">
-                                <div class="container">
-                                    <strong>{{ $message }}</strong>
+
+                        @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p>
+                                <i class="fas fa-exclamation-triangle"></i> @lang('Please fix the following errors & try again!')
+                            </p>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+
+                        <form role="form" method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="email" required>
                                 </div>
                             </div>
-                        @enderror
-
-                    </div>
-                    <div class="content">
-                        <div class="form-check">
-                            <div class="input-group mb-3 input-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="input-email"><i class="now-ui-icons users_single-02"></i></span>
-                                </div>
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
                             </div>
-                        </div>
-
-                        <div class="footer text-center">
-                            <button type="submit" class="btn btn-primary btn-round btn-block"> <strong>Submit</strong> </button>
-                        </div>
+                        </form>
                     </div>
-
+                </div>
+                <div class="row mt-3">
                     @if (Route::has('register'))
-                    <div class="pull-left">
-                        <h6>
-                            <a href="{{ route('register') }}" class="link">Create Account</a>
-                        </h6>
+                    <div class="col-6 text-left">
+                        <a href="{{ route('register') }}" class="text-gray">
+                            <small>Create new account</small>
+                        </a>
                     </div>
                     @endif
-                    @if (Route::has('password.request'))
-                        <div class="float-right">
-                            <h6>
-                                <a class="link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </h6>
-                        </div>
-                    @endif
 
-                </form>
+                    <div class="col-6 text-right">
+                        <a href="{{ route('login') }}" class="text-gray">
+                            <small>Login to account</small>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

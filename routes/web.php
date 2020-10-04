@@ -36,7 +36,7 @@ Route::get('language/{language}', 'LanguageController@switch')->name('language.s
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
     Route::get('home', 'FrontendController@index')->name('home');
-    Route::get('privecy', 'FrontendController@privecy')->name('privecy');
+    Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
 
     Route::group(['middleware' => ['auth']], function () {
@@ -48,7 +48,6 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
         */
         $module_name = 'users';
         $controller_name = 'UserController';
-        // Route::get("$module_name/{id}", ['as' => "$module_name.show", 'uses' => "$controller_name@show"]);
         Route::get("profile/{id}", ['as' => "$module_name.profile", 'uses' => "$controller_name@profile"]);
         Route::get('profile/{id}/edit', ['as' => "$module_name.profileEdit", 'uses' => "$controller_name@profileEdit"]);
         Route::patch('profile/{id}/edit', ['as' => "$module_name.profileUpdate", 'uses' => "$controller_name@profileUpdate"]);

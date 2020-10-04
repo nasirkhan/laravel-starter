@@ -23,11 +23,11 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function privecy()
+    public function privacy()
     {
         $body_class = '';
 
-        return view('frontend.privecy', compact('body_class'));
+        return view('frontend.privacy', compact('body_class'));
     }
 
     /**

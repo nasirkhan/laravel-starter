@@ -4,61 +4,59 @@
 
 
 @section('content')
-<div class="page-header page-header-small">
+<section class="section-header bg-primary text-white pb-7 pb-lg-11">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
+                <h1 class="display-2 mb-4">
+                    {{$$module_name_singular->name}}
+                </h1>
+                <p class="lead">
+                    {!! $$module_name_singular->comment !!}
+                </p>
+                <div class="text-center">
+                    @php $title_text = __('Comments'); @endphp
 
-    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
-    </div>
-    <div class="content-center">
-        <div class="container">
-            <h1 class="title">
-                Comment: {{$$module_name_singular->name}}
-            </h1>
+                    <button class="btn btn-outline-white" data-sharer="facebook" data-hashtag="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
 
-            <div class="text-center">
+                    <button class="btn btn-outline-white" data-sharer="twitter" data-via="LaravelStarter" data-title="{{$title_text}}" data-hashtags="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
 
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
+                    <button class="btn btn-outline-white" data-sharer="whatsapp" data-title="{{$title_text}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
 
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+                </div>
 
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
-
+                @include('frontend.includes.messages')
             </div>
         </div>
     </div>
-</div>
+    <div class="pattern bottom"></div>
+</section>
 
-
-<div class="section">
-    <div class="container">
+<section class="section section-lg line-bottom-light">
+    <div class="container mt-n7 mt-lg-n12 z-2">
         <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$$module_name_singular->name}}</h4>
+            @php
+            $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
+            @endphp
+            <div class="col mb-4">
+                <div class="card bg-white border-light shadow-soft p-4 rounded">
+                    <div class="card-body p-0 pt-4">
+                        <a href="{{$details_url}}">
+                            <h4 class="card-title">{{$$module_name_singular->name}}</h4>
+                        </a>
                         <hr>
                         <p class="card-text">
-                            {!!$$module_name_singular->comment!!}
+                            {!! $$module_name_singular->comment !!}
                         </p>
-
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="text-center">
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </p>
-
-                        <p class="card-text">
+                        <p>
                             <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
                         </p>
+
+                        <hr>
+
+                        <h6>
+                            Post: <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -138,7 +136,7 @@
                         <h6>
                             {{$comment->name}}
                         </h6>
-                        {{$comment->comment}}
+                        {!! $comment->comment !!}
                         <br>
                         -- {{$comment->user_name}}
                         <hr>
@@ -147,7 +145,10 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center w-100 mt-3">
+
+        </div>
     </div>
-</div>
+</section>
 
 @endsection

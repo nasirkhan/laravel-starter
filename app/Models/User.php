@@ -19,7 +19,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use SoftDeletes;
     use HasMediaTrait;
     use UserPresenter;
-    
+
     protected $guarded = [
         'id',
         'updated_at',

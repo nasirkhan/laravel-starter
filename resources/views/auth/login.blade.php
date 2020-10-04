@@ -1,106 +1,114 @@
 @extends('auth.layout')
 
+@section('title') @lang('Login') @endsection
+
 @section('content')
 
-<div class="page-header-image" style="background-image:url('{{asset('img/cover-01.jpg')}}')"></div>
+<div class="main-content">
 
-<div class="content-center">
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+        <div class="container">
+            <div class="header-body text-center mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                        <h1 class="text-white">@lang('Welcome')</h1>
+                        <p class="text-lead text-white">Use these awesome forms to login or create new account here for free.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
 
-    <div class="container">
+    <div class="container mt--9 pb-5">
 
-        <div class="col-md-4 content-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card bg-secondary border border-soft">
 
-            <div class="card card-login card-plain">
-                <form class="form" method="POST" action="{{ route('login') }}">
-                    @csrf
+                    @include('auth.social_login_buttons')
 
-                    <div class="header header-primary text-center">
-                        <h5>
-                            Login to Account
-                        </h5>
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <small>Sign in with credentials</small>
+                        </div>
 
                         @include('flash::message')
 
                         @if ($errors->any())
-                        <div class="row justify-content-center">
-                            <div class="col-12 align-self-center">
-                                <div class="alert alert-danger" role="alert">
-                                    <div class="container">
-                                        <div class="alert-icon">
-                                            <i class="fas fa-bolt"></i>
-                                        </div>
-                                        <p>
-                                            <i class="fa fa-exclamation-triangle"></i> Please fix the following errors and submit again!
-                                        </p>
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p>
+                                <i class="fas fa-exclamation-triangle"></i> @lang('Please fix the following errors & try again!')
+                            </p>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
 
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+
+                        <form role="form" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="@lang('Password')" aria-label="@lang('Password')" aria-describedby="input-password" required>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-12">
+                                    <div class="custom-control custom-control-alternative custom-checkbox">
+                                        <input class="custom-control-input" name="remember" id="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="remember">
+                                            <span class="text-muted">
+                                                Remember my login
                                             </span>
-                                        </button>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="content">
-                        <div class="form-check">
-                            <input type="hidden" name="redirectTo" value="{{request('redirectTo')}}">
-                            <div class="input-group mb-3 input-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="input-email"><i class="now-ui-icons users_single-02"></i></span>
-                                </div>
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary mt-2">
+                                    @lang('Submit')
+                                </button>
                             </div>
-                        </div>
-
-                        <div class="form-check">
-                            <div class="input-group mb-3 input-lg">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="input-password"><i class="now-ui-icons objects_key-25"></i></span>
-                                </div>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="input-password" required>
-                            </div>
-                        </div>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <span class="form-check-sign"></span>
-                                Remember my login
-                            </label>
-                        </div>
-                        <div class="footer text-center">
-                            <button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>
-                        </div>
+                        </form>
                     </div>
-
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <a href="{{ route('password.request') }}" class="text-gray">
+                            <small>{{ __('Forgot Your Password?') }}</small>
+                        </a>
+                    </div>
                     @if (Route::has('register'))
-                    <div class="pull-left">
-                        <h6>
-                            <a href="{{ route('register') }}" class="link">Create Account</a>
-                        </h6>
+                    <div class="col-6 text-right">
+                        <a href="{{ route('register') }}" class="text-gray">
+                            <small>Create new account</small>
+                        </a>
                     </div>
                     @endif
-                    @if (Route::has('password.request'))
-                        <div class="float-right">
-                            <h6>
-                                <a class="link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </h6>
-                        </div>
-                    @endif
-
-                </form>
+                </div>
             </div>
-            @include('auth.social_login_buttons')
         </div>
     </div>
 </div>
