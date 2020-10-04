@@ -66,7 +66,7 @@ It is a modular application, and a number of modules are installed by default. I
   * Bootstrap 4, CoreUI
   * Fontawesome 5
 * Frontend Theme
-  * Bootstrap 4, Now UI Kit
+  * Bootstrap 4, Impact Design Kit
   * Fontawesome 5
 * Article Module
   * Posts
@@ -80,7 +80,7 @@ It is a modular application, and a number of modules are installed by default. I
   * Bootstrap 4
   * Fontawesome 5
   * CoreUI
-  * Now UI Kit
+  * Impact Design Kit
   * Datatables
   * Select2
   * Date Time Picker
@@ -122,11 +122,15 @@ FontAwesome & CoreUI Icons, two different font icon library is installed for the
 
 __Home Page__
 
-![Laravel Starter Home](https://user-images.githubusercontent.com/396987/67085331-74606500-f1c0-11e9-8187-99fe49134075.png)
+![Laravel Starter Home](https://user-images.githubusercontent.com/396987/95010200-3d8d9400-0649-11eb-8c44-72b02a37c00b.jpeg)
 
 __Login Page__
 
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/67085329-74606500-f1c0-11e9-8669-3638e30cb449.png)
+![Laravel Starter Login](https://user-images.githubusercontent.com/396987/95010203-3ebec100-0649-11eb-91a6-1a7ef0bb47eb.jpeg)
+
+__Posts Page__
+
+![Laravel Starter Posts Page](https://user-images.githubusercontent.com/396987/95010196-39fa0d00-0649-11eb-8a06-78472065b2e6.jpeg)
 
 __Backend Dashboard__
 
