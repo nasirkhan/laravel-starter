@@ -1,53 +1,30 @@
-<footer class="footer">
+<footer class="py-5 bg-white" id="footer-main">
     <div class="container">
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">
-                        {{ config('app.name', 'Laravel Starter') }}
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank">
-                        About Us
-                    </a>
-                </li>
-                @guest
-                @if(user_registration())
-                <li>
-                    <a href="{{ route('register') }}">
-                        Register
-                    </a>
-                </li>
-                @endif
-                <li>
-                    <a href="{{ route('login') }}">
-                        Login
-                    </a>
-                </li>
-                @else
-                <li>
-                    <a href="#">
-                        {{ Auth::user()->name }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-                @endguest
-            </ul>
-        </nav>
-        <div class="copyright">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script> {{ config('app.name', 'Laravel Starter') }}, {!! setting('footer_text') !!}
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    &copy; {{ config('app.name') }}, {!! setting('footer_text') !!}
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                    <li class="nav-item">
+                        <a href="https://nasirkhn.com" class="nav-link" target="_blank">Nasir Khan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="htps://bluecube.com.bd" class="nav-link" target="_blank">Blue Cube</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">License</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </footer>

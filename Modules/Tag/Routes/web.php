@@ -6,7 +6,7 @@
 *
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => '\Modules\Tag\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => 'article'], function () {
+Route::group(['namespace' => '\Modules\Tag\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
 
     /*
      *

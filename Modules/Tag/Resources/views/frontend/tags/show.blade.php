@@ -2,138 +2,60 @@
 
 @section('title') {{$$module_name_singular->name}} @endsection
 
-
 @section('content')
-<div class="page-header page-header-small">
 
-    <div class="page-header-image" data-parallax="true" style="background-image:url('{{asset('img/cover-01.jpg')}}');">
-    </div>
-    <div class="content-center">
-        <div class="container">
-            <h1 class="title">
-                Tag: {{$$module_name_singular->name}}
-            </h1>
-
-            <div class="text-center">
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
-
-                <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="section">
+<section class="section-header bg-primary text-white pb-7 pb-lg-11">
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$$module_name_singular->name}}</h4>
-                        <hr>
-                        <p class="card-text">
-                            {!!$$module_name_singular->description!!}
-                        </p>
-
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="text-center">
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="facebook" data-hashtag="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="twitter" data-via="MuktoLibrary" data-title="{{$$module_name_singular->name}}" data-hashtags="MuktoLibrary" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
-
-                                        <button class="btn btn-primary btn-icon btn-round" data-sharer="whatsapp" data-title="{{$$module_name_singular->name}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </p>
-
-                        <p class="card-text">
-                            <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h3>
-                    Posts in {{$$module_name_singular->name}} (Total {{$$module_name_singular->posts->count()}})
-                </h3>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($posts as $post)
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    @php
-                    $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
-                    @endphp
-                    <a href="{{$post_details_url}}">
-                        <img class="card-img-top" src="{{$post->featured_image}}" alt="{{$post->name}}">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
+                <div class="mb-2">
+                    <a href="{{route('frontend.tags.index')}}" class="badge badge-sm badge-warning text-uppercase px-3">
+                        {{ __("Tags") }}
                     </a>
-                    <div class="card-body">
-                        <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$post->name}}</h4>
-                        </a>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            {{$post->author_name}}
-                        </h6>
-                        <hr>
-                        <p class="card-text">
-                            {{$post->intro}}
-                        </p>
-                        <hr>
+                </div>
+                <h1 class="display-2 mb-4">
+                    {{$$module_name_singular->name}}
+                </h1>
+                <p class="lead">
+                    {{$$module_name_singular->description}}
+                </p>
 
-                        <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge badge-primary">{{$post->category_name}}</a>
-                        </p>
+                @include('frontend.includes.messages')
+            </div>
+        </div>
+    </div>
+    <div class="pattern bottom"></div>
+</section>
 
-                        <p class="card-text">
-                            @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-warning">{{$tag->name}}</a>
-                            @endforeach
-                        </p>
+<section class="section section-lg line-bottom-light">
+    <div class="container mt-n7 mt-lg-n12 z-2">
+        <div class="row">
 
-                        <p class="card-text">
-                            <span class="badge badge-primary">
-                                <i class="now-ui-icons ui-2_chat-round"></i> Total {{$post->comments->count()}} comments
-                            </span>
-                        </p>
+            @foreach ($posts as $post)
+            @php
+            $details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
+            @endphp
 
-                        <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="float-right">
-                                        <a href="{{$post_details_url}}" class="btn btn-primary"><i class="fas fa-long-arrow-alt-right"></i> Continue Reading</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </p>
-
-                        <p class="card-text">
-                            <small class="text-muted">{{$post->published_at_formatted}}</small>
-                        </p>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card bg-white border-light shadow-soft p-4 rounded">
+                    <a href="{{$details_url}}"><img src="{{$post->featured_image}}" class="card-img-top" alt=""></a>
+                    <div class="card-body p-0 pt-4">
+                        <a href="{{$details_url}}" class="h3">{{$post->name}}</a>
+                        <div class="d-flex align-items-center my-4">
+                            <img class="avatar avatar-sm rounded-circle" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
+                            {!!isset($post->created_by_alias)? $post->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'"><h6 class="text-muted small ml-2 mb-0">'.$post->created_by_name.'</h6></a>'!!}
+                        </div>
+                        <p class="mb-3">{{$post->intro}}</p>
                     </div>
                 </div>
             </div>
             @endforeach
+
         </div>
-        <div class="row">
-            <div class="col">
-                {{$posts->links()}}
-            </div>
+        <div class="d-flex justify-content-center w-100 mt-3">
+            {{$posts->links()}}
         </div>
     </div>
-</div>
-
+</section>
 
 @endsection

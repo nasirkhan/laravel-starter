@@ -197,7 +197,7 @@ if (!function_exists('encode_id')) {
      */
     function encode_id($id)
     {
-        $hashids = new Hashids\Hashids(config('app.salt'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
         $hashid = $hashids->encode($id);
 
         return $hashid;
@@ -217,7 +217,7 @@ if (!function_exists('decode_id')) {
      */
     function decode_id($hashid)
     {
-        $hashids = new Hashids\Hashids(config('app.salt'), 0, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
         $id = $hashids->decode($hashid);
 
         if (count($id)) {
