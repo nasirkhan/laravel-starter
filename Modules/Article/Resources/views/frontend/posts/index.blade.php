@@ -22,6 +22,7 @@
     <div class="pattern bottom"></div>
 </section>
 
+@if(count($$module_name))
 <section class="section section-lg line-bottom-light">
     <div class="container mt-n7 mt-lg-n12 z-2">
         <div class="row">
@@ -85,5 +86,6 @@
         </div>
     </div>
 </section>
+@endif
 
 @endsection
