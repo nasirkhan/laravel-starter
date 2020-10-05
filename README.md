@@ -21,6 +21,14 @@ Pass: secret
 
 ```
 
+For additional demo data you may use the following command. By using this you can truncate the `posts, categories, tags and comments` table and insert new demo data. `--fresh` option will truncate the tables, without this command new set to data will be inserted only. 
+
+```
+
+php artisan starter:insert-demo-data --fresh
+
+```
+
 # Custom Commands
 
 We have created a number of custom commands for the project. The commands are listed below with a brief about the use of it.
@@ -143,4 +151,3 @@ __Backend Dashboard__
 ---
 
 ![Edit-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519360-d1bcf880-d013-11ea-9f6c-b5d33912057f.jpg)
-

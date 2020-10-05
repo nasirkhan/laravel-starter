@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
+use Modules\Tag\Entities\Tag;
 
 class ArticleDatabaseSeeder extends Seeder
 {
@@ -42,9 +43,9 @@ class ArticleDatabaseSeeder extends Seeder
 
         // Populate the pivot table
         factory(Post::class, 25)->create()->each(function ($post) {
-            // $post->tags()->attach(
-            //     $tags->random(rand(1, 3))->pluck('id')->toArray()
-            // );
+            $post->tags()->attach(
+                Tag::inRandomOrder()->limit(rand(1, 5))->pluck('id')->toArray()
+            );
         });
         echo " Insert: posts \n";
 
