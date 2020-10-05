@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
 use Modules\Tag\Entities\Tag;
+use Modules\Comment\Entities\Comment;
 
 class InsertDemoContents extends Command
 {
@@ -83,6 +84,8 @@ class InsertDemoContents extends Command
             }
         }
 
+        $this->line("");
+
         /**
          * Categories
          */
@@ -105,6 +108,12 @@ class InsertDemoContents extends Command
             );
         });
 
-        $this->info("-- END --");
+        /**
+         * Comments
+         */
+        $this->info("Inserting Comments");
+        factory(Comment::class, 25)->create();
+
+        $this->info("\n\n -- Completed --");
     }
 }
