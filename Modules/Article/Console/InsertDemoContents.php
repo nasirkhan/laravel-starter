@@ -4,13 +4,11 @@ namespace Modules\Article\Console;
 
 use Auth;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
-use Modules\Tag\Entities\Tag;
 use Modules\Comment\Entities\Comment;
+use Modules\Tag\Entities\Tag;
 
 class InsertDemoContents extends Command
 {
@@ -49,7 +47,7 @@ class InsertDemoContents extends Command
 
         $fresh = $this->option('fresh');
 
-        if($fresh) {
+        if ($fresh) {
             if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
                 
                 // Disable foreign key checks!
