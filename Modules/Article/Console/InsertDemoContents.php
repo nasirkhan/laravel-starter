@@ -48,10 +48,10 @@ class InsertDemoContents extends Command
         Auth::loginUsingId(1);
 
         $fresh = $this->option('fresh');
-        // $this->info("a $fresh");
 
         if($fresh) {
             if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
+                
                 // Disable foreign key checks!
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
@@ -84,7 +84,7 @@ class InsertDemoContents extends Command
             }
         }
 
-        $this->line("");
+        $this->line("\n");
 
         /**
          * Categories
