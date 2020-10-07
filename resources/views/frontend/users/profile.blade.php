@@ -8,15 +8,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-                <!-- <div class="mb-2">
-                    <img class="rounded-circle" style="max-width:150px;" src="{{asset($user->avatar)}}" alt="{{$$module_name_singular->name}}">
-                </div> -->
                 <h1 class="display-2 mb-4">
                     {{$$module_name_singular->name}}
                     @auth
                     @if(auth()->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                     </small>
                     @endif
                     @endauth

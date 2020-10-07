@@ -13,7 +13,7 @@
                     @auth
                     @if(auth()->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Show</a>
                     </small>
                     @endif
                     @endauth
