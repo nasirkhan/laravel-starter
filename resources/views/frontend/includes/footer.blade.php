@@ -12,7 +12,7 @@
                     A CMS like modular starter application project built with Laravel 7.
                 </p>
             </div>
-            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0">
+            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0 text-center">
                 <h6>
                     Pages
                 </h6>
@@ -23,7 +23,7 @@
                     <li><a target="_blank" href="#">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0">
+            <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0 text-center">
                 <h6>
                     Account
                 </h6>
