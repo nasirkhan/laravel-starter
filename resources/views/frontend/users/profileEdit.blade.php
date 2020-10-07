@@ -10,10 +10,11 @@
             <div class="col-12 col-md-8 text-center">
                 <h1 class="display-2 mb-4">
                     {{$$module_name_singular->name}}
+                    
                     @auth
                     @if(auth()->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Show</a>
+                        <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Show</a>
                     </small>
                     @endif
                     @endauth
@@ -140,7 +141,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <?php
                                     $field_name = 'address';
@@ -152,7 +153,7 @@
                                     {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <?php
                                     $field_name = 'bio';
@@ -222,16 +223,12 @@
                             <div class="col-md-10">
                                 <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-primary btn-sm"><i class="now-ui-icons objects_key-25"></i>&nbsp;Change password</a>
                             </div>
-                        </div><!--form-group-->
+                        </div>
 
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            {!! Form::button("<i class='fas fa-save'></i>&nbsp;Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    {!! Form::button("<i class='fas fa-save'></i>&nbsp;Save", ['class' => 'btn btn-success', 'type'=>'submit']) !!}
                                 </div>
                             </div>
                         </div>
