@@ -85,6 +85,12 @@ class RegisterController extends Controller
             'password'   => Hash::make($data['password']),
         ]);
 
+        // username
+        $id = $user->id;
+        $username = 100000+$id;
+        $user->username = $username;
+        $user->save();
+
         event(new UserRegistered($user));
 
         return $user;
