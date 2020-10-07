@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row justify-content-sm-center align-items-center py-3 mt-3">
             <div class="col-12 col-lg-8">
                 <div class="row">
@@ -138,3 +138,8 @@
 </section>
 
 @endsection
+
+@push ("after-scripts")
+<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+@endpush
+

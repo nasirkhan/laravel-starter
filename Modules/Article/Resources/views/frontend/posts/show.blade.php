@@ -320,6 +320,6 @@
 </div>
 @endsection
 
-@push ('after-scripts')
+@push ("after-scripts")
 <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 @endpush
