@@ -211,9 +211,10 @@ class UserController extends Controller
             'password'  => 'required|confirmed|min:4',
         ]);
 
-        $data_array = $request->except('_token', 'roles', 'permissions',  'password_confirmation');
+        $data_array = $request->except('_token', 'roles', 'permissions', 'password_confirmation');
         $data_array['name'] = $request->first_name.' '.$request->last_name;
-        $data_array['password'] = Hash::make($request->password);;
+        $data_array['password'] = Hash::make($request->password);
+        ;
 
         if ($request->confirmed == 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
