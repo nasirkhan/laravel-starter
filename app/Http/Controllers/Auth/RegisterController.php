@@ -87,7 +87,7 @@ class RegisterController extends Controller
 
         // username
         $id = $user->id;
-        $username = 100000+$id;
+        $username = config('app.initial_username')+$id;
         $user->username = $username;
         $user->save();
 

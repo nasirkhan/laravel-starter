@@ -242,6 +242,12 @@ class UserController extends Controller
             $$module_name_singular->syncPermissions($permissions);
         }
 
+        // Username
+        $id = $$module_name_singular->id;
+        $username = config('app.initial_username')+$id;
+        $$module_name_singular->username = $username;
+        $$module_name_singular->save();
+
         event(new UserCreated($$module_name_singular));
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
