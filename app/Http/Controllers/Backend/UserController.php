@@ -211,7 +211,7 @@ class UserController extends Controller
             'password'  => 'required|confirmed|min:4',
         ]);
 
-        $data_array = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+        $data_array = $request->except('_token', 'roles', 'permissions',  'password_confirmation');
         $data_array['name'] = $request->first_name.' '.$request->last_name;
         $data_array['password'] = Hash::make($request->password);;
 
@@ -807,7 +807,6 @@ class UserController extends Controller
         }
 
         $$module_name_singular = User::withTrashed()->find($id);
-        // $$module_name_singular = $this->findOrThrowException($id);
 
         try {
             $$module_name_singular->status = 1;
