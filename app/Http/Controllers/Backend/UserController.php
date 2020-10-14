@@ -211,8 +211,10 @@ class UserController extends Controller
             'password'  => 'required|confirmed|min:4',
         ]);
 
-        $data_array = $request->except('_token', 'roles', 'confirmed', 'password_confirmation');
+        $data_array = $request->except('_token', 'roles', 'permissions', 'password_confirmation');
         $data_array['name'] = $request->first_name.' '.$request->last_name;
+        $data_array['password'] = Hash::make($request->password);
+        ;
 
         if ($request->confirmed == 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
@@ -240,6 +242,12 @@ class UserController extends Controller
             $permissions = [];
             $$module_name_singular->syncPermissions($permissions);
         }
+
+        // Username
+        $id = $$module_name_singular->id;
+        $username = config('app.initial_username')+$id;
+        $$module_name_singular->username = $username;
+        $$module_name_singular->save();
 
         event(new UserCreated($$module_name_singular));
 
@@ -806,7 +814,6 @@ class UserController extends Controller
         }
 
         $$module_name_singular = User::withTrashed()->find($id);
-        // $$module_name_singular = $this->findOrThrowException($id);
 
         try {
             $$module_name_singular->status = 1;
