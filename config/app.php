@@ -97,6 +97,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Initial Username
+    |--------------------------------------------------------------------------
+    |
+    | Usernames is an unique number, generated automatically,
+    | and assigned to the user.
+    | It is needed to have an initial number and will be increased as
+    | a new user registered.
+    |
+    */
+
+    'initial_username' => env('INITIAL_USERNAME', 100000),
+
+    /*
+    |--------------------------------------------------------------------------
     | Faker Locale
     |--------------------------------------------------------------------------
     |
