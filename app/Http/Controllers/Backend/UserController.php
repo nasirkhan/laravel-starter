@@ -304,7 +304,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::with('roles', 'permissions')->findOrFail($id);
 
         if ($$module_name_singular) {
             $userprofile = Userprofile::where('user_id', $id)->first();
