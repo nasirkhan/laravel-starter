@@ -70,7 +70,7 @@ class BackendTest extends TestCase
 
         $response = $this->get('/admin/users');
 
-        $response->assertSeeText('Users Data Table List');
+        $response->assertSeeText('Users List');
 
         $response->assertStatus(200);
     }
