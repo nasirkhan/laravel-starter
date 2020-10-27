@@ -128,9 +128,9 @@
                         <tr>
                             <th>{{ __('labels.backend.users.fields.roles') }}</th>
                             <td>
-                                @if($user->getRoleNames()->count() > 0)
+                                @if($user->roles()->count() > 0)
                                     <ul>
-                                        @foreach ($user->getRoleNames() as $role)
+                                        @foreach ($user->roles() as $role)
                                         <li>{{ ucwords($role) }}</li>
                                         @endforeach
                                     </ul>
@@ -141,10 +141,10 @@
                         <tr>
                             <th>{{ __('labels.backend.users.fields.permissions') }}</th>
                             <td>
-                                @if($user->getAllPermissions()->count() > 0)
+                                @if($user->permissions()->count() > 0)
                                     <ul>
-                                        @foreach ($user->getAllPermissions() as $permission)
-                                        <li>{{ $permission->name }}</li>
+                                        @foreach ($user->permissions() as $permission)
+                                        <li>{{ $permission['name'] }}</li>
                                         @endforeach
                                     </ul>
                                 @endif
