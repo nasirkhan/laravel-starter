@@ -113,9 +113,9 @@
                             $field_placeholder = "-- Select an option --";
                             $required = "required";
                             $select_options = [
-                                'Man'=>'Man',
-                                'Woman'=>'Woman',
-                                'Other'=>'Other'
+                                'Female' => 'Female',
+                                'Male' => 'Male',
+                                'Other' => 'Other',
                             ];
                             ?>
                             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
