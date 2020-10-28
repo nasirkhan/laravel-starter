@@ -5,13 +5,14 @@ namespace Modules\Comment\Entities;
 use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Comment\Entities\Presenters\CommentPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
-    use LogsActivity, CommentPresenter, SoftDeletes;
+    use HasFactory, LogsActivity, CommentPresenter, SoftDeletes;
 
     protected $table = 'comments';
 
@@ -128,5 +129,15 @@ class Comment extends BaseModel
         return $query->where('status', '=', '1')
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString())
                         ->orderBy('published_at', 'desc');
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return \Modules\Comment\Database\Factories\CommentFactory::new();
     }
 }
