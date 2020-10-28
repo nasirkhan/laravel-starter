@@ -1,5 +1,9 @@
 <?php
+namespace Database\Seeders;
 
+use Database\Seeders\Auth\PermissionRoleTableSeeder;
+use Database\Seeders\Auth\UserRoleTableSeeder;
+use Database\Seeders\Auth\UserTableSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
