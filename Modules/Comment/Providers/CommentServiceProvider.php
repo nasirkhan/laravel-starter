@@ -2,7 +2,6 @@
 
 namespace Modules\Comment\Providers;
 
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Finder\Finder;
 
@@ -18,7 +17,6 @@ class CommentServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerFactories();
         $this->loadMigrationsFrom(module_path('Comment', 'Database/Migrations'));
 
         // adding global middleware
@@ -88,18 +86,6 @@ class CommentServiceProvider extends ServiceProvider
             $this->loadTranslationsFrom($langPath, 'comment');
         } else {
             $this->loadTranslationsFrom(module_path('Comment', 'Resources/lang'), 'comment');
-        }
-    }
-
-    /**
-     * Register an additional directory of factories.
-     *
-     * @return void
-     */
-    public function registerFactories()
-    {
-        if (! app()->environment('production') && $this->app->runningInConsole()) {
-            app(Factory::class)->load(module_path('Comment', 'Database/factories'));
         }
     }
 
