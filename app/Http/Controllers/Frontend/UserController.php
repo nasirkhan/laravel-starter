@@ -186,7 +186,7 @@ class UserController extends Controller
                 $$module_name_singular->getMedia($module_name)->first()->delete();
             }
 
-            $media = $$module_name_singular->addMediaFromRequest('avatar')->toMediaCollection($module_name);
+            $media = $$module_name_singular->addMedia($request->file('avatar'))->toMediaCollection($module_name);
 
             $$module_name_singular->avatar = $media->getUrl();
 

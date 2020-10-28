@@ -2,7 +2,7 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with Laravel"></p>
 
 # Laravel Starter
-**Laravel Starter** is a Laravel 7.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the Laravel starter based projects. New features and functionalities are being added on a regular basis.
+**Laravel Starter** is a Laravel 8.x based simple starter project. It can be used to build all type of applications. Most of the commonly needed features like Authentication, Application Backend, Backup, Logviewer are available here. It is modular, so you can use this project as a base and build your own modules. You can use the same module in any of the `Laravel Starter` based projects. New features and functionalities are being added on a regular basis.
 
 Please let me know your feedback and comments.
 
@@ -21,7 +21,7 @@ Pass: secret
 
 ```
 
-For additional demo data you may use the following command. By using this you can truncate the `posts, categories, tags and comments` table and insert new demo data. `--fresh` option will truncate the tables, without this command new set to data will be inserted only. 
+For additional demo data you may use the following command. By using this you can truncate the `posts, categories, tags and comments` table and insert new demo data. `--fresh` option will truncate the tables, without this command new set to data will be inserted only.
 
 ```
 
@@ -94,7 +94,6 @@ It is a modular application, and a number of modules are installed by default. I
   * Date Time Picker
 * Backup (Source, Files, Database as Zip)
 * Log Viewer
-* Newsletter
 * Notification
   * Dashboard and details view
 * RSS Feed

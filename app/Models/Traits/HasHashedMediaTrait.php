@@ -2,15 +2,16 @@
 
 namespace App\Models\Traits;
 
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
 
 trait HasHashedMediaTrait
 {
-    use HasMediaTrait {
-        HasMediaTrait::addMedia as parentAddMedia;
+    use InteractsWithMedia {
+        InteractsWithMedia::addMedia as parentAddMedia;
     }
 
-    public function addMedia($file)
+    public function addMedia($file): FileAdder
     {
         return $this->parentAddMedia($file)->usingFileName($file->hashName());
     }

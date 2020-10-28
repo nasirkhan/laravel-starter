@@ -34,7 +34,8 @@ class LoginPageTest extends TestCase
      */
     public function testLoginAValidUser()
     {
-        $user = factory(User::class)->create();
+        // $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->post('/login', [
             'email'    => $user->email,
@@ -51,7 +52,8 @@ class LoginPageTest extends TestCase
      */
     public function test_remember_me_functionality()
     {
-        $user = factory(User::class)->create();
+        // $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this->post('/login', [
             'email'    => $user->email,

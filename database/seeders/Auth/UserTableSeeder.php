@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders\Auth;
 
 use App\Events\Backend\UserCreated;
 use App\Models\User;
@@ -21,7 +22,7 @@ class UserTableSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
-        $faker = Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         // Add the master administrator, user id of 1
         $users = [
