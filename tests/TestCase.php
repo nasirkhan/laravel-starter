@@ -18,7 +18,8 @@ abstract class TestCase extends BaseTestCase
      */
     protected function loginAsSuperAdmin()
     {
-        $super_admin = factory(User::class)->create();
+        // $super_admin = factory(User::class)->create();
+        $super_admin =  User::factory()->create();
 
         if ($super_admin_role = Role::whereName('super admin')->first()) {
             dd($super_admin_role);
@@ -59,7 +60,8 @@ abstract class TestCase extends BaseTestCase
     protected function createAdmin(array $attributes = [])
     {
         $adminRole = $this->getAdminRole();
-        $admin = factory(User::class)->create($attributes);
+        // $admin = factory(User::class)->create($attributes);
+        $admin = User::factory()->create($attributes);
         $admin->assignRole($adminRole);
 
         return $admin;
