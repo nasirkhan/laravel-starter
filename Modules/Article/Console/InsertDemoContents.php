@@ -82,7 +82,7 @@ class InsertDemoContents extends Command
             }
         }
 
-        $this->line("\n");
+        $this->newLine();
 
         /**
          * Categories
@@ -112,6 +112,8 @@ class InsertDemoContents extends Command
         $this->info("Inserting Comments");
         Comment::factory()->count(25)->create();
 
-        $this->info("\n\n -- Completed --");
+        $this->newLine(2);
+        $this->info("-- Completed --");
+        $this->newLine();
     }
 }
