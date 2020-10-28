@@ -4,6 +4,7 @@ namespace Modules\Article\Entities;
 
 use App\Models\BaseModel;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
@@ -13,6 +14,7 @@ use Spatie\Feed\FeedItem;
 
 class Post extends BaseModel implements Feedable
 {
+    use HasFactory;
     use LogsActivity;
     use SoftDeletes;
     use PostPresenter;
@@ -33,7 +35,7 @@ class Post extends BaseModel implements Feedable
     {
         return $this->morphToMany('Modules\Tag\Entities\Tag', 'taggable');
     }
-    
+
     /**
      * Get all of the post's comments.
      */
@@ -190,5 +192,15 @@ class Post extends BaseModel implements Feedable
     public static function getFeedItems()
     {
         return self::latest()->published()->take('5')->get();
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return \Modules\Article\Database\Factories\PostFactory::new();
     }
 }

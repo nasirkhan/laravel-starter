@@ -3,11 +3,12 @@
 namespace Modules\Tag\Entities;
 
 use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends BaseModel
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'tags';
 
@@ -62,5 +63,15 @@ class Tag extends BaseModel
         if (empty($value)) {
             $this->attributes['meta_keyword'] = config('settings.meta_keyword');
         }
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return \Modules\Tag\Database\Factories\TagFactory::new();
     }
 }

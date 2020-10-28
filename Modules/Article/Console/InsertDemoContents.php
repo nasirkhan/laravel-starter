@@ -49,7 +49,7 @@ class InsertDemoContents extends Command
 
         if ($fresh) {
             if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
-                
+
                 // Disable foreign key checks!
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
@@ -88,19 +88,19 @@ class InsertDemoContents extends Command
          * Categories
          */
         $this->info("Inserting Categories");
-        factory(Category::class, 5)->create();
+        Category::factory()->count(5)->create();
 
         /**
          * Tags
          */
         $this->info("Inserting Tags");
-        factory(Tag::class, 10)->create();
+        Tag::factory()->count(10)->create();
 
         /**
          * Posts
          */
         $this->info("Inserting Posts");
-        factory(Post::class, 25)->create()->each(function ($post) {
+        Post::factory()->count(25)->create()->each(function ($post) {
             $post->tags()->attach(
                 Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
             );
@@ -110,7 +110,7 @@ class InsertDemoContents extends Command
          * Comments
          */
         $this->info("Inserting Comments");
-        factory(Comment::class, 25)->create();
+        Comment::factory()->count(25)->create();
 
         $this->info("\n\n -- Completed --");
     }
