@@ -8,13 +8,14 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
     use SoftDeletes;
     use HasHashedMediaTrait;
+
     protected $guarded = [
         'id',
         'updated_at',
@@ -57,7 +58,7 @@ class BaseModel extends Model implements HasMedia
     /**
      * Create Converted copies of uploaded images.
      */
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
               ->width(250)
