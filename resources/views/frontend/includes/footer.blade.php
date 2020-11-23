@@ -9,7 +9,7 @@
                     <img src="{{asset('img/backend-logo.jpg')}}" height="35" class="mr-3" alt="Footer logo">
                 </a>
                 <p class="my-4">
-                    A CMS like modular starter application project built with Laravel 7.
+                    {!! setting('meta_description') !!}
                 </p>
             </div>
             <div class="col-6 col-sm-3 col-lg-2 mb-4 mb-lg-0 text-center">
