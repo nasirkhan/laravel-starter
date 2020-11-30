@@ -12,7 +12,9 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                         <h1 class="text-white">@lang('Welcome')</h1>
-                        <p class="text-lead text-white">Use these awesome forms to login or create new account here for free.</p>
+                        <p class="text-lead text-white">
+                            @lang("Use these awesome forms to login or create new account.")
+                        </p>
                     </div>
                 </div>
             </div>
@@ -25,7 +27,6 @@
     </div>
 
     <div class="container mt--9 pb-5">
-
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="card bg-secondary border border-soft">
@@ -58,6 +59,10 @@
 
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
+
+                            <!-- redirectTo URL -->
+                            <input type="hidden" name="redirectTo" value="{{ request()->redirectTo }}">
+
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative mb-3">
                                     <div class="input-group-prepend">
