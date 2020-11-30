@@ -11,15 +11,8 @@
 |
 */
 
-$user_registration = user_registration();
-
-Auth::routes(['verify' => true, 'register' => $user_registration]);
-
-// Socialite routes
-Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
-    Route::get('login/{provider}', ['as' => 'social.login', 'uses' => 'LoginController@redirectToProvider']);
-    Route::get('login/{provider}/callback', 'LoginController@handleProviderCallback');
-});
+// Autho Routes
+require __DIR__.'/auth.php';
 
 // Atom/ RSS Feed Routes
 Route::feeds();

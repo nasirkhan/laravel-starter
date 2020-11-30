@@ -10,7 +10,7 @@
             <div class="col-12 col-md-10 text-center">
                 <h1 class="display-1 mb-4">{{app_name()}}</h1>
                 <p class="lead text-muted">
-                    A CMS like modular starter application project built with Laravel 7.
+                    {!! setting('meta_description') !!}
                 </p>
 
                 @include('frontend.includes.messages')
