@@ -16,7 +16,7 @@ class GenerateMenus
      */
     public function handle($request, Closure $next)
     {
-        \Menu::makeOnce('admin_sidebar', function ($menu) {
+        \Menu::make('admin_sidebar', function ($menu) {
             // Separator: Module Management
             $all_modules = $menu->add('Modules', [
                 'class' => 'c-sidebar-nav-title',

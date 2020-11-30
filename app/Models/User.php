@@ -69,17 +69,17 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return $this->hasOne('App\Models\Userprofile');
     }
 
-    /**
-     * Send the password reset notification.
-     *
-     * @param string $token
-     *
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPasswordNotification($token));
-    }
+    // /**
+    //  * Send the password reset notification.
+    //  *
+    //  * @param string $token
+    //  *
+    //  * @return void
+    //  */
+    // public function sendPasswordResetNotification($token)
+    // {
+    //     $this->notify(new ResetPasswordNotification($token));
+    // }
 
     /**
      * Get the list of users related to the current User.

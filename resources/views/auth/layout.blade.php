@@ -55,18 +55,24 @@
                         </div>
                     </div>
                 </div>
+
+                @guest
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a href="{{ route('login') }}" class="nav-link">
                             <span class="nav-link-inner--text">Login</span>
                         </a>
                     </li>
+                    @if (Route::has('register'))
                     <li class="nav-item">
                         <a href="{{ route('register') }}" class="nav-link">
                             <span class="nav-link-inner--text">Register</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
+                @endguest
+
                 <hr class="d-lg-none" />
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                     <li class="nav-item">

@@ -6,16 +6,16 @@
 
 <div class="main-content">
 
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-primary py-7 py-lg-8">
         <div class="container">
-            <div class="header-body text-center mb-7">
+            <div class="header-body text-center mb-6">
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-6 col-md-8 px-5">
                         <h1 class="text-white">
-                            Create an account
+                            @lang('Register')
                         </h1>
                         <p class="text-lead text-white">
-                            Use these awesome forms to login or create new account in your project for free.
+                            @lang("Please fill up the form below to register.")
                         </p>
                     </div>
                 </div>
@@ -38,12 +38,13 @@
 
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
-                            <small>Sign up with credentials</small>
+                            <small> @lang("* All fields are required.") </small>
                         </div>
 
                         @include('flash::message')
 
                         @if ($errors->any())
+                        <!-- Validation Errors -->
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <p>
                                 <i class="fas fa-exclamation-triangle"></i> @lang('Please fix the following errors & try again!')
@@ -115,25 +116,24 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    Create account
+                                    @lang("Create account")
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-6">
+                    <div class="col-6 text-left">
                         <a href="{{ route('password.request') }}" class="text-gray">
-                            <small>@lang('Forgot Your Password?')</small>
+                            <small>{{ __('Forgot Your Password?') }}</small>
                         </a>
                     </div>
-                    @if (Route::has('register'))
+
                     <div class="col-6 text-right">
                         <a href="{{ route('login') }}" class="text-gray">
-                            <small>Login to account</small>
+                            <small>{{ __('Login to account') }}</small>
                         </a>
                     </div>
-                    @endif
                 </div>
             </div>
         </div>
