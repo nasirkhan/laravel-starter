@@ -12,22 +12,6 @@ class AuthenticatedSessionController extends Controller
 {
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    // public function redirectTo()
-    // {
-    //     $redirectTo = request()->redirectTo;
-    //
-    //     if ($redirectTo) {
-    //         return $redirectTo;
-    //     } else {
-    //         return RouteServiceProvider::HOME;
-    //     }
-    // }
-
-    /**
      * Display the login view.
      *
      * @return \Illuminate\View\View
@@ -54,7 +38,7 @@ class AuthenticatedSessionController extends Controller
         if ($redirectTo) {
             return redirect($redirectTo);
         } else {
-            return RouteServiceProvider::HOME;
+            return redirect(RouteServiceProvider::HOME);
         }
     }
 
