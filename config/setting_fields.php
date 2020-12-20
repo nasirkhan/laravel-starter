@@ -85,7 +85,7 @@ return [
                 'label' => 'Instagram Account URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'https://instagram.com/shishuraishob', // default value if you want
+                'value' => '#', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
