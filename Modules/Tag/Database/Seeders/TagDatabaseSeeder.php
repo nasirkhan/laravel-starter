@@ -29,9 +29,9 @@ class TagDatabaseSeeder extends Seeder
         DB::table('tags')->truncate();
         echo "Truncate: tags \n";
 
-        factory(Tag::class, 10)->create();
+        Tag::factory()->count(10)->create();
         $tags = Tag::all();
-        echo " Insert: tags \n";
+        echo " Insert: tags \n\n";
 
         // Enable foreign key checks!
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

@@ -31,8 +31,8 @@ class ArticleDatabaseSeeder extends Seeder
         DB::table('categories')->truncate();
         echo "\nTruncate: categories \n";
 
-        factory(Category::class, 5)->create();
-        echo " Insert: categories \n";
+        Category::factory()->count(5)->create();
+        echo " Insert: categories \n\n";
 
         /*
          * Posts Seed
@@ -42,12 +42,11 @@ class ArticleDatabaseSeeder extends Seeder
         echo "Truncate: posts \n";
 
         // Populate the pivot table
-        factory(Post::class, 25)->create()->each(function ($post) {
-            $post->tags()->attach(
-                Tag::inRandomOrder()->limit(rand(1, 5))->pluck('id')->toArray()
-            );
-        });
-        echo " Insert: posts \n";
+        Post::factory()
+                ->has(Tag::factory()->count(rand(1, 5)))
+                ->count(25)
+                ->create();
+        echo " Insert: posts \n\n";
 
         // Artisan::call('auth:permission', [
         //     'name' => 'posts',

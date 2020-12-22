@@ -23,7 +23,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'name'              => $this->faker->sentence,
+            'name'              => substr($this->faker->text(30), 0, -1),
             'slug'              => '',
             'intro'             => $this->faker->paragraph,
             'content'           => $this->faker->paragraphs(rand(5, 7), true),
