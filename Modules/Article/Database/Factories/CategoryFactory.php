@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name'              => $this->faker->sentence(2),
+            'name'              => substr($this->faker->text(20), 0, -1),
             'slug'              => '',
             'description'       => $this->faker->paragraph,
             'status'            => 1,

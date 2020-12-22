@@ -9,7 +9,6 @@
         "php": "^7.3.0",
         "alexusmai/laravel-file-manager": "^2.5",
         "arcanedev/log-viewer": "^8.0",
-        "fakerphp/faker": "^1.12",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -34,6 +33,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^2.3.6",
+        "fakerphp/faker": "^1.13",
         "friendsofphp/php-cs-fixer": "^2.16",
         "laravel/breeze": "^0.0.5",
         "mockery/mockery": "^1.4",
