@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ $module_title }}
     </x-backend-breadcrumb-item>
     <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
@@ -50,7 +50,7 @@
                     <div class="col-6">
                         <div class="float-right">
                             <div class="form-group">
-                                <button type="button" class="btn btn-warning" onclick="history.back(-1)"><i class="fas fa-reply"></i> Cancel</button>
+                                <x-buttons.cancel></x-buttons.cancel>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ $module_title }}
     </x-backend-breadcrumb-item>
     <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-8">
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i>  {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
                 </h4>
                 <div class="small text-muted">
                     {{ ucwords($module_name) }} Management Dashboard
@@ -54,7 +54,7 @@
                             @can('delete_'.$module_name)
                             <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
                             @endcan
-                            <a href="{{ route("backend.$module_name.index") }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i> Cancel</a>
+                            <x-buttons.cancel></x-buttons.cancel>
                         </div>
                     </div>
                 </div>
