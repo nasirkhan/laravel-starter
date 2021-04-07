@@ -25,8 +25,8 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="float-right">
-                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1 btn-sm" data-toggle="tooltip" title="@lang('Mark All As Read')"><i class="fas fa-check-square"></i> @lang('Mark All As Read')</a>
-                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1 btn-sm" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete All Notifications')"><i class="fas fa-trash-alt"></i></a>
+                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1" data-toggle="tooltip" title="@lang('Mark All As Read')"><i class="fas fa-check-square"></i> @lang('Mark All As Read')</a>
+                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete All Notifications')"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
         </div>
