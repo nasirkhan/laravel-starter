@@ -1,6 +1,5 @@
 {
     "Article": true,
     "Tag": true,
-    "Comment": true,
-    "Aa": true
+    "Comment": true
 }
