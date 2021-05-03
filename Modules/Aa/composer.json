@@ -1,0 +1,25 @@
+{
+    "name": "nasirkhan/aa",
+    "description": "",
+    "type": "laravel-module",
+    "version": "v0.0.1",
+    "authors": [
+        {
+            "name": "Nasir Khan",
+            "email": "nasir8891@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Aa\\": ""
+        }
+    }
+}
