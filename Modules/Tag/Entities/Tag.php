@@ -46,7 +46,7 @@ class Tag extends BaseModel
         $this->attributes['meta_description'] = $value;
 
         if (empty($value)) {
-            $this->attributes['meta_description'] = config('settings.meta_description');
+            $this->attributes['meta_description'] = setting('meta_description');
         }
     }
 
@@ -61,7 +61,7 @@ class Tag extends BaseModel
         $this->attributes['meta_keyword'] = $value;
 
         if (empty($value)) {
-            $this->attributes['meta_keyword'] = config('settings.meta_keyword');
+            $this->attributes['meta_keyword'] = setting('meta_keyword');
         }
     }
 
