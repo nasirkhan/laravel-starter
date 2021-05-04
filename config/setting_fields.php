@@ -186,13 +186,25 @@ return [
 
         'elements' => [
             [
-                'type'  => 'text', // input fields type
+                'type'  => 'textarea', // input fields type
                 'data'  => 'string', // data type, string, int, boolean
                 'name'  => 'google_analytics', // unique name for field
                 'label' => 'Google Analytics', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'UA-36770598-2', // default value if you want
+                // 'value' => '123', // any class for input
+                'value' => '<!-- Global site tag (gtag.js) - Google Analytics -->
+                            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36770598-2"></script>
+                            <script>
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag("js", new Date());
+
+                            gtag("config", "UA-36770598-2");
+                            </script>
+                            ', // default value if you want
+                'help'     => 'Paste the tracking code in this field.', // Help text for the input field.
+                'display'  => 'raw', // Help text for the input field.
             ],
         ],
 

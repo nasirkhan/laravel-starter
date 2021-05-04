@@ -28,7 +28,8 @@
 
     @stack('after-styles')
 
-    <x-google-analytics config="{{ setting('google_analytics') }}" />
+    <x-google-analytics />
+    
 </head>
 <body class="c-app">
 
