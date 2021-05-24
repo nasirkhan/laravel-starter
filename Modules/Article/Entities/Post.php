@@ -176,7 +176,7 @@ class Post extends BaseModel implements Feedable
                         ->orderBy('published_at', 'desc');
     }
 
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         $author = ($this->created_by_alias != '') ? $this->created_by_alias : $this->created_by_name;
 
