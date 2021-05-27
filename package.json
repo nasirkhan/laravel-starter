@@ -18,7 +18,7 @@
         "alpinejs": "^2.7.3",
         "axios": "^0.21",
         "bootstrap": "^4.5.0",
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "cross-env": "^5.1",
         "headroom.js": "^0.11.0",
         "jarallax": "^1.12.2",
