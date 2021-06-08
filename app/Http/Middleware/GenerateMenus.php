@@ -54,13 +54,28 @@ class GenerateMenus
                 'permission'    => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
             ]);
 
+            // media filemanager
+            $menu->add('<i class="c-sidebar-nav-icon fas fa-folder"></i> Filemanager', [
+                'route' => 'backend.filemanager',
+                'class' => 'c-sidebar-nav-item',
+            ])
+            ->data([
+                'order'         => 102,
+                'activematches' => 'admin/filemanager*',
+                
+            ])
+            ->link->attr([
+                'class' => 'c-sidebar-nav-link',
+            ]);
+
+
             // Settings
             $menu->add('<i class="c-sidebar-nav-icon fas fa-cogs"></i> Settings', [
                 'route' => 'backend.settings',
                 'class' => 'c-sidebar-nav-item',
             ])
             ->data([
-                'order'         => 102,
+                'order'         => 103,
                 'activematches' => 'admin/settings*',
                 'permission'    => ['edit_settings'],
             ])
@@ -74,7 +89,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 103,
+                'order'         => 104,
                 'activematches' => 'admin/backups*',
                 'permission'    => ['view_backups'],
             ])
@@ -87,7 +102,7 @@ class GenerateMenus
                 'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
-                'order'         => 104,
+                'order'         => 105,
                 'activematches' => [
                     'admin/users*',
                     'admin/roles*',
@@ -105,7 +120,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 105,
+                'order'         => 106,
                 'activematches' => 'admin/users*',
                 'permission'    => ['view_users'],
             ])
@@ -119,7 +134,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 106,
+                'order'         => 107,
                 'activematches' => 'admin/roles*',
                 'permission'    => ['view_roles'],
             ])
@@ -133,7 +148,7 @@ class GenerateMenus
                 'class' => 'c-sidebar-nav-dropdown',
             ])
             ->data([
-                'order'         => 107,
+                'order'         => 108,
                 'activematches' => [
                     'log-viewer*',
                 ],
@@ -150,7 +165,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 108,
+                'order'         => 109,
                 'activematches' => 'admin/log-viewer',
             ])
             ->link->attr([
@@ -163,7 +178,7 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 109,
+                'order'         => 110,
                 'activematches' => 'admin/log-viewer/logs*',
             ])
             ->link->attr([
