@@ -52,11 +52,11 @@ class UpdateCategoryNameInPosts extends Command
             $count = Post::where('category_id', $category->id)->update(['category_name' => $category->name]);
 
             // show total updated rows per category
-            echo "\n " . $category->name . "| " . $count . " Posts Updated.";
+            echo "\n ".$category->name.'| '.$count.' Posts Updated.';
 
             $total_update_count += $count;
         }
-        
+
         // end note, show total updated rows in total
         echo "\n\n Total $total_update_count posts updated.";
 

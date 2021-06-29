@@ -46,7 +46,7 @@ class GenerateMenus
                 'permission'    => ['edit_posts'],
             ])
             ->link->attr([
-                'class' => "c-sidebar-nav-link",
+                'class' => 'c-sidebar-nav-link',
             ]);
             // Submenu: Categories
             $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Categories', [
@@ -59,7 +59,7 @@ class GenerateMenus
                 'permission'    => ['edit_categories'],
             ])
             ->link->attr([
-                'class' => "c-sidebar-nav-link",
+                'class' => 'c-sidebar-nav-link',
             ]);
         })->sortBy('order');
 

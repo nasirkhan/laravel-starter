@@ -54,28 +54,28 @@ class InsertDemoContents extends Command
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
                 /**
-                 * posts table truncate
+                 * posts table truncate.
                  */
-                DB::table("posts")->truncate();
-                $this->info("Truncate Table: posts");
+                DB::table('posts')->truncate();
+                $this->info('Truncate Table: posts');
 
                 /**
-                 * Categories table truncate
+                 * Categories table truncate.
                  */
-                DB::table("categories")->truncate();
-                $this->info("Truncate Table: categories");
+                DB::table('categories')->truncate();
+                $this->info('Truncate Table: categories');
 
                 /**
-                 * Tags table truncate
+                 * Tags table truncate.
                  */
-                DB::table("tags")->truncate();
-                $this->info("Truncate Table: tags");
+                DB::table('tags')->truncate();
+                $this->info('Truncate Table: tags');
 
                 /**
-                 * Comments table truncate
+                 * Comments table truncate.
                  */
-                DB::table("comments")->truncate();
-                $this->info("Truncate Table: comments");
+                DB::table('comments')->truncate();
+                $this->info('Truncate Table: comments');
 
                 // Enable foreign key checks!
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -85,21 +85,21 @@ class InsertDemoContents extends Command
         $this->newLine();
 
         /**
-         * Categories
+         * Categories.
          */
-        $this->info("Inserting Categories");
+        $this->info('Inserting Categories');
         Category::factory()->count(5)->create();
 
         /**
-         * Tags
+         * Tags.
          */
-        $this->info("Inserting Tags");
+        $this->info('Inserting Tags');
         Tag::factory()->count(10)->create();
 
         /**
-         * Posts
+         * Posts.
          */
-        $this->info("Inserting Posts");
+        $this->info('Inserting Posts');
         Post::factory()->count(25)->create()->each(function ($post) {
             $post->tags()->attach(
                 Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
@@ -107,13 +107,13 @@ class InsertDemoContents extends Command
         });
 
         /**
-         * Comments
+         * Comments.
          */
-        $this->info("Inserting Comments");
+        $this->info('Inserting Comments');
         Comment::factory()->count(25)->create();
 
         $this->newLine(2);
-        $this->info("-- Completed --");
+        $this->info('-- Completed --');
         $this->newLine();
     }
 }

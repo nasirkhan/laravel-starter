@@ -97,7 +97,7 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Delete All the Notifications
+     * Delete All the Notifications.
      *
      * @param int $id
      *

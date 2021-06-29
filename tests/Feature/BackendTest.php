@@ -28,7 +28,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Settings
+     * An Super Admin can access the Settings.
      *
      * @test
      */
@@ -44,7 +44,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Backup
+     * An Super Admin can access the Backup.
      *
      * @test
      */
@@ -60,7 +60,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the users
+     * An Super Admin can access the users.
      *
      * @test
      */
@@ -76,7 +76,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Roles
+     * An Super Admin can access the Roles.
      *
      * @test
      */
@@ -92,7 +92,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Log Viewer Dashboard
+     * An Super Admin can access the Log Viewer Dashboard.
      *
      * @test
      */
@@ -108,7 +108,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Log Viewer Dashboard logs
+     * An Super Admin can access the Log Viewer Dashboard logs.
      *
      * @test
      */
@@ -124,7 +124,7 @@ class BackendTest extends TestCase
     }
 
     /**
-     * An Super Admin can access the Notifications
+     * An Super Admin can access the Notifications.
      *
      * @test
      */

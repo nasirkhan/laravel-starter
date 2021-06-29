@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
     protected function loginAsSuperAdmin()
     {
         // $super_admin = factory(User::class)->create();
-        $super_admin =  User::factory()->create();
+        $super_admin = User::factory()->create();
 
         if ($super_admin_role = Role::whereName('super admin')->first()) {
             dd($super_admin_role);

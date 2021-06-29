@@ -47,9 +47,7 @@ trait UserPresenter
     }
 
     /**
-     *
-     * Cache Permissions Query
-     *
+     * Cache Permissions Query.
      */
     public function getPermissionsAttribute()
     {
@@ -63,9 +61,7 @@ trait UserPresenter
     }
 
     /**
-     *
-     * Cache Roles Query
-     *
+     * Cache Roles Query.
      */
     public function getRolesAttribute()
     {

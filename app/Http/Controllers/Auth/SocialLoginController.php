@@ -89,19 +89,19 @@ class SocialLoginController extends Controller
             $last_name = $name_parts[1];
             $email = $socialUser->getEmail();
 
-            if ($email == "") {
-                Log::error("Social Login does not have email!");
+            if ($email == '') {
+                Log::error('Social Login does not have email!');
 
-                flash("Email address is required!")->error()->important();
+                flash('Email address is required!')->error()->important();
 
                 return redirect()->intended(RouteServiceProvider::HOME);
             }
 
             $user = User::create([
                 'first_name'  => $first_name,
-                'last_name'  => $last_name,
-                'name'  => $name,
-                'email' => $email,
+                'last_name'   => $last_name,
+                'name'        => $name,
+                'email'       => $email,
             ]);
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
@@ -122,7 +122,7 @@ class SocialLoginController extends Controller
     }
 
     /**
-     * Split Name into first name and last name
+     * Split Name into first name and last name.
      */
     public function split_name($name)
     {

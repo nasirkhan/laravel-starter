@@ -65,11 +65,11 @@ class CommentServiceProvider extends ServiceProvider
         $sourcePath = module_path('Comment', 'Resources/views');
 
         $this->publishes([
-            $sourcePath => $viewPath
+            $sourcePath => $viewPath,
         ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/comment';
+            return $path.'/modules/comment';
         }, \Config::get('view.paths')), [$sourcePath]), 'comment');
     }
 

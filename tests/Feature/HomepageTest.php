@@ -10,6 +10,7 @@ class HomepageTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
+
     /**
      * Home Page visiting.
      *

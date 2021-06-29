@@ -13,7 +13,7 @@ class UserProfileUpdated
     use Dispatchable;
     use InteractsWithSockets;
     use SerializesModels;
-    
+
     public $user_profile;
 
     /**

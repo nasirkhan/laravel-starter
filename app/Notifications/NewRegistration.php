@@ -33,7 +33,8 @@ class NewRegistration extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -44,7 +45,8 @@ class NewRegistration extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -57,18 +59,19 @@ class NewRegistration extends Notification
             if (static::$toMailCallback) {
                 return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
             }
+
             return (new MailMessage())
-                ->subject("Thank you for registration!")
+                ->subject('Thank you for registration!')
                 ->line('Please click the button below to verify your email address.')
                 ->action('Verify Email Address', $verificationUrl)
                 ->line('If you did not create an account, no further action is required.');
         }
 
-        return (new MailMessage)
-                    ->subject("Thank you for registration!")
-                    ->line("Thank you for registration at ".app_name().".")
-                    ->action("Vist Application", url('/'))
-                    ->line("We are really happy that you started to use ".app_name()."!");
+        return (new MailMessage())
+                    ->subject('Thank you for registration!')
+                    ->line('Thank you for registration at '.app_name().'.')
+                    ->action('Vist Application', url('/'))
+                    ->line('We are really happy that you started to use '.app_name().'!');
     }
 
     /**

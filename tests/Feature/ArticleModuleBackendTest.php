@@ -13,7 +13,7 @@ class ArticleModuleBackendTest extends TestCase
 
     /**
      * Without login user can not access Posts list
-     * and will redirect to Login
+     * and will redirect to Login.
      *
      * @test
      */
@@ -27,7 +27,7 @@ class ArticleModuleBackendTest extends TestCase
     }
 
     /**
-     * Super Admin can access Posts List
+     * Super Admin can access Posts List.
      *
      * @test
      */
@@ -44,7 +44,7 @@ class ArticleModuleBackendTest extends TestCase
 
     /**
      * Without login user can not access Categories list
-     * and will redirect to Login
+     * and will redirect to Login.
      *
      * @test
      */
@@ -58,7 +58,7 @@ class ArticleModuleBackendTest extends TestCase
     }
 
     /**
-     * Super Admin can access Categories List
+     * Super Admin can access Categories List.
      *
      * @test
      */
@@ -75,7 +75,7 @@ class ArticleModuleBackendTest extends TestCase
 
     /**
      * Without login user can not access Tags list
-     * and will redirect to Login
+     * and will redirect to Login.
      *
      * @test
      */
@@ -89,7 +89,7 @@ class ArticleModuleBackendTest extends TestCase
     }
 
     /**
-     * Super Admin can access Tags List
+     * Super Admin can access Tags List.
      *
      * @test
      */
@@ -106,7 +106,7 @@ class ArticleModuleBackendTest extends TestCase
 
     /**
      * Without login user can not access Comments list
-     * and will redirect to Login
+     * and will redirect to Login.
      *
      * @test
      */
@@ -120,7 +120,7 @@ class ArticleModuleBackendTest extends TestCase
     }
 
     /**
-     * Super Admin can access Comments List
+     * Super Admin can access Comments List.
      *
      * @test
      */

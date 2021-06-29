@@ -214,7 +214,6 @@ class UserController extends Controller
         $data_array = $request->except('_token', 'roles', 'permissions', 'password_confirmation');
         $data_array['name'] = $request->first_name.' '.$request->last_name;
         $data_array['password'] = Hash::make($request->password);
-        ;
 
         if ($request->confirmed == 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
@@ -245,7 +244,7 @@ class UserController extends Controller
 
         // Username
         $id = $$module_name_singular->id;
-        $username = config('app.initial_username')+$id;
+        $username = config('app.initial_username') + $id;
         $$module_name_singular->username = $username;
         $$module_name_singular->save();
 
@@ -607,13 +606,13 @@ class UserController extends Controller
         $module_action = 'Update';
 
         $request->validate([
-            'first_name'=> 'required|min:3|max:191',
-            'last_name' => 'required|min:3|max:191',
-            'url_website' => 'nullable|min:3|max:191',
-            'url_facebook' => 'nullable|min:3|max:191',
-            'url_twitter' => 'nullable|min:3|max:191',
+            'first_name'    => 'required|min:3|max:191',
+            'last_name'     => 'required|min:3|max:191',
+            'url_website'   => 'nullable|min:3|max:191',
+            'url_facebook'  => 'nullable|min:3|max:191',
+            'url_twitter'   => 'nullable|min:3|max:191',
             'url_instagram' => 'nullable|min:3|max:191',
-            'url_linkedin' => 'nullable|min:3|max:191',
+            'url_linkedin'  => 'nullable|min:3|max:191',
         ]);
 
         $$module_name_singular = User::findOrFail($id);

@@ -182,7 +182,7 @@ class BackendBaseController extends Controller
 
         flash("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/$module_name");
     }
@@ -207,7 +207,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "$module_path.$module_name.show",
@@ -235,7 +235,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "$module_path.$module_name.edit",
@@ -268,7 +268,7 @@ class BackendBaseController extends Controller
 
         flash("<i class='fas fa-check'></i> '".Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->back();
     }
@@ -297,7 +297,7 @@ class BackendBaseController extends Controller
 
         flash('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Deleted Successfully!')->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/$module_name");
     }
@@ -353,7 +353,7 @@ class BackendBaseController extends Controller
 
         flash('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/$module_name");
     }
