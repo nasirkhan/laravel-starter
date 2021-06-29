@@ -10,5 +10,5 @@ return [
         'rest_base'        => '',      // string|array
         'active_element'   => 'link',  // item|link
     ],
-    'ordering' => true
+    'ordering' => true,
 ];

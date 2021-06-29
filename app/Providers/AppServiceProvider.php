@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        
+
         Blade::component('components.backend-breadcrumbs', 'backendBreadcrumbs');
     }
 }

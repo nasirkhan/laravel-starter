@@ -60,9 +60,9 @@ class TagsController extends BackendBaseController
             $$module_name_singular->save();
         }
 
-        flash(icon()." ".Str::singular($module_title)."' Created.")->success()->important();
+        flash(icon().' '.Str::singular($module_title)."' Created.")->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/$module_name");
     }
@@ -89,7 +89,7 @@ class TagsController extends BackendBaseController
 
         $posts = $$module_name_singular->posts()->latest()->paginate();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "$module_path.$module_name.show",
@@ -146,9 +146,9 @@ class TagsController extends BackendBaseController
             }
         }
 
-        flash(icon()." ".Str::singular($module_title)."' Updated Successfully")->success()->important();
+        flash(icon().' '.Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title.' '.$module_action. " | Id: ". $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->back();
     }

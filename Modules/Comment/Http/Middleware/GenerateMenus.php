@@ -30,9 +30,9 @@ class GenerateMenus
                 'class' => 'c-sidebar-nav-item',
             ])
             ->data([
-                'order' => 85,
+                'order'         => 85,
                 'activematches' => ['admin/comments*'],
-                'permission' => ['view_comments'],
+                'permission'    => ['view_comments'],
             ])
             ->link->attr([
                 'class' => 'c-sidebar-nav-link',

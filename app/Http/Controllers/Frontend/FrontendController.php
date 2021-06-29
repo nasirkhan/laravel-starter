@@ -19,7 +19,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * Privacy Policy Page
+     * Privacy Policy Page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * Terms & Conditions Page
+     * Terms & Conditions Page.
      *
      * @return \Illuminate\Http\Response
      */

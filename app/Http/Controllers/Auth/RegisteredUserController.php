@@ -26,30 +26,31 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \App\Http\Requests\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \App\Http\Requests\LoginRequest $request
      *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
             'first_name' => 'required|string|max:191',
-            'last_name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'last_name'  => 'required|string|max:191',
+            'email'      => 'required|string|email|max:191|unique:users',
+            'password'   => 'required|string|confirmed|min:8',
         ]);
 
         $user = User::create([
             'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'name' => $request->first_name . " " . $request->last_name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'last_name'  => $request->last_name,
+            'name'       => $request->first_name.' '.$request->last_name,
+            'email'      => $request->email,
+            'password'   => Hash::make($request->password),
         ]);
 
         // username
-        $username = config('app.initial_username')+$user->id;
+        $username = config('app.initial_username') + $user->id;
         $user->username = $username;
         $user->save();
 

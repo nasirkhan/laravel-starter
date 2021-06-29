@@ -16,6 +16,7 @@ trait PostPresenter
         } else {
             $return_text = $featured_image;
         }
+
         return $return_text;
     }
 

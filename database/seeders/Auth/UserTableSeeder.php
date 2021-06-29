@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders\Auth;
 
 use App\Events\Backend\UserCreated;

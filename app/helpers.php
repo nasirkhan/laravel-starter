@@ -289,12 +289,12 @@ if (!function_exists('logUserAccess')) {
     /**
      * Format a string to Slug.
      */
-    function logUserAccess($text = "")
+    function logUserAccess($text = '')
     {
-        $auth_text = "";
+        $auth_text = '';
 
         if (\Auth::check()) {
-            $auth_text = "User:".\Auth::user()->name." (ID:".\Auth::user()->id.")";
+            $auth_text = 'User:'.\Auth::user()->name.' (ID:'.\Auth::user()->id.')';
         }
 
         \Log::debug(label_case($text)." | $auth_text");
@@ -476,7 +476,7 @@ if (!function_exists('generate_rgb_code')) {
 if (!function_exists('date_today')) {
 
     /**
-     * Return Date with weekday
+     * Return Date with weekday.
      *
      * Carbon Locale will be considered here
      * Example:

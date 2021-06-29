@@ -12,7 +12,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
 {
-    use HasFactory, LogsActivity, CommentPresenter, SoftDeletes;
+    use HasFactory;
+    use LogsActivity;
+    use CommentPresenter;
+    use SoftDeletes;
 
     protected $table = 'comments';
 
@@ -53,7 +56,7 @@ class Comment extends BaseModel
         if ($this->commentable_type == 'Modules\Article\Entities\Post') {
             return 'posts';
         } else {
-            return "";
+            return '';
         }
     }
 
