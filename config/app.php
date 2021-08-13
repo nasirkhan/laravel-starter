@@ -133,7 +133,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', "base64:rz4JCTpz+lNTEZkG/rLHXb/K45lUyH5SaGFm8HJ9VxQ="),
 
     'cipher' => 'AES-256-CBC',
 
@@ -190,6 +190,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
 
     ],
 

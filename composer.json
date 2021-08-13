@@ -22,6 +22,7 @@
         "mews/purifier": "^3.3",
         "nwidart/laravel-modules": "^8.0",
         "predis/predis": "^1.1",
+        "rachidlaasri/laravel-installer": "^4.1",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^3.2",

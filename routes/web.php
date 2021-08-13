@@ -27,7 +27,7 @@ Route::get('language/{language}', 'LanguageController@switch')->name('language.s
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
-    Route::get('/', 'FrontendController@index')->name('index');
+    Route::get('/', 'FrontendController@index')->name('index')->middleware("laravel_installer");
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 * These routes need view-backend permission
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend', 'laravel_installer']], function () {
 
     /**
      * Backend Dashboard
