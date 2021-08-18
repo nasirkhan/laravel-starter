@@ -3,7 +3,7 @@
 </p>
 <table class="table table-responsive-sm table-hover table-bordered">
     <?php
-      $all_columns = $$module_name_singular->getTableColumns();
+    $all_columns = $$module_name_singular->getTableColumns();
     ?>
     <thead>
         <tr>
@@ -35,5 +35,5 @@
     </tbody>
 </table>
 
-<!-- Lightbox2 Library -->
-<x-library.lightbox/>
+{{-- Lightbox2 Library --}}
+<x-library.lightbox />
