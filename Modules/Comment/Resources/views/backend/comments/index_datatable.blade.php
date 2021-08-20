@@ -80,7 +80,7 @@
     </div>
 </div>
 
-@stop
+@endsection
 
 @push ('after-styles')
 <!-- DataTables Core and Extensions -->

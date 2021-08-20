@@ -6,7 +6,7 @@
 <x-backend-breadcrumbs>
     <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ $module_title }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
-@stop
+@endsection
 
 @section('content')
 <div class="card">
@@ -100,4 +100,4 @@
     </div>
 </div>
 
-@stop
+@endsection

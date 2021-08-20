@@ -99,8 +99,8 @@ $module_name_singular = Str::singular($module_name);
         </div>
     </div>
 </div>
-@stop
+@endsection
 
 @section ('after-scripts-end')
 
-@stop
+@endsection

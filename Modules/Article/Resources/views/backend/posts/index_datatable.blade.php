@@ -1,12 +1,12 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ __($module_action) }} {{ $module_title }} @stop
+@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
     <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ $module_title }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
-@stop
+@endsection
 
 @section('content')
 <div class="card">
@@ -80,7 +80,7 @@
     </div>
 </div>
 
-@stop
+@endsection
 
 @push ('after-styles')
 <!-- DataTables Core and Extensions -->

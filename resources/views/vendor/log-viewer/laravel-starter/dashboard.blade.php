@@ -12,7 +12,7 @@ $module_icon = "c-icon cil-list-rich";
         @lang('Log Viewer')
     </x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
-@stop
+@endsection
 
 @section('content')
 <div class="card">

@@ -14,7 +14,7 @@ $module_icon = "c-icon cil-list-rich";
     <x-backend-breadcrumb-item route="{{ route('log-viewer::logs.list') }}">{{ __('Logs by Date') }}</x-backend-breadcrumb-item>
     <x-backend-breadcrumb-item type="active">@lang('Log') [{{ $log->date }}]</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
-@stop
+@endsection
 
 @section('content')
 <div class="card">

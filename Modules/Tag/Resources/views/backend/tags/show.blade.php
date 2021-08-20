@@ -110,4 +110,4 @@
     </div>
 </div>
 
-@stop
+@endsection
