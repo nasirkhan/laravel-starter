@@ -605,15 +605,15 @@ class UserController extends Controller
 
         $module_action = 'Update';
 
-        $request->validate([
-            'first_name'    => 'required|min:3|max:191',
-            'last_name'     => 'required|min:3|max:191',
-            'url_website'   => 'nullable|min:3|max:191',
-            'url_facebook'  => 'nullable|min:3|max:191',
-            'url_twitter'   => 'nullable|min:3|max:191',
-            'url_instagram' => 'nullable|min:3|max:191',
-            'url_linkedin'  => 'nullable|min:3|max:191',
-        ]);
+        // $request->validate([
+        //     'first_name'    => 'required|min:3|max:191',
+        //     'last_name'     => 'required|min:3|max:191',
+        //     'url_website'   => 'nullable|min:3|max:191',
+        //     'url_facebook'  => 'nullable|min:3|max:191',
+        //     'url_twitter'   => 'nullable|min:3|max:191',
+        //     'url_instagram' => 'nullable|min:3|max:191',
+        //     'url_linkedin'  => 'nullable|min:3|max:191',
+        // ]);
 
         $$module_name_singular = User::findOrFail($id);
 
