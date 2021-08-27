@@ -35,13 +35,13 @@ We have created a number of custom commands for the project. The commands are li
 
 ## Clear All Cache
 
-`composer clear-all`
+```composer clear-all```
 
 this is a shortcut command clear all cache including config, route and more
 
 ## Code Style Fix
 
-`composer fix-cs`
+```composer fix-cs```
 
 apply the code style fix by this command.
 
@@ -105,17 +105,41 @@ It is a modular application, and a number of modules are installed by default. I
 
 Follow the steps mentioned below to install and run the project.
 
-1. Clone or download the repository
-2. Go to the project directory and run `composer install`
-3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
+1. Download the repository or clone it using the command below.
+
+```
+git clone https://github.com/nasirkhan/laravel-starter.git
+```
+2. Go to the project directory and run
+```
+composer install
+```
+3. Create `.env` file by copying the `.env.example`. You may use the command to do that
+```
+cp .env.example .env
+```
 4. Update the database name and credentials in `.env` file
-5. Run the command `php artisan migrate --seed`
-6. Link storage directory: `php artisan storage:link`
-7. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel-starter
+DB_USERNAME=root
+DB_PASSWORD=
+
+```
+5. Run the command
+```
+php artisan migrate --seed
+```
+6. Link storage directory: 
+```php artisan storage:link```
+7. You may create a virtualhost entry to access the application or run 
+```php artisan serve``` from the project root and visit `http://127.0.0.1:8000`
 
 *After creating the new permissions use the following commands to update cashed permissions.*
 
-`php artisan cache:forget spatie.permission.cache`
+```php artisan cache:forget spatie.permission.cache```
 
 
 ## Icons
