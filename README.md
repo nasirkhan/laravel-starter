@@ -110,9 +110,9 @@ Follow the steps mentioned below to install and run the project.
 ```
 git clone https://github.com/nasirkhan/laravel-starter.git
 ```
-2. Go to the project directory and run
+2. Go to the project directory and run `composer install` use this command in the terminal
 ```
-composer install
+cd laravel-starter && composer install
 ```
 3. Create `.env` file by copying the `.env.example`. You may use the command to do that
 ```
@@ -133,13 +133,23 @@ DB_PASSWORD=
 php artisan migrate --seed
 ```
 6. Link storage directory: 
-```php artisan storage:link```
+```
+php artisan storage:link
+```
 7. You may create a virtualhost entry to access the application or run 
-```php artisan serve``` from the project root and visit `http://127.0.0.1:8000`
+```
+php artisan serve
+``` 
+from the project root and visit
+```
+http://127.0.0.1:8000
+```
 
 *After creating the new permissions use the following commands to update cashed permissions.*
 
-```php artisan cache:forget spatie.permission.cache```
+```
+php artisan cache:forget spatie.permission.cache
+```
 
 
 ## Icons
