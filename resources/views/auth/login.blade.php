@@ -68,7 +68,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') ?? 'super@admin.com' }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,7 +76,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="@lang('Password')" aria-label="@lang('Password')" aria-describedby="input-password" required>
+                                    <input type="password" class="form-control" id="password" name="password" value="{{'secret'}}" placeholder="@lang('Password')" aria-label="@lang('Password')" aria-describedby="input-password" required>
                                 </div>
                             </div>
                             <div class="row my-4">
