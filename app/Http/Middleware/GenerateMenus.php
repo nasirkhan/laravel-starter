@@ -54,6 +54,20 @@ class GenerateMenus
                 'permission'    => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
             ]);
 
+            // media filemanager
+            $menu->add('<i class="c-sidebar-nav-icon fas fa-folder"></i> Filemanager', [
+                'route' => 'backend.filemanager',
+                'class' => 'c-sidebar-nav-item',
+            ])
+            ->data([
+                'order'         => 102,
+                'activematches' => 'admin/filemanager*',
+
+            ])
+            ->link->attr([
+                'class' => 'c-sidebar-nav-link',
+            ]);
+
             // Settings
             $menu->add('<i class="c-sidebar-nav-icon fas fa-cogs"></i> Settings', [
                 'route' => 'backend.settings',
