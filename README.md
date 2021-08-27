@@ -35,13 +35,17 @@ We have created a number of custom commands for the project. The commands are li
 
 ## Clear All Cache
 
-```composer clear-all```
+```
+composer clear-all
+```
 
 this is a shortcut command clear all cache including config, route and more
 
 ## Code Style Fix
 
-```composer fix-cs```
+```
+composer fix-cs
+```
 
 apply the code style fix by this command.
 
