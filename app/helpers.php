@@ -431,7 +431,7 @@ if (!function_exists('banglaDate')) {
 
         // Year
         $bn_year = $en_year - 593;
-        if (($en_year < 4) || (($en_year == 4) && (($en_date < 14) || ($en_date == 14)))) {
+        if (($en_year < 4) || (($en_year == 4) && (($en_day < 14) || ($en_day == 14)))) {
             $bn_year -= 1;
         }
 
