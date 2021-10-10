@@ -1,7 +1,7 @@
 {
     "name": "nasirkhan/laravel-starter",
     "description": "A CMS like modular Laravel starter project.",
-    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog"],
+    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog", "website"],
     "license": "GPL-3.0-or-later",
     "type": "project",
     "version": "v8.4.2",
@@ -25,20 +25,20 @@
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^3.2",
-        "spatie/laravel-html": "^2.28",
-        "spatie/laravel-medialibrary": "^8.10",
-        "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-html": "^2.30",
+        "spatie/laravel-medialibrary": "^9.8",
+        "spatie/laravel-permission": "^5.1",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
-        "facade/ignition": "^2.11",
-        "fakerphp/faker": "^1.15",
+        "facade/ignition": "^2.14",
+        "fakerphp/faker": "^1.16",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "laravel/breeze": "^1.3",
+        "laravel/breeze": "^1.4",
         "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5"
     },
     "config": {
         "optimize-autoloader": true,

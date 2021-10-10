@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Userprofile;
 use App\Models\UserProvider;
 use Carbon\Carbon;
+use Exception;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -864,7 +865,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        throw new GeneralException('There was a problem updating this user. Please try again.');
+        throw new Exception('There was a problem updating this user. Please try again.');
     }
 
     /**
