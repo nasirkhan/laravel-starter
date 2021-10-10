@@ -25,7 +25,7 @@
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^3.2",
-        "spatie/laravel-html": "^2.28",
+        "spatie/laravel-html": "^2.30",
         "spatie/laravel-medialibrary": "^9.8",
         "spatie/laravel-permission": "^5.1",
         "yajra/laravel-datatables": "^1.5"
