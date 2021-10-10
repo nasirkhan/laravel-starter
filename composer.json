@@ -1,12 +1,12 @@
 {
     "name": "nasirkhan/laravel-starter",
     "description": "A CMS like modular Laravel starter project.",
-    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog"],
+    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog", "website"],
     "license": "GPL-3.0-or-later",
     "type": "project",
     "version": "v8.4.2",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "alexusmai/laravel-file-manager": "^2.5",
         "arcanedev/log-viewer": "^8.0",
         "fideloper/proxy": "^4.4",
