@@ -4,11 +4,13 @@ namespace Tests\Feature;
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutEvents;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
+    use WithoutEvents;
 
     public function test_registration_screen_can_be_rendered()
     {
@@ -19,6 +21,8 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
+        $this->withoutEvents();
+
         $response = $this->post('/register', [
             'first_name'            => 'Test',
             'last_name'             => 'User',
