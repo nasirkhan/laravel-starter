@@ -6,7 +6,7 @@
     "type": "project",
     "version": "v8.4.2",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.3|^8.0",
         "alexusmai/laravel-file-manager": "^2.5",
         "arcanedev/log-viewer": "^8.0",
         "fideloper/proxy": "^4.4",
@@ -27,7 +27,7 @@
         "spatie/laravel-feed": "^3.2",
         "spatie/laravel-html": "^2.28",
         "spatie/laravel-medialibrary": "^8.10",
-        "spatie/laravel-permission": "^3.17",
+        "spatie/laravel-permission": "^5.1",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {
