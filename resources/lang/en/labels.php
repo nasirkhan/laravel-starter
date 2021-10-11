@@ -84,6 +84,7 @@ return [
                 'password_confirmation' => 'Password Confirmation',
                 'confirmed'             => 'Confirmed',
                 'active'                => 'Active',
+                'email_credentials'     => 'Email Credentials',
                 'roles'                 => 'Roles',
                 'permissions'           => 'Permissions',
                 'social'                => 'Social',

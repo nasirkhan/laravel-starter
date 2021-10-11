@@ -6,21 +6,21 @@ use App\Authorizable;
 use App\Events\Backend\UserCreated;
 use App\Events\Backend\UserProfileUpdated;
 use App\Events\Backend\UserUpdated;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Userprofile;
 use App\Models\UserProvider;
+use App\Notifications\UserAccountCreated;
 use Carbon\Carbon;
 use Exception;
-use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Log;
+use Laracasts\Flash\Flash;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -208,7 +208,7 @@ class UserController extends Controller
         $request->validate([
             'first_name'=> 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email'     => 'email|unique:users',
+            'email'     => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
             'password'  => 'required|confirmed|min:4',
         ]);
 
@@ -250,6 +250,13 @@ class UserController extends Controller
         $$module_name_singular->save();
 
         event(new UserCreated($$module_name_singular));
+
+        if ($request->email_credentials == 1) {
+            $data = [
+                'password' => $request->password,
+            ];
+            $$module_name_singular->notify(new UserAccountCreated($data));
+        }
 
         Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
 
@@ -382,7 +389,6 @@ class UserController extends Controller
         }
 
         $$module_name_singular = User::findOrFail($id);
-        $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
@@ -390,7 +396,7 @@ class UserController extends Controller
                 $$module_name_singular->getMedia($module_name)->first()->delete();
             }
 
-            $media = $$module_name_singular->addMediaFromRequest('avatar')->toMediaCollection($module_name);
+            $media = $$module_name_singular->addMedia($request->file('avatar'))->toMediaCollection($module_name);
 
             $$module_name_singular->avatar = $media->getUrl();
 
@@ -784,8 +790,8 @@ class UserController extends Controller
             flash('<i class="fas fa-check"></i> '.$$module_name_singular->name.' User Successfully Blocked!')->success();
 
             return redirect()->back();
-        } catch (\Exception $e) {
-            throw new GeneralException('There was a problem updating this user. Please try again.');
+        } catch (Exception $e) {
+            throw new Exception('There was a problem updating this user. Please try again.');
         }
     }
 
