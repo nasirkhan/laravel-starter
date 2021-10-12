@@ -11,10 +11,11 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Userprofile;
 use App\Models\UserProvider;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Log;
 
 class UserController extends Controller
 {
@@ -178,7 +179,6 @@ class UserController extends Controller
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
-        $filename = $$module_name_singular->avatar;
 
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
@@ -247,8 +247,8 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request, $username)
     {
-        if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+        if ($username != auth()->user()->username) {
+            return redirect()->route('frontend.users.profile', $username);
         }
 
         $this->validate($request, [
@@ -380,7 +380,7 @@ class UserController extends Controller
             }
         }
 
-        throw new GeneralException('There was a problem updating this user. Please try again.');
+        throw new Exception('There was a problem updating this user. Please try again.');
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Listeners\Backend\UserCreated;
 use App\Events\Backend\UserCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserCreatedNotifyUser implements ShouldQueue
+class UserCreatedNotifySuperUser implements ShouldQueue
 {
     /**
      * Create the event listener.

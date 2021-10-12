@@ -64,7 +64,6 @@
     "Size": "Size",
     "Date": "Date",
     "Age": "Age",
-    "Download": "Download",
     "Download File": "Download File",
     "Delete ": "Delete ",
     "Delete File": "Delete File",
@@ -87,6 +86,13 @@
     "Log Info": "Log Info",
 
     "Select an option": "-- Select an option --",
+    
+    "URL": "URL",
+    "Username": "Username",
+    "Visit": "Visit",
+    "Active": "Active",
+    "Email Confirmed": "Email Confirmed",
+    "Email Credentials": "Send account credentials to the user",
 
     "Draft": "Draft",
     "Published": "Published",
