@@ -12,7 +12,7 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-8">
+            <div class="col">
                 <h4 class="card-title mb-0">
                     <i class="{{$module_icon}}"></i> {{ __('labels.backend.users.index.title') }}
                     <small class="text-muted">{{ __('labels.backend.users.index.action') }} </small>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-5">
                 <div class="float-right">
                     <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
 

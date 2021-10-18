@@ -1,6 +1,8 @@
 <div>
     <div class="row mt-4">
         <div class="col">
+            <input type="text" class="form-control my-2" placeholder=" Search" wire:model="searchTerm" />
+
             <table class="table table-hover table-responsive-sm">
                 <thead>
                     <tr>
