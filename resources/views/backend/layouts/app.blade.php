@@ -29,6 +29,8 @@
     @stack('after-styles')
 
     <x-google-analytics />
+
+    @livewireStyles
     
 </head>
 <body class="c-app">
@@ -72,6 +74,8 @@
         @stack('before-scripts')
 
         <script src="{{ mix('js/backend.js') }}"></script>
+
+        @livewireScripts
 
         @stack('after-scripts')
         <!-- / Scripts -->
