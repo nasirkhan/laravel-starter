@@ -52,7 +52,7 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::paginate();
+        $$module_name = $module_model::latest()->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
