@@ -25,7 +25,6 @@
         "predis/predis": "^1.1",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-backup": "^6.11",
-        "spatie/laravel-feed": "^3.2",
         "spatie/laravel-html": "^2.30",
         "spatie/laravel-medialibrary": "^9.8",
         "spatie/laravel-permission": "^5.1",
@@ -35,7 +34,7 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "facade/ignition": "^2.14",
         "fakerphp/faker": "^1.16",
-        "friendsofphp/php-cs-fixer": "^2.16",
+        "friendsofphp/php-cs-fixer": "^3.3",
         "laravel/breeze": "^1.4",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^5.10",
@@ -92,8 +91,11 @@
             "@php artisan config:clear",
             "@php artisan cache:forget spatie.permission.cache"
         ],
+        "fix-cs-dry": [
+            "vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots"
+        ],
         "fix-cs": [
-            "vendor/bin/php-cs-fixer fix"
+            "vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
         ]
     }
 }

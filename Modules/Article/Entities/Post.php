@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
 
-class Post extends BaseModel implements Feedable
+class Post extends BaseModel
 {
     use HasFactory;
     use LogsActivity;
@@ -174,24 +172,6 @@ class Post extends BaseModel implements Feedable
         return $query->where('status', '=', '1')
                         ->whereDate('published_at', '<=', Carbon::today()->toDateString())
                         ->orderBy('published_at', 'desc');
-    }
-
-    public function toFeedItem(): FeedItem
-    {
-        $author = ($this->created_by_alias != '') ? $this->created_by_alias : $this->created_by_name;
-
-        return FeedItem::create()
-                        ->id(encode_id($this->id))
-                        ->title($this->name)
-                        ->summary($this->intro)
-                        ->updated($this->updated_at)
-                        ->link(route('frontend.posts.show', encode_id($this->id)))
-                        ->author($author);
-    }
-
-    public static function getFeedItems()
-    {
-        return self::latest()->published()->take('5')->get();
     }
 
     /**

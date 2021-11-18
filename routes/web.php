@@ -14,9 +14,6 @@
 // Autho Routes
 require __DIR__.'/auth.php';
 
-// Atom/ RSS Feed Routes
-Route::feeds();
-
 // Language Switch
 Route::get('language/{language}', 'LanguageController@switch')->name('language.switch');
 
