@@ -251,7 +251,7 @@ class UserController extends Controller
 
         event(new UserCreated($$module_name_singular));
 
-        Flash::success("<i class='fas fa-check'></i> New '" . Str::singular($module_title) . "' Created")->important();
+        Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Created")->important();
 
         if ($request->email_credentials == 1) {
             $data = [
@@ -259,8 +259,8 @@ class UserController extends Controller
             ];
             $$module_name_singular->notify(new UserAccountCreated($data));
 
-            Flash::success(icon('fas fa-envelope')." Account Credentials Sent to User.")->important();
-        }        
+            Flash::success(icon('fas fa-envelope').' Account Credentials Sent to User.')->important();
+        }
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -683,7 +683,7 @@ class UserController extends Controller
         if (auth()->user()->id == $id || $id == 1) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete this user!")->important();
 
-            Log::notice(label_case($module_title . ' ' . $module_action) . ' Failed | User:' . auth()->user()->name . '(ID:' . auth()->user()->id . ')');
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->back();
         }
