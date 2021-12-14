@@ -15,7 +15,7 @@ class UsersIndex extends Component
 
     public function render()
     {
-        $searchTerm = '%' . $this->searchTerm . '%';
+        $searchTerm = '%'.$this->searchTerm.'%';
         $users = User::where('name', 'like', $searchTerm)->orWhere('email', 'like', $searchTerm)->orderBy('id', 'desc')->with(['permissions', 'roles', 'providers'])->paginate();
 
         return view('livewire.users-index', compact('users'));

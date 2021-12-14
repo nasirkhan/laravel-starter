@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
 use App\Events\Frontend\UserProfileUpdated;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
