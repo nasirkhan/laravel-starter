@@ -150,6 +150,6 @@ class TagsController extends BackendBaseController
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect()->route("backend.tags.show", $$module_name_singular->id);
+        return redirect()->route('backend.tags.show', $$module_name_singular->id);
     }
 }
