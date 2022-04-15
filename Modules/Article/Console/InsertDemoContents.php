@@ -2,8 +2,8 @@
 
 namespace Modules\Article\Console;
 
-use Auth;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;

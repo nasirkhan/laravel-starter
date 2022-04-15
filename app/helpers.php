@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -55,8 +56,8 @@ if (!function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = trim(\Illuminate\Support\Str::title(str_replace('"', '', $text)));
-        $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
+        $new_text = trim(Str::title(str_replace('"', '', $text)));
+        $new_text = trim(Str::title(str_replace($order, $replace, $text)));
         $new_text = preg_replace('!\s+!', ' ', $new_text);
 
         return $new_text;
@@ -73,8 +74,8 @@ if (!function_exists('show_column_value')) {
     /**
      * Return Column values as Raw and formatted.
      *
-     * @param string $valueObject   Model Object
-     * @param string $column        Column Name
+     * @param object $valueObject   Model Object
+     * @param object $column        Column Name
      * @param string $return_format Return Type
      *
      * @return string Raw/Formatted Column Value
@@ -100,7 +101,7 @@ if (!function_exists('show_column_value')) {
             return $datetime->isoFormat('LLLL');
         } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
+        } elseif ($column_type != 'json' && Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -293,11 +294,11 @@ if (!function_exists('logUserAccess')) {
     {
         $auth_text = '';
 
-        if (\Auth::check()) {
-            $auth_text = 'User:'.\Auth::user()->name.' (ID:'.\Auth::user()->id.')';
+        if (Auth::check()) {
+            $auth_text = 'User:'.Auth::user()->name.' (ID:'.Auth::user()->id.')';
         }
 
-        \Log::debug(label_case($text)." | $auth_text");
+        Log::debug(label_case($text)." | $auth_text");
     }
 }
 
