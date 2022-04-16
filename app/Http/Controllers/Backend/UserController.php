@@ -345,7 +345,7 @@ class UserController extends Controller
 
         $module_action = 'Edit Profile';
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -386,7 +386,7 @@ class UserController extends Controller
             'email'     => 'email',
         ]);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -430,7 +430,7 @@ class UserController extends Controller
      */
     public function changeProfilePassword($id)
     {
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -467,7 +467,7 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -504,7 +504,7 @@ class UserController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -537,7 +537,7 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -562,7 +562,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             abort(404);
         }
 
@@ -601,7 +601,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             abort(404);
         }
 
@@ -868,7 +868,7 @@ class UserController extends Controller
         $user_provider_id = $request->user_provider_id;
         $user_id = $request->user_id;
 
-        if (!$user_provider_id > 0 || !$user_id > 0) {
+        if (! $user_provider_id > 0 || ! $user_id > 0) {
             flash('Invalid Request. Please try again.')->error();
 
             return redirect()->back();

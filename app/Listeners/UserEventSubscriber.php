@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use Carbon\Carbon;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class UserEventSubscriber
 {

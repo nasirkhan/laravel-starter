@@ -15,6 +15,7 @@ class FrontendController extends Controller
     {
         $body_class = '';
 
+        // return view('dashboard', compact('body_class'));
         return view('frontend.index', compact('body_class'));
     }
 

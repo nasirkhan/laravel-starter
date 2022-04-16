@@ -2,7 +2,7 @@
     "name": "nasirkhan/article-module",
     "description": "Article module with Posts, Categories, Tags, Comments. It works with nasirkhan/laravel-starter",
     "type": "laravel-module",
-    "version": "v1.0.0",
+    "version": "v3.0.0",
     "authors": [
         {
             "name": "Nasir Khan",

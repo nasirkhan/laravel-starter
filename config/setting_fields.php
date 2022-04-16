@@ -130,7 +130,7 @@ return [
                 'label' => 'Meta Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'A CMS like modular starter application project built with Laravel.', // default value if you want
+                'value' => 'A CMS like modular starter application project built with Laravel 9.', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Autho Routes
+// Auth Routes
 require __DIR__.'/auth.php';
 
 // Language Switch
-Route::get('language/{language}', 'LanguageController@switch')->name('language.switch');
+// Route::get('language/{language}', 'App\Http\Controllers\LanguageController@switch')->name('language.switch');
+Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
+Route::get('dashboard', 'FrontendController@index')->name('dashboard');
 /*
 *
 * Frontend Routes
 *
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
@@ -56,7 +59,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 * These routes need view-backend permission
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
 
     /**
      * Backend Dashboard

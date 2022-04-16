@@ -5,6 +5,7 @@ namespace Database\Seeders\Auth;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 /**
@@ -39,22 +40,22 @@ class PermissionRoleTableSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
-        \Artisan::call('auth:permission', [
+        Artisan::call('auth:permission', [
             'name' => 'posts',
         ]);
         echo "\n _Posts_ Permissions Created.";
 
-        \Artisan::call('auth:permission', [
+        Artisan::call('auth:permission', [
             'name' => 'categories',
         ]);
         echo "\n _Categories_ Permissions Created.";
 
-        \Artisan::call('auth:permission', [
+        Artisan::call('auth:permission', [
             'name' => 'tags',
         ]);
         echo "\n _Tags_ Permissions Created.";
 
-        \Artisan::call('auth:permission', [
+        Artisan::call('auth:permission', [
             'name' => 'comments',
         ]);
         echo "\n _Comments_ Permissions Created.";

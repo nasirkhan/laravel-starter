@@ -1,113 +1,36 @@
-@extends('auth.layout')
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
-@section('title') @lang('Forgot your password?') @endsection
+        <div class="mb-4 text-sm text-gray-600">
+            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        </div>
 
-@section('content')
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-<div class="main-content">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-    <div class="header bg-gradient-primary py-7 py-lg-8">
-        <div class="container">
-            <div class="header-body text-center mb-6">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                        <h1 class="text-white">
-                            @lang('Forgot your password?')
-                        </h1>
-                        <p class="text-lead text-white">
-                            Please enter your email here and details instructions will be sent to your email inbox.
-                        </p>
-                    </div>
-                </div>
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+
+            <!-- Email Address -->
+            <div>
+                <x-label for="email" :value="__('Email')" />
+
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </div>
 
-    <div class="container mt--9 pb-5">
-
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary border border-soft">
-
-                    <div class="card-body px-lg-5 py-lg-5">
-                        <div class="text-center text-muted mb-4">
-                            <small>Enter your email address</small>
-                        </div>
-
-                        @include('flash::message')
-
-                        @if (Session::has('status'))
-                        <!-- Session Status -->
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <p>
-                                <i class="fas fa-bolt"></i> {{ Session::get('status') }}
-                            </p>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
-
-                        @if ($errors->any())
-                        <!-- Validation Errors -->
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <p>
-                                <i class="fas fa-exclamation-triangle"></i> @lang('Please fix the following errors & try again!')
-                            </p>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
-
-                        <form role="form" method="POST" action="{{ route('password.email') }}">
-                            @csrf
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="email" required>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Email Password Reset Link') }}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    @if (Route::has('register'))
-                    <div class="col-6 text-left">
-                        <a href="{{ route('register') }}" class="text-gray">
-                            <small>Create new account</small>
-                        </a>
-                    </div>
-                    @endif
-
-                    <div class="col-6 text-right">
-                        <a href="{{ route('login') }}" class="text-gray">
-                            <small>Login to account</small>
-                        </a>
-                    </div>
-                </div>
+            <div class="flex items-center justify-end mt-4">
+                <x-button>
+                    {{ __('Email Password Reset Link') }}
+                </x-button>
             </div>
-        </div>
-    </div>
-</div>
-
-@endsection
+        </form>
+    </x-auth-card>
+</x-guest-layout>

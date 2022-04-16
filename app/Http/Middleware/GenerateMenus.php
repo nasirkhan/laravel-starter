@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 class GenerateMenus
@@ -17,7 +18,7 @@ class GenerateMenus
      */
     public function handle($request, Closure $next)
     {
-        \Menu::make('admin_sidebar', function ($menu) {
+        Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
             $menu->add('<i class="cil-speedometer c-sidebar-nav-icon"></i> Dashboard', [
                 'route' => 'backend.dashboard',
@@ -193,7 +194,7 @@ class GenerateMenus
                     $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
 
                     foreach ($matches as $pattern) {
-                        if (Str::is($pattern, \Request::path())) {
+                        if (Str::is($pattern, Request::path())) {
                             $item->activate();
                             $item->active();
                             if ($item->hasParent()) {

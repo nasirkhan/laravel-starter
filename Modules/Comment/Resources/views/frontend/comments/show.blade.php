@@ -1,99 +1,81 @@
 @extends('frontend.layouts.app')
 
-@section('title') {{$$module_name_singular->name}} @endsection
+@section('title') {{$$module_name_singular->name}} - {{ __("Comments") }} @endsection
 
 
 @section('content')
-<section class="section-header bg-primary text-white pb-7 pb-lg-11">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 text-center">
-                <h1 class="display-2 mb-4">
-                    {{$$module_name_singular->name}}
-                </h1>
-                <p class="lead">
-                    {!! $$module_name_singular->comment !!}
-                </p>
-                <div class="text-center">
-                    @php $title_text = __('Comments'); @endphp
 
-                    <button class="btn btn-outline-white" data-sharer="facebook" data-hashtag="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Facebook" data-original-title="Share on Facebook"><i class="fab fa-facebook-square"></i></button>
+<section class="bg-gray-100 text-gray-600 py-20">
+    <div class="container mx-auto flex px-5 items-center justify-center flex-col">
+        <div class="text-center lg:w-2/3 w-full">
+            <p class="mb-8 leading-relaxed">
+                <a href="{{route('frontend.comments.index')}}" class="outline outline-1 outline-gray-800 bg-gray-200 hover:bg-gray-100 text-gray-800 text-sm font-semibold mr-2 px-3 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
+                    {{ __("Comments") }}
+                </a>
+            </p>
+            <h1 class="text-3xl sm:text-4xl mb-4 font-medium text-gray-800">
+                {{$$module_name_singular->name}}
+            </h1>
 
-                    <button class="btn btn-outline-white" data-sharer="twitter" data-via="LaravelStarter" data-title="{{$title_text}}" data-hashtags="LaravelStarter" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Twitter" data-original-title="Share on Twitter"><i class="fab fa-twitter"></i></button>
+            @include('frontend.includes.messages')
+        </div>
+    </div>
+</section>
 
-                    <button class="btn btn-outline-white" data-sharer="whatsapp" data-title="{{$title_text}}" data-url="{{url()->full()}}" data-toggle="tooltip" title="Share on Whatsapp" data-original-title="Share on Whatsapp" data-web=""><i class="fab fa-whatsapp"></i></button>
 
+<section class="bg-white text-gray-600 py-20 px-20">
+    <div class="grid grid-cols-1 gap-6">
+        <div class="">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-5 flex flex-col items-stretch">
+                    <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                        Post of {{$$module_name_singular->name}}
+                    </h2>
+                    <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
+                        {!! $$module_name_singular->comment !!}
+                    </p>
+                    <p class="my-4">
+                        <small>{{$$module_name_singular->published_at_formatted}}</small>
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h6>
+                        {{ __('Post') }}: <a class="underline hover:text-gray-800" href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
+                    </h6>
                 </div>
-
-                @include('frontend.includes.messages')
             </div>
         </div>
     </div>
-    <div class="pattern bottom"></div>
 </section>
 
-<section class="section section-lg line-bottom-light">
-    <div class="container mt-n7 mt-lg-n12 z-2">
-        <div class="row">
-            @php
-            $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
-            @endphp
-            <div class="col mb-4">
-                <div class="card bg-white border-light shadow-soft p-4 rounded">
-                    <div class="card-body p-0 pt-4">
-                        <a href="{{$details_url}}">
-                            <h4 class="card-title">{{$$module_name_singular->name}}</h4>
-                        </a>
-                        <hr>
-                        <p class="card-text">
-                            {!! $$module_name_singular->comment !!}
-                        </p>
-                        <p>
-                            <small class="text-muted">{{$$module_name_singular->published_at_formatted}}</small>
-                        </p>
-
-                        <hr>
-
-                        <h6>
-                            Post: <a href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
-                        </h6>
-                    </div>
-                </div>
-            </div>
+<section class="bg-white text-gray-600 py-20 px-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="col-span-2">
+            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white text-center">
+                Post of {{$$module_name_singular->name}}
+            </h2>
         </div>
-        <div class="row">
-            <div class="col">
-                <h3>
-                    Post of {{$$module_name_singular->name}}
-                </h3>
-            </div>
-        </div>
-        <div class="row">
+        <div class="">
             @php
             $post = $$module_name_singular->post;
+            $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
             @endphp
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex flex-col items-stretch">
 
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    @php
-                    $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
-                    @endphp
-                    <a href="{{$post_details_url}}">
-                        <img class="card-img-top" src="{{$post->featured_image}}" alt="{{$post->name}}">
+                    <a href="{{ $post_details_url }}">
+                        <img class="rounded-t-lg" src="{{$post->featured_image}}" alt="{{$post->name}}" />
                     </a>
-                    <div class="card-body">
-                        <a href="{{$post_details_url}}">
-                            <h4 class="card-title">{{$post->name}}</h4>
+                    <div class="p-5 flex flex-col items-stretch">
+                        <a href="{{ $post_details_url }}">
+                            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                                {{$post->name}}
+                            </h2>
                         </a>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            {{$post->author_name}}
-                        </h6>
-                        <hr>
-                        <p class="card-text">
+                        <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
                             {{$post->intro}}
                         </p>
-                        <hr>
-
                         <p class="card-text">
                             <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge badge-primary">{{$post->category_name}}</a>
                         </p>
@@ -111,42 +93,50 @@
                         </p>
 
                         <p class="card-text">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="float-right">
-                                        <a href="{{$post_details_url}}" class="btn btn-primary"><i class="fas fa-long-arrow-alt-right"></i> Continue Reading</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </p>
-
-                        <p class="card-text">
                             <small class="text-muted">{{$post->published_at_formatted}}</small>
                         </p>
+
+                        <div class="text-right">
+                            <a href="{{ $post_details_url }}" class="inline-flex items-center text-sm outline outline-1 outline-gray-800 text-gray-700 hover:text-gray-100 bg-gray-200 hover:bg-gray-700 py-2 px-3 focus:outline-none rounded">
+                                Read more
+                                <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>
-                            Other Comments of the this post
-                        </h3>
-                        @foreach ($post->comments as $comment)
+        </div>
+        <div class="">
+            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-5 flex flex-col items-stretch">
+                    <h3 class="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
+                        Other Comments of the this post
+                    </h3>
+                    <!-- <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
+                        {!! $$module_name_singular->comment !!}
+                    </p>
+                    <p class="my-4">
+                        <small>{{$$module_name_singular->published_at_formatted}}</small>
+                    </p> -->
+
+                    <hr>
+
+                    @foreach ($post->comments as $comment)
+                    <div class="pb-4">
                         <h6>
                             {{$comment->name}}
                         </h6>
                         {!! $comment->comment !!}
                         <br>
                         -- {{$comment->user_name}}
-                        <hr>
-                        @endforeach
                     </div>
+                    <hr>
+                    @endforeach
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center w-100 mt-3">
-
         </div>
     </div>
 </section>

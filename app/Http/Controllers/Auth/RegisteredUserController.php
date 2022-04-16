@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
@@ -26,19 +27,18 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param \App\Http\Requests\LoginRequest $request
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
-            'first_name' => 'required|string|max:191',
-            'last_name'  => 'required|string|max:191',
-            'email'      => 'required|string|email|max:191|unique:users',
-            'password'   => 'required|string|confirmed|min:8',
+            'first_name' => ['required', 'string', 'max:191'],
+            'last_name' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -54,10 +54,10 @@ class RegisteredUserController extends Controller
         $user->username = $username;
         $user->save();
 
-        Auth::login($user);
-
         event(new Registered($user));
         event(new UserRegistered($user));
+
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }

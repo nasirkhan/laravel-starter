@@ -2,8 +2,9 @@
 
 namespace Modules\Tag\Database\Seeders;
 
-use DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Modules\Tag\Entities\Tag;
 
 class TagDatabaseSeeder extends Seeder
@@ -29,7 +30,7 @@ class TagDatabaseSeeder extends Seeder
         DB::table('tags')->truncate();
         echo "Truncate: tags \n";
 
-        Tag::factory()->count(10)->create();
+        Tag::factory()->count(20)->create();
         $tags = Tag::all();
         echo " Insert: tags \n\n";
 

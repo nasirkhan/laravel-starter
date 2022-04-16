@@ -1,9 +1,9 @@
 {
     "name": "Tag",
     "alias": "tag",
-    "description": "Tag module for Laravel Starter, nasirkhan/laravel-starter. It can be used with any other Models.",
-    "keywords": ["tag", "tags"],
-    "order": 0,
+    "description": "",
+    "keywords": [],
+    "priority": 0,
     "providers": [
         "Modules\\Tag\\Providers\\TagServiceProvider"
     ],

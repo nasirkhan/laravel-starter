@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Comment\Entities\Presenters\CommentPresenter;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends BaseModel
@@ -19,16 +20,21 @@ class Comment extends BaseModel
 
     protected $table = 'comments';
 
-    protected static $logName = 'comments';
-    protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['parent_id', 'user_id', 'name', 'comment', 'published_at', 'moderated_at', 'moderated_by', 'status'];
-
     protected $dates = [
         'deleted_at',
         'published_at',
         'moderated_at',
     ];
 
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logUnguarded()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->useLogName($this->table);
+    }
+    
     /**
      * Get the owning commentable model.
      */

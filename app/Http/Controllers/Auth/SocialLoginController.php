@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
 use App\Providers\RouteServiceProvider;
-use Auth;
-use Log;
-use Socialite;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
 {

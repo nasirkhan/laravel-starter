@@ -1,121 +1,68 @@
-@extends('auth.layout')
+<x-auth-layout>
+    <x-slot name="title">
+        @lang('Login')
+    </x-slot>
 
-@section('title') @lang('Login') @endsection
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
-@section('content')
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-<div class="main-content">
+        <!-- Social Login -->
+        <x-auth-social-login />
 
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
-        <div class="container">
-            <div class="header-body text-center mb-7">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                        <h1 class="text-white">@lang('Welcome')</h1>
-                        <p class="text-lead text-white">
-                            @lang("Use these awesome forms to login or create new account.")
-                        </p>
-                    </div>
-                </div>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <!-- Email Address -->
+            <div>
+                <x-label for="email" :value="__('Email')" />
+
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
-    </div>
 
-    <div class="container mt--9 pb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary border border-soft">
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
 
-                    @include('auth.social_login_buttons')
-
-                    <div class="card-body px-lg-5 py-lg-5">
-                        <div class="text-center text-muted mb-4">
-                            <small>Sign in with credentials</small>
-                        </div>
-
-                        @include('flash::message')
-
-                        @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <p>
-                                <i class="fas fa-exclamation-triangle"></i> @lang('Please fix the following errors & try again!')
-                            </p>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        @endif
-
-                        <form role="form" method="POST" action="{{ route('login') }}">
-                            @csrf
-
-                            <!-- redirectTo URL -->
-                            <input type="hidden" name="redirectTo" value="{{ request()->redirectTo }}">
-
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" aria-label="email" aria-describedby="input-email" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    </div>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="@lang('Password')" aria-label="@lang('Password')" aria-describedby="input-password" required>
-                                </div>
-                            </div>
-                            <div class="row my-4">
-                                <div class="col-12">
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
-                                        <input class="custom-control-input" name="remember" id="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="remember">
-                                            <span class="text-muted">
-                                                Remember my login
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-2">
-                                    @lang('Submit')
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <a href="{{ route('password.request') }}" class="text-gray">
-                            <small>{{ __('Forgot Your Password?') }}</small>
-                        </a>
-                    </div>
-                    @if (Route::has('register'))
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-gray">
-                            <small>Create new account</small>
-                        </a>
-                    </div>
-                    @endif
-                </div>
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
-        </div>
-    </div>
-</div>
 
-@endsection
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+                @endif
+
+                <x-button class="ml-3">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+        </form>
+
+        <x-slot name="extra">
+            @if (Route::has('register'))
+            <p class="text-center text-gray-600 mt-4">
+                Do not have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register</a>.
+            </p>
+            @endif
+        </x-slot>
+    </x-auth-card>
+</x-auth-layout>

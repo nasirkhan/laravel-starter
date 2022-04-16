@@ -77,6 +77,8 @@ class UserController extends Controller
      */
     public function profile($id)
     {
+        $id = decode_id($id);
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -110,6 +112,8 @@ class UserController extends Controller
      */
     public function profileEdit($id)
     {
+        $id = decode_id($id);
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -122,7 +126,7 @@ class UserController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading.' '.ucfirst($module_action);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -172,7 +176,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
             $username = auth()->user()->username;
         }
@@ -361,7 +365,7 @@ class UserController extends Controller
         $user_provider_id = $request->user_provider_id;
         $user_id = $request->user_id;
 
-        if (!$user_provider_id > 0 || !$user_id > 0) {
+        if (! $user_provider_id > 0 || ! $user_id > 0) {
             flash('Invalid Request. Please try again.')->error();
 
             return redirect()->back();

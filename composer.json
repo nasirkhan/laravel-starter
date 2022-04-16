@@ -1,54 +1,52 @@
 {
     "name": "nasirkhan/laravel-starter",
     "description": "A CMS like modular Laravel starter project.",
-    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog", "website"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "cms",
+        "starter",
+        "admin",
+        "admin dashboard",
+        "laravel blog",
+        "website"
+    ],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "version": "v8.4.2",
+    "version": "v9.0.0",
     "require": {
-        "php": "^7.3|^8.0",
-        "alexusmai/laravel-file-manager": "^2.5",
-        "arcanedev/log-viewer": "^8.0",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "hashids/hashids": "^4.0",
+        "php": "^8.0.2",
+        "alexusmai/laravel-file-manager": "^3.0",
+        "arcanedev/log-viewer": "^9.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "hashids/hashids": "^4.1",
         "laracasts/flash": "^3.2",
-        "laravel/framework": "^8.0",
-        "laravel/slack-notification-channel": "^2.2",
-        "laravel/socialite": "^5.0",
-        "laravel/tinker": "^2.4",
-        "lavary/laravel-menu": "^1.7",
-        "livewire/livewire": "^2.6",
+        "laravel/framework": "^9.2",
+        "laravel/sanctum": "^2.14.1",
+        "laravel/slack-notification-channel": "^2.4",
+        "laravel/socialite": "^5.5",
+        "laravel/tinker": "^2.7",
+        "lavary/laravel-menu": "^1.8",
+        "livewire/livewire": "^2.10",
         "mews/purifier": "^3.3",
-        "nwidart/laravel-modules": "^8.0",
+        "nwidart/laravel-modules": "^9.0",
         "predis/predis": "^1.1",
-        "spatie/laravel-activitylog": "^3.17",
-        "spatie/laravel-backup": "^6.11",
-        "spatie/laravel-html": "^2.30",
-        "spatie/laravel-medialibrary": "^9.8",
-        "spatie/laravel-permission": "^5.1",
-        "yajra/laravel-datatables": "^1.5"
+        "spatie/laravel-activitylog": "^4.5",
+        "spatie/laravel-backup": "^8.1",
+        "spatie/laravel-html": "^3.1",
+        "spatie/laravel-medialibrary": "^10.3",
+        "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
-        "facade/ignition": "^2.14",
-        "fakerphp/faker": "^1.16",
-        "friendsofphp/php-cs-fixer": "^3.3",
-        "laravel/breeze": "^1.4",
-        "mockery/mockery": "^1.4",
-        "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
+        "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "laravel/breeze": "^1.9",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -69,8 +67,6 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -97,5 +93,17 @@
         "fix-cs": [
             "vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
         ]
-    }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

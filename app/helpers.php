@@ -1,13 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /*
  * Global helpers file with misc functions.
  */
-if (!function_exists('app_name')) {
+if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name.
      *
@@ -22,7 +21,7 @@ if (!function_exists('app_name')) {
 /*
  * Global helpers file with misc functions.
  */
-if (!function_exists('user_registration')) {
+if (! function_exists('user_registration')) {
     /**
      * Helper to grab the application name.
      *
@@ -46,7 +45,7 @@ if (!function_exists('user_registration')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('label_case')) {
+if (! function_exists('label_case')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -56,8 +55,8 @@ if (!function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = trim(Str::title(str_replace('"', '', $text)));
-        $new_text = trim(Str::title(str_replace($order, $replace, $text)));
+        $new_text = trim(\Illuminate\Support\Str::title(str_replace('"', '', $text)));
+        $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
         $new_text = preg_replace('!\s+!', ' ', $new_text);
 
         return $new_text;
@@ -70,12 +69,12 @@ if (!function_exists('label_case')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('show_column_value')) {
+if (! function_exists('show_column_value')) {
     /**
      * Return Column values as Raw and formatted.
      *
-     * @param object $valueObject   Model Object
-     * @param object $column        Column Name
+     * @param string $valueObject   Model Object
+     * @param string $column        Column Name
      * @param string $return_format Return Type
      *
      * @return string Raw/Formatted Column Value
@@ -101,7 +100,7 @@ if (!function_exists('show_column_value')) {
             return $datetime->isoFormat('LLLL');
         } elseif ($column_type == 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type != 'json' && Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
+        } elseif ($column_type != 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -125,7 +124,7 @@ if (!function_exists('show_column_value')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('fielf_required')) {
+if (! function_exists('fielf_required')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -147,7 +146,7 @@ if (!function_exists('fielf_required')) {
  *
  * @var [type]
  */
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     function setting($key, $default = null)
     {
         if (is_null($key)) {
@@ -169,7 +168,7 @@ if (!function_exists('setting')) {
  *
  * @var [type]
  */
-if (!function_exists('humanFilesize')) {
+if (! function_exists('humanFilesize')) {
     function humanFilesize($size, $precision = 2)
     {
         $units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -191,7 +190,7 @@ if (!function_exists('humanFilesize')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('encode_id')) {
+if (! function_exists('encode_id')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -211,7 +210,7 @@ if (!function_exists('encode_id')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('decode_id')) {
+if (! function_exists('decode_id')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -236,7 +235,7 @@ if (!function_exists('decode_id')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('slug_format')) {
+if (! function_exists('slug_format')) {
 
     /**
      * Format a string to Slug.
@@ -264,7 +263,7 @@ if (!function_exists('slug_format')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('icon')) {
+if (! function_exists('icon')) {
 
     /**
      * Format a string to Slug.
@@ -285,7 +284,7 @@ if (!function_exists('icon')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('logUserAccess')) {
+if (! function_exists('logUserAccess')) {
 
     /**
      * Format a string to Slug.
@@ -294,11 +293,11 @@ if (!function_exists('logUserAccess')) {
     {
         $auth_text = '';
 
-        if (Auth::check()) {
-            $auth_text = 'User:'.Auth::user()->name.' (ID:'.Auth::user()->id.')';
+        if (\Auth::check()) {
+            $auth_text = 'User:'.\Auth::user()->name.' (ID:'.\Auth::user()->id.')';
         }
 
-        Log::debug(label_case($text)." | $auth_text");
+        \Log::debug(label_case($text)." | $auth_text");
     }
 }
 
@@ -309,7 +308,7 @@ if (!function_exists('logUserAccess')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('bn2enNumber')) {
+if (! function_exists('bn2enNumber')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -332,7 +331,7 @@ if (!function_exists('bn2enNumber')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('en2bnNumber')) {
+if (! function_exists('en2bnNumber')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -355,7 +354,7 @@ if (!function_exists('en2bnNumber')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('en2bnDate')) {
+if (! function_exists('en2bnDate')) {
 
     /**
      * Convert a English number to Bengali.
@@ -399,7 +398,7 @@ if (!function_exists('en2bnDate')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('banglaDate')) {
+if (! function_exists('banglaDate')) {
     function banglaDate($date_input = '')
     {
         if ($date_input == '') {
@@ -449,7 +448,7 @@ if (!function_exists('banglaDate')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('generate_rgb_code')) {
+if (! function_exists('generate_rgb_code')) {
 
     /**
      * Prepare the Column Name for Lables.
@@ -474,7 +473,7 @@ if (!function_exists('generate_rgb_code')) {
  *
  * ------------------------------------------------------------------------
  */
-if (!function_exists('date_today')) {
+if (! function_exists('date_today')) {
 
     /**
      * Return Date with weekday.
