@@ -132,17 +132,17 @@
                 </nav>
             </div>
         </header>
+        
         <div class="body flex-grow-1 px-3">
             <div class="container-lg">
             </div>
         </div>
-        <footer class="footer">
-            <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> &copy; 2022 creativeLabs.</div>
-            <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
-        </footer>
+
+        <!-- Footer block -->
+        @include('backend.includes.footer')
+        <!-- / Footer block -->
+        
     </div>
-
-
 
     <!-- Scripts -->
     @stack('before-scripts')
