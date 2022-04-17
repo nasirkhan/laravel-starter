@@ -19,8 +19,8 @@ class GenerateMenus
         \Menu::make('admin_sidebar', function ($menu) {
 
             // Articles Dropdown
-            $articles_menu = $menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Article', [
-                'class' => 'c-sidebar-nav-dropdown',
+            $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> Article', [
+                'class' => 'nav-group',
             ])
             ->data([
                 'order'         => 81,
@@ -31,14 +31,14 @@ class GenerateMenus
                 'permission' => ['view_posts', 'view_categories'],
             ]);
             $articles_menu->link->attr([
-                'class' => 'c-sidebar-nav-dropdown-toggle',
+                'class' => 'nav-link nav-group-toggle',
                 'href'  => '#',
             ]);
 
             // Submenu: Posts
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-file-alt"></i> Posts', [
+            $articles_menu->add('<i class="nav-icon fas fa-file-alt"></i> Posts', [
                 'route' => 'backend.posts.index',
-                'class' => 'c-sidebar-nav-item',
+                'class' => 'nav-item',
             ])
             ->data([
                 'order'         => 82,
@@ -46,12 +46,12 @@ class GenerateMenus
                 'permission'    => ['edit_posts'],
             ])
             ->link->attr([
-                'class' => 'c-sidebar-nav-link',
+                'class' => 'nav-link',
             ]);
             // Submenu: Categories
-            $articles_menu->add('<i class="c-sidebar-nav-icon fas fa-sitemap"></i> Categories', [
+            $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> Categories', [
                 'route' => 'backend.categories.index',
-                'class' => 'c-sidebar-nav-item',
+                'class' => 'nav-item',
             ])
             ->data([
                 'order'         => 83,
@@ -59,7 +59,7 @@ class GenerateMenus
                 'permission'    => ['edit_categories'],
             ])
             ->link->attr([
-                'class' => 'c-sidebar-nav-link',
+                'class' => 'nav-link',
             ]);
         })->sortBy('order');
 
