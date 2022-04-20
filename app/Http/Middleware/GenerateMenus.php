@@ -194,17 +194,14 @@ class GenerateMenus
                     $activematches = (is_string($item->activematches))?[$item->activematches]: $item->activematches;
                     foreach ($activematches as $pattern) {
                         if (request()->is($pattern)) {
-                            $item->activate();
                             $item->active();
                             $item->link->active();
                             if ($item->hasParent()) {
-                                $item->parent()->activate();
                                 $item->parent()->active();
                             }
                         }
                     }
                 }
-
                 return true;
             });
         })->sortBy('order');

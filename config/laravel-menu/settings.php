@@ -4,7 +4,7 @@ return [
     'default' => [
         'auto_activate' => true,
         'activate_parents' => true,
-        'active_class' => 'active',
+        'active_class' => 'active show',
         'restful' => false,
         'cascade_data' => true,
         'rest_base' => '',      // string|array
