@@ -191,17 +191,16 @@ class GenerateMenus
             // Set Active Menu
             $menu->filter(function ($item) {
                 if ($item->activematches) {
-                    $matches = is_array($item->activematches) ? $item->activematches : [$item->activematches];
-
-                    foreach ($matches as $pattern) {
-                        if (Str::is($pattern, Request::path())) {
+                    $activematches = (is_string($item->activematches))?[$item->activematches]: $item->activematches;
+                    foreach ($activematches as $pattern) {
+                        if (request()->is($pattern)) {
                             $item->activate();
                             $item->active();
+                            $item->link->active();
                             if ($item->hasParent()) {
                                 $item->parent()->activate();
                                 $item->parent()->active();
                             }
-                            // dd($pattern);
                         }
                     }
                 }
