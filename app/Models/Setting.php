@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Setting extends BaseModel
 {
@@ -195,7 +196,7 @@ class Setting extends BaseModel
      */
     public static function getAllSettings()
     {
-        return \Cache::rememberForever('settings.all', function () {
+        return Cache::rememberForever('settings.all', function () {
             return self::all();
         });
     }
@@ -205,7 +206,7 @@ class Setting extends BaseModel
      */
     public static function flushCache()
     {
-        \Cache::forget('settings.all');
+        Cache::forget('settings.all');
     }
 
     /**

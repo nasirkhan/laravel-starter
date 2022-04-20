@@ -64,11 +64,11 @@ mix.scripts(
     [
         "node_modules/jquery/dist/jquery.min.js",
         // "node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "node_modules/simplebar/dist/simplebar.min.js",
         "node_modules/@coreui/coreui/dist/js/coreui.bundle.js",
-        "node_modules/@coreui/utils/dist/coreui-utils.js",
+        "node_modules/simplebar/dist/simplebar.min.js",
+        // "node_modules/@coreui/utils/dist/coreui-utils.js",
         "resources/js/laravel.js",
-        "resources/js/custom-backend.js"
+        "resources/js/backend-custom.js"
     ],
     "public/js/backend.js"
 );

@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ $module_title }}
     </x-backend-breadcrumb-item>
     <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
@@ -14,24 +14,18 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
-            <div class="col-8">
+        <div class="d-flex justify-content-between">
+            <div>
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
+                    <i class="{{ $module_icon }}"></i> {{ $module_title }}
+                    <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
-                <div class="small text-muted">
-                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-                </div>
+                <div class="small text-medium-emphasis">@lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])</div>
             </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    <a href="{{ route("backend.$module_name.create") }}" class="btn btn-success m-1 btn-sm" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> @lang("Create new :module_name", ['module_name'=>Str::title($module_name)])</a>
-                </div>
+            <div class="btn-toolbar d-block" role="toolbar" aria-label="Toolbar with buttons">
+                <a href="{{ route("backend.$module_name.create") }}" class="btn btn-outline-success m-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> @lang("Create new :module_name", ['module_name'=>Str::title($module_name)])</a>
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
 
         <div class="row mt-4">
             <div class="col">
@@ -90,9 +84,9 @@
                     </tbody>
                 </table>
                 @else
-                    <div class="text-center">
-                        <h4>@lang('There are no backups')</h4>
-                    </div>
+                <div class="text-center">
+                    <h4>@lang('There are no backups')</h4>
+                </div>
                 @endif
 
             </div>

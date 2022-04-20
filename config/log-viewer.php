@@ -40,7 +40,7 @@ return [
      |  Make your own theme by adding a folder to the views directory and specifying it here.
      */
 
-    'theme'         => 'bootstrap-4',
+    'theme'         => 'laravel-starter',
 
     /* -----------------------------------------------------------------
      |  Route settings
@@ -51,10 +51,14 @@ return [
         'enabled'    => true,
 
         'attributes' => [
-            'prefix'     => 'log-viewer',
-
-            'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+            'prefix'     => 'admin/log-viewer',
+            'middleware' => ['web', 'auth', 'permission:view_logs'],
         ],
+        // 'attributes' => [
+        //     'prefix'     => 'log-viewer',
+
+        //     'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+        // ],
     ],
 
     /* -----------------------------------------------------------------

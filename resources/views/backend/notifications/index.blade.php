@@ -9,28 +9,22 @@
 @endsection
 
 @section('content')
-<div class="card">
+<div class="card mb-4">
     <div class="card-body">
-        <div class="row">
-            <div class="col">
+        <div class="d-flex justify-content-between">
+            <div>
                 <h4 class="card-title mb-0">
                     <i class="{{ $module_icon }}"></i> {{ $module_title }}
                     (@lang(":count unread", ['count'=>$unread_notifications_count]))
                     <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
-                <div class="small text-muted">
-                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-                </div>
+                <div class="small text-medium-emphasis">@lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])</div>
             </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-success mt-1" data-toggle="tooltip" title="@lang('Mark All As Read')"><i class="fas fa-check-square"></i> @lang('Mark All As Read')</a>
-                    <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-danger mt-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete All Notifications')"><i class="fas fa-trash-alt"></i></a>
-                </div>
+            <div class="btn-toolbar d-block" role="toolbar" aria-label="Toolbar with buttons">
+                <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-outline-success mb-1" data-toggle="tooltip" title="@lang('Mark all as read')"><i class="fas fa-check-square"></i> @lang('Mark all as read')</a>
+                <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-outline-danger mb-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete all notifications')"><i class="fas fa-trash-alt"></i></a>
             </div>
         </div>
-        <!--/.row-->
 
         <div class="row mt-4">
             <div class="col">
@@ -57,7 +51,7 @@
                         <?php
                         $row_class = '';
                         $span_class = '';
-                        if ($module_name_singular->read_at == ''){
+                        if ($module_name_singular->read_at == '') {
                             $row_class = 'table-info';
                             $span_class = 'font-weight-bold';
                         }
