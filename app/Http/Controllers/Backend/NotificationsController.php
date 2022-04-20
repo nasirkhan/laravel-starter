@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
-use Auth;
 use Carbon\Carbon;
-use Flash;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Log;
+use Laracasts\Flash\Flash;
 
 class NotificationsController extends Controller
 {
@@ -110,7 +110,7 @@ class NotificationsController extends Controller
         $module_path = $this->module_path;
         $module_icon = $this->module_icon;
         $module_model = $this->module_model;
-        $module_name_singular = str_singular($module_name);
+        $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Delete All';
 

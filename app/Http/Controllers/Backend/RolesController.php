@@ -6,10 +6,10 @@ use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
-use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Log;
+use Laracasts\Flash\Flash;
 
 class RolesController extends Controller
 {
