@@ -8,7 +8,7 @@ $module_icon = "c-icon cil-list-rich";
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}' >
+    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>
         @lang('Log Viewer')
     </x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
@@ -31,6 +31,9 @@ $module_icon = "c-icon cil-list-rich";
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
                     <x-buttons.return-back />
+                    <a class="btn btn-primary ms-1" href="{{ route('log-viewer::logs.list') }}" type="button">
+                        <i class="fas fa-list-ol"></i> @lang('Logs by Date')
+                    </a>
                 </div>
             </div>
             <!--/.col-->
@@ -50,23 +53,23 @@ $module_icon = "c-icon cil-list-rich";
             <div class="col-md-6 col-lg-9">
                 <div class="row">
                     @foreach($percents as $level => $item)
-                        <div class="col-sm-6 col-md-12 col-lg-4 mb-3">
-                            <div class="box level-{{ $level }} {{ $item['count'] === 0 ? 'empty' : '' }}">
-                                <div class="box-icon">
-                                    {!! log_styler()->icon($level) !!}
-                                </div>
+                    <div class="col-sm-6 col-md-12 col-lg-4 mb-3">
+                        <div class="box level-{{ $level }} {{ $item['count'] === 0 ? 'empty' : '' }}">
+                            <div class="box-icon">
+                                {!! log_styler()->icon($level) !!}
+                            </div>
 
-                                <div class="box-content">
-                                    <span class="box-text">{{ $item['name'] }}</span>
-                                    <span class="box-number">
-                                        {{ $item['count'] }} entries - {!! $item['percent'] !!} %
-                                    </span>
-                                    <div class="progress" style="height: 3px;">
-                                        <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
-                                    </div>
+                            <div class="box-content">
+                                <span class="box-text">{{ $item['name'] }}</span>
+                                <span class="box-number">
+                                    {{ $item['count'] }} entries - {!! $item['percent'] !!} %
+                                </span>
+                                <div class="progress" style="height: 3px;">
+                                    <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -86,7 +89,9 @@ $module_icon = "c-icon cil-list-rich";
     $(function() {
         new Chart(document.getElementById("stats-doughnut-chart"), {
             type: 'doughnut',
-            data: {!! $chartData !!},
+            data: {
+                !!$chartData!!
+            },
             options: {
                 legend: {
                     position: 'bottom'

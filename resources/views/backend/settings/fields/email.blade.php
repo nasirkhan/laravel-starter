@@ -3,8 +3,8 @@ $required = (Str::contains($field['rules'], 'required')) ? "required" : "";
 $required_mark = ($required != "") ? '<span class="text-danger"> <strong>*</strong> </span>' : '';
 @endphp
 
-<div class="form-group {{ $errors->has($field['name']) ? ' has-error' : '' }}">
-    <label for="{{ $field['name'] }}"> <strong>{{ $field['label'] }}</strong> ({{ $field['name'] }})</label> {!! $required_mark !!}
+<div class="form-group mb-3 {{ $errors->has($field['name']) ? ' has-error' : '' }}">
+    <label for="{{ $field['name'] }}" class='form-label'> <strong>{{ $field['label'] }}</strong> ({{ $field['name'] }})</label> {!! $required_mark !!}
     <input type="{{ $field['type'] }}"
            name="{{ $field['name'] }}"
            value="{{ old($field['name'], setting($field['name'])) }}"

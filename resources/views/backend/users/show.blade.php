@@ -26,7 +26,7 @@
                 <x-buttons.return-back />
                 <a href="{{ route("backend.users.index") }}" class="btn btn-primary" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
                 <a href="{{ route('backend.users.profile', $user->id) }}" class="btn btn-primary" data-toggle="tooltip" title="Profile"><i class="fas fa-user"></i> Profile</a>
-                <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ml-1" />
+                <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ms-1" />
             </x-slot>
         </x-backend.section-header>
 

@@ -22,7 +22,7 @@
                 <x-buttons.return-back />
             </x-slot>
         </x-backend.section-header>
-        
+
         <hr>
 
         <div class="row mt-4">
@@ -33,7 +33,7 @@
                     @if(count(config('setting_fields', [])) )
 
                     @foreach(config('setting_fields') as $section => $fields)
-                    <div class="card card-accent-primary">
+                    <div class="card card-accent-primary mb-4">
                         <div class="card-header">
                             <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
                             {{ $fields['title'] }}
@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <p class="text-muted">{{ $fields['desc'] }}</p>
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col">
                                     @foreach($fields['elements'] as $field)
                                     @includeIf('backend.settings.fields.' . $field['type'] )

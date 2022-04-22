@@ -74,7 +74,7 @@ $module_icon = "c-icon cil-list-rich";
                                     <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-success">
                                         <i class="fas fa-download"></i>&nbsp;@lang('Download')
                                     </a>
-                                    <a href="#delete-log-modal" class="btn btn-danger ml-1" data-toggle="modal">
+                                    <a href="#delete-log-modal" class="btn btn-danger ms-1" data-toggle="modal">
                                         <i class="fas fa-trash-alt"></i>&nbsp;@lang('Delete')
                                     </a>
                                 </div>
