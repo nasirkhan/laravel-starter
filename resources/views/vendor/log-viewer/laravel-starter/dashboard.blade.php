@@ -89,9 +89,7 @@ $module_icon = "c-icon cil-list-rich";
     $(function() {
         new Chart(document.getElementById("stats-doughnut-chart"), {
             type: 'doughnut',
-            data: {
-                !!$chartData!!
-            },
+            data: {!!$chartData!!},
             options: {
                 legend: {
                     position: 'bottom'
