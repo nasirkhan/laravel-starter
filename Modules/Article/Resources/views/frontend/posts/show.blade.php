@@ -211,10 +211,10 @@
                                 </div>
 
                                 @auth
-                                <button type="button" id="replyBtn{{encode_id($comment->id)}}" class="btn btn-outline-primary btn-sm float-right m-0" data-toggle="collapse" href="#replyForm{{encode_id($comment->id)}}" role="button" aria-expanded="false" aria-controls="replyForm{{encode_id($comment->id)}}"><i class="fas fa-reply mr-2"></i> Reply</button>
+                                <button type="button" id="replyBtn{{encode_id($comment->id)}}" class="btn btn-outline-primary btn-sm float-end m-0" data-toggle="collapse" href="#replyForm{{encode_id($comment->id)}}" role="button" aria-expanded="false" aria-controls="replyForm{{encode_id($comment->id)}}"><i class="fas fa-reply mr-2"></i> Reply</button>
 
                                 @else
-                                <a href="{{route('login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-right m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
+                                <a href="{{route('login')}}?redirectTo={{url()->current()}}" class="btn btn-primary btn-sm float-end m-0"><i class="fas fa-user-shield"></i> Login & Reply</a>
 
                                 @endauth
                             </div>

@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="col-8">
-                        <div class="float-right">
+                        <div class="float-end">
                             @can('delete_'.$module_name)
                             <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i></a>
                             @endcan
@@ -57,7 +57,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <small class="float-right text-muted">
+                <small class="float-end text-muted">
                     Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
                     Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
                 </small>

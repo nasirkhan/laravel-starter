@@ -29,7 +29,7 @@ $module_icon = "c-icon cil-list-rich";
             </div>
 
             <div class="col-4">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
                     <x-buttons.return-back />
                 </div>
             </div>

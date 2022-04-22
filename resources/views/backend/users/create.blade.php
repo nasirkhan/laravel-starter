@@ -183,7 +183,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="float-right">
+                        <div class="float-end">
                             <div class="form-group">
                                 <x-buttons.cancel />
                             </div>
@@ -200,7 +200,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <small class="float-right text-muted">
+                <small class="float-end text-muted">
 
                 </small>
             </div>

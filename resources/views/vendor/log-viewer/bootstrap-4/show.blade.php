@@ -103,7 +103,7 @@
             <div class="card mb-4">
                 @if ($entries->hasPages())
                     <div class="card-header">
-                        <span class="badge badge-info float-right">
+                        <span class="badge badge-info float-end">
                             {{ __('Page :current of :last', ['current' => $entries->currentPage(), 'last' => $entries->lastPage()]) }}
                         </span>
                     </div>

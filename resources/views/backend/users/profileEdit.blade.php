@@ -241,7 +241,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <small class="float-right text-muted">
+                <small class="float-end text-muted">
                     Updated: {{$user->updated_at->diffForHumans()}},
                     Created at: {{$user->created_at->isoFormat('LLLL')}}
                 </small>

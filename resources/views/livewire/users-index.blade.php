@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="col-5">
-            <div class="float-right">
+            <div class="float-end">
                 {!! $users->links() !!}
             </div>
         </div>

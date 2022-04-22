@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="float-right">
+                        <div class="float-end">
                             <div class="form-group">
                                 <x-buttons.cancel></x-buttons.cancel>
                             </div>

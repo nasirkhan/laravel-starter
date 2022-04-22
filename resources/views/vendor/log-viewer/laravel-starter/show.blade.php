@@ -31,7 +31,7 @@ $module_icon = "c-icon cil-list-rich";
             </div>
 
             <div class="col-4">
-                <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
                     <x-buttons.return-back />
                 </div>
             </div>
@@ -70,7 +70,7 @@ $module_icon = "c-icon cil-list-rich";
                                 <strong>
                                     @lang('Log Info')
                                 </strong>
-                                <div class="btn-toolbar float-right">
+                                <div class="btn-toolbar float-end">
                                     <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-success">
                                         <i class="fas fa-download"></i>&nbsp;@lang('Download')
                                     </a>
@@ -133,7 +133,7 @@ $module_icon = "c-icon cil-list-rich";
                         <div class="card mb-4">
                             @if ($entries->hasPages())
                                 <div class="card-header">
-                                    <span class="badge badge-info float-right">
+                                    <span class="badge badge-info float-end">
                                         Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
                                     </span>
                                 </div>

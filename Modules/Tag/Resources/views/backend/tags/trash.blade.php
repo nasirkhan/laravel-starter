@@ -86,7 +86,7 @@ $module_name_singular = Str::singular($module_name);
                 </div>
             </div>
             <div class="col-5">
-                <div class="float-right">
+                <div class="float-end">
                     {!! $$module_name->render() !!}
                 </div>
             </div>

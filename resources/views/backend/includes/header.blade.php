@@ -109,7 +109,7 @@ $notifications_latest = optional($notifications)->take(5);
                 @yield('breadcrumbs')
             </ol>
         </nav>
-        <div class="d-flex flex-row float-right">
+        <div class="d-flex flex-row float-end">
             <div class="">{{ date_today() }}&nbsp;</div>
             <div id="liveClock" class="clock" onload="showTime()"></div>
         </div>

@@ -69,7 +69,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <small class="float-right text-muted">
+                <small class="float-end text-muted">
                     Updated: {{$$module_name_singular->updated_at->diffForHumans()}},
                     Created at: {{$$module_name_singular->created_at->isoFormat('LLLL')}}
                 </small>

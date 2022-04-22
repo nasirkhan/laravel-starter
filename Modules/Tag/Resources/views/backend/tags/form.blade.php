@@ -51,7 +51,7 @@
     </div>
     @if(isset($$module_name_singular) && $$module_name_singular->getMedia($module_name)->first())
     <div class="col-4">
-        <div class="float-right">
+        <div class="float-end">
             <figure class="figure">
                 <a href="{{ asset($$module_name_singular->$field_name) }}" data-lightbox="image-set" data-title="Path: {{ asset($$module_name_singular->$field_name) }}">
                     <img src="{{ asset($$module_name_singular->getMedia($module_name)->first()->getUrl('thumb300')) }}" class="figure-img img-fluid rounded img-thumbnail" alt="">

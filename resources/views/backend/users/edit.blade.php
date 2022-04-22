@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="col-sm-8">
-                        <div class="float-right">
+                        <div class="float-end">
                             @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
                             <a href="{{route('backend.users.block', $$module_name_singular)}}" class="btn btn-danger" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.block')}}" data-confirm="Are you sure?"><i class="fas fa-ban"></i></a>
                             @endif
@@ -184,7 +184,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <small class="float-right text-muted">
+                <small class="float-end text-muted">
                     Updated: {{$user->updated_at->diffForHumans()}},
                     Created at: {{$user->created_at->isoFormat('LLLL')}}
                 </small>
