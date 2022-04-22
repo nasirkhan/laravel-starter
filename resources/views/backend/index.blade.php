@@ -9,17 +9,20 @@
 @section('content')
 <div class="card mb-4 ">
     <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h4 class="card-title mb-0">@lang("Welcome to", ['name'=>config('app.name')])</h4>
-                <div class="small text-medium-emphasis">{{ date_today() }}</div>
-            </div>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with buttons">
-                <button class="btn btn-primary" type="button">
+
+        <x-backend.section-header>
+            @lang("Welcome to", ['name'=>config('app.name')])
+
+            <x-slot name="subtitle">
+                {{ date_today() }}
+            </x-slot>
+            <x-slot name="toolbar">
+                <button class="btn btn-outline-primary mb-1" type="button">
                     <i class="c-icon cil-bullhorn"></i>
                 </button>
-            </div>
-        </div>
+            </x-slot>
+        </x-backend.section-header>
+        
         <hr>
 
         <!-- Dashboard Content Area -->

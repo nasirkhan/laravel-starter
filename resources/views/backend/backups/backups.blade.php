@@ -1,13 +1,13 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
     <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
-        {{ $module_title }}
+        {{ __($module_title) }}
     </x-backend-breadcrumb-item>
-    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-between">
             <div>
                 <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }}
+                    <i class="{{ $module_icon }}"></i> {{ __($module_title) }}
                     <small class="text-muted">{{ __($module_action) }}</small>
                 </h4>
                 <div class="small text-medium-emphasis">@lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])</div>

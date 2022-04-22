@@ -1,30 +1,29 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ __($module_action) }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ $module_title }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
 @section('content')
 <div class="card mb-4">
     <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }}
-                    (@lang(":count unread", ['count'=>$unread_notifications_count]))
-                    <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-medium-emphasis">@lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])</div>
-            </div>
-            <div class="btn-toolbar d-block" role="toolbar" aria-label="Toolbar with buttons">
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i> {{ __($module_title) }}
+            (@lang(":count unread", ['count'=>$unread_notifications_count]))
+            <small class="text-muted">{{ __($module_action) }}</small>
+
+            <x-slot name="subtitle">
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
+            </x-slot>
+            <x-slot name="toolbar">
                 <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-outline-success mb-1" data-toggle="tooltip" title="@lang('Mark all as read')"><i class="fas fa-check-square"></i> @lang('Mark all as read')</a>
                 <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-outline-danger mb-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete all notifications')"><i class="fas fa-trash-alt"></i></a>
-            </div>
-        </div>
+            </x-slot>
+        </x-backend.section-header>
 
         <div class="row mt-4">
             <div class="col">

@@ -1,40 +1,34 @@
 @extends('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
-        {{ $module_title }}
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+        {{ __($module_title) }}
     </x-backend-breadcrumb-item>
-    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ $module_action }}</small>
-                </h4>
-                <div class="small text-muted">
-                    {{ ucwords($module_name) }} Management Dashboard
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
-                    @can('edit_'.$module_name)
-                    <a href="{{ route("backend.$module_name.edit", $$module_name_singular) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
-                    @endcan
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
+
+            <x-slot name="subtitle">
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
+            </x-slot>
+            <x-slot name="toolbar">
+                <x-buttons.return-back />
+                <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                @can('edit_'.$module_name)
+                <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ml-1" />
+                @endcan
+            </x-slot>
+        </x-backend.section-header>
 
         <hr>
 
@@ -61,29 +55,29 @@
                             @forelse($posts as $row)
                             @php
                             switch ($row->status) {
-                                case 0:
-                                    // Unpublished
-                                    $text_class = 'text-danger';
-                                    break;
+                            case 0:
+                            // Unpublished
+                            $text_class = 'text-danger';
+                            break;
 
-                                case 1:
-                                    // Published
-                                    $text_class = 'text-success';
-                                    break;
+                            case 1:
+                            // Published
+                            $text_class = 'text-success';
+                            break;
 
-                                case 2:
-                                    // Draft
-                                    $text_class = 'text-warning';
-                                    break;
+                            case 2:
+                            // Draft
+                            $text_class = 'text-warning';
+                            break;
 
-                                default:
-                                    // Default
-                                    $text_class = 'text-primary';
-                                    break;
+                            default:
+                            // Default
+                            $text_class = 'text-primary';
+                            break;
                             }
                             @endphp
                             <li>
-                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View" > <i class="fas fa-external-link-square-alt"></i> </a>
+                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View"> <i class="fas fa-external-link-square-alt"></i> </a>
                             </li>
                             @empty
                             <p class="text-center">

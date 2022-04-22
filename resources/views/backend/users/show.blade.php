@@ -1,41 +1,34 @@
 @extends ('backend.layouts.app')
 
-@section('title') {{ $module_action }} {{ $module_title }} @endsection
+@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}' >
-        {{ $module_title }}
+    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+        {{ __($module_title) }}
     </x-backend-breadcrumb-item>
 
-    <x-backend-breadcrumb-item type="active">{{ $module_action }}</x-backend-breadcrumb-item>
+    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
 </x-backend-breadcrumbs>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{$module_icon}}"></i> User
-                    <small class="text-muted">{{ __('labels.backend.users.show.action') }} </small>
-                </h4>
-                <div class="small text-muted">
-                    {{ __('labels.backend.users.index.sub-title') }}
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    <a href="{{ route("backend.users.index") }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
-                    <a href="{{ route("backend.users.profile", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Profile"><i class="fas fa-user"></i> Profile</a>
-                    <a href="{{ route("backend.users.edit", $user->id) }}" class="btn btn-primary mt-1 btn-sm" data-toggle="tooltip" title="Edit {{ Str::singular($module_name) }} "><i class="fas fa-wrench"></i> Edit</a>
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
+
+            <x-slot name="subtitle">
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
+            </x-slot>
+            <x-slot name="toolbar">
+                <x-buttons.return-back />
+                <a href="{{ route("backend.users.index") }}" class="btn btn-primary" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
+                <a href="{{ route('backend.users.profile', $user->id) }}" class="btn btn-primary" data-toggle="tooltip" title="Profile"><i class="fas fa-user"></i> Profile</a>
+                <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ml-1" />
+            </x-slot>
+        </x-backend.section-header>
 
         <div class="row mt-4 mb-4">
             <div class="col">
@@ -103,11 +96,11 @@
                             <th>{{ __('labels.backend.users.fields.roles') }}</th>
                             <td>
                                 @if($user->getRoleNames()->count() > 0)
-                                    <ul>
-                                        @foreach ($user->getRoleNames() as $role)
-                                        <li>{{ ucwords($role) }}</li>
-                                        @endforeach
-                                    </ul>
+                                <ul>
+                                    @foreach ($user->getRoleNames() as $role)
+                                    <li>{{ ucwords($role) }}</li>
+                                    @endforeach
+                                </ul>
                                 @endif
                             </td>
 
@@ -116,11 +109,11 @@
                             <th>{{ __('labels.backend.users.fields.permissions') }}</th>
                             <td>
                                 @if($user->getAllPermissions()->count() > 0)
-                                    <ul>
-                                        @foreach ($user->getAllPermissions() as $permission)
-                                        <li>{{ $permission->name }}</li>
-                                        @endforeach
-                                    </ul>
+                                <ul>
+                                    @foreach ($user->getAllPermissions() as $permission)
+                                    <li>{{ $permission->name }}</li>
+                                    @endforeach
+                                </ul>
                                 @endif
                             </td>
                         </tr>
@@ -132,11 +125,12 @@
 
                         <tr>
                             <th>{{ __('labels.backend.users.fields.updated_at') }}</th>
-                            <td>{{ $user->updated_at }}<br/><small>({{ $user->updated_at->diffForHumans() }})</small></td>
+                            <td>{{ $user->updated_at }}<br /><small>({{ $user->updated_at->diffForHumans() }})</small></td>
                         </tr>
 
                     </table>
-                </div><!--/table-responsive-->
+                </div>
+                <!--/table-responsive-->
 
                 <hr>
 
@@ -150,7 +144,8 @@
                 @if ($user->email_verified_at == null)
                 <a href="{{route('backend.users.emailConfirmationResend', $user->id)}}" class="btn btn-primary mt-1" data-toggle="tooltip" title="Send Confirmation Email"><i class="fas fa-envelope"></i> Email Confirmation</a>
                 @endif
-            </div><!--/col-->
+            </div>
+            <!--/col-->
 
             <div class="col">
                 <h4>
@@ -159,7 +154,7 @@
                 <div class="table-responsive">
                     <table class="table table-responsive-sm table-hover table-bordered">
                         <?php
-                          $all_columns = $userprofile->getTableColumns();
+                        $all_columns = $userprofile->getTableColumns();
                         ?>
                         <thead>
                             <tr>
