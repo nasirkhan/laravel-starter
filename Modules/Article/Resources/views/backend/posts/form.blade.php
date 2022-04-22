@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-3">
     <div class="col-5">
         <div class="form-group">
             <?php
@@ -38,7 +38,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <div class="form-group">
             <?php
@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <div class="form-group">
             <?php
@@ -66,7 +66,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <div class="form-group">
             <?php
@@ -75,7 +75,7 @@
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
-            {!! Form::label("$field_name", "$field_lable") !!} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-4">
         <div class="form-group">
             <?php
@@ -107,9 +107,9 @@
             $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
-                'Article'=>'Article',
-                'Feature'=>'Feature',
-                'News'=>'News',
+                'Article' => 'Article',
+                'Feature' => 'Feature',
+                'News' => 'News',
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -124,8 +124,8 @@
             $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
-                '1'=>'Yes',
-                '0'=>'No',
+                '1' => 'Yes',
+                '0' => 'No',
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -133,7 +133,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col">
         <div class="form-group">
             <?php
@@ -151,7 +151,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-6">
         <div class="form-group">
             <?php
@@ -160,9 +160,9 @@
             $field_placeholder = __("Select an option");
             $required = "required";
             $select_options = [
-                '1'=>'Published',
-                '0'=>'Unpublished',
-                '2'=>'Draft'
+                '1' => 'Published',
+                '0' => 'Unpublished',
+                '2' => 'Draft'
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
@@ -187,7 +187,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-5">
         <div class="form-group">
             <?php
@@ -225,7 +225,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12 col-sm-6">
         <div class="form-group">
             <?php
@@ -251,7 +251,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <div class="form-group">
             <?php
@@ -279,92 +279,95 @@
 
 @push ('after-scripts')
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.select2-category').select2({
-        theme: "bootstrap",
-        placeholder: '@lang("Select an option")',
-        minimumInputLength: 2,
-        allowClear: true,
-        ajax: {
-            url: '{{route("backend.categories.index_list")}}',
-            dataType: 'json',
-            data: function (params) {
-                return {
-                    q: $.trim(params.term)
-                };
-            },
-            processResults: function (data) {
-                return {
-                    results: data
-                };
-            },
-            cache: true
-        }
-    });
+    $(document).ready(function() {
+        $('.select2-category').select2({
+            theme: "bootstrap",
+            placeholder: '@lang("Select an option")',
+            minimumInputLength: 2,
+            allowClear: true,
+            ajax: {
+                url: '{{route("backend.categories.index_list")}}',
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
 
-    $('.select2-tags').select2({
-        theme: "bootstrap",
-        placeholder: '@lang("Select an option")',
-        minimumInputLength: 2,
-        allowClear: true,
-        ajax: {
-            url: '{{route("backend.tags.index_list")}}',
-            dataType: 'json',
-            data: function (params) {
-                return {
-                    q: $.trim(params.term)
-                };
-            },
-            processResults: function (data) {
-                return {
-                    results: data
-                };
-            },
-            cache: true
-        }
+        $('.select2-tags').select2({
+            theme: "bootstrap",
+            placeholder: '@lang("Select an option")',
+            minimumInputLength: 2,
+            allowClear: true,
+            ajax: {
+                url: '{{route("backend.tags.index_list")}}',
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        q: $.trim(params.term)
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
     });
-});
 </script>
 
 <!-- Date Time Picker & Moment Js-->
 <script type="text/javascript">
-$(function() {
-    $('.datetime').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm:ss',
-        icons: {
-            time: 'far fa-clock',
-            date: 'far fa-calendar-alt',
-            up: 'fas fa-arrow-up',
-            down: 'fas fa-arrow-down',
-            previous: 'fas fa-chevron-left',
-            next: 'fas fa-chevron-right',
-            today: 'far fa-calendar-check',
-            clear: 'far fa-trash-alt',
-            close: 'fas fa-times'
-        }
+    $(function() {
+        $('.datetime').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar-alt',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'far fa-calendar-check',
+                clear: 'far fa-trash-alt',
+                close: 'fas fa-times'
+            }
+        });
     });
-});
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="text/javascript">
+    CKEDITOR.replace('content', {
+        filebrowserImageBrowseUrl: '/file-manager/ckeditor',
+        language: '{{App::getLocale()}}',
+        defaultLanguage: 'en'
+    });
 
-CKEDITOR.replace('content', {filebrowserImageBrowseUrl: '/file-manager/ckeditor', language:'{{App::getLocale()}}', defaultLanguage: 'en'});
+    document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('button-image').addEventListener('click', (event) => {
+            event.preventDefault();
 
-  document.getElementById('button-image').addEventListener('click', (event) => {
-    event.preventDefault();
+            window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
+        });
+    });
 
-    window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
-  });
-});
-
-// set file link
-function fmSetLink($url) {
-  document.getElementById('featured_image').value = $url;
-}
+    // set file link
+    function fmSetLink($url) {
+        document.getElementById('featured_image').value = $url;
+    }
 </script>
 @endpush

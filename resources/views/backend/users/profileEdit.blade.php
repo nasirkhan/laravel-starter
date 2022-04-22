@@ -55,7 +55,7 @@
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             $field_placeholder = $field_lable;
                             $required = "required";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->disabled() }}
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                                 'Other' => 'Other',
                             ];
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
                                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
                                 <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
@@ -145,7 +145,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
@@ -219,7 +219,7 @@
                             $field_placeholder = $field_lable;
                             $required = "";
                             ?>
-                            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>

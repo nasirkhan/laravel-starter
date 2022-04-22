@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-3">
     <div class="col-12 col-sm-4">
         <div class="form-group">
             <?php
@@ -7,7 +7,7 @@
             $field_placeholder = $field_lable;
             $required = "required";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
@@ -19,7 +19,7 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
@@ -31,12 +31,12 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-8">
         <div class="form-group">
             <?php
@@ -45,7 +45,7 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->input("file", $field_name)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
@@ -62,7 +62,7 @@
     </div>
     @endif
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <div class="form-group">
             <?php
@@ -71,13 +71,13 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 <hr>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12 col-sm-4">
         <div class="form-group">
             <?php
@@ -86,7 +86,7 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
@@ -98,7 +98,7 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
@@ -110,13 +110,13 @@
             $field_placeholder = $field_lable;
             $required = "";
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
     <div class="col-12 col-sm-4">
         <div class="form-group">
             <?php
@@ -130,7 +130,7 @@
                 '2'=>'Draft'
             ];
             ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
             {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
