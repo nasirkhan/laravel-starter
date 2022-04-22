@@ -43,7 +43,7 @@
                             <th>
                                 Created By
                             </th>
-                            <th class="text-right">
+                            <th class="text-end">
                                 Action
                             </th>
                         </tr>
@@ -64,7 +64,7 @@
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
-                            <td class="text-right">
+                            <td class="text-end">
                                 <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-undo" data-toggle="tooltip" title="{{__('labels.backend.restore')}}" data-confirm="Are you sure?"></i></a>
                             </td>
                         </tr>

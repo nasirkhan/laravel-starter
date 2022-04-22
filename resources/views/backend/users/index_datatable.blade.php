@@ -50,7 +50,7 @@
                                 <th>{{ __('labels.backend.users.fields.email') }}</th>
                                 <th>{{ __('labels.backend.users.fields.status') }}</th>
                                 <th>{{ __('labels.backend.users.fields.roles') }}</th>
-                                <th class="text-right">{{ __('labels.backend.action') }}</th>
+                                <th class="text-end">{{ __('labels.backend.action') }}</th>
                             </tr>
                         </thead>
                     </table>

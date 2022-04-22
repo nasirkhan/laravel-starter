@@ -1,9 +1,5 @@
 @extends ('backend.layouts.app')
 
-<?php
-$module_name_singular = Str::singular($module_name);
-?>
-
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
@@ -45,7 +41,7 @@ $module_name_singular = Str::singular($module_name);
                             <th>
                                 Created By
                             </th>
-                            <th class="text-right">
+                            <th class="text-end">
                                 Action
                             </th>
                         </tr>
@@ -68,7 +64,7 @@ $module_name_singular = Str::singular($module_name);
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
-                            <td class="text-right">
+                            <td class="text-end">
                                 <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
                             </td>
                         </tr>

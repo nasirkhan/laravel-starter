@@ -39,7 +39,7 @@
                             <th>
                                 @lang('Updated At')
                             </th>
-                            <th class="text-right">
+                            <th class="text-end">
                                 @lang('Action')
                             </th>
                         </tr>
@@ -69,7 +69,7 @@
                             <td>
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
-                            <td class="text-right">
+                            <td class="text-end">
                                 <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="@lang('Show') {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>

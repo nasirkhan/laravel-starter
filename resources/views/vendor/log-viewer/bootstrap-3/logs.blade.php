@@ -22,7 +22,7 @@
                         @endif
                     </th>
                     @endforeach
-                    <th class="text-right">@lang('Actions')</th>
+                    <th class="text-end">@lang('Actions')</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@
                                 @endif
                             </td>
                         @endforeach
-                        <td class="text-right">
+                        <td class="text-end">
                             <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-xs btn-info">
                                 <i class="fa fa-search"></i>
                             </a>

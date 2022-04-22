@@ -29,7 +29,7 @@
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                             <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
-                            <th class="text-right">{{ __("labels.backend.action") }}</th>
+                            <th class="text-end">{{ __("labels.backend.action") }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +45,7 @@
                                 <li>{{ $permission->name }}</li>
                                 @endforeach
                             </td>
-                            <td class="text-right">
+                            <td class="text-end">
                                 @can('edit_'.$module_name)
                                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
                                 @endcan

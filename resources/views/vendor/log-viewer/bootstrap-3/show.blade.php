@@ -125,7 +125,7 @@
                                 <th style="width: 120px;">@lang('Level')</th>
                                 <th style="width: 65px;">@lang('Time')</th>
                                 <th>@lang('Header')</th>
-                                <th class="text-right">@lang('Actions')</th>
+                                <th class="text-end">@lang('Actions')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,7 +145,7 @@
                                     <td>
                                         <p>{{ $entry->header }}</p>
                                     </td>
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         @if ($entry->hasStack())
                                         <a class="btn btn-xs btn-default" role="button" data-toggle="collapse"
                                            href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">

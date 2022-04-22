@@ -13,7 +13,7 @@
                         <th>{{ __('labels.backend.users.fields.permissions') }}</th>
                         <th>{{ __('labels.backend.users.fields.social') }}</th>
 
-                        <th class="text-right">{{ __('labels.backend.action') }}</th>
+                        <th class="text-end">{{ __('labels.backend.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@
                             </ul>
                         </td>
 
-                        <td class="text-right">
+                        <td class="text-end">
                             <a href="{{route('backend.users.show', $user)}}" class="btn btn-success btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.show')}}"><i class="fas fa-desktop"></i></a>
                             @can('edit_users')
                             <a href="{{route('backend.users.edit', $user)}}" class="btn btn-primary btn-sm mt-1" data-toggle="tooltip" title="{{__('labels.backend.edit')}}"><i class="fas fa-wrench"></i></a>

@@ -75,7 +75,7 @@
                         </button>
                     </div>
 
-                    <div class="col-3 col-md-6 text-right"><i class="far fa-bookmark text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Bookmark story"></i></div>
+                    <div class="col-3 col-md-6 text-end"><i class="far fa-bookmark text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Bookmark story"></i></div>
                 </div>
             </div>
         </div>

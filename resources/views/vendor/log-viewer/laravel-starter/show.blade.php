@@ -147,7 +147,7 @@ $module_icon = "c-icon cil-list-rich";
                                             <th style="width: 120px;">Level</th>
                                             <th style="width: 65px;">Time</th>
                                             <th>Header</th>
-                                            <th class="text-right">Actions</th>
+                                            <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -169,7 +169,7 @@ $module_icon = "c-icon cil-list-rich";
                                                 <td>
                                                     {{ $entry->header }}
                                                 </td>
-                                                <td class="text-right">
+                                                <td class="text-end">
                                                     @if ($entry->hasStack())
                                                         <a class="btn btn-sm btn-light" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
                                                             <i class="fa fa-toggle-on"></i> Stack

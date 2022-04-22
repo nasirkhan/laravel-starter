@@ -49,7 +49,7 @@
                             <th>
                                 @lang('Age')
                             </th>
-                            <th class="text-right">
+                            <th class="text-end">
                                 @lang('Action')
                             </th>
                         </tr>
@@ -73,7 +73,7 @@
                             <td>
                                 {{ $backup['date_ago'] }}
                             </td>
-                            <td class="text-right">
+                            <td class="text-end">
                                 <a href="{{ route("backend.$module_name.download", $backup['file_name']) }}" class="btn btn-primary m-1 btn-sm" data-toggle="tooltip" title="@lang('Download File')"><i class="fas fa-cloud-download-alt"></i>&nbsp;@lang('Download')</a>
 
                                 <a href="{{ route("backend.$module_name.delete", $backup['file_name']) }}" class="btn btn-danger m-1 btn-sm" data-toggle="tooltip" title="@lang('Delete File')"><i class="fas fa-trash"></i>&nbsp;@lang('Delete')</a>

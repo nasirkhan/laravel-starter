@@ -52,7 +52,7 @@ $module_icon = "c-icon cil-list-rich";
                                     @endif
                                 </th>
                                 @endforeach
-                                <th scope="col" class="text-right">Actions</th>
+                                <th scope="col" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,7 +75,7 @@ $module_icon = "c-icon cil-list-rich";
                                             @endif
                                         </td>
                                     @endforeach
-                                    <td class="text-right">
+                                    <td class="text-end">
                                         <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-sm btn-info">
                                             <i class="fas fa-search"></i>
                                         </a>
