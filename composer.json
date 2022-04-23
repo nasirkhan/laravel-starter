@@ -4,7 +4,7 @@
     "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog", "website" ],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "version": "v9.0.0",
+    "version": "v9.1.0",
     "require": {
         "php": "^8.0.2",
         "alexusmai/laravel-file-manager": "^3.0",
