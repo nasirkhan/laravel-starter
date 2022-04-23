@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
 
 class BackupController extends Controller
@@ -81,8 +81,7 @@ class BackupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create()

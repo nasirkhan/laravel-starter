@@ -64,7 +64,6 @@ class SocialLoginController extends Controller
      * Return user if exists; create and return if doesn't.
      *
      * @param $githubUser
-     *
      * @return User
      */
     private function findOrCreateUser($socialUser, $provider)

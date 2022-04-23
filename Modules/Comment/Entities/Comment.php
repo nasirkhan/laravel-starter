@@ -34,7 +34,7 @@ class Comment extends BaseModel
             ->dontSubmitEmptyLogs()
             ->useLogName($this->table);
     }
-    
+
     /**
      * Get the owning commentable model.
      */
@@ -116,7 +116,6 @@ class Comment extends BaseModel
      * Get the list of Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopePublished($query)
@@ -130,7 +129,6 @@ class Comment extends BaseModel
      * Get the list of Recently Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopeRecentlyPublished($query)

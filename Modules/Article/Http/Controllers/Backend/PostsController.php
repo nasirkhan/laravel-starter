@@ -4,13 +4,13 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use Modules\Article\Entities\Category;
 use Modules\Article\Events\PostCreated;
 use Modules\Article\Events\PostUpdated;
@@ -173,8 +173,7 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(PostsRequest $request)
@@ -206,8 +205,7 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -240,8 +238,7 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -270,9 +267,8 @@ class PostsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function update(PostsRequest $request, $id)
@@ -309,8 +305,7 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -365,9 +360,8 @@ class PostsController extends Controller
     /**
      * Restore a soft deleted entry.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function restore($id)

@@ -4,14 +4,14 @@ namespace Modules\Comment\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use Modules\Comment\Http\Requests\Backend\CommentsRequest;
 use Modules\Comment\Notifications\NewCommentAdded;
 use Spatie\Activitylog\Models\Activity;
@@ -164,8 +164,7 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(CommentsRequest $request)
@@ -192,8 +191,7 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -225,8 +223,7 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -252,9 +249,8 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function update(CommentsRequest $request, $id)
@@ -281,8 +277,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -335,9 +330,8 @@ class CommentsController extends Controller
     /**
      * Restore a soft deleted entry.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function restore($id)

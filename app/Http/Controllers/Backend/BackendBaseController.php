@@ -163,8 +163,7 @@ class BackendBaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -190,8 +189,7 @@ class BackendBaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -218,8 +216,7 @@ class BackendBaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -246,9 +243,8 @@ class BackendBaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -276,8 +272,7 @@ class BackendBaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -332,9 +327,8 @@ class BackendBaseController extends Controller
     /**
      * Restore a soft deleted entry.
      *
-     * @param Request $request
-     * @param int     $id
-     *
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
     public function restore($id)

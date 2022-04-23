@@ -92,7 +92,7 @@ class ArticleServiceProvider extends ServiceProvider
     /**
      * Register commands.
      *
-     * @param string $namespace
+     * @param  string  $namespace
      */
     protected function registerCommands($namespace = '')
     {
