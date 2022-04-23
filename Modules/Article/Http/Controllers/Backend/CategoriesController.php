@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Modules\Article\Http\Requests\Backend\CategoriesRequest;
 use Yajra\DataTables\DataTables;
 

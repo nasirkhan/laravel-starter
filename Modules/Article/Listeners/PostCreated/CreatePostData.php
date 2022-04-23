@@ -3,7 +3,7 @@
 namespace Modules\Article\Listeners\PostCreated;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Modules\Article\Events\PostCreated;
 
 class CreatePostData implements ShouldQueue

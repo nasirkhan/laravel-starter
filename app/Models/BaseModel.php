@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasHashedMediaTrait;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;

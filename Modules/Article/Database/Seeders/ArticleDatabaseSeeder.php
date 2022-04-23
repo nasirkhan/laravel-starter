@@ -2,8 +2,8 @@
 
 namespace Modules\Article\Database\Seeders;
 
-use Artisan;
-use Auth;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;

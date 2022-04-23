@@ -3,7 +3,7 @@
 namespace Modules\Article\Listeners\PostUpdated;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Modules\Article\Events\PostUpdated;
 
 class UpdatePostData implements ShouldQueue

@@ -5,7 +5,7 @@ namespace App\Listeners\Backend\UserCreated;
 use App\Events\Backend\UserCreated;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 class UserCreatedProfileCreate implements ShouldQueue
 {

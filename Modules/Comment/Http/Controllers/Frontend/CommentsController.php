@@ -3,13 +3,13 @@
 namespace Modules\Comment\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Log;
+use Illuminate\Support\Facades\Log;
 use Modules\Comment\Http\Requests\Frontend\CommentsRequest;
 use Modules\Comment\Notifications\NewCommentAdded;
 
