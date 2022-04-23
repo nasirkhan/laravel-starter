@@ -34,6 +34,18 @@
 
     "Select an option": "-- নির্বাচন করুন --",
 
+    "Article": "আর্টিকেল",
+    "Post": "পোস্ট",
+    "Posts": "পোস্ট",
+    "Category": "ক্যাটাগরি",
+    "Categories": "ক্যাটাগরি",
+    "Tag": "ট্যাগ",
+    "Tags": "ট্যাগ",
+
+    "List": "তালিকা",
+
+    "Return Back": "আগের পাতা",
+
     "Draft": "Draft",
     "Published": "Published",
     "Unpublished": "Unpublished"

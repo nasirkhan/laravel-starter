@@ -20,7 +20,7 @@ class GenerateMenus
     {
         \Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
-            $menu->add('<i class="nav-icon cil-speedometer"></i> Dashboard', [
+            $menu->add('<i class="nav-icon cil-speedometer"></i> ' . __('Dashboard'), [
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
