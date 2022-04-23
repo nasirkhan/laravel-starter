@@ -184,6 +184,11 @@
                     <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
                 </div>
             </div>
+            <!-- <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            </div> -->
+
         </div>
     </div>
 </div>
@@ -275,12 +280,16 @@
 @push('after-styles')
 <!-- File Manager -->
 <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-lite.min.css') }}">
 @endpush
 
 @push ('after-scripts')
 <script type="text/javascript">
     $(document).ready(function() {
+        $(document).on('select2:open', () => {
+            document.querySelector('.select2-search__field').focus();
+            document.querySelector('.select2-container--open .select2-search__field').focus();
+        });
+
         $('.select2-category').select2({
             theme: "bootstrap",
             placeholder: '@lang("Select an option")',
