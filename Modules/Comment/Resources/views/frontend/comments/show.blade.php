@@ -77,17 +77,17 @@
                             {{$post->intro}}
                         </p>
                         <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge badge-primary">{{$post->category_name}}</a>
+                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge bg-primary">{{$post->category_name}}</a>
                         </p>
 
                         <p class="card-text">
                             @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-warning">{{$tag->name}}</a>
+                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
                             @endforeach
                         </p>
 
                         <p class="card-text">
-                            <span class="badge badge-primary">
+                            <span class="badge bg-primary">
                                 <i class="now-ui-icons ui-2_chat-round"></i> Total {{$post->comments->count()}} comments
                             </span>
                         </p>

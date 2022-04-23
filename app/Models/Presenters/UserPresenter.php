@@ -23,11 +23,11 @@ trait UserPresenter
                 return '<span class="badge bg-success">Active</span>';
                 break;
             case '2':
-                return '<span class="badge badge-warning">Blocked</span>';
+                return '<span class="badge bg-warning text-dark">Blocked</span>';
                 break;
 
             default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
     }

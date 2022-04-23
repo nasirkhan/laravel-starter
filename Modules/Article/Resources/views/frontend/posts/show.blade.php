@@ -47,12 +47,12 @@
                             Category:
                         </span>
 
-                        <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge badge-sm badge-warning text-uppercase px-3">{{$$module_name_singular->category_name}}</a>
+                        <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="badge badge-sm bg-warning text-dark text-uppercase px-3">{{$$module_name_singular->category_name}}</a>
                     </p>
 
                     <p>
                         @foreach ($$module_name_singular->tags as $tag)
-                        <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-sm badge-info text-uppercase px-3">{{$tag->name}}</a>
+                        <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge badge-sm bg-info text-uppercase px-3">{{$tag->name}}</a>
                         @endforeach
                     </p>
                 </div>
@@ -88,7 +88,7 @@
             <div class="col-12 col-lg-8">
                 <h5 class="mb-4">
                     @if($$module_name_singular->comments->count())
-                    <span class="badge badge-md badge-primary text-uppercase mr-2">{{$$module_name_singular->comments->count()}}</span>
+                    <span class="badge badge-md bg-primary text-uppercase mr-2">{{$$module_name_singular->comments->count()}}</span>
                     @endif
 
                     @lang('Comments')

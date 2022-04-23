@@ -100,11 +100,11 @@ class BaseModel extends Model implements HasMedia
                 break;
 
             case '2':
-                return '<span class="badge badge-warning">Pending</span>';
+                return '<span class="badge bg-warning text-dark">Pending</span>';
                 break;
 
             default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
     }

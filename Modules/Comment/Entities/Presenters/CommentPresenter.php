@@ -36,7 +36,7 @@ trait CommentPresenter
     {
         switch ($this->status) {
             case '0':
-                return '<span class="badge badge-warning">Pending</span>';
+                return '<span class="badge bg-warning text-dark">Pending</span>';
                 break;
 
             case '1':
@@ -48,7 +48,7 @@ trait CommentPresenter
                 break;
 
             default:
-                return '<span class="badge badge-primary">Status:'.$this->status.'</span>';
+                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
     }
