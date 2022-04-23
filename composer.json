@@ -7,6 +7,7 @@
     "version": "v9.0.0",
     "require": {
         "php": "^8.0.2",
+        "alexusmai/laravel-file-manager": "^3.0",
         "arcanedev/log-viewer": "^9.0",
         "guzzlehttp/guzzle": "^7.4",
         "hashids/hashids": "^4.1",

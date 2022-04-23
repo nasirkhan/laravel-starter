@@ -275,6 +275,7 @@
 @push('after-styles')
 <!-- File Manager -->
 <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-lite.min.css') }}">
 @endpush
 
 @push ('after-scripts')
