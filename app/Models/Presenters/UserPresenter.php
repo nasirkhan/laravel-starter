@@ -20,7 +20,7 @@ trait UserPresenter
     {
         switch ($this->status) {
             case '1':
-                return '<span class="badge badge-success">Active</span>';
+                return '<span class="badge bg-success">Active</span>';
                 break;
             case '2':
                 return '<span class="badge badge-warning">Blocked</span>';
@@ -40,7 +40,7 @@ trait UserPresenter
     public function getConfirmedLabelAttribute()
     {
         if ($this->email_verified_at != null) {
-            return '<span class="badge badge-success">Confirmed</span>';
+            return '<span class="badge bg-success">Confirmed</span>';
         } else {
             return '<span class="badge badge-danger">Not Confirmed</span>';
         }

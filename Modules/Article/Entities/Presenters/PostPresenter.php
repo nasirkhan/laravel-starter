@@ -58,7 +58,7 @@ trait PostPresenter
                     return '<span class="badge badge-warning">Scheduled ('.$this->published_at_formatted.')</span>';
                 }
 
-                return '<span class="badge badge-success">Pubished</span>';
+                return '<span class="badge bg-success">Pubished</span>';
                 break;
 
             case '2':

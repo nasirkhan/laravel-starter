@@ -40,7 +40,7 @@ trait CommentPresenter
                 break;
 
             case '1':
-                return '<span class="badge badge-success">Pubished</span>';
+                return '<span class="badge bg-success">Pubished</span>';
                 break;
 
             case '2':

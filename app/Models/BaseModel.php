@@ -96,7 +96,7 @@ class BaseModel extends Model implements HasMedia
                 break;
 
             case '1':
-                return '<span class="badge badge-success">Active</span>';
+                return '<span class="badge bg-success">Active</span>';
                 break;
 
             case '2':
