@@ -50,7 +50,7 @@ trait PostPresenter
     {
         switch ($this->status) {
             case '0':
-                return '<span class="badge badge-danger">Unpublished</span>';
+                return '<span class="badge bg-danger">Unpublished</span>';
                 break;
 
             case '1':

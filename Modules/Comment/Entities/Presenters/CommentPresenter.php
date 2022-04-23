@@ -44,7 +44,7 @@ trait CommentPresenter
                 break;
 
             case '2':
-                return '<span class="badge badge-danger">Rejected</span>';
+                return '<span class="badge bg-danger">Rejected</span>';
                 break;
 
             default:

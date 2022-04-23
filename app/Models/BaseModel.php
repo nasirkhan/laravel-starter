@@ -92,7 +92,7 @@ class BaseModel extends Model implements HasMedia
     {
         switch ($this->status) {
             case '0':
-                return '<span class="badge badge-danger">Inactive</span>';
+                return '<span class="badge bg-danger">Inactive</span>';
                 break;
 
             case '1':

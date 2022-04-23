@@ -158,7 +158,7 @@ $module_icon = "c-icon cil-list-rich";
                 var date = $(this).data('log-date');
                 deleteLogForm.find('input[name=date]').val(date);
                 deleteLogModal.find('.modal-body p').html(
-                    'Are you sure you want to <span class="badge badge-danger">DELETE</span> this log file <span class="badge badge-primary">' + date + '</span> ?'
+                    'Are you sure you want to <span class="badge bg-danger">DELETE</span> this log file <span class="badge badge-primary">' + date + '</span> ?'
                 );
 
                 deleteLogModal.modal('show');

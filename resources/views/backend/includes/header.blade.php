@@ -23,7 +23,7 @@ $notifications_latest = optional($notifications)->take(5);
                     <svg class="icon icon-lg">
                         <use xlink:href="/fonts/free.svg#cil-bell"></use>
                     </svg>
-                    &nbsp; @if($notifications_count)<span class="badge badge-pill badge-danger">{{$notifications_count}}</span>@endif
+                    &nbsp; @if($notifications_count)<span class="badge badge-pill bg-danger">{{$notifications_count}}</span>@endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
@@ -85,7 +85,7 @@ $notifications_latest = optional($notifications)->take(5);
 
                     <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
                         <i class="cil-bell me-2"></i>&nbsp;
-                        @lang('Notifications') <span class="badge badge-danger ml-auto">{{$notifications_count}}</span>
+                        @lang('Notifications') <span class="badge bg-danger ml-auto">{{$notifications_count}}</span>
                     </a>
 
                     <div class="dropdown-header bg-light py-2"><strong>@lang('Settings')</strong></div>

@@ -224,7 +224,7 @@ $module_icon = "c-icon cil-list-rich";
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to <span class="badge badge-danger">DELETE</span> this log file <span class="badge badge-primary">{{ $log->date }}</span> ?</p>
+                    <p>Are you sure you want to <span class="badge bg-danger">DELETE</span> this log file <span class="badge badge-primary">{{ $log->date }}</span> ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
