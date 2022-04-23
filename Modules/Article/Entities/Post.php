@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Modules\Article\Entities\Presenters\PostPresenter;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Post extends BaseModel
 {
@@ -145,7 +145,6 @@ class Post extends BaseModel
      * Get the list of Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopePublished($query)
@@ -170,7 +169,6 @@ class Post extends BaseModel
      * Get the list of Recently Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopeRecentlyPublished($query)

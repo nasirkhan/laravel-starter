@@ -4,23 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Str;
 
 class GenerateMenus
 {
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         \Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
-            $menu->add('<i class="nav-icon cil-speedometer"></i> ' . __('Dashboard'), [
+            $menu->add('<i class="nav-icon cil-speedometer"></i> '.__('Dashboard'), [
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
@@ -191,7 +189,7 @@ class GenerateMenus
             // Set Active Menu
             $menu->filter(function ($item) {
                 if ($item->activematches) {
-                    $activematches = (is_string($item->activematches))?[$item->activematches]: $item->activematches;
+                    $activematches = (is_string($item->activematches)) ? [$item->activematches] : $item->activematches;
                     foreach ($activematches as $pattern) {
                         if (request()->is($pattern)) {
                             $item->active();
@@ -202,6 +200,7 @@ class GenerateMenus
                         }
                     }
                 }
+
                 return true;
             });
         })->sortBy('order');

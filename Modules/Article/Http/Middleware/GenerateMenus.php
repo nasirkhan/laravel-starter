@@ -9,9 +9,8 @@ class GenerateMenus
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -19,7 +18,7 @@ class GenerateMenus
         \Menu::make('admin_sidebar', function ($menu) {
 
             // Articles Dropdown
-            $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> ' . __('Article'), [
+            $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> '.__('Article'), [
                 'class' => 'nav-group',
             ])
             ->data([
@@ -36,7 +35,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Posts
-            $articles_menu->add('<i class="nav-icon fas fa-file-alt"></i> ' . __('Posts'), [
+            $articles_menu->add('<i class="nav-icon fas fa-file-alt"></i> '.__('Posts'), [
                 'route' => 'backend.posts.index',
                 'class' => 'nav-item',
             ])
@@ -49,7 +48,7 @@ class GenerateMenus
                 'class' => 'nav-link',
             ]);
             // Submenu: Categories
-            $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> ' . __('Categories'), [
+            $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> '.__('Categories'), [
                 'route' => 'backend.categories.index',
                 'class' => 'nav-item',
             ])

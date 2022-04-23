@@ -73,10 +73,9 @@ if (! function_exists('show_column_value')) {
     /**
      * Return Column values as Raw and formatted.
      *
-     * @param string $valueObject   Model Object
-     * @param string $column        Column Name
-     * @param string $return_format Return Type
-     *
+     * @param  string  $valueObject  Model Object
+     * @param  string  $column  Column Name
+     * @param  string  $return_format  Return Type
      * @return string Raw/Formatted Column Value
      */
     function show_column_value($valueObject, $column, $return_format = '')

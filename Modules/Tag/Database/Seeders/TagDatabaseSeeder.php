@@ -3,7 +3,6 @@
 namespace Modules\Tag\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Modules\Tag\Entities\Tag;
 

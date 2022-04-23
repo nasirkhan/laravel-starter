@@ -28,7 +28,6 @@ trait Authorizable
      *
      * @param $method
      * @param $parameters
-     *
      * @return mixed
      */
     public function callAction($method, $parameters)
