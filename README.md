@@ -120,7 +120,7 @@ Follow the steps mentioned below to install and run the project.
 
 `php artisan cache:forget spatie.permission.cache`
 
-## Laravel Sail and Docker
+## Docker and Laravel Sail
 This project is configured with Laravel Sail (https://laravel.com/docs/9.x/sail). You can use all the docker functionalities here.
 
 ## Icons
