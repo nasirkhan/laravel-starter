@@ -32,5 +32,10 @@
         "sass-loader": "^12.6.0",
         "simplebar": "^5.3.6",
         "tailwindcss": "^3.0.18"
+    },
+    "dependencies": {
+        "-": "^0.0.1",
+        "@alpinejs/collapse": "^3.10.2",
+        "d": "^1.0.1"
     }
 }
