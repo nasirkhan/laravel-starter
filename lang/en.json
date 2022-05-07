@@ -7,6 +7,7 @@
 
     "Welcome to": "Welcome to :name Admin Dashboard.",
     "Dashboard": "Dashboard",
+    "Admin Dashboard": "Admin Dashboard",
 
     "Name": "Name",
     "Email": "Email",
@@ -59,6 +60,9 @@
     ":count unread": ":count unread",
     "Account": "Account",
     "Settings": "Settings",
+    "Login": "Login",
+    "Register": "Register",
+    "Create an account": "Create an account",
     "Logout": "Logout",
     "Displaing all the values of :module_name (Id: :id)": "Displaing all the values of <strong>:module_name (Id: :id)</strong>.",
     "Are you sure?": "Are you sure?",
@@ -100,6 +104,16 @@
     "Active": "Active",
     "Email Confirmed": "Email Confirmed",
     "Email Credentials": "Send account credentials to the user",
+
+    "Open main menu": "Open main menu",
+    "Posts": "Posts",
+    "Categories": "Categories",
+    "Tags": "Tags",
+    "Comments": "Comments",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
 
     "Draft": "Draft",
     "Published": "Published",

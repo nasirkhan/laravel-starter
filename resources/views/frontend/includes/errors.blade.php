@@ -1,7 +1,7 @@
 @if ($errors->any())
 <div class="alert alert-danger" role="alert">
     <p>
-        <i class="fa fa-exclamation-triangle"></i> Please fix the following errors and submit again!
+        <i class="fa fa-exclamation-triangle"></i> {{__('Please fix the following errors & try again!')}}
     </p>
     <ul>
         @foreach ($errors->all() as $error)
