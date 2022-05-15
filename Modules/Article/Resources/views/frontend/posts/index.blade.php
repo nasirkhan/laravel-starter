@@ -21,8 +21,8 @@
     </div>
 </section>
 
-<section class="bg-white text-gray-600 py-20 px-20">
-    <div class="grid grid-cols-3 gap-6">
+<section class="bg-white text-gray-600 p-6 sm:p-20">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
         @foreach ($$module_name as $$module_name_singular)
         @php
         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);
@@ -34,17 +34,17 @@
                     <a href="{{$details_url}}" class="overflow-hidden">
                         <img src="{{$$module_name_singular->featured_image}}" alt="" class="rounded-t-lg transform hover:scale-110 duration-200">
                     </a>
-                    <div class="p-5">
+                    <div class="p-3 sm:p-5">
                         <a href="{{$details_url}}">
-                            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
+                            <h2 class="mb-2 text-md sm:text-2xl tracking-tight text-gray-900 dark:text-white">
                                 {{$$module_name_singular->name}}
                             </h2>
                         </a>
                         <div class="flex flex-row content-center my-4">
-                            <img class="w-8 h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
+                            <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
 
                             {!!isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : '<a href="'.route('frontend.users.profile', $$module_name_singular->created_by).'">
-                                <h6 class="text-muted small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
+                                <h6 class="text-muted text-sm small ml-2 mb-0">'.$$module_name_singular->created_by_name.'</h6>
                             </a>'!!}
                         </div>
                         <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">

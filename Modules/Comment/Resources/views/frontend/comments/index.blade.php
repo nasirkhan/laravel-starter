@@ -19,8 +19,8 @@
     </div>
 </section>
 
-<section class="bg-white text-gray-600 py-20 px-20">
-    <div class="grid grid-cols-3 gap-6">
+<section class="bg-white text-gray-600 p-6 sm:p-20">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
         @foreach ($$module_name as $$module_name_singular)
         @php
         $details_url = route("frontend.$module_name.show",[encode_id($$module_name_singular->id), $$module_name_singular->slug]);

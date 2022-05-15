@@ -1,10 +1,9 @@
 <?php
 
-namespace Modules\Tag\Database\Factories;
+namespace Modules\Tag\Database\factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Tag\Entities\Tag;
 
 class TagFactory extends Factory
 {
@@ -13,7 +12,7 @@ class TagFactory extends Factory
      *
      * @var string
      */
-    protected $model = Tag::class;
+    protected $model = \Modules\Tag\Entities\Tag::class;
 
     /**
      * Define the model's default state.

@@ -1,9 +1,9 @@
 {
     "/js/app.js": "/js/app.js?id=2e103b43218cccecbf6323852f8e5672",
     "/js/frontend.js": "/js/frontend.js?id=821f7bef384f3dc52797fc1177410112",
-    "/css/frontend.css": "/css/frontend.css?id=8be315858be1d4b3cd22ae1c49d1db50",
-    "/css/app.css": "/css/app.css?id=c21e7a17edde3d843dce3ee8b5abd2a5",
-    "/css/backend-theme.css": "/css/backend-theme.css?id=7b3297c319e3076ba3ad550f8fc9ce14",
+    "/css/frontend.css": "/css/frontend.css?id=cea58923cfa2aa255d49f94171979a12",
+    "/css/app.css": "/css/app.css?id=b72318339439675bb1f52c836b0cb7af",
+    "/css/backend-theme.css": "/css/backend-theme.css?id=6bc7e87d4fe316ffef095cdc46d0ef3f",
     "/js/jquery.min.js": "/js/jquery.min.js?id=8fb8fee4fcc3cc86ff6c724154c49c42",
     "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf?id=271b60d8619482f8168b10c9d9bd75c6",
     "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2?id=0b5984039692449bafd77ec6b2a94ffd",
@@ -26,6 +26,6 @@
     "/fonts/brand.svg": "/fonts/brand.svg?id=75bb6cee8ea7a75ab952e745dabb4236",
     "/fonts/flag.svg": "/fonts/flag.svg?id=ad00235cf17c44eb0b9c2e580611a5ca",
     "/fonts/free.svg": "/fonts/free.svg?id=fed875f2ada1a4e18048d0fa911e26ff",
-    "/css/backend.css": "/css/backend.css?id=6719f3cc6cba54f4346ba446d33dc080",
-    "/js/backend.js": "/js/backend.js?id=d0240b3bed61889d317f5e2d3841aae7"
+    "/css/backend.css": "/css/backend.css?id=b01e1bd7f7f1566e788714c9672d69b8",
+    "/js/backend.js": "/js/backend.js?id=025c68b6201a0647da5fb66dc0b0d4b6"
 }
