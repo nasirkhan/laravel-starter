@@ -60,6 +60,9 @@ $notifications_latest = optional($notifications)->take(5);
                     <a class="dropdown-item" href="{{route("language.switch", "en")}}">
                         English (EN)
                     </a>
+                    <a class="dropdown-item" href="{{route("language.switch", "vi")}}">
+                        Vietnamese (VI)
+                    </a>
                 </div>
             </li>
 
