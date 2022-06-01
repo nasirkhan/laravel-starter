@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 // Language Switch
-// Route::get('language/{language}', 'App\Http\Controllers\LanguageController@switch')->name('language.switch');
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index')->name('dashboard');
