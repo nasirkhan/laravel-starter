@@ -91,18 +91,18 @@ return [
      * [] - no restrictions
      */
     'allowFileTypes' => [
-        'pdf',
         'doc',
         'docx',
-        'xls',
-        'xlsx',
-        'zip',
         'gif',
         'jpg',
         'jpeg',
+        'pdf',
         'png',
         'ppt',
         'pptx',
+        'xls',
+        'xlsx',
+        // 'zip',
     ],
 
     /**
