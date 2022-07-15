@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ language_direction() }}">
 
 <head>
     <meta charset="utf-8">
@@ -61,7 +61,7 @@
                 <!-- Main content block -->
                 @yield('content')
                 <!-- / Main content block -->
-                
+
             </div>
         </div>
 
