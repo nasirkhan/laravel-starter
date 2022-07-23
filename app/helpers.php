@@ -492,7 +492,7 @@ if (! function_exists('date_today')) {
 
 if (! function_exists('language_direction')) {
     /**
-     * return direction of languages
+     * return direction of languages.
      *
      * @param $language
      * @return string
@@ -525,6 +525,7 @@ if (! function_exists('language_direction')) {
         if (in_array($language, $rtlLanguages)) {
             return 'rtl';
         }
+
         return 'ltr';
     }
 }
