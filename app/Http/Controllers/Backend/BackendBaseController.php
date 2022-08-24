@@ -109,7 +109,7 @@ class BackendBaseController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        $$module_name = $module_model::select('id', 'name', 'slug', 'updated_at');
+        $$module_name = $module_model::select('id', 'name', 'updated_at');
 
         $data = $$module_name;
 
@@ -266,7 +266,7 @@ class BackendBaseController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect()->back();
+        return redirect()->route("backend.$module_name.show", $$module_name_singular->id);
     }
 
     /**
