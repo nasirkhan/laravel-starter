@@ -30,7 +30,7 @@ $module_icon = "c-icon cil-list-rich";
 
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <x-buttons.return-back />
+                    <x-backend.buttons.return-back />
                     <a class="btn btn-primary ms-1" href="{{ route('log-viewer::logs.list') }}" type="button">
                         <i class="fas fa-list-ol"></i> @lang('Logs by Date')
                     </a>
