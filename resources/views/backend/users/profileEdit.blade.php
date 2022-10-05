@@ -25,7 +25,7 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
-                <x-buttons.return-back />
+                <x-backend.buttons.return-back />
             </x-slot>
         </x-backend.section-header>
 
