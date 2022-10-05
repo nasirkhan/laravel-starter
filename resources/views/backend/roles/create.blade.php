@@ -34,48 +34,51 @@
                 {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
                 {{ csrf_field() }}
 
-                <div class="form-group row">
-                    {{ html()->label(__('labels.backend.roles.fields.name'))->class('col-md-2 form-control-label')->for('name') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('name')
-                                ->class('form-control')
-                                ->placeholder(__('labels.backend.roles.fields.name'))
-                                ->attribute('maxlength', 191)
-                                ->required() }}
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'name';
+                    $field_lable = __('labels.backend.roles.fields.name');
+                    $field_placeholder = $field_lable;
+                    $required = "required";
+                    ?>
+                    <div class="col-12 col-sm-2">
+                        <div class="form-group">
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        </div>
                     </div>
-                </div>
-                <!--form-group-->
-
-                <div class="form-group row">
-                    {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
-
                     <div class="col-12 col-sm-10">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Permissions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @if ($permissions->count())
-                                            @foreach($permissions as $permission)
-                                            <div class="checkbox">
-                                                {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
-                                            </div>
-                                            @endforeach
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="form-group">
+                            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                 </div>
-                <!--form-group-->
+
+                <div class="row mb-3">
+                    <?php
+                    $field_name = 'name';
+                    $field_lable = __("Abilities");
+                    $field_placeholder = $field_lable;
+                    $required = "";
+                    ?>
+                    <div class="col-12 col-sm-2">
+                        <div class="form-group">
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10">
+                        <div class="form-group">
+                            {{ __("List of permissions") }}
+                            <hr>
+                            @if ($permissions->count())
+                            @foreach($permissions as $permission)
+                            <div class="checkbox">
+                                {{ html()->label(html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)->id('permission-'.$permission->id) . ' ' . $permission->name)->for('permission-'.$permission->id) }}
+                            </div>
+                            @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-6">
