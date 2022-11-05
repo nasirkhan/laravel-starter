@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/frontend.css') }}">
 
+
     @stack('after-styles')
 
     <x-google-analytics />
@@ -34,11 +35,12 @@
     @include('frontend.includes.header')
 
 
+
     <main>
         @yield('content')
     </main>
 
-    @include('frontend.includes.footer')
+    @include('frontend.includes.footer1')
 
 </body>
 
@@ -46,6 +48,10 @@
 @stack('before-scripts')
 
 <script src="{{ mix('js/frontend.js') }}"></script>
+
+
+
+
 
 @stack('after-scripts')
 

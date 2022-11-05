@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth Routes
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
@@ -29,6 +29,7 @@ Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index'
 */
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
+    Route::get('/aboutus', 'FrontendController@aboutus')->name('aboutus');
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
