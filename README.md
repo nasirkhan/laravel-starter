@@ -37,15 +37,33 @@ php artisan starter:insert-demo-data --fresh
 
 We have created a number of custom commands for the project. The commands are listed below with a brief about the use of it.
 
+## Create New module
+
+To create a project use the following command, you have repalce the MODULE_NAME with the name of the module.
+
+```php
+php artisan module:build MODULE_NAME
+```
+
+You may want to use --force option to overwrite the existing module. if you use this option, it will replace all the exisitng files with the defalut stub files.
+
+```php
+php artisan module:build MODULE_NAME --force
+```
+
 ## Clear All Cache
 
-`composer clear-all`
+```bash
+composer clear-all
+```
 
 this is a shortcut command clear all cache including config, route and more
 
 ## Code Style Fix
 
-`composer fix-cs`
+```bash
+composer fix-cs
+```
 
 apply the code style fix by this command.
 
