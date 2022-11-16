@@ -85,8 +85,7 @@ class BackupController extends Controller
      */
     public function create()
     {
-        try 
-        {
+        try {
             // start the backup process
             Artisan::call('backup:run');
             $output = Artisan::output();
@@ -98,9 +97,7 @@ class BackupController extends Controller
             flash("<i class='fas fa-check'></i> New backup created")->success()->important();
 
             return redirect()->back();
-        } 
-        catch (Exception $e) 
-        {
+        } catch (Exception $e) {
             Flash::error($e->getMessage());
 
             return redirect()->back();
@@ -117,12 +114,9 @@ class BackupController extends Controller
         $disk = Storage::disk('local');
         $file = config('backup.backup.name').'/'.$file_name;
 
-        if($disk->exists($file)) 
-        {
+        if ($disk->exists($file)) {
             return Storage::download($file);
-        } 
-        else 
-        {
+        } else {
             abort(404, "The backup file doesn't exist.");
         }
     }
@@ -133,16 +127,13 @@ class BackupController extends Controller
     public function delete($file_name)
     {
         $disk = Storage::disk('local');
-        $file = config('backup.backup.name') . '/' . $file_name;
+        $file = config('backup.backup.name').'/'.$file_name;
 
-        if ($disk->exists($file)) 
-        {
+        if ($disk->exists($file)) {
             $disk->delete($file);
 
             return redirect()->back();
-        } 
-        else 
-        {
+        } else {
             abort(404, "The backup file doesn't exist.");
         }
     }
