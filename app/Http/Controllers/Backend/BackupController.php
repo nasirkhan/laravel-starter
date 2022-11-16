@@ -46,9 +46,9 @@ class BackupController extends Controller
 
         $module_action = 'List';
 
-        $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
+        $disk = Storage::disk('local');
 
-        $files = $disk->files(str_replace(' ', '-', config('backup.backup.name')));
+        $files = $disk->files(config('backup.backup.name'));
 
         $$module_name = [];
 
@@ -58,7 +58,7 @@ class BackupController extends Controller
             if (substr($f, -4) == '.zip' && $disk->exists($f)) {
                 $$module_name[] = [
                     'file_path'               => $f,
-                    'file_name'               => str_replace(str_replace(' ', '-', config('backup.backup.name')).'/', '', $f),
+                    'file_name'               => str_replace(config('backup.backup.name').'/', '', $f),
                     'file_size_byte'          => $disk->size($f),
                     'file_size'               => humanFilesize($disk->size($f)),
                     'last_modified_timestamp' => $disk->lastModified($f),
@@ -71,7 +71,6 @@ class BackupController extends Controller
         // reverse the backups, so the newest one would be on top
         $$module_name = array_reverse($$module_name);
 
-        // return view("backend.backups.backups")->with(compact('backups'));
         return view(
             "backend.$module_path.backups",
             compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
@@ -86,7 +85,8 @@ class BackupController extends Controller
      */
     public function create()
     {
-        try {
+        try 
+        {
             // start the backup process
             Artisan::call('backup:run');
             $output = Artisan::output();
@@ -98,7 +98,9 @@ class BackupController extends Controller
             flash("<i class='fas fa-check'></i> New backup created")->success()->important();
 
             return redirect()->back();
-        } catch (Exception $e) {
+        } 
+        catch (Exception $e) 
+        {
             Flash::error($e->getMessage());
 
             return redirect()->back();
@@ -112,20 +114,15 @@ class BackupController extends Controller
      */
     public function download($file_name)
     {
-        $file = str_replace(' ', '-', config('backup.backup.name')).'/'.$file_name;
-        $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
-        if ($disk->exists($file)) {
-            $fs = Storage::disk(config('backup.backup.destination.disks')[0])->getDriver();
-            $stream = $fs->readStream($file);
+        $disk = Storage::disk('local');
+        $file = config('backup.backup.name').'/'.$file_name;
 
-            return \Response::stream(function () use ($stream) {
-                fpassthru($stream);
-            }, 200, [
-                'Content-Type'        => $fs->getMimetype($file),
-                'Content-Length'      => $fs->getSize($file),
-                'Content-disposition' => 'attachment; filename="'.basename($file).'"',
-            ]);
-        } else {
+        if($disk->exists($file)) 
+        {
+            return Storage::download($file);
+        } 
+        else 
+        {
             abort(404, "The backup file doesn't exist.");
         }
     }
@@ -135,13 +132,17 @@ class BackupController extends Controller
      */
     public function delete($file_name)
     {
-        $disk = Storage::disk(config('backup.backup.destination.disks')[0]);
+        $disk = Storage::disk('local');
+        $file = config('backup.backup.name') . '/' . $file_name;
 
-        if ($disk->exists(str_replace(' ', '-', config('backup.backup.name')).'/'.$file_name)) {
-            $disk->delete(str_replace(' ', '-', config('backup.backup.name')).'/'.$file_name);
+        if ($disk->exists($file)) 
+        {
+            $disk->delete($file);
 
             return redirect()->back();
-        } else {
+        } 
+        else 
+        {
             abort(404, "The backup file doesn't exist.");
         }
     }
