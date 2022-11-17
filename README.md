@@ -67,6 +67,10 @@ composer fix-cs
 
 apply the code style fix by this command.
 
+## Role - Permissiosn
+
+A number of custom commands are available to add and update role-permissions. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples. 
+
 
 # Features
 
@@ -124,7 +128,7 @@ It is a modular application, and a number of modules are installed by default. I
 
 ## Installation
 
-Follow the steps mentioned below to install and run the project.
+Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
 1. Clone or download the repository
 2. Go to the project directory and run `composer install`
