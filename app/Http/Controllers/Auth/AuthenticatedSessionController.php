@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserLoginSuccess;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -31,6 +32,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        logger("User Login Success. Id: ". auth()->user()->id ." | Email: ". auth()->user()->email ." | Username: ". auth()->user()->username);
+
+        event(new UserLoginSuccess($request, auth()->user()));
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

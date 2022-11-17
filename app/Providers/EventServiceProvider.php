@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         // Registered::class => [
         //     SendEmailVerificationNotification::class,
         // ],
+        'App\Events\Auth\UserLoginSuccess' => [
+            'App\Listeners\Auth\UpdateProfileLoginData',
+        ],
         'App\Events\Backend\UserCreated' => [
             'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
             'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser',
