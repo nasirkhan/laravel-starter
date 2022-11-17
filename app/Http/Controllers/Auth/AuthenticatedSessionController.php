@@ -33,8 +33,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        logger("User Login Success. Id: ". auth()->user()->id ." | Email: ". auth()->user()->email ." | Username: ". auth()->user()->username);
-
         event(new UserLoginSuccess($request, auth()->user()));
 
         return redirect()->intended(RouteServiceProvider::HOME);

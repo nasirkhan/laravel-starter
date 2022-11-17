@@ -42,6 +42,6 @@ class UpdateProfileLoginData
             logger()->error($e);
         }
 
-        logger('UpdateProfileLoginData: '.$user->name.' IP:'.$request->getClientIp());
+        logger("User Login Success. Name: ". $user->name ." | Id: " . $user->id . " | Email: " . $user->email . " | Username: " . $user->username . ' IP:' . $request->getClientIp() . " | UpdateProfileLoginData");
     }
 }
