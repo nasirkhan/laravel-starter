@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tag\Database\factories;
+namespace Modules\Tag\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
