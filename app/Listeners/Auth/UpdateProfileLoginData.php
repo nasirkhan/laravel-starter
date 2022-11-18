@@ -20,8 +20,7 @@ class UpdateProfileLoginData
     /**
      * Handle the event.
      *
-     * @param UserLoginSuccess $event
-     *
+     * @param  UserLoginSuccess  $event
      * @return void
      */
     public function handle(UserLoginSuccess $event)
@@ -42,6 +41,6 @@ class UpdateProfileLoginData
             logger()->error($e);
         }
 
-        logger("User Login Success. Name: ". $user->name ." | Id: " . $user->id . " | Email: " . $user->email . " | Username: " . $user->username . ' IP:' . $request->getClientIp() . " | UpdateProfileLoginData");
+        logger('User Login Success. Name: '.$user->name.' | Id: '.$user->id.' | Email: '.$user->email.' | Username: '.$user->username.' IP:'.$request->getClientIp().' | UpdateProfileLoginData');
     }
 }
