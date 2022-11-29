@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js?id=81d164c424ebf0361fd65eec875b705a",
-    "/js/frontend.js": "/js/frontend.js?id=4890f514746cbed18170c7310b3508a9",
-    "/css/frontend.css": "/css/frontend.css?id=781f93f99cf406ba49b3eef76cfc286f",
-    "/css/app.css": "/css/app.css?id=7e5dca84a3c8fde4f5779dbfa3a58927",
-    "/css/backend-theme.css": "/css/backend-theme.css?id=d47a14492b023e3e533713aa6078af2f",
+    "/js/app.js": "/js/app.js?id=7c3b03100205559ea4f8c6746df6bfaa",
+    "/js/frontend.js": "/js/frontend.js?id=5e8de90c43a0fdbace949ced3a728921",
+    "/css/frontend.css": "/css/frontend.css?id=cd5a1c21f86d5344463c8b54dae351d5",
+    "/css/app.css": "/css/app.css?id=ca9fc68369e2717263fa7036f841fe24",
+    "/css/backend-theme.css": "/css/backend-theme.css?id=70fd44c42a21321f5cfe11bcf9109720",
     "/js/jquery.min.js": "/js/jquery.min.js?id=00727d1d5d9c90f7de826f1a4a9cc632",
     "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf?id=e8cb29f0533ad783f53dc3d0d3732c1b",
     "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2?id=c5963a6b2ffcce7e5eaa4a1e2fed1f85",
@@ -26,6 +26,6 @@
     "/fonts/CoreUI-Icons-Free.woff2": "/fonts/CoreUI-Icons-Free.woff2?id=57fe28d524eb948873daa00c387b2916",
     "/fonts/flag.svg": "/fonts/flag.svg?id=ad00235cf17c44eb0b9c2e580611a5ca",
     "/fonts/free.svg": "/fonts/free.svg?id=fed875f2ada1a4e18048d0fa911e26ff",
-    "/css/backend.css": "/css/backend.css?id=851e156d076aabb76f127d6c5962cb0c",
-    "/js/backend.js": "/js/backend.js?id=10e81369b6b77f22e8a29a3368c07d73"
+    "/css/backend.css": "/css/backend.css?id=adac3be94223eabc69c9cb63db17042e",
+    "/js/backend.js": "/js/backend.js?id=cf2b405d464134bd324200dc8fb1ea0e"
 }
