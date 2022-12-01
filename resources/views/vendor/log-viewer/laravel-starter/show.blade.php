@@ -273,7 +273,7 @@ Log Viewer Dashboard | {{ app_name() }}
             $('.stack-content').each(function() {
                 var $this = $(this);
                 var html = $this.html().trim()
-                    .replace(/({!! join(log_styler()->toHighlight(), '|') !!})/gm, '<strong>$1</strong>');
+                    .replace(/({!! join('|', log_styler()->toHighlight()) !!})/gm, '<strong>$1</strong>');
 
                 $this.html(html);
             });
