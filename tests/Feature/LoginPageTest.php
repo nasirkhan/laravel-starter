@@ -11,6 +11,7 @@ class LoginPageTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
+
     /**
      * The login form can be displayed.
      *

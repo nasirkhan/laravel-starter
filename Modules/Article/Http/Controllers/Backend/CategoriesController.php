@@ -4,7 +4,6 @@ namespace Modules\Article\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;
-use Auth;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;

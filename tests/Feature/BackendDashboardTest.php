@@ -10,6 +10,7 @@ class BackendDashboardTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
+
     /**
      * An admin can access the admin dashboard.
      *

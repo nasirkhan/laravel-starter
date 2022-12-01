@@ -2,7 +2,7 @@
 
 use App\Events\Backend\UserCreated;
 use App\Models\User;
-use Carbon\Carbon as Carbon;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
