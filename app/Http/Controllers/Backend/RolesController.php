@@ -27,7 +27,7 @@ class RolesController extends Controller
         $this->module_path = 'roles';
 
         // module icon
-        $this->module_icon = 'c-icon cil-people';
+        $this->module_icon = 'fa-solid fa-user-shield';
 
         // module model name, path
         $this->module_model = "App\Models\Role";

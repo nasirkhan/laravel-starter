@@ -13,7 +13,7 @@ $notifications_latest = optional($notifications)->take(5);
             <img class="sidebar-brand-full" src="{{asset("img/backend-logo.jpg")}}" height="46" alt="{{ app_name() }}">
         </a>
         <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="{{ route('frontend.index') }}" target="_blank">{{app_name()}}&nbsp;<i class="cil-external-link"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('frontend.index') }}" target="_blank">{{app_name()}}&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
         </ul>
         <ul class="header-nav ms-auto">
             <li class="nav-item dropdown">
@@ -32,7 +32,7 @@ $notifications_latest = optional($notifications)->take(5);
                     $notification_text = isset($notification->data['title'])? $notification->data['title'] : $notification->data['module'];
                     @endphp
                     <a class="dropdown-item" href="{{route("backend.notifications.show", $notification)}}">
-                        <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'cil-bullhorn'}} "></i>&nbsp;{{$notification_text}}
+                        <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fa-solid fa-bullhorn'}} "></i>&nbsp;{{$notification_text}}
                     </a>
                     @endforeach
                     @endif
@@ -43,7 +43,7 @@ $notifications_latest = optional($notifications)->take(5);
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown">
                 <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="c-icon cil-language"></i>&nbsp; {{strtoupper(App::getLocale())}}
+                    <i class="fa-solid fa-language"></i>&nbsp; {{strtoupper(App::getLocale())}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
@@ -74,23 +74,23 @@ $notifications_latest = optional($notifications)->take(5);
                     </div>
 
                     <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
-                        <i class="cil-user me-2"></i>&nbsp;{{ Auth::user()->name }}
+                        <i class="fa-regular fa-user me-2"></i>&nbsp;{{ Auth::user()->name }}
                     </a>
                     <a class="dropdown-item" href="{{route('backend.users.profile', Auth::user()->id)}}">
-                        <i class="cil-at me-2"></i>&nbsp;{{ Auth::user()->email }}
+                        <i class="fa-regular fa-user me-2"></i>&nbsp;{{ Auth::user()->email }}
                     </a>
 
                     <div class="dropdown-divider"></div>
 
                     <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
-                        <i class="cil-bell me-2"></i>&nbsp;
+                        <i class="fa-regular fa-bell me-2"></i>&nbsp;
                         @lang('Notifications') <span class="badge bg-danger ml-auto">{{$notifications_count}}</span>
                     </a>
 
                     <div class="dropdown-header bg-light py-2"><strong>@lang('Settings')</strong></div>
 
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="cil-account-logout me-2"></i>&nbsp;
+                        <i class="fa-solid fa-right-from-bracket me-2"></i>&nbsp;
                         @lang('Logout')
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>

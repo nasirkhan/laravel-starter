@@ -18,7 +18,7 @@ class GenerateMenus
     {
         \Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
-            $menu->add('<i class="nav-icon cil-speedometer"></i> '.__('Dashboard'), [
+            $menu->add('<i class="nav-icon fa-solid fa-cubes"></i> '.__('Dashboard'), [
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
@@ -82,7 +82,7 @@ class GenerateMenus
             ]);
 
             // Access Control Dropdown
-            $accessControl = $menu->add('<i class="nav-icon cil-shield-alt"></i> Access Control', [
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-user-gear"></i> Access Control', [
                 'class' => 'nav-group',
             ])
             ->data([
@@ -99,7 +99,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Users
-            $accessControl->add('<i class="nav-icon cil-people"></i> Users', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-group"></i> Users', [
                 'route' => 'backend.users.index',
                 'class' => 'nav-item',
             ])
@@ -113,7 +113,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Roles
-            $accessControl->add('<i class="nav-icon cil-people"></i> Roles', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> Roles', [
                 'route' => 'backend.roles.index',
                 'class' => 'nav-item',
             ])
@@ -128,7 +128,7 @@ class GenerateMenus
 
             // Log Viewer
             // Log Viewer Dropdown
-            $accessControl = $menu->add('<i class="nav-icon cil-list-rich"></i> Log Viewer', [
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-list-check"></i> Log Viewer', [
                 'class' => 'nav-group',
             ])
             ->data([
@@ -144,7 +144,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Log Viewer Dashboard
-            $accessControl->add('<i class="nav-icon cil-list"></i> Dashboard', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-list"></i> Dashboard', [
                 'route' => 'log-viewer::dashboard',
                 'class' => 'nav-item',
             ])
@@ -157,7 +157,7 @@ class GenerateMenus
             ]);
 
             // Submenu: Log Viewer Logs by Days
-            $accessControl->add('<i class="nav-icon cil-list-numbered"></i> Logs by Days', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-list-ol"></i> Logs by Days', [
                 'route' => 'log-viewer::logs.list',
                 'class' => 'nav-item',
             ])
