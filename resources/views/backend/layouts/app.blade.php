@@ -21,7 +21,7 @@
 
     @stack('before-styles')
 
-    <link rel="stylesheet" href="{{ mix('css/backend.css') }}">
+    @vite(['resources/sass/app-backend.scss', 'resources/js/app-backend.js'])
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
@@ -61,7 +61,7 @@
                 <!-- Main content block -->
                 @yield('content')
                 <!-- / Main content block -->
-                
+
             </div>
         </div>
 
@@ -74,7 +74,6 @@
     <!-- Scripts -->
     @stack('before-scripts')
 
-    <script src="{{ mix('js/backend.js') }}"></script>
 
     @livewireScripts
 

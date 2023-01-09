@@ -7,9 +7,7 @@ $notifications_latest = optional($notifications)->take(5);
 <header class="header header-sticky mb-4">
     <div class="container-fluid">
         <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-            <svg class="icon icon-lg">
-                <use xlink:href="/fonts/free.svg#cil-menu"></use>
-            </svg>
+            <i class="fa-solid fa-bars"></i>
         </button>
         <a class="header-brand d-md-none" href="#">
             <img class="sidebar-brand-full" src="{{asset("img/backend-logo.jpg")}}" height="46" alt="{{ app_name() }}">
@@ -20,9 +18,7 @@ $notifications_latest = optional($notifications)->take(5);
         <ul class="header-nav ms-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <svg class="icon icon-lg">
-                        <use xlink:href="/fonts/free.svg#cil-bell"></use>
-                    </svg>
+                    <i class="fa-regular fa-bell"></i>
                     &nbsp; @if($notifications_count)<span class="badge badge-pill bg-danger">{{$notifications_count}}</span>@endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -120,7 +116,7 @@ $notifications_latest = optional($notifications)->take(5);
 </header>
 
 @push('after-scripts')
-<script type="text/javascript">
+<script type="module">
     $(function() {
         // Show the time
         showTime();
