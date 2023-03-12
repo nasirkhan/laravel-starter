@@ -489,3 +489,43 @@ if (! function_exists('date_today')) {
         return $str;
     }
 }
+
+if (! function_exists('language_direction')) {
+    /**
+     * return direction of languages.
+     *
+     * @param $language
+     * @return string
+     */
+    function language_direction($language = null)
+    {
+        if (empty($language)) {
+            $language = app()->getLocale();
+        }
+        $language = strtolower(substr($language, 0, 2));
+        $rtlLanguages = [
+            'ar', //  'العربية', Arabic
+            'arc', //  'ܐܪܡܝܐ', Aramaic
+            'bcc', //  'بلوچی مکرانی', Southern Balochi
+            'bqi', //  'بختياري', Bakthiari
+            'ckb', //  'Soranî / کوردی', Sorani Kurdish
+            'dv', //  'ދިވެހިބަސް', Dhivehi
+            'fa', //  'فارسی', Persian
+            'glk', //  'گیلکی', Gilaki
+            'he', //  'עברית', Hebrew
+            'lrc', //- 'لوری', Northern Luri
+            'mzn', //  'مازِرونی', Mazanderani
+            'pnb', //  'پنجابی', Western Punjabi
+            'ps', //  'پښتو', Pashto
+            'sd', //  'سنڌي', Sindhi
+            'ug', //  'Uyghurche / ئۇيغۇرچە', Uyghur
+            'ur', //  'اردو', Urdu
+            'yi', //  'ייִדיש', Yiddish
+        ];
+        if (in_array($language, $rtlLanguages)) {
+            return 'rtl';
+        }
+
+        return 'ltr';
+    }
+}

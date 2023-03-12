@@ -37,17 +37,39 @@ php artisan starter:insert-demo-data --fresh
 
 We have created a number of custom commands for the project. The commands are listed below with a brief about the use of it.
 
+## Create New module
+
+To create a project use the following command, you have repalce the MODULE_NAME with the name of the module.
+
+```php
+php artisan module:build MODULE_NAME
+```
+
+You may want to use `--force` option to overwrite the existing module. if you use this option, it will replace all the exisitng files with the defalut stub files.
+
+```php
+php artisan module:build MODULE_NAME --force
+```
+
 ## Clear All Cache
 
-`composer clear-all`
+```bash
+composer clear-all
+```
 
 this is a shortcut command clear all cache including config, route and more
 
 ## Code Style Fix
 
-`composer fix-cs`
+```bash
+composer fix-cs
+```
 
 apply the code style fix by this command.
+
+## Role - Permissiosn
+
+A number of custom commands are available to add and update role-permissions. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples. 
 
 
 # Features
@@ -106,7 +128,7 @@ It is a modular application, and a number of modules are installed by default. I
 
 ## Installation
 
-Follow the steps mentioned below to install and run the project.
+Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
 1. Clone or download the repository
 2. Go to the project directory and run `composer install`

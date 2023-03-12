@@ -49,16 +49,11 @@ $notifications_latest = optional($notifications)->take(5);
                     <div class="dropdown-header bg-light py-2">
                         <div class="fw-semibold">{{ __('Change language') }}</div>
                     </div>
-
-                    <a class="dropdown-item" href="{{route("language.switch", "bn")}}">
-                        বাংলা (BN)
+                    @foreach(config('app.available_locales') as $locale => $title)
+                    <a class="dropdown-item" href="{{route("language.switch", $locale)}}">
+                        {{ $title }}
                     </a>
-                    <a class="dropdown-item" href="{{route("language.switch", "en")}}">
-                        English (EN)
-                    </a>
-                    <a class="dropdown-item" href="{{route("language.switch", "vi")}}">
-                        Vietnamese (VI)
-                    </a>
+                    @endforeach
                 </div>
             </li>
 

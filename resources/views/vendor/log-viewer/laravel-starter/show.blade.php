@@ -32,7 +32,7 @@ $module_icon = "fa-solid fa-list-check";
 
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <x-buttons.return-back />
+                    <x-backend.buttons.return-back />
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@ $module_icon = "fa-solid fa-list-check";
                                     <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-success">
                                         <i class="fas fa-download"></i>&nbsp;@lang('Download')
                                     </a>
-                                    <a href="#delete-log-modal" class="btn btn-danger ms-1" data-toggle="modal">
+                                    <a href="#delete-log-modal" class="btn btn-danger ms-1" data-coreui-toggle="modal">
                                         <i class="fas fa-trash-alt"></i>&nbsp;@lang('Delete')
                                     </a>
                                 </div>
@@ -171,7 +171,7 @@ $module_icon = "fa-solid fa-list-check";
                                                 </td>
                                                 <td class="text-end">
                                                     @if ($entry->hasStack())
-                                                        <a class="btn btn-sm btn-light" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                                        <a class="btn btn-sm btn-light" role="button" data-coreui-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
                                                             <i class="fa fa-toggle-on"></i> Stack
                                                         </a>
                                                     @endif
@@ -219,15 +219,13 @@ $module_icon = "fa-solid fa-list-check";
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">DELETE LOG FILE</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to <span class="badge bg-danger">DELETE</span> this log file <span class="badge badge-primary">{{ $log->date }}</span> ?</p>
+                    <p>Are you sure you want to <span class="badge bg-danger">DELETE</span> this log file <span class="badge text-bg-warning">{{ $log->date }}</span> ?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-secondary mr-auto" data-coreui-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">DELETE FILE</button>
                 </div>
             </div>
