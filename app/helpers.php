@@ -46,7 +46,6 @@ if (! function_exists('user_registration')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('label_case')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -124,7 +123,6 @@ if (! function_exists('show_column_value')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('fielf_required')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -190,7 +188,6 @@ if (! function_exists('humanFilesize')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('encode_id')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -210,7 +207,6 @@ if (! function_exists('encode_id')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('decode_id')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -235,7 +231,6 @@ if (! function_exists('decode_id')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('slug_format')) {
-
     /**
      * Format a string to Slug.
      */
@@ -263,7 +258,6 @@ if (! function_exists('slug_format')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('icon')) {
-
     /**
      * Format a string to Slug.
      */
@@ -284,7 +278,6 @@ if (! function_exists('icon')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('logUserAccess')) {
-
     /**
      * Format a string to Slug.
      */
@@ -308,7 +301,6 @@ if (! function_exists('logUserAccess')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('bn2enNumber')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -331,7 +323,6 @@ if (! function_exists('bn2enNumber')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('en2bnNumber')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -354,7 +345,6 @@ if (! function_exists('en2bnNumber')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('en2bnDate')) {
-
     /**
      * Convert a English number to Bengali.
      */
@@ -448,7 +438,6 @@ if (! function_exists('banglaDate')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('generate_rgb_code')) {
-
     /**
      * Prepare the Column Name for Lables.
      */
@@ -473,7 +462,6 @@ if (! function_exists('generate_rgb_code')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('date_today')) {
-
     /**
      * Return Date with weekday.
      *

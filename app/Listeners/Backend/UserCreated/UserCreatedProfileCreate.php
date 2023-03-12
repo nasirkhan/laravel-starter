@@ -5,6 +5,7 @@ namespace App\Listeners\Backend\UserCreated;
 use App\Events\Backend\UserCreated;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 class UserCreatedProfileCreate implements ShouldQueue
@@ -46,6 +47,6 @@ class UserCreatedProfileCreate implements ShouldQueue
         Log::info('UserCreatedProfileCreate: '.$userprofile->name.'(Id:'.$userprofile->user_id.')');
 
         // Clear Cache
-        \Artisan::call('cache:clear');
+        Artisan::call('cache:clear');
     }
 }
