@@ -24,18 +24,18 @@ class PostsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|max:191',
-            'slug'              => 'nullable|max:191',
-            'intro'             => 'required',
-            'content'           => 'required',
-            'type'              => 'required|max:191',
-            'category_id'       => 'required|numeric',
-            'created_by_alias'  => 'nullable|max:191',
-            'featured_image'    => 'required|max:191',
-            'type'              => 'required',
-            'is_featured'       => 'required',
-            'order'             => 'nullable|numeric',
-            'status'            => 'required',
+            'name' => 'required|max:191',
+            'slug' => 'nullable|max:191',
+            'intro' => 'required',
+            'content' => 'required',
+            'type' => 'required|max:191',
+            'category_id' => 'required|numeric',
+            'created_by_alias' => 'nullable|max:191',
+            'featured_image' => 'required|max:191',
+            'type' => 'required',
+            'is_featured' => 'required',
+            'order' => 'nullable|numeric',
+            'status' => 'required',
         ];
     }
 }

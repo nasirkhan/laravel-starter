@@ -49,7 +49,6 @@ class InsertDemoContents extends Command
 
         if ($fresh) {
             if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
-
                 // Disable foreign key checks!
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 

@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 * --------------------------------------------------------------------
 */
 Route::group(['namespace' => '\Modules\Tag\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
-
     /*
      *
      *  Tags Routes

@@ -30,19 +30,19 @@ class UserFactory extends Factory
         $name = $first_name.' '.$last_name;
 
         return [
-            'first_name'        => $first_name,
-            'last_name'         => $last_name,
-            'name'              => $name,
-            'email'             => $this->faker->unique()->safeEmail(),
-            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token'    => Str::random(10),
-            'mobile'            => $this->faker->phoneNumber,
-            'date_of_birth'     => $this->faker->date,
-            'avatar'            => 'img/default-avatar.jpg',
-            'gender'            => $this->faker->randomElement(['Male', 'Female', 'Other']),
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'name' => $name,
+            'email' => $this->faker->unique()->safeEmail(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'mobile' => $this->faker->phoneNumber,
+            'date_of_birth' => $this->faker->date,
+            'avatar' => 'img/default-avatar.jpg',
+            'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
             'email_verified_at' => now(),
-            'created_at'        => now(),
-            'updated_at'        => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

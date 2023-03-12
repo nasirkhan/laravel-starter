@@ -86,7 +86,6 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -173,7 +172,6 @@ class RolesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -191,7 +189,7 @@ class RolesController extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
 
         $this->validate($request, [
-            'name'        => 'required|max:20|unique:roles,name,'.$id,
+            'name' => 'required|max:20|unique:roles,name,'.$id,
             'permissions' => 'required',
         ]);
 

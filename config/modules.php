@@ -216,7 +216,7 @@ return [
     'composer' => [
         'vendor' => 'nasirkhan',
         'author' => [
-            'name'  => 'Nasir Khan',
+            'name' => 'Nasir Khan',
             'email' => 'nasir8891@gmail.com',
         ],
         'composer-output' => false,

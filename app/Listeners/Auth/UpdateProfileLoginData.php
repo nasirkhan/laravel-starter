@@ -20,7 +20,6 @@ class UpdateProfileLoginData
     /**
      * Handle the event.
      *
-     * @param  UserLoginSuccess  $event
      * @return void
      */
     public function handle(UserLoginSuccess $event)

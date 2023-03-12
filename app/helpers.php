@@ -482,7 +482,6 @@ if (! function_exists('language_direction')) {
     /**
      * return direction of languages.
      *
-     * @param $language
      * @return string
      */
     function language_direction($language = null)

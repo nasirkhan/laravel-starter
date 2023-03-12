@@ -31,8 +31,8 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.21",
-        "friendsofphp/php-cs-fixer": "^3.14",
         "laravel/breeze": "^1.19",
+        "laravel/pint": "^1.6",
         "laravel/sail": "^1.21",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",

@@ -74,10 +74,10 @@ class SocialLoginController extends Controller
             return $authUser;
         } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             UserProvider::create([
-                'user_id'     => $authUser->id,
+                'user_id' => $authUser->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
-                'provider'    => $provider,
+                'avatar' => $socialUser->getAvatar(),
+                'provider' => $provider,
             ]);
 
             return $authUser;
@@ -98,10 +98,10 @@ class SocialLoginController extends Controller
             }
 
             $user = User::create([
-                'first_name'  => $first_name,
-                'last_name'   => $last_name,
-                'name'        => $name,
-                'email'       => $email,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'name' => $name,
+                'email' => $email,
             ]);
 
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
@@ -111,10 +111,10 @@ class SocialLoginController extends Controller
             event(new UserRegistered($user));
 
             UserProvider::create([
-                'user_id'     => $user->id,
+                'user_id' => $user->id,
                 'provider_id' => $socialUser->getId(),
-                'avatar'      => $socialUser->getAvatar(),
-                'provider'    => $provider,
+                'avatar' => $socialUser->getAvatar(),
+                'provider' => $provider,
             ]);
 
             return $user;

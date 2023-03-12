@@ -136,7 +136,7 @@ class PostsController extends Controller
 
         foreach ($query_data as $row) {
             $$module_name[] = [
-                'id'   => $row->id,
+                'id' => $row->id,
                 'text' => $row->name,
             ];
         }

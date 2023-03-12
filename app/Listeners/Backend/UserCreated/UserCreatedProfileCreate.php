@@ -23,7 +23,6 @@ class UserCreatedProfileCreate implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  UserCreated  $event
      * @return void
      */
     public function handle(UserCreated $event)

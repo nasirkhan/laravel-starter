@@ -10,19 +10,17 @@ class GenerateMenus
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         \Menu::make('admin_sidebar', function ($menu) {
-
             // Articles Dropdown
             $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> '.__('Article'), [
                 'class' => 'nav-group',
             ])
             ->data([
-                'order'         => 81,
+                'order' => 81,
                 'activematches' => [
                     'admin/posts*',
                     'admin/categories*',
@@ -31,7 +29,7 @@ class GenerateMenus
             ]);
             $articles_menu->link->attr([
                 'class' => 'nav-link nav-group-toggle',
-                'href'  => '#',
+                'href' => '#',
             ]);
 
             // Submenu: Posts
@@ -40,9 +38,9 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 82,
+                'order' => 82,
                 'activematches' => 'admin/posts*',
-                'permission'    => ['edit_posts'],
+                'permission' => ['edit_posts'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -53,9 +51,9 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 83,
+                'order' => 83,
                 'activematches' => 'admin/categories*',
-                'permission'    => ['edit_categories'],
+                'permission' => ['edit_categories'],
             ])
             ->link->attr([
                 'class' => 'nav-link',

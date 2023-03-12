@@ -14,8 +14,6 @@ class Setting extends BaseModel
     /**
      * Add a settings value.
      *
-     * @param $key
-     * @param $val
      * @param  string  $type
      * @return bool
      */
@@ -31,7 +29,6 @@ class Setting extends BaseModel
     /**
      * Get a settings value.
      *
-     * @param $key
      * @param  null  $default
      * @return bool|int|mixed
      */
@@ -49,8 +46,6 @@ class Setting extends BaseModel
     /**
      * Set a value for setting.
      *
-     * @param $key
-     * @param $val
      * @param  string  $type
      * @return bool
      */
@@ -59,7 +54,7 @@ class Setting extends BaseModel
         if ($setting = self::getAllSettings()->where('name', $key)->first()) {
             return $setting->update([
                 'name' => $key,
-                'val'  => $val,
+                'val' => $val,
                 'type' => $type, ]) ? $val : false;
         }
 
@@ -69,7 +64,6 @@ class Setting extends BaseModel
     /**
      * Remove a setting.
      *
-     * @param $key
      * @return bool
      */
     public static function remove($key)
@@ -84,7 +78,6 @@ class Setting extends BaseModel
     /**
      * Check if setting exists.
      *
-     * @param $key
      * @return bool
      */
     public static function has($key)
@@ -108,7 +101,6 @@ class Setting extends BaseModel
     /**
      * Get the data type of a setting.
      *
-     * @param $field
      * @return mixed
      */
     public static function getDataType($field)
@@ -123,7 +115,6 @@ class Setting extends BaseModel
     /**
      * Get default value for a setting.
      *
-     * @param $field
      * @return mixed
      */
     public static function getDefaultValueForField($field)
@@ -136,8 +127,6 @@ class Setting extends BaseModel
     /**
      * Get default value from config if no value passed.
      *
-     * @param $key
-     * @param $default
      * @return mixed
      */
     private static function getDefaultValue($key, $default)
@@ -158,8 +147,6 @@ class Setting extends BaseModel
     /**
      * caste value into respective type.
      *
-     * @param $val
-     * @param $castTo
      * @return bool|int
      */
     private static function castValue($val, $castTo)
