@@ -23,7 +23,7 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         $first_name = $this->faker->firstName;
         $last_name = $this->faker->lastName;

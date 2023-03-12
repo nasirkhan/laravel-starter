@@ -23,6 +23,7 @@
     @stack('before-styles')
 
     @vite(['resources/css/app-frontend.css'])
+    @vite(['resources/js/app-frontend.js'])
 
     @stack('after-styles')
 
@@ -45,7 +46,6 @@
 <!-- Scripts -->
 @stack('before-scripts')
 
-@vite(['resources/js/app-frontend.js'])
 
 @stack('after-scripts')
 
