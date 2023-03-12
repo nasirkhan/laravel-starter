@@ -20,10 +20,10 @@ class Comment extends BaseModel
 
     protected $table = 'comments';
 
-    protected $dates = [
-        'deleted_at',
-        'published_at',
-        'moderated_at',
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'published_at' => 'datetime',
+        'moderated_at' => 'datetime',
     ];
 
     public function getActivitylogOptions(): LogOptions
@@ -74,10 +74,10 @@ class Comment extends BaseModel
     /**
      * Purifiy Comment field value.
      */
-    public function setCommentAttribute($value)
-    {
-        $this->attributes['comment'] = clean($value);
-    }
+    // public function setCommentAttribute($value)
+    // {
+    //     $this->attributes['comment'] = clean($value);
+    // }
 
     public function setUserIdAttribute($value)
     {

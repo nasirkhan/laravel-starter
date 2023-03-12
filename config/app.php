@@ -121,10 +121,10 @@ return [
     */
 
     'available_locales' => [
-        'ar'=> 'العربی(AR)',
-        'bn'=> 'বাংলা (BN)',
-        'en'=> 'English (EN)',
-        'vi'=> 'Vietnamese (VI)',
+        'ar' => 'العربی(AR)',
+        'bn' => 'বাংলা (BN)',
+        'en' => 'English (EN)',
+        'vi' => 'Vietnamese (VI)',
     ],
 
     /*

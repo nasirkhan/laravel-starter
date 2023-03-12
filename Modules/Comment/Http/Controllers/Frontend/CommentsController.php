@@ -100,9 +100,9 @@ class CommentsController extends Controller
         $module_action = 'Store';
 
         $data = [
-            'name'      => $request->name,
-            'comment'   => $request->comment,
-            'user_id'   => (isset($request->user_id)) ? decode_id($request->user_id) : null,
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'user_id' => (isset($request->user_id)) ? decode_id($request->user_id) : null,
             'parent_id' => (isset($request->parent_id)) ? decode_id($request->parent_id) : null,
         ];
 

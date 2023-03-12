@@ -10,24 +10,22 @@ trait Authorizable
      * List of default method names of the Controllers and the related permission.
      */
     private $abilities = [
-        'index'     => 'view',
-        'index_data'=> 'view',
-        'index_list'=> 'view',
-        'edit'      => 'edit',
-        'show'      => 'view',
-        'update'    => 'edit',
-        'create'    => 'add',
-        'store'     => 'add',
-        'destroy'   => 'delete',
-        'restore'   => 'restore',
-        'trashed'   => 'restore',
+        'index' => 'view',
+        'index_data' => 'view',
+        'index_list' => 'view',
+        'edit' => 'edit',
+        'show' => 'view',
+        'update' => 'edit',
+        'create' => 'add',
+        'store' => 'add',
+        'destroy' => 'delete',
+        'restore' => 'restore',
+        'trashed' => 'restore',
     ];
 
     /**
      * Override of callAction to perform the authorization before.
      *
-     * @param $method
-     * @param $parameters
      * @return mixed
      */
     public function callAction($method, $parameters)

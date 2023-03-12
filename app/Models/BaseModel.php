@@ -23,9 +23,9 @@ class BaseModel extends Model implements HasMedia
         '_method',
     ];
 
-    protected $dates = [
-        'deleted_at',
-        'published_at',
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'published_at' => 'datetime',
     ];
 
     protected static function boot()

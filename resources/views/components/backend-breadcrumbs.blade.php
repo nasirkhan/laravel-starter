@@ -1,3 +1,3 @@
-<li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}"><i class="c-icon cil-speedometer"></i> {{__('Dashboard')}}</a></li>
+<li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}"><i class="fa-solid fa-cubes"></i> {{__('Dashboard')}}</a></li>
 
 {!! $slot !!}

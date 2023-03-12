@@ -71,10 +71,10 @@ class NewCommentAdded extends Notification implements ShouldQueue
                 ->attachment(function ($attachment) use ($comment) {
                     $attachment->title('Comment '.$comment->id, route('backend.comments.show', $comment->id))
                     ->fields([
-                        'Post'    => $comment->post_name,
-                        'User'    => $comment->user_name,
+                        'Post' => $comment->post_name,
+                        'User' => $comment->user_name,
                         'Comment' => $comment->name,
-                        'Status'  => $comment->status_label_text,
+                        'Status' => $comment->status_label_text,
                     ]);
                 });
     }
@@ -95,13 +95,13 @@ class NewCommentAdded extends Notification implements ShouldQueue
         $url_backend = route('backend.comments.show', $comment->id);
 
         return [
-            'title'         => 'New Comment for review!',
-            'module'        => 'Comment',
-            'type'          => 'created', // created, published, viewed,
-            'icon'          => 'fas fa-comments',
-            'text'          => $text,
-            'url_backend'   => $url_backend,
-            'url_frontend'  => '',
+            'title' => 'New Comment for review!',
+            'module' => 'Comment',
+            'type' => 'created', // created, published, viewed,
+            'icon' => 'fas fa-comments',
+            'text' => $text,
+            'url_backend' => $url_backend,
+            'url_frontend' => '',
         ];
     }
 }

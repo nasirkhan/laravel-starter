@@ -145,7 +145,6 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -165,8 +164,8 @@ class UserController extends Controller
 
         $this->validate($request, [
             'first_name' => 'required|string|max:191',
-            'last_name'  => 'required|string|max:191',
-            'avatar'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'last_name' => 'required|string|max:191',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $module_name = $this->module_name;
@@ -238,7 +237,6 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -301,7 +299,6 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

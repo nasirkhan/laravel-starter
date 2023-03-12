@@ -32,7 +32,6 @@ class TagsController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -98,7 +97,6 @@ class TagsController extends BackendBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */

@@ -14,6 +14,7 @@ class UserLoginSuccess
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
+
     public $request;
 
     /**

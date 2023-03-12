@@ -87,7 +87,7 @@ class BackendBaseController extends Controller
 
         foreach ($query_data as $row) {
             $$module_name[] = [
-                'id'   => $row->id,
+                'id' => $row->id,
                 'text' => $row->name.' (Slug: '.$row->slug.')',
             ];
         }
@@ -163,7 +163,6 @@ class BackendBaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -243,7 +242,6 @@ class BackendBaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */

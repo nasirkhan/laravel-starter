@@ -29,10 +29,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password_confirmation',
     ];
 
-    protected $dates = [
-        'deleted_at',
-        'date_of_birth',
-        'email_verified_at',
+    protected $casts = [
+        'deleted_at' => 'datetime',
+        'date_of_birth' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
 
     /**

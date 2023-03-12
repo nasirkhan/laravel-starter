@@ -11,19 +11,18 @@ class GenerateMenus
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         \Menu::make('admin_sidebar', function ($menu) {
             // Dashboard
-            $menu->add('<i class="nav-icon cil-speedometer"></i> '.__('Dashboard'), [
+            $menu->add('<i class="nav-icon fa-solid fa-cubes"></i> '.__('Dashboard'), [
                 'route' => 'backend.dashboard',
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 1,
+                'order' => 1,
                 'activematches' => 'admin/dashboard*',
             ])
             ->link->attr([
@@ -36,9 +35,9 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 99,
+                'order' => 99,
                 'activematches' => 'admin/notifications*',
-                'permission'    => [],
+                'permission' => [],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -49,8 +48,8 @@ class GenerateMenus
                 'class' => 'nav-title',
             ])
             ->data([
-                'order'         => 101,
-                'permission'    => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
+                'order' => 101,
+                'permission' => ['edit_settings', 'view_backups', 'view_users', 'view_roles', 'view_logs'],
             ]);
 
             // Settings
@@ -59,9 +58,9 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 102,
+                'order' => 102,
                 'activematches' => 'admin/settings*',
-                'permission'    => ['edit_settings'],
+                'permission' => ['edit_settings'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -73,54 +72,54 @@ class GenerateMenus
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 103,
+                'order' => 103,
                 'activematches' => 'admin/backups*',
-                'permission'    => ['view_backups'],
+                'permission' => ['view_backups'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
 
             // Access Control Dropdown
-            $accessControl = $menu->add('<i class="nav-icon cil-shield-alt"></i> Access Control', [
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-user-gear"></i> Access Control', [
                 'class' => 'nav-group',
             ])
             ->data([
-                'order'         => 104,
+                'order' => 104,
                 'activematches' => [
                     'admin/users*',
                     'admin/roles*',
                 ],
-                'permission'    => ['view_users', 'view_roles'],
+                'permission' => ['view_users', 'view_roles'],
             ]);
             $accessControl->link->attr([
                 'class' => 'nav-link nav-group-toggle',
-                'href'  => '#',
+                'href' => '#',
             ]);
 
             // Submenu: Users
-            $accessControl->add('<i class="nav-icon cil-people"></i> Users', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-group"></i> Users', [
                 'route' => 'backend.users.index',
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 105,
+                'order' => 105,
                 'activematches' => 'admin/users*',
-                'permission'    => ['view_users'],
+                'permission' => ['view_users'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
             ]);
 
             // Submenu: Roles
-            $accessControl->add('<i class="nav-icon cil-people"></i> Roles', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-user-shield"></i> Roles', [
                 'route' => 'backend.roles.index',
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 106,
+                'order' => 106,
                 'activematches' => 'admin/roles*',
-                'permission'    => ['view_roles'],
+                'permission' => ['view_roles'],
             ])
             ->link->attr([
                 'class' => 'nav-link',
@@ -128,28 +127,28 @@ class GenerateMenus
 
             // Log Viewer
             // Log Viewer Dropdown
-            $accessControl = $menu->add('<i class="nav-icon cil-list-rich"></i> Log Viewer', [
+            $accessControl = $menu->add('<i class="nav-icon fa-solid fa-list-check"></i> Log Viewer', [
                 'class' => 'nav-group',
             ])
             ->data([
-                'order'         => 107,
+                'order' => 107,
                 'activematches' => [
                     'log-viewer*',
                 ],
-                'permission'    => ['view_logs'],
+                'permission' => ['view_logs'],
             ]);
             $accessControl->link->attr([
                 'class' => 'nav-link nav-group-toggle',
-                'href'  => '#',
+                'href' => '#',
             ]);
 
             // Submenu: Log Viewer Dashboard
-            $accessControl->add('<i class="nav-icon cil-list"></i> Dashboard', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-list"></i> Dashboard', [
                 'route' => 'log-viewer::dashboard',
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 108,
+                'order' => 108,
                 'activematches' => 'admin/log-viewer',
             ])
             ->link->attr([
@@ -157,12 +156,12 @@ class GenerateMenus
             ]);
 
             // Submenu: Log Viewer Logs by Days
-            $accessControl->add('<i class="nav-icon cil-list-numbered"></i> Logs by Days', [
+            $accessControl->add('<i class="nav-icon fa-solid fa-list-ol"></i> Logs by Days', [
                 'route' => 'log-viewer::logs.list',
                 'class' => 'nav-item',
             ])
             ->data([
-                'order'         => 109,
+                'order' => 109,
                 'activematches' => 'admin/log-viewer/logs*',
             ])
             ->link->attr([

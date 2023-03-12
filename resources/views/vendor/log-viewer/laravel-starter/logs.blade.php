@@ -1,7 +1,7 @@
 @extends ('backend.layouts.app')
 
 <?php
-$module_icon = "c-icon cil-list-rich";
+$module_icon = "fa-solid fa-list-check";
 ?>
 @section('title') {{ __('Log Viewer Dashboard') }} @endsection
 
