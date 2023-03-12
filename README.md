@@ -62,10 +62,10 @@ this is a shortcut command clear all cache including config, route and more
 ## Code Style Fix
 
 ```bash
-composer fix-cs
+composer pint
 ```
 
-apply the code style fix by this command.
+apply the code style fix by this command. This command uses the Laravel Pint package: https://laravel.com/docs/10.x/pint
 
 ## Role - Permissiosn
 

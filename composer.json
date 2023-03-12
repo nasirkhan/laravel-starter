@@ -78,11 +78,8 @@
             "@php artisan config:clear",
             "@php artisan cache:forget spatie.permission.cache"
         ],
-        "fix-cs-dry": [
-            "vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots"
-        ],
-        "fix-cs": [
-            "vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+        "pint": [
+            "pint"
         ]
     },
     "extra": {
