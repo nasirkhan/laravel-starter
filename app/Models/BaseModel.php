@@ -4,10 +4,10 @@ namespace App\Models;
 
 use App\Models\Traits\HasHashedMediaTrait;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -78,9 +78,9 @@ class BaseModel extends Model implements HasMedia
      */
     public function getTableColumns()
     {
-        $table_info_columns = DB::select(DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
+        $columns = DB::select('SHOW COLUMNS FROM '.$this->getTable());
 
-        return $table_info_columns;
+        return $columns;
     }
 
     /**
