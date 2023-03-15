@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80e3865785a4e089bfedbd4ce9f6bf67",
+    "content-hash": "ec7c9f3facb406a9c135f9c0e6b98ff7",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -2828,20 +2828,20 @@
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "v0.4.0",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nasirkhan/module-manager.git",
-                "reference": "f04a6dc31869a884ae7eead5312db0f8ca828993"
+                "reference": "975aabcae24c9ea084ccec2419b7c82ba7474ef1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/f04a6dc31869a884ae7eead5312db0f8ca828993",
-                "reference": "f04a6dc31869a884ae7eead5312db0f8ca828993",
+                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/975aabcae24c9ea084ccec2419b7c82ba7474ef1",
+                "reference": "975aabcae24c9ea084ccec2419b7c82ba7474ef1",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "type": "library",
             "extra": {
@@ -2880,9 +2880,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nasirkhan/module-manager/issues",
-                "source": "https://github.com/nasirkhan/module-manager/tree/v0.4.0"
+                "source": "https://github.com/nasirkhan/module-manager/tree/v0.6.0"
             },
-            "time": "2022-12-28T08:32:13+00:00"
+            "time": "2023-03-15T18:48:02+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -4787,16 +4787,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.14.1",
+            "version": "1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
-                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/bab62023a4745a61170ad5424184533685e73c2d",
+                "reference": "bab62023a4745a61170ad5424184533685e73c2d",
                 "shasum": ""
             },
             "require": {
@@ -4835,7 +4835,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.2"
             },
             "funding": [
                 {
@@ -4843,7 +4843,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-27T15:33:45+00:00"
+            "time": "2023-03-14T16:41:21+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -8277,35 +8277,38 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v7.1.0",
+            "version": "v7.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "2b97fed4950cf0ff148c18b853975ec8ea135e90"
+                "reference": "f502ff3b2051124c89b4dd3a8a497ca65f3ce26c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/2b97fed4950cf0ff148c18b853975ec8ea135e90",
-                "reference": "2b97fed4950cf0ff148c18b853975ec8ea135e90",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/f502ff3b2051124c89b4dd3a8a497ca65f3ce26c",
+                "reference": "f502ff3b2051124c89b4dd3a8a497ca65f3ce26c",
                 "shasum": ""
             },
             "require": {
-                "filp/whoops": "^2.14.6",
+                "filp/whoops": "^2.15.1",
                 "nunomaduro/termwind": "^1.15.1",
                 "php": "^8.1.0",
                 "symfony/console": "^6.2.7"
             },
+            "conflict": {
+                "phpunit/phpunit": "<10.0.16"
+            },
             "require-dev": {
-                "brianium/paratest": "^7.1.0",
-                "laravel/framework": "^10.2.0",
+                "brianium/paratest": "^7.1.1",
+                "laravel/framework": "^10.3.3",
                 "laravel/pint": "^1.6.0",
-                "laravel/sail": "^1.21.1",
+                "laravel/sail": "^1.21.2",
                 "laravel/sanctum": "^3.2.1",
                 "laravel/tinker": "^2.8.1",
-                "nunomaduro/larastan": "^2.4.1",
-                "orchestra/testbench-core": "^8.0.3",
+                "nunomaduro/larastan": "^2.5.1",
+                "orchestra/testbench-core": "^8.0.5",
                 "pestphp/pest": "^2.0.0",
-                "phpunit/phpunit": "^10.0.14",
+                "phpunit/phpunit": "^10.0.16",
                 "sebastian/environment": "^6.0.0",
                 "spatie/laravel-ignition": "^2.0.0"
             },
@@ -8366,7 +8369,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-03-03T10:00:22+00:00"
+            "time": "2023-03-14T14:34:49+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -8799,16 +8802,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.0.15",
+            "version": "10.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9b0c2245ef173a3d9546f6a4393a85d60eabe071"
+                "reference": "07d386a11ac7094032900f07cada1c8975d16607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b0c2245ef173a3d9546f6a4393a85d60eabe071",
-                "reference": "9b0c2245ef173a3d9546f6a4393a85d60eabe071",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/07d386a11ac7094032900f07cada1c8975d16607",
+                "reference": "07d386a11ac7094032900f07cada1c8975d16607",
                 "shasum": ""
             },
             "require": {
@@ -8879,7 +8882,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.0.15"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.0.16"
             },
             "funding": [
                 {
@@ -8895,7 +8898,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-09T06:43:13+00:00"
+            "time": "2023-03-13T09:02:40+00:00"
         },
         {
             "name": "sebastian/cli-parser",
