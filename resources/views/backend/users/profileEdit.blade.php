@@ -30,7 +30,7 @@
         </x-backend.section-header>
 
         <hr>
-        
+
         <div class="row mt-4 mb-4">
             <div class="col">
                 {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}
@@ -266,8 +266,8 @@
 
 @push ('after-scripts')
 <!-- Select2 Bootstrap 4 Core UI -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="text/javascript">
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="module">
     $(document).ready(function() {
         $('.select2').select2({
             theme: "bootstrap",
@@ -278,10 +278,10 @@
 </script>
 
 <!-- Date Time Picker & Moment Js-->
-<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
-<script type="text/javascript">
+<script type="module">
     $(function() {
         $('.datetime').datetimepicker({
             format: 'YYYY-MM-DD',

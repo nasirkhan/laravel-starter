@@ -283,7 +283,7 @@
 @endpush
 
 @push ('after-scripts')
-<script type="text/javascript">
+<script type="module">
     $(document).ready(function() {
         $(document).on('select2:open', () => {
             document.querySelector('.select2-search__field').focus();
@@ -337,7 +337,7 @@
 </script>
 
 <!-- Date Time Picker & Moment Js-->
-<script type="text/javascript">
+<script type="module">
     $(function() {
         $('.datetime').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -356,10 +356,10 @@
     });
 </script>
 
-<script type="text/javascript" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+<script type="module" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+<script type="module" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
-<script type="text/javascript">
+<script type="module">
     CKEDITOR.replace('content', {
         filebrowserImageBrowseUrl: '/file-manager/ckeditor',
         language: '{{App::getLocale()}}',

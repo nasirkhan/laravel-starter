@@ -5,6 +5,6 @@
 
 @push('after-scripts')
 <!-- Date Time Picker & Moment Js-->
-<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 @endpush

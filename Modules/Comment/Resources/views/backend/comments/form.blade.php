@@ -164,7 +164,7 @@ if (isset($$module_name_singular)){
 <!-- Select2 Bootstrap 4 Core UI -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-<script type="text/javascript">
+<script type="module">
 $(document).ready(function() {
     $('.select2-users').select2({
         theme: "bootstrap",
@@ -213,10 +213,10 @@ $(document).ready(function() {
 </script>
 
 <!-- Date Time Picker & Moment Js-->
-<script type="text/javascript" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
+<script type="module" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
-<script type="text/javascript">
+<script type="module">
 $(function() {
     $('.datetime').datetimepicker({
         format: 'YYYY-MM-DD HH:mm:ss',

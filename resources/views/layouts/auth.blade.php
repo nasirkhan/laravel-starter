@@ -30,7 +30,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/app.js') }}" defer></script>
 </body>
 
 </html>
