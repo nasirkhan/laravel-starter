@@ -184,11 +184,6 @@
                     <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
                 </div>
             </div>
-            <!-- <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-            </div> -->
-
         </div>
     </div>
 </div>
@@ -270,8 +265,6 @@
         </div>
     </div>
 </div>
-<div></div>
-
 
 <!-- Select2 Library -->
 <x-library.select2 />
@@ -334,29 +327,17 @@
             }
         });
     });
-</script>
 
-<!-- Date Time Picker & Moment Js-->
-<script type="module">
-    $(function() {
-        $('.datetime').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            icons: {
-                time: 'far fa-clock',
-                date: 'far fa-calendar-alt',
-                up: 'fas fa-arrow-up',
-                down: 'fas fa-arrow-down',
-                previous: 'fas fa-chevron-left',
-                next: 'fas fa-chevron-right',
-                today: 'far fa-calendar-check',
-                clear: 'far fa-trash-alt',
-                close: 'fas fa-times'
-            }
-        });
+    // Date Time Picker
+    $('.datetime').tempusDominus({
+        localization: {
+            locale: 'en',
+            format: 'yyyy-MM-dd HH:mm:ss'
+        }
     });
 </script>
 
-<script type="module" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+<!-- <script type="module" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 <script type="module" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 
 <script type="module">
@@ -379,5 +360,5 @@
     function fmSetLink($url) {
         document.getElementById('featured_image').value = $url;
     }
-</script>
+</script> -->
 @endpush
