@@ -112,10 +112,18 @@ $notifications_latest = optional($notifications)->take(5);
 
 @push('after-scripts')
 <script type="module">
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     $(function() {
+    //         // Show the time
+    //         showTime();
+    //     })
+    // }, false);
+
     $(function() {
         // Show the time
         showTime();
     })
+
 
     function showTime() {
         var date = new Date();
