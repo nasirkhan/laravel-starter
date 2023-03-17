@@ -77,7 +77,7 @@
     @stack('before-scripts')
 
     @livewireScripts
-
+    
     @stack('after-scripts')
     <!-- / Scripts -->
 
