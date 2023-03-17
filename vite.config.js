@@ -41,8 +41,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui'),
-            // for CoreUI PRO users
-            // '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui-pro'),
         }
     },
 
