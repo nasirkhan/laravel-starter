@@ -181,7 +181,7 @@
             <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
                 <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+                    <span class="input-group-text">&nbsp;<i class="fas fa-calendar-alt"></i>&nbsp;</span>
                 </div>
             </div>
         </div>
