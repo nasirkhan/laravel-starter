@@ -380,29 +380,4 @@
         }
     });
 </script>
-
-<!-- <script type="module" src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-<script type="module" src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
-
-<script type="module">
-    CKEDITOR.replace('content', {
-        filebrowserImageBrowseUrl: '/file-manager/ckeditor',
-        language: '{{App::getLocale()}}',
-        defaultLanguage: 'en'
-    });
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        document.getElementById('button-image').addEventListener('click', (event) => {
-            event.preventDefault();
-
-            window.open('/file-manager/fm-button', 'fm', 'width=800,height=600');
-        });
-    });
-
-    // set file link
-    function fmSetLink($url) {
-        document.getElementById('featured_image').value = $url;
-    }
-</script> -->
 @endpush
