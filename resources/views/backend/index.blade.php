@@ -17,7 +17,7 @@
                 {{ date_today() }}
             </x-slot>
             <x-slot name="toolbar">
-                <button class="btn btn-outline-primary mb-1" type="button">
+                <button class="btn btn-outline-primary mb-1" type="button" data-toggle="tooltip" data-coreui-placement="top" title="Tooltip">
                     <i class="fa-solid fa-bullhorn"></i>
                 </button>
             </x-slot>
@@ -26,7 +26,7 @@
         <hr>
 
         <!-- Dashboard Content Area -->
-
+        
         <!-- / Dashboard Content Area -->
 
     </div>
