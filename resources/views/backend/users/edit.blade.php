@@ -137,10 +137,10 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row mb-3">
                     {{ html()->label(__('Abilities'))->class('col-sm-2 form-control-label') }}
                     <div class="col">
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-sm-6">
                                 <div class="card card-accent-primary">
                                     <div class="card-header">
@@ -149,7 +149,7 @@
                                     <div class="card-body">
                                         @if ($roles->count())
                                         @foreach($roles as $role)
-                                        <div class="card">
+                                        <div class="card mb-3">
                                             <div class="card-header">
                                                 <div class="checkbox">
                                                     {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-'.$role->id) . "&nbsp;". ucwords($role->name) . "&nbsp;(".$role->name.")")->for('role-'.$role->id) }}
@@ -159,13 +159,13 @@
                                                 @if ($role->id != 1)
                                                 @if ($role->permissions->count())
                                                 @foreach ($role->permissions as $permission)
-                                                <i class="far fa-check-circle mr-1"></i>{{ $permission->name }}&nbsp;
+                                                <i class="far fa-check-circle mr-1"></i>&nbsp;{{ $permission->name }}&nbsp;
                                                 @endforeach
                                                 @else
-                                                None
+                                                @lang('None')
                                                 @endif
                                                 @else
-                                                All Permissions
+                                                @lang('All Permissions')
                                                 @endif
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="form-group">
                             <x-backend.buttons.save />
@@ -216,7 +216,7 @@
                             @if($$module_name_singular->id != 1)
                             <a href="{{route("backend.$module_name.destroy", $$module_name_singular)}}" class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.delete')}}"><i class="fas fa-trash-alt"></i> Delete</a>
                             @endif
-                            <x-backend.buttons.return-back>Cancel</x-backend.buttons.return-back>
+                            <x-backend.buttons.return-back>@lang('Cancel')</x-backend.buttons.return-back>
                         </div>
                     </div>
                 </div>
@@ -227,11 +227,11 @@
         <!--/.row-->
     </div>
     <div class="card-footer">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <small class="float-end text-muted">
-                    Updated: {{$user->updated_at->diffForHumans()}},
-                    Created at: {{$user->created_at->isoFormat('LLLL')}}
+                    @lang('Updated') {{$user->updated_at->diffForHumans()}},
+                    @lang('Created at') {{$user->created_at->isoFormat('LLLL')}}
                 </small>
             </div>
         </div>

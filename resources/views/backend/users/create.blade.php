@@ -34,7 +34,7 @@
                 {{ html()->form('POST', route('backend.users.store'))->class('form-horizontal')->open() }}
                 {{ csrf_field() }}
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.first_name'))->class('col-sm-2 form-control-label')->for('first_name') }}
                     <div class="col-sm-10">
                         {{ html()->text('first_name')
@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.last_name'))->class('col-sm-2 form-control-label')->for('last_name') }}
                     <div class="col-sm-10">
                         {{ html()->text('last_name')
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.email'))->class('col-sm-2 form-control-label')->for('email') }}
 
                     <div class="col-sm-10">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.password'))->class('col-sm-2 form-control-label')->for('password') }}
 
                     <div class="col-sm-10">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-sm-2 form-control-label')->for('password_confirmation') }}
 
                     <div class="col-sm-10">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.status'))->class('col-6 col-sm-2 form-control-label')->for('status') }}
 
                     <div class="col-6 col-sm-10">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-6 col-sm-2 form-control-label')->for('confirmed') }}
 
                     <div class="col-6 col-sm-10">
@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label(__('labels.backend.users.fields.email_credentials'))->class('col-6 col-sm-2 form-control-label')->for('confirmed') }}
 
                     <div class="col-6 col-sm-10">
@@ -114,11 +114,11 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row  mb-3">
                     {{ html()->label('Abilities')->class('col-sm-2 form-control-label') }}
 
                     <div class="col">
-                        <div class="row">
+                        <div class="row  mb-3">
                             <div class="col-12 col-sm-7">
                                 <div class="card card-accent-info">
                                     <div class="card-header">
@@ -127,7 +127,7 @@
                                     <div class="card-body">
                                         @if ($roles->count())
                                         @foreach($roles as $role)
-                                        <div class="card">
+                                        <div class="card mb-3">
                                             <div class="card-header">
                                                 <div class="checkbox">
                                                     {{ html()->label(html()->checkbox('roles[]', old('roles') && in_array($role->name, old('roles')) ? true : false, $role->name)->id('role-'.$role->id) . "&nbsp;" . ucwords($role->name). "&nbsp;(".$role->name.")")->for('role-'.$role->id) }}
@@ -137,10 +137,10 @@
                                                 @if ($role->id != 1)
                                                 @if ($role->permissions->count())
                                                 @foreach ($role->permissions as $permission)
-                                                <i class="far fa-check-circle mr-1"></i>{{ $permission->name }}&nbsp;
+                                                <i class="far fa-check-circle mr-1"></i>&nbsp;{{ $permission->name }}&nbsp;
                                                 @endforeach
                                                 @else
-                                                None
+                                                @lang('None')
                                                 @endif
                                                 @else
                                                 @lang('All Permissions')
@@ -174,7 +174,7 @@
                 </div>
                 <!--form-group-->
 
-                <div class="row">
+                <div class="row  mb-3">
                     <div class="col-6">
                         <div class="form-group">
                             <x-buttons.create title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}">
@@ -198,7 +198,7 @@
     </div>
 
     <div class="card-footer">
-        <div class="row">
+        <div class="row  mb-3">
             <div class="col">
                 <small class="float-end text-muted">
 
