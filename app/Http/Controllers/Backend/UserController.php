@@ -731,7 +731,10 @@ class UserController extends Controller
         $module_action = 'Restore';
 
         $$module_name_singular = $module_model::withTrashed()->find($id);
+
         $$module_name_singular->restore();
+
+        $$module_name_singular->userprofile()->withTrashed()->restore();
 
         event(new UserUpdated($$module_name_singular));
 
