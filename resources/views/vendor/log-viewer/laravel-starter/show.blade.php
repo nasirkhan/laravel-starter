@@ -8,7 +8,7 @@ $module_icon = "fa-solid fa-list-check";
 
 @section('breadcrumbs')
 <x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route="{{ route('log-viewer::dashboard') }}" icon='{{ $module_icon }}' >
+    <x-backend-breadcrumb-item route="{{ route('log-viewer::dashboard') }}" icon='{{ $module_icon }}'>
         {{ __('Log Viewer Dashboard') }}
     </x-backend-breadcrumb-item>
     <x-backend-breadcrumb-item route="{{ route('log-viewer::logs.list') }}">{{ __('Logs by Date') }}</x-backend-breadcrumb-item>
@@ -47,17 +47,17 @@ $module_icon = "fa-solid fa-list-check";
                             <div class="card-header"><i class="fa fa-fw fa-flag"></i> @lang('Levels')</div>
                             <div class="list-group list-group-flush log-menu">
                                 @foreach($log->menu() as $levelKey => $item)
-                                    @if ($item['count'] === 0)
-                                        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
-                                            <span class="level-name">{!! $item['icon'] !!} {{ $item['name'] }}</span>
-                                            <span class="badge empty">{{ $item['count'] }}</span>
-                                        </a>
-                                    @else
-                                        <a href="{{ $item['url'] }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center level-{{ $levelKey }}{{ $level === $levelKey ? ' active' : ''}}">
-                                            <span class="level-name">{!! $item['icon'] !!} {{ $item['name'] }}</span>
-                                            <span class="badge badge-level-{{ $levelKey }}">{{ $item['count'] }}</span>
-                                        </a>
-                                    @endif
+                                @if ($item['count'] === 0)
+                                <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center disabled">
+                                    <span class="level-name">{!! $item['icon'] !!} {{ $item['name'] }}</span>
+                                    <span class="badge empty">{{ $item['count'] }}</span>
+                                </a>
+                                @else
+                                <a href="{{ $item['url'] }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center level-{{ $levelKey }}{{ $level === $levelKey ? ' active' : ''}}">
+                                    <span class="level-name">{!! $item['icon'] !!} {{ $item['name'] }}</span>
+                                    <span class="badge badge-level-{{ $levelKey }}">{{ $item['count'] }}</span>
+                                </a>
+                                @endif
                                 @endforeach
                             </div>
                         </div>
@@ -89,19 +89,19 @@ $module_icon = "fa-solid fa-list-check";
                                         <tr>
                                             <td>Log entries : </td>
                                             <td>
-                                                <span class="badge badge-primary">{{ $entries->total() }}</span>
+                                                <span class="badge text-bg-primary">{{ $entries->total() }}</span>
                                             </td>
                                             <td>Size :</td>
                                             <td>
-                                                <span class="badge badge-primary">{{ $log->size() }}</span>
+                                                <span class="badge text-bg-primary">{{ $log->size() }}</span>
                                             </td>
                                             <td>Created at :</td>
                                             <td>
-                                                <span class="badge badge-primary">{{ $log->createdAt() }}</span>
+                                                <span class="badge text-bg-primary">{{ $log->createdAt() }}</span>
                                             </td>
                                             <td>Updated at :</td>
                                             <td>
-                                                <span class="badge badge-primary">{{ $log->updatedAt() }}</span>
+                                                <span class="badge text-bg-primary">{{ $log->updatedAt() }}</span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -112,12 +112,12 @@ $module_icon = "fa-solid fa-list-check";
                                 <form action="{{ route('log-viewer::logs.search', [$log->date, $level]) }}" method="GET">
                                     <div class=form-group">
                                         <div class="input-group">
-                                            <input id="query" name="query" class="form-control"  value="{!! request('query') !!}" placeholder="Type here to search">
+                                            <input id="query" name="query" class="form-control" value="{!! request('query') !!}" placeholder="Type here to search">
                                             <div class="input-group-append">
                                                 @if (request()->has('query'))
-                                                    <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn btn-secondary">
-                                                        <i class="fa fa-fw fa-times"></i>
-                                                    </a>
+                                                <a href="{{ route('log-viewer::logs.show', [$log->date]) }}" class="btn bg-secondary">
+                                                    <i class="fa fa-fw fa-times"></i>
+                                                </a>
                                                 @endif
                                                 <button id="search-btn" class="btn btn-primary">
                                                     <span class="fa fa-fw fa-search"></span>
@@ -132,11 +132,11 @@ $module_icon = "fa-solid fa-list-check";
                         {{-- Log Entries --}}
                         <div class="card mb-4">
                             @if ($entries->hasPages())
-                                <div class="card-header">
-                                    <span class="badge badge-info float-end">
-                                        Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
-                                    </span>
-                                </div>
+                            <div class="card-header">
+                                <span class="badge badge-info float-end">
+                                    Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
+                                </span>
+                            </div>
                             @endif
 
                             <div class="table-responsive">
@@ -152,46 +152,46 @@ $module_icon = "fa-solid fa-list-check";
                                     </thead>
                                     <tbody>
                                         @forelse($entries as $key => $entry)
-                                            <tr>
-                                                <td>
-                                                    <span class="badge badge-env">{{ $entry->env }}</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-level-{{ $entry->level }}">
-                                                        {!! $entry->level() !!}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-secondary">
-                                                        {{ $entry->datetime->format('H:i:s') }}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    {{ $entry->header }}
-                                                </td>
-                                                <td class="text-end">
-                                                    @if ($entry->hasStack())
-                                                        <a class="btn btn-sm btn-light" role="button" data-coreui-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                            <i class="fa fa-toggle-on"></i> Stack
-                                                        </a>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            @if ($entry->hasStack())
-                                                <tr>
-                                                    <td colspan="5" class="stack py-0">
-                                                        <div class="stack-content collapse" id="log-stack-{{ $key }}">
-                                                            {!! $entry->stack() !!}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endif
+                                        <tr>
+                                            <td>
+                                                <span class="badge badge-env">{{ $entry->env }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-level-{{ $entry->level }}">
+                                                    {!! $entry->level() !!}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-secondary">
+                                                    {{ $entry->datetime->format('H:i:s') }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {{ $entry->header }}
+                                            </td>
+                                            <td class="text-end">
+                                                @if ($entry->hasStack())
+                                                <a class="btn btn-sm btn-light" role="button" data-coreui-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                                    <i class="fa fa-toggle-on"></i> Stack
+                                                </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @if ($entry->hasStack())
+                                        <tr>
+                                            <td colspan="5" class="stack py-0">
+                                                <div class="stack-content collapse" id="log-stack-{{ $key }}">
+                                                    {!! $entry->stack() !!}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
                                         @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">
-                                                    <span class="badge badge-secondary">{{ trans('log-viewer::general.empty-logs') }}</span>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                <span class="badge bg-secondary">{{ trans('log-viewer::general.empty-logs') }}</span>
+                                            </td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -235,58 +235,57 @@ $module_icon = "fa-solid fa-list-check";
 @endsection
 
 @push('after-scripts')
-    <script>
-        $(function () {
-            var deleteLogModal = $('div#delete-log-modal'),
-                deleteLogForm  = $('form#delete-log-form'),
-                submitBtn      = deleteLogForm.find('button[type=submit]');
+<script type="module">
+    $(function() {
+        var deleteLogModal = $('div#delete-log-modal'),
+            deleteLogForm = $('form#delete-log-form'),
+            submitBtn = deleteLogForm.find('button[type=submit]');
 
-            deleteLogForm.on('submit', function(event) {
-                event.preventDefault();
-                submitBtn.button('loading');
+        deleteLogForm.on('submit', function(event) {
+            event.preventDefault();
+            submitBtn.button('loading');
 
-                $.ajax({
-                    url:      $(this).attr('action'),
-                    type:     $(this).attr('method'),
-                    dataType: 'json',
-                    data:     $(this).serialize(),
-                    success: function(data) {
-                        submitBtn.button('reset');
-                        if (data.result === 'success') {
-                            deleteLogModal.modal('hide');
-                            location.replace("{{ route('log-viewer::logs.list') }}");
-                        }
-                        else {
-                            alert('OOPS ! This is a lack of coffee exception !')
-                        }
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        alert('AJAX ERROR ! Check the console !');
-                        console.error(errorThrown);
-                        submitBtn.button('reset');
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function(data) {
+                    submitBtn.button('reset');
+                    if (data.result === 'success') {
+                        deleteLogModal.modal('hide');
+                        location.replace("{{ route('log-viewer::logs.list') }}");
+                    } else {
+                        alert('OOPS ! This is a lack of coffee exception !')
                     }
-                });
-
-                return false;
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('AJAX ERROR ! Check the console !');
+                    console.error(errorThrown);
+                    submitBtn.button('reset');
+                }
             });
 
-            @unless (empty(log_styler()->toHighlight()))
-                @php
-                    $htmlHighlight = version_compare(PHP_VERSION, '7.4.0') >= 0
-                        ? join('|', log_styler()->toHighlight())
-                        : join(log_styler()->toHighlight(), '|');
-                @endphp
-
-                $('.stack-content').each(function() {
-                    var $this = $(this);
-                    var html = $this.html().trim()
-                        .replace(/({!! $htmlHighlight !!})/gm, '<strong>$1</strong>');
-
-                    $this.html(html);
-                });
-            @endunless
+            return false;
         });
-    </script>
+
+        @unless(empty(log_styler() -> toHighlight()))
+        @php
+        $htmlHighlight = version_compare(PHP_VERSION, '7.4.0') >= 0 ?
+            join('|', log_styler() -> toHighlight()) :
+            join(log_styler() -> toHighlight(), '|');
+        @endphp
+
+        $('.stack-content').each(function() {
+            var $this = $(this);
+            var html = $this.html().trim()
+                .replace(/({!! $htmlHighlight !!})/gm, '<strong>$1</strong>');
+
+            $this.html(html);
+        });
+        @endunless
+    });
+</script>
 @endpush
 
 @push('after-styles')

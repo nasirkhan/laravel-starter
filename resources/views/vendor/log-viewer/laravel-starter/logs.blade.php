@@ -145,7 +145,7 @@ $module_icon = "fa-solid fa-list-check";
 
 
 @push('after-scripts')
-<script>
+<script type="module">
     $(function() {
         var deleteLogModal = $('div#delete-log-modal'),
             deleteLogForm = $('form#delete-log-form'),
