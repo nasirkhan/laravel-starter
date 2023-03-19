@@ -27,6 +27,16 @@ class UserController extends Controller
 {
     use Authorizable;
 
+    public $module_title;
+
+    public $module_name;
+
+    public $module_path;
+
+    public $module_icon;
+
+    public $module_model;
+
     public function __construct()
     {
         // Page Title
