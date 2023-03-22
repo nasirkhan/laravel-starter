@@ -103,7 +103,7 @@
             <div class="card mb-4">
                 @if ($entries->hasPages())
                     <div class="card-header">
-                        <span class="badge badge-info float-end">
+                        <span class="badge badge-info float-right">
                             {{ __('Page :current of :last', ['current' => $entries->currentPage(), 'last' => $entries->lastPage()]) }}
                         </span>
                     </div>
@@ -117,7 +117,7 @@
                                 <th style="width: 120px;">@lang('Level')</th>
                                 <th style="width: 65px;">@lang('Time')</th>
                                 <th>@lang('Header')</th>
-                                <th class="text-end">@lang('Actions')</th>
+                                <th class="text-right">@lang('Actions')</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,7 +139,7 @@
                                     <td>
                                         {{ $entry->header }}
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-right">
                                         @if ($entry->hasStack())
                                         <a class="btn btn-sm btn-light" role="button" data-toggle="collapse"
                                            href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
