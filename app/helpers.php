@@ -84,7 +84,7 @@ if (! function_exists('show_column_value')) {
 
         $value = $valueObject->$column_name;
 
-        if (!$value) {
+        if (! $value) {
             return $value;
         }
 
