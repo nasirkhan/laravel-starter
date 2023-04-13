@@ -13,7 +13,7 @@
                     @auth
                     @if(auth()->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profileEdit', $$module_name_singular->id) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ route('frontend.users.profileEdit', encode_id($$module_name_singular->id)) }}" class="btn btn-primary btn-sm">Show</a>
                     </small>
                     @endif
                     @endauth
@@ -23,7 +23,7 @@
                 </p>
                 @if ($$module_name_singular->email_verified_at == null)
                 <p class="lead">
-                    <a href="{{route('frontend.users.emailConfirmationResend', $$module_name_singular->id)}}">Confirm Email</a>
+                    <a href="{{route('frontend.users.emailConfirmationResend', encode_id($$module_name_singular->id))}}">Confirm Email</a>
                 </p>
                 @endif
 
