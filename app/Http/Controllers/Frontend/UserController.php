@@ -139,7 +139,6 @@ class UserController extends Controller
 
         if ($id != auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
-
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -317,7 +316,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
