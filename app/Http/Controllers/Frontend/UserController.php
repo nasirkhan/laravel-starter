@@ -138,7 +138,7 @@ class UserController extends Controller
         }
 
         if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+            return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -160,6 +160,7 @@ class UserController extends Controller
      */
     public function profileUpdate(Request $request, $id)
     {
+        $id = decode_id($id);
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -167,9 +168,8 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
-
         if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+            return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
         $this->validate($request, [
@@ -210,7 +210,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        return redirect()->route('frontend.users.profile', $$module_name_singular->id)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', encode_id($$module_name_singular->id))->with('flash_success', 'Update successful!');
     }
 
     /**
@@ -221,6 +221,8 @@ class UserController extends Controller
      */
     public function changePassword($id)
     {
+        $id = decode_id($id);
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -232,7 +234,7 @@ class UserController extends Controller
         $body_class = 'profile-page';
 
         if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+            return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
         $id = auth()->user()->id;
@@ -290,7 +292,7 @@ class UserController extends Controller
         $module_action = 'Edit';
 
         if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+            return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
         $roles = Role::get();
@@ -318,7 +320,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($this->module_name);
 
         if ($id != auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', $id);
+            return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
         $$module_name_singular = User::findOrFail($id);
@@ -393,6 +395,8 @@ class UserController extends Controller
      */
     public function emailConfirmationResend($id)
     {
+        $id = decode_id($id);
+
         if ($id != auth()->user()->id) {
             if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
                 Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
