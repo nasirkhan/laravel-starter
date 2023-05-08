@@ -53,8 +53,8 @@ trait UserPresenter
     {
         $permissions = Cache::rememberForever('permissions_cache', function () {
             return Permission::select('permissions.*', 'model_has_permissions.*')
-            ->join('model_has_permissions', 'permissions.id', '=', 'model_has_permissions.permission_id')
-            ->get();
+                ->join('model_has_permissions', 'permissions.id', '=', 'model_has_permissions.permission_id')
+                ->get();
         });
 
         return $permissions->where('model_id', $this->id);
@@ -67,8 +67,8 @@ trait UserPresenter
     {
         $roles = Cache::rememberForever('roles_cache', function () {
             return Role::select('roles.*', 'model_has_roles.*')
-            ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
-            ->get();
+                ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
+                ->get();
         });
 
         return $roles->where('model_id', $this->id);

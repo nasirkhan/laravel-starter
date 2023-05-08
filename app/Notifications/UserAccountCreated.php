@@ -46,12 +46,12 @@ class UserAccountCreated extends Notification implements ShouldQueue
         $user = $notifiable;
 
         return (new MailMessage())
-                    ->line('Welcome to '.app_name().'!')
-                    ->line('A new account has been created for you. Please use the following credentials to login.')
-                    ->line(__('Username').': '.$user->username)
-                    ->line(__('Email').': '.$user->email)
-                    ->line(__('Password').': '.$request['password'])
-                    ->line(__('URL').': '.url('/login'))
-                    ->action(__('Visit').' '.app_name(), url('/'));
+            ->line('Welcome to '.app_name().'!')
+            ->line('A new account has been created for you. Please use the following credentials to login.')
+            ->line(__('Username').': '.$user->username)
+            ->line(__('Email').': '.$user->email)
+            ->line(__('Password').': '.$request['password'])
+            ->line(__('URL').': '.url('/login'))
+            ->action(__('Visit').' '.app_name(), url('/'));
     }
 }
