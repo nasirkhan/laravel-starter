@@ -84,6 +84,10 @@ if (! function_exists('show_column_value')) {
 
         $value = $valueObject->$column_name;
 
+        if (! $value) {
+            return $value;
+        }
+
         if ($return_format == 'raw') {
             return $value;
         }

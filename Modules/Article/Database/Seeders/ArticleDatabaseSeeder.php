@@ -43,9 +43,9 @@ class ArticleDatabaseSeeder extends Seeder
 
         // Populate the pivot table
         Post::factory()
-                ->has(Tag::factory()->count(rand(1, 5)))
-                ->count(25)
-                ->create();
+            ->has(Tag::factory()->count(rand(1, 5)))
+            ->count(25)
+            ->create();
         echo " Insert: posts \n\n";
 
         // Artisan::call('auth:permission', [

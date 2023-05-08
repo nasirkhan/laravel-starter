@@ -61,10 +61,10 @@ class NewRegistrationFromSocial extends Notification
         }
 
         return (new MailMessage())
-                    ->subject('Thank you for registration!')
-                    ->line('Thank you for registration at '.app_name().'.')
-                    ->action('Vist Application', url('/'))
-                    ->line('We are really happy that you started to use '.app_name().'!');
+            ->subject('Thank you for registration!')
+            ->line('Thank you for registration at '.app_name().'.')
+            ->action('Vist Application', url('/'))
+            ->line('We are really happy that you started to use '.app_name().'!');
     }
 
     /**

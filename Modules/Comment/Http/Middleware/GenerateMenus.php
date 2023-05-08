@@ -26,14 +26,14 @@ class GenerateMenus
                 'route' => 'backend.comments.index',
                 'class' => 'nav-item',
             ])
-            ->data([
-                'order' => 85,
-                'activematches' => ['admin/comments*'],
-                'permission' => ['view_comments'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+                ->data([
+                    'order' => 85,
+                    'activematches' => ['admin/comments*'],
+                    'permission' => ['view_comments'],
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
         })->sortBy('order');
 
         return $next($request);

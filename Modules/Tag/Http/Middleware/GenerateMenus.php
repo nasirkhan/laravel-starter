@@ -26,14 +26,14 @@ class GenerateMenus
                 'route' => 'backend.tags.index',
                 'class' => 'nav-item',
             ])
-            ->data([
-                'order' => 84,
-                'activematches' => ['admin/tags*'],
-                'permission' => ['view_tags'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+                ->data([
+                    'order' => 84,
+                    'activematches' => ['admin/tags*'],
+                    'permission' => ['view_tags'],
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
         })->sortBy('order');
 
         return $next($request);

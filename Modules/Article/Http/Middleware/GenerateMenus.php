@@ -19,14 +19,14 @@ class GenerateMenus
             $articles_menu = $menu->add('<i class="nav-icon fas fa-file-alt"></i> '.__('Article'), [
                 'class' => 'nav-group',
             ])
-            ->data([
-                'order' => 81,
-                'activematches' => [
-                    'admin/posts*',
-                    'admin/categories*',
-                ],
-                'permission' => ['view_posts', 'view_categories'],
-            ]);
+                ->data([
+                    'order' => 81,
+                    'activematches' => [
+                        'admin/posts*',
+                        'admin/categories*',
+                    ],
+                    'permission' => ['view_posts', 'view_categories'],
+                ]);
             $articles_menu->link->attr([
                 'class' => 'nav-link nav-group-toggle',
                 'href' => '#',
@@ -37,27 +37,27 @@ class GenerateMenus
                 'route' => 'backend.posts.index',
                 'class' => 'nav-item',
             ])
-            ->data([
-                'order' => 82,
-                'activematches' => 'admin/posts*',
-                'permission' => ['edit_posts'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+                ->data([
+                    'order' => 82,
+                    'activematches' => 'admin/posts*',
+                    'permission' => ['edit_posts'],
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
             // Submenu: Categories
             $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> '.__('Categories'), [
                 'route' => 'backend.categories.index',
                 'class' => 'nav-item',
             ])
-            ->data([
-                'order' => 83,
-                'activematches' => 'admin/categories*',
-                'permission' => ['edit_categories'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+                ->data([
+                    'order' => 83,
+                    'activematches' => 'admin/categories*',
+                    'permission' => ['edit_categories'],
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
         })->sortBy('order');
 
         return $next($request);

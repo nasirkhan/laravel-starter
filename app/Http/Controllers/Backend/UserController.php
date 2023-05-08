@@ -100,37 +100,37 @@ class UserController extends Controller
         $data = $$module_name;
 
         return Datatables::of($$module_name)
-                        ->addColumn('action', function ($data) {
-                            $module_name = $this->module_name;
+            ->addColumn('action', function ($data) {
+                $module_name = $this->module_name;
 
-                            return view('backend.includes.user_actions', compact('module_name', 'data'));
-                        })
-                        ->addColumn('user_roles', function ($data) {
-                            $module_name = $this->module_name;
+                return view('backend.includes.user_actions', compact('module_name', 'data'));
+            })
+            ->addColumn('user_roles', function ($data) {
+                $module_name = $this->module_name;
 
-                            return view('backend.includes.user_roles', compact('module_name', 'data'));
-                        })
-                        ->editColumn('name', '<strong>{{$name}}</strong>')
-                        ->editColumn('status', function ($data) {
-                            $return_data = $data->status_label;
-                            $return_data .= '<br>'.$data->confirmed_label;
+                return view('backend.includes.user_roles', compact('module_name', 'data'));
+            })
+            ->editColumn('name', '<strong>{{$name}}</strong>')
+            ->editColumn('status', function ($data) {
+                $return_data = $data->status_label;
+                $return_data .= '<br>'.$data->confirmed_label;
 
-                            return $return_data;
-                        })
-                        ->editColumn('updated_at', function ($data) {
-                            $module_name = $this->module_name;
+                return $return_data;
+            })
+            ->editColumn('updated_at', function ($data) {
+                $module_name = $this->module_name;
 
-                            $diff = Carbon::now()->diffInHours($data->updated_at);
+                $diff = Carbon::now()->diffInHours($data->updated_at);
 
-                            if ($diff < 25) {
-                                return $data->updated_at->diffForHumans();
-                            } else {
-                                return $data->updated_at->isoFormat('LLLL');
-                            }
-                        })
-                        ->rawColumns(['name', 'action', 'status', 'user_roles'])
-                        ->orderColumns(['id'], '-:column $1')
-                        ->make(true);
+                if ($diff < 25) {
+                    return $data->updated_at->diffForHumans();
+                } else {
+                    return $data->updated_at->isoFormat('LLLL');
+                }
+            })
+            ->rawColumns(['name', 'action', 'status', 'user_roles'])
+            ->orderColumns(['id'], '-:column $1')
+            ->make(true);
     }
 
     /**

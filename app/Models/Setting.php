@@ -106,8 +106,8 @@ class Setting extends BaseModel
     public static function getDataType($field)
     {
         $type = self::getDefinedSettingFields()
-                ->pluck('data', 'name')
-                ->get($field);
+            ->pluck('data', 'name')
+            ->get($field);
 
         return is_null($type) ? 'string' : $type;
     }
@@ -120,8 +120,8 @@ class Setting extends BaseModel
     public static function getDefaultValueForField($field)
     {
         return self::getDefinedSettingFields()
-                ->pluck('value', 'name')
-                ->get($field);
+            ->pluck('value', 'name')
+            ->get($field);
     }
 
     /**

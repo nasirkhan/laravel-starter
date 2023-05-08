@@ -61,14 +61,14 @@ class BaseModel extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-              ->width(250)
-              ->height(250)
-              ->quality(70);
+            ->width(250)
+            ->height(250)
+            ->quality(70);
 
         $this->addMediaConversion('thumb300')
-              ->width(300)
-              ->height(300)
-              ->quality(70);
+            ->width(300)
+            ->height(300)
+            ->quality(70);
     }
 
     /**
