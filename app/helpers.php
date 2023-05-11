@@ -247,7 +247,7 @@ if (! function_exists('slug_format')) {
         $string = str_replace('\\', '-', $string);
         $string = strtolower($string);
 
-        $slug_string = $string;
+        $slug_string = substr($string, 0, 190);
 
         return $slug_string;
     }
@@ -257,7 +257,7 @@ if (! function_exists('slug_format')) {
  *
  * icon
  * A short and easy way to show icon fornts
- * Default value will be check icon from FontAwesome
+ * Default value will be check icon from FontAwesome (https://fontawesome.com)
  *
  * ------------------------------------------------------------------------
  */
@@ -265,9 +265,9 @@ if (! function_exists('icon')) {
     /**
      * Format a string to Slug.
      */
-    function icon($string = 'fas fa-check')
+    function icon($string = 'fa-regular fa-circle-check')
     {
-        $return_string = "<i class='".$string."'></i>";
+        $return_string = "<i class='".$string."'></i>&nbsp;";
 
         return $return_string;
     }
