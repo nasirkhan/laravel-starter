@@ -247,7 +247,7 @@ if (! function_exists('slug_format')) {
         $string = str_replace('\\', '-', $string);
         $string = strtolower($string);
 
-        $slug_string = substr($string,0,190);
+        $slug_string = substr($string, 0, 190);
 
         return $slug_string;
     }
