@@ -52,7 +52,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     });
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web','auth','can:view_backend']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
