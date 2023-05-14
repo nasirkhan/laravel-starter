@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": "^8.1",
-        "alexusmai/laravel-file-manager": "^3.0",
         "arcanedev/log-viewer": "^10.0",
         "guzzlehttp/guzzle": "^7.5",
         "hashids/hashids": "^5.0",
@@ -26,6 +25,7 @@
         "spatie/laravel-html": "^3.2",
         "spatie/laravel-medialibrary": "^10.7",
         "spatie/laravel-permission": "^5.9",
+        "unisharp/laravel-filemanager": "^2.6",
         "yajra/laravel-datatables-oracle": "^10.3"
     },
     "require-dev": {

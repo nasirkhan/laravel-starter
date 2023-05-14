@@ -79,12 +79,13 @@
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image', 'aria-describedby'=>'button-image']) }}
                 <div class="input-group-append">
-                    <button class="btn btn-info" type="button" id="button-image"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
+                    <button class="btn btn-info" type="button" id="button-image" data-input="{{$field_name}}"><i class="fas fa-folder-open"></i> @lang('Browse')</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row mb-3">
     <div class="col-4">
         <div class="form-group">
@@ -99,7 +100,7 @@
             {{ html()->select($field_name, isset($$module_name_singular)?optional($$module_name_singular->$field_relation)->pluck('name', 'id'):'')->placeholder($field_placeholder)->class('form-control select2-category')->attributes(["$required"]) }}
         </div>
     </div>
-    <div class="col-4">
+    <div class=" col-4">
         <div class="form-group">
             <?php
             $field_name = 'type';
@@ -290,13 +291,30 @@
 @push ('after-scripts')
 <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script type="module">
-    const FMButton = function(context) {
-        const ui = $.summernote.ui;
-        const button = ui.button({
+    // Define function to open filemanager window
+    var lfm = function(options, cb) {
+        var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
+        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+        window.SetUrl = cb;
+    };
+
+    // Define LFM summernote button
+    var LFMButton = function(context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
             contents: '<i class="note-icon-picture"></i> ',
-            tooltip: 'File Manager',
+            tooltip: 'Insert image with filemanager',
             click: function() {
-                window.open('/file-manager/summernote', 'fm', 'width=1000,height=800');
+
+                lfm({
+                    type: 'image',
+                    prefix: '/laravel-filemanager'
+                }, function(lfmItems, path) {
+                    lfmItems.forEach(function(lfmItem) {
+                        context.invoke('insertImage', lfmItem.url);
+                    });
+                });
+
             }
         });
         return button.render();
@@ -310,15 +328,19 @@
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
-            ['insert', ['link', 'fm', 'video']],
+            ['insert', ['link', 'lfm', 'video']],
             ['view', ['codeview', 'undo', 'redo', 'help']],
         ],
         buttons: {
-            fm: FMButton
+            lfm: LFMButton
         }
     });
 </script>
 
+<script type="module" src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
+<script type="module">
+    $('#button-image').filemanager('image');
+</script>
 
 <script type="module">
     $(document).ready(function() {
