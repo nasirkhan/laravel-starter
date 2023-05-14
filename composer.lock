@@ -4,68 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0bd63f22595a375904adc4f6dc1ce39",
+    "content-hash": "bee154c5b9dab9fe919a738a113d6644",
     "packages": [
-        {
-            "name": "alexusmai/laravel-file-manager",
-            "version": "v3.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/alexusmai/laravel-file-manager.git",
-                "reference": "5f019adfe3d92ce5b2b49e50f99189d3917aad04"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/alexusmai/laravel-file-manager/zipball/5f019adfe3d92ce5b2b49e50f99189d3917aad04",
-                "reference": "5f019adfe3d92ce5b2b49e50f99189d3917aad04",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-zip": "*",
-                "intervention/image": "^2.7",
-                "intervention/imagecache": "^2.6",
-                "laravel/framework": "^9.0|^10.0",
-                "league/flysystem": "^3.0",
-                "php": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Alexusmai\\LaravelFileManager\\FileManagerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Alexusmai\\LaravelFileManager\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aleksandr Manekin",
-                    "email": "alexusmai@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "File manager for Laravel",
-            "homepage": "https://github.com/alexusami/laravel-file-manager",
-            "keywords": [
-                "file",
-                "laravel",
-                "manager"
-            ],
-            "support": {
-                "issues": "https://github.com/alexusmai/laravel-file-manager/issues",
-                "source": "https://github.com/alexusmai/laravel-file-manager/tree/v3.0.5"
-            },
-            "time": "2023-02-26T08:58:15+00:00"
-        },
         {
             "name": "arcanedev/log-viewer",
             "version": "10.0.0",
@@ -765,16 +705,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.5.1",
+            "version": "7.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b964ca597e86b752cd994f27293e9fa6b6a95ed9"
+                "reference": "733dd89533dd371a0987172727df15f500dab0ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b964ca597e86b752cd994f27293e9fa6b6a95ed9",
-                "reference": "b964ca597e86b752cd994f27293e9fa6b6a95ed9",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/733dd89533dd371a0987172727df15f500dab0ef",
+                "reference": "733dd89533dd371a0987172727df15f500dab0ef",
                 "shasum": ""
             },
             "require": {
@@ -805,9 +745,6 @@
                 "bamarni-bin": {
                     "bin-links": true,
                     "forward-command": false
-                },
-                "branch-alias": {
-                    "dev-master": "7.5-dev"
                 }
             },
             "autoload": {
@@ -873,7 +810,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.5.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.6.0"
             },
             "funding": [
                 {
@@ -889,7 +826,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-17T16:30:08+00:00"
+            "time": "2023-05-14T11:23:39+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1329,73 +1266,6 @@
             "time": "2022-05-21T17:30:32+00:00"
         },
         {
-            "name": "intervention/imagecache",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Intervention/imagecache.git",
-                "reference": "86136575a62d3634b51f196a998fce4a583b49bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/imagecache/zipball/86136575a62d3634b51f196a998fce4a583b49bb",
-                "reference": "86136575a62d3634b51f196a998fce4a583b49bb",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/cache": "^5.5|~6|~7|~8|~9|~10",
-                "illuminate/filesystem": "^5.5|~6|~7|~8|~9|~10",
-                "intervention/image": "~2.2",
-                "nesbot/carbon": "^2.39",
-                "opis/closure": "^3.5",
-                "php": "~7.2|~8"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Intervention\\Image\\": "src/Intervention/Image"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Vogel",
-                    "email": "oliver@intervention.io",
-                    "homepage": "http://intervention.io/"
-                }
-            ],
-            "description": "Caching extension for the Intervention Image Class",
-            "homepage": "https://image.intervention.io",
-            "keywords": [
-                "cache",
-                "gd",
-                "image",
-                "imagick",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/Intervention/imagecache/issues",
-                "source": "https://github.com/Intervention/imagecache/tree/2.6.0"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/interventionio",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Intervention",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-02-25T19:40:47+00:00"
-        },
-        {
             "name": "laracasts/flash",
             "version": "3.2.2",
             "source": {
@@ -1454,16 +1324,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.9.0",
+            "version": "v10.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "35078125f61ef0b125edf524de934f108d4b47fd"
+                "reference": "be0478dea96a6619bb77676f36f67c1500846b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/35078125f61ef0b125edf524de934f108d4b47fd",
-                "reference": "35078125f61ef0b125edf524de934f108d4b47fd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/be0478dea96a6619bb77676f36f67c1500846b17",
+                "reference": "be0478dea96a6619bb77676f36f67c1500846b17",
                 "shasum": ""
             },
             "require": {
@@ -1650,7 +1520,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-04-25T13:47:18+00:00"
+            "time": "2023-05-11T13:20:25+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -3351,71 +3221,6 @@
                 }
             ],
             "time": "2023-02-16T11:08:15+00:00"
-        },
-        {
-            "name": "opis/closure",
-            "version": "3.6.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/opis/closure.git",
-                "reference": "3d81e4309d2a927abbe66df935f4bb60082805ad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/3d81e4309d2a927abbe66df935f4bb60082805ad",
-                "reference": "3d81e4309d2a927abbe66df935f4bb60082805ad",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.4 || ^7.0 || ^8.0"
-            },
-            "require-dev": {
-                "jeremeamia/superclosure": "^2.0",
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.6.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "functions.php"
-                ],
-                "psr-4": {
-                    "Opis\\Closure\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marius Sarca",
-                    "email": "marius.sarca@gmail.com"
-                },
-                {
-                    "name": "Sorin Sarca",
-                    "email": "sarca_sorin@hotmail.com"
-                }
-            ],
-            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
-            "homepage": "https://opis.io/closure",
-            "keywords": [
-                "anonymous functions",
-                "closure",
-                "function",
-                "serializable",
-                "serialization",
-                "serialize"
-            ],
-            "support": {
-                "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.3"
-            },
-            "time": "2022-01-27T09:35:39+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -7961,16 +7766,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.20.2",
+            "version": "v1.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "b010ff3f8cd8e9ae2a2023ca323fba9987157f60"
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/b010ff3f8cd8e9ae2a2023ca323fba9987157f60",
-                "reference": "b010ff3f8cd8e9ae2a2023ca323fba9987157f60",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/a7e7e2acfb2fd332183aae41c445be7a2329e93e",
+                "reference": "a7e7e2acfb2fd332183aae41c445be7a2329e93e",
                 "shasum": ""
             },
             "require": {
@@ -8019,7 +7824,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2023-04-16T20:27:51+00:00"
+            "time": "2023-05-04T15:02:53+00:00"
         },
         {
             "name": "laravel/pint",
@@ -8089,23 +7894,23 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.21.5",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "27af207bb1c53faddcba34c7528b3e969f6a646d"
+                "reference": "923e1e112b6a8598664dbb0ee79dd3137f1c9d56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/27af207bb1c53faddcba34c7528b3e969f6a646d",
-                "reference": "27af207bb1c53faddcba34c7528b3e969f6a646d",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/923e1e112b6a8598664dbb0ee79dd3137f1c9d56",
+                "reference": "923e1e112b6a8598664dbb0ee79dd3137f1c9d56",
                 "shasum": ""
             },
             "require": {
                 "illuminate/console": "^8.0|^9.0|^10.0",
                 "illuminate/contracts": "^8.0|^9.0|^10.0",
                 "illuminate/support": "^8.0|^9.0|^10.0",
-                "php": "^7.3|^8.0",
+                "php": "^8.0",
                 "symfony/yaml": "^6.0"
             },
             "require-dev": {
@@ -8150,7 +7955,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2023-04-24T13:29:38+00:00"
+            "time": "2023-05-04T14:52:56+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -8878,16 +8683,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.1.2",
+            "version": "10.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6f0cd95be71add539f8fd2be25b2a4a29789000b"
+                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f0cd95be71add539f8fd2be25b2a4a29789000b",
-                "reference": "6f0cd95be71add539f8fd2be25b2a4a29789000b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2379ebafc1737e71cdc84f402acb6b7f04198b9d",
+                "reference": "2379ebafc1737e71cdc84f402acb6b7f04198b9d",
                 "shasum": ""
             },
             "require": {
@@ -8959,7 +8764,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.1.2"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.1.3"
             },
             "funding": [
                 {
@@ -8975,7 +8780,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-22T07:38:19+00:00"
+            "time": "2023-05-11T05:16:22+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -10103,16 +9908,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "802c7e27754456e45134f1a9d29ab7df4b6cb9e4"
+                "reference": "2f99fa6b732a6049e78ed34e4608ce589605ae54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/802c7e27754456e45134f1a9d29ab7df4b6cb9e4",
-                "reference": "802c7e27754456e45134f1a9d29ab7df4b6cb9e4",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/2f99fa6b732a6049e78ed34e4608ce589605ae54",
+                "reference": "2f99fa6b732a6049e78ed34e4608ce589605ae54",
                 "shasum": ""
             },
             "require": {
@@ -10191,7 +9996,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-04T13:54:49+00:00"
+            "time": "2023-05-09T07:19:31+00:00"
         },
         {
             "name": "symfony/yaml",
