@@ -86,18 +86,6 @@
     </div>
 </div>
 
-<div class="input-group">
-    <span class="input-group-btn">
-        <a id="button-image" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-            <i class="fa fa-picture-o"></i> Choose
-        </a>
-    </span>
-    <input id="thumbnail" class="form-control" type="text" name="filepath">
-</div>
-<img id="holder" style="margin-top:15px;height:100px;">
-
-
-
 <div class="row mb-3">
     <div class="col-4">
         <div class="form-group">
@@ -349,13 +337,10 @@
     });
 </script>
 
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-
-
+<script type="module" src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
 <script type="module">
     $('#button-image').filemanager('image');
 </script>
-
 
 <script type="module">
     $(document).ready(function() {
