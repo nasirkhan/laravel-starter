@@ -1,0 +1,387 @@
+/* General */
+
+a {
+  color: #333844;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+#nav a, #fab a {
+  color: white;
+}
+
+#nav, #nav .dropdown-menu, .bg-main {
+  background-color: #333844;
+}
+
+#nav .dropdown-menu > a:hover {
+  color: #333844;
+}
+
+#actions {
+  display: flex;
+}
+
+#actions > a {
+  display: inline-block;
+  line-height: 4rem;
+  text-align: center;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+#actions > a > i {
+  margin-right: .25rem;
+}
+
+#actions > a + a {
+  border-left: 1px solid #dee2e6;
+}
+
+#multi_selection_toggle > i {
+  font-size: 20px;
+}
+
+.breadcrumb-item:not(.active) {
+  transition: .2s color;
+}
+
+.breadcrumb-item:not(.active):hover {
+  cursor: pointer;
+  color: #75C7C3;
+}
+
+#main {
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  #main {
+    width: calc(100% - 300px);
+    /*margin-left: 1rem;*/
+    padding: 1rem;
+  }
+
+  .invisible-lg {
+    visibility: hidden;
+  }
+}
+
+#tree {
+  background-color: white;
+  width: 300px;
+}
+
+@media screen and (max-width: 991px) {
+  #tree {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    transform: translateX(-100%);
+    transition: 1s transform;
+  }
+
+  #tree.in {
+    transform: translateX(0);
+  }
+}
+
+#empty {
+  height: 60vh;
+  color: #333844;
+}
+
+#empty:not(.d-none) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#empty > i {
+  font-size: 10rem;
+}
+
+.carousel-image {
+  height: 50vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+.carousel-indicators {
+  bottom: 0;
+}
+
+.carousel-label, .carousel-label:hover {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(transparent 10px, rgba(0, 0, 0, .4), rgba(0, 0, 0, .5));
+  padding: 40px 20px 30px;
+  width: 100%;
+  color: white;
+  word-break: break-word;
+  text-align: center;
+}
+
+.carousel-control-background {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  box-shadow: 0 0 10px #666;
+  background-color: #666;
+}
+
+#uploadForm > .dz-default.dz-message {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  color: #aaa;
+  margin: 0;
+  padding: 3rem 0;
+}
+
+/* Loader */
+
+#lfm-loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: gray;
+  opacity: 0.7;
+  z-index: 9999;
+  text-align: center;
+}
+#lfm-loader:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+#lfm-loader img {
+  width: 100px;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Sidebar */
+
+.nav-pills > .nav-item > .nav-link {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-pills > .sub-item > .nav-link {
+  height: 3rem;
+  padding-left: 3rem;
+}
+
+.nav-pills > li.active > a, .nav-pills > li:hover > a {
+  background-color: #ddd;
+  border-radius: 0;
+  color: #333844;
+}
+
+/* Items */
+
+#pagination > ul.pagination {
+  justify-content: center;
+}
+
+#pagination.preserve_actions_space {
+  padding-top: 1em;
+  padding-bottom: 4rem; /* preserve space for main actions */
+}
+
+.square {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5rem;
+  justify-content: center;
+}
+
+.grid a {
+  margin: .5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.list a {
+  border-top: 1px solid rgb(221, 221, 221);
+  padding: 5px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.list a:last-child {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.grid .square {
+  border: 1px solid rgb(221, 221, 221);
+  width: 135px;
+  height: 135px;
+}
+
+.list .square {
+  margin-right: 1rem;
+  width: 70px;
+  height: 70px;
+}
+
+.square > div {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.square > i {
+  color: #333844;
+}
+.grid .square > i {
+  padding: 20px;
+  font-size: 80px;
+}
+.list .square > i {
+  padding: 10px;
+  font-size: 50px;
+}
+
+.grid .square.selected {
+  border: 5px solid #75C7C3;
+}
+.list .square.selected {
+  border: 4px solid #75C7C3;
+}
+.square.selected {
+  padding: 1px;
+}
+
+.grid .item_name {
+  border: 1px solid rgb(221, 221, 221);
+  border-top: none;
+  margin-top: -1px;
+  padding: 10px;
+  text-align: center;
+  max-width: calc(135px);
+}
+
+.list .item_name {
+  font-size: 1.25rem;
+  padding: 5px 0 5px;
+}
+
+time {
+  font-size: .9rem;
+}
+
+.grid time {
+  display: none;
+}
+
+.info > * {
+  max-width: calc(100vw - 70px - 60px);
+}
+
+/* Mime icon generator overwrite */
+
+.grid .mime-icon:before {
+  top: calc(45% - 1rem);
+  font-size: 2rem;
+}
+
+.list .mime-icon .ico:before {
+  top: calc(45% - .5rem);
+  font-size: 1rem;
+}
+
+.mime-icon .ico {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Floating action buttons */
+
+.fab-wrapper {
+  margin: 1.5rem;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.fab-wrapper .fab-button {
+  position: relative;
+  background-color: #333844;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+}
+
+.fab-wrapper .fab-toggle {
+  z-index: 1;
+}
+
+.fab-wrapper .fab-toggle i {
+  -webkit-transform: scale(1) rotate(0deg);
+  transform: scale(1) rotate(0deg);
+  -webkit-transition: -webkit-transform 350ms;
+  transition: transform 350ms;
+}
+
+.fab-wrapper.fab-expand .fab-toggle i {
+  -webkit-transform: scale(1) rotate(-225deg);
+  transform: scale(1) rotate(-225deg);
+  -webkit-transition: -webkit-transform 350ms;
+  transition: transform 350ms;
+}
+
+.fab-wrapper .fab-action {
+  z-index: -1;
+  margin-bottom: -3.5rem;
+  opacity: 0;
+  transition: margin-bottom 350ms, opacity 350ms;
+}
+
+.fab-wrapper.fab-expand .fab-action {
+  margin-bottom: 1rem;
+  opacity: 1;
+  transition: margin-bottom 350ms, opacity 350ms;
+}
+
+.fab-wrapper .fab-action:before {
+  position: absolute;
+  right: 4rem;
+  padding: .15rem .75rem;
+  border-radius: .25rem;
+  background-color: rgba(0, 0, 0, .4);
+  color: rgba(255, 255, 255, .8);
+  text-align: right;
+  font-size: .9rem;
+  white-space: nowrap;
+  content: attr(data-label);
+}
