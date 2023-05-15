@@ -32,6 +32,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
+    Route::get('portfolio', 'FrontendController@portfolio')->name('portfolio');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
