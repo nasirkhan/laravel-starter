@@ -24,11 +24,11 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'   => _trans('landlord.Email/phone is required!'),
-            'name.required'    => _trans('landlord.Name is required!'),
-            'password.required'=> _trans('landlord.Password is required'),
-            'password.confirmed'=> _trans('landlord.Confirm Password does not match'),
-            'password.min'      => _trans('landlord.Password should be minimum 6 Character'),
+            'email.required'   => __('Email/phone is required!'),
+            'name.required'    => __('Name is required!'),
+            'password.required'=> __('Password is required'),
+            'password.confirmed'=> __('Confirm Password does not match'),
+            'password.min'      => __('Password should be minimum 6 Character'),
         ];
     }
 

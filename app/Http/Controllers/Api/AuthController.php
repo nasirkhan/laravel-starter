@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Auth\OTPRequest;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\ApiLoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\VerifyOTPRequest;
@@ -27,7 +26,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        try {
+        // try {
             if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $email = $request->email;
                 $credential = ['email' => $email];
@@ -75,15 +74,15 @@ class AuthController extends Controller
 
 
             return $this->responseWithError(__('Registration does not complete successfully!!'));
-        } catch (Throwable $e) {
+        // } catch (Throwable $e) {
 
-            return $this->responseExceptionError(__('Something went wrong!!'));
-        }
+        //     return $this->responseExceptionError(__('Something went wrong!!'));
+        // }
     }
 
     public function login(ApiLoginRequest $request)
     {
-
+// dd('dsjfdsklfgdjklgdf');
         try {
             if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $email = $request->email;

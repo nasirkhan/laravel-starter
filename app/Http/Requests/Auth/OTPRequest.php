@@ -22,7 +22,7 @@ class OTPRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'        => _trans('landlord.Email/Phone is required!'),
+            'email.required'        => __('Email/Phone is required!'),
         ];
     }
 

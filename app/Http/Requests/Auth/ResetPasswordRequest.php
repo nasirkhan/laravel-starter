@@ -23,9 +23,9 @@ class ResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required'            => _trans('landlord.Email/phone is required!'),
-            'password.required'         => _trans('landlord.Password is required'),
-            'password.confirmed'        => _trans('landlord.Confirm Password does not match'),
+            'email.required'            => __('Email/phone is required!'),
+            'password.required'         => __('Password is required'),
+            'password.confirmed'        => __('Confirm Password does not match'),
         ];
     }
 }
