@@ -42,7 +42,7 @@
     "src": "resources/js/app-backend.js"
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-d9e1fde7.js",
+    "file": "assets/app-frontend-5f2a059f.js",
     "isEntry": true,
     "src": "resources/js/app-frontend.js"
   },
