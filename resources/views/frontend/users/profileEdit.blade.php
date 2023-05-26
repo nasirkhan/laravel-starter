@@ -31,6 +31,7 @@
             {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
             <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
                 <div class="grid grid-cols-6 gap-6">
+
                     <div class="col-span-6 sm:col-span-3">
                         <?php
                         $field_name = 'first_name';
@@ -41,6 +42,7 @@
                         {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
                         {{ html()->text($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
                     </div>
+
                     <div class="col-span-6 sm:col-span-3">
                         <?php
                         $field_name = 'last_name';
@@ -51,6 +53,7 @@
                         {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
                         {{ html()->text($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
                     </div>
+
                     <div class="col-span-6">
                         <?php
                         $field_name = 'address';
@@ -147,14 +150,12 @@
                     </div>
 
                     <div class="col-span-6 sm:col-span-4">
-
                         <div class="sm:pt-6">
-                            <input class="border-gray-300 focus:ring-blue-600 block w-full overflow-hidden cursor-pointer border text-gray-800 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent" aria-describedby="avatar" id="avatar" name="avatar" type="file">
+                            <input class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary" aria-describedby="avatar" id="avatar" name="avatar" type="file">
                         </div>
                         <div class="mt-1 text-sm text-gray-400" id="view_model_avatar_help">
                             Upload an image as profile picture.
                         </div>
-
                     </div>
                 </div>
             </div>
