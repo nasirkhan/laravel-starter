@@ -1,92 +1,95 @@
 @extends('frontend.layouts.app')
 
-@section('title') {{$$module_name_singular->name}}'s Profile @endsection
+@section('title') @lang("Change Password: ") {{$$module_name_singular->name}} @endsection
 
 @section('content')
 
-<section class="section-header bg-primary text-white pb-7 pb-lg-11">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 text-center">
-                <h1 class="display-2 mb-4">
-                    {{$$module_name_singular->name}}
-                    @auth
-                    @if(auth()->user()->id == $$module_name_singular->id)
-                    <small>
-                        <a href="{{ route('frontend.users.profileEdit', encode_id($$module_name_singular->id)) }}" class="btn btn-primary btn-sm">Show</a>
-                    </small>
-                    @endif
-                    @endauth
-                </h1>
-                <p class="lead">
-                    Username:{{$$module_name_singular->username}}
-                </p>
-                @if ($$module_name_singular->email_verified_at == null)
-                <p class="lead">
-                    <a href="{{route('frontend.users.emailConfirmationResend', encode_id($$module_name_singular->id))}}">Confirm Email</a>
-                </p>
-                @endif
+<div class="container mx-auto flex justify-center">
 
-                @include('frontend.includes.messages')
+    @include('frontend.includes.messages')
+
+</div>
+
+<div class="container max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="mb-10 md:grid md:grid-cols-3 md:gap-6">
+        <div class="sm:col-span-1">
+            <div class="px-4 sm:px-0">
+                <h3 class="text-xl font-semibold leading-6 text-gray-800">@lang('Change Password')</h3>
+                <p class="mt-1 text-sm text-gray-600">
+                    Use the following form to change your account password!
+                </p>
+
+                <div class="pt-4 text-center">
+                    <a href='{{ route("frontend.users.profile", encode_id($$module_name_singular->id)) }}'>
+                        <div class="w-full font-semibold text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
+                            @lang(' View Profile')
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
+        <div class="mt-5 md:mt-0 sm:col-span-2">
+            {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate', encode_id($$module_name_singular->id)))->class('form-horizontal')->open() }}
+            <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                        <?php
+                        $field_name = 'password';
+                        $field_lable = __('labels.backend.users.fields.' . $field_name);
+                        $field_placeholder = $field_lable;
+                        $required = "required";
+                        ?>
+                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
+                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <?php
+                        $field_name = 'password_confirmation';
+                        $field_lable = __('labels.backend.users.fields.' . $field_name);
+                        $field_placeholder = $field_lable;
+                        $required = "required";
+                        ?>
+                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
+                        {{ html()->password($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
+                    </div>
+                    <div class="col-span-6 px-4 py-3 bg-gray-50 text-end sm:px-6">
+                        <button type="submit" class="inline-flex w-full justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            @lang('Update Password')
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{ html()->closeModelForm() }}
+        </div>
     </div>
-    <div class="pattern bottom"></div>
-</section>
-<section class="section section-lg line-bottom-light">
-    <div class="container mt-n7 mt-lg-n12 z-2">
-        <div class="row">
-            <div class="col-lg-12 mb-5">
-                <div class="card bg-white border-light shadow-soft flex-md-row no-gutters p-4">
-                    <div class="card-body d-flex flex-column justify-content-between col-auto py-4 p-lg-5">
-                        <div class="row mt-4 mb-4">
-                            <div class="col">
-                                {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate', auth()->user()->username))->class('form-horizontal')->open() }}
 
-                                <div class="form-group row">
-                                    {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-3 form-control-label')->for('password') }}
+    <div class="mb-10 mt-10 sm:mt-0">
 
-                                    <div class="col-md-9">
-                                        {{ html()->password('password')
-                                            ->class('form-control')
-                                            ->placeholder(__('labels.backend.users.fields.password'))
-                                            ->required() }}
-                                    </div>
-                                </div><!--form-group-->
-
-                                <div class="form-group row">
-                                    {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-3 form-control-label')->for('password_confirmation') }}
-
-                                    <div class="col-md-9">
-                                        {{ html()->password('password_confirmation')
-                                            ->class('form-control')
-                                            ->placeholder(__('labels.backend.users.fields.password_confirmation'))
-                                            ->required() }}
-                                    </div>
-                                </div><!--form-group-->
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="form-group">
-                                                    {{ html()->button($text = "<i class='fas fa-save'></i>&nbsp;Save", $type = 'submit')->class('btn btn-success') }}
-
-                                                    <a href="{{ route("frontend.$module_name.profile", auth()->user()->username) }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-800">Edit Profile</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        Update account information.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 sm:col-span-2">
+                <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
+                    <div class="grid grid-cols-6 gap-6">
+                        <div class="col-span-6 text-center">
+                            <a href="{{ route('frontend.users.profileEdit', encode_id($$module_name_singular->id)) }}">
+                                <div class="w-full font-semibold text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
+                                    Edit Profile
                                 </div>
-                                {{ html()->closeModelForm() }}
-                            </div>
-                            <!--/.col-->
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-</section>
+</div>
 
 @endsection
