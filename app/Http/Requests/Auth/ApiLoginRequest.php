@@ -15,7 +15,7 @@ class ApiLoginRequest extends FormRequest
     {
         return [
             'email'     => 'required',
-            'password'  => 'required'
+            'password'  => 'required',
         ];
     }
 

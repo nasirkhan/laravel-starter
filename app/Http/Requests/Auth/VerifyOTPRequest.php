@@ -15,7 +15,7 @@ class VerifyOTPRequest extends FormRequest
     {
         return [
             'email'     => 'required',
-            'otp'       => 'required'
+            'otp'       => 'required',
         ];
 
     }

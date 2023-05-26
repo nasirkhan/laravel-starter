@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 
 trait AjaxReturnFormatTrait
@@ -60,16 +59,16 @@ trait AjaxReturnFormatTrait
 
         $filePath = public_path() . "/api/json/" . $fileName . ".json";
         // create directory if not exist
-        if (!file_exists(public_path() . "/api/json/")) {
-            mkdir(public_path() . "/api/json/", 0777, true);
+        if (!file_exists(public_path() . '/api/json/')) {
+            mkdir(public_path() . '/api/json/', 0777, true);
         }
         // create file if not exist
         if (!file_exists($filePath)) {
-            $file = fopen($filePath, "w");
+            $file = fopen($filePath, 'w');
             fclose($file);
         }
         // write data in file
-        $file = fopen(public_path() . "/api/json/" . $fileName . ".json", "w");
+        $file = fopen(public_path().'/api/json/'.$fileName.'.json', 'w');
         fwrite($file, $json);
         fclose($file);
     }

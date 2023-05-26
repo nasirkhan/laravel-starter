@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use Throwable;
 use App\Models\User;
 use App\Mail\SendOTP;
-use App\Mail\SendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Traits\ApiReturnFormatTrait;
@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        // try {
+        try {
             if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $email = $request->email;
                 $credential = ['email' => $email];
@@ -74,15 +74,15 @@ class AuthController extends Controller
 
 
             return $this->responseWithError(__('Registration does not complete successfully!!'));
-        // } catch (Throwable $e) {
+        } catch (Throwable $e) {
 
-        //     return $this->responseExceptionError(__('Something went wrong!!'));
-        // }
+            return $this->responseExceptionError(__('Something went wrong!!'));
+        }
     }
 
     public function login(ApiLoginRequest $request)
     {
-// dd('dsjfdsklfgdjklgdf');
+
         try {
             if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
                 $email = $request->email;
@@ -146,11 +146,9 @@ class AuthController extends Controller
                 ];
                 try {
                     if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-                    Mail::to($request->email)->send(new SendOTP($mail_details));
+                        Mail::to($request->email)->send(new SendOTP($mail_details));
                     }
-
                 } catch (\Throwable $th) {
-
                 }
 
                 $message = "OTP sent successfully!!. Your OTP code is {$otp}";
@@ -263,9 +261,9 @@ class AuthController extends Controller
             return $this->responseWithSuccess(__('User not found'));
         }
 
-        $currentPassword    = $request->password;
-        $newPassword        = $request->new_password;
-        $confirmPassword    = $request->confirm_password;
+        $currentPassword  = $request->password;
+        $newPassword  = $request->new_password;
+        $confirmPassword  = $request->confirm_password;
 
         if (!Hash::check($currentPassword, $user->password)) {
             return $this->responseWithSuccess(__('Current password is incorrect'));
@@ -302,8 +300,8 @@ class AuthController extends Controller
     {
         try {
             $user = Auth::user();
-            if($user){
-                return $this->responseWithSuccess(__('User found!!'),$user);
+            if ($user) {
+                return $this->responseWithSuccess(__('User found!!'), $user);
             }
 
             return $this->responseWithError(__('User does not found!!'));
