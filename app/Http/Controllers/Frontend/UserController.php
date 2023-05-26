@@ -168,6 +168,7 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
+
         if ($id != auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
@@ -252,10 +253,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function changePasswordUpdate(Request $request, $username)
+    public function changePasswordUpdate(Request $request, $id)
     {
-        if ($username != auth()->user()->username) {
-            return redirect()->route('frontend.users.profile', $username);
+        $id = decode_id($id);
+
+        if ($id != auth()->user()->id) {
+            return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
         }
 
         $this->validate($request, [
@@ -272,7 +275,7 @@ class UserController extends Controller
 
         $$module_name_singular->update($request_data);
 
-        return redirect()->route('frontend.users.profile', auth()->user()->id)->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id))->with('flash_success', 'Update successful!');
     }
 
     /**

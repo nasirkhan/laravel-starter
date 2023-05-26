@@ -13,10 +13,7 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        $body_class = '';
-
-        // return view('dashboard', compact('body_class'));
-        return view('frontend.index', compact('body_class'));
+        return view('frontend.index');
     }
 
     /**
@@ -26,9 +23,7 @@ class FrontendController extends Controller
      */
     public function privacy()
     {
-        $body_class = '';
-
-        return view('frontend.privacy', compact('body_class'));
+        return view('frontend.privacy');
     }
 
     /**
@@ -38,8 +33,6 @@ class FrontendController extends Controller
      */
     public function terms()
     {
-        $body_class = '';
-
-        return view('frontend.terms', compact('body_class'));
+        return view('frontend.terms');
     }
 }
