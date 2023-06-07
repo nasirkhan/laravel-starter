@@ -1,7 +1,7 @@
 <div class="accordion" id="activityLogBlock">
     <div class="card card-accent-primary">
         <div class="card-header" id="activityLog">
-            <button class="btn btn-outline-primary collapsed" type="button" data-toggle="collapse" data-target="#activityLogSection" aria-expanded="false" aria-controls="activityLogSection">
+            <button class="btn btn-outline-primary collapsed" type="button" data-coreui-toggle="collapse" data-coreui-target="#activityLogSection" aria-expanded="false" aria-controls="activityLogSection">
                 @lang('Activity Log')
             </button>
         </div>
