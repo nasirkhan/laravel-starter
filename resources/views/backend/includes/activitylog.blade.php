@@ -41,9 +41,15 @@
                                             <?php $attributes = $activity->properties['attributes']; ?>
                                             <ul class="list-unstyled">
                                                 @foreach ($attributes as $key => $value)
+                                                @if (is_array($value))
                                                 <li>
-                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{$value}}</mark>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark><?php print_r($value); ?></mark>
                                                 </li>
+                                                @else
+                                                <li>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{ $value }}</mark>
+                                                </li>
+                                                @endif
                                                 @endforeach
                                             </ul>
                                         </td>
@@ -52,9 +58,15 @@
                                             <?php $attributes = $activity->properties['old']; ?>
                                             <ul class="list-unstyled">
                                                 @foreach ($attributes as $key => $value)
+                                                @if (is_array($value))
                                                 <li>
-                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{$value}}</mark>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark><?php print_r($value); ?></mark>
                                                 </li>
+                                                @else
+                                                <li>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{ $value }}</mark>
+                                                </li>
+                                                @endif
                                                 @endforeach
                                             </ul>
                                             @endif
