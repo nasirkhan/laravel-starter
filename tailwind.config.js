@@ -6,7 +6,6 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './Modules/**/Resources/views/**/*.blade.php',
-        
     ],
 
     theme: {
