@@ -1,5 +1,6 @@
 // Import all of CoreUI's CSS
-import * as coreui from '@coreui/coreui'
+import * as coreui from '@coreui/coreui';
+window.coreui = coreui;
 
 import "/node_modules/simplebar/dist/simplebar.min.js";
 import "/resources/js/laravel.js";
