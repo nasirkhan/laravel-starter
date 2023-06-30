@@ -1,7 +1,7 @@
 <div class="accordion" id="activityLogBlock">
     <div class="card card-accent-primary">
         <div class="card-header" id="activityLog">
-            <button class="btn btn-outline-primary collapsed" type="button" data-toggle="collapse" data-target="#activityLogSection" aria-expanded="false" aria-controls="activityLogSection">
+            <button class="btn btn-outline-primary collapsed" type="button" data-coreui-toggle="collapse" data-coreui-target="#activityLogSection" aria-expanded="false" aria-controls="activityLogSection">
                 @lang('Activity Log')
             </button>
         </div>
@@ -41,9 +41,15 @@
                                             <?php $attributes = $activity->properties['attributes']; ?>
                                             <ul class="list-unstyled">
                                                 @foreach ($attributes as $key => $value)
+                                                @if (is_array($value))
                                                 <li>
-                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{$value}}</mark>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark><?php print_r($value); ?></mark>
                                                 </li>
+                                                @else
+                                                <li>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{ $value }}</mark>
+                                                </li>
+                                                @endif
                                                 @endforeach
                                             </ul>
                                         </td>
@@ -52,9 +58,15 @@
                                             <?php $attributes = $activity->properties['old']; ?>
                                             <ul class="list-unstyled">
                                                 @foreach ($attributes as $key => $value)
+                                                @if (is_array($value))
                                                 <li>
-                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{$value}}</mark>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark><?php print_r($value); ?></mark>
                                                 </li>
+                                                @else
+                                                <li>
+                                                    <i class="fas fa-angle-right"></i> <em>{{label_case($key)}}</em>: <mark>{{ $value }}</mark>
+                                                </li>
+                                                @endif
                                                 @endforeach
                                             </ul>
                                             @endif
