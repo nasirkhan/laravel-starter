@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
-
 /*
  * Global helpers file with misc functions.
  */
