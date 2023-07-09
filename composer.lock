@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bee154c5b9dab9fe919a738a113d6644",
+    "content-hash": "d0dc039c4d90d6df188060b147d44348",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -2692,16 +2692,16 @@
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "v0.6.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nasirkhan/module-manager.git",
-                "reference": "975aabcae24c9ea084ccec2419b7c82ba7474ef1"
+                "reference": "724b853244a19fa27ede62c3f49ef9f3fca50798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/975aabcae24c9ea084ccec2419b7c82ba7474ef1",
-                "reference": "975aabcae24c9ea084ccec2419b7c82ba7474ef1",
+                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/724b853244a19fa27ede62c3f49ef9f3fca50798",
+                "reference": "724b853244a19fa27ede62c3f49ef9f3fca50798",
                 "shasum": ""
             },
             "require": {
@@ -2744,9 +2744,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nasirkhan/module-manager/issues",
-                "source": "https://github.com/nasirkhan/module-manager/tree/v0.6.0"
+                "source": "https://github.com/nasirkhan/module-manager/tree/v1.0.0"
             },
-            "time": "2023-03-15T18:48:02+00:00"
+            "time": "2023-07-09T21:40:43+00:00"
         },
         {
             "name": "nesbot/carbon",

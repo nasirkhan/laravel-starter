@@ -45,7 +45,7 @@ class {{moduleNamePlural}}Controller extends Controller
         $$module_name = $module_model::latest()->paginate();
 
         return view(
-            "{{moduleNameLower}}::frontend.$module_path.index",
+            "$module_path.$module_name.index",
             compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
@@ -72,8 +72,8 @@ class {{moduleNamePlural}}Controller extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view(
-            "{{moduleNameLower}}::frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+            "$module_path.$module_name.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
         );
     }
 }

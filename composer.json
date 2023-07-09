@@ -17,7 +17,7 @@
         "laravel/tinker": "^2.8",
         "lavary/laravel-menu": "^1.8",
         "livewire/livewire": "^2.12",
-        "nasirkhan/module-manager": "^0.6.0",
+        "nasirkhan/module-manager": "^1.0",
         "nwidart/laravel-modules": "^10.0",
         "predis/predis": "^2.1",
         "spatie/laravel-activitylog": "^4.7",
