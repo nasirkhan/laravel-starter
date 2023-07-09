@@ -57,3 +57,4 @@
     </div>
 </div>
 
+<x-library.select2 />

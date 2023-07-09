@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title') {{ __("Tags") }} @endsection
+@section('title') {{ __($module_title) }} @endsection
 
 @section('content')
 
@@ -8,10 +8,10 @@
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <h1 class="text-3xl sm:text-4xl mb-4 font-medium text-gray-800">
-                {{ __("Tags") }}
+                {{ __($module_title) }}
             </h1>
             <p class="mb-8 leading-relaxed">
-                The list of tags.
+                The list of {{ __($module_name) }}.
             </p>
 
             @include('frontend.includes.messages')
@@ -37,10 +37,6 @@
                     <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {{$$module_name_singular->description}}
                     </p>
-                    <p class="flex-1 mb-3 font-weight-bold">
-                        Total {{$$module_name_singular->posts->count()}} posts.
-                    </p>
-
                     <div class="text-end">
                         <a href="{{$details_url}}" class="inline-flex items-center text-sm outline outline-1 outline-gray-800 text-gray-700 hover:text-gray-100 bg-gray-200 hover:bg-gray-700 py-2 px-3 focus:outline-none rounded">
                             Read more
