@@ -27,6 +27,7 @@ return [
             'lang' => ['lang/en/text.stub', 'lang/en/text.php'],
             'models' => ['Models/stubModel.stub', 'Models/stubModel.php'],
             'providersRoute' => ['Providers/RouteServiceProvider.stub', 'Providers/RouteServiceProvider.php'],
+            'providersEvent' => ['Providers/EventServiceProvider.stub', 'Providers/EventServiceProvider.php'],
             'providers' => ['Providers/stubServiceProvider.stub', 'Providers/stubServiceProvider.php'],
             'route_web' => ['routes/web.stub', 'routes/web.php'],
             'route_api' => ['routes/api.stub', 'routes/api.php'],
