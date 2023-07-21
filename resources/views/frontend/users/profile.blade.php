@@ -60,6 +60,7 @@
                 </div>
 
                 @auth
+
                 @if (auth()->user()->id == $$module_name_singular->id)
                 <div class="mt-8">
                     <a href='{{ route("frontend.users.profileEdit", encode_id($$module_name_singular->id)) }}'>
@@ -69,6 +70,17 @@
                     </a>
                 </div>
                 @endif
+
+                @if (auth()->user()->username == $$module_name_singular->username)
+                <div class="mt-8">
+                    <a href="{{ route('frontend.users.changePassword', $$module_name_singular->username) }}">
+                        <div class="w-full text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
+                            Change Password
+                        </div>
+                    </a>
+                </div>
+                @endif
+
                 @endauth
 
             </div>
@@ -90,7 +102,7 @@
                     <span class="">{{ $$module_name_singular->$field_name }}</span>
                 </div>
             </div>
-            
+
             @auth
             @if (auth()->user()->id == $$module_name_singular->id)
             <div class="flex justify-between p-4">

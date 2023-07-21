@@ -251,7 +251,7 @@
                         <div class="col-span-6 text-center">
                             <a href="{{ route('frontend.users.changePassword', encode_id($$module_name_singular->id)) }}">
                                 <div class="w-full font-semibold text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
-                                    Chnage Password
+                                    Change Password
                                 </div>
                             </a>
                         </div>
