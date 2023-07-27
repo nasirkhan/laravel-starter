@@ -34,9 +34,6 @@
                                 <i class="fas fa-eye-slash"></i> View trash
                             </a>
                         </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
                     </ul>
                 </div>
                 @endcan

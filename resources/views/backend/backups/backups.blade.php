@@ -14,18 +14,19 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <div>
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ __($module_title) }}
-                    <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-medium-emphasis">@lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])</div>
-            </div>
-            <div class="btn-toolbar d-block" role="toolbar" aria-label="Toolbar with buttons">
-                <a href="{{ route("backend.$module_name.create") }}" class="btn btn-outline-success m-1" data-toggle="tooltip" title="Create New"><i class="fas fa-plus-circle"></i> @lang("Create new :module_name", ['module_name'=>Str::title($module_name)])</a>
-            </div>
-        </div>
+        
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
+
+            <x-slot name="subtitle">
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
+            </x-slot>
+            <x-slot name="toolbar">
+                @can('add_'.$module_name)
+                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
+                @endcan
+            </x-slot>
+        </x-backend.section-header>
 
         <div class="row mt-4">
             <div class="col">

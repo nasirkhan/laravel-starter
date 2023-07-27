@@ -9,8 +9,8 @@ $notifications_latest = optional($notifications)->take(5);
         <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <a class="header-brand d-md-none" href="#">
-            <img class="sidebar-brand-full" src="{{asset("img/backend-logo.jpg")}}" height="46" alt="{{ app_name() }}">
+        <a class="header-brand d-sm-none" href="#">
+            <img class="sidebar-brand-full" src="{{asset('img/backend-logo-square.jpg')}}" height="46" alt="{{ app_name() }}">
         </a>
         <ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="{{ route('frontend.index') }}" target="_blank">{{app_name()}}&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
@@ -50,7 +50,7 @@ $notifications_latest = optional($notifications)->take(5);
                         <div class="fw-semibold">{{ __('Change language') }}</div>
                     </div>
                     @foreach(config('app.available_locales') as $locale => $title)
-                    <a class="dropdown-item" href="{{route("language.switch", $locale)}}">
+                    <a class="dropdown-item" href="{{route('language.switch', $locale)}}">
                         {{ $title }}
                     </a>
                     @endforeach
@@ -77,7 +77,7 @@ $notifications_latest = optional($notifications)->take(5);
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="{{ route("backend.notifications.index") }}">
+                    <a class="dropdown-item" href="{{ route('backend.notifications.index') }}">
                         <i class="fa-regular fa-bell me-2"></i>&nbsp;
                         @lang('Notifications') <span class="badge bg-danger ml-auto">{{$notifications_count}}</span>
                     </a>
@@ -89,7 +89,6 @@ $notifications_latest = optional($notifications)->take(5);
                         @lang('Logout')
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-
                 </div>
             </li>
         </ul>
@@ -109,40 +108,3 @@ $notifications_latest = optional($notifications)->take(5);
         </div>
     </div>
 </header>
-
-@push('after-scripts')
-<script type="module">
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     $(function() {
-    //         // Show the time
-    //         showTime();
-    //     })
-    // }, false);
-
-    $(function() {
-        // Show the time
-        showTime();
-    })
-
-
-    function showTime() {
-        var date = new Date();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var seconds = date.getSeconds();
-
-        var session = hours >= 12 ? 'pm' : 'am';
-
-        hours = hours % 12;
-        hours = hours ? hours : 12;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        var time = hours + ":" + minutes + ":" + seconds + " " + session;
-        document.getElementById("liveClock").innerText = time;
-        document.getElementById("liveClock").textContent = time;
-
-        setTimeout(showTime, 1000);
-    }
-</script>
-@endpush
