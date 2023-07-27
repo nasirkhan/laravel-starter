@@ -139,7 +139,7 @@ return [
                 'label' => 'Meta Description', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'A CMS like modular starter application project built with Laravel 10.', // default value if you want
+                'value' => 'A CMS like modular starter application project built with latest Laravel.', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -148,7 +148,7 @@ return [
                 'label' => 'Meta Keyword', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, nasir khan, nasirkhan', // default value if you want
+                'value' => 'Web Application, web app, Laravel, Laravel starter, Bootstrap, Admin, Template, Open Source, nasir khan saikat, nasirkhansaikat', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
