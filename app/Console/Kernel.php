@@ -13,6 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        // Backup Cleanup
+        $schedule->command('backup:clean')->daily()->at('01:00'); 
     }
 
     /**
