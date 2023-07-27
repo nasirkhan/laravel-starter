@@ -167,7 +167,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-6">
@@ -176,15 +176,10 @@
             $field_name = 'published_at';
             $field_lable = __("article::$module_name.$field_name");
             $field_placeholder = $field_lable;
-            $required = "";
+            $required = "required";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
-                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
-                <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
-                    <span class="input-group-text">&nbsp;<i class="fas fa-calendar-alt"></i>&nbsp;</span>
-                </div>
-            </div>
+            {{ html()->datetime($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -269,7 +264,6 @@
 
 <!-- Select2 Library -->
 <x-library.select2 />
-<x-library.datetime-picker />
 
 @push('after-styles')
 <!-- File Manager -->
@@ -392,14 +386,6 @@
                 cache: true
             }
         });
-    });
-
-    // Date Time Picker
-    $('.datetime').tempusDominus({
-        localization: {
-            locale: 'en',
-            format: 'yyyy-MM-dd HH:mm:ss'
-        }
     });
 </script>
 @endpush
