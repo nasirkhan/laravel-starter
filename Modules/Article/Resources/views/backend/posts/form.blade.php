@@ -167,7 +167,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-6">
@@ -264,7 +264,6 @@
 
 <!-- Select2 Library -->
 <x-library.select2 />
-<x-library.datetime-picker />
 
 @push('after-styles')
 <!-- File Manager -->
