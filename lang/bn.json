@@ -1,6 +1,13 @@
 {
     "Welcome to": ":name অ্যাডমিন ড্যাশবোর্ডে স্বাগতম",
     "Dashboard": "ড্যাশবোর্ড",
+    "Admin Dashboard": "অ্যাডমিন ড্যাশবোর্ড",
+
+    "Name": "নাম",
+    "Email": "ইমেইল",
+    "Password": "পাসওয়ার্ড",
+    "Password Confirmation": "পাসওয়ার্ড (পুনরায়)",
+
     "Index": "Index",
     "Show": "Show",
     "Edit": "এডিট",
@@ -26,8 +33,7 @@
     "Account": "অ্যাকাউন্ট",
     "Settings": "সেটিংস",
     "Logout": "লগ আউট",
-    "Name": "Name",
-    "Value": "Value",
+    "Value": "মান",
     "Displaing all the values of :module_name (Id: :id)": "Displaing all the values of <strong>:module_name (Id: :id)</strong>.",
     "Are you sure?": "আপনি কি নিশ্চিত?",
     "Send confirmation email": "Send Confirmation Email",
