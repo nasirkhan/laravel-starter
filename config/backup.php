@@ -27,6 +27,7 @@ return [
                  * Directories used by the backup process will automatically be excluded.
                  */
                 'exclude' => [
+                    base_path('.git'),
                     base_path('vendor'),
                     base_path('node_modules'),
                 ],
@@ -85,7 +86,7 @@ return [
         ],
 
         /*
-         * The database dump can be compressed to decrease diskspace usage.
+         * The database dump can be compressed to decrease disk space usage.
          *
          * Out of the box Laravel-backup supplies
          * Spatie\DbDumper\Compressors\GzipCompressor::class.
@@ -191,9 +192,15 @@ return [
         'discord' => [
             'webhook_url' => '',
 
-            'username' => null,
+            /*
+             * If this is an empty string, the name field on the webhook will be used.
+             */
+            'username' => '',
 
-            'avatar_url' => null,
+            /*
+             * If this is an empty string, the avatar on the webhook will be used.
+             */
+            'avatar_url' => '',
         ],
     ],
 

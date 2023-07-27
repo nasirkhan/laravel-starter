@@ -104,7 +104,7 @@ class BackupController extends Controller
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
 
             // return the results as a response to the ajax call
-            flash("<i class='fas fa-check'></i> New backup created")->success()->important();
+            flash(icon()."New backup created")->success()->important();
 
             return redirect()->back();
         } catch (Exception $e) {
@@ -141,6 +141,8 @@ class BackupController extends Controller
 
         if ($disk->exists($file)) {
             $disk->delete($file);
+
+            flash(icon()."`$file_name` deleted successfully.")->success()->important();
 
             return redirect()->back();
         } else {
