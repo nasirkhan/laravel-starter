@@ -31,7 +31,7 @@
 
         <hr>
 
-        <div class="row mt-4 mb-4">
+        <div class="row mt-4">
             <div class="col">
                 {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}
                 <div class="form-group row">
@@ -47,7 +47,7 @@
                 <!--form-group-->
 
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'first_name';
@@ -59,7 +59,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'last_name';
@@ -71,7 +71,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'email';
@@ -83,7 +83,7 @@
                             {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"])->disabled() }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'mobile';
@@ -99,7 +99,7 @@
 
                 <div class="row">
 
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'gender';
@@ -113,11 +113,11 @@
                             ];
                             ?>
                             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'date_of_birth';
@@ -126,18 +126,13 @@
                             $required = "";
                             ?>
                             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
-                            <div class="input-group date datetime" id="{{$field_name}}" data-target-input="nearest">
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
-                                <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-                                </div>
-                            </div>
+                            {{ html()->date($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'address';
@@ -149,7 +144,7 @@
                             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'bio';
@@ -163,7 +158,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_website';
@@ -175,7 +170,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-sm-3 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_facebook';
@@ -187,7 +182,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-sm-3 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_instagram';
@@ -199,7 +194,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-sm-3 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_twitter';
@@ -211,7 +206,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-sm-3 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = 'url_linkedin';
@@ -224,12 +219,12 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            {{ html()->submit($text = icon('fas fa-save')." Save")->class('btn btn-success') }}
-                        </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <x-backend.buttons.save />
+                    </div>
+                    <div class="col-6 text-end">
+                        <x-backend.buttons.cancel />
                     </div>
                 </div>
                 {{ html()->closeModelForm() }}
@@ -249,54 +244,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-
-
-
-@push('after-styles')
-
-<!-- Select2 Bootstrap 4 Core UI -->
-<link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
-
-<!-- Date Time Picker -->
-<link rel="stylesheet" href="{{ asset('vendor/bootstrap-4-datetime-picker/css/tempusdominus-bootstrap-4.min.css') }}" />
-
-@endpush
-
-@push ('after-scripts')
-<!-- Select2 Bootstrap 4 Core UI -->
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="module">
-    $(document).ready(function() {
-        $('.select2').select2({
-            theme: "bootstrap",
-            placeholder: "-- Select an option --",
-            allowClear: true,
-        });
-    });
-</script>
-
-<!-- Date Time Picker & Moment Js-->
-<script type="module" src="{{ asset('vendor/moment/moment.min.js') }}"></script>
-<script type="module" src="{{ asset('vendor/bootstrap-4-datetime-picker/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
-<script type="module">
-    $(function() {
-        $('.datetime').datetimepicker({
-            format: 'YYYY-MM-DD',
-            icons: {
-                time: 'far fa-clock',
-                date: 'far fa-calendar-alt',
-                up: 'fas fa-arrow-up',
-                down: 'fas fa-arrow-down',
-                previous: 'fas fa-chevron-left',
-                next: 'fas fa-chevron-right',
-                today: 'far fa-calendar-check',
-                clear: 'far fa-trash-alt',
-                close: 'fas fa-times'
-            }
-        });
-    });
-</script>
-@endpush
