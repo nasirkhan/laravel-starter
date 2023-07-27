@@ -103,10 +103,11 @@ class BackupController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         if (demo_mode()) {
-            flash(icon() . 'Backup Creation Skillped on Demo Mode!')->warning()->important();
+            flash(icon().'Backup Creation Skillped on Demo Mode!')->warning()->important();
+
             return redirect()->route("backend.$module_path.index");
         }
-        
+
         try {
             // start the backup process
             Artisan::call('backup:run');
