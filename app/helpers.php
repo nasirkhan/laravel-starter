@@ -518,11 +518,10 @@ if (! function_exists('language_direction')) {
     }
 }
 
-
 /*
  * Application Demo Mode check
  */
-if (!function_exists('demo_mode')) {
+if (! function_exists('demo_mode')) {
     /**
      * Helper to grab the application name.
      *
