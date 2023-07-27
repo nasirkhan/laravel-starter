@@ -95,6 +95,19 @@ class BackupController extends Controller
      */
     public function create()
     {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        if (demo_mode()) {
+            flash(icon().'Backup Creation Skillped on Demo Mode!')->warning()->important();
+
+            return redirect()->route("backend.$module_path.index");
+        }
+
         try {
             // start the backup process
             Artisan::call('backup:run');

@@ -517,3 +517,24 @@ if (! function_exists('language_direction')) {
         return 'ltr';
     }
 }
+
+/*
+ * Application Demo Mode check
+ */
+if (! function_exists('demo_mode')) {
+    /**
+     * Helper to grab the application name.
+     *
+     * @return mixed
+     */
+    function demo_mode()
+    {
+        $return_string = false;
+
+        if (env('DEMO_MDOE') == 'true') {
+            $return_string = true;
+        }
+
+        return $return_string;
+    }
+}
