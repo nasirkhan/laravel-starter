@@ -56,10 +56,19 @@ return [
     ],
     'social' => [
         'title' => 'Social Profiles',
-        'desc' => 'Link of all the social profiles.',
+        'desc' => 'Link of all the online/social profiles.',
         'icon' => 'fas fa-users',
 
         'elements' => [
+            [
+                'type' => 'text', // input fields type
+                'data' => 'string', // data type, string, int, boolean
+                'name' => 'website_url', // unique name for field
+                'label' => 'Website URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
             [
                 'type' => 'text', // input fields type
                 'data' => 'string', // data type, string, int, boolean
@@ -166,7 +175,7 @@ return [
                 'label' => 'Meta Twitter Site Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '@nasirkhansaikat', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -175,7 +184,7 @@ return [
                 'label' => 'Meta Twitter Creator Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '@nasirkhansaikat', // default value if you want
             ],
         ],
     ],
