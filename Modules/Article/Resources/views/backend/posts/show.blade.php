@@ -73,7 +73,7 @@
                 </ul>
                 <hr>
 
-                @include('article::backend.includes.activitylog')
+                @include('backend.includes.activitylog')
                 <hr>
 
             </div>
