@@ -386,7 +386,7 @@ class UserController extends Controller
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email' => 'email',
+            'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:' . $module_model . ',email,' . $id,
         ]);
 
         if (! auth()->user()->can('edit_users')) {
@@ -417,7 +417,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Updated Successfully!')->important();
+        Flash::success(icon() . ' '.label_case($module_name_singular).' Updated Successfully!')->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
