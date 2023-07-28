@@ -12,7 +12,7 @@
         @endif
     </div>
     @if($toolbar != "")
-    <div class="btn-toolbar d-block" role="toolbar" aria-label="Toolbar with buttons">
+    <div class="btn-toolbar d-block text-end" role="toolbar" aria-label="Toolbar with buttons">
         {{ $toolbar }}
     </div>
     @endif

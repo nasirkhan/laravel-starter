@@ -49,7 +49,7 @@
         @include('backend.includes.header')
         <!-- /Header -->
 
-        <div class="body flex-grow-1 px-3">
+        <div class="body flex-grow-1">
             <div class="container-lg">
 
                 @include('flash::message')
