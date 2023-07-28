@@ -74,7 +74,6 @@
                 <hr>
 
                 @include('backend.includes.activitylog')
-                <hr>
 
             </div>
         </div>

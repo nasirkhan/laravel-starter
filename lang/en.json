@@ -64,7 +64,7 @@
     "Register": "Register",
     "Create an account": "Create an account",
     "Logout": "Logout",
-    "Displaing all the values of :module_name (Id: :id)": "Displaing all the values of <strong>:module_name (Id: :id)</strong>.",
+    "All values of :module_name (Id: :id)": "All values of <b>:module_name (Id: :id)</b>.",
     "Are you sure?": "Are you sure?",
     "Send confirmation email": "Send Confirmation Email",
     ":module_name Management Dashboard": ":module_name Management Dashboard",
