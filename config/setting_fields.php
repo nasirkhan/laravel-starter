@@ -133,12 +133,12 @@ return [
                 'value' => '#', // default value if you want
             ],
         ],
-
+        
     ],
     'meta' => [
         'title' => 'Meta ',
         'desc' => 'Application Meta Data',
-        'icon' => 'fas fa-globe-asia',
+        'icon' => 'fa-solid fa-earth-asia',
 
         'elements' => [
             [
