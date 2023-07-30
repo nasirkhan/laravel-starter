@@ -12,7 +12,7 @@
         <div class="row mt-4">
             <div class="col-12">
 
-                @include('backend.includes.show')
+                <x-backend.section-show-table :data="$data" :module_name="$module_name" />
 
             </div>
         </div>

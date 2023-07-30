@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Article\Http\Controllers\Frontend;
+namespace Modules\Category\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -27,13 +27,13 @@ class CategoriesController extends Controller
         $this->module_name = 'categories';
 
         // directory path of the module
-        $this->module_path = 'categories';
+        $this->module_path = 'category::frontend';
 
         // module icon
-        $this->module_icon = 'fas fa-sitemap';
+        $this->module_icon = 'fa-regular fa-sun';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Category";
+        $this->module_model = "Modules\Category\Models\Category";
     }
 
     /**
@@ -52,11 +52,11 @@ class CategoriesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::with(['posts'])->paginate();
+        $$module_name = $module_model::latest()->paginate();
 
         return view(
-            "article::frontend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+            "$module_path.$module_name.index",
+            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -83,7 +83,7 @@ class CategoriesController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "article::frontend.$module_name.show",
+            "$module_path.$module_name.show",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
         );
     }
