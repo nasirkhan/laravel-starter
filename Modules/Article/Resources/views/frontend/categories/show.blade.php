@@ -4,7 +4,7 @@
 
 @section('content')
 
-<section class="bg-gray-100 text-gray-600 py-20">
+<section class="bg-gray-100 text-gray-600 py-10 sm:py-20">
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <p class="mb-8 leading-relaxed">
@@ -24,13 +24,12 @@
     </div>
 </section>
 
-<section class="bg-white text-gray-600 py-20 px-20">
+<section class="bg-white text-gray-600 p-6 sm:p-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         @foreach ($posts as $post)
         @php
         $details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
         @endphp
-
         <div class="">
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <a href="{{$details_url}}">

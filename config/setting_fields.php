@@ -67,7 +67,7 @@ return [
                 'label' => 'Website URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '#', // default value if you want
+                'value' => 'https://nasirkhn.com', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -85,7 +85,7 @@ return [
                 'label' => 'Twitter Profile URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '#', // default value if you want
+                'value' => 'https://twitter.com/nasirkhansaikat', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -94,7 +94,16 @@ return [
                 'label' => 'Instagram Account URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '#', // default value if you want
+                'value' => 'https://www.instagram.com/nasirkhansaikat', // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'string', // data type, string, int, boolean
+                'name' => 'youtube_url', // unique name for field
+                'label' => 'Youtube Channel URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'https://www.youtube.com/@nasirkhan', // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
@@ -108,8 +117,17 @@ return [
             [
                 'type' => 'text', // input fields type
                 'data' => 'string', // data type, string, int, boolean
-                'name' => 'youtube_url', // unique name for field
-                'label' => 'Youtube Channel URL', // you know what label it is
+                'name' => 'whatsapp_url', // unique name for field
+                'label' => 'WhatsApp URL', // you know what label it is
+                'rules' => 'required|nullable|max:191', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '#', // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'string', // data type, string, int, boolean
+                'name' => 'messenger_url', // unique name for field
+                'label' => 'Messenger URL', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => '#', // default value if you want
@@ -120,7 +138,7 @@ return [
     'meta' => [
         'title' => 'Meta ',
         'desc' => 'Application Meta Data',
-        'icon' => 'fas fa-globe-asia',
+        'icon' => 'fa-solid fa-earth-asia',
 
         'elements' => [
             [

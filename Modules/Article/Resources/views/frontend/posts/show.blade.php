@@ -4,9 +4,9 @@
 
 @section('content')
 
-<section class="bg-gray-100 text-gray-600 body-font px-20">
-    <div class="container mx-auto flex px-5 py-8 sm:py-16 md:flex-row flex-col items-center">
-        <div class="lg:flex-grow sm:w-4/12 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+<section class="bg-gray-100 text-gray-600 body-font px-6 sm:px-20">
+    <div class="container mx-auto flex py-8 sm:py-16 md:flex-row flex-col items-center">
+        <div class="lg:flex-grow sm:w-4/12 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 class="sm:text-4xl text-3xl mb-4 font-medium text-gray-800">
                 {{$$module_name_singular->name}}
             </h1>
@@ -18,14 +18,14 @@
 
             @include('frontend.includes.messages')
         </div>
-        <div class="sm:w-8/12">
+        <div class="w-full sm:w-8/12 mb-4 sm:mb-0">
             <img class="object-cover object-center rounded shadow-md" alt="{{$$module_name_singular->name}}" src="{{$$module_name_singular->featured_image}}">
         </div>
     </div>
 </section>
 
-<section class="py-10 px-20">
-    <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col">
+<section class="py-6 sm:py-10 px-6 sm:px-20">
+    <div class="container mx-auto flex md:flex-row flex-col">
         <div class="flex flex-col lg:flex-grow sm:w-8/12 sm:pr-8">
             <div class="pb-5">
                 <p>
@@ -36,37 +36,36 @@
             <hr>
 
             <div class="py-5">
-                <div class="flex justify-between font-bold">
-                    <div>
+                <div class="flex flex-col sm:flex-row justify-between">
+                    <div class="pb-2">
                         {{__('Written by')}}: {{isset($$module_name_singular->created_by_alias)? $$module_name_singular->created_by_alias : $$module_name_singular->created_by_name}}
                     </div>
-                    <div>
+                    <div class="pb-2">
                         {{__('Published at')}}: {{$$module_name_singular->published_at->isoFormat('llll')}}
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-row justify-between content-center items-center py-5">
-                <p>
+            <div class="flex flex-row justify-between py-5">
+                <div>
                     <span class="font-weight-bold">
                         @lang('Category'):
                     </span>
-
-                    <a href="{{route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])}}" class="m-2 p-2 bg-gray-100 rounded border-transparent border hover:border-gray-800 transition ease-out duration-300">{{$$module_name_singular->category_name}}</a>
-                </p>
-
-                @if (count($$module_name_singular->tags))
-                <p>
-                    <span class="font-weight-bold">
-                        @lang('Tags'):
-                    </span>
-
-                    @foreach ($$module_name_singular->tags as $tag)
-                    <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="m-2 p-2 bg-gray-100 rounded border-transparent border hover:border-gray-800 transition ease-out duration-300">{{$tag->name}}</a>
-                    @endforeach
-                </p>
-                @endif
+                    <x-frontend.badge :url="route('frontend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug])" :text="$$module_name_singular->category_name" />
+                </div>
             </div>
+
+            @if (count($$module_name_singular->tags))
+            <div class="py-5">
+                <span class="font-weight-bold">
+                    @lang('Tags'):
+                </span>
+
+                @foreach ($$module_name_singular->tags as $tag)
+                <x-frontend.badge :url="route('frontend.tags.show', [encode_id($tag->id), $tag->slug])" :text="$tag->name" />
+                @endforeach
+            </div>
+            @endif
 
             <div class="py-5">
                 <div class="flex flex-row justify-around content-center items-center ">

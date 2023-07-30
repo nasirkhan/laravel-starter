@@ -5,7 +5,7 @@
 
 @section('content')
 
-<section class="bg-gray-100 text-gray-600 py-20">
+<section class="bg-gray-100 text-gray-600 py-10 sm:py-20">
     <div class="container mx-auto flex px-5 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <p class="mb-8 leading-relaxed">
@@ -23,13 +23,13 @@
 </section>
 
 
-<section class="bg-white text-gray-600 py-20 px-20">
+<section class="bg-white text-gray-600 p-6 sm:p-20 sm:pb-0">
     <div class="grid grid-cols-1 gap-6">
         <div class="">
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-5 flex flex-col items-stretch">
                     <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
-                        Post of {{$$module_name_singular->name}}
+                        {{$$module_name_singular->name}}
                     </h2>
                     <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
                         {!! $$module_name_singular->comment !!}
@@ -49,79 +49,60 @@
     </div>
 </section>
 
-<section class="bg-white text-gray-600 py-20 px-20">
+<section class="bg-white text-gray-600 p-6 sm:p-20">
+    <div class="flex flex-col mb-4">
+        <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white text-center">
+            Post of {{$$module_name_singular->name}}
+        </h2>
+        <hr class="w-1/2 mx-auto">
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="col-span-2">
-            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white text-center">
-                Post of {{$$module_name_singular->name}}
-            </h2>
-        </div>
-        <div class="">
+        <div class="col-span-1">
             @php
             $post = $$module_name_singular->post;
             $post_details_url = route("frontend.posts.show",[encode_id($post->id), $post->slug]);
             @endphp
-            <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col items-stretch">
-
-                    <a href="{{ $post_details_url }}">
-                        <img class="rounded-t-lg" src="{{$post->featured_image}}" alt="{{$post->name}}" />
-                    </a>
-                    <div class="p-5 flex flex-col items-stretch">
-                        <a href="{{ $post_details_url }}">
-                            <h2 class="mb-2 text-2xl tracking-tight text-gray-900 dark:text-white">
-                                {{$post->name}}
-                            </h2>
-                        </a>
-                        <p class="flex-1 h-full mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            {{$post->intro}}
-                        </p>
-                        <p class="card-text">
-                            <a href="{{route('frontend.categories.show', [encode_id($post->category_id), $post->category->slug])}}" class="badge bg-primary">{{$post->category_name}}</a>
-                        </p>
-
-                        <p class="card-text">
-                            @foreach ($post->tags as $tag)
-                            <a href="{{route('frontend.tags.show', [encode_id($tag->id), $tag->slug])}}" class="badge bg-warning text-dark">{{$tag->name}}</a>
-                            @endforeach
-                        </p>
-
-                        <p class="card-text">
-                            <span class="badge bg-primary">
-                                <i class="now-ui-icons ui-2_chat-round"></i> Total {{$post->comments->count()}} comments
-                            </span>
-                        </p>
-
-                        <p class="card-text">
-                            <small class="text-muted">{{$post->published_at_formatted}}</small>
-                        </p>
-
-                        <div class="text-end">
-                            <a href="{{ $post_details_url }}" class="inline-flex items-center text-sm outline outline-1 outline-gray-800 text-gray-700 hover:text-gray-100 bg-gray-200 hover:bg-gray-700 py-2 px-3 focus:outline-none rounded">
-                                Read more
-                                <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
+            <x-frontend.card :url="$post_details_url" :name="$post->name" :image="$post->featured_image">
+                @if($post->created_by_alias)
+                <div class="flex flex-row items-center my-4">
+                    <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="Author profile image">
+                    <h6 class="text-muted text-sm small ml-2 mb-0">
+                        {{ $post->created_by_alias }}
+                    </h6>
                 </div>
-            </div>
+                @else
+                <div class="flex flex-row items-center my-4">
+                    <img class="w-5 h-5 sm:w-8 sm:h-8 rounded-full" src="{{asset('img/avatars/'.rand(1, 8).'.jpg')}}" alt="">
+
+                    <a href="{{ route('frontend.users.profile', $post->created_by) }}">
+                        <h6 class="text-muted text-sm small ml-2 mb-0">
+                            {{ $post->created_by_name }}
+                        </h6>
+                    </a>
+                </div>
+                @endif
+
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    {{$post->intro}}
+                </p>
+                <p>
+                    <x-frontend.badge :url="route('frontend.categories.show', [encode_id($post->category_id)])" :text="$post->category_name" />
+                </p>
+                <p>
+                    @foreach ($post->tags as $tag)
+                    <x-frontend.badge :url="route('frontend.tags.show', [encode_id($tag->id), $tag->slug])" :text="$tag->name" />
+                    @endforeach
+                </p>
+            </x-frontend.card>
         </div>
-        <div class="">
+
+        <div class="col-span-1">
             <div class=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-5 flex flex-col items-stretch">
                     <h3 class="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
                         Other Comments of the this post
                     </h3>
-                    <!-- <p class="my-4 flex-1 h-full font-normal text-gray-700 dark:text-gray-400">
-                        {!! $$module_name_singular->comment !!}
-                    </p>
-                    <p class="my-4">
-                        <small>{{$$module_name_singular->published_at_formatted}}</small>
-                    </p> -->
-
+                    
                     <hr>
 
                     @foreach ($post->comments as $comment)

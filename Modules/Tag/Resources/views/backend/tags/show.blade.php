@@ -23,7 +23,7 @@
             </x-slot>
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back />
-                <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
                 @can('edit_'.$module_name)
                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ms-1" />
                 @endcan
@@ -40,10 +40,9 @@
             </div>
             <div class="col-12 col-sm-7">
 
-                <div class="text-center">
-                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
+                <div class="text-center mb-4">
+                    <a href='{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}' class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
                 </div>
-                <hr>
 
                 <div class="card">
                     <div class="card-header">
@@ -77,7 +76,7 @@
                             }
                             @endphp
                             <li>
-                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" class="btn btn-sm btn-outline-primary" target="_blank" data-toggle="tooltip" title="Public View"> <i class="fas fa-external-link-square-alt"></i> </a>
+                                <span class="fa-li"><i class="fas fa-check-square {{$text_class}}"></i></span> <a href="{{route('backend.posts.show', $row->id)}}">{{$row->name}}</a> <a href="{{route('frontend.posts.show', [encode_id($row->id), $row->slug])}}" target="_blank" data-toggle="tooltip" title="Public View">&nbsp;<i class="fas fa-external-link-square-alt"></i> </a>
                             </li>
                             @empty
                             <p class="text-center">
@@ -85,7 +84,7 @@
                             </p>
                             @endforelse
                         </ul>
-                        {{$posts->links()}}
+                        {{$posts->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>

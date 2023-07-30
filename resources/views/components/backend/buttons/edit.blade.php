@@ -2,7 +2,7 @@
 
 @if($route)
 <a href='{{$route}}'
-    class='btn btn-primary {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
+    class='btn btn-primary m-1 {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
     data-toggle="tooltip"
     title="{{ $title }}">
     <i class="{{$icon}}"></i>
@@ -10,7 +10,7 @@
 </a>
 @else
 <button type="submit"
-    class='btn btn-primary {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
+    class='btn btn-primary m-1 {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
     data-toggle="tooltip"
     title="{{ $title }}">
     <i class="{{$icon}}"></i>

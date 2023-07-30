@@ -1,5 +1,5 @@
 <p>
-    @lang("Displaing all the values of :module_name (Id: :id)", ['module_name'=>ucwords($module_name_singular), 'id'=>$$module_name_singular->id]).
+    @lang("All values of :module_name (Id: :id)", ['module_name'=>ucwords($module_name_singular), 'id'=>$$module_name_singular->id])
 </p>
 <table class="table table-responsive-sm table-hover table-bordered">
     <?php

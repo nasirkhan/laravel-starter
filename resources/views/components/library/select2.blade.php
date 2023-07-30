@@ -1,17 +1,16 @@
 @push('after-styles')
-<!-- Select2 Bootstrap 4 Core UI -->
-<link href="{{ asset('vendor/select2/select2-coreui-bootstrap4.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 
 @push('after-scripts')
-<!-- Select2 Bootstrap 4 Core UI -->
-<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="module">
     $(document).ready(function() {
         $('.select2').select2({
-            theme: "bootstrap",
-            placeholder: "-- Select an option --",
+            theme: 'bootstrap-5',
+            placeholder: '-- Select an option --',
         });
     });
 </script>
