@@ -9,14 +9,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
 
         /**
-         * Backend
+         * Backend.
          */
         'Modules\Category\Events\Backend\NewCreated' => [
             'Modules\Category\Listeners\Backend\NewCreated\UpdateAllOnNewCreated',
         ],
-        
-        /**
-         * Frontend
-         */
+
+    /**
+     * Frontend.
+     */
     ];
 }

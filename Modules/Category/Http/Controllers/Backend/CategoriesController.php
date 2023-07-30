@@ -46,15 +46,15 @@ class CategoriesController extends BackendBaseController
         $module_action = 'Store';
 
         $validatedData = $request->validate([
-            'name' => 'required|max:191|unique:' . $module_model . ',name',
-            'slug' => 'nullable|max:191|unique:' . $module_model . ',slug',
+            'name' => 'required|max:191|unique:'.$module_model.',name',
+            'slug' => 'nullable|max:191|unique:'.$module_model.',slug',
         ]);
 
         $$module_name_singular = $module_model::create($request->all());
 
-        flash(icon()."New '" . Str::singular($module_title) . "' Added")->success()->important();
+        flash(icon()."New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/$module_name");
     }
@@ -80,7 +80,7 @@ class CategoriesController extends BackendBaseController
 
         $posts = $$module_name_singular->posts()->latest()->paginate();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "$module_path.$module_name.show",
@@ -106,19 +106,18 @@ class CategoriesController extends BackendBaseController
         $module_action = 'Update';
 
         $validatedData = $request->validate([
-            'name' => 'required|max:191|unique:' . $module_model . ',name,' . $id,
-            'slug' => 'nullable|max:191|unique:' . $module_model . ',slug,' . $id,
+            'name' => 'required|max:191|unique:'.$module_model.',name,'.$id,
+            'slug' => 'nullable|max:191|unique:'.$module_model.',slug,'.$id,
         ]);
 
         $$module_name_singular = $module_model::findOrFail($id);
 
         $$module_name_singular->update($request->all());
 
-        flash(icon() . " " . Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(icon().' '.Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route("backend.$module_name.show", $$module_name_singular->id);
     }
-
 }

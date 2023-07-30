@@ -20,7 +20,7 @@ class Category extends BaseModel
     {
         return $this->hasMany('Modules\Article\Entities\Post');
     }
-    
+
     /**
      * Create a new factory instance for the model.
      *

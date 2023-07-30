@@ -187,7 +187,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular = $module_model::create($request->all());
 
-        flash(icon() . "New '".Str::singular($module_title)."' Added")->success()->important();
+        flash(icon()."New '".Str::singular($module_title)."' Added")->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
@@ -269,7 +269,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular->update($request->all());
 
-        flash(icon() . " ".Str::singular($module_title)."' Updated Successfully")->success()->important();
+        flash(icon().' '.Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
@@ -297,7 +297,7 @@ class BackendBaseController extends Controller
 
         $$module_name_singular->delete();
 
-        flash(icon() . ''.label_case($module_name_singular).' Deleted Successfully!')->success()->important();
+        flash(icon().''.label_case($module_name_singular).' Deleted Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
@@ -352,7 +352,7 @@ class BackendBaseController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        flash(icon() . ''.label_case($module_name_singular).' Data Restoreded Successfully!')->success()->important();
+        flash(icon().''.label_case($module_name_singular).' Data Restoreded Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 

@@ -45,7 +45,6 @@ class GenerateMenus
                 ->link->attr([
                     'class' => 'nav-link',
                 ]);
-                
         })->sortBy('order');
 
         return $next($request);
