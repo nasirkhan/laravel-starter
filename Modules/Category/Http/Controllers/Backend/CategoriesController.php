@@ -50,7 +50,13 @@ class CategoriesController extends BackendBaseController
             'slug' => 'nullable|max:191|unique:' . $module_model . ',slug',
         ]);
 
-        $$module_name_singular = $module_model::create($request->all());
+        $$module_name_singular = $module_model::create($request->except('image'));
+
+        if ($request->image) {
+            $media = $$module_name_singular->addMedia($request->file('image'))->toMediaCollection($module_name);
+            $$module_name_singular->image = $media->getUrl();
+            $$module_name_singular->save();
+        }
 
         flash(icon()."New '" . Str::singular($module_title) . "' Added")->success()->important();
 
@@ -112,7 +118,29 @@ class CategoriesController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->all());
+
+        $$module_name_singular->update($request->except('image', 'image_remove'));
+
+        // Image
+        if ($request->hasFile('image')) {
+            if ($$module_name_singular->getMedia($module_name)->first()) {
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+            }
+            $media = $$module_name_singular->addMedia($request->file('image'))->toMediaCollection($module_name);
+
+            $$module_name_singular->image = $media->getUrl();
+
+            $$module_name_singular->save();
+        }
+        if ($request->image_remove == 'image_remove') {
+            if ($$module_name_singular->getMedia($module_name)->first()) {
+                $$module_name_singular->getMedia($module_name)->first()->delete();
+
+                $$module_name_singular->image = '';
+
+                $$module_name_singular->save();
+            }
+        }
 
         flash(icon() . " " . Str::singular($module_title) . "' Updated Successfully")->success()->important();
 
