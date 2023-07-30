@@ -10,7 +10,6 @@ class GenerateMenus
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -27,14 +26,14 @@ class GenerateMenus
                 'route' => 'backend.categories.index',
                 'class' => 'nav-item',
             ])
-            ->data([
-                'order'         => 83,
-                'activematches' => ['admin/categories*'],
-                'permission'    => ['view_categories'],
-            ])
-            ->link->attr([
-                'class' => 'nav-link',
-            ]);
+                ->data([
+                    'order' => 83,
+                    'activematches' => ['admin/categories*'],
+                    'permission' => ['view_categories'],
+                ])
+                ->link->attr([
+                    'class' => 'nav-link',
+                ]);
         })->sortBy('order');
 
         return $next($request);

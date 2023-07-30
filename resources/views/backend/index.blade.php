@@ -23,15 +23,12 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-
         <!-- Dashboard Content Area -->
         
         <!-- / Dashboard Content Area -->
 
     </div>
 </div>
-<!-- / card -->
 
 @include("backend.includes.dashboard_demo_data")
 
