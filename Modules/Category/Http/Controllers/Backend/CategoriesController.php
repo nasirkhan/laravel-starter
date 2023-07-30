@@ -118,7 +118,6 @@ class CategoriesController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-
         $$module_name_singular->update($request->except('image', 'image_remove'));
 
         // Image
