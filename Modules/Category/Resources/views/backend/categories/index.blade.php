@@ -19,8 +19,27 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
-                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                @can('add_'.$module_name)
+                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
+                @endcan
+
+                @can('restore_'.$module_name)
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
+                                <i class="fas fa-eye-slash"></i> @lang("View trash")
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <hr class="dropdown-divider">
+                        </li> -->
+                    </ul>
+                </div>
+                @endcan
             </x-slot>
         </x-backend.section-header>
 
@@ -33,19 +52,19 @@
                                 #
                             </th>
                             <th>
-                                Name
+                                @lang("category::text.name")
                             </th>
                             <th>
-                                Page
+                                @lang("category::text.slug")
                             </th>
                             <th>
-                                Updated At
+                                @lang("category::text.updated_at")
                             </th>
                             <th>
-                                Created By
+                                @lang("category::text.created_by")
                             </th>
                             <th class="text-end">
-                                Action
+                                @lang("category::text.action")
                             </th>
                         </tr>
                     </thead>
@@ -69,7 +88,8 @@
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-end">
-                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
+                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -93,5 +113,4 @@
         </div>
     </div>
 </div>
-
 @endsection

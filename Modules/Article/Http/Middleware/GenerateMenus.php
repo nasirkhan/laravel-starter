@@ -45,19 +45,7 @@ class GenerateMenus
                 ->link->attr([
                     'class' => 'nav-link',
                 ]);
-            // Submenu: Categories
-            $articles_menu->add('<i class="nav-icon fas fa-sitemap"></i> '.__('Categories'), [
-                'route' => 'backend.categories.index',
-                'class' => 'nav-item',
-            ])
-                ->data([
-                    'order' => 83,
-                    'activematches' => 'admin/categories*',
-                    'permission' => ['edit_categories'],
-                ])
-                ->link->attr([
-                    'class' => 'nav-link',
-                ]);
+                
         })->sortBy('order');
 
         return $next($request);

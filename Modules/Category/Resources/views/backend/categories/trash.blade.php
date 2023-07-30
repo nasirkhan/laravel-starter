@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
@@ -19,27 +19,8 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
-                @can('add_'.$module_name)
-                <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
-                @endcan
-
-                @can('restore_'.$module_name)
-                <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
-                                <i class="fas fa-eye-slash"></i> View trash
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
-                    </ul>
-                </div>
-                @endcan
+                <x-backend.buttons.return-back />
+                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
             </x-slot>
         </x-backend.section-header>
 
@@ -53,9 +34,6 @@
                             </th>
                             <th>
                                 Name
-                            </th>
-                            <th>
-                                Code
                             </th>
                             <th>
                                 Updated At
@@ -76,20 +54,18 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                <strong>
+                                    {{ $module_name_singular->name }}
+                                </strong>
                             </td>
                             <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                                {{ $module_name_singular->updated_at->isoFormat('llll') }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-end">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
                             </td>
                         </tr>
                         @endforeach
@@ -113,4 +89,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section ('after-scripts-end')
+
 @endsection
