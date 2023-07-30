@@ -46,7 +46,7 @@ class CategoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        
+
         $this->app->register(EventServiceProvider::class);
     }
 
@@ -90,7 +90,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'category');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'category');
     }
 
     /**
