@@ -8,6 +8,16 @@ use Illuminate\Support\Str;
 
 class {{moduleNamePlural}}Controller extends Controller
 {
+    public $module_title;
+
+    public $module_name;
+
+    public $module_path;
+
+    public $module_icon;
+
+    public $module_model;
+
     public function __construct()
     {
         // Page Title
@@ -17,7 +27,7 @@ class {{moduleNamePlural}}Controller extends Controller
         $this->module_name = '{{moduleNameLowerPlural}}';
 
         // directory path of the module
-        $this->module_path = '{{moduleNameLower}}::backend';
+        $this->module_path = '{{moduleNameLower}}::frontend';
 
         // module icon
         $this->module_icon = 'fa-regular fa-sun';
