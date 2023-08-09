@@ -114,7 +114,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-4">
@@ -130,7 +130,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -344,7 +344,7 @@
         });
 
         $('.select2-category').select2({
-            theme: "bootstrap",
+            theme: "bootstrap4",
             placeholder: '@lang("Select an option")',
             minimumInputLength: 2,
             allowClear: true,
@@ -366,7 +366,7 @@
         });
 
         $('.select2-tags').select2({
-            theme: "bootstrap",
+            // theme: "bootstrap4",
             placeholder: '@lang("Select an option")',
             minimumInputLength: 2,
             allowClear: true,
