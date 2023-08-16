@@ -60,6 +60,7 @@
             </figure>
         </div>
     </div>
+    <x-library.lightbox />
     @endif
 </div>
 <div class="row mb-3">
@@ -125,9 +126,9 @@
             $field_placeholder = "-- Select an option --";
             $required = "required";
             $select_options = [
-                '1'=>'Published',
-                '0'=>'Unpublished',
-                '2'=>'Draft'
+                '1' => 'Published',
+                '0' => 'Unpublished',
+                '2' => 'Draft'
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}

@@ -49,7 +49,8 @@
             {{ html()->input("file", $field_name)->class('form-control')->attributes(["$required"]) }}
         </div>
     </div>
-    @if(isset($data) && $data->getMedia($module_name)->first())
+
+    @if($data && $data->getMedia($module_name)->first())
     <div class="col-4">
         <div class="float-end">
             <figure class="figure">
@@ -66,6 +67,7 @@
             </div>
         </div>
     </div>
+    <x-library.lightbox />
     @endif
 </div>
 <div class="row mb-3">
