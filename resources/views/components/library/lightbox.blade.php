@@ -5,5 +5,5 @@
 
 @push('after-scripts')
 <!-- Lightbox2 JS -->
-<script type="module" src="{{ asset('vendor/lightbox2/js/lightbox.min.js') }}"></script>
+<script src="{{ asset('vendor/lightbox2/js/lightbox.min.js') }}"></script>
 @endpush

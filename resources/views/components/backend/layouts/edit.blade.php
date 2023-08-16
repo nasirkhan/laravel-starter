@@ -16,11 +16,11 @@
                 @include ("$module_path.$module_name.form")
 
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-4 mt-4">
                         <x-backend.buttons.save />
                     </div>
 
-                    <div class="col-8">
+                    <div class="col-8 mt-4">
                         <div class="float-end">
                             @can('delete_'.$module_name)
                             <a href='{{route("backend.$module_name.destroy", $data)}}' class="btn btn-danger" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('Delete')}}"><i class="fas fa-trash-alt"></i></a>
