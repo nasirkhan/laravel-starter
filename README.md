@@ -1,7 +1,7 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with the latest Laravel framework."></p>
 
 # Laravel Starter (based on Laravel 10.x)
-**Laravel Starter** is a Laravel 10.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `User` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects. 
+**Laravel Starter** is a Laravel 10.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `User` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects.
 
 Please let me know your feedback and comments.
 
@@ -13,7 +13,7 @@ Check the following demo project. It is just a straight installation of the proj
 
 Demo URL: https://laravel.nasirkhn.com
 
-You may use the following account credentials to access the application backend. 
+You may use the following account credentials to access the application backend.
 
 ```
 User: super@admin.com
@@ -25,7 +25,7 @@ Pass: secret
 ```
 
 ## Demo Data
-If you want to test the application on your local machine with additional demo data you may use the following command. 
+If you want to test the application on your local machine with additional demo data you may use the following command.
 
 ```php
 
@@ -71,7 +71,7 @@ this is a shortcut command clear all cache including config, route, and more
 
 ## Code Style Fix
 
-We are now using `Laravel Pint` to make the code style stays clean and consistent as the Laravel Framework. Use the following command to apply CS-Fix. 
+We are now using `Laravel Pint` to make the code style stays clean and consistent as the Laravel Framework. Use the following command to apply CS-Fix.
 
 ```bash
 composer pint
@@ -79,7 +79,7 @@ composer pint
 
 ## Role - Permissions
 
-Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples. 
+Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples.
 
 
 # Features
@@ -153,7 +153,16 @@ Follow the steps mentioned below to install and run the project. You may find mo
 `php artisan cache:forget spatie.permission.cache`
 
 ## Docker and Laravel Sail
-This project is configured with Laravel Sail (https://laravel.com/docs/sail). You can use all the docker functionalities here.
+This project is configured with Laravel Sail (https://laravel.com/docs/sail). You can use all the docker functionalities here. To install using docker and sail:
+
+1. Clone or download the repository
+2. Go to the project directory and run `composer install`
+3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
+4. Update the database name and credentials in `.env` file
+5. Run the command `sail up` (consider adding this to your alias: `alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'`)
+6. Run the command `sail artisan migrate --seed`
+7. Link storage directory: `sail artisan storage:link`
+8. Since Sail is already up, you can just visit http://localhost:80
 
 ## Icons
 FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
