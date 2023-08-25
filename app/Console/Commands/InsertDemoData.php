@@ -42,7 +42,8 @@ class InsertDemoData extends Command
         $this->insert_demo_data();
     }
 
-    public function insert_demo_data() {
+    public function insert_demo_data()
+    {
         /**
          * Categories.
          */
@@ -76,8 +77,6 @@ class InsertDemoData extends Command
         $this->newLine();
     }
 
-
-
     public function truncate_tables()
     {
         $tables_list = [
@@ -93,8 +92,7 @@ class InsertDemoData extends Command
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
             foreach ($tables_list as $row) {
-
-                $table_name = DB::getTablePrefix().''. $row;
+                $table_name = DB::getTablePrefix().''.$row;
 
                 $this->info("Truncate Table: $table_name");
 

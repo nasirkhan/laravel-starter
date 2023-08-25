@@ -78,8 +78,8 @@ class BaseModel extends Model implements HasMedia
      */
     public function getTableColumns()
     {
-        $table_name = DB::getTablePrefix() . $this->getTable();
-        $columns = DB::select('SHOW COLUMNS FROM '. $table_name);
+        $table_name = DB::getTablePrefix().$this->getTable();
+        $columns = DB::select('SHOW COLUMNS FROM '.$table_name);
 
         return $columns;
     }
