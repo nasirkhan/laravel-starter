@@ -1324,6 +1324,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v10.20.0",
             "source": {
                 "type": "git",
@@ -1534,6 +1535,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/b514c5620e1b3b61221b0024dc88def26d9654f4",
                 "reference": "b514c5620e1b3b61221b0024dc88def26d9654f4",
+
                 "shasum": ""
             },
             "require": {
@@ -1566,9 +1568,11 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
+
                 "source": "https://github.com/laravel/prompts/tree/v0.1.6"
             },
             "time": "2023-08-18T13:32:23+00:00"
+
         },
         {
             "name": "laravel/sanctum",
@@ -4581,6 +4585,7 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
+
             "version": "10.11.4",
             "source": {
                 "type": "git",
@@ -4591,6 +4596,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/54d240975662a3d971466434e84625876a0d8b46",
                 "reference": "54d240975662a3d971466434e84625876a0d8b46",
+
                 "shasum": ""
             },
             "require": {

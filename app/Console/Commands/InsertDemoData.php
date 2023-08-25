@@ -1,19 +1,19 @@
 <?php
 
-namespace Modules\Article\Console;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
+use Modules\Category\Models\Category;
 use Modules\Comment\Entities\Comment;
 use Modules\Tag\Entities\Tag;
 
-class InsertDemoContents extends Command
+class InsertDemoData extends Command
 {
     /**
-     * The console command name.
+     * The name and signature of the console command.
      *
      * @var string
      */
@@ -27,19 +27,7 @@ class InsertDemoContents extends Command
     protected $description = 'Insert demo data for posts, categories, tags, and comments. --fresh option will truncate the tables.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
@@ -48,41 +36,14 @@ class InsertDemoContents extends Command
         $fresh = $this->option('fresh');
 
         if ($fresh) {
-            if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
-                // Disable foreign key checks!
-                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-                /**
-                 * posts table truncate.
-                 */
-                DB::table('posts')->truncate();
-                $this->info('Truncate Table: posts');
-
-                /**
-                 * Categories table truncate.
-                 */
-                DB::table('categories')->truncate();
-                $this->info('Truncate Table: categories');
-
-                /**
-                 * Tags table truncate.
-                 */
-                DB::table('tags')->truncate();
-                $this->info('Truncate Table: tags');
-
-                /**
-                 * Comments table truncate.
-                 */
-                DB::table('comments')->truncate();
-                $this->info('Truncate Table: comments');
-
-                // Enable foreign key checks!
-                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-            }
+            $this->truncate_tables();
         }
 
-        $this->newLine();
+        $this->insert_demo_data();
+    }
 
+    public function insert_demo_data()
+    {
         /**
          * Categories.
          */
@@ -114,5 +75,32 @@ class InsertDemoContents extends Command
         $this->newLine(2);
         $this->info('-- Completed --');
         $this->newLine();
+    }
+
+    public function truncate_tables()
+    {
+        $tables_list = [
+            'posts',
+            'categories',
+            'tags',
+            'comments',
+            'activity_log',
+        ];
+
+        if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
+            // Disable foreign key checks!
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+            foreach ($tables_list as $row) {
+                $table_name = DB::getTablePrefix().''.$row;
+
+                $this->info("Truncate Table: $table_name");
+
+                DB::table($table_name)->truncate();
+            }
+
+            // Enable foreign key checks!
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
     }
 }
