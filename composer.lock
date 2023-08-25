@@ -1534,6 +1534,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/b514c5620e1b3b61221b0024dc88def26d9654f4",
                 "reference": "b514c5620e1b3b61221b0024dc88def26d9654f4",
+
                 "shasum": ""
             },
             "require": {
@@ -1566,9 +1567,11 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
+
                 "source": "https://github.com/laravel/prompts/tree/v0.1.6"
             },
             "time": "2023-08-18T13:32:23+00:00"
+
         },
         {
             "name": "laravel/sanctum",
