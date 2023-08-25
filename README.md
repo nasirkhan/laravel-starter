@@ -77,7 +77,7 @@ We are now using `Laravel Pint` to make the code style stays clean and consisten
 composer pint
 ```
 
-## Role - Permissiosn
+## Role - Permissions
 
 Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples. 
 
