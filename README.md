@@ -162,7 +162,7 @@ This project is configured with Laravel Sail (https://laravel.com/docs/sail). Yo
 5. Run the command `sail up` (consider adding this to your alias: `alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'`)
 6. Run the command `sail artisan migrate --seed`
 7. Link storage directory: `sail artisan storage:link`
-8. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
+8. Since Sail is already up, you can just visit http://localhost:80
 
 ## Icons
 FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
