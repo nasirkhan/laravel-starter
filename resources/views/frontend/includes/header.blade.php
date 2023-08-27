@@ -39,8 +39,16 @@
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div class="ml-3 relative" x-data="{ isUserMenuOpen: false }">
+                <div class="ml-3 relative" x-data="{ isUserMenuOpen: false, isLocalMenuOpen: false }">
                     <div class="flex flex-row">
+                        <button @click="isLocalMenuOpen = !isLocalMenuOpen" @keydown.escape="isLocalMenuOpen = false" type="button" class="flex flex-col sm:flex-row text-center rounded px-2 mr-2 sm:align-middle sm:items-center focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-500 focus:ring-white transition ease-out duration-300" id="local-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="sr-only">{{__('Open local menu')}}</span>
+                            <span><i class="fa-solid fa-language"></i></span>
+                            <span>
+                                <span class="hidden sm:inline">&nbsp;</span>
+                                {{strtoupper(App::getLocale())}}
+                            </span>
+                        </button>
                         @guest
                         <a href="{{ route('login') }}" class="flex items-center mx-2 px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-orange-600 rounded-md hover:bg-orange-500 focus:outline-none focus:bg-orange-500 invisible md:visible">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -57,15 +65,15 @@
                         </a>
                         @endif
                         @else
-                        <button @click="isUserMenuOpen = !isUserMenuOpen" @keydown.escape="isUserMenuOpen = false" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-cyan-800 focus:ring-white transition ease-out duration-300" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="sr-only">{{__('Open main menu')}}</span>
+                        <button @click="isUserMenuOpen = !isUserMenuOpen" @keydown.escape="isUserMenuOpen = false" type="button" class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-cyan-800 focus:ring-white transition ease-out duration-300" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="sr-only">{{__('Open Main Menu')}}</span>
                             <img class="h-10 w-10 rounded-full border-transparent border hover:border-cyan-600" src="{{asset(auth()->user()->avatar)}}" alt="{{asset(auth()->user()->name)}}">
                         </button>
                         @endguest
                     </div>
 
                     @auth
-                    <div x-show="isUserMenuOpen" @click.away="isUserMenuOpen = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                    <div x-show="isUserMenuOpen" @click.away="isUserMenuOpen = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
 
                         @can('view_backend')
                         <a href='{{ route("backend.dashboard") }}' class="block px-4 py-2 text-sm text-gray-600 hover:bg-orange-600 hover:text-white" role="menuitem">
@@ -87,6 +95,15 @@
                         </form>
                     </div>
                     @endauth
+                    <div x-show="isLocalMenuOpen" @click.away="isLocalMenuOpen = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 py-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="local-menu-button" tabindex="-1">
+                        @foreach(config('app.available_locales') as $locale_code => $locale_name)
+                        <div class="hover:bg-orange-100 px-4 py-1">
+                            <a class="dropdown-item" href="{{route('language.switch', $locale_code)}}">
+                                {{ $locale_name }}
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
