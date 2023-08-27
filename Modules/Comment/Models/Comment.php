@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Comment\Entities;
+namespace Modules\Comment\Models;
 
 use App\Models\BaseModel;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Comment\Entities\Presenters\CommentPresenter;
+use Modules\Comment\Models\Presenters\CommentPresenter;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -50,7 +50,7 @@ class Comment extends BaseModel
 
     public function getPostAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Entities\Post') {
+        if ($this->commentable_type == 'Modules\Article\Models\Post') {
             return $this->commentable;
         } else {
             return [];
@@ -59,7 +59,7 @@ class Comment extends BaseModel
 
     public function getModuleNameAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Entities\Post') {
+        if ($this->commentable_type == 'Modules\Article\Models\Post') {
             return 'posts';
         } else {
             return '';
@@ -68,7 +68,7 @@ class Comment extends BaseModel
 
     public function parent()
     {
-        return $this->belongsTo('Modules\Comment\Entities\Comment', 'parent_id');
+        return $this->belongsTo('Modules\Comment\Models\Comment', 'parent_id');
     }
 
     /**

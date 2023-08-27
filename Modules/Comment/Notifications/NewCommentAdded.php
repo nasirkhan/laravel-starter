@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
-use Modules\Comment\Entities\Comment;
+use Modules\Comment\Models\Comment;
 
 class NewCommentAdded extends Notification implements ShouldQueue
 {

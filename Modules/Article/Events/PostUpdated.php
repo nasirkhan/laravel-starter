@@ -3,7 +3,7 @@
 namespace Modules\Article\Events;
 
 use Illuminate\Queue\SerializesModels;
-use Modules\Article\Entities\Post;
+use Modules\Article\Models\Post;
 
 class PostUpdated
 {

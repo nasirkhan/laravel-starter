@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tag\Entities;
+namespace Modules\Tag\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +18,7 @@ class Tag extends BaseModel
      */
     public function posts()
     {
-        return $this->morphedByMany('Modules\Article\Entities\Post', 'taggable');
+        return $this->morphedByMany('Modules\Article\Models\Post', 'taggable');
     }
 
     /**

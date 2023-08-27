@@ -33,7 +33,7 @@ class PostsController extends Controller
         $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Post";
+        $this->module_model = "Modules\Article\Models\Post";
     }
 
     /**

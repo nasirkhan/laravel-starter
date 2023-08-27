@@ -1324,7 +1324,6 @@
         },
         {
             "name": "laravel/framework",
-
             "version": "v10.20.0",
             "source": {
                 "type": "git",
@@ -4585,7 +4584,6 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-
             "version": "10.11.4",
             "source": {
                 "type": "git",
@@ -4596,7 +4594,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/54d240975662a3d971466434e84625876a0d8b46",
                 "reference": "54d240975662a3d971466434e84625876a0d8b46",
-
                 "shasum": ""
             },
             "require": {

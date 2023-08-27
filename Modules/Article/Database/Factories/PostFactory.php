@@ -4,7 +4,7 @@ namespace Modules\Article\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Article\Entities\Post;
+use Modules\Article\Models\Post;
 
 class PostFactory extends Factory
 {

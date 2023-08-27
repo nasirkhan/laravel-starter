@@ -1,12 +1,18 @@
 <?php
 
-namespace Modules\Article\Entities\Presenters;
+namespace Modules\Article\Models\Presenters;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 trait PostPresenter
 {
+    /**
+     * Get the featured image attribute.
+     *
+     * @param  mixed  $value  The value of the featured image attribute.
+     * @return string The modified featured image URL.
+     */
     public function getFeaturedImageAttribute($value)
     {
         $featured_image = $value;
@@ -20,6 +26,11 @@ trait PostPresenter
         return $return_text;
     }
 
+    /**
+     * Get the formatted published_at attribute.
+     *
+     * @return string
+     */
     public function getPublishedAtFormattedAttribute()
     {
         $diff = Carbon::now()->diffInHours($this->published_at);

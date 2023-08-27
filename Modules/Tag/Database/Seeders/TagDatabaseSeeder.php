@@ -4,7 +4,7 @@ namespace Modules\Tag\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\Tag;
+use Modules\Tag\Models\Tag;
 
 class TagDatabaseSeeder extends Seeder
 {
