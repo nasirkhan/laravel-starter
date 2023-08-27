@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Modules\Article\Entities\Category;
+use Modules\Category\Models\Category;
 use Modules\Article\Events\PostCreated;
 use Modules\Article\Events\PostUpdated;
 use Modules\Article\Http\Requests\Backend\PostsRequest;
@@ -46,7 +46,7 @@ class PostsController extends Controller
         $this->module_icon = 'fas fa-file-alt';
 
         // module model name, path
-        $this->module_model = "Modules\Article\Entities\Post";
+        $this->module_model = "Modules\Article\Models\Post";
     }
 
     /**

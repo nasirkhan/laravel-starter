@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Article\Entities\Presenters;
+namespace Modules\Article\Models\Presenters;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;

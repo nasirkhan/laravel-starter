@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Article\Entities\Post;
+use Modules\Article\Models\Post;
 use Modules\Category\Models\Category;
 use Modules\Comment\Entities\Comment;
 use Modules\Tag\Models\Tag;

@@ -50,7 +50,7 @@ class Comment extends BaseModel
 
     public function getPostAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Entities\Post') {
+        if ($this->commentable_type == 'Modules\Article\Models\Post') {
             return $this->commentable;
         } else {
             return [];
@@ -59,7 +59,7 @@ class Comment extends BaseModel
 
     public function getModuleNameAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Entities\Post') {
+        if ($this->commentable_type == 'Modules\Article\Models\Post') {
             return 'posts';
         } else {
             return '';

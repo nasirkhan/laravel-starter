@@ -118,7 +118,7 @@ class CommentsController extends Controller
         if (isset($request->post_id)) {
             $commentable_id = decode_id($request->post_id);
 
-            $commentable_type = "Modules\Article\Entities\Post";
+            $commentable_type = "Modules\Article\Models\Post";
 
             $row = $commentable_type::findOrFail($commentable_id);
 

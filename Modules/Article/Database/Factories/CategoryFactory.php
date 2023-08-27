@@ -4,7 +4,7 @@ namespace Modules\Article\Database\Factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Article\Entities\Category;
+use Modules\Category\Models\Category;
 
 class CategoryFactory extends Factory
 {

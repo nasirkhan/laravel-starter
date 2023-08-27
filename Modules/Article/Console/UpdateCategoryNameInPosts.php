@@ -3,8 +3,8 @@
 namespace Modules\Article\Console;
 
 use Illuminate\Console\Command;
-use Modules\Article\Entities\Category;
-use Modules\Article\Entities\Post;
+use Modules\Category\Models\Category;
+use Modules\Article\Models\Post;
 
 class UpdateCategoryNameInPosts extends Command
 {

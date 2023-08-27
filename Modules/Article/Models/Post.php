@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Article\Entities;
+namespace Modules\Article\Models;
 
 use App\Models\BaseModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Modules\Article\Entities\Presenters\PostPresenter;
+use Modules\Article\Models\Presenters\PostPresenter;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -32,7 +32,7 @@ class Post extends BaseModel
 
     public function category()
     {
-        return $this->belongsTo('Modules\Article\Entities\Category');
+        return $this->belongsTo('Modules\Category\Models\Category');
     }
 
     public function tags()
@@ -53,7 +53,7 @@ class Post extends BaseModel
      */
     public function comments_all()
     {
-        return $this->hasMany('Modules\Article\Entities\Comment');
+        return $this->hasMany('Modules\Article\Models\Comment');
     }
 
     public function setCategoryIdAttribute($value)
