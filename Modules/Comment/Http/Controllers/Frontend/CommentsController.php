@@ -3,7 +3,6 @@
 namespace Modules\Comment\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -129,7 +128,7 @@ class CommentsController extends Controller
             auth()->user()->notify(new NewCommentAdded($$module_name_singular));
         }
 
-        Flash::success("<i class='fas fa-check'></i> New '".Str::singular($module_title)."' Added")->important();
+        flash()->success(__("New '" . Str::singular($module_title) . "' Added") . ' ' . strtoupper($language))->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
