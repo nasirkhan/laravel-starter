@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Comment\Entities\Presenters;
+namespace Modules\Comment\Models\Presenters;
 
 use Carbon\Carbon;
 

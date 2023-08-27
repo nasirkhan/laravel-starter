@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Models\Post;
 use Modules\Category\Models\Category;
-use Modules\Comment\Entities\Comment;
+use Modules\Comment\Models\Comment;
 use Modules\Tag\Models\Tag;
 
 class InsertDemoData extends Command

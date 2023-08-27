@@ -46,7 +46,7 @@ class Post extends BaseModel
      */
     public function comments()
     {
-        return $this->morphMany('Modules\Comment\Entities\Comment', 'commentable')->where('status', '=', 1);
+        return $this->morphMany('Modules\Comment\Models\Comment', 'commentable')->where('status', '=', 1);
     }
 
     /**

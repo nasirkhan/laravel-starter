@@ -41,7 +41,7 @@ class CommentsController extends Controller
         $this->module_icon = 'fas fa-comments';
 
         // module model name, path
-        $this->module_model = "Modules\Comment\Entities\Comment";
+        $this->module_model = "Modules\Comment\Models\Comment";
     }
 
     /**
