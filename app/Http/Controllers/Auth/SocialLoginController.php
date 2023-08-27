@@ -63,8 +63,8 @@ class SocialLoginController extends Controller
     /**
      * Finds or creates a user based on the given social user and provider.
      *
-     * @param  mixed  $socialUser The social user object.
-     * @param  string  $provider The provider name.
+     * @param  mixed  $socialUser  The social user object.
+     * @param  string  $provider  The provider name.
      * @return \App\Models\User The found or created user.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user is not found.
