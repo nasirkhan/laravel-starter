@@ -10,6 +10,8 @@ use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
 use Modules\Tag\Models\Tag;
 
+use function Laravel\Prompts\confirm;
+
 class InsertDemoData extends Command
 {
     /**
@@ -87,7 +89,12 @@ class InsertDemoData extends Command
             'activity_log',
         ];
 
-        if ($this->confirm('Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?')) {
+        $confirmed = confirm(
+            label: 'Database tables (posts, categories, tags, comments) will become empty. Confirm truncate tables?',
+            default: false,
+        );
+
+        if ($confirmed) {
             // Disable foreign key checks!
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
@@ -101,6 +108,9 @@ class InsertDemoData extends Command
 
             // Enable foreign key checks!
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        } else {
+            $this->warn('Skipped database truncate.');
+            $this->newLine(2);
         }
     }
 }

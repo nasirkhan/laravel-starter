@@ -128,7 +128,7 @@ class CommentsController extends Controller
             auth()->user()->notify(new NewCommentAdded($$module_name_singular));
         }
 
-        flash()->success(__("New '" . Str::singular($module_title) . "' Added") . ' ' . strtoupper($language))->important();
+        flash()->success(__("New '".Str::singular($module_title)."' Added").' '.strtoupper($language))->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 

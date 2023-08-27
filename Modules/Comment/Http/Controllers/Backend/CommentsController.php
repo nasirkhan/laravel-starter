@@ -4,14 +4,12 @@ namespace Modules\Comment\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Modules\Comment\Http\Requests\Backend\CommentsRequest;
 use Modules\Comment\Notifications\NewCommentAdded;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\DataTables;
@@ -80,7 +78,6 @@ class CommentsController extends BackendBaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
@@ -125,10 +122,10 @@ class CommentsController extends BackendBaseController
         $$module_name_singular = $module_model::findOrFail($id);
 
         $activities = Activity::where('subject_type', '=', $module_model)
-                                ->where('log_name', '=', $module_name)
-                                ->where('subject_id', '=', $id)
-                                ->latest()
-                                ->paginate();
+            ->where('log_name', '=', $module_name)
+            ->where('subject_id', '=', $id)
+            ->latest()
+            ->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
