@@ -36,7 +36,7 @@ class TagsController extends BackendBaseController
         $this->module_icon = 'fas fa-tags';
 
         // module model name, path
-        $this->module_model = "Modules\Tag\Entities\Tag";
+        $this->module_model = "Modules\Tag\Models\Tag";
     }
 
     /**

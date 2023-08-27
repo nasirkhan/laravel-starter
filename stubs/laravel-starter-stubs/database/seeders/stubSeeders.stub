@@ -4,7 +4,7 @@ namespace {{namespace}}\{{moduleName}}\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Modules\Tag\Entities\{{moduleName}};
+use Modules\Tag\Models\{{moduleName}};
 
 class {{moduleName}}DatabaseSeeder extends Seeder
 {

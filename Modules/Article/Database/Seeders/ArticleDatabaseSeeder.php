@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Article\Entities\Category;
 use Modules\Article\Entities\Post;
-use Modules\Tag\Entities\Tag;
+use Modules\Tag\Models\Tag;
 
 class ArticleDatabaseSeeder extends Seeder
 {

@@ -12,7 +12,7 @@ class TagFactory extends Factory
      *
      * @var string
      */
-    protected $model = \Modules\Tag\Entities\Tag::class;
+    protected $model = \Modules\Tag\Models\Tag::class;
 
     /**
      * Define the model's default state.

@@ -37,7 +37,7 @@ class Post extends BaseModel
 
     public function tags()
     {
-        return $this->morphToMany('Modules\Tag\Entities\Tag', 'taggable');
+        return $this->morphToMany('Modules\Tag\Models\Tag', 'taggable');
     }
 
     /**
