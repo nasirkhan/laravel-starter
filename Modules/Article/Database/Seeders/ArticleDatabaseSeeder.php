@@ -6,8 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Category\Models\Category;
 use Modules\Article\Models\Post;
+use Modules\Category\Models\Category;
 use Modules\Tag\Models\Tag;
 
 class ArticleDatabaseSeeder extends Seeder

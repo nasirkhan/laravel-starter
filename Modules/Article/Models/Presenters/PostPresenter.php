@@ -10,7 +10,7 @@ trait PostPresenter
     /**
      * Get the featured image attribute.
      *
-     * @param mixed $value The value of the featured image attribute.
+     * @param  mixed  $value  The value of the featured image attribute.
      * @return string The modified featured image URL.
      */
     public function getFeaturedImageAttribute($value)
