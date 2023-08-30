@@ -80,7 +80,7 @@ class CommentsController extends Controller
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::whereId($id)->published()->first();
-
+        
         if (! $$module_name_singular) {
             abort(404);
         }
@@ -97,7 +97,7 @@ class CommentsController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CommentsRequest $request)
+    public function store(Request $request)
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -106,6 +106,11 @@ class CommentsController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Store';
+
+        $validated = $request->validate([
+            'name' => 'required|max:191',
+            'comment' => 'required',
+        ]);
 
         $data = [
             'name' => $request->name,
@@ -128,7 +133,7 @@ class CommentsController extends Controller
             auth()->user()->notify(new NewCommentAdded($$module_name_singular));
         }
 
-        flash()->success(__("New '".Str::singular($module_title)."' Added").' '.strtoupper($language))->important();
+        flash()->success(__("New '".Str::singular($module_title)."' Added"))->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 

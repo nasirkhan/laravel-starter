@@ -41,7 +41,7 @@
                     <hr class="my-4">
 
                     <h6>
-                        {{ __('Post') }}: <a class="underline hover:text-gray-800" href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post_id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
+                        {{ __('Post') }}: <a class="underline hover:text-gray-800" href="{{route('frontend.posts.show', [encode_id($$module_name_singular->post->id), $$module_name_singular->post->slug])}}">{{$$module_name_singular->post->name}}</a>
                     </h6>
                 </div>
             </div>
