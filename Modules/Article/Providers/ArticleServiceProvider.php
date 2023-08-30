@@ -19,9 +19,9 @@ class ArticleServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path('Article', 'Database/Migrations'));
 
-        // adding global middleware
-        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
-        $kernel->pushMiddleware('Modules\Article\Http\Middleware\GenerateMenus');
+        // // adding global middleware
+        // $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
+        // $kernel->pushMiddleware('Modules\Article\Http\Middleware\GenerateMenus');
 
         // register commands
         $this->registerCommands('\Modules\Article\Console');
@@ -69,7 +69,7 @@ class ArticleServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/article';
+            return $path . '/modules/article';
         }, \Config::get('view.paths')), [$sourcePath]), 'article');
     }
 
@@ -97,11 +97,11 @@ class ArticleServiceProvider extends ServiceProvider
     protected function registerCommands($namespace = '')
     {
         $finder = new Finder(); // from Symfony\Component\Finder;
-        $finder->files()->name('*.php')->in(__DIR__.'/../Console');
+        $finder->files()->name('*.php')->in(__DIR__ . '/../Console');
 
         $classes = [];
         foreach ($finder as $file) {
-            $class = $namespace.'\\'.$file->getBasename('.php');
+            $class = $namespace . '\\' . $file->getBasename('.php');
             array_push($classes, $class);
         }
 

@@ -30,9 +30,9 @@ class CategoryServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(base_path('Modules/Category/database/migrations'));
 
-        // adding global middleware
-        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
-        $kernel->pushMiddleware('Modules\Category\Http\Middleware\GenerateMenus');
+        // // adding global middleware
+        // $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
+        // $kernel->pushMiddleware('Modules\Category\Http\Middleware\GenerateMenus');
 
         // register commands
         $this->registerCommands('\Modules\Category\Console\Commands');
@@ -58,10 +58,11 @@ class CategoryServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            base_path('Modules/Category/Config/config.php') => config_path($this->moduleNameLower.'.php'),
+            base_path('Modules/Category/Config/config.php') => config_path($this->moduleNameLower . '.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            base_path('Modules/Category/Config/config.php'), $this->moduleNameLower
+            base_path('Modules/Category/Config/config.php'),
+            $this->moduleNameLower
         );
     }
 
@@ -72,13 +73,13 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
+        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
 
         $sourcePath = base_path('Modules/Category/Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath,
-        ], ['views', $this->moduleNameLower.'-module-views']);
+        ], ['views', $this->moduleNameLower . '-module-views']);
 
         $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }
@@ -90,7 +91,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'category');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'category');
     }
 
     /**
@@ -107,8 +108,8 @@ class CategoryServiceProvider extends ServiceProvider
     {
         $paths = [];
         foreach (Config::get('view.paths') as $path) {
-            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
-                $paths[] = $path.'/modules/'.$this->moduleNameLower;
+            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
+                $paths[] = $path . '/modules/' . $this->moduleNameLower;
             }
         }
 
@@ -123,11 +124,11 @@ class CategoryServiceProvider extends ServiceProvider
     protected function registerCommands($namespace = '')
     {
         $finder = new Finder(); // from Symfony\Component\Finder;
-        $finder->files()->name('*.php')->in(__DIR__.'/../Console');
+        $finder->files()->name('*.php')->in(__DIR__ . '/../Console');
 
         $classes = [];
         foreach ($finder as $file) {
-            $class = $namespace.'\\'.$file->getBasename('.php');
+            $class = $namespace . '\\' . $file->getBasename('.php');
             array_push($classes, $class);
         }
 
