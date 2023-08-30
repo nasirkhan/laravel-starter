@@ -8,7 +8,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Modules\Comment\Http\Requests\Frontend\CommentsRequest;
 use Modules\Comment\Notifications\NewCommentAdded;
 
 class CommentsController extends Controller
@@ -80,7 +79,7 @@ class CommentsController extends Controller
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::whereId($id)->published()->first();
-        
+
         if (! $$module_name_singular) {
             abort(404);
         }
