@@ -36,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
 
         // dd(auth()->user());
         $menu->header('Management')->order(100);
-        $menu->route('backend.dashboard', __('Notifications'))->icon('nav-icon fas fa-bell')->order(101)->if(Auth()->user()->can('edit_settings'));
+        // $menu->route('backend.dashboard', __('Notifications'))->icon('nav-icon fas fa-bell')->order(101)->if(Auth()->user()->can('edit_settings'));
     }
 }
