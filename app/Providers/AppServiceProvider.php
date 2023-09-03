@@ -33,8 +33,14 @@ class AppServiceProvider extends ServiceProvider
 
         $menu->route('backend.dashboard', __('Dashboard'))->icon('nav-icon fa-solid fa-cubes')->order(1);
 
+        $menu->route('profile.show', __('Profile'))->if(Auth()->check());
+
+        $menu->route('post.create', __('New Post'))->if(Auth()->check())->if(Auth()->user()->can('create.post'));
+
         // dd(auth()->user());
         $menu->header('Management')->order(100);
+
+        dd($menu);
         // $menu->route('backend.dashboard', __('Notifications'))->icon('nav-icon fas fa-bell')->order(101)->if(Auth()->user()->can('edit_settings'));
     }
 }

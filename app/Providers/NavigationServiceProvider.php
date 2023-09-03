@@ -20,6 +20,6 @@ class NavigationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        dd(auth()->check());
+        // dd(auth()->check());
     }
 }
