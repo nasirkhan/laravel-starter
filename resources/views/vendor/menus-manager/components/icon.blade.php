@@ -1,7 +1,7 @@
 <div {{ $attributes->merge($item->attributes) }}>
     @isset($slot)
-    {{ $slot }}b
+    {{ $slot }}
     @else
-    {{ $icon }}a
+    {{ $icon }}
     @endif
 </div>
