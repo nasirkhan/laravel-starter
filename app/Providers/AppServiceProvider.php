@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Hexadog\MenusManager\Facades\MenusManager;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
