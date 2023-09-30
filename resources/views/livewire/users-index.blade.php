@@ -1,7 +1,7 @@
 <div>
     <div class="row mt-4">
         <div class="col">
-            <input type="text" class="form-control my-2" placeholder=" Search" wire:model="searchTerm" />
+            <input type="text" class="form-control my-2" placeholder=" Search" wire:model.live="searchTerm" />
 
             <div class="table-responsive">
                 <table class="table table-hover table-responsive-sm" wire:loading.class="table-secondary">
