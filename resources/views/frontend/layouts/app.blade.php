@@ -22,6 +22,8 @@
     @vite(['resources/css/app-frontend.css'])
     @vite(['resources/js/app-frontend.js'])
 
+    @livewireStyles
+    
     @stack('after-styles')
 
     <x-google-analytics />
@@ -37,9 +39,9 @@
 
     @include('frontend.includes.footer')
 
+    <!-- Scripts -->
+    @livewireScripts
+    @stack('after-scripts')
 </body>
-
-<!-- Scripts -->
-@stack('after-scripts')
 
 </html>

@@ -16,7 +16,7 @@
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "lavary/laravel-menu": "^1.8",
-        "livewire/livewire": "^2.12",
+        "livewire/livewire": "^3.0",
         "nasirkhan/module-manager": "^1.0",
         "nwidart/laravel-modules": "^10.0",
         "predis/predis": "^2.1",
