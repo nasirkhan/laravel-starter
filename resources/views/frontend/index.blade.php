@@ -11,7 +11,7 @@
         </div>
         <div class="lg:flex-grow md:w-1/2 px-4 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 class="title-font sm:text-8xl text-5xl mb-4 font-medium text-gray-800">
-               {{ app_name() }}
+                {{ app_name() }}
             </h1>
             <p class="mb-8 sm:text-4xl text-3xl">
                 {!! setting('meta_description') !!}
@@ -38,7 +38,7 @@
 </section>
 
 <section class="mb-20">
-    <div class="container mx-auto flex px-5 py-10 sm:py-24 items-center justify-center flex-col">
+    <div class="container mx-auto flex px-5 py-10 items-center justify-center flex-col">
         <div class="text-center lg:w-2/3 w-full">
             <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-800">
                 Screenshots of the project
@@ -53,13 +53,13 @@
 <section class="mb-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5">
         <div class="shadow-lg p-3 sm:p-10 rounded-lg">
-            <img src="https://user-images.githubusercontent.com/396987/88519250-a0dcc380-d013-11ea-9dc5-9d731af611f1.jpg" alt="About page preview">
+            <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/b9ca9cd8-fa7c-43f0-b54f-47e7c4966d9c" alt="Page preview">
         </div>
         <div class="shadow-lg p-3 sm:p-10 rounded-lg row-span-2">
-            <img src="https://user-images.githubusercontent.com/396987/88519360-d1bcf880-d013-11ea-9f6c-b5d33912057f.jpg" alt="Pricing page preview">
+            <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/b067e211-1208-49a6-859b-7a6810e3f3bb" alt="Page preview">
         </div>
         <div class="shadow-lg p-3 sm:p-10 rounded-lg">
-            <img src="https://user-images.githubusercontent.com/396987/88489727-f3889200-cfb7-11ea-819f-dc9a52bc8d82.jpg" alt="Landing page preview">
+            <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/413b3c75-4a1f-47e3-8885-bc6bd475213c" alt="Page preview">
         </div>
     </div>
 </section>

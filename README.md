@@ -168,14 +168,13 @@ This project is configured with Laravel Sail (https://laravel.com/docs/sail). Yo
 FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
 
 * **FontAwesome** - https://fontawesome.com
-* **CoreUI Icons** - https://icons.coreui.io/icons/
 
 
 # Screenshots
 
 __Home Page__
 
-![Laravel Starter Home](https://user-images.githubusercontent.com/396987/164892584-733afddc-8eab-4152-bd4a-d9c2f9e312d5.png)
+![Laravel Starter Home](https://github.com/nasirkhan/laravel-starter/assets/396987/027a2c39-09f4-440f-90a9-955aff51eb85)
 
 __Login Page__
 
@@ -183,16 +182,16 @@ __Login Page__
 
 __Posts Page__
 
-![Laravel Starter Posts Page](https://user-images.githubusercontent.com/396987/164892767-2f961466-e346-4990-a183-655ce5a6603b.png)
+![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/bc184450-0f87-4471-a022-abf31337bef4)
 
 __Backend Dashboard__
 
-![Backend Dashboard](https://user-images.githubusercontent.com/396987/164915155-c2984b18-ae96-408a-820a-cbcac2cceb10.png)
+![Backend Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/b9ca9cd8-fa7c-43f0-b54f-47e7c4966d9c)
 
 ---
 
-![List-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519250-a0dcc380-d013-11ea-9dc5-9d731af611f1.jpg)
+![List-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/413b3c75-4a1f-47e3-8885-bc6bd475213c)
 
 ---
 
-![Edit-Posts-Laravel-Starter](https://user-images.githubusercontent.com/396987/88519360-d1bcf880-d013-11ea-9f6c-b5d33912057f.jpg)
+![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/b067e211-1208-49a6-859b-7a6810e3f3bb)
