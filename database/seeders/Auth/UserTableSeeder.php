@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
         // Add the master administrator, user id of 1
         $users = [
             [
+                'id' => 1,
                 'first_name' => 'Super',
                 'last_name' => 'Admin',
                 'name' => 'Super Admin',
@@ -43,6 +44,7 @@ class UserTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'id' => 2,
                 'first_name' => 'Admin',
                 'last_name' => 'Istrator',
                 'name' => 'Admin Istrator',
@@ -58,6 +60,7 @@ class UserTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'id' => 3,
                 'first_name' => 'Manager',
                 'last_name' => 'User User',
                 'name' => 'Manager',
@@ -73,6 +76,7 @@ class UserTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'id' => 4,
                 'first_name' => 'Executive',
                 'last_name' => 'User',
                 'name' => 'Executive User',
@@ -88,6 +92,7 @@ class UserTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'id' => 5,
                 'first_name' => 'General',
                 'last_name' => 'User',
                 'name' => 'General User',
