@@ -23,11 +23,11 @@ class PermissionRoleTableSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         // Create Roles
-        $super_admin = Role::create(['name' => 'super admin']);
-        $admin = Role::create(['name' => 'administrator']);
-        $manager = Role::create(['name' => 'manager']);
-        $executive = Role::create(['name' => 'executive']);
-        $user = Role::create(['name' => 'user']);
+        $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
+        $admin = Role::create(['id' => '2', 'name' => 'administrator']);
+        $manager = Role::create(['id' => '3', 'name' => 'manager']);
+        $executive = Role::create(['id' => '4', 'name' => 'executive']);
+        $user = Role::create(['id' => '5', 'name' => 'user']);
 
         // Create Permissions
         Permission::firstOrCreate(['name' => 'view_backend']);

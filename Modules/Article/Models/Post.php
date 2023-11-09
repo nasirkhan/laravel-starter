@@ -16,9 +16,9 @@ class Post extends BaseModel
 {
     use HasFactory;
     use LogsActivity;
-    use SoftDeletes;
-    use PostPresenter;
     use Notifiable;
+    use PostPresenter;
+    use SoftDeletes;
 
     protected $table = 'posts';
 
