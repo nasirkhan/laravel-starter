@@ -99,7 +99,7 @@ class InsertDemoData extends Command
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
             foreach ($tables_list as $row) {
-                $table_name = DB::getTablePrefix().''.$row;
+                $table_name = $row;
 
                 $this->info("Truncate Table: $table_name");
 
