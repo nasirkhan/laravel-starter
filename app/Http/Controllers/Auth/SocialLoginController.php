@@ -33,7 +33,6 @@ class SocialLoginController extends Controller
         return RouteServiceProvider::HOME;
     }
 
-
     /**
      * Redirects the user to the specified provider for authentication.
      *
@@ -45,15 +44,14 @@ class SocialLoginController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    
     /**
      * Handles the callback from the provider.
      *
      * @param  string  $provider  The provider name.
      * @return \Illuminate\Http\RedirectResponse The redirect response.
+     * @return RedirectResponse The redirect response.
      *
      * @throws Exception If an error occurs during the process.
-     * @return RedirectResponse The redirect response.
      */
     public function handleProviderCallback($provider)
     {
@@ -85,12 +83,12 @@ class SocialLoginController extends Controller
 
         return [$first_name, $last_name];
     }
-    
+
     /**
      * Finds or creates a user based on the social user and provider.
      *
-     * @param object $socialUser The social user object.
-     * @param string $provider The provider name.
+     * @param  object  $socialUser  The social user object.
+     * @param  string  $provider  The provider name.
      * @return object The created or existing user object.
      */
     private function findOrCreateUser($socialUser, $provider)
