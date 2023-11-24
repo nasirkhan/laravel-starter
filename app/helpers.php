@@ -71,9 +71,9 @@ if (! function_exists('show_column_value')) {
      * @param  string  $valueObject  Model Object
      * @param  string  $column  Column Name
      * @param  string  $return_format  Return Type
-     * @param  mixed  $valueObject The value object.
-     * @param  mixed  $column The column.
-     * @param  string  $return_format The return format. Default is empty string.
+     * @param  mixed  $valueObject  The value object.
+     * @param  mixed  $column  The column.
+     * @param  string  $return_format  The return format. Default is empty string.
      * @return string Raw/Formatted Column Value
      * @return mixed The column value or formatted value.
      */
@@ -145,7 +145,7 @@ if (! function_exists('fielf_required')) {
 }
 
 /**
- * Get or Set the Settings Values
+ * Get or Set the Settings Values.
  */
 if (! function_exists('setting')) {
     function setting($key, $default = null)

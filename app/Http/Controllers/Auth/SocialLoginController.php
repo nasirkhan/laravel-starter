@@ -37,8 +37,7 @@ class SocialLoginController extends Controller
     /**
      * Redirects the user to the specified provider for authentication.
      *
-     * @param string $provider The name of the authentication provider.
-     * @throws \Exception If an error occurs during the redirection.
+     * @param  string  $provider  The name of the provider to redirect to.
      * @return \Illuminate\Http\RedirectResponse The redirect response.
      */
     public function redirectToProvider($provider)
@@ -50,7 +49,9 @@ class SocialLoginController extends Controller
     /**
      * Handles the callback from the provider.
      *
-     * @param string $provider The provider name.
+     * @param  string  $provider  The provider name.
+     * @return \Illuminate\Http\RedirectResponse The redirect response.
+     *
      * @throws Exception If an error occurs during the process.
      * @return RedirectResponse The redirect response.
      */
@@ -72,7 +73,7 @@ class SocialLoginController extends Controller
     /**
      * Splits a name into first and last name.
      *
-     * @param  string  $name The name to be split.
+     * @param  string  $name  The name to be split.
      * @return array An array containing the first name and last name.
      */
     public function split_name($name)
