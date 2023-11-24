@@ -25,9 +25,8 @@ class SocialLoginController extends Controller
 
         if ($redirectTo) {
             return $redirectTo;
-        } else {
-            return RouteServiceProvider::HOME;
         }
+        return RouteServiceProvider::HOME;
     }
 
     /**
@@ -61,10 +60,24 @@ class SocialLoginController extends Controller
     }
 
     /**
+     * Split Name into first name and last name.
+     */
+    public function split_name($name)
+    {
+        $name = trim($name);
+
+        $last_name = strpos($name, ' ') === false ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim(preg_replace('#'.$last_name.'#', '', $name));
+
+        return [$first_name, $last_name];
+    }
+
+    /**
      * Finds or creates a user based on the given social user and provider.
      *
      * @param  mixed  $socialUser  The social user object.
      * @param  string  $provider  The provider name.
+     *
      * @return \App\Models\User The found or created user.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user is not found.
@@ -72,10 +85,9 @@ class SocialLoginController extends Controller
     private function findOrCreateUser($socialUser, $provider)
     {
         if ($authUser = UserProvider::where('provider_id', $socialUser->getId())->first()) {
-            $authUser = User::findOrFail($authUser->user->id);
-
-            return $authUser;
-        } elseif ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+            return User::findOrFail($authUser->user->id);
+        }
+        if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             UserProvider::create([
                 'user_id' => $authUser->id,
                 'provider_id' => $socialUser->getId(),
@@ -84,56 +96,42 @@ class SocialLoginController extends Controller
             ]);
 
             return $authUser;
-        } else {
-            $name = $socialUser->getName();
-
-            $name_parts = $this->split_name($name);
-            $first_name = $name_parts[0];
-            $last_name = $name_parts[1];
-            $email = $socialUser->getEmail();
-
-            if ($email == '') {
-                Log::error('Social Login does not have email!');
-
-                flash('Email address is required!')->error()->important();
-
-                return redirect()->intended(RouteServiceProvider::HOME);
-            }
-
-            $user = User::create([
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'name' => $name,
-                'email' => $email,
-            ]);
-
-            $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-            $user->avatar = $media->getUrl();
-            $user->save();
-
-            event(new UserRegistered($user));
-
-            UserProvider::create([
-                'user_id' => $user->id,
-                'provider_id' => $socialUser->getId(),
-                'avatar' => $socialUser->getAvatar(),
-                'provider' => $provider,
-            ]);
-
-            return $user;
         }
-    }
+        $name = $socialUser->getName();
 
-    /**
-     * Split Name into first name and last name.
-     */
-    public function split_name($name)
-    {
-        $name = trim($name);
+        $name_parts = $this->split_name($name);
+        $first_name = $name_parts[0];
+        $last_name = $name_parts[1];
+        $email = $socialUser->getEmail();
 
-        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
-        $first_name = trim(preg_replace('#'.$last_name.'#', '', $name));
+        if ($email === '') {
+            Log::error('Social Login does not have email!');
 
-        return [$first_name, $last_name];
+            flash('Email address is required!')->error()->important();
+
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+        $user = User::create([
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'name' => $name,
+            'email' => $email,
+        ]);
+
+        $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
+        $user->avatar = $media->getUrl();
+        $user->save();
+
+        event(new UserRegistered($user));
+
+        UserProvider::create([
+            'user_id' => $user->id,
+            'provider_id' => $socialUser->getId(),
+            'avatar' => $socialUser->getAvatar(),
+            'provider' => $provider,
+        ]);
+
+        return $user;
     }
 }

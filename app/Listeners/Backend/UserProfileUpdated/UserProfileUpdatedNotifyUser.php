@@ -14,7 +14,6 @@ class UserProfileUpdatedNotifyUser implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

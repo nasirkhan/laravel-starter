@@ -15,6 +15,7 @@ class Setting extends BaseModel
      * Add a settings value.
      *
      * @param  string  $type
+     *
      * @return bool
      */
     public static function add($key, $val, $type = 'string')
@@ -30,6 +31,7 @@ class Setting extends BaseModel
      * Get a settings value.
      *
      * @param  null  $default
+     *
      * @return bool|int|mixed
      */
     public static function get($key, $default = null)
@@ -47,6 +49,7 @@ class Setting extends BaseModel
      * Set a value for setting.
      *
      * @param  string  $type
+     *
      * @return bool
      */
     public static function set($key, $val, $type = 'string')
@@ -55,7 +58,8 @@ class Setting extends BaseModel
             return $setting->update([
                 'name' => $key,
                 'val' => $val,
-                'type' => $type, ]) ? $val : false;
+                'type' => $type,
+            ]) ? $val : false;
         }
 
         return self::add($key, $val, $type);
@@ -125,6 +129,48 @@ class Setting extends BaseModel
     }
 
     /**
+     * Get all the settings.
+     *
+     * @return mixed
+     */
+    public static function getAllSettings()
+    {
+        return Cache::rememberForever('settings.all', function () {
+            return self::all();
+        });
+    }
+
+    /**
+     * Flush the cache.
+     */
+    public static function flushCache()
+    {
+        Cache::forget('settings.all');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function () {
+            self::flushCache();
+        });
+
+        static::created(function () {
+            self::flushCache();
+        });
+
+        static::deleted(function () {
+            self::flushCache();
+        });
+    }
+
+    /**
      * Get default value from config if no value passed.
      *
      * @return mixed
@@ -165,47 +211,5 @@ class Setting extends BaseModel
             default:
                 return $val;
         }
-    }
-
-    /**
-     * Get all the settings.
-     *
-     * @return mixed
-     */
-    public static function getAllSettings()
-    {
-        return Cache::rememberForever('settings.all', function () {
-            return self::all();
-        });
-    }
-
-    /**
-     * Flush the cache.
-     */
-    public static function flushCache()
-    {
-        Cache::forget('settings.all');
-    }
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::updated(function () {
-            self::flushCache();
-        });
-
-        static::created(function () {
-            self::flushCache();
-        });
-
-        static::deleted(function () {
-            self::flushCache();
-        });
     }
 }

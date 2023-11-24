@@ -64,8 +64,8 @@ class RolesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "backend.{$module_path}.index",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -90,7 +90,7 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
+        return view("backend.{$module_name}.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
     }
 
     /**
@@ -123,13 +123,14 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
+        return redirect("admin/{$module_name}")->with('flash_success', "{$module_name} added!");
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -148,8 +149,8 @@ class RolesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+            "backend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -157,6 +158,7 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -176,13 +178,14 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.edit", compact('module_title', 'module_name', "$module_name_singular", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
+        return view("backend.{$module_name}.edit", compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -220,13 +223,14 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -245,24 +249,26 @@ class RolesController extends Controller
         $user_roles = auth()->user()->roles()->pluck('id');
         $role_users = $$module_name_singular->users;
 
-        if ($id == 1) {
+        if ($id === 1) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete 'Administrator'!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
-        } elseif (in_array($id, $user_roles->toArray())) {
+            return redirect()->route("backend.{$module_name}.index");
+        }
+        if (in_array($id, $user_roles->toArray())) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete your Role!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
-        } elseif ($role_users->count()) {
+            return redirect()->route("backend.{$module_name}.index");
+        }
+        if ($role_users->count()) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> Can not be deleted! ".$role_users->count().' user found!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
+            return redirect()->route("backend.{$module_name}.index");
         }
 
         try {

@@ -17,7 +17,6 @@ class UserRegisteredListener implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -33,7 +32,7 @@ class UserRegisteredListener implements ShouldQueue
         Log::info('New User Registered as '.$user->name);
 
         // Send Email To Registered User
-        if ($user->password == '') {
+        if ($user->password === '') {
             // Register via social do not have passwords
             try {
                 $user->notify(new NewRegistrationFromSocial());

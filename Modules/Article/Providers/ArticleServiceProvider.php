@@ -49,22 +49,6 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            module_path('Article', 'Config/config.php') => config_path('article.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path('Article', 'Config/config.php'),
-            'article'
-        );
-    }
-
-    /**
      * Register views.
      *
      * @return void
@@ -99,6 +83,32 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            module_path('Article', 'Config/config.php') => config_path('article.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            module_path('Article', 'Config/config.php'),
+            'article'
+        );
+    }
+
+    /**
      * Register commands.
      *
      * @param  string  $namespace
@@ -115,16 +125,6 @@ class ArticleServiceProvider extends ServiceProvider
         }
 
         $this->commands($classes);
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 
     private function getPublishableViewPaths(): array

@@ -5,12 +5,11 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\confirm;
 use Modules\Article\Models\Post;
 use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
 use Modules\Tag\Models\Tag;
-
-use function Laravel\Prompts\confirm;
 
 class InsertDemoData extends Command
 {
@@ -101,7 +100,7 @@ class InsertDemoData extends Command
             foreach ($tables_list as $row) {
                 $table_name = $row;
 
-                $this->info("Truncate Table: $table_name");
+                $this->info("Truncate Table: {$table_name}");
 
                 DB::table($table_name)->truncate();
             }

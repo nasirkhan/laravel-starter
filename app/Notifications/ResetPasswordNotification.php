@@ -26,6 +26,7 @@ class ResetPasswordNotification extends Notification
      * Create a notification instance.
      *
      * @param  string  $token
+     *
      * @return void
      */
     public function __construct($token)
@@ -37,6 +38,7 @@ class ResetPasswordNotification extends Notification
      * Get the notification's channels.
      *
      * @param  mixed  $notifiable
+     *
      * @return array|string
      */
     public function via($notifiable)
@@ -48,6 +50,7 @@ class ResetPasswordNotification extends Notification
      * Build the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -68,6 +71,7 @@ class ResetPasswordNotification extends Notification
      * Set a callback that should be used when building the notification mail message.
      *
      * @param  \Closure  $callback
+     *
      * @return void
      */
     public static function toMailUsing($callback)

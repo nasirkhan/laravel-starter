@@ -5,6 +5,8 @@ namespace App\Listeners\Frontend\UserRegistered;
 use App\Events\Frontend\UserRegistered;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class UserRegisteredProfileCreate implements ShouldQueue
 {
@@ -15,7 +17,6 @@ class UserRegisteredProfileCreate implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -38,12 +39,12 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->gender = $user->gender;
         $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
-        $userprofile->status = ($user->status > 0) ? $user->status : 0;
+        $userprofile->status = $user->status > 0 ? $user->status : 0;
         $userprofile->save();
 
-        \Log::debug('UserRegisteredProfileCreate:'.$user->name);
+        Log::debug('UserRegisteredProfileCreate:'.$user->name);
 
         // Clear Cache
-        \Artisan::call('cache:clear');
+        Artisan::call('cache:clear');
     }
 }

@@ -52,6 +52,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function show($username)
@@ -72,8 +73,8 @@ class UserController extends Controller
         $meta_page_type = 'profile';
 
         return view(
-            "frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type')
+            "frontend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'body_class', 'meta_page_type')
         );
     }
 
@@ -81,6 +82,7 @@ class UserController extends Controller
      * Display Profile Details of Logged in user.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function profile($id)
@@ -108,13 +110,14 @@ class UserController extends Controller
 
         $meta_page_type = 'profile';
 
-        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
+        return view("frontend.{$module_name}.profile", compact('module_name', 'module_name_singular', "{$module_name_singular}", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
     }
 
     /**
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function profileEdit($id)
@@ -137,7 +140,7 @@ class UserController extends Controller
             $id = auth()->user()->id;
         }
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -147,8 +150,8 @@ class UserController extends Controller
         $body_class = 'profile-page';
 
         return view(
-            "frontend.$module_name.profileEdit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
+            "frontend.{$module_name}.profileEdit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'userprofile', 'body_class')
         );
     }
 
@@ -156,6 +159,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function profileUpdate(Request $request, $id)
@@ -169,7 +173,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -218,6 +222,7 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function changePassword($id)
@@ -234,7 +239,7 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -244,20 +249,21 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
+        return view("frontend.{$module_name}.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'body_class'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function changePasswordUpdate(Request $request, $id)
     {
         $id = decode_id($id);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
         }
 
@@ -282,6 +288,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -294,7 +301,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Edit';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -308,13 +315,14 @@ class UserController extends Controller
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        return view("frontend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions', 'body_class'));
+        return view("frontend.{$module_name}.edit", compact('userRoles', 'userPermissions', 'module_name', "{$module_name_singular}", 'module_icon', 'module_action', 'title', 'roles', 'permissions', 'body_class'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -322,7 +330,7 @@ class UserController extends Controller
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -330,10 +338,10 @@ class UserController extends Controller
 
         $$module_name_singular->update($request->except(['roles', 'permissions']));
 
-        if ($id == 1) {
+        if ($id === 1) {
             $user->syncRoles(['administrator']);
 
-            return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+            return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
         }
 
         $roles = $request['roles'];
@@ -355,12 +363,11 @@ class UserController extends Controller
             $$module_name_singular->syncPermissions($permissions);
         }
 
-        return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+        return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
     }
 
     /**
      * Remove the Social Account attached with a User.
-     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -373,19 +380,17 @@ class UserController extends Controller
             flash('Invalid Request. Please try again.')->error();
 
             return redirect()->back();
-        } else {
-            $user_provider = UserProvider::findOrFail($user_provider_id);
-
-            if ($user_id == $user_provider->user->id) {
-                $user_provider->delete();
-
-                flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name.'"!')->success();
-
-                return redirect()->back();
-            } else {
-                flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
-            }
         }
+        $user_provider = UserProvider::findOrFail($user_provider_id);
+
+        if ($user_id === $user_provider->user->id) {
+            $user_provider->delete();
+
+            flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name.'"!')->success();
+
+            return redirect()->back();
+        }
+        flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
 
         throw new Exception('There was a problem updating this user. Please try again.');
     }
@@ -394,13 +399,14 @@ class UserController extends Controller
      * Resend Email Confirmation Code to User.
      *
      * @param [type] $hashid [description]
+     *
      * @return [type] [description]
      */
     public function emailConfirmationResend($id)
     {
         $id = decode_id($id);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
                 Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
             } else {
@@ -413,7 +419,7 @@ class UserController extends Controller
         $user = User::where('id', 'LIKE', $id)->first();
 
         if ($user) {
-            if ($user->email_verified_at == null) {
+            if ($user->email_verified_at === null) {
                 Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
 
                 // Send Email To Registered User
@@ -422,13 +428,12 @@ class UserController extends Controller
                 flash('Email Sent! Please Check Your Inbox.')->success()->important();
 
                 return redirect()->back();
-            } else {
-                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
-
-                flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
-
-                return redirect()->back();
             }
+            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
+
+            flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
+
+            return redirect()->back();
         }
     }
 }

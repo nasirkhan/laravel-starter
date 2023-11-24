@@ -65,7 +65,7 @@ class BackupController extends Controller
         // make an array of backup files, with their filesize and creation date
         foreach ($files as $k => $f) {
             // only take the zip files into account
-            if (substr($f, -4) == '.zip' && $disk->exists($f)) {
+            if (substr($f, -4) === '.zip' && $disk->exists($f)) {
                 $$module_name[] = [
                     'file_path' => $f,
                     'file_name' => str_replace(config('backup.backup.name').'/', '', $f),
@@ -82,8 +82,8 @@ class BackupController extends Controller
         $$module_name = array_reverse($$module_name);
 
         return view(
-            "backend.$module_path.backups",
-            compact('module_title', 'module_name', "$module_name", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
+            "backend.{$module_path}.backups",
+            compact('module_title', 'module_name', "{$module_name}", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -91,6 +91,7 @@ class BackupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -105,7 +106,7 @@ class BackupController extends Controller
         if (demo_mode()) {
             flash(icon().'Backup Creation Skillped on Demo Mode!')->warning()->important();
 
-            return redirect()->route("backend.$module_path.index");
+            return redirect()->route("backend.{$module_path}.index");
         }
 
         try {
@@ -139,9 +140,8 @@ class BackupController extends Controller
 
         if ($disk->exists($file)) {
             return Storage::download($file);
-        } else {
-            abort(404, "The backup file doesn't exist.");
         }
+        abort(404, "The backup file doesn't exist.");
     }
 
     /**
@@ -155,11 +155,10 @@ class BackupController extends Controller
         if ($disk->exists($file)) {
             $disk->delete($file);
 
-            flash(icon()."`$file_name` deleted successfully.")->success()->important();
+            flash(icon()."`{$file_name}` deleted successfully.")->success()->important();
 
             return redirect()->back();
-        } else {
-            abort(404, "The backup file doesn't exist.");
         }
+        abort(404, "The backup file doesn't exist.");
     }
 }

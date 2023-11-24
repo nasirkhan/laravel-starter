@@ -39,11 +39,10 @@ trait UserPresenter
      */
     public function getConfirmedLabelAttribute()
     {
-        if ($this->email_verified_at != null) {
+        if ($this->email_verified_at !== null) {
             return '<span class="badge bg-success">Confirmed</span>';
-        } else {
-            return '<span class="badge bg-danger">Not Confirmed</span>';
         }
+        return '<span class="badge bg-danger">Not Confirmed</span>';
     }
 
     /**

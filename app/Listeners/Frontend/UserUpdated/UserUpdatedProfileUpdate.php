@@ -14,7 +14,6 @@ class UserUpdatedProfileUpdate implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

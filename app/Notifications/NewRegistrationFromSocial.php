@@ -33,6 +33,7 @@ class NewRegistrationFromSocial extends Notification
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -44,13 +45,14 @@ class NewRegistrationFromSocial extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         $user = $notifiable;
 
-        if ($user->email_verified_at == '') {
+        if ($user->email_verified_at === '') {
             $verificationUrl = $this->verificationUrl($notifiable);
 
             return (new MailMessage())
@@ -71,6 +73,7 @@ class NewRegistrationFromSocial extends Notification
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return array
      */
     public function toDatabase($notifiable)
@@ -94,9 +97,22 @@ class NewRegistrationFromSocial extends Notification
     }
 
     /**
+     * Set a callback that should be used when building the notification mail message.
+     *
+     * @param  \Closure  $callback
+     *
+     * @return void
+     */
+    public static function toMailUsing($callback)
+    {
+        static::$toMailCallback = $callback;
+    }
+
+    /**
      * Get the verification URL for the given notifiable.
      *
      * @param  mixed  $notifiable
+     *
      * @return string
      */
     protected function verificationUrl($notifiable)
@@ -109,16 +125,5 @@ class NewRegistrationFromSocial extends Notification
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );
-    }
-
-    /**
-     * Set a callback that should be used when building the notification mail message.
-     *
-     * @param  \Closure  $callback
-     * @return void
-     */
-    public static function toMailUsing($callback)
-    {
-        static::$toMailCallback = $callback;
     }
 }

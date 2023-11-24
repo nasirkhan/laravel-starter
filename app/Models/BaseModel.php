@@ -28,37 +28,10 @@ class BaseModel extends Model implements HasMedia
         'published_at' => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-            $table->created_at = Carbon::now();
-        });
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        static::saving(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-            $table->save();
-        });
-    }
-
     /**
      * Create Converted copies of uploaded images.
      */
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(250)
@@ -79,9 +52,7 @@ class BaseModel extends Model implements HasMedia
     public function getTableColumns()
     {
         $table_name = DB::getTablePrefix().$this->getTable();
-        $columns = DB::select('SHOW COLUMNS FROM '.$table_name);
-
-        return $columns;
+        return DB::select('SHOW COLUMNS FROM '.$table_name);
     }
 
     /**
@@ -158,5 +129,32 @@ class BaseModel extends Model implements HasMedia
         if (empty($value)) {
             $this->attributes['slug'] = slug_format(trim($this->attributes['name']));
         }
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // create a event to happen on creating
+        static::creating(function ($table) {
+            $table->created_by = Auth::id();
+            $table->created_at = Carbon::now();
+        });
+
+        // create a event to happen on updating
+        static::updating(function ($table) {
+            $table->updated_by = Auth::id();
+        });
+
+        // create a event to happen on saving
+        static::saving(function ($table) {
+            $table->updated_by = Auth::id();
+        });
+
+        // create a event to happen on deleting
+        static::deleting(function ($table) {
+            $table->deleted_by = Auth::id();
+            $table->save();
+        });
     }
 }

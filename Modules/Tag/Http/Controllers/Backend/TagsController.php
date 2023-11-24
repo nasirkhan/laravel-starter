@@ -62,13 +62,14 @@ class TagsController extends BackendBaseController
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function show($id)
@@ -89,8 +90,8 @@ class TagsController extends BackendBaseController
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "$module_path.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'posts')
+            "{$module_path}.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}", 'posts')
         );
     }
 
@@ -98,6 +99,7 @@ class TagsController extends BackendBaseController
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -131,7 +133,7 @@ class TagsController extends BackendBaseController
 
             $$module_name_singular->save();
         }
-        if ($request->image_remove == 'image_remove') {
+        if ($request->image_remove === 'image_remove') {
             if ($$module_name_singular->getMedia($module_name)->first()) {
                 $$module_name_singular->getMedia($module_name)->first()->delete();
 

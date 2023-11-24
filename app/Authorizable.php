@@ -46,13 +46,13 @@ trait Authorizable
         return $action ? $action.'_'.$routeName[1] : null;
     }
 
-    private function getAbilities()
-    {
-        return $this->abilities;
-    }
-
     public function setAbilities($abilities)
     {
         $this->abilities = $abilities;
+    }
+
+    private function getAbilities()
+    {
+        return $this->abilities;
     }
 }

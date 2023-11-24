@@ -27,6 +27,7 @@ trait HasHashedMediaTrait
      *
      * @param  string  $path
      * @param  bool  $test  default true
+     *
      * @return object(Illuminate\Http\UploadedFile)
      *
      * Based of Alexandre Thebaldi answer here:
@@ -34,7 +35,7 @@ trait HasHashedMediaTrait
      */
     public function pathToUploadedFile($path, $test = true)
     {
-        $filesystem = new Filesystem;
+        $filesystem = new Filesystem();
 
         $name = $filesystem->name($path);
         $extension = $filesystem->extension($path);

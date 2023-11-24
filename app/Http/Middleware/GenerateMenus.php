@@ -10,6 +10,7 @@ class GenerateMenus
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -173,21 +174,21 @@ class GenerateMenus
                     if (auth()->check()) {
                         if (auth()->user()->hasRole('super admin')) {
                             return true;
-                        } elseif (auth()->user()->hasAnyPermission($item->data('permission'))) {
+                        }
+                        if (auth()->user()->hasAnyPermission($item->data('permission'))) {
                             return true;
                         }
                     }
 
                     return false;
-                } else {
-                    return true;
                 }
+                return true;
             });
 
             // Set Active Menu
             $menu->filter(function ($item) {
                 if ($item->activematches) {
-                    $activematches = (is_string($item->activematches)) ? [$item->activematches] : $item->activematches;
+                    $activematches = is_string($item->activematches) ? [$item->activematches] : $item->activematches;
                     foreach ($activematches as $pattern) {
                         if (request()->is($pattern)) {
                             $item->active();

@@ -17,7 +17,6 @@ class UserCreatedProfileCreate implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -40,7 +39,7 @@ class UserCreatedProfileCreate implements ShouldQueue
         $userprofile->gender = $user->gender;
         $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
-        $userprofile->status = ($user->status > 0) ? $user->status : 0;
+        $userprofile->status = $user->status > 0 ? $user->status : 0;
         $userprofile->save();
 
         Log::info('UserCreatedProfileCreate: '.$userprofile->name.'(Id:'.$userprofile->user_id.')');

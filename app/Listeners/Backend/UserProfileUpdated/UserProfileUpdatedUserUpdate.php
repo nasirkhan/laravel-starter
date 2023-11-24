@@ -5,6 +5,7 @@ namespace App\Listeners\Backend\UserProfileUpdated;
 use App\Events\Backend\UserProfileUpdated;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Artisan;
 
 class UserProfileUpdatedUserUpdate implements ShouldQueue
 {
@@ -15,7 +16,6 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -40,6 +40,6 @@ class UserProfileUpdatedUserUpdate implements ShouldQueue
         $user->save();
 
         // Clear Cache
-        \Artisan::call('cache:clear');
+        Artisan::call('cache:clear');
     }
 }

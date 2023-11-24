@@ -63,8 +63,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "$module_path.$module_name.index_datatable",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "{$module_path}.{$module_name}.index_datatable",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -90,7 +90,7 @@ class BackendBaseController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('name', 'LIKE', "%$term%")->orWhere('slug', 'LIKE', "%$term%")->limit(7)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('slug', 'LIKE', "%{$term}%")->limit(7)->get();
 
         $$module_name = [];
 
@@ -136,9 +136,8 @@ class BackendBaseController extends Controller
 
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
-                } else {
-                    return $data->updated_at->isoFormat('llll');
                 }
+                return $data->updated_at->isoFormat('llll');
             })
             ->rawColumns(['name', 'action'])
             ->orderColumns(['id'], '-:column $1')
@@ -164,7 +163,7 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "$module_path.$module_name.create",
+            "{$module_path}.{$module_name}.create",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action')
         );
     }
@@ -191,13 +190,14 @@ class BackendBaseController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function show($id)
@@ -216,8 +216,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "$module_path.$module_name.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            "{$module_path}.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}")
         );
     }
 
@@ -225,6 +225,7 @@ class BackendBaseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -243,8 +244,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "$module_path.$module_name.edit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+            "{$module_path}.{$module_name}.edit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -252,6 +253,7 @@ class BackendBaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -273,13 +275,14 @@ class BackendBaseController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect()->route("backend.$module_name.show", $$module_name_singular->id);
+        return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return Response
      */
     public function destroy($id)
@@ -301,7 +304,7 @@ class BackendBaseController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -326,8 +329,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "$module_path.$module_name.trash",
-            compact('module_title', 'module_name', 'module_path', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "{$module_path}.{$module_name}.trash",
+            compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -336,6 +339,7 @@ class BackendBaseController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
+     *
      * @return Response
      */
     public function restore($id)
@@ -356,6 +360,6 @@ class BackendBaseController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 }

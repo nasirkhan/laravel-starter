@@ -45,32 +45,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-        });
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        static::saving(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-            $table->save();
-        });
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -109,10 +83,37 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      * Route notifications for the Slack channel.
      *
      * @param  \Illuminate\Notifications\Notification  $notification
+     *
      * @return string
      */
     public function routeNotificationForSlack($notification)
     {
         return env('SLACK_NOTIFICATION_WEBHOOK');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // create a event to happen on creating
+        static::creating(function ($table) {
+            $table->created_by = Auth::id();
+        });
+
+        // create a event to happen on updating
+        static::updating(function ($table) {
+            $table->updated_by = Auth::id();
+        });
+
+        // create a event to happen on saving
+        static::saving(function ($table) {
+            $table->updated_by = Auth::id();
+        });
+
+        // create a event to happen on deleting
+        static::deleting(function ($table) {
+            $table->deleted_by = Auth::id();
+            $table->save();
+        });
     }
 }
