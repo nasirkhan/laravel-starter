@@ -71,7 +71,7 @@ class BackendBaseController extends Controller
     /**
      * Retrieves a list of items based on the search term.
      *
-     * @param  Request  $request The HTTP request object.
+     * @param  Request  $request  The HTTP request object.
      * @return JsonResponse The JSON response containing the list of items.
      */
     public function index_list(Request $request)
@@ -144,7 +144,6 @@ class BackendBaseController extends Controller
                     return $data->updated_at->diffForHumans();
                 }
 
-
                 return $data->updated_at->isoFormat('llll');
             })
             ->rawColumns(['name', 'action'])
@@ -179,7 +178,7 @@ class BackendBaseController extends Controller
     /**
      * Store a new resource in the database.
      *
-     * @param  Request  $request The request object containing the data to be stored.
+     * @param  Request  $request  The request object containing the data to be stored.
      * @return RedirectResponse The response object that redirects to the index page of the module.
      *
      * @throws Exception If there is an error during the creation of the resource.
@@ -263,9 +262,9 @@ class BackendBaseController extends Controller
      * Updates a resource.
      *
      * @param  int  $id
+     * @param  Request  $request  The request object.
+     * @param  mixed  $id  The ID of the resource to update.
      * @return Response
-     * @param  Request  $request The request object.
-     * @param  mixed  $id The ID of the resource to update.
      * @return RedirectResponse The redirect response.
      *
      * @throws ModelNotFoundException If the resource is not found.
@@ -296,8 +295,8 @@ class BackendBaseController extends Controller
      * Destroys a record from the database.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the record to be destroyed.
      * @return Response
-     * @param  int  $id The ID of the record to be destroyed.
      * @return \Illuminate\Http\RedirectResponse Redirects the user to the specified URL.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the record is not found.
@@ -356,8 +355,8 @@ class BackendBaseController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
+     * @param  int  $id  The ID of the data entry to be restored.
      * @return Response
-     * @param  int  $id The ID of the data entry to be restored.
      * @return \Illuminate\Http\RedirectResponse The response redirecting to the admin page of the module.
      *
      * @throws \Exception If the data entry cannot be found or restored.
