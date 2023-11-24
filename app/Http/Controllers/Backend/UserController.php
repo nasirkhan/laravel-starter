@@ -126,6 +126,7 @@ class UserController extends Controller
                     return $data->updated_at->diffForHumans();
                 }
 
+
                 return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'action', 'status', 'user_roles'])

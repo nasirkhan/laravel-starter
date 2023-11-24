@@ -65,13 +65,16 @@ if (! function_exists('label_case')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('show_column_value')) {
-
     /**
      * Generates the function comment for the given function.
      *
+     * @param  string  $valueObject  Model Object
+     * @param  string  $column  Column Name
+     * @param  string  $return_format  Return Type
      * @param  mixed  $valueObject The value object.
      * @param  mixed  $column The column.
      * @param  string  $return_format The return format. Default is empty string.
+     * @return string Raw/Formatted Column Value
      * @return mixed The column value or formatted value.
      */
     function show_column_value($valueObject, $column, $return_format = '')

@@ -144,6 +144,7 @@ class BackendBaseController extends Controller
                     return $data->updated_at->diffForHumans();
                 }
 
+
                 return $data->updated_at->isoFormat('llll');
             })
             ->rawColumns(['name', 'action'])
@@ -234,6 +235,7 @@ class BackendBaseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @return Response
      * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
@@ -260,6 +262,8 @@ class BackendBaseController extends Controller
     /**
      * Updates a resource.
      *
+     * @param  int  $id
+     * @return Response
      * @param  Request  $request The request object.
      * @param  mixed  $id The ID of the resource to update.
      * @return RedirectResponse The redirect response.
@@ -291,6 +295,8 @@ class BackendBaseController extends Controller
     /**
      * Destroys a record from the database.
      *
+     * @param  int  $id
+     * @return Response
      * @param  int  $id The ID of the record to be destroyed.
      * @return \Illuminate\Http\RedirectResponse Redirects the user to the specified URL.
      *
@@ -348,6 +354,9 @@ class BackendBaseController extends Controller
     /**
      * Restores a data entry in the database.
      *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
      * @param  int  $id The ID of the data entry to be restored.
      * @return \Illuminate\Http\RedirectResponse The response redirecting to the admin page of the module.
      *

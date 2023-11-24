@@ -90,9 +90,8 @@ class BackupController extends Controller
     /**
      * Creates a new backup for the module.
      *
-     * @return \Illuminate\Http\RedirectResponse the response to the ajax call.
-     *
-     * @throws Exception if an error occurs during the backup process.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {

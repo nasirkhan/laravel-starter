@@ -51,6 +51,8 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  int  $id
+     * @return Response
      * @param  string  $username The username of the resource to be displayed.
      * @return \Illuminate\Contracts\View\View Returns a view of the specified resource.
      *
@@ -82,6 +84,8 @@ class UserController extends Controller
     /**
      * Retrieves the profile information for a given user ID.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  int  $id The ID of the user.
      * @return Illuminate\View\View The view containing the user profile information.
      *
@@ -118,6 +122,8 @@ class UserController extends Controller
     /**
      * Edit a user profile.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  int  $id the ID of the user profile to edit
      * @return \Illuminate\View\View the view for editing the user profile
      *
@@ -223,6 +229,8 @@ class UserController extends Controller
     /**
      * Change password for a user.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  int  $id The ID of the user.
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View The redirect response if the user ID is not the same as the authenticated user's ID, otherwise the view with the change password form.
      *
@@ -258,6 +266,8 @@ class UserController extends Controller
     /**
      * Updates the password for a user.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  Request  $request The HTTP request object.
      * @param  mixed  $id The ID of the user.
      * @return mixed The updated user object.
@@ -290,6 +300,8 @@ class UserController extends Controller
     /**
      * Edit a record in the database.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  int  $id The ID of the record to be edited.
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\Factory|\Illuminate\View\View The response or view after editing the record.
      *
@@ -325,6 +337,8 @@ class UserController extends Controller
     /**
      * Updates a record in the database.
      *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      * @param  Request  $request The HTTP request object.
      * @param  int  $id The ID of the record to update.
      * @return \Illuminate\Http\RedirectResponse The redirect response.
@@ -405,6 +419,8 @@ class UserController extends Controller
     /**
      * Resends the email confirmation for a user.
      *
+     * @param [type] $hashid [description]
+     * @return [type] [description]
      * @param  int  $id The decoded ID of the user.
      * @return RedirectResponse The redirect response.
      *
