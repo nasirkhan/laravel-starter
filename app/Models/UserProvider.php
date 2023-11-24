@@ -11,23 +11,21 @@ class UserProvider extends Model
 {
     /**
      * The database table used by the model.
-     *
-     * @var string
      */
     protected $table = 'user_providers';
 
     /**
      * The attributes that are not mass assignable.
-     *
-     * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * Get the user of a UserProvider.
+     * Retrieves the associated User model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }

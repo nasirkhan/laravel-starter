@@ -45,7 +45,7 @@ class BackendBaseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -69,9 +69,10 @@ class BackendBaseController extends Controller
     }
 
     /**
-     * Select Options for Select 2 Request/ Response.
+     * Retrieves a list of items based on the search term.
      *
-     * @return Response
+     * @param  Request  $request The HTTP request object.
+     * @return JsonResponse The JSON response containing the list of items.
      */
     public function index_list(Request $request)
     {
@@ -104,6 +105,11 @@ class BackendBaseController extends Controller
         return response()->json($$module_name);
     }
 
+    /**
+     * Retrieves the data for the index page of the module.
+     *
+     * @return Illuminate\Http\JsonResponse
+     */
     public function index_data()
     {
         $module_title = $this->module_title;
@@ -137,6 +143,7 @@ class BackendBaseController extends Controller
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
                 }
+
                 return $data->updated_at->isoFormat('llll');
             })
             ->rawColumns(['name', 'action'])
@@ -147,7 +154,7 @@ class BackendBaseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -169,9 +176,12 @@ class BackendBaseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new resource in the database.
      *
-     * @return Response
+     * @param  Request  $request The request object containing the data to be stored.
+     * @return RedirectResponse The response object that redirects to the index page of the module.
+     *
+     * @throws Exception If there is an error during the creation of the resource.
      */
     public function store(Request $request)
     {
@@ -197,8 +207,7 @@ class BackendBaseController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -225,8 +234,7 @@ class BackendBaseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -250,11 +258,13 @@ class BackendBaseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates a resource.
      *
-     * @param  int  $id
+     * @param  Request  $request The request object.
+     * @param  mixed  $id The ID of the resource to update.
+     * @return RedirectResponse The redirect response.
      *
-     * @return Response
+     * @throws ModelNotFoundException If the resource is not found.
      */
     public function update(Request $request, $id)
     {
@@ -279,11 +289,12 @@ class BackendBaseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destroys a record from the database.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the record to be destroyed.
+     * @return \Illuminate\Http\RedirectResponse Redirects the user to the specified URL.
      *
-     * @return Response
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the record is not found.
      */
     public function destroy($id)
     {
@@ -311,7 +322,7 @@ class BackendBaseController extends Controller
      * List of trashed ertries
      * works if the softdelete is enabled.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function trashed()
     {
@@ -335,12 +346,12 @@ class BackendBaseController extends Controller
     }
 
     /**
-     * Restore a soft deleted entry.
+     * Restores a data entry in the database.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  int  $id The ID of the data entry to be restored.
+     * @return \Illuminate\Http\RedirectResponse The response redirecting to the admin page of the module.
      *
-     * @return Response
+     * @throws \Exception If the data entry cannot be found or restored.
      */
     public function restore($id)
     {

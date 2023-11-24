@@ -69,7 +69,6 @@ class TagsController extends BackendBaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($id)
@@ -99,7 +98,6 @@ class TagsController extends BackendBaseController
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function update(Request $request, $id)

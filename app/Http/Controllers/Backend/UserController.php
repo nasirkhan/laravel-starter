@@ -56,9 +56,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Retrieves the index page for the module.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -125,6 +125,7 @@ class UserController extends Controller
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
                 }
+
                 return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'action', 'status', 'user_roles'])
@@ -133,9 +134,12 @@ class UserController extends Controller
     }
 
     /**
-     * Select Options for Select 2 Request/ Response.
+     * Retrieves a list of items based on the search term.
      *
-     * @return Response
+     * @param  Request  $request The HTTP request object.
+     * @return JsonResponse The JSON response containing the list of items.
+     *
+     * @throws None
      */
     public function index_list(Request $request)
     {
@@ -199,7 +203,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function store(Request $request)
     {
@@ -278,7 +282,6 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($id)
@@ -307,8 +310,7 @@ class UserController extends Controller
      * Display Profile Details of Logged in user.
      *
      * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function profile(Request $request, $id)
     {
@@ -335,11 +337,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Edit the profile.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the profile to edit.
+     * @return Illuminate\View\View The view for editing the profile.
      *
-     * @return \Illuminate\Http\Response
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the profile is not found.
      */
     public function profileEdit($id)
     {
@@ -368,11 +371,11 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the user profile.
      *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request The request object.
+     * @param  int  $id The ID of the user.
+     * @return RedirectResponse The response redirecting to the user's profile page.
      */
     public function profileUpdate(Request $request, $id)
     {
@@ -428,11 +431,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Change the password of the user's profile.
      *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param  int  $id The ID of the user whose password will be changed. If the user does not have the "edit_users" permission, the ID will be set to the current authenticated user's ID.
+     * @return \Illuminate\View\View The view that displays the form to change the profile password.
      */
     public function changeProfilePassword($id)
     {
@@ -453,11 +455,13 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Change the profile password for a user.
      *
-     * @param  int  $id
+     * @param  Request  $request The HTTP request object.
+     * @param  int  $id The user ID.
+     * @return \Illuminate\Http\RedirectResponse Redirects to the user's profile page.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException If the validation fails.
      */
     public function changeProfilePasswordUpdate(Request $request, $id)
     {
@@ -489,11 +493,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Updates the password for a user.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the user whose password will be changed.
+     * @return \Illuminate\Contracts\View\View The view for the "Change Password" page.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user cannot be found.
      */
     public function changePassword($id)
     {
@@ -522,11 +527,14 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the password for a user.
      *
-     * @param  int  $id
+     * @param  Request  $request The request object containing the new password.
+     * @param  int  $id The ID of the user whose password is being updated.
+     * @return \Illuminate\Http\RedirectResponse The response object redirecting to the admin module.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException If the validation fails.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user with the given ID is not found.
      */
     public function changePasswordUpdate(Request $request, $id)
     {
@@ -558,11 +566,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit a record in the database.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the record to be edited.
+     * @return \Illuminate\View\View The view for editing the record.
      *
-     * @return Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException If the user does not have the permission to edit users.
      */
     public function edit($id)
     {
@@ -596,11 +605,13 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates a user with the given ID.
      *
-     * @param  int  $id
+     * @param  Request  $request The HTTP request object.
+     * @param  int  $id The ID of the user to update.
+     * @return RedirectResponse The redirect response to the admin module.
      *
-     * @return \Illuminate\Http\Response
+     * @throws NotFoundHttpException If the authenticated user does not have the 'edit_users' permission.
      */
     public function update(Request $request, $id)
     {
@@ -616,16 +627,6 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Update';
-
-        // $request->validate([
-        //     'first_name'    => 'required|min:3|max:191',
-        //     'last_name'     => 'required|min:3|max:191',
-        //     'url_website'   => 'nullable|min:3|max:191',
-        //     'url_facebook'  => 'nullable|min:3|max:191',
-        //     'url_twitter'   => 'nullable|min:3|max:191',
-        //     'url_instagram' => 'nullable|min:3|max:191',
-        //     'url_linkedin'  => 'nullable|min:3|max:191',
-        // ]);
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -666,11 +667,12 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletes a user by their ID.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the user to be deleted.
+     * @return Illuminate\Http\RedirectResponse
      *
-     * @return Response
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the user with the given ID is not found.
      */
     public function destroy($id)
     {
@@ -705,10 +707,9 @@ class UserController extends Controller
     }
 
     /**
-     * List of trashed ertries
-     * works if the softdelete is enabled.
+     * Retrieves and displays a list of deleted records for the specified module.
      *
-     * @return Response
+     * @return \Illuminate\View\View the view for the list of deleted records
      */
     public function trashed()
     {
@@ -733,12 +734,10 @@ class UserController extends Controller
     }
 
     /**
-     * Restore a soft deleted entry.
+     * Restores a record in the database.
      *
-     * @param  Request  $request
-     * @param  int  $id
-     *
-     * @return Response
+     * @param int $id The ID of the record to be restored.
+     * @return Illuminate\Http\RedirectResponse The redirect response to the admin module page.
      */
     public function restore($id)
     {
@@ -767,11 +766,12 @@ class UserController extends Controller
     }
 
     /**
-     * Block Any Specific User.
+     * Block a user.
      *
-     * @param  int  $id  User Id
+     * @param  int  $id The ID of the user to block.
+     * @return Illuminate\Http\RedirectResponse
      *
-     * @return Back To Previous Page
+     * @throws Exception There was a problem updating this user. Please try again.
      */
     public function block($id)
     {
@@ -793,7 +793,6 @@ class UserController extends Controller
         }
 
         $$module_name_singular = User::withTrashed()->find($id);
-        // $$module_name_singular = $this->findOrThrowException($id);
 
         try {
             $$module_name_singular->status = 2;
@@ -810,11 +809,12 @@ class UserController extends Controller
     }
 
     /**
-     * Unblock Any Specific User.
+     * Unblock a user.
      *
-     * @param  int  $id  User Id
+     * @param  int  $id The ID of the user to unblock.
+     * @return RedirectResponse The redirect back to the previous page.
      *
-     * @return Back To Previous Page
+     * @throws Exception If there is a problem updating the user.
      */
     public function unblock($id)
     {
@@ -857,9 +857,12 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the Social Account attached with a User.
+     * Destroy a user provider.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request The request object.
+     * @return void
+     *
+     * @throws Exception There was a problem updating this user. Please try again.
      */
     public function userProviderDestroy(Request $request)
     {
@@ -895,11 +898,12 @@ class UserController extends Controller
     }
 
     /**
-     * Resend Email Confirmation Code to User.
+     * Resends the email confirmation for a user.
      *
-     * @param [type] $hashid [description]
+     * @param  int  $id The ID of the user.
+     * @return \Illuminate\Http\RedirectResponse Returns a redirect response.
      *
-     * @return [type] [description]
+     * @throws \Illuminate\Http\Client\RequestException If the user is not authorized to resend the email confirmation.
      */
     public function emailConfirmationResend($id)
     {

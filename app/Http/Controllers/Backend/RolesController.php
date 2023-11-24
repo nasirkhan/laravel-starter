@@ -44,9 +44,9 @@ class RolesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Retrieves all the records from the database and displays them in a paginated list.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -72,7 +72,7 @@ class RolesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -96,7 +96,7 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function store(Request $request)
     {
@@ -130,8 +130,7 @@ class RolesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -158,8 +157,7 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -185,8 +183,7 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function update(Request $request, $id)
     {
@@ -230,8 +227,7 @@ class RolesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function destroy($id)
     {

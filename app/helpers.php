@@ -53,6 +53,7 @@ if (! function_exists('label_case')) {
 
         $new_text = trim(\Illuminate\Support\Str::title(str_replace('"', '', $text)));
         $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
+
         return preg_replace('!\s+!', ' ', $new_text);
     }
 }
@@ -64,14 +65,14 @@ if (! function_exists('label_case')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('show_column_value')) {
+
     /**
-     * Return Column values as Raw and formatted.
+     * Generates the function comment for the given function.
      *
-     * @param  string  $valueObject  Model Object
-     * @param  string  $column  Column Name
-     * @param  string  $return_format  Return Type
-     *
-     * @return string Raw/Formatted Column Value
+     * @param  mixed  $valueObject The value object.
+     * @param  mixed  $column The column.
+     * @param  string  $return_format The return format. Default is empty string.
+     * @return mixed The column value or formatted value.
      */
     function show_column_value($valueObject, $column, $return_format = '')
     {
@@ -140,10 +141,8 @@ if (! function_exists('fielf_required')) {
     }
 }
 
-/*
+/**
  * Get or Set the Settings Values
- *
- * @var [type]
  */
 if (! function_exists('setting')) {
     function setting($key, $default = null)
@@ -164,8 +163,6 @@ if (! function_exists('setting')) {
 
 /*
  * Show Human readable file size
- *
- * @var [type]
  */
 if (! function_exists('humanFilesize')) {
     function humanFilesize($size, $precision = 2)
@@ -196,6 +193,7 @@ if (! function_exists('encode_id')) {
     function encode_id($id)
     {
         $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
+
         return $hashids->encode($id);
     }
 }
@@ -364,6 +362,7 @@ if (! function_exists('en2bnDate')) {
         // Convert AM-PM
         $search_array = ['am', 'pm', 'AM', 'PM'];
         $replace_array = ['পূর্বাহ্ন', 'অপরাহ্ন', 'পূর্বাহ্ন', 'অপরাহ্ন'];
+
         return str_replace($search_array, $replace_array, $bn_date);
     }
 }
@@ -385,9 +384,9 @@ if (! function_exists('banglaDate')) {
 
         $date_input = strtotime($date_input);
 
-        $en_day = date('d', $date_input);
-        $en_month = date('m', $date_input);
-        $en_year = date('Y', $date_input);
+        $en_day = intval(date('j', $date_input));
+        $en_month = intval(date('n', $date_input));
+        $en_year = intval(date('Y', $date_input));
 
         $bn_month_days = [30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 29, 30];
         $bn_month_middate = [13, 12, 14, 13, 14, 14, 15, 15, 15, 16, 14, 14];
@@ -414,6 +413,7 @@ if (! function_exists('banglaDate')) {
         }
 
         $return_bn_date = $bn_day.' '.$bn_month.' '.$bn_year;
+
         return en2bnNumber($return_bn_date);
     }
 }
@@ -436,6 +436,7 @@ if (! function_exists('generate_rgb_code')) {
             $str .= "{$num},";
         }
         $str .= "{$opacity},";
+
         return substr($str, 0, -1);
     }
 }

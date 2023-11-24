@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Notification extends Model
 {
@@ -20,6 +20,6 @@ class Notification extends Model
      */
     public function getTableColumns()
     {
-        return DB::select(DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
+        return DB::select(strval(DB::raw('SHOW COLUMNS FROM ' . $this->getTable())));
     }
 }

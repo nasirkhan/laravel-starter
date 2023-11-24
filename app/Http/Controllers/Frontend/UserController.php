@@ -51,9 +51,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $username The username of the resource to be displayed.
+     * @return \Illuminate\Contracts\View\View Returns a view of the specified resource.
      *
-     * @return Response
+     * @throws \Exception If the resource is not found.
      */
     public function show($username)
     {
@@ -79,11 +80,12 @@ class UserController extends Controller
     }
 
     /**
-     * Display Profile Details of Logged in user.
+     * Retrieves the profile information for a given user ID.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the user.
+     * @return Illuminate\View\View The view containing the user profile information.
      *
-     * @return \Illuminate\Http\Response
+     * @throws ModelNotFoundException If the user profile is not found.
      */
     public function profile($id)
     {
@@ -114,11 +116,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Edit a user profile.
      *
-     * @param  int  $id
+     * @param  int  $id the ID of the user profile to edit
+     * @return \Illuminate\View\View the view for editing the user profile
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException if the user profile is not found
      */
     public function profileEdit($id)
     {
@@ -159,7 +162,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profileUpdate(Request $request, $id)
@@ -219,11 +221,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Change password for a user.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the user.
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View The redirect response if the user ID is not the same as the authenticated user's ID, otherwise the view with the change password form.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Exception If the user ID cannot be decoded or if the user is not authenticated.
      */
     public function changePassword($id)
     {
@@ -253,11 +256,11 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the password for a user.
      *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request The HTTP request object.
+     * @param  mixed  $id The ID of the user.
+     * @return mixed The updated user object.
      */
     public function changePasswordUpdate(Request $request, $id)
     {
@@ -285,11 +288,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit a record in the database.
      *
-     * @param  int  $id
+     * @param  int  $id The ID of the record to be edited.
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\Factory|\Illuminate\View\View The response or view after editing the record.
      *
-     * @return \Illuminate\Http\Response
+     * @throws \Exception If the user is not authorized to edit the record.
      */
     public function edit($id)
     {
@@ -319,11 +323,11 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates a record in the database.
      *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request The HTTP request object.
+     * @param  int  $id The ID of the record to update.
+     * @return \Illuminate\Http\RedirectResponse The redirect response.
      */
     public function update(Request $request, $id)
     {
@@ -367,9 +371,12 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the Social Account attached with a User.
+     * Destroy a user provider.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request The request object.
+     * @return RedirectResponse The redirect response.
+     *
+     * @throws Exception There was a problem updating this user. Please try again.
      */
     public function userProviderDestroy(Request $request)
     {
@@ -396,11 +403,12 @@ class UserController extends Controller
     }
 
     /**
-     * Resend Email Confirmation Code to User.
+     * Resends the email confirmation for a user.
      *
-     * @param [type] $hashid [description]
+     * @param  int  $id The decoded ID of the user.
+     * @return RedirectResponse The redirect response.
      *
-     * @return [type] [description]
+     * @throws Exception If the user is not authorized to resend the email confirmation.
      */
     public function emailConfirmationResend($id)
     {

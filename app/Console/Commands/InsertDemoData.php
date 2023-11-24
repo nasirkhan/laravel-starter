@@ -5,25 +5,22 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use function Laravel\Prompts\confirm;
 use Modules\Article\Models\Post;
 use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
 use Modules\Tag\Models\Tag;
 
+use function Laravel\Prompts\confirm;
+
 class InsertDemoData extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'starter:insert-demo-data {--fresh}';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Insert demo data for posts, categories, tags, and comments. --fresh option will truncate the tables.';
 

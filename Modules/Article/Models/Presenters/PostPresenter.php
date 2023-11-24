@@ -11,7 +11,6 @@ trait PostPresenter
      * Get the featured image attribute.
      *
      * @param  mixed  $value  The value of the featured image attribute.
-     *
      * @return string The modified featured image URL.
      */
     public function getFeaturedImageAttribute($value)
@@ -39,6 +38,7 @@ trait PostPresenter
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
         }
+
         return $this->published_at->isoFormat('llll');
     }
 

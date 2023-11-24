@@ -12,11 +12,12 @@ class Setting extends BaseModel
     protected $table = 'settings';
 
     /**
-     * Add a settings value.
+     * Adds a key-value pair to the data store.
      *
-     * @param  string  $type
-     *
-     * @return bool
+     * @param  mixed  $key The key to add.
+     * @param  mixed  $val The value to associate with the key.
+     * @param  string  $type (optional) The data type of the value. Default is 'string'.
+     * @return mixed The added value if successful, false otherwise.
      */
     public static function add($key, $val, $type = 'string')
     {
@@ -28,11 +29,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get a settings value.
+     * Retrieves the value of a setting based on the provided key.
      *
-     * @param  null  $default
-     *
-     * @return bool|int|mixed
+     * @param  string  $key The key of the setting to retrieve.
+     * @param  mixed  $default The default value to return if the setting does not exist.
+     * @return mixed The value of the setting.
      */
     public static function get($key, $default = null)
     {
@@ -46,11 +47,12 @@ class Setting extends BaseModel
     }
 
     /**
-     * Set a value for setting.
+     * Updates or adds a setting value in the database.
      *
-     * @param  string  $type
-     *
-     * @return bool
+     * @param  string  $key The name of the setting.
+     * @param  mixed  $val The value to be set for the setting.
+     * @param  string  $type The data type of the setting.
+     * @return mixed The updated or added value if successful, false otherwise.
      */
     public static function set($key, $val, $type = 'string')
     {
@@ -66,9 +68,10 @@ class Setting extends BaseModel
     }
 
     /**
-     * Remove a setting.
+     * Removes an item from the collection if it exists.
      *
-     * @return bool
+     * @param  string  $key the key of the item to be removed
+     * @return bool true if the item was successfully removed, false otherwise
      */
     public static function remove($key)
     {
@@ -80,9 +83,10 @@ class Setting extends BaseModel
     }
 
     /**
-     * Check if setting exists.
+     * Checks if a key exists in the settings.
      *
-     * @return bool
+     * @param  mixed  $key The key to check.
+     * @return bool Returns true if the key exists, false otherwise.
      */
     public static function has($key)
     {
@@ -90,9 +94,9 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get the validation rules for setting fields.
+     * Retrieves the validation rules for the defined setting fields.
      *
-     * @return array
+     * @return array An array of validation rules, where the keys are the field names and the values are the rules.
      */
     public static function getValidationRules()
     {
@@ -103,9 +107,12 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get the data type of a setting.
+     * Retrieves the data type of a given field.
      *
-     * @return mixed
+     * @param  mixed  $field The name of the field.
+     * @return string The data type of the field. It returns 'string' if the data type is not defined.
+     *
+     * @throws None
      */
     public static function getDataType($field)
     {
@@ -117,9 +124,10 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get default value for a setting.
+     * Get the default value for a given field.
      *
-     * @return mixed
+     * @param  string  $field The name of the field.
+     * @return mixed|null The default value of the field, or null if not found.
      */
     public static function getDefaultValueForField($field)
     {
@@ -129,9 +137,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get all the settings.
+     * Get all settings from the cache or fetch them from the database.
      *
-     * @return mixed
+     * @return array an array of all the settings.
+     *
+     * @throws \Exception if there is an error retrieving the settings.
      */
     public static function getAllSettings()
     {
@@ -141,7 +151,12 @@ class Setting extends BaseModel
     }
 
     /**
-     * Flush the cache.
+     * Flushes the cache for the specified key.
+     *
+     * @param  string  $key The cache key to be flushed.
+     * @return void
+     *
+     * @throws \Exception If an error occurs while flushing the cache.
      */
     public static function flushCache()
     {
@@ -149,7 +164,7 @@ class Setting extends BaseModel
     }
 
     /**
-     * The "booting" method of the model.
+     * Boot the model.
      *
      * @return void
      */
@@ -171,9 +186,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get default value from config if no value passed.
+     * Get the default value for a given key.
      *
-     * @return mixed
+     * @param  mixed  $key The key to get the default value for.
+     * @param  mixed  $default The default value to return if the key has no value.
+     * @return mixed The default value or the value of the key.
      */
     private static function getDefaultValue($key, $default)
     {
@@ -181,9 +198,9 @@ class Setting extends BaseModel
     }
 
     /**
-     * Get all the settings fields from config.
+     * Retrieves the defined setting fields.
      *
-     * @return Collection
+     * @return Collection The collection of defined setting fields.
      */
     private static function getDefinedSettingFields()
     {
@@ -191,9 +208,11 @@ class Setting extends BaseModel
     }
 
     /**
-     * caste value into respective type.
+     * Casts a value to a specified data type.
      *
-     * @return bool|int
+     * @param  mixed  $val the value to cast
+     * @param  string  $castTo the data type to cast the value to
+     * @return mixed the casted value
      */
     private static function castValue($val, $castTo)
     {

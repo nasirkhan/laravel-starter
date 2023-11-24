@@ -15,9 +15,12 @@ use Laravel\Socialite\Facades\Socialite;
 class SocialLoginController extends Controller
 {
     /**
-     * Where to redirect users after login.
+     * Redirects the user to the specified URL or the default home route.
      *
-     * @var string
+     * This function checks if the "redirectTo" parameter is present in the request and returns its value if true.
+     * Otherwise, it returns the default home route.
+     *
+     * @return string The URL or route to redirect to.
      */
     public function redirectTo()
     {
@@ -26,13 +29,17 @@ class SocialLoginController extends Controller
         if ($redirectTo) {
             return $redirectTo;
         }
+
         return RouteServiceProvider::HOME;
     }
 
     /**
-     * Redirect the user to the Provider (Facebook, Google, GitHub...) authentication page.
+     * Redirects the user to the specified provider for authentication.
      *
-     * @return \Illuminate\Http\Response
+     * @param  string  $provider The name of the provider to redirect to.
+     * @return \Illuminate\Http\RedirectResponse The redirect response.
+     *
+     * @throws \Exception If the provider is not supported.
      */
     public function redirectToProvider($provider)
     {
@@ -40,9 +47,12 @@ class SocialLoginController extends Controller
     }
 
     /**
-     * Obtain the user information from Provider (Facebook, Google, GitHub...).
+     * Handle the provider callback.
      *
-     * @return \Illuminate\Http\Response
+     * @param  string  $provider The provider name.
+     * @return \Illuminate\Http\RedirectResponse The redirect response.
+     *
+     * @throws Exception If an error occurs during the process.
      */
     public function handleProviderCallback($provider)
     {
@@ -60,7 +70,10 @@ class SocialLoginController extends Controller
     }
 
     /**
-     * Split Name into first name and last name.
+     * Splits a name into first and last name.
+     *
+     * @param  string  $name The name to be split.
+     * @return array An array containing the first name and last name.
      */
     public function split_name($name)
     {
@@ -77,7 +90,6 @@ class SocialLoginController extends Controller
      *
      * @param  mixed  $socialUser  The social user object.
      * @param  string  $provider  The provider name.
-     *
      * @return \App\Models\User The found or created user.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user is not found.

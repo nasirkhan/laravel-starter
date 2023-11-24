@@ -42,7 +42,7 @@ class SettingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {

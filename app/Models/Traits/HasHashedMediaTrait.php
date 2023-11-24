@@ -27,7 +27,6 @@ trait HasHashedMediaTrait
      *
      * @param  string  $path
      * @param  bool  $test  default true
-     *
      * @return object(Illuminate\Http\UploadedFile)
      *
      * Based of Alexandre Thebaldi answer here:

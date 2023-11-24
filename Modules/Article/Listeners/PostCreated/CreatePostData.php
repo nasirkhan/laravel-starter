@@ -21,7 +21,6 @@ class CreatePostData implements ShouldQueue
      * Handle the event.
      *
      * @param  object  $event
-     *
      * @return void
      */
     public function handle(PostCreated $event)

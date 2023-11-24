@@ -44,7 +44,7 @@ class NotificationsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -72,8 +72,7 @@ class NotificationsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -110,8 +109,7 @@ class NotificationsController extends Controller
      * Delete All the Notifications.
      *
      * @param  int  $id
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function deleteAll()
     {
@@ -136,9 +134,9 @@ class NotificationsController extends Controller
     }
 
     /**
-     * Mark All Notifications As Read.
+     * Marks all notifications as read for the authenticated user.
      *
-     * @return [type] [description]
+     * @return Illuminate\Http\RedirectResponse the response to redirect back
      */
     public function markAllAsRead()
     {

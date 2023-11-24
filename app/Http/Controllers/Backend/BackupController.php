@@ -44,7 +44,7 @@ class BackupController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -88,11 +88,11 @@ class BackupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Creates a new backup for the module.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse the response to the ajax call.
      *
-     * @return \Illuminate\Http\Response
+     * @throws Exception if an error occurs during the backup process.
      */
     public function create()
     {

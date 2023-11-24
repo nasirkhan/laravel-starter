@@ -31,7 +31,7 @@ class BaseModel extends Model implements HasMedia
     /**
      * Create Converted copies of uploaded images.
      */
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(250)
@@ -52,59 +52,63 @@ class BaseModel extends Model implements HasMedia
     public function getTableColumns()
     {
         $table_name = DB::getTablePrefix().$this->getTable();
+
         return DB::select('SHOW COLUMNS FROM '.$table_name);
     }
 
     /**
      * Get Status Label.
-     *
-     * @return [type] [description]
      */
     public function getStatusLabelAttribute()
     {
-        switch ($this->status) {
+        $return_string = "";
+
+        switch ($this->attributes['status']) {
             case '0':
-                return '<span class="badge bg-danger">Inactive</span>';
+                $return_string = '<span class="badge bg-danger">Inactive</span>';
                 break;
 
             case '1':
-                return '<span class="badge bg-success">Active</span>';
+                $return_string = '<span class="badge bg-success">Active</span>';
                 break;
 
             case '2':
-                return '<span class="badge bg-warning text-dark">Pending</span>';
+                $return_string = '<span class="badge bg-warning text-dark">Pending</span>';
                 break;
 
             default:
-                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
+                $return_string = '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
+
+        return $return_string;
     }
 
     /**
      * Get Status Label.
-     *
-     * @return [type] [description]
      */
     public function getStatusLabelTextAttribute()
     {
-        switch ($this->status) {
+        $return_string = "";
+
+        switch ($this->attributes['status']) {
             case '0':
-                return 'Inactive';
+                $return_string = 'Inactive';
                 break;
 
             case '1':
-                return 'Active';
+                $return_string = 'Active';
                 break;
 
             case '2':
-                return 'Pending';
+                $return_string = 'Pending';
                 break;
 
             default:
-                return $this->status;
+                $return_string = $this->status;
                 break;
         }
+        return $return_string; 
     }
 
     /**
@@ -120,7 +124,6 @@ class BaseModel extends Model implements HasMedia
      * If no value submitted 'Name' will be used as slug
      * str_slug helper method was used to format the text.
      *
-     * @param [type]
      */
     public function setSlugAttribute($value)
     {
