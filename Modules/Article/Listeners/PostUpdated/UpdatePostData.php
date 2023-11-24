@@ -21,7 +21,6 @@ class UpdatePostData implements ShouldQueue
      * Handle the event.
      *
      * @param  object  $event
-     *
      * @return void
      */
     public function handle(PostUpdated $event)

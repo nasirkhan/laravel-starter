@@ -65,6 +65,7 @@ class CommentsController extends BackendBaseController
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
                 }
+
                 return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'action'])
@@ -103,7 +104,6 @@ class CommentsController extends BackendBaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($id)

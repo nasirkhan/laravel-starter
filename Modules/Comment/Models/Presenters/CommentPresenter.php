@@ -13,6 +13,7 @@ trait CommentPresenter
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
         }
+
         return $this->published_at->isoFormat('llll');
     }
 

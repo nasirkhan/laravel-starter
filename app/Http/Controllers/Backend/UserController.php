@@ -125,6 +125,7 @@ class UserController extends Controller
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
                 }
+
                 return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'action', 'status', 'user_roles'])
@@ -278,7 +279,6 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($id)
@@ -307,7 +307,6 @@ class UserController extends Controller
      * Display Profile Details of Logged in user.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profile(Request $request, $id)
@@ -338,7 +337,6 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profileEdit($id)
@@ -371,7 +369,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profileUpdate(Request $request, $id)
@@ -431,7 +428,6 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changeProfilePassword($id)
@@ -456,7 +452,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changeProfilePasswordUpdate(Request $request, $id)
@@ -492,7 +487,6 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changePassword($id)
@@ -525,7 +519,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changePasswordUpdate(Request $request, $id)
@@ -561,7 +554,6 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function edit($id)
@@ -599,7 +591,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -669,7 +660,6 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function destroy($id)
@@ -737,7 +727,6 @@ class UserController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
-     *
      * @return Response
      */
     public function restore($id)
@@ -770,7 +759,6 @@ class UserController extends Controller
      * Block Any Specific User.
      *
      * @param  int  $id  User Id
-     *
      * @return Back To Previous Page
      */
     public function block($id)
@@ -813,7 +801,6 @@ class UserController extends Controller
      * Unblock Any Specific User.
      *
      * @param  int  $id  User Id
-     *
      * @return Back To Previous Page
      */
     public function unblock($id)
@@ -898,7 +885,6 @@ class UserController extends Controller
      * Resend Email Confirmation Code to User.
      *
      * @param [type] $hashid [description]
-     *
      * @return [type] [description]
      */
     public function emailConfirmationResend($id)

@@ -15,7 +15,6 @@ class Setting extends BaseModel
      * Add a settings value.
      *
      * @param  string  $type
-     *
      * @return bool
      */
     public static function add($key, $val, $type = 'string')
@@ -31,7 +30,6 @@ class Setting extends BaseModel
      * Get a settings value.
      *
      * @param  null  $default
-     *
      * @return bool|int|mixed
      */
     public static function get($key, $default = null)
@@ -49,7 +47,6 @@ class Setting extends BaseModel
      * Set a value for setting.
      *
      * @param  string  $type
-     *
      * @return bool
      */
     public static function set($key, $val, $type = 'string')

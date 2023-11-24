@@ -42,6 +42,7 @@ trait UserPresenter
         if ($this->email_verified_at !== null) {
             return '<span class="badge bg-success">Confirmed</span>';
         }
+
         return '<span class="badge bg-danger">Not Confirmed</span>';
     }
 
