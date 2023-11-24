@@ -33,26 +33,26 @@ class SocialLoginController extends Controller
         return RouteServiceProvider::HOME;
     }
 
+
     /**
      * Redirects the user to the specified provider for authentication.
      *
-     * @param  string  $provider The name of the provider to redirect to.
+     * @param string $provider The name of the authentication provider.
+     * @throws \Exception If an error occurs during the redirection.
      * @return \Illuminate\Http\RedirectResponse The redirect response.
-     *
-     * @throws \Exception If the provider is not supported.
      */
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
     }
 
+    
     /**
-     * Handle the provider callback.
+     * Handles the callback from the provider.
      *
-     * @param  string  $provider The provider name.
-     * @return \Illuminate\Http\RedirectResponse The redirect response.
-     *
+     * @param string $provider The provider name.
      * @throws Exception If an error occurs during the process.
+     * @return RedirectResponse The redirect response.
      */
     public function handleProviderCallback($provider)
     {
@@ -84,15 +84,13 @@ class SocialLoginController extends Controller
 
         return [$first_name, $last_name];
     }
-
+    
     /**
-     * Finds or creates a user based on the given social user and provider.
+     * Finds or creates a user based on the social user and provider.
      *
-     * @param  mixed  $socialUser  The social user object.
-     * @param  string  $provider  The provider name.
-     * @return \App\Models\User The found or created user.
-     *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user is not found.
+     * @param object $socialUser The social user object.
+     * @param string $provider The provider name.
+     * @return object The created or existing user object.
      */
     private function findOrCreateUser($socialUser, $provider)
     {
