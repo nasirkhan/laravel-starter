@@ -61,7 +61,7 @@ class BaseModel extends Model implements HasMedia
      */
     public function getStatusLabelAttribute()
     {
-        $return_string = "";
+        $return_string = '';
 
         switch ($this->attributes['status']) {
             case '0':
@@ -89,7 +89,7 @@ class BaseModel extends Model implements HasMedia
      */
     public function getStatusLabelTextAttribute()
     {
-        $return_string = "";
+        $return_string = '';
 
         switch ($this->attributes['status']) {
             case '0':
@@ -108,7 +108,8 @@ class BaseModel extends Model implements HasMedia
                 $return_string = $this->status;
                 break;
         }
-        return $return_string; 
+
+        return $return_string;
     }
 
     /**
@@ -123,7 +124,6 @@ class BaseModel extends Model implements HasMedia
      * Set the 'Slug'.
      * If no value submitted 'Name' will be used as slug
      * str_slug helper method was used to format the text.
-     *
      */
     public function setSlugAttribute($value)
     {

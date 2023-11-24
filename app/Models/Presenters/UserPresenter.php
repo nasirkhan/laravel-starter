@@ -16,7 +16,7 @@ trait UserPresenter
      */
     public function getStatusLabelAttribute()
     {
-        $return_string = "";
+        $return_string = '';
         switch ($this->status) {
             case '1':
                 $return_string = '<span class="badge bg-success">Active</span>';
@@ -34,7 +34,6 @@ trait UserPresenter
         return $return_string;
     }
 
-    
     /**
      * Retrieves the label for the "confirmed" attribute.
      *
