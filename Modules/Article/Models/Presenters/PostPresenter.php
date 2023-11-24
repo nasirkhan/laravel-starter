@@ -37,9 +37,9 @@ trait PostPresenter
 
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
-        } else {
-            return $this->published_at->isoFormat('llll');
         }
+
+        return $this->published_at->isoFormat('llll');
     }
 
     public function getPublishedAtFormattedBengaliAttribute()
@@ -48,13 +48,10 @@ trait PostPresenter
 
         if ($diff < 24) {
             return $this->published_at->diffForHumans();
-        } else {
-            $date_string = $this->published_at->isoFormat('llll');
         }
+        $date_string = $this->published_at->isoFormat('llll');
 
-        $return_string = en2bnDate($date_string);
-
-        return $return_string;
+        return en2bnDate($date_string);
     }
 
     public function getStatusFormattedAttribute()

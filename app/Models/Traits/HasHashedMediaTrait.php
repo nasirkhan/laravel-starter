@@ -34,7 +34,7 @@ trait HasHashedMediaTrait
      */
     public function pathToUploadedFile($path, $test = true)
     {
-        $filesystem = new Filesystem;
+        $filesystem = new Filesystem();
 
         $name = $filesystem->name($path);
         $extension = $filesystem->extension($path);

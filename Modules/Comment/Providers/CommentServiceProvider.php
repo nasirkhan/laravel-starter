@@ -49,22 +49,6 @@ class CommentServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            module_path('Comment', 'Config/config.php') => config_path('comment.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path('Comment', 'Config/config.php'),
-            'comment'
-        );
-    }
-
-    /**
      * Register views.
      *
      * @return void
@@ -99,6 +83,32 @@ class CommentServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            module_path('Comment', 'Config/config.php') => config_path('comment.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            module_path('Comment', 'Config/config.php'),
+            'comment'
+        );
+    }
+
+    /**
      * Register commands.
      *
      * @param  string  $namespace
@@ -115,16 +125,6 @@ class CommentServiceProvider extends ServiceProvider
         }
 
         $this->commands($classes);
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 
     private function getPublishableViewPaths(): array

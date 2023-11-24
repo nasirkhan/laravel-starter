@@ -15,7 +15,6 @@ class CreatePostData implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

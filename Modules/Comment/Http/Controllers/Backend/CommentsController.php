@@ -57,18 +57,16 @@ class CommentsController extends BackendBaseController
                 return view('backend.includes.action_column', compact('module_name', 'data'));
             })
             ->editColumn('name', function ($data) {
-                $return_string = '<strong>'.$data->name.'</strong> | '.$data->status_formatted;
-
-                return $return_string;
+                return '<strong>'.$data->name.'</strong> | '.$data->status_formatted;
             })
             ->editColumn('updated_at', function ($data) {
                 $diff = Carbon::now()->diffInHours($data->updated_at);
 
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
-                } else {
-                    return $data->updated_at->isoFormat('LLLL');
                 }
+
+                return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'action'])
             ->orderColumns(['id'], '-:column $1')
@@ -99,7 +97,7 @@ class CommentsController extends BackendBaseController
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -130,8 +128,8 @@ class CommentsController extends BackendBaseController
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "$module_path.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
+            "{$module_path}.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}", 'activities')
         );
     }
 }

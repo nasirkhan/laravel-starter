@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 class FrontendController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Retrieves the view for the index page of the frontend.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -19,7 +19,7 @@ class FrontendController extends Controller
     /**
      * Privacy Policy Page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function privacy()
     {
@@ -29,7 +29,7 @@ class FrontendController extends Controller
     /**
      * Terms & Conditions Page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function terms()
     {

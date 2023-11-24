@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 
 trait Authorizable
 {
@@ -39,19 +40,19 @@ trait Authorizable
 
     public function getAbility($method)
     {
-        $routeName = explode('.', \Request::route()->getName());
+        $routeName = explode('.', Route::currentRouteName());
         $action = Arr::get($this->getAbilities(), $method);
 
         return $action ? $action.'_'.$routeName[1] : null;
     }
 
-    private function getAbilities()
-    {
-        return $this->abilities;
-    }
-
     public function setAbilities($abilities)
     {
         $this->abilities = $abilities;
+    }
+
+    private function getAbilities()
+    {
+        return $this->abilities;
     }
 }

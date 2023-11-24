@@ -55,8 +55,8 @@ class CategoriesController extends Controller
         $$module_name = $module_model::latest()->paginate();
 
         return view(
-            "$module_path.$module_name.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+            "{$module_path}.{$module_name}.index",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -83,8 +83,8 @@ class CategoriesController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "$module_path.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+            "{$module_path}.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'posts')
         );
     }
 }

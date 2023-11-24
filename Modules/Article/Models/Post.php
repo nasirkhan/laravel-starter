@@ -137,7 +137,7 @@ class Post extends BaseModel
     {
         $this->attributes['published_at'] = $value;
 
-        if (empty($value) && $this->attributes['status'] == 1) {
+        if (empty($value) && $this->attributes['status'] === 1) {
             $this->attributes['published_at'] = Carbon::now();
         }
     }

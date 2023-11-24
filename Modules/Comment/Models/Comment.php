@@ -50,20 +50,20 @@ class Comment extends BaseModel
 
     public function getPostAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Models\Post') {
+        if ($this->commentable_type === 'Modules\Article\Models\Post') {
             return $this->commentable;
-        } else {
-            return [];
         }
+
+        return [];
     }
 
     public function getModuleNameAttribute()
     {
-        if ($this->commentable_type == 'Modules\Article\Models\Post') {
+        if ($this->commentable_type === 'Modules\Article\Models\Post') {
             return 'posts';
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     public function parent()
@@ -98,7 +98,7 @@ class Comment extends BaseModel
     {
         $this->attributes['published_at'] = $value;
 
-        if (empty($value) && $this->attributes['status'] == 1) {
+        if (empty($value) && $this->attributes['status'] === 1) {
             $this->attributes['published_at'] = Carbon::now();
         }
     }

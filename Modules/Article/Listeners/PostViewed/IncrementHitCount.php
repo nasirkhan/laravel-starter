@@ -15,7 +15,6 @@ class IncrementHitCount implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

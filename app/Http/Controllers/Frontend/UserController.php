@@ -52,7 +52,11 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  string  $username  The username of the resource to be displayed.
      * @return Response
+     * @return \Illuminate\Contracts\View\View Returns a view of the specified resource.
+     *
+     * @throws \Exception If the resource is not found.
      */
     public function show($username)
     {
@@ -72,16 +76,20 @@ class UserController extends Controller
         $meta_page_type = 'profile';
 
         return view(
-            "frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class', 'meta_page_type')
+            "frontend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'body_class', 'meta_page_type')
         );
     }
 
     /**
-     * Display Profile Details of Logged in user.
+     * Retrieves the profile information for a given user ID.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the user.
      * @return \Illuminate\Http\Response
+     * @return Illuminate\View\View The view containing the user profile information.
+     *
+     * @throws ModelNotFoundException If the user profile is not found.
      */
     public function profile($id)
     {
@@ -108,14 +116,18 @@ class UserController extends Controller
 
         $meta_page_type = 'profile';
 
-        return view("frontend.$module_name.profile", compact('module_name', 'module_name_singular', "$module_name_singular", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
+        return view("frontend.{$module_name}.profile", compact('module_name', 'module_name_singular', "{$module_name_singular}", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Edit a user profile.
      *
      * @param  int  $id
+     * @param  int  $id  the ID of the user profile to edit
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View the view for editing the user profile
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException if the user profile is not found
      */
     public function profileEdit($id)
     {
@@ -137,7 +149,7 @@ class UserController extends Controller
             $id = auth()->user()->id;
         }
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -147,8 +159,8 @@ class UserController extends Controller
         $body_class = 'profile-page';
 
         return view(
-            "frontend.$module_name.profileEdit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'userprofile', 'body_class')
+            "frontend.{$module_name}.profileEdit",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'userprofile', 'body_class')
         );
     }
 
@@ -169,7 +181,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile Update';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -215,10 +227,14 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for Profile Paeg Editing the specified resource.
+     * Change password for a user.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the user.
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View The redirect response if the user ID is not the same as the authenticated user's ID, otherwise the view with the change password form.
+     *
+     * @throws \Exception If the user ID cannot be decoded or if the user is not authenticated.
      */
     public function changePassword($id)
     {
@@ -234,7 +250,7 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -244,20 +260,23 @@ class UserController extends Controller
 
         $body_class = 'profile-page';
 
-        return view("frontend.$module_name.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'body_class'));
+        return view("frontend.{$module_name}.changePassword", compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'body_class'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates the password for a user.
      *
      * @param  int  $id
+     * @param  Request  $request  The HTTP request object.
+     * @param  mixed  $id  The ID of the user.
      * @return \Illuminate\Http\Response
+     * @return mixed The updated user object.
      */
     public function changePasswordUpdate(Request $request, $id)
     {
         $id = decode_id($id);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
         }
 
@@ -279,10 +298,14 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit a record in the database.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the record to be edited.
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\Factory|\Illuminate\View\View The response or view after editing the record.
+     *
+     * @throws \Exception If the user is not authorized to edit the record.
      */
     public function edit($id)
     {
@@ -294,7 +317,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Edit';
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -308,21 +331,24 @@ class UserController extends Controller
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        return view("frontend.$module_name.edit", compact('userRoles', 'userPermissions', 'module_name', "$module_name_singular", 'module_icon', 'module_action', 'title', 'roles', 'permissions', 'body_class'));
+        return view("frontend.{$module_name}.edit", compact('userRoles', 'userPermissions', 'module_name', "{$module_name_singular}", 'module_icon', 'module_action', 'title', 'roles', 'permissions', 'body_class'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates a record in the database.
      *
      * @param  int  $id
+     * @param  Request  $request  The HTTP request object.
+     * @param  int  $id  The ID of the record to update.
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse The redirect response.
      */
     public function update(Request $request, $id)
     {
         $module_name = $this->module_name;
         $module_name_singular = Str::singular($this->module_name);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
@@ -330,10 +356,10 @@ class UserController extends Controller
 
         $$module_name_singular->update($request->except(['roles', 'permissions']));
 
-        if ($id == 1) {
+        if ($id === 1) {
             $user->syncRoles(['administrator']);
 
-            return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+            return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
         }
 
         $roles = $request['roles'];
@@ -355,14 +381,16 @@ class UserController extends Controller
             $$module_name_singular->syncPermissions($permissions);
         }
 
-        return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+        return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
     }
 
     /**
-     * Remove the Social Account attached with a User.
+     * Destroy a user provider.
      *
+     * @param  Request  $request  The request object.
+     * @return RedirectResponse The redirect response.
      *
-     * @return \Illuminate\Http\Response
+     * @throws Exception There was a problem updating this user. Please try again.
      */
     public function userProviderDestroy(Request $request)
     {
@@ -373,34 +401,36 @@ class UserController extends Controller
             flash('Invalid Request. Please try again.')->error();
 
             return redirect()->back();
-        } else {
-            $user_provider = UserProvider::findOrFail($user_provider_id);
-
-            if ($user_id == $user_provider->user->id) {
-                $user_provider->delete();
-
-                flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name.'"!')->success();
-
-                return redirect()->back();
-            } else {
-                flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
-            }
         }
+        $user_provider = UserProvider::findOrFail($user_provider_id);
+
+        if ($user_id === $user_provider->user->id) {
+            $user_provider->delete();
+
+            flash('<i class="fas fa-exclamation-triangle"></i> Unlinked from User, "'.$user_provider->user->name.'"!')->success();
+
+            return redirect()->back();
+        }
+        flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
 
         throw new Exception('There was a problem updating this user. Please try again.');
     }
 
     /**
-     * Resend Email Confirmation Code to User.
+     * Resends the email confirmation for a user.
      *
      * @param [type] $hashid [description]
+     * @param  int  $id  The decoded ID of the user.
      * @return [type] [description]
+     * @return RedirectResponse The redirect response.
+     *
+     * @throws Exception If the user is not authorized to resend the email confirmation.
      */
     public function emailConfirmationResend($id)
     {
         $id = decode_id($id);
 
-        if ($id != auth()->user()->id) {
+        if ($id !== auth()->user()->id) {
             if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
                 Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
             } else {
@@ -413,7 +443,7 @@ class UserController extends Controller
         $user = User::where('id', 'LIKE', $id)->first();
 
         if ($user) {
-            if ($user->email_verified_at == null) {
+            if ($user->email_verified_at === null) {
                 Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
 
                 // Send Email To Registered User
@@ -422,13 +452,12 @@ class UserController extends Controller
                 flash('Email Sent! Please Check Your Inbox.')->success()->important();
 
                 return redirect()->back();
-            } else {
-                Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
-
-                flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
-
-                return redirect()->back();
             }
+            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
+
+            flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
+
+            return redirect()->back();
         }
     }
 }

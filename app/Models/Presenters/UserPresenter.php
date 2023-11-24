@@ -13,37 +13,39 @@ trait UserPresenter
 {
     /**
      * Get Status Label.
-     *
-     * @return [type] [description]
      */
     public function getStatusLabelAttribute()
     {
+        $return_string = '';
         switch ($this->status) {
             case '1':
-                return '<span class="badge bg-success">Active</span>';
+                $return_string = '<span class="badge bg-success">Active</span>';
                 break;
+
             case '2':
-                return '<span class="badge bg-warning text-dark">Blocked</span>';
+                $return_string = '<span class="badge bg-warning text-dark">Blocked</span>';
                 break;
 
             default:
-                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
+                $return_string = '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
+
+        return $return_string;
     }
 
     /**
-     * Get Status Label.
+     * Retrieves the label for the "confirmed" attribute.
      *
-     * @return [type] [description]
+     * @return string The HTML label for the "confirmed" attribute.
      */
     public function getConfirmedLabelAttribute()
     {
-        if ($this->email_verified_at != null) {
+        if ($this->email_verified_at !== null) {
             return '<span class="badge bg-success">Confirmed</span>';
-        } else {
-            return '<span class="badge bg-danger">Not Confirmed</span>';
         }
+
+        return '<span class="badge bg-danger">Not Confirmed</span>';
     }
 
     /**

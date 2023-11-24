@@ -70,8 +70,8 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_path.index_datatable",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "article::backend.{$module_path}.index_datatable",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -97,7 +97,7 @@ class PostsController extends Controller
                 return view('backend.includes.action_column', compact('module_name', 'data'));
             })
             ->editColumn('name', function ($data) {
-                $is_featured = ($data->is_featured) ? '<span class="badge bg-primary">Featured</span>' : '';
+                $is_featured = $data->is_featured ? '<span class="badge bg-primary">Featured</span>' : '';
 
                 return $data->name.' '.$data->status_formatted.' '.$is_featured;
             })
@@ -108,9 +108,9 @@ class PostsController extends Controller
 
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
-                } else {
-                    return $data->updated_at->isoFormat('LLLL');
                 }
+
+                return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'status', 'action'])
             ->orderColumns(['id'], '-:column $1')
@@ -139,7 +139,7 @@ class PostsController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('name', 'LIKE', "%$term%")->published()->limit(10)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->published()->limit(10)->get();
 
         $$module_name = [];
 
@@ -174,7 +174,7 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.create",
+            "article::backend.{$module_name}.create",
             compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', 'categories')
         );
     }
@@ -208,7 +208,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -239,8 +239,8 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular", 'activities')
+            "article::backend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}", 'activities')
         );
     }
 
@@ -268,8 +268,8 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
         return view(
-            "article::backend.$module_name.edit",
-            compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            "article::backend.{$module_name}.edit",
+            compact('categories', 'module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}")
         );
     }
 
@@ -295,7 +295,7 @@ class PostsController extends Controller
 
         $$module_name_singular->update($request->except('tags_list'));
 
-        if ($request->input('tags_list') == null) {
+        if ($request->input('tags_list') === null) {
             $tags_list = [];
         } else {
             $tags_list = $request->input('tags_list');
@@ -308,7 +308,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -336,7 +336,7 @@ class PostsController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -361,8 +361,8 @@ class PostsController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name);
 
         return view(
-            "article::backend.$module_name.trash",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "article::backend.{$module_name}.trash",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -389,8 +389,8 @@ class PostsController extends Controller
 
         Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Restoreded Successfully!')->important();
 
-        Log::info(label_case($module_action)." '$module_name': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        Log::info(label_case($module_action)." '{$module_name}': '".$$module_name_singular->name.', ID:'.$$module_name_singular->id." ' by User:".Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 }

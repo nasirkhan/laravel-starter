@@ -55,8 +55,8 @@ class TagsController extends Controller
         $$module_name = $module_model::latest()->with('posts')->paginate();
 
         return view(
-            "tag::frontend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_action', 'module_name_singular')
+            "tag::frontend.{$module_path}.index",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_action', 'module_name_singular')
         );
     }
 
@@ -83,8 +83,8 @@ class TagsController extends Controller
         $posts = $$module_name_singular->posts()->with('category', 'tags', 'comments')->paginate();
 
         return view(
-            "tag::frontend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular", 'posts')
+            "tag::frontend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'posts')
         );
     }
 }

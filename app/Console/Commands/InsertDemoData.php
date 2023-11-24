@@ -16,15 +16,11 @@ class InsertDemoData extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'starter:insert-demo-data {--fresh}';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Insert demo data for posts, categories, tags, and comments. --fresh option will truncate the tables.';
 
@@ -101,7 +97,7 @@ class InsertDemoData extends Command
             foreach ($tables_list as $row) {
                 $table_name = $row;
 
-                $this->info("Truncate Table: $table_name");
+                $this->info("Truncate Table: {$table_name}");
 
                 DB::table($table_name)->truncate();
             }

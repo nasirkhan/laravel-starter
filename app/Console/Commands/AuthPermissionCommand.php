@@ -10,15 +10,11 @@ class AuthPermissionCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'auth:permission {name} {--R|remove}';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Create Permissions for default mothods. The Names shoule be plural.';
 

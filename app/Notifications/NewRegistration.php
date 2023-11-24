@@ -27,7 +27,6 @@ class NewRegistration extends Notification
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -51,7 +50,7 @@ class NewRegistration extends Notification
     {
         $user = $notifiable;
 
-        if ($user->email_verified_at == '') {
+        if ($user->email_verified_at === '') {
             $verificationUrl = $this->verificationUrl($notifiable);
 
             if (static::$toMailCallback) {
@@ -99,6 +98,17 @@ class NewRegistration extends Notification
     }
 
     /**
+     * Set a callback that should be used when building the notification mail message.
+     *
+     * @param  \Closure  $callback
+     * @return void
+     */
+    public static function toMailUsing($callback)
+    {
+        static::$toMailCallback = $callback;
+    }
+
+    /**
      * Get the verification URL for the given notifiable.
      *
      * @param  mixed  $notifiable
@@ -114,16 +124,5 @@ class NewRegistration extends Notification
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );
-    }
-
-    /**
-     * Set a callback that should be used when building the notification mail message.
-     *
-     * @param  \Closure  $callback
-     * @return void
-     */
-    public static function toMailUsing($callback)
-    {
-        static::$toMailCallback = $callback;
     }
 }

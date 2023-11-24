@@ -14,7 +14,6 @@ class UserCreatedNotifySuperUser implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

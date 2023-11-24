@@ -15,7 +15,6 @@ class UpdatePostData implements ShouldQueue
      */
     public function __construct()
     {
-        //
     }
 
     /**

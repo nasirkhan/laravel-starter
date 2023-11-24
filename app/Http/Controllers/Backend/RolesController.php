@@ -44,9 +44,9 @@ class RolesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Retrieves all the records from the database and displays them in a paginated list.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -64,15 +64,15 @@ class RolesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.$module_path.index",
-            compact('module_title', 'module_name', "$module_name", 'module_icon', 'module_name_singular', 'module_action')
+            "backend.{$module_path}.index",
+            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -90,13 +90,13 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
+        return view("backend.{$module_name}.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function store(Request $request)
     {
@@ -123,7 +123,7 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect("admin/$module_name")->with('flash_success', "$module_name added!");
+        return redirect("admin/{$module_name}")->with('flash_success', "{$module_name} added!");
     }
 
     /**
@@ -131,6 +131,7 @@ class RolesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
@@ -148,8 +149,8 @@ class RolesController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "$module_name_singular")
+            "backend.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -158,6 +159,7 @@ class RolesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -176,7 +178,7 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return view("backend.$module_name.edit", compact('module_title', 'module_name', "$module_name_singular", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
+        return view("backend.{$module_name}.edit", compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**
@@ -184,6 +186,7 @@ class RolesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function update(Request $request, $id)
     {
@@ -220,7 +223,7 @@ class RolesController extends Controller
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-        return redirect("admin/$module_name");
+        return redirect("admin/{$module_name}");
     }
 
     /**
@@ -228,6 +231,7 @@ class RolesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function destroy($id)
     {
@@ -245,24 +249,26 @@ class RolesController extends Controller
         $user_roles = auth()->user()->roles()->pluck('id');
         $role_users = $$module_name_singular->users;
 
-        if ($id == 1) {
+        if ($id === 1) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete 'Administrator'!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
-        } elseif (in_array($id, $user_roles->toArray())) {
+            return redirect()->route("backend.{$module_name}.index");
+        }
+        if (in_array($id, $user_roles->toArray())) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete your Role!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
-        } elseif ($role_users->count()) {
+            return redirect()->route("backend.{$module_name}.index");
+        }
+        if ($role_users->count()) {
             Flash::warning("<i class='fas fa-exclamation-triangle'></i> Can not be deleted! ".$role_users->count().' user found!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-            return redirect()->route("backend.$module_name.index");
+            return redirect()->route("backend.{$module_name}.index");
         }
 
         try {

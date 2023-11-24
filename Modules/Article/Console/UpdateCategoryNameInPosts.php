@@ -58,7 +58,7 @@ class UpdateCategoryNameInPosts extends Command
         }
 
         // end note, show total updated rows in total
-        echo "\n\n Total $total_update_count posts updated.";
+        echo "\n\n Total {$total_update_count} posts updated.";
 
         echo "\n\n";
     }

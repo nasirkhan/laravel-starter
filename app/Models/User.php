@@ -38,13 +38,67 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     /**
      * The attributes that should be hidden for arrays.
-     *
-     * @var array
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    /**
+     * Retrieve the providers associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function providers()
+    {
+        return $this->hasMany('App\Models\UserProvider');
+    }
+
+    /**
+     * Retrieves the profile of the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Userprofile');
+    }
+
+    /**
+     * Get the user profile associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function userprofile()
+    {
+        return $this->hasOne('App\Models\Userprofile');
+    }
+
+    /**
+     * Get the list of users related to the current User.
+     */
+    public function getRolesListAttribute()
+    {
+        return array_map('intval', $this->roles->pluck('id')->toArray());
+    }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return env('SLACK_NOTIFICATION_WEBHOOK');
+    }
+
+    /**
+     * Boot the model.
+     *
+     * Register the model's event listeners.
+     *
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();
@@ -69,50 +123,5 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             $table->deleted_by = Auth::id();
             $table->save();
         });
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function providers()
-    {
-        return $this->hasMany('App\Models\UserProvider');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function profile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function userprofile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
-    }
-
-    /**
-     * Get the list of users related to the current User.
-     *
-     * @return [array] roels
-     */
-    public function getRolesListAttribute()
-    {
-        return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     * Route notifications for the Slack channel.
-     *
-     * @param  \Illuminate\Notifications\Notification  $notification
-     * @return string
-     */
-    public function routeNotificationForSlack($notification)
-    {
-        return env('SLACK_NOTIFICATION_WEBHOOK');
     }
 }
