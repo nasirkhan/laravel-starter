@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
 
         // username
         $username = config('app.initial_username') + $user->id;
-        $user->username = $username;
+        $user->username = intval($username);
         $user->save();
 
         event(new Registered($user));
