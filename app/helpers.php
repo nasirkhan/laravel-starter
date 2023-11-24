@@ -53,6 +53,7 @@ if (! function_exists('label_case')) {
 
         $new_text = trim(\Illuminate\Support\Str::title(str_replace('"', '', $text)));
         $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
+
         return preg_replace('!\s+!', ' ', $new_text);
     }
 }
@@ -70,7 +71,6 @@ if (! function_exists('show_column_value')) {
      * @param  string  $valueObject  Model Object
      * @param  string  $column  Column Name
      * @param  string  $return_format  Return Type
-     *
      * @return string Raw/Formatted Column Value
      */
     function show_column_value($valueObject, $column, $return_format = '')
@@ -196,6 +196,7 @@ if (! function_exists('encode_id')) {
     function encode_id($id)
     {
         $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
+
         return $hashids->encode($id);
     }
 }
@@ -364,6 +365,7 @@ if (! function_exists('en2bnDate')) {
         // Convert AM-PM
         $search_array = ['am', 'pm', 'AM', 'PM'];
         $replace_array = ['পূর্বাহ্ন', 'অপরাহ্ন', 'পূর্বাহ্ন', 'অপরাহ্ন'];
+
         return str_replace($search_array, $replace_array, $bn_date);
     }
 }
@@ -414,6 +416,7 @@ if (! function_exists('banglaDate')) {
         }
 
         $return_bn_date = $bn_day.' '.$bn_month.' '.$bn_year;
+
         return en2bnNumber($return_bn_date);
     }
 }
@@ -436,6 +439,7 @@ if (! function_exists('generate_rgb_code')) {
             $str .= "{$num},";
         }
         $str .= "{$opacity},";
+
         return substr($str, 0, -1);
     }
 }

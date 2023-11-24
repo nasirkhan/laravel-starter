@@ -109,6 +109,7 @@ class PostsController extends Controller
                 if ($diff < 25) {
                     return $data->updated_at->diffForHumans();
                 }
+
                 return $data->updated_at->isoFormat('LLLL');
             })
             ->rawColumns(['name', 'status', 'action'])
@@ -182,7 +183,6 @@ class PostsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     *
      * @return Response
      */
     public function store(PostsRequest $request)
@@ -215,7 +215,6 @@ class PostsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($id)
@@ -249,7 +248,6 @@ class PostsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function edit($id)
@@ -280,7 +278,6 @@ class PostsController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
-     *
      * @return Response
      */
     public function update(PostsRequest $request, $id)
@@ -318,7 +315,6 @@ class PostsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function destroy($id)
@@ -375,7 +371,6 @@ class PostsController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
-     *
      * @return Response
      */
     public function restore($id)

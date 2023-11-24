@@ -26,6 +26,7 @@ class SocialLoginController extends Controller
         if ($redirectTo) {
             return $redirectTo;
         }
+
         return RouteServiceProvider::HOME;
     }
 
@@ -77,7 +78,6 @@ class SocialLoginController extends Controller
      *
      * @param  mixed  $socialUser  The social user object.
      * @param  string  $provider  The provider name.
-     *
      * @return \App\Models\User The found or created user.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user is not found.

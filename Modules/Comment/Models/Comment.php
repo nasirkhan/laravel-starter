@@ -53,6 +53,7 @@ class Comment extends BaseModel
         if ($this->commentable_type === 'Modules\Article\Models\Post') {
             return $this->commentable;
         }
+
         return [];
     }
 
@@ -61,6 +62,7 @@ class Comment extends BaseModel
         if ($this->commentable_type === 'Modules\Article\Models\Post') {
             return 'posts';
         }
+
         return '';
     }
 
@@ -114,7 +116,6 @@ class Comment extends BaseModel
      * Get the list of Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopePublished($query)
@@ -128,7 +129,6 @@ class Comment extends BaseModel
      * Get the list of Recently Published Articles.
      *
      * @param [type] $query [description]
-     *
      * @return [type] [description]
      */
     public function scopeRecentlyPublished($query)

@@ -52,7 +52,6 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     *
      * @return Response
      */
     public function show($username)
@@ -82,7 +81,6 @@ class UserController extends Controller
      * Display Profile Details of Logged in user.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profile($id)
@@ -117,7 +115,6 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profileEdit($id)
@@ -159,7 +156,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function profileUpdate(Request $request, $id)
@@ -222,7 +218,6 @@ class UserController extends Controller
      * Show the form for Profile Paeg Editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changePassword($id)
@@ -256,7 +251,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function changePasswordUpdate(Request $request, $id)
@@ -288,7 +282,6 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -322,7 +315,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -399,7 +391,6 @@ class UserController extends Controller
      * Resend Email Confirmation Code to User.
      *
      * @param [type] $hashid [description]
-     *
      * @return [type] [description]
      */
     public function emailConfirmationResend($id)
