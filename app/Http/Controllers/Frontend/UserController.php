@@ -52,8 +52,8 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  string  $username  The username of the resource to be displayed.
      * @return Response
-     * @param  string  $username The username of the resource to be displayed.
      * @return \Illuminate\Contracts\View\View Returns a view of the specified resource.
      *
      * @throws \Exception If the resource is not found.
@@ -85,8 +85,8 @@ class UserController extends Controller
      * Retrieves the profile information for a given user ID.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the user.
      * @return \Illuminate\Http\Response
-     * @param  int  $id The ID of the user.
      * @return Illuminate\View\View The view containing the user profile information.
      *
      * @throws ModelNotFoundException If the user profile is not found.
@@ -123,8 +123,8 @@ class UserController extends Controller
      * Edit a user profile.
      *
      * @param  int  $id
+     * @param  int  $id  the ID of the user profile to edit
      * @return \Illuminate\Http\Response
-     * @param  int  $id the ID of the user profile to edit
      * @return \Illuminate\View\View the view for editing the user profile
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException if the user profile is not found
@@ -230,8 +230,8 @@ class UserController extends Controller
      * Change password for a user.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the user.
      * @return \Illuminate\Http\Response
-     * @param  int  $id The ID of the user.
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View The redirect response if the user ID is not the same as the authenticated user's ID, otherwise the view with the change password form.
      *
      * @throws \Exception If the user ID cannot be decoded or if the user is not authenticated.
@@ -267,9 +267,9 @@ class UserController extends Controller
      * Updates the password for a user.
      *
      * @param  int  $id
+     * @param  Request  $request  The HTTP request object.
+     * @param  mixed  $id  The ID of the user.
      * @return \Illuminate\Http\Response
-     * @param  Request  $request The HTTP request object.
-     * @param  mixed  $id The ID of the user.
      * @return mixed The updated user object.
      */
     public function changePasswordUpdate(Request $request, $id)
@@ -301,8 +301,8 @@ class UserController extends Controller
      * Edit a record in the database.
      *
      * @param  int  $id
+     * @param  int  $id  The ID of the record to be edited.
      * @return \Illuminate\Http\Response
-     * @param  int  $id The ID of the record to be edited.
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\Factory|\Illuminate\View\View The response or view after editing the record.
      *
      * @throws \Exception If the user is not authorized to edit the record.
@@ -338,9 +338,9 @@ class UserController extends Controller
      * Updates a record in the database.
      *
      * @param  int  $id
+     * @param  Request  $request  The HTTP request object.
+     * @param  int  $id  The ID of the record to update.
      * @return \Illuminate\Http\Response
-     * @param  Request  $request The HTTP request object.
-     * @param  int  $id The ID of the record to update.
      * @return \Illuminate\Http\RedirectResponse The redirect response.
      */
     public function update(Request $request, $id)
@@ -387,7 +387,7 @@ class UserController extends Controller
     /**
      * Destroy a user provider.
      *
-     * @param  Request  $request The request object.
+     * @param  Request  $request  The request object.
      * @return RedirectResponse The redirect response.
      *
      * @throws Exception There was a problem updating this user. Please try again.
@@ -420,8 +420,8 @@ class UserController extends Controller
      * Resends the email confirmation for a user.
      *
      * @param [type] $hashid [description]
+     * @param  int  $id  The decoded ID of the user.
      * @return [type] [description]
-     * @param  int  $id The decoded ID of the user.
      * @return RedirectResponse The redirect response.
      *
      * @throws Exception If the user is not authorized to resend the email confirmation.
