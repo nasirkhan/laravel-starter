@@ -25,7 +25,7 @@
         "sass-loader": "^13.2.0",
         "simplebar": "^6.2.1",
         "tailwindcss": "^3.2.7",
-        "vite": "^4.0.5"
+        "vite": "^4.5.2"
     },
     "dependencies": {
         "-": "^0.0.1",
