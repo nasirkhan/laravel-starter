@@ -118,7 +118,7 @@
             <div class="flex justify-between p-4">
                 <div class="">
                     <span class="font-semibold">{{ label_case($field_name = 'date_of_birth'); }}: </span>
-                    <span class="">{{ $$module_name_singular->$field_name->toFormattedDateString(); }}</span>
+                    <span class="">{{ $$module_name_singular->$field_name ? $$module_name_singular->$field_name->toFormattedDateString() : ''  }}</span>
                 </div>
                 <div class="">
                     <span class="font-semibold">{{ label_case($field_name = 'gender'); }}: </span>
