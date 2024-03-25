@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('user_id');
 
             $table->string('name');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('username')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
@@ -30,16 +30,19 @@ return new class extends Migration
             $table->string('url_twitter')->nullable();
             $table->string('url_instagram')->nullable();
             $table->string('url_linkedin')->nullable();
+            $table->json('social_profiles')->nullable();
 
             $table->date('date_of_birth')->nullable();
             $table->text('address')->nullable();
             $table->text('bio')->nullable();
             $table->string('avatar')->nullable();
-            $table->text('user_metadata')->nullable();
+            $table->json('user_metadata')->nullable();
+
             $table->string('last_ip')->nullable();
             $table->integer('login_count')->default(0);
             $table->timestamp('last_login')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            
             $table->tinyInteger('status')->default(1)->unsigned();
 
             $table->integer('created_by')->unsigned()->nullable();
