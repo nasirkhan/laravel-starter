@@ -524,3 +524,21 @@ if (! function_exists('demo_mode')) {
         return $return_string;
     }
 }
+
+/*
+ * Split Name to First Name and Last Name
+ */
+if (! function_exists('split_name')) {
+    /**
+     * Split Name to First Name and Last Name
+     *
+     * @return mixed
+     */
+    function split_name($name)
+    {
+        $name = trim($name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim(preg_replace('#' . preg_quote($last_name, '#') . '#', '', $name));
+        return array($first_name, $last_name);
+    }
+}
