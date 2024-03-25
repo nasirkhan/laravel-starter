@@ -20,8 +20,6 @@ class AuthTableSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
 
@@ -29,6 +27,5 @@ class AuthTableSeeder extends Seeder
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(UserRoleTableSeeder::class);
 
-        Schema::enableForeignKeyConstraints();
     }
 }

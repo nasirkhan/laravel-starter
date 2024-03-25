@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\Schema;
 class PermissionRoleTableSeeder extends Seeder
 {
     /**
+     * The laravel component Factory instance.
+     *
+     * @var \Illuminate\Console\View\Components\Factory
+     */
+    protected $component;
+
+    /**
      * Run the database seed.
      *
      * @return void
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-
         // Create Roles
         $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
         $admin = Role::create(['id' => '2', 'name' => 'administrator']);
@@ -36,8 +41,8 @@ class PermissionRoleTableSeeder extends Seeder
 
         $permissions = Permission::defaultPermissions();
 
-        foreach ($permissions as $perms) {
-            Permission::firstOrCreate(['name' => $perms]);
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
         Artisan::call('auth:permission', [
@@ -66,7 +71,5 @@ class PermissionRoleTableSeeder extends Seeder
         $admin->givePermissionTo(Permission::all());
         $manager->givePermissionTo('view_backend');
         $executive->givePermissionTo('view_backend');
-
-        Schema::enableForeignKeyConstraints();
     }
 }
