@@ -6,7 +6,6 @@ use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
-use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
