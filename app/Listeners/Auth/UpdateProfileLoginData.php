@@ -4,7 +4,6 @@ namespace App\Listeners\Auth;
 
 use App\Events\Auth\UserLoginSuccess;
 use Carbon\Carbon;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateProfileLoginData
 {
@@ -37,8 +36,7 @@ class UpdateProfileLoginData
             $user_profile->login_count += 1;
             $user_profile->save();
 
-            logger('User Login Success. Name: ' . $user->name . ' | Id: ' . $user->id . ' | Email: ' . $user->email . ' | Username: ' . $user->username . ' IP:' . $user_profile->last_ip . ' | UpdateProfileLoginData');
-    
+            logger('User Login Success. Name: '.$user->name.' | Id: '.$user->id.' | Email: '.$user->email.' | Username: '.$user->username.' IP:'.$user_profile->last_ip.' | UpdateProfileLoginData');
         } catch (\Exception $e) {
             logger()->error($e);
         }

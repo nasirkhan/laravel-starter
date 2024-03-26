@@ -48,7 +48,6 @@ class AuthenticatedSessionController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
 
-
         // $request->authenticate();
 
         // $request->session()->regenerate();
