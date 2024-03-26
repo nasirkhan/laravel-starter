@@ -19,10 +19,10 @@ class UserRegistered
     public $request;
 
     /**
-     * User Registered Event Construct
+     * User Registered Event Construct.
      *
-     * @param Request $request
-     * @param User $user
+     * @param  Request  $request
+     * @param  User  $user
      */
     public function __construct(Request $request, User $user)
     {

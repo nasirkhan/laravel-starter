@@ -3,8 +3,6 @@
 namespace App\Listeners\Frontend\UserRegistered;
 
 use App\Events\Frontend\UserRegistered;
-use App\Notifications\NewRegistration;
-use App\Notifications\NewRegistrationFromSocial;
 use App\Notifications\NewRegistrationNotification;
 use App\Notifications\NewRegistrationNotificationForSocial;
 use Illuminate\Contracts\Queue\ShouldQueue;
