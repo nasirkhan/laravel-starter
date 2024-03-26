@@ -42,7 +42,7 @@ return new class extends Migration
             $table->integer('login_count')->default(0);
             $table->timestamp('last_login')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            
+
             $table->tinyInteger('status')->default(1)->unsigned();
 
             $table->integer('created_by')->unsigned()->nullable();
