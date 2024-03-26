@@ -146,4 +146,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+    'demo_mode' => env('DEMO_MODE', false),
+
 ];
