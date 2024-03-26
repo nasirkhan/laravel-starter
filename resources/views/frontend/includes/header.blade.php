@@ -23,7 +23,7 @@
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        <a href="{{ route('frontend.posts.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
+                        {{-- <a href="{{ route('frontend.posts.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
                             {{__('Posts')}}
                         </a>
                         <a href="{{ route('frontend.categories.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
@@ -34,7 +34,7 @@
                         </a>
                         <a href="{{ route('frontend.comments.index') }}" class="text-gray-600 border-transparent border-b-2 hover:border-orange-600 px-3 py-2 text-base font-medium transition ease-out duration-300">
                             {{__('Comments')}}
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden absolute z-10 w-full p-1" id="mobile-menu" x-show="showMobileNav" @click.away="showMobileNav = false" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-md ring-1 ring-black ring-opacity-5">
-            <a href="{{ route('frontend.posts.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
+            {{-- <a href="{{ route('frontend.posts.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
                 {{__('Posts')}}
             </a>
             <a href="{{ route('frontend.categories.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
@@ -123,7 +123,7 @@
             </a>
             <a href="{{ route('frontend.comments.index') }}" class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium">
                 {{__('Comments')}}
-            </a>
+            </a> --}}
 
             @can('view_backend')
             <a href='{{ route("backend.dashboard") }}' class="text-gray-500 block px-3 py-2 rounded-md text-base font-medium border" role="menuitem">

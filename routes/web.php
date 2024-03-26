@@ -1,21 +1,14 @@
 <?php
 
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+require __DIR__ . '/auth.php';
 
-// Auth Routes
-require __DIR__.'/auth.php';
+// home route
+Route::get('home', [FrontendController::class, 'index'])->name('home');
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
@@ -29,7 +22,7 @@ Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index'
 */
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
-    Route::get('home', 'FrontendController@index')->name('home');
+    
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
 
@@ -52,9 +45,25 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
     });
 });
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+/**
+ * Laravel Default
+ */
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     // dd(auth()->user()->hasRole('super admin'));    
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+
 
 /*
 *
@@ -144,3 +153,4 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     Route::patch("{$module_name}/{id}/block", ['as' => "{$module_name}.block", 'uses' => "{$controller_name}@block", 'middleware' => ['permission:block_users']]);
     Route::patch("{$module_name}/{id}/unblock", ['as' => "{$module_name}.unblock", 'uses' => "{$controller_name}@unblock", 'middleware' => ['permission:block_users']]);
 });
+
