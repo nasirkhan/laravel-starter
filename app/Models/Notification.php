@@ -9,9 +9,12 @@ class Notification extends Model
 {
     protected $table = 'notifications';
 
-    protected $casts = [
-        'read_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'read_at' => 'datetime',
+        ];
+    }
 
     /**
      * Get the list of all the Columns of the table.

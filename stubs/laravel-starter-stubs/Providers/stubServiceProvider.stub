@@ -46,7 +46,8 @@ class {{moduleName}}ServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        
+
+        // Event Service Provider
         $this->app->register(EventServiceProvider::class);
     }
 

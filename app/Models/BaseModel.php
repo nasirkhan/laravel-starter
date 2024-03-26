@@ -19,14 +19,15 @@ class BaseModel extends Model implements HasMedia
     protected $guarded = [
         'id',
         'updated_at',
-        '_token',
-        '_method',
     ];
 
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'published_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'deleted_at' => 'datetime',
+            'published_at' => 'datetime',
+        ];
+    }
 
     /**
      * Create Converted copies of uploaded images.

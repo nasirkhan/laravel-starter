@@ -4,6 +4,7 @@ namespace App\Models\Presenters;
 
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -75,4 +76,14 @@ trait UserPresenter
 
         return $roles->where('model_id', $this->id);
     }
+
+    public function setNameAttribute($value) {
+        $value = ucwords(strtolower($value));
+        $this->attributes['name'] = $value;
+
+        $name_parts = split_name($value);
+        $this->attributes['first_name'] = $name_parts[0];
+        $this->attributes['last_name'] = $name_parts[1];
+    }
+
 }
