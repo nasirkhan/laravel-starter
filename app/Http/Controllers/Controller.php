@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use BadMethodCallException;
-
 abstract class Controller
 {
     /**

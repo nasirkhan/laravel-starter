@@ -77,7 +77,8 @@ trait UserPresenter
         return $roles->where('model_id', $this->id);
     }
 
-    public function setNameAttribute($value) {
+    public function setNameAttribute($value)
+    {
         $value = ucwords(strtolower($value));
         $this->attributes['name'] = $value;
 
@@ -85,5 +86,4 @@ trait UserPresenter
         $this->attributes['first_name'] = $name_parts[0];
         $this->attributes['last_name'] = $name_parts[1];
     }
-
 }
