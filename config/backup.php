@@ -99,6 +99,11 @@ return [
         'database_dump_compressor' => null,
 
         /*
+         * If specified, the database dumped file name will contain a timestamp (e.g.: 'Y-m-d-H-i-s').
+         */
+        'database_dump_file_timestamp_format' => null,
+
+        /*
          * The file extension used for the database dump files.
          *
          * If not specified, the file extension will be .archive for MongoDB and .sql for all other databases
@@ -107,6 +112,31 @@ return [
         'database_dump_file_extension' => '',
 
         'destination' => [
+            /*
+             * The compression algorithm to be used for creating the zip archive.
+             *
+             * If backing up only database, you may choose gzip compression for db dump and no compression at zip.
+             *
+             * Some common algorithms are listed below:
+             * ZipArchive::CM_STORE (no compression at all; set 0 as compression level)
+             * ZipArchive::CM_DEFAULT
+             * ZipArchive::CM_DEFLATE
+             * ZipArchive::CM_BZIP2
+             * ZipArchive::CM_XZ
+             *
+             * For more check https://www.php.net/manual/zip.constants.php and confirm it's supported by your system.
+             */
+            'compression_method' => ZipArchive::CM_DEFAULT,
+
+            /*
+             * The compression level corresponding to the used algorithm; an integer between 0 and 9.
+             *
+             * Check supported levels for the chosen algorithm, usually 1 means the fastest and weakest compression,
+             * while 9 the slowest and strongest one.
+             *
+             * Setting of 0 for some algorithms may switch to the strongest compression.
+             */
+            'compression_level' => 9,
 
             /*
              * The filename prefix used for the backup zip file.
@@ -140,6 +170,17 @@ return [
          * available on your system.
          */
         'encryption' => 'default',
+
+        /**
+         * The number of attempts, in case the backup command encounters an exception
+         */
+        'tries' => 1,
+
+        /**
+         * The number of seconds to wait before attempting a new backup if the previous try failed
+         * Set to `0` for none
+         */
+        'retry_delay' => 0,
     ],
 
     /*
@@ -251,22 +292,28 @@ return [
             'keep_all_backups_for_days' => 7,
 
             /*
-             * The number of days for which daily backups must be kept.
+             * After the "keep_all_backups_for_days" period is over, the most recent backup
+             * of that day will be kept. Older backups within the same day will be removed.
+             * If you create backups only once a day, no backups will be removed yet.
              */
             'keep_daily_backups_for_days' => 16,
 
             /*
-             * The number of weeks for which one weekly backup must be kept.
+             * After the "keep_daily_backups_for_days" period is over, the most recent backup
+             * of that week will be kept. Older backups within the same week will be removed.
+             * If you create backups only once a week, no backups will be removed yet.
              */
             'keep_weekly_backups_for_weeks' => 8,
 
             /*
-             * The number of months for which one monthly backup must be kept.
+             * After the "keep_weekly_backups_for_weeks" period is over, the most recent backup
+             * of that month will be kept. Older backups within the same month will be removed.
              */
             'keep_monthly_backups_for_months' => 4,
 
             /*
-             * The number of years for which one yearly backup must be kept.
+             * After the "keep_monthly_backups_for_months" period is over, the most recent backup
+             * of that year will be kept. Older backups within the same year will be removed.
              */
             'keep_yearly_backups_for_years' => 2,
 
@@ -276,6 +323,17 @@ return [
              */
             'delete_oldest_backups_when_using_more_megabytes_than' => 5000,
         ],
+
+        /**
+         * The number of attempts, in case the cleanup command encounters an exception
+         */
+        'tries' => 1,
+
+        /**
+         * The number of seconds to wait before attempting a new cleanup if the previous try failed
+         * Set to `0` for none
+         */
+        'retry_delay' => 0,
     ],
 
 ];
