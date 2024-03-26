@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
-class UserRegisteredProfileCreate implements ShouldQueue
+class ProfileCreateOnUserRegistered implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,6 +27,7 @@ class UserRegisteredProfileCreate implements ShouldQueue
     public function handle(UserRegistered $event)
     {
         $user = $event->user;
+        $request = $event->request;
 
         $userprofile = new Userprofile();
         $userprofile->user_id = $user->id;
@@ -35,14 +36,11 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->last_name = $user->last_name;
         $userprofile->username = $user->username;
         $userprofile->email = $user->email;
-        $userprofile->mobile = $user->mobile;
-        $userprofile->gender = $user->gender;
-        $userprofile->date_of_birth = $user->date_of_birth;
         $userprofile->avatar = $user->avatar;
         $userprofile->status = $user->status > 0 ? $user->status : 0;
         $userprofile->save();
 
-        Log::debug('UserRegisteredProfileCreate:'.$user->name);
+        Log::debug('ProfileCreateOnUserRegistered:'.$user->name);
 
         // Clear Cache
         Artisan::call('cache:clear');

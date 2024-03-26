@@ -4,6 +4,7 @@ namespace App\Listeners\Auth;
 
 use App\Events\Auth\UserLoginSuccess;
 use Carbon\Carbon;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateProfileLoginData
 {
@@ -21,7 +22,7 @@ class UpdateProfileLoginData
      *
      * @return void
      */
-    public function handle(UserLoginSuccess $event)
+    public function handle(UserLoginSuccess $event): void
     {
         try {
             $user = $event->user;
@@ -32,13 +33,14 @@ class UpdateProfileLoginData
              * Updating user profile data after successful login
              */
             $user_profile->last_login = Carbon::now();
-            $user_profile->last_ip = $request->getClientIp();
+            $user_profile->last_ip = $request->last_ip;
             $user_profile->login_count += 1;
             $user_profile->save();
+
+            logger('User Login Success. Name: ' . $user->name . ' | Id: ' . $user->id . ' | Email: ' . $user->email . ' | Username: ' . $user->username . ' IP:' . $user_profile->last_ip . ' | UpdateProfileLoginData');
+    
         } catch (\Exception $e) {
             logger()->error($e);
         }
-
-        logger('User Login Success. Name: '.$user->name.' | Id: '.$user->id.' | Email: '.$user->email.' | Username: '.$user->username.' IP:'.$request->getClientIp().' | UpdateProfileLoginData');
     }
 }

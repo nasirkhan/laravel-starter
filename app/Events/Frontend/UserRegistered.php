@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 
 class UserRegistered
@@ -18,11 +19,12 @@ class UserRegistered
     public $request;
 
     /**
-     * Create a new event instance.
+     * User Registered Event Construct
      *
-     * @return void
+     * @param Request $request
+     * @param User $user
      */
-    public function __construct($request, User $user)
+    public function __construct(Request $request, User $user)
     {
         $this->user = $user;
         $this->request = $this->prepareRequestData($request);
@@ -31,7 +33,7 @@ class UserRegistered
     public function prepareRequestData($request)
     {
         $data = $request->all();
-        $data['last_ip'] = request()->getClientIp();
+        $data['last_ip'] = optional(request())->getClientIp();
 
         $data = collect($data);
 

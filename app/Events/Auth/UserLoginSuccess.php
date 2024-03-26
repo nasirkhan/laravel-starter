@@ -18,9 +18,10 @@ class UserLoginSuccess
     public $request;
 
     /**
-     * Create a new event instance.
+     * Login Success Event Construct
      *
-     * @return void
+     * @param Request $request
+     * @param User $user
      */
     public function __construct(Request $request, User $user)
     {

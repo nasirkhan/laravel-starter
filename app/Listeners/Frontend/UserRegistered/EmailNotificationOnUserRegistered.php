@@ -5,10 +5,12 @@ namespace App\Listeners\Frontend\UserRegistered;
 use App\Events\Frontend\UserRegistered;
 use App\Notifications\NewRegistration;
 use App\Notifications\NewRegistrationFromSocial;
+use App\Notifications\NewRegistrationNotification;
+use App\Notifications\NewRegistrationNotificationForSocial;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class UserRegisteredListener implements ShouldQueue
+class EmailNotificationOnUserRegistered implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,6 +29,7 @@ class UserRegisteredListener implements ShouldQueue
     public function handle(UserRegistered $event)
     {
         $user = $event->user;
+        $request = $event->request;
 
         // Create Log
         Log::info('New User Registered as '.$user->name);
@@ -35,14 +38,14 @@ class UserRegisteredListener implements ShouldQueue
         if ($user->password === '') {
             // Register via social do not have passwords
             try {
-                $user->notify(new NewRegistrationFromSocial());
+                $user->notify(new NewRegistrationNotificationForSocial());
             } catch (\Exception $e) {
                 Log::error('UserRegisteredListener: Email Send Failed.');
                 Log::error($e);
             }
         } else {
             try {
-                $user->notify(new NewRegistration());
+                $user->notify(new NewRegistrationNotification());
             } catch (\Exception $e) {
                 Log::error('UserRegisteredListener: Email Send Failed.');
                 Log::error($e);
