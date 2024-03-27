@@ -16,7 +16,7 @@ class LanguageController extends Controller
         setlocale(LC_TIME, $language);
 
         Carbon::setLocale($language);
-        
+
         flash()->success(__('Language changed to').' '.strtoupper($language))->important();
 
         return redirect()->back();
