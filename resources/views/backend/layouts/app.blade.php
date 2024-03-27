@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ language_direction() }}">
+<html lang="{{ app()->currentLocale() }}" dir="{{ language_direction() }}">
 
 <head>
     <meta charset="utf-8">
@@ -31,11 +31,11 @@
         }
     </style>
 
+    @livewireStyles
+    
     @stack('after-styles')
 
     <x-google-analytics />
-
-    @livewireStyles
 
 </head>
 

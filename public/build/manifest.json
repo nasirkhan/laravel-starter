@@ -1,4 +1,8 @@
 {
+  "_popper-BAn7w8_p.js": {
+    "file": "assets/popper-BAn7w8_p.js",
+    "name": "popper"
+  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400-DtZKBM2a.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
@@ -31,22 +35,40 @@
     "file": "assets/fa-v4compatibility-aR9vOKaP.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
+  "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.ttf": {
+    "file": "assets/tabler-icons-CpUrPWmN.ttf",
+    "src": "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.ttf"
+  },
+  "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff": {
+    "file": "assets/tabler-icons-Bjy5x-HT.woff",
+    "src": "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff"
+  },
+  "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff2": {
+    "file": "assets/tabler-icons-DxKvLKHK.woff2",
+    "src": "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff2"
+  },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-B4We_2Xf.css",
+    "file": "assets/app-frontend-BUJrJh47.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-B-rdytwk.js",
+    "file": "assets/app-backend-DbTtV2zC.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_popper-BAn7w8_p.js"
+    ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-D2jpX1vH.js",
+    "file": "assets/app-frontend-BCpov3n9.js",
     "name": "app-frontend",
     "src": "resources/js/app-frontend.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_popper-BAn7w8_p.js"
+    ]
   },
   "resources/sass/app-backend.scss": {
     "file": "assets/app-backend-ixkx4zx7.css",

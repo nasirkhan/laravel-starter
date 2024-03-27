@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->currentLocale() }}" dir="{{ language_direction() }}">
 
 <head>
     <meta charset="utf-8" />
@@ -19,8 +19,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @vite(['resources/css/app-frontend.css'])
-    @vite(['resources/js/app-frontend.js'])
+    @vite(['resources/css/app-frontend.css', 'resources/js/app-frontend.js'])
 
     @livewireStyles
     

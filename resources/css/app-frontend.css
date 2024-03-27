@@ -2,10 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+/* @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'; */
+@import '/node_modules/@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 @layer base {
-    html {
+    /* html {
         @apply text-gray-600;
     }
 
@@ -30,7 +31,7 @@
 
     ol {
         @apply list-inside list-decimal;
-    }
+    } */
 }
 
 @layer components {
