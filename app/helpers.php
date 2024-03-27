@@ -18,6 +18,21 @@ if (! function_exists('app_name')) {
 /*
  * Global helpers file with misc functions.
  */
+if (! function_exists('app_url')) {
+    /**
+     * Helper to grab the application name.
+     *
+     * @return mixed
+     */
+    function app_url()
+    {
+        return config('app.url');
+    }
+}
+
+/*
+ * Global helpers file with misc functions.
+ */
 if (! function_exists('user_registration')) {
     /**
      * Helper to grab the application name.
