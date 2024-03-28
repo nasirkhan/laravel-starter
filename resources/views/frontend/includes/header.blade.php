@@ -50,7 +50,9 @@
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076" />
                             <path d="M19 16l-2 3h4l-2 3" />
                         </svg>
+                    <span class="ms-2 hidden sm:block">
                         {{ __('Register') }}
+                    </span>
                     </a>
                 @endif
                 <a class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
@@ -63,7 +65,9 @@
                         <path d="M21 12h-13l3 -3" />
                         <path d="M11 15l-3 -3" />
                     </svg>
-                    {{ __('Login') }}
+                    <span class="ms-2 hidden sm:block">
+                        {{ __('Login') }}
+                    </span>                    
                 </a>
             @endguest
 
