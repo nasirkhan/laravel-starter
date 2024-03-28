@@ -18,6 +18,15 @@ return [
             ],
             [
                 'type' => 'text', // input fields type
+                'data' => 'text', // data type, string, int, boolean
+                'name' => 'app_description', // unique name for field
+                'label' => 'App Description', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 'Laravel Starter is a CMS like modular starter application project built with latest Laravel. This starter project can be used as a foundation to build your own projects.', // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
                 'data' => 'string', // data type, string, int, boolean
                 'name' => 'footer_text', // unique name for field
                 'label' => 'Footer Text', // you know what label it is
