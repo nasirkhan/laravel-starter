@@ -41,18 +41,16 @@
                 @if (user_registration())
                     <a class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                         data-dropdown-toggle="language-dropdown-menu" href="{{ route('register') }}">
-                        <svg class="icon icon-tabler icons-tabler-outline icon-tabler-language me-2"
+                        <svg class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt me-2"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M4 5h7" />
-                            <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-                            <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
-                            <path d="M12 20l4 -9l4 9" />
-                            <path d="M19.1 18h-6.2" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076" />
+                            <path d="M19 16l-2 3h4l-2 3" />
                         </svg>
-                        {{ __('register') }}
+                        {{ __('Register') }}
                     </a>
                 @endif
                 <a class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
