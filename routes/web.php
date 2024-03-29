@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\ProfileController;
 use App\Livewire\Privacy;
 use App\Livewire\Terms;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +33,6 @@ Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index'
 // pages
 Route::get('terms', Terms::class)->name('terms');
 Route::get('privacy', Privacy::class)->name('privacy');
-
 
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
