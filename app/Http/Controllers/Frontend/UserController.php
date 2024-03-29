@@ -91,9 +91,9 @@ class UserController extends Controller
      *
      * @throws ModelNotFoundException If the user profile is not found.
      */
-    public function profile($id)
+    public function profile(Request $request)
     {
-        $id = decode_id($id);
+        $id = auth()->user()->id;
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -129,9 +129,9 @@ class UserController extends Controller
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException if the user profile is not found
      */
-    public function profileEdit($id)
+    public function profileEdit(Request $request)
     {
-        $id = decode_id($id);
+        $id = auth()->user()->id;
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -170,9 +170,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function profileUpdate(Request $request, $id)
+    public function profileUpdate(Request $request)
     {
-        $id = decode_id($id);
+        $id = auth()->user()->id;
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -185,7 +186,7 @@ class UserController extends Controller
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
 
-        $this->validate($request, [
+        $request->validate([
             'first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -236,9 +237,9 @@ class UserController extends Controller
      *
      * @throws \Exception If the user ID cannot be decoded or if the user is not authenticated.
      */
-    public function changePassword($id)
+    public function changePassword()
     {
-        $id = decode_id($id);
+        $id = auth()->user()->id;
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -272,9 +273,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      * @return mixed The updated user object.
      */
-    public function changePasswordUpdate(Request $request, $id)
+    public function changePasswordUpdate(Request $request)
     {
-        $id = decode_id($id);
+        $id = auth()->user()->id;
+
 
         if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));

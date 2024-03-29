@@ -20,7 +20,7 @@
                 </p>
 
                 <div class="pt-4 text-center">
-                    <a href='{{ route("frontend.users.profile", encode_id($$module_name_singular->id)) }}'>
+                    <a href='{{ route("frontend.users.profile") }}'>
                         <div class="w-full font-semibold text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                             @lang(' View Profile')
                         </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 sm:col-span-2">
-            {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate', encode_id($$module_name_singular->id)))->class('form-horizontal')->open() }}
+            {{ html()->form('PATCH', route('frontend.users.changePasswordUpdate'))->class('form-horizontal')->open() }}
             <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
@@ -78,7 +78,7 @@
                 <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 text-center">
-                            <a href="{{ route('frontend.users.profileEdit', encode_id($$module_name_singular->id)) }}">
+                            <a href="{{ route('frontend.users.profileEdit') }}">
                                 <div class="w-full font-semibold text-sm px-6 py-2 transition ease-in duration-200 rounded text-gray-500 hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                                     Edit Profile
                                 </div>
