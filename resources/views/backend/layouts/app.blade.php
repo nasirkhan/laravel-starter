@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->currentLocale() }}" dir="{{ language_direction() }}">
+<html lang="{{ str_replace('_', '-', app()->currentLocale()) }}" dir="{{ language_direction() }}">
 
 <head>
     <meta charset="utf-8">

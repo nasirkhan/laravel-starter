@@ -3,9 +3,25 @@
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Privacy;
+use App\Livewire\Terms;
 use Illuminate\Support\Facades\Route;
 
+/*
+*
+* Auth Routes
+*
+* --------------------------------------------------------------------
+*/
+
 require __DIR__.'/auth.php';
+
+/*
+*
+* Frontend Routes
+*
+* --------------------------------------------------------------------
+*/
 
 // home route
 Route::get('home', [FrontendController::class, 'index'])->name('home');
@@ -14,17 +30,14 @@ Route::get('home', [FrontendController::class, 'index'])->name('home');
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index')->name('dashboard');
-/*
-*
-* Frontend Routes
-*
-* --------------------------------------------------------------------
-*/
+
+// pages
+Route::get('terms', Terms::class)->name('terms');
+Route::get('privacy', Privacy::class)->name('privacy');
+
+
 Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
-
-    Route::get('privacy', 'FrontendController@privacy')->name('privacy');
-    Route::get('terms', 'FrontendController@terms')->name('terms');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
@@ -44,24 +57,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
         Route::delete("{$module_name}/userProviderDestroy", ['as' => "{$module_name}.userProviderDestroy", 'uses' => "{$controller_name}@userProviderDestroy"]);
     });
 });
-
-/**
- * Laravel Default.
- */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     // dd(auth()->user()->hasRole('super admin'));
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 /*
 *

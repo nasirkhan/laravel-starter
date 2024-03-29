@@ -11,13 +11,13 @@
                 <a class="mr-4 hover:underline md:mr-6" href="#">About</a>
             </li>
             <li>
-                <a class="mr-4 hover:underline md:mr-6" href="#">Campaigns</a>
-            </li>
-            <li>
                 <a class="mr-4 hover:underline md:mr-6" href="#">Blog</a>
             </li>
             <li>
-                <a class="mr-4 hover:underline md:mr-6" href="#">Affiliate Program</a>
+                <a class="mr-4 hover:underline md:mr-6" href="{{route('privacy')}}" wire:navigate.hover >Privacy</a>
+            </li>
+            <li>
+                <a class="mr-4 hover:underline md:mr-6" href="{{route('terms')}}" wire:navigate.hover>Terms</a>
             </li>
             <li>
                 <a class="mr-4 hover:underline md:mr-6" href="#">FAQs</a>
