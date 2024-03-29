@@ -40,7 +40,7 @@
             @guest
                 @if (user_registration())
                     <a class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                        data-dropdown-toggle="language-dropdown-menu" href="{{ route('register') }}">
+                        href="{{ route('register') }}">
                         <svg class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt me-2"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -56,7 +56,7 @@
                     </a>
                 @endif
                 <a class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                    data-dropdown-toggle="language-dropdown-menu" href="{{ route('login') }}">
+                    href="{{ route('login') }}">
                     <svg class="icon icon-tabler icons-tabler-outline icon-tabler-login me-2"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
