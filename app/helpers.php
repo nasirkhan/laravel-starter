@@ -41,11 +41,7 @@ if (! function_exists('user_registration')) {
      */
     function user_registration()
     {
-        $user_registration = false;
-
-        if (env('USER_REGISTRATION') == true) {
-            $user_registration = true;
-        }
+        $user_registration = config('app.user_registration');
 
         return $user_registration;
     }

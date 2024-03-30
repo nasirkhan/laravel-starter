@@ -93,6 +93,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | User Registration
+    |--------------------------------------------------------------------------
+    |
+    | User registration routes can be disabled using this config.
+    | The default valu is true. But this can be cna be set to false
+    | if needed. USER_REGISTRATION is the key in env file.
+    |
+    */
+
+    'user_registration' => env('USER_REGISTRATION', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Initial Username
     |--------------------------------------------------------------------------
     |
