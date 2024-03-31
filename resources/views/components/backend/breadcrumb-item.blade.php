@@ -1,7 +1,7 @@
 @props(["route"=>"#", "icon"=>"", "title"=>"", "type"=>""])
 
 @if($type)
-<li class="breadcrumb-item active">
+<li class="breadcrumb-item active" aria-current="page">
     <span>
         @if($icon)<i class="{{ $icon }}"></i>@endif
         {{ $slot }}
