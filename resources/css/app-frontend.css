@@ -6,32 +6,6 @@
 @import '/node_modules/@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 @layer base {
-    /* html {
-        @apply text-gray-600;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-        @apply mb-4;
-    }
-
-    p {
-        @apply mb-4;
-    }
-
-    hr {
-        @apply my-4;
-    }
-
-    ul {
-        @apply list-inside list-disc;
-    }
-
-    ol {
-        @apply list-inside list-decimal;
-    } */
 }
 
 @layer components {

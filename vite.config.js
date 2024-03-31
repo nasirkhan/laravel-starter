@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import path from 'path'
 
 export default defineConfig({
     plugins: [
@@ -9,7 +8,7 @@ export default defineConfig({
                 'resources/css/app-frontend.css',
                 'resources/js/app-frontend.js',
 
-                'resources/sass/app-backend.scss',
+                'resources/css/app-backend.css',
                 'resources/js/app-backend.js',
             ],
             // refresh: true,
@@ -24,10 +23,5 @@ export default defineConfig({
                 'Modules/**/Resources/views/**/*.blade.php',
             ],
         }),
-    ],
-    resolve: {
-        alias: {
-            '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui'),
-        }
-    },
+    ]
 });

@@ -528,7 +528,7 @@ if (! function_exists('demo_mode')) {
     {
         $return_string = false;
 
-        if (env('DEMO_MODE') === 'true') {
+        if (env('DEMO_MODE') === true) {
             $return_string = true;
         }
 

@@ -1,13 +1,15 @@
 @extends('backend.layouts.app')
 
-@section('title') @lang("Dashboard") @endsection
+@section('title')
+    @lang('Dashboard')
+@endsection
 
 @section('breadcrumbs')
-<x-backend.breadcrumbs />
+    <x-backend.breadcrumbs />
 @endsection
 
 @section('content')
-<div class="card mb-4 ">
+    {{-- <div class="card mb-4 ">
     <div class="card-body">
 
         <x-backend.section-header>
@@ -28,8 +30,13 @@
         <!-- / Dashboard Content Area -->
 
     </div>
-</div>
+</div> --}}
 
-@include("backend.includes.dashboard_demo_data")
-
+    <x-backend.page-wrapper>
+        <x-slot name="title">
+            <i class="ti ti-layout-dashboard"></i> Admin Dashboard
+        </x-slot>
+        
+        <x-backend.includes.dashboard-demo />
+    </x-backend.page-wrapper>
 @endsection
