@@ -277,7 +277,6 @@ class UserController extends Controller
     {
         $id = auth()->user()->id;
 
-
         if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
         }
