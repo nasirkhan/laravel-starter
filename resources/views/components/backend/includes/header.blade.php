@@ -1,3 +1,8 @@
+<?php
+$notifications = optional(auth()->user())->unreadNotifications;
+$notifications_count = optional($notifications)->count();
+$notifications_latest = optional($notifications)->take(5);
+?>
 <header class="navbar navbar-expand-md d-none d-lg-flex d-print-none">
     <div class="container-xl">
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-menu" type="button"
@@ -39,7 +44,6 @@
                 <div class="nav-item dropdown d-flex me-3">
                     <a class="nav-link px-0" data-bs-toggle="dropdown" href="#" aria-label="Show notifications"
                         tabindex="-1">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -54,121 +58,57 @@
                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Last updates</h3>
+                                <h3 class="card-title">
+                                    <a href="{{ route('backend.notifications.index') }}">
+                                        @lang('All Notifications')
+                                        @if ($notifications_count)
+                                            <span class="badge bg-red ms-2">{{ $notifications_count }}</span>
+                                        @endif
+                                    </a>
+                                </h3>
                             </div>
                             <div class="list-group list-group-flush list-group-hoverable">
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span
-                                                class="status-dot status-dot-animated bg-red d-block"></span>
-                                        </div>
-                                        <div class="col text-truncate">
-                                            <a class="text-body d-block" href="#">Example 1</a>
-                                            <div class="d-block text-secondary text-truncate mt-n1">
-                                                Change deprecated html tags to text decoration classes
-                                                (#29604)
+                                @if ($notifications_latest)
+                                    @foreach ($notifications_latest as $notification)
+                                        @php
+                                            $notification_text = isset($notification->data['title'])
+                                                ? $notification->data['title']
+                                                : $notification->data['module'];
+                                        @endphp
+                                        {{-- <a class="dropdown-item" href="{{route("backend.notifications.show", $notification)}}">
+                                    <i class="{{isset($notification->data['icon'])? $notification->data['icon'] : 'fa-solid fa-bullhorn'}} "></i>&nbsp;{{$notification_text}}
+                                </a> --}}
+                                        <div class="list-group-item">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <span class="status-dot status-dot-animated bg-red d-block"></span>
+                                                </div>
+                                                <div class="col text-truncate">
+                                                    <a class="text-body d-block"
+                                                        href="{{ route('backend.notifications.show', $notification) }}">{{ $notification_text }}</a>
+                                                    <div class="d-block text-secondary text-truncate mt-n1">
+                                                        {{ $notification_text }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a class="list-group-item-actions" href="#">
+                                                        <svg class="icon text-muted" xmlns="http://www.w3.org/2000/svg"
+                                                            width="24" height="24" viewBox="0 0 24 24"
+                                                            stroke-width="2" stroke="currentColor" fill="none"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                            </path>
+                                                            <path
+                                                                d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
+                                                            </path>
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <a class="list-group-item-actions" href="#">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg class="icon text-muted" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                    </path>
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span class="status-dot d-block"></span>
-                                        </div>
-                                        <div class="col text-truncate">
-                                            <a class="text-body d-block" href="#">Example 2</a>
-                                            <div class="d-block text-secondary text-truncate mt-n1">
-                                                justify-content:between ⇒ justify-content:space-between
-                                                (#29734)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="list-group-item-actions show" href="#">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg class="icon text-yellow" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                    stroke-width="2" stroke="currentColor" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                    </path>
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span class="status-dot d-block"></span>
-                                        </div>
-                                        <div class="col text-truncate">
-                                            <a class="text-body d-block" href="#">Example 3</a>
-                                            <div class="d-block text-secondary text-truncate mt-n1">
-                                                Update change-version.js (#29736)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="list-group-item-actions" href="#">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg class="icon text-muted" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                    stroke-width="2" stroke="currentColor" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                    </path>
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span
-                                                class="status-dot status-dot-animated bg-green d-block"></span>
-                                        </div>
-                                        <div class="col text-truncate">
-                                            <a class="text-body d-block" href="#">Example 4</a>
-                                            <div class="d-block text-secondary text-truncate mt-n1">
-                                                Regenerate package-lock.json (#29730)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="list-group-item-actions" href="#">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg class="icon text-muted" xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                    stroke-width="2" stroke="currentColor" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none">
-                                                    </path>
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z">
-                                                    </path>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endif
+
                             </div>
                         </div>
                     </div>
