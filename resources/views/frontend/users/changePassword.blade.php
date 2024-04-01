@@ -39,7 +39,7 @@
                         $field_placeholder = $field_lable;
                         $required = "required";
                         ?>
-                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! field_required($required) !!}
                         {{ html()->password($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
                     </div>
                     <div class="col-span-6 sm:col-span-3">
@@ -49,7 +49,7 @@
                         $field_placeholder = $field_lable;
                         $required = "required";
                         ?>
-                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('block-inline text-sm font-medium text-gray-700') }} {!! field_required($required) !!}
                         {{ html()->password($field_name)->placeholder($field_placeholder)->class('mt-1 border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent')->attributes(["$required"]) }}
                     </div>
                     <div class="col-span-6 px-4 py-3 bg-gray-50 text-end sm:px-6">

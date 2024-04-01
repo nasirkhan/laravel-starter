@@ -40,7 +40,7 @@
                 ?>
                 <div class="col-12 col-sm-2">
                     <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                     </div>
                 </div>
                 <div class="col-12 col-sm-10">
@@ -59,7 +59,7 @@
                 ?>
                 <div class="col-12 col-sm-2">
                     <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                     </div>
                 </div>
                 <div class="col-12 col-sm-10">
@@ -78,7 +78,7 @@
                 ?>
                 <div class="col-12 col-sm-2">
                     <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                     </div>
                 </div>
                 <div class="col-12 col-sm-10">
@@ -97,7 +97,7 @@
                 ?>
                 <div class="col-12 col-sm-2">
                     <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                     </div>
                 </div>
                 <div class="col-12 col-sm-10">
@@ -120,7 +120,7 @@
                 ?>
                 <div class="col-12 col-sm-2">
                     <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                     </div>
                 </div>
                 <div class="col-12 col-sm-10">

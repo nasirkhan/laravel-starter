@@ -134,16 +134,16 @@ if (! function_exists('show_column_value')) {
 
 /*
  *
- * fielf_required
+ * field_required
  * Show a * if field is required
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('fielf_required')) {
+if (! function_exists('field_required')) {
     /**
      * Prepare the Column Name for Lables.
      */
-    function fielf_required($required)
+    function field_required($required)
     {
         $return_text = '';
 
