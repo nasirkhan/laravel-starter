@@ -25,7 +25,7 @@
                     route='{{ route("backend.$module_name.create") }}' />
             @endcan
         </x-slot>
-        <div class="row row-cards mt-4">
+        <div class="row row-cards">
             <div class="col">
 
                 @if (count($backups))
@@ -92,7 +92,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center">
-                                <span>@lang('No backup has been created yet!')</span>
+                                <p>@lang('No backup has been created yet!')</p>
+                                <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
+                    route='{{ route("backend.$module_name.create") }}'>@lang('Create a backup')</x-backend.buttons.create>
                             </div>
                         </div>
                     </div>

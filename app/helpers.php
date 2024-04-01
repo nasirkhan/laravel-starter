@@ -148,7 +148,7 @@ if (! function_exists('fielf_required')) {
         $return_text = '';
 
         if ($required !== '') {
-            $return_text = '<span class="text-danger">*</span>';
+            $return_text = '&nbsp;<span class="text-danger">*</span>';
         }
 
         return $return_text;

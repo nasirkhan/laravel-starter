@@ -232,16 +232,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('backend.notifications.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <svg class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
+                            <svg class="icon icon-tabler icons-tabler-outline icon-tabler-bell"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
-                                <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                                 <path
-                                    d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
-                                <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
+                                    d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
@@ -333,9 +331,6 @@
                         </span>
                     </a>
                 </li>
-
-
-
             </ul>
         </div>
     </div>

@@ -21,7 +21,7 @@
             <x-backend.buttons.return-back />
         </x-slot>
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <form method="post" action="{{ route('backend.settings.store') }}" class="form-horizontal" role="form">
                     {!! csrf_field() !!}
