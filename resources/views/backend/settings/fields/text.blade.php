@@ -4,7 +4,7 @@ $required_mark = ($required != "") ? '<span class="text-danger"> <strong>*</stro
 @endphp
 
 <div class="form-group mb-3 {{ $errors->has($field['name']) ? ' has-error' : '' }}">
-    <label for="{{ $field['name'] }}" class='form-label'> <strong>{{ __($field['label']) }}</strong> ({{ $field['name'] }})</label> {!! $required_mark !!}
+    <label for="{{ $field['name'] }}" class='form-label'> <strong>{{ __($field['label']) }}</strong> ({{ $field['name'] }}) {!! $required_mark !!}</label> 
     <input type="{{ $field['type'] }}"
            name="{{ $field['name'] }}"
            value="{{ old($field['name'], setting($field['name'])) }}"

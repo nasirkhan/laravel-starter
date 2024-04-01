@@ -20,7 +20,7 @@
             </x-slot>
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back />
-                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
+                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-bs-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
             </x-slot>
         </x-backend.section-header>
 
@@ -65,7 +65,7 @@
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-end">
-                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-undo" data-toggle="tooltip" title="{{__('labels.backend.restore')}}" data-confirm="Are you sure?"></i></a>
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-danger btn-sm mt-1" data-method="PATCH" data-token="{{csrf_token()}}"><i class="fas fa-undo" data-bs-toggle="tooltip" title="{{__('labels.backend.restore')}}" data-confirm="Are you sure?"></i></a>
                             </td>
                         </tr>
                         @endforeach

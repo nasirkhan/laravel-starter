@@ -17,12 +17,9 @@
                     </h1>
 
                     @if ($breadcrumbs)
-                        <div class="mt-1">
-                            <ol class="breadcrumb" aria-label="breadcrumbs">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="#">Articles</a>
-                                </li>
+                        <div class="mt-2">
+                            <ol class="breadcrumb breadcrumb-bullets" aria-label="breadcrumbs">
+                                {{ $breadcrumbs }}
                             </ol>
                         </div>
                     @endif
@@ -30,7 +27,7 @@
                 @if ($toolbar)
                     <div class="col-auto">
                         <div class="btn-list">
-                            <a class="btn d-none d-md-inline-flex" href="#">
+                            {{-- <a class="btn d-none d-md-inline-flex" href="#">
                                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -43,7 +40,8 @@
                             </a>
                             <a class="btn btn-primary" href="#">
                                 Publish
-                            </a>
+                            </a> --}}
+                            {{ $toolbar }}
                         </div>
                     </div>
                 @endif
@@ -55,7 +53,11 @@
     <div class="page-body">
         <div class="container-xl">
 
-            {{ $slot }}
+            <div class="card">
+                <div class="card-body">
+                    {{ $slot }}
+                </div>
+            </div>
 
         </div>
     </div>

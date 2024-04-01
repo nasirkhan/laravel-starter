@@ -20,8 +20,8 @@
                 @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
             </x-slot>
             <x-slot name="toolbar">
-                <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-outline-success mb-1" data-toggle="tooltip" title="@lang('Mark all as read')"><i class="fas fa-check-square"></i> @lang('Mark all as read')</a>
-                <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-outline-danger mb-1" data-method="DELETE" data-token="{{csrf_token()}}" data-toggle="tooltip" title="@lang('Delete all notifications')"><i class="fas fa-trash-alt"></i></a>
+                <a href="{{ route("backend.$module_name.markAllAsRead") }}" class="btn btn-outline-success mb-1" data-bs-toggle="tooltip" title="@lang('Mark all as read')"><i class="fas fa-check-square"></i> @lang('Mark all as read')</a>
+                <a href="{{route("backend.$module_name.deleteAll")}}" class="btn btn-outline-danger mb-1" data-method="DELETE" data-token="{{csrf_token()}}" data-bs-toggle="tooltip" title="@lang('Delete all notifications')"><i class="fas fa-trash-alt"></i></a>
             </x-slot>
         </x-backend.section-header>
 
@@ -70,7 +70,7 @@
                                 {{ $module_name_singular->updated_at->diffForHumans() }}
                             </td>
                             <td class="text-end">
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="@lang('Show') {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-bs-toggle="tooltip" title="@lang('Show') {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
                             </td>
                         </tr>
                         @endforeach
