@@ -281,7 +281,7 @@ class UserController extends Controller
             return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
         }
 
-        $this->validate($request, [
+        $request->validate($request, [
             'password' => 'required|confirmed|min:6',
         ]);
 

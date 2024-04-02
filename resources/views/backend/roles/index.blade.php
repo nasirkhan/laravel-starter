@@ -19,7 +19,7 @@
             </x-slot>
         </x-backend.section-header>
         
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <table class="table table-hover table-responsive-sm">
                     <thead>

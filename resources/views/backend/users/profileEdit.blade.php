@@ -28,8 +28,6 @@
         </x-slot>
     </x-backend.section-header>
 
-    <hr>
-
     <div class="row mt-4">
         <div class="col">
             {{ html()->modelForm($userprofile, 'PATCH', route('backend.users.profileUpdate', $$module_name_singular->id))->class('form-horizontal')->attributes(['enctype'=>"multipart/form-data"])->open() }}

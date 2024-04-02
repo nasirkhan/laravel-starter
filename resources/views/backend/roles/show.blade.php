@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
+@section('title') {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend.breadcrumbs>
@@ -15,18 +15,15 @@
 <div class="card">
     <div class="card-body">
         <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
+            <i class="{{ $module_icon }} fa-fw"></i> {{ $$module_name_singular->name }} <small class="text-muted">{{ __($module_title) }}</small>
 
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back />
                 <x-buttons.edit route='{!!route("backend.$module_name.edit", $$module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" class="ms-1" />
             </x-slot>
         </x-backend.section-header>
         
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -60,11 +57,8 @@
 
                     </table>
                 </div>
-                <!--table-responsive-->
             </div>
-            <!--/.col-->
         </div>
-        <!--/.row-->
     </div>
     <div class="card-footer">
         <div class="row">

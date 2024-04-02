@@ -30,8 +30,6 @@ $module_name_singular = \Illuminate\Support\Str::singular($module_name);
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-
         <div class="row">
             <div class="col">
                 <strong>

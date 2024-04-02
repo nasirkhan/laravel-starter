@@ -18,9 +18,6 @@
     <x-backend.section-header>
         <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
-        <x-slot name="subtitle">
-            @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-        </x-slot>
         <x-slot name="toolbar">
             <x-backend.buttons.return-back />
             <a href="{{ route('backend.users.index') }}" class="btn btn-primary m-1" data-toggle="tooltip" title="List"><i class="fas fa-list"></i> List</a>
@@ -29,7 +26,7 @@
         </x-slot>
     </x-backend.section-header>
 
-    <div class="row mt-4 mb-4">
+    <div class="row mb-4">
         <div class="col">
             <div class="table-responsive">
                 <table class="table table-hover">

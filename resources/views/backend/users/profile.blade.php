@@ -26,7 +26,6 @@
         </x-slot>
     </x-backend.section-header>
 
-
     <div class="row mt-4 mb-4">
         <div class="col">
             <div class="table-responsive">

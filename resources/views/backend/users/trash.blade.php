@@ -24,8 +24,6 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-
         <div class="row mt-4">
             <div class="col">
                 <table id="datatable" class="table table-hover table-responsive-sm">

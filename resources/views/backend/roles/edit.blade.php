@@ -1,6 +1,6 @@
 @extends ("backend.layouts.app")
 
-@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
+@section('title') {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
 <x-backend.breadcrumbs>
@@ -27,8 +27,7 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 {{ html()->modelForm($$module_name_singular, 'PATCH', route("backend.$module_name.update", $$module_name_singular->id))->class('form-horizontal')->open() }}
 

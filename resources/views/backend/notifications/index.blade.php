@@ -24,7 +24,7 @@
             </x-slot>
         </x-backend.section-header>
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <table id="datatable" class="table table-bordered table-hover table-responsive-sm">
                     <thead>

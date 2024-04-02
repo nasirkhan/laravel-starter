@@ -17,15 +17,12 @@
         <x-backend.section-header>
             <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
             <x-slot name="toolbar">
                 <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary mt-1 btn-sm" data-toggle="tooltip" title="{{ __(ucwords($module_name)) }} List"><i class="fas fa-list"></i> List</a>
             </x-slot>
         </x-backend.section-header>
 
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table table-bordered">

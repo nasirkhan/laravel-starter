@@ -1,7 +1,7 @@
 @props(["data"=>"", "toolbar"=>"", "title"=>"", "subtitle"=>"", "module_name"=>"", "module_title"=>"", "module_icon"=>"", "module_action"=>""])
 
 <div class="d-flex justify-content-between">
-    <div>
+    <div class="align-self-center">
         @if($slot != "")
         <h4 class="card-title mb-0">
             {{ $slot }}

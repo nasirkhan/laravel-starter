@@ -26,8 +26,6 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-
         <div class="row mb-3">
             <div class="col">
                 <strong>

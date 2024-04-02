@@ -388,7 +388,7 @@ class UserController extends Controller
 
         $module_action = 'Edit Profile';
 
-        $this->validate($request, [
+        $request->validate($request, [
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
@@ -423,7 +423,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        Flash::success(icon().' '.label_case($module_name_singular).' Updated Successfully!')->important();
+        flash(label_case($module_name_singular) . ' Updated Successfully!')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -465,7 +465,7 @@ class UserController extends Controller
      */
     public function changeProfilePasswordUpdate(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate($request, [
             'password' => 'required|confirmed|min:6',
         ]);
 
@@ -538,7 +538,7 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate($request, [
             'password' => 'required|confirmed|min:6',
         ]);
 

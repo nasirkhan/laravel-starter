@@ -25,7 +25,6 @@
             <x-buttons.show route='{!!route("backend.$module_name.show", $$module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" class="ms-1" />
         </x-slot>
     </x-backend.section-header>
-    <hr>
 
     <div class="row mt-4">
         <div class="col">

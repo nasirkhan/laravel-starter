@@ -26,13 +26,10 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
 
                 {{ html()->form('POST', route('backend.roles.store'))->class('form-horizontal')->open() }}
-                {{ csrf_field() }}
 
                 <div class="row mb-3">
                     <?php
