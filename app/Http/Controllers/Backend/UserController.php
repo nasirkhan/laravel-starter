@@ -423,7 +423,7 @@ class UserController extends Controller
 
         event(new UserProfileUpdated($user_profile));
 
-        flash(label_case($module_name_singular) . ' Updated Successfully!')->success()->important();
+        flash(label_case($module_name_singular).' Updated Successfully!')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
