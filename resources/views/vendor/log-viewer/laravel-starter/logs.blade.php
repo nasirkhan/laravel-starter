@@ -4,7 +4,7 @@
 $module_icon = 'fa-solid fa-list-check';
 ?>
 @section('title')
-    {{ __('Log Viewer Dashboard') }}
+    {{ __('Logs by Date') }}
 @endsection
 
 @section('breadcrumbs')
@@ -20,7 +20,7 @@ $module_icon = 'fa-solid fa-list-check';
     <div class="card mb-4">
         <div class="card-body">
             <x-backend.section-header>
-                @lang('Log Dashboard')
+                @lang('Logs by Date')
 
                 <x-slot name="toolbar">
                     <x-backend.buttons.return-back />

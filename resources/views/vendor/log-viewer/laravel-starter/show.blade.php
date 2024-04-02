@@ -165,7 +165,7 @@ $module_icon = 'fa-solid fa-list-check';
                                             </td>
                                             <td class="text-end">
                                                 @if ($entry->hasStack())
-                                                    <a class="btn btn-sm btn-light" data-bs-toggle="collapse"
+                                                    <a class="btn btn-sm btn-light" data-coreui-toggle="collapse"
                                                         href="#log-stack-{{ $key }}" role="button"
                                                         aria-expanded="false"
                                                         aria-controls="log-stack-{{ $key }}">
@@ -174,7 +174,7 @@ $module_icon = 'fa-solid fa-list-check';
                                                 @endif
 
                                                 @if ($entry->hasContext())
-                                                    <a class="btn btn-sm btn-light" data-bs-toggle="collapse"
+                                                    <a class="btn btn-sm btn-light" data-coreui-toggle="collapse"
                                                         href="#log-context-{{ $key }}" role="button"
                                                         aria-expanded="false"
                                                         aria-controls="log-context-{{ $key }}">
