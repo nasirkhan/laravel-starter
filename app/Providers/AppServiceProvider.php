@@ -71,5 +71,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
             'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser'
         );
+        
+        Event::listen(
+            'App\Events\Backend\UserUpdated',
+            'App\Listeners\Backend\UserUpdated\UserUpdatedProfileUpdate',
+            'App\Listeners\Backend\UserUpdated\UserUpdatedNotifyUser'
+        );
     }
 }

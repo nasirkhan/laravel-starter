@@ -20,7 +20,7 @@ trait UserPresenter
         $return_string = '';
         switch ($this->status) {
             case '1':
-                $return_string = '<span class="badge text-bg-secondary">Active</span>';
+                $return_string = '<span class="badge text-bg-success">Active</span>';
                 break;
 
             case '2':
