@@ -47,18 +47,13 @@
     "file": "assets/tabler-icons-DxKvLKHK.woff2",
     "src": "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff2"
   },
-  "resources/css/app-backend.css": {
-    "file": "assets/app-backend-OPDn_EHZ.css",
-    "src": "resources/css/app-backend.css",
-    "isEntry": true
-  },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-Cvk_B8ua.css",
+    "file": "assets/app-frontend-ndwgv4GR.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-DByd6epR.js",
+    "file": "assets/app-backend-zcPnIP9S.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,
@@ -74,5 +69,10 @@
     "imports": [
       "_popper-BAn7w8_p.js"
     ]
+  },
+  "resources/sass/app-backend.scss": {
+    "file": "assets/app-backend-C5RSICgc.css",
+    "src": "resources/sass/app-backend.scss",
+    "isEntry": true
   }
 }

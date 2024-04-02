@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->currentLocale()) }}" dir="{{ language_direction() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ language_direction() }}">
 
     <head>
         <meta charset="utf-8">
@@ -21,68 +21,53 @@
 
         <script src="{{ asset('vendor/jquery/jquery-3.6.4.min.js') }}"></script>
 
-        @vite(['resources/css/app-backend.css', 'resources/js/app-backend.js'])
+        @vite(['resources/sass/app-backend.scss', 'resources/js/app-backend.js'])
 
-        {{-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" /> --}}
-        {{-- <style>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
+        <style>
             body {
                 font-family: Ubuntu, "Noto Sans Bengali UI", Arial, Helvetica, sans-serif
             }
-        </style> --}}
-
-        @livewireStyles
+        </style>
 
         @stack('after-styles')
 
         <x-google-analytics />
 
+        @livewireStyles
+
     </head>
 
     <body>
-        <div class="page">
+        <!-- Sidebar -->
+        @include('backend.includes.sidebar')
+        <!-- /Sidebar -->
 
-            {{-- sidebar --}}
-            <x-backend.includes.sidebar />
+        <div class="wrapper d-flex flex-column min-vh-100">
+          
+          {{-- header --}}
+          @include('backend.includes.header')
+          
+          <div class="body flex-grow-1">
+                <div class="container-lg">
 
-            {{-- header --}}
-            <x-backend.includes.header />
+                    @include('flash::message')
 
-            {{-- main body --}}
-            @yield('content')
+                    <!-- Errors block -->
+                    @include('backend.includes.errors')
+                    <!-- / Errors block -->
+
+                    <!-- Main content block -->
+                    @yield('content')
+                    <!-- / Main content block -->
+
+                </div>
+            </div>            
+
+            {{-- Footer block --}}
+            <x-backend.includes.footer />
         </div>
-
-        {{-- <!-- Sidebar -->
-    @include('backend.includes.sidebar')
-    <!-- /Sidebar -->
-
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-        <!-- Header -->
-        @include('backend.includes.header')
-        <!-- /Header -->
-
-        <div class="body flex-grow-1">
-            <div class="container-lg">
-
-                
-
-                <!-- Errors block -->
-                @include('flash::message')
-                @include('backend.includes.errors')
-                <!-- / Errors block -->
-
-                <!-- Main content block -->
-                @yield('content')
-                <!-- / Main content block -->
-
-            </div>
-        </div>
-
-        <!-- Footer block -->
-        @include('backend.includes.footer')
-        <!-- / Footer block -->
-
-    </div> --}}
 
         <!-- Scripts -->
         @livewireScripts

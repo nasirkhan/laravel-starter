@@ -1,19 +1,26 @@
-// import './bootstrap';
-import * as bootstrap from 'bootstrap';
-import '@popperjs/core';
+import * as coreui from '@coreui/coreui';
+import "/node_modules/simplebar/dist/simplebar.min.js";
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
 
-window.bootstrap = bootstrap;
+window.coreui = coreui;
 
 // Enable tooltips everywhere
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+const tooltipTriggerList = document.querySelectorAll('[data-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new coreui.Tooltip(tooltipTriggerEl))
+
+const header = document.querySelector('header.header');
+
+document.addEventListener('scroll', () => {
+    if (header) {
+        header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
+    }
+});
 
 // live clock 
-// $(function () {
-//     showTime();
-// });
+$(function () {
+    showTime();
+});
 
 function showTime() {
     var date = new Date();

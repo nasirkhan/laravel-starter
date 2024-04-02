@@ -1,16 +1,14 @@
 // If you want to override variables do it here
 @import "variables";
 
-$enable-ltr: true; /* stylelint-disable-line scss/dollar-variable-default */
-$enable-rtl: true; /* stylelint-disable-line scss/dollar-variable-default */
-
 // Import styles
 @import "@coreui/coreui/scss/coreui";
 
-@import "layout";
+// Vendors
+@import "vendors/simplebar";
 
-// Prism.js
-@import "examples";
+// Custom styles for this theme
+@import "theme";
 
-// If you want to add custom CSS you can put it here.
+// If you want to add custom CSS you can put it here
 @import "custom";

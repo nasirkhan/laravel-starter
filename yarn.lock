@@ -7,12 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@coreui/coreui@^4.3.2":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-4.3.2.tgz#3c1d7eae4a740d2b473e862580ee863c40dcde18"
-  integrity sha512-SKGY6E6v7QGq0P3YTnZQRSrU8t0euLQ3UV/FH5j0JmHYBBu7Mv0Hd9g8AESnj8xrCelKZ5bdZKZhmKaIdG5clw==
-  dependencies:
-    postcss-combine-duplicated-selectors "^10.0.3"
+"@coreui/coreui@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-5.0.0.tgz#5e5cfd3ac05250acd3d07dc8cd36a54d2c8ed648"
+  integrity sha512-okQEoPVOqIQOH9aDN9jfgrjuMTgZ1YX/S81wWP5WuMmx5u0s8K+BXXDja5bbl4eP703+rElew/tHqGEAn+89Gw==
 
 "@coreui/icons@^3.0.1":
   version "3.0.1"
@@ -929,13 +927,6 @@ pirates@^4.0.1:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
 
-postcss-combine-duplicated-selectors@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/postcss-combine-duplicated-selectors/-/postcss-combine-duplicated-selectors-10.0.3.tgz#71e8b6783e99cd560cf08ba7b896ad0db318c11c"
-  integrity sha512-IP0BmwFloCskv7DV7xqvzDXqMHpwdczJa6ZvIW8abgHdcIHs9mCJX2ltFhu3EwA51ozp13DByng30+Ke+eIExA==
-  dependencies:
-    postcss-selector-parser "^6.0.4"
-
 postcss-import@^15.1.0:
   version "15.1.0"
   resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-15.1.0.tgz#41c64ed8cc0e23735a9698b3249ffdbf704adc70"
@@ -967,7 +958,7 @@ postcss-nested@^6.0.1:
   dependencies:
     postcss-selector-parser "^6.0.11"
 
-postcss-selector-parser@^6.0.11, postcss-selector-parser@^6.0.4:
+postcss-selector-parser@^6.0.11:
   version "6.0.16"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.16.tgz#3b88b9f5c5abd989ef4e2fc9ec8eedd34b20fb04"
   integrity sha512-A0RVJrX+IUkVZbW3ClroRWurercFhieevHB38sr2+l9eUClMqome3LmEmnhlNy+5Mr2EYN6B2Kaw9wYdd+VHiw==

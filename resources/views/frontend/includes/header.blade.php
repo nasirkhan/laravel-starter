@@ -127,7 +127,7 @@
                             </li>
                             <li>
                                 <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    href="#" role="menuitem">
+                                    href="{{ route('frontend.users.profileEdit') }}" role="menuitem">
                                     <div class="inline-flex items-center">
                                         <svg class="icon icon-tabler icons-tabler-outline icon-tabler-settings-cog me-2"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"

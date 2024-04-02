@@ -17,7 +17,7 @@ $notifications_latest = optional($notifications)->take(5);
                         <div class="clock" id="liveClock" onload="showTime()"></div>
                     </div>
                 </div>
-                <a class="nav-link hide-theme-dark px-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                <a class="nav-link hide-theme-dark px-0" data-toggle="tooltip" data-bs-placement="bottom"
                     data-bs-original-title="Enable dark mode" href="?theme=dark" aria-label="Enable dark mode">
                     <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -28,7 +28,7 @@ $notifications_latest = optional($notifications)->take(5);
                         </path>
                     </svg>
                 </a>
-                <a class="nav-link hide-theme-light px-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                <a class="nav-link hide-theme-light px-0" data-toggle="tooltip" data-bs-placement="bottom"
                     data-bs-original-title="Enable light mode" href="?theme=light" aria-label="Enable light mode">
                     <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
