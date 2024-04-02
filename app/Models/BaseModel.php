@@ -32,7 +32,7 @@ class BaseModel extends Model implements HasMedia
     /**
      * Create Converted copies of uploaded images.
      */
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(250)

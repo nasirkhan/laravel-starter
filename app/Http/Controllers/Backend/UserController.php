@@ -686,7 +686,7 @@ class UserController extends Controller
         $module_action = 'destroy';
 
         if (auth()->user()->id === $id || $id === 1) {
-            Flash::warning("You can not delete this user!")->important();
+            Flash::warning('You can not delete this user!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -791,7 +791,7 @@ class UserController extends Controller
 
             return redirect()->back();
         }
-        
+
         $$module_name_singular = User::withTrashed()->find($id);
 
         try {

@@ -16,13 +16,11 @@ class UserRegistered
     use SerializesModels;
 
     public $user;
+
     public $request;
 
     /**
      * User Registered Event Construct.
-     *
-     * @param  Request  $request
-     * @param  User  $user
      */
     public function __construct(Request $request, User $user)
     {

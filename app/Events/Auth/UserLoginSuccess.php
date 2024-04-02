@@ -19,9 +19,6 @@ class UserLoginSuccess
 
     /**
      * Login Success Event Construct.
-     *
-     * @param  Request  $request
-     * @param  User  $user
      */
     public function __construct(Request $request, User $user)
     {
