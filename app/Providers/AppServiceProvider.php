@@ -66,11 +66,11 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Backend Event Listeners.
          */
-        Event::listen(
-            'App\Events\Backend\UserCreated',
-            'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
-            'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser'
-        );
+        // Event::listen(
+        //     'App\Events\Backend\UserCreated',
+        //     'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
+        //     'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser'
+        // );
 
         Event::listen(
             'App\Events\Backend\UserUpdated',

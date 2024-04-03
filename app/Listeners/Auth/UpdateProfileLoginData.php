@@ -29,10 +29,14 @@ class UpdateProfileLoginData
             /*
              * Updating user profile data after successful login
              */
-            $user_profile->last_login = Carbon::now();
-            $user_profile->last_ip = $request->last_ip;
-            $user_profile->login_count += 1;
-            $user_profile->save();
+            try {
+                $user_profile->last_login = Carbon::now();
+                $user_profile->last_ip = ($request) ? $request->last_ip : "0.0.0.0";
+                $user_profile->login_count += 1;
+                $user_profile->save();
+            } catch (\Throwable $th) {
+                logger()->error($th);
+            }
 
             logger('User Login Success. Name: '.$user->name.' | Id: '.$user->id.' | Email: '.$user->email.' | Username: '.$user->username.' IP:'.$user_profile->last_ip.' | UpdateProfileLoginData');
         } catch (\Exception $e) {
