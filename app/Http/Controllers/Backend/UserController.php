@@ -270,7 +270,7 @@ class UserController extends Controller
             ];
             $$module_name_singular->notify(new UserAccountCreated($data));
 
-            Flash::success(icon('fas fa-envelope').' Account Credentials Sent to User.')->important();
+            Flash::success('Account Credentials Sent to User.')->important();
         }
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
@@ -296,200 +296,13 @@ class UserController extends Controller
         $module_action = 'Show';
 
         $$module_name_singular = $module_model::findOrFail($id);
-        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "backend.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'userprofile')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
-    }
-
-    /**
-     * Display Profile Details of Logged in user.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function profile(Request $request, $id)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-        $module_action = 'Profile Show';
-
-        $$module_name_singular = $module_model::with('roles', 'permissions')->findOrFail($id);
-
-        if ($$module_name_singular) {
-            $userprofile = Userprofile::where('user_id', $id)->first();
-        } else {
-            Log::error('UserProfile Exception for Username: '.$username);
-            abort(404);
-        }
-
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
-
-        return view("backend.{$module_name}.profile", compact('module_name', 'module_name_singular', "{$module_name_singular}", 'module_icon', 'module_action', 'module_title', 'userprofile'));
-    }
-
-    /**
-     * Edit the profile.
-     *
-     * @param  int  $id  The ID of the profile to edit.
-     * @return Illuminate\View\View The view for editing the profile.
-     *
-     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the profile is not found.
-     */
-    public function profileEdit($id)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'Edit Profile';
-
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
-        }
-
-        $$module_name_singular = $module_model::findOrFail($id);
-        $userprofile = Userprofile::where('user_id', $$module_name_singular->id)->first();
-
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
-
-        return view(
-            "backend.{$module_name}.profileEdit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'userprofile')
-        );
-    }
-
-    /**
-     * Updates the user profile.
-     *
-     * @param  Request  $request  The request object.
-     * @param  int  $id  The ID of the user.
-     * @return RedirectResponse The response redirecting to the user's profile page.
-     */
-    public function profileUpdate(Request $request, $id)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'Edit Profile';
-
-        $request->validate($request, [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'first_name' => 'required|min:3|max:191',
-            'last_name' => 'required|min:3|max:191',
-            'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:'.$module_model.',email,'.$id,
-        ]);
-
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
-        }
-
-        $$module_name_singular = User::findOrFail($id);
-
-        // Handle Avatar upload
-        if ($request->hasFile('avatar')) {
-            if ($$module_name_singular->getMedia($module_name)->first()) {
-                $$module_name_singular->getMedia($module_name)->first()->delete();
-            }
-
-            $media = $$module_name_singular->addMedia($request->file('avatar'))->toMediaCollection($module_name);
-
-            $$module_name_singular->avatar = $media->getUrl();
-
-            $$module_name_singular->save();
-        }
-
-        $data_array = $request->except('avatar');
-        $data_array['avatar'] = $$module_name_singular->avatar;
-        $data_array['name'] = $request->first_name.' '.$request->last_name;
-
-        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
-        $user_profile->update($data_array);
-
-        event(new UserProfileUpdated($user_profile));
-
-        flash(label_case($module_name_singular).' Updated Successfully!')->success()->important();
-
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
-
-        return redirect(route('backend.users.profile', $$module_name_singular->id));
-    }
-
-    /**
-     * Change the password of the user's profile.
-     *
-     * @param  int  $id  The ID of the user whose password will be changed. If the user does not have the "edit_users" permission, the ID will be set to the current authenticated user's ID.
-     * @return \Illuminate\View\View The view that displays the form to change the profile password.
-     */
-    public function changeProfilePassword($id)
-    {
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
-        }
-
-        $title = $this->module_title;
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_name_singular = Str::singular($this->module_name);
-        $module_icon = $this->module_icon;
-        $module_action = 'Edit';
-
-        $$module_name_singular = User::findOrFail($id);
-
-        return view("backend.{$module_name}.changeProfilePassword", compact('module_name', 'module_title', "{$module_name_singular}", 'module_icon', 'module_action'));
-    }
-
-    /**
-     * Change the profile password for a user.
-     *
-     * @param  Request  $request  The HTTP request object.
-     * @param  int  $id  The user ID.
-     * @return \Illuminate\Http\RedirectResponse Redirects to the user's profile page.
-     *
-     * @throws \Illuminate\Validation\ValidationException If the validation fails.
-     */
-    public function changeProfilePasswordUpdate(Request $request, $id)
-    {
-        $request->validate($request, [
-            'password' => 'required|confirmed|min:6',
-        ]);
-
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
-        }
-
-        $$module_name_singular = User::findOrFail($id);
-
-        $request_data = $request->only('password');
-        $request_data['password'] = Hash::make($request_data['password']);
-
-        $$module_name_singular->update($request_data);
-
-        Flash::success(Str::singular($module_title)."' Updated Successfully")->important();
-
-        return redirect("admin/{$module_name}/profile/{$id}");
     }
 
     /**

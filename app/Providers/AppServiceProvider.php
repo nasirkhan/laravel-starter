@@ -49,19 +49,18 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Auth Event Listeners.
          */
-        Event::listen(
-            'App\Events\Auth\UserLoginSuccess',
-            'App\Listeners\Auth\UpdateProfileLoginData',
-            'App\Listeners\Auth\SendPodcastNotification'
-        );
+        // Event::listen(
+        //     'App\Events\Auth\UserLoginSuccess',
+        //     'App\Listeners\Auth\UpdateLoginData',
+        //     'App\Listeners\Auth\SendPodcastNotification'
+        // );
 
         /**
          * Frontend Event Listeners.
          */
-        Event::listen('App\Events\Frontend\UserRegistered',
-            'App\Listeners\Frontend\UserRegistered\ProfileCreateOnUserRegistered',
-            'App\Listeners\Frontend\UserRegistered\EmailNotificationOnUserRegistered'
-        );
+        // Event::listen('App\Events\Frontend\UserRegistered',
+        //     'App\Listeners\Frontend\UserRegistered\EmailNotificationOnUserRegistered'
+        // );
 
         /**
          * Backend Event Listeners.
@@ -72,10 +71,9 @@ class AppServiceProvider extends ServiceProvider
         //     'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser'
         // );
 
-        Event::listen(
-            'App\Events\Backend\UserUpdated',
-            'App\Listeners\Backend\UserUpdated\UserUpdatedProfileUpdate',
-            'App\Listeners\Backend\UserUpdated\UserUpdatedNotifyUser'
-        );
+        // Event::listen(
+        //     'App\Events\Backend\UserUpdated',
+        //     'App\Listeners\Backend\UserUpdated\UserUpdatedNotifyUser'
+        // );
     }
 }

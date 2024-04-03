@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use App\Events\UserCreated;
 use App\Models\Presenters\UserPresenter;
 use App\Models\Traits\HasHashedMediaTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -23,17 +23,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use Notifiable;
     use SoftDeletes;
     use UserPresenter;
-
-    // /**
-    //  * The attributes that are mass assignable.
-    //  *
-    //  * @var array<int, string>
-    //  */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
 
     protected $guarded = [
         'id',
@@ -59,8 +48,10 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
-            'deleted_at' => 'datetime',
             'password' => 'hashed',
+            'date_of_birth' => 'datetime',
+            'last_login' => 'datetime',
+            'deleted_at' => 'datetime',
         ];
     }
 
@@ -95,26 +86,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             $table->deleted_by = Auth::id();
             $table->save();
         });
-    }
-
-    /**
-     * Retrieves the profile of the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function profile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
-    }
-
-    /**
-     * Get the user profile associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function userprofile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
     }
 
     /**

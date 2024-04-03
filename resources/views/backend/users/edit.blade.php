@@ -70,25 +70,6 @@
 
             <div class="row mb-3">
                 <?php
-                $field_name = 'profile';
-                $field_lable = __('Profile');
-                $field_placeholder = $field_lable;
-                $required = "";
-                ?>
-                <div class="col-12 col-sm-2">
-                    <div class="form-group">
-                        {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
-                    </div>
-                </div>
-                <div class="col-12 col-sm-10">
-                    <div class="form-group">
-                        <a href="{{ route('backend.users.profileEdit', $user->id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-user"></i> Update Profile</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <?php
                 $field_name = 'confirmed';
                 $field_lable = __('labels.backend.users.fields.confirmed');
                 $field_placeholder = $field_lable;

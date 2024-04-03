@@ -127,13 +127,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     */
     $module_name = 'users';
     $controller_name = 'UserController';
-    Route::get("{$module_name}/profile/{id?}", ['as' => "{$module_name}.profile", 'uses' => "{$controller_name}@profile"]);
-    Route::get("{$module_name}/profile/{id?}/edit", ['as' => "{$module_name}.profileEdit", 'uses' => "{$controller_name}@profileEdit"]);
-    Route::patch("{$module_name}/profile/{id?}/edit", ['as' => "{$module_name}.profileUpdate", 'uses' => "{$controller_name}@profileUpdate"]);
     Route::get("{$module_name}/emailConfirmationResend/{id}", ['as' => "{$module_name}.emailConfirmationResend", 'uses' => "{$controller_name}@emailConfirmationResend"]);
     Route::delete("{$module_name}/userProviderDestroy", ['as' => "{$module_name}.userProviderDestroy", 'uses' => "{$controller_name}@userProviderDestroy"]);
-    Route::get("{$module_name}/profile/changeProfilePassword/{id}", ['as' => "{$module_name}.changeProfilePassword", 'uses' => "{$controller_name}@changeProfilePassword"]);
-    Route::patch("{$module_name}/profile/changeProfilePassword/{id}", ['as' => "{$module_name}.changeProfilePasswordUpdate", 'uses' => "{$controller_name}@changeProfilePasswordUpdate"]);
     Route::get("{$module_name}/changePassword/{id}", ['as' => "{$module_name}.changePassword", 'uses' => "{$controller_name}@changePassword"]);
     Route::patch("{$module_name}/changePassword/{id}", ['as' => "{$module_name}.changePasswordUpdate", 'uses' => "{$controller_name}@changePasswordUpdate"]);
     Route::get("{$module_name}/trashed", ['as' => "{$module_name}.trashed", 'uses' => "{$controller_name}@trashed"]);
