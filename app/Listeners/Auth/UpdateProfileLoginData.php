@@ -31,7 +31,7 @@ class UpdateProfileLoginData
              */
             try {
                 $user_profile->last_login = Carbon::now();
-                $user_profile->last_ip = ($request) ? $request->last_ip : "0.0.0.0";
+                $user_profile->last_ip = ($request) ? $request->last_ip : '0.0.0.0';
                 $user_profile->login_count += 1;
                 $user_profile->save();
             } catch (\Throwable $th) {
