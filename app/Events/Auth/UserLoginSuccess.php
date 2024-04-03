@@ -29,10 +29,9 @@ class UserLoginSuccess
     public function prepareRequestData($request)
     {
         $data = $request->all();
+        
         $data['last_ip'] = request()->getClientIp();
-
-        $data = collect($data);
-
+        
         return $data;
     }
 
