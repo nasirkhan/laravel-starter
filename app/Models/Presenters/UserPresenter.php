@@ -6,12 +6,25 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Presenter Class for Book Module.
  */
 trait UserPresenter
 {
+    /**
+     * Get User Avatar 
+     *
+     * @return Attribute
+     */
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn ( $value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
+        );
+    }
+
     /**
      * Get Status Label.
      */
