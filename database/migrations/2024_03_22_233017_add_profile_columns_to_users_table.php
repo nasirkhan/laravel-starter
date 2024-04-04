@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('last_ip')->nullable()->after('avatar');
             $table->integer('login_count')->default(0)->after('last_ip');
             $table->timestamp('last_login')->nullable()->after('login_count');
-            
+
             $table->tinyInteger('status')->default(1)->unsigned()->after('last_login');
 
             $table->integer('created_by')->unsigned()->nullable()->after('status');

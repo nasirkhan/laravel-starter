@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Events\Backend\UserCreated;
-use App\Events\Backend\UserProfileUpdated;
 use App\Events\Backend\UserUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Userprofile;
 use App\Models\UserProvider;
 use App\Notifications\UserAccountCreated;
 use Carbon\Carbon;
