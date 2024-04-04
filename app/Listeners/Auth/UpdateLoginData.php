@@ -25,12 +25,11 @@ class UpdateLoginData
         $request = $event->request;
 
         $user->last_login = Carbon::now();
-        $user->last_ip = ($request) ? $request['last_ip'] : "0.0.0.0";
+        $user->last_ip = ($request) ? $request['last_ip'] : '0.0.0.0';
         $user->login_count += 1;
-        
+
         $user->save();
 
-        logger('User Login Success. Name: ' . $user->name . ' | Id: ' . $user->id . ' | Email: ' . $user->email . ' | Username: ' . $user->username . ' IP:' . $user->last_ip . ' | UpdateLoginData');
-        
+        logger('User Login Success. Name: '.$user->name.' | Id: '.$user->id.' | Email: '.$user->email.' | Username: '.$user->username.' IP:'.$user->last_ip.' | UpdateLoginData');
     }
 }
