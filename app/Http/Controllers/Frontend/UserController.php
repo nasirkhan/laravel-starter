@@ -105,18 +105,11 @@ class UserController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        if ($$module_name_singular) {
-            $userprofile = Userprofile::where('user_id', $id)->first();
-        } else {
-            Log::error('UserProfile Exception for Username: '.$username);
-            abort(404);
-        }
-
         $body_class = 'profile-page';
 
         $meta_page_type = 'profile';
 
-        return view("frontend.{$module_name}.profile", compact('module_name', 'module_name_singular', "{$module_name_singular}", 'module_icon', 'module_action', 'module_title', 'body_class', 'userprofile', 'meta_page_type'));
+        return view("frontend.{$module_name}.profile", compact('module_name', 'module_name_singular', "{$module_name_singular}", 'module_icon', 'module_action', 'module_title', 'body_class', 'meta_page_type'));
     }
 
     /**
@@ -154,13 +147,12 @@ class UserController extends Controller
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
-        $userprofile = Userprofile::where('user_id', $id)->first();
 
         $body_class = 'profile-page';
 
         return view(
             "frontend.{$module_name}.profileEdit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'userprofile', 'body_class')
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'body_class')
         );
     }
 

@@ -1,12 +1,16 @@
 <style>
-    html {
+    /* html {
         position: relative;
         min-height: 100%;
-    }
+    } */
 
     body {
+        /* font-size: .875rem; */
+        /* margin-bottom: 60px; */
+    }
+    .card {
         font-size: .875rem;
-        margin-bottom: 60px;
+        /* margin-bottom: 60px; */
     }
 
     .main-footer {

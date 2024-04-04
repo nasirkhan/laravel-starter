@@ -14,8 +14,6 @@ trait UserPresenter
 {
     /**
      * Get User Avatar.
-     *
-     * @return Attribute
      */
     protected function avatar(): Attribute
     {

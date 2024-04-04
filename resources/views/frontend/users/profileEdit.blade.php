@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="mt-5 sm:mt-0 sm:col-span-2">
-            {{ html()->modelForm($userprofile, 'PATCH', route('frontend.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
+            {{ html()->modelForm($$module_name_singular, 'PATCH', route('frontend.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
             <div class="mb-8 p-6 bg-white border shadow-lg rounded-lg">
                 <div class="grid grid-cols-6 gap-6">
 
