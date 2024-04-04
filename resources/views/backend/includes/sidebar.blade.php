@@ -33,7 +33,7 @@ $notifications_latest = optional($notifications)->take(5);
         @can('edit_settings')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.settings') }}">
-                    <i class="nav-icon fa-solid fa-gears"></i></i>&nbsp;@lang('Settings')
+                    <i class="nav-icon fa-solid fa-gears"></i>&nbsp;@lang('Settings')
                 </a>
             </li>
         @endcan
@@ -41,7 +41,7 @@ $notifications_latest = optional($notifications)->take(5);
         @can('view_backups')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.backups.index') }}">
-                    <i class="nav-icon fa-solid fa-box-archive"></i></i>&nbsp;@lang('Backups')
+                    <i class="nav-icon fa-solid fa-box-archive"></i>&nbsp;@lang('Backups')
                 </a>
             </li>
         @endcan
@@ -49,7 +49,7 @@ $notifications_latest = optional($notifications)->take(5);
         @can('view_users')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.users.index') }}">
-                    <i class="nav-icon fa-solid fa-user-group"></i></i>&nbsp;@lang('Users')
+                    <i class="nav-icon fa-solid fa-user-group"></i>&nbsp;@lang('Users')
                 </a>
             </li>
         @endcan
@@ -57,8 +57,28 @@ $notifications_latest = optional($notifications)->take(5);
         @can('view_roles')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.roles.index') }}">
-                    <i class="nav-icon fa-solid fa-user-shield"></i></i>&nbsp;@lang('Roles')
+                    <i class="nav-icon fa-solid fa-user-shield"></i>&nbsp;@lang('Roles')
                 </a>
+            </li>
+        @endcan
+
+        @can('view_logs')
+            <li class="nav-group" aria-expanded="true">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-solid fa-list-ul"></i>&nbsp;@lang('Logs')
+                </a>
+                <ul class="nav-group-items compact" style="height: auto;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('log-viewer::dashboard') }}">
+                            <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Log Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('log-viewer::logs.list') }}">
+                            <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Daily Log
+                        </a>
+                    </li>
+                </ul>
             </li>
         @endcan
 

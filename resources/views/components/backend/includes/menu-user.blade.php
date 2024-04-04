@@ -12,7 +12,7 @@ $notifications_latest = optional($notifications)->take(5);
         </div>
     </a>
     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-        <a class="dropdown-item" href="{{route('backend.users.profile')}}">
+        <a class="dropdown-item" href="{{route('backend.users.show', Auth::user()->id)}}">
             <i class="fa-regular fa-user me-2"></i>&nbsp;{{ Auth::user()->name }}
         </a>
         <a class="dropdown-item" href="{{ route('backend.notifications.index') }}">

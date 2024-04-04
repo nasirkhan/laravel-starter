@@ -25,7 +25,7 @@ $module_icon = 'fa-solid fa-list-check';
                 <x-slot name="toolbar">
                     <x-backend.buttons.return-back />
                     <a class="btn btn-primary ms-1" type="button" href="{{ route('log-viewer::logs.list') }}">
-                        <i class="fas fa-list-ol"></i> @lang('Logs by Date')
+                        <i class="fas fa-list-ol"></i> @lang('Daily Log')
                     </a>
                 </x-slot>
             </x-backend.section-header>
