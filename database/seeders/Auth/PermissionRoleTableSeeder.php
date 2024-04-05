@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Artisan;
 class PermissionRoleTableSeeder extends Seeder
 {
     /**
-     * The laravel component Factory instance.
-     *
-     * @var \Illuminate\Console\View\Components\Factory
-     */
-    protected $component;
-
-    /**
      * Run the database seed.
      *
      * @return void
@@ -35,8 +28,6 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Create Permissions
         Permission::firstOrCreate(['name' => 'view_backend']);
-        Permission::firstOrCreate(['name' => 'edit_settings']);
-        Permission::firstOrCreate(['name' => 'view_logs']);
 
         $permissions = Permission::defaultPermissions();
 
@@ -67,7 +58,7 @@ class PermissionRoleTableSeeder extends Seeder
         echo "\n\n";
 
         // Assign Permissions to Roles
-        $admin->givePermissionTo(Permission::all());
+        $admin->givePermissionTo('view_backend');
         $manager->givePermissionTo('view_backend');
         $executive->givePermissionTo('view_backend');
     }

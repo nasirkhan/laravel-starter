@@ -11,10 +11,13 @@ class Permission extends \Spatie\Permission\Models\Permission
     {
         return [
             'view_backend',
+            'edit_settings',
+            'view_logs',
 
             'view_users',
             'add_users',
             'edit_users',
+            'edit_users_permissions',
             'delete_users',
             'restore_users',
             'block_users',

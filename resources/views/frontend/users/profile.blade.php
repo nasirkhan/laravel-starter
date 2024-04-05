@@ -15,6 +15,9 @@
                 <p>
                     {{$$module_name_singular->address}}
                 </p>
+                <a class="text-blue-800 hover:text-gray-800" target="_blank" href="{{route('frontend.users.profile', $$module_name_singular->username)}}">
+                    {{str_replace(['http://', 'https://'], '', route('frontend.users.profile', $$module_name_singular->username))}}
+                </a>
                 @if($$module_name_singular->url_website)
                 <a class="text-blue-800 hover:text-gray-800" target="_blank" href="{{$$module_name_singular->url_website}}">
                     {{$$module_name_singular->url_website}}

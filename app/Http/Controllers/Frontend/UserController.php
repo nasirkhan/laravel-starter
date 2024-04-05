@@ -91,9 +91,9 @@ class UserController extends Controller
      *
      * @throws ModelNotFoundException If the user profile is not found.
      */
-    public function profile(Request $request)
+    public function profile(Request $request, $username = null)
     {
-        $id = auth()->user()->id;
+        $username = ($username == null) ? auth()->user()->username : $username;
 
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -103,7 +103,7 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Profile';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::whereUsername($username)->first();
 
         $body_class = 'profile-page';
 
@@ -189,7 +189,6 @@ class UserController extends Controller
 
         if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
-            $username = auth()->user()->username;
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -206,15 +205,6 @@ class UserController extends Controller
 
             $$module_name_singular->save();
         }
-
-        $data_array = $request->except('avatar');
-        $data_array['avatar'] = $$module_name_singular->avatar;
-        $data_array['name'] = $request->first_name.' '.$request->last_name;
-
-        $user_profile = Userprofile::where('user_id', '=', $$module_name_singular->id)->first();
-        $user_profile->update($data_array);
-
-        event(new UserProfileUpdated($user_profile));
 
         return redirect()->route('frontend.users.profile', encode_id($$module_name_singular->id))->with('flash_success', 'Update successful!');
     }
@@ -246,8 +236,6 @@ class UserController extends Controller
         if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
-
-        $id = auth()->user()->id;
 
         $$module_name_singular = $module_model::findOrFail($id);
 
@@ -288,93 +276,6 @@ class UserController extends Controller
         $$module_name_singular->update($request_data);
 
         return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id))->with('flash_success', 'Update successful!');
-    }
-
-    /**
-     * Edit a record in the database.
-     *
-     * @param  int  $id
-     * @param  int  $id  The ID of the record to be edited.
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Contracts\View\Factory|\Illuminate\View\View The response or view after editing the record.
-     *
-     * @throws \Exception If the user is not authorized to edit the record.
-     */
-    public function edit($id)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-        $module_action = 'Edit';
-
-        if ($id !== auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', encode_id($id));
-        }
-
-        $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
-
-        $$module_name_singular = User::findOrFail($id);
-
-        $body_class = 'profile-page';
-
-        $userRoles = $$module_name_singular->roles->pluck('name')->all();
-        $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
-
-        return view("frontend.{$module_name}.edit", compact('userRoles', 'userPermissions', 'module_name', "{$module_name_singular}", 'module_icon', 'module_action', 'title', 'roles', 'permissions', 'body_class'));
-    }
-
-    /**
-     * Updates a record in the database.
-     *
-     * @param  int  $id
-     * @param  Request  $request  The HTTP request object.
-     * @param  int  $id  The ID of the record to update.
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\Http\RedirectResponse The redirect response.
-     */
-    public function update(Request $request, $id)
-    {
-        $module_name = $this->module_name;
-        $module_name_singular = Str::singular($this->module_name);
-
-        if ($id !== auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', encode_id($id));
-        }
-
-        $$module_name_singular = User::findOrFail($id);
-
-        $$module_name_singular->update($request->except(['roles', 'permissions']));
-
-        if ($id === 1) {
-            $user->syncRoles(['administrator']);
-
-            return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
-        }
-
-        $roles = $request['roles'];
-        $permissions = $request['permissions'];
-
-        // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        } else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
-        }
-
-        // Sync Permissions
-        if (isset($permissions)) {
-            $$module_name_singular->syncPermissions($permissions);
-        } else {
-            $permissions = [];
-            $$module_name_singular->syncPermissions($permissions);
-        }
-
-        return redirect("admin/{$module_name}")->with('flash_success', 'Update successful!');
     }
 
     /**

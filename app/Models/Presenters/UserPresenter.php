@@ -96,4 +96,19 @@ trait UserPresenter
         $this->attributes['first_name'] = $name_parts[0];
         $this->attributes['last_name'] = $name_parts[1];
     }
+
+    /**
+     * Array keys for social_profiles field
+     */
+    public static function socialFieldsNames()
+    {
+        return [
+            'website_url',
+            'facebook_url',
+            'twitter_url',
+            'instagram_url',
+            'youtube_url',
+            'linkedin_url',
+        ];
+    }
 }
