@@ -36,6 +36,5 @@ class RegistrationTest extends TestCase
             $response = $this->get('/register');
             $response->assertStatus(404);
         }
-
     }
 }

@@ -3,13 +3,12 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class FrontendPublicViewTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_homepage_public_view(): void
     {
         $response = $this->get('/');
@@ -39,7 +38,7 @@ class FrontendPublicViewTest extends TestCase
         if (config('app.user_registration')) {
             $response->assertStatus(200);
 
-            $value = "Register";
+            $value = 'Register';
 
             $response->assertSeeText($value, $escxaped = true);
         } else {
@@ -53,7 +52,7 @@ class FrontendPublicViewTest extends TestCase
 
         $response->assertStatus(200);
 
-        $value = "Email Password Reset Link";
+        $value = 'Email Password Reset Link';
 
         $response->assertSeeText($value, $escxaped = true);
     }
@@ -64,7 +63,7 @@ class FrontendPublicViewTest extends TestCase
 
         $response->assertStatus(200);
 
-        $value = "Privacy Policy";
+        $value = 'Privacy Policy';
 
         $response->assertSeeText($value, $escxaped = true);
     }
@@ -75,7 +74,7 @@ class FrontendPublicViewTest extends TestCase
 
         $response->assertStatus(200);
 
-        $value = "Terms and Conditions ";
+        $value = 'Terms and Conditions ';
 
         $response->assertSeeText($value, $escxaped = true);
     }
