@@ -98,7 +98,7 @@ trait UserPresenter
     }
 
     /**
-     * Array keys for social_profiles field
+     * Array keys for social_profiles field.
      */
     public static function socialFieldsNames()
     {
