@@ -426,7 +426,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -504,7 +504,7 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        if (!auth()->user()->can('edit_users')) {
+        if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
 
@@ -556,7 +556,7 @@ class UserController extends Controller
      */
     public function restore($id)
     {
-        if (!auth()->user()->can('restore_users')) {
+        if (! auth()->user()->can('restore_users')) {
             $id = auth()->user()->id;
         }
 
@@ -594,7 +594,7 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (!auth()->user()->can('delete_users')) {
+        if (! auth()->user()->can('delete_users')) {
             $id = auth()->user()->id;
         }
 
@@ -641,10 +641,10 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (!auth()->user()->can('delete_users')) {
+        if (! auth()->user()->can('delete_users')) {
             $id = auth()->user()->id;
         }
-        
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;

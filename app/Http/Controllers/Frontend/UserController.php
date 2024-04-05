@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Authorizable;
-use App\Events\Frontend\UserProfileUpdated;
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
-use App\Models\Role;
 use App\Models\User;
-use App\Models\Userprofile;
 use App\Models\UserProvider;
 use Exception;
 use Illuminate\Http\Request;
