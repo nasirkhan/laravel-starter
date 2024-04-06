@@ -1,7 +1,16 @@
 {
     "name": "nasirkhan/laravel-starter",
     "description": "A CMS like modular Laravel starter project.",
-    "keywords": ["framework", "laravel", "cms", "starter", "admin", "admin dashboard", "laravel blog", "website" ],
+    "keywords": [
+        "framework",
+        "laravel",
+        "cms",
+        "starter",
+        "admin",
+        "admin dashboard",
+        "laravel blog",
+        "website"
+    ],
     "license": "GPL-3.0-or-later",
     "type": "project",
     "require": {
@@ -36,7 +45,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Modules\\": "Modules/"
         },
         "files": [
             "app/helpers.php"
