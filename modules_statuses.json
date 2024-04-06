@@ -1,2 +1,5 @@
 {
+    "Post": true,
+    "Category": true,
+    "Tag": true
 }

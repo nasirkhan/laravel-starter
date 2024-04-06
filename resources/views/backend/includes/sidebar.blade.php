@@ -30,6 +30,29 @@ $notifications_latest = optional($notifications)->take(5);
                 @endif
             </a>
         </li>
+        
+        @can('view_posts')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('backend.posts.index') }}">
+                    <i class="nav-icon fa-regular fa-file-lines"></i>&nbsp;@lang('Posts')
+                </a>
+            </li>
+        @endcan
+        @can('view_categories')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('backend.categories.index') }}">
+                    <i class="nav-icon fa-solid fa-diagram-project"></i>&nbsp;@lang('Categories')
+                </a>
+            </li>
+        @endcan
+        @can('view_tags')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('backend.tags.index') }}">
+                    <i class="nav-icon fa-solid fa-tags"></i>&nbsp;@lang('Tags')
+                </a>
+            </li>
+        @endcan
+
         @can('edit_settings')
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('backend.settings') }}">
