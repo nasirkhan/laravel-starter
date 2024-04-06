@@ -157,7 +157,7 @@ class CategoriesController extends BackendBaseController
             }
         }
 
-        flash(icon() . ' ' . Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
 
         logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
 
