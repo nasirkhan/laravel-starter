@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Article\Models\Post;
+use Modules\Post\Models\Post;
 use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
 use Modules\Tag\Models\Tag;
@@ -42,34 +42,40 @@ class InsertDemoData extends Command
 
     public function insert_demo_data()
     {
+        $this->info('Inserting Demo Data');
+        
         /**
          * Categories.
          */
-        $this->info('Inserting Categories');
-        Category::factory()->count(5)->create();
+        $this->components->task("Inserting Categories", function () {
+            Category::factory()->count(5)->create();
+        });
 
         /**
          * Tags.
          */
-        $this->info('Inserting Tags');
-        Tag::factory()->count(10)->create();
+        $this->components->task("Inserting Tags", function () {
+            Tag::factory()->count(10)->create();
+        });
 
         /**
          * Posts.
          */
-        $this->info('Inserting Posts');
-        Post::factory()->count(25)->create()->each(function ($post) {
-            $post->tags()->attach(
-                Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
-            );
+        $this->components->task("Inserting Posts", function () {
+            Post::factory()->count(25)->create()->each(function ($post) {
+                $post->tags()->attach(
+                    Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
+                );
+            });
         });
 
-        /**
-         * Comments.
-         */
-        $this->info('Inserting Comments');
-        Comment::factory()->count(25)->create();
-
+        // /**
+        //  * Comments.
+        //  */
+        // $this->components->task("Inserting Comments", function () {
+        //     Comment::factory()->count(25)->create();
+        // });
+        
         $this->newLine(2);
         $this->info('-- Completed --');
         $this->newLine();
@@ -81,7 +87,7 @@ class InsertDemoData extends Command
             'posts',
             'categories',
             'tags',
-            'comments',
+            // 'comments',
             'activity_log',
         ];
 
@@ -90,6 +96,8 @@ class InsertDemoData extends Command
             default: false,
         );
 
+        $this->info('Truncate tables');
+
         if ($confirmed) {
             // Disable foreign key checks!
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -97,16 +105,16 @@ class InsertDemoData extends Command
             foreach ($tables_list as $row) {
                 $table_name = $row;
 
-                $this->info("Truncate Table: {$table_name}");
-
-                DB::table($table_name)->truncate();
+                $this->components->task("Truncate Table: {$table_name}", function () use ($table_name) {
+                    DB::table($table_name)->truncate();
+                });
             }
 
             // Enable foreign key checks!
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         } else {
             $this->warn('Skipped database truncate.');
-            $this->newLine(2);
         }
+        $this->newLine();
     }
 }

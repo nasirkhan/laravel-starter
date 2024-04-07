@@ -11,7 +11,9 @@
                 {{ __($module_title) }}
             </h1>
             <p class="mb-8 leading-relaxed">
-                The list of {{ __($module_name) }}.
+                We publish articles on a variety of topics.
+                <br>
+                We encourage you to read our articles and let us know your feedback. It would be really help us to move forward.
             </p>
 
             @include('frontend.includes.messages')

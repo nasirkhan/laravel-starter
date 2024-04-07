@@ -206,4 +206,23 @@ class BaseModel extends Model implements HasMedia
             $this->attributes['meta_keyword'] = setting('meta_keyword');
         }
     }
+
+    /**
+     * Set the meta meta_og_image
+     * If no value submitted use the 'Title'.
+     *
+     * @param [type]
+     */
+    public function setMetaOgImageAttribute($value)
+    {
+        $this->attributes['meta_og_image'] = $value;
+
+        if (empty($value)) {
+            if (isset($this->attributes['image'])) {
+                $this->attributes['meta_og_image'] = $this->attributes['image'];
+            } else {
+                $this->attributes['meta_og_image'] = setting('meta_image');
+            }
+        }
+    }
 }

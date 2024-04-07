@@ -193,17 +193,21 @@
                         <a class="block rounded bg-blue-700 px-3 py-2 font-semibold text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
                             href="/" aria-current="page">Home</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                             href="#">About</a>
+                    </li> --}}
+                    <li>
+                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                            href="{{ route('frontend.posts.index') }}">@lang('Posts')</a>
                     </li>
                     <li>
                         <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="#">Services</a>
+                            href="{{ route('frontend.categories.index') }}">@lang('Categories')</a>
                     </li>
                     <li>
                         <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="#">Pricing</a>
+                            href="{{ route('frontend.tags.index') }}">@lang('Tags')</a>
                     </li>
                     <li>
                         <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
