@@ -48,12 +48,12 @@
     "src": "node_modules/@tabler/icons-webfont/dist/fonts/tabler-icons.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-B41zkMh2.css",
+    "file": "assets/app-frontend-DKSRU8Hs.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-zcPnIP9S.js",
+    "file": "assets/app-backend-C5uWiJ_J.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,

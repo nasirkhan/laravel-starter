@@ -42,3 +42,17 @@ function showTime() {
 
     setTimeout(showTime, 1000);
 }
+
+/**
+ * Convert name string to slug
+ */
+$(function () {
+    $("#name").on("keyup", function () {
+        convertToSlug('#name', '#slug');
+    });
+});
+
+function convertToSlug(source, destination) {
+    var text = $(source).val();
+    $(destination).val(text.toLowerCase().replace("/[~`{}.'\"\!\@\#\$\%\^\&\*\(\)\_\=\+\/\?\>\<\,\[\]\:\;\|\\\]/", "").replace(/ /g, '-'));
+}

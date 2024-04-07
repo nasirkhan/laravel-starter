@@ -267,7 +267,7 @@
 
 @push('after-styles')
 <!-- File Manager -->
-<link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}"> --}}
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 <style>
@@ -337,6 +337,8 @@
 </script>
 
 <script type="module">
+    
+
     $(document).ready(function() {
         $(document).on('select2:open', () => {
             document.querySelector('.select2-search__field').focus();
@@ -387,5 +389,6 @@
             }
         });
     });
+
 </script>
 @endpush
