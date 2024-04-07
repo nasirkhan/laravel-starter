@@ -46,8 +46,8 @@ class TagsController extends BackendBaseController
         $module_action = 'Store';
 
         $validated_request = $request->validate([
-            'name' => 'required|max:191|unique:' . $module_model . ',name',
-            'slug' => 'nullable|max:191|unique:' . $module_model . ',slug',
+            'name' => 'required|max:191|unique:'.$module_model.',name',
+            'slug' => 'nullable|max:191|unique:'.$module_model.',slug',
             'group_name' => 'nullable|max:191',
             'description' => 'nullable|max:191',
             'meta_title' => 'nullable|max:191',
@@ -65,13 +65,12 @@ class TagsController extends BackendBaseController
             $$module_name_singular->save();
         }
 
-        flash("New '" . Str::singular($module_title) . "' Added")->success()->important();
+        flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/{$module_name}");
     }
-
 
     /**
      * Display the specified resource.
@@ -94,14 +93,13 @@ class TagsController extends BackendBaseController
 
         $posts = $$module_name_singular->posts()->latest()->paginate();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.show",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}", 'posts')
         );
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -121,8 +119,8 @@ class TagsController extends BackendBaseController
         $module_action = 'Update';
 
         $validated_request = $request->validate([
-            'name' => 'required|max:191|unique:' . $module_model . ',name,' . $id,
-            'slug' => 'nullable|max:191|unique:' . $module_model . ',slug,' . $id,
+            'name' => 'required|max:191|unique:'.$module_model.',name,'.$id,
+            'slug' => 'nullable|max:191|unique:'.$module_model.',slug,'.$id,
             'group_name' => 'nullable|max:191',
             'description' => 'nullable|max:191',
             'meta_title' => 'nullable|max:191',
@@ -157,9 +155,9 @@ class TagsController extends BackendBaseController
             }
         }
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }

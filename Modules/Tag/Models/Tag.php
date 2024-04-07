@@ -13,7 +13,6 @@ class Tag extends BaseModel
 
     protected $table = 'tags';
 
-
     /**
      * Get all of the posts that are assigned this tag.
      */

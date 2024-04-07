@@ -87,7 +87,7 @@ class TagServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'tag');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'tag');
     }
 
     /**
