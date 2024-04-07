@@ -49,19 +49,19 @@
                                 #
                             </th>
                             <th>
-                                @lang("tag::text.name")
+                                @lang("post::text.name")
                             </th>
                             <th>
-                                @lang("tag::text.slug")
+                                @lang("post::text.slug")
                             </th>
                             <th>
-                                @lang("tag::text.updated_at")
+                                @lang("post::text.updated_at")
                             </th>
                             <th>
-                                @lang("tag::text.created_by")
+                                @lang("post::text.created_by")
                             </th>
                             <th class="text-end">
-                                @lang("tag::text.action")
+                                @lang("post::text.action")
                             </th>
                         </tr>
                     </thead>

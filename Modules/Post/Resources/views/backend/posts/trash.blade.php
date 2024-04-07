@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends ('backend.layouts.app')
 
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
@@ -15,28 +15,12 @@
         <x-backend.section-header>
             <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
+            <x-slot name="subtitle">
+                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
+            </x-slot>
             <x-slot name="toolbar">
-                @can('add_'.$module_name)
-                <x-backend.buttons.create small="true" route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
-                @endcan
-
-                @can('restore_'.$module_name)
-                <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
-                                <i class="fas fa-eye-slash"></i> @lang("View trash")
-                            </a>
-                        </li>
-                        <!-- <li>
-                            <hr class="dropdown-divider">
-                        </li> -->
-                    </ul>
-                </div>
-                @endcan
+                <x-backend.buttons.return-back />
+                <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
             </x-slot>
         </x-backend.section-header>
 
@@ -49,19 +33,16 @@
                                 #
                             </th>
                             <th>
-                                @lang("tag::text.name")
+                                Name
                             </th>
                             <th>
-                                @lang("tag::text.slug")
+                                Updated At
                             </th>
                             <th>
-                                @lang("tag::text.updated_at")
-                            </th>
-                            <th>
-                                @lang("tag::text.created_by")
+                                Created By
                             </th>
                             <th class="text-end">
-                                @lang("tag::text.action")
+                                Action
                             </th>
                         </tr>
                     </thead>
@@ -73,20 +54,18 @@
                                 {{ $module_name_singular->id }}
                             </td>
                             <td>
-                                <a href="{{ url("admin/$module_name", $module_name_singular->id) }}">{{ $module_name_singular->name }}</a>
+                                <strong>
+                                    {{ $module_name_singular->name }}
+                                </strong>
                             </td>
                             <td>
-                                {{ $module_name_singular->slug }}
-                            </td>
-                            <td>
-                                {{ $module_name_singular->updated_at->diffForHumans() }}
+                                {{ $module_name_singular->updated_at->isoFormat('llll') }}
                             </td>
                             <td>
                                 {{ $module_name_singular->created_by }}
                             </td>
                             <td class="text-end">
-                                <a href='{!!route("backend.$module_name.edit", $module_name_singular)!!}' class='btn btn-sm btn-primary mt-1' data-toggle="tooltip" title="Edit {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-wrench"></i></a>
-                                <a href='{!!route("backend.$module_name.show", $module_name_singular)!!}' class='btn btn-sm btn-success mt-1' data-toggle="tooltip" title="Show {{ ucwords(Str::singular($module_name)) }}"><i class="fas fa-tv"></i></a>
+                                <a href="{{route("backend.$module_name.restore", $module_name_singular)}}" class="btn btn-warning btn-sm" data-method="PATCH" data-token="{{csrf_token()}}" data-toggle="tooltip" title="{{__('labels.backend.restore')}}"><i class='fas fa-undo'></i> {{__('labels.backend.restore')}}</a>
                             </td>
                         </tr>
                         @endforeach
@@ -110,4 +89,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section ('after-scripts-end')
+
 @endsection
