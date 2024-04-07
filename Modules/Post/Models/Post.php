@@ -61,6 +61,7 @@ class Post extends BaseModel
             $this->attributes['created_by_name'] = auth()->user()->name;
         }
     }
+
     /**
      * Set the published at
      * If no value submitted use the 'Title'.
