@@ -87,6 +87,7 @@ class InsertDemoData extends Command
             'posts',
             'categories',
             'tags',
+            'taggables',
             // 'comments',
             'activity_log',
         ];

@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Modules\Article\Models\Post;
+use Modules\Post\Models\Post;
 
 class RecentPosts extends Component
 {
