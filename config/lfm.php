@@ -96,7 +96,7 @@ return [
 
     'disk' => 'public',
 
-    'rename_file'              => true,
+    'rename_file' => true,
 
     'rename_duplicates' => false,
 
