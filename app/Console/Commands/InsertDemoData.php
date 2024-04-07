@@ -5,9 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Modules\Post\Models\Post;
 use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
+use Modules\Post\Models\Post;
 use Modules\Tag\Models\Tag;
 
 use function Laravel\Prompts\confirm;
@@ -43,25 +43,25 @@ class InsertDemoData extends Command
     public function insert_demo_data()
     {
         $this->info('Inserting Demo Data');
-        
+
         /**
          * Categories.
          */
-        $this->components->task("Inserting Categories", function () {
+        $this->components->task('Inserting Categories', function () {
             Category::factory()->count(5)->create();
         });
 
         /**
          * Tags.
          */
-        $this->components->task("Inserting Tags", function () {
+        $this->components->task('Inserting Tags', function () {
             Tag::factory()->count(10)->create();
         });
 
         /**
          * Posts.
          */
-        $this->components->task("Inserting Posts", function () {
+        $this->components->task('Inserting Posts', function () {
             Post::factory()->count(25)->create()->each(function ($post) {
                 $post->tags()->attach(
                     Tag::inRandomOrder()->limit(rand(5, 10))->pluck('id')->toArray()
@@ -75,7 +75,7 @@ class InsertDemoData extends Command
         // $this->components->task("Inserting Comments", function () {
         //     Comment::factory()->count(25)->create();
         // });
-        
+
         $this->newLine(2);
         $this->info('-- Completed --');
         $this->newLine();
