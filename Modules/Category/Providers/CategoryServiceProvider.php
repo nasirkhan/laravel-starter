@@ -87,7 +87,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'category');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'category');
     }
 
     /**
