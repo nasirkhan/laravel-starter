@@ -1,13 +1,17 @@
-@props(["title"=>app_name()])
+@props(['title' => app_name(), 'sub_title' => ''])
 
-<section class="bg-gray-50 dark:bg-gray-900 border">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center sm:py-16 sm:px-12 sm:pt-20">
-        <h1 class="mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl lg:text-6xl dark:text-white">
-            {!! $title !!}
-        </h1>
+<section class="bg-gray-100 py-20 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+    <div class="container mx-auto flex flex-col items-center justify-center px-5">
+        <div class="w-full text-center lg:w-2/3">
+            {!! $sub_title !!}
 
-        {!! $slot !!}
+            <h1 class="mb-4 text-3xl font-medium text-gray-800 dark:text-gray-200 sm:text-4xl">
+                {!! $title !!}
+            </h1>
 
-        @include('frontend.includes.messages')
+            {!! $slot !!}
+
+            @include('frontend.includes.messages')
+        </div>
     </div>
 </section>

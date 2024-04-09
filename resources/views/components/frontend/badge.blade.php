@@ -1,14 +1,16 @@
-@props(['url'=>'', 'text'])
+@props(['url' => '', 'text'])
 
-<span class="break-words inline-flex m-1">
+<span class="m-1 inline-flex break-words">
     @if ($url)
-    <a href="{{ $url }}" class="group bg-gray-100 text-gray-800 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300 border hover:border-gray-800 transition ease-out duration-300">
-        {{ $text }}
-    </a>
+        <a class="mb-2 me-2 rounded border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-800 dark:focus:ring-gray-700"
+            href="{{ $url }}">
+            {{ $text }}
+        </a>
     @else
-    <span class="group bg-gray-100 text-gray-800 px-2.5 py-1 rounded dark:bg-gray-700 dark:text-gray-300 border border-gray-300 transition ease-out duration-300">
-        {{ $text }}
-    </span>
+        <span
+            class="mb-2 me-2 rounded border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-800 dark:focus:ring-gray-700">
+            {{ $text }}
+        </span>
     @endif
 
 </span>
