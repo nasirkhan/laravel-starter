@@ -11,7 +11,7 @@
     <div class="card-body">
 
         <x-backend.section-header>
-            @lang("Admin Dashboard", ['name'=>config('app.name')])
+            @lang("Admin Dashboard")
 
             <x-slot name="toolbar">
                 <button class="btn btn-outline-primary mb-1" type="button" data-toggle="tooltip" data-coreui-placement="top" title="Tooltip">

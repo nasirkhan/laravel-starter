@@ -66,7 +66,7 @@ function convertToSlug(source, destination) {
 (() => {
     'use strict'
 
-    const THEME = 'coreui-docs-theme'
+    const THEME = 'color-theme'
 
     const getStoredTheme = () => localStorage.getItem(THEME)
     const setStoredTheme = theme => localStorage.setItem(THEME, theme)
