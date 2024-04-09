@@ -1,4 +1,4 @@
-<nav class="border-2 border-gray-200 bg-white shadow-md dark:bg-gray-900">
+<nav class="border-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900">
     <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/">
             <img class="h-9" src="{{ asset('img/logo-with-text.jpg') }}" alt="{{ app_name() }} Logo" />
@@ -129,9 +129,9 @@
                                     href="{{ route('frontend.users.profile') }}" role="menuitem">
                                     <div class="inline-flex items-center">
                                         <svg class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt me-2"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076" />
@@ -206,32 +206,23 @@
             <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-language">
                 <ul
                     class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
-                    <li>
-                        <a class="block rounded bg-blue-700 px-3 py-2 font-semibold text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
-                            href="/" aria-current="page">Home</a>
-                    </li>
-                    {{-- <li>
-                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="#">About</a>
-                    </li> --}}
-                    <li>
-                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="{{ route('frontend.posts.index') }}">@lang('Posts')</a>
-                    </li>
-                    <li>
-                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="{{ route('frontend.categories.index') }}">@lang('Categories')</a>
-                    </li>
-                    <li>
-                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="{{ route('frontend.tags.index') }}">@lang('Tags')</a>
-                    </li>
-                    <li>
-                        <a class="block rounded px-3 py-2 font-semibold text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            href="https://nasirkhn.com" target="_blank">Contact</a>
-                    </li>
+                    <x-frontend.nav-item :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-frontend.nav-item>
+                    <x-frontend.nav-item :href="route('frontend.posts.index')" :active="request()->routeIs('frontend.posts.*')">
+                        {{ __('Posts') }}
+                    </x-frontend.nav-item>
+                    <x-frontend.nav-item :href="route('frontend.categories.index')" :active="request()->routeIs('frontend.categories.*')">
+                        {{ __('Categories') }}
+                    </x-frontend.nav-item>
+                    <x-frontend.nav-item :href="route('frontend.tags.index')" :active="request()->routeIs('frontend.tags.*')">
+                        {{ __('Tags') }}
+                    </x-frontend.nav-item>
+                    <x-frontend.nav-item href="https://nasirkhn.com" target="_blank">
+                        {{ __('Contact') }}
+                    </x-frontend.nav-item>
                 </ul>
             </div>
-            
+
         </div>
     </nav>
