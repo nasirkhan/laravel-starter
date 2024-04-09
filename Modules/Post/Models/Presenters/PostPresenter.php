@@ -18,7 +18,7 @@ trait PostPresenter
         $featured_image = $value;
 
         if (Str::startsWith($featured_image, 'https://picsum.photos')) {
-            $return_text = $featured_image . '?random=' . $this->id;
+            $return_text = $featured_image.'?random='.$this->id;
         } else {
             $return_text = $featured_image;
         }
@@ -63,7 +63,7 @@ trait PostPresenter
 
             case '1':
                 if ($this->published_at >= Carbon::now()) {
-                    return '<span class="badge bg-warning text-dark">Scheduled (' . $this->published_at_formatted . ')</span>';
+                    return '<span class="badge bg-warning text-dark">Scheduled ('.$this->published_at_formatted.')</span>';
                 }
 
                 return '<span class="badge bg-success">Pubished</span>';
@@ -74,7 +74,7 @@ trait PostPresenter
                 break;
 
             default:
-                return '<span class="badge bg-primary">Status:' . $this->status . '</span>';
+                return '<span class="badge bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
     }
