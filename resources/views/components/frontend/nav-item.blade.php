@@ -3,7 +3,7 @@
 $active_classes = 'border-transparent dark:border-transparent';
 
 if ($active) {
-    $active_classes = "bg-gray-200 dark:bg-gray-700 rounded sm:bg-transparent sm:rounded-none border-gray-700 dark:border-gray-300 hover:opacity-75";
+    $active_classes = "bg-gray-200 dark:bg-gray-700 rounded sm:bg-transparent sm:rounded-none dark:sm:bg-transparent dark:sm:rounded-none border-gray-700 dark:border-gray-300 hover:opacity-75";
 }
 ?>
 <li>
