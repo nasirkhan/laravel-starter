@@ -36,7 +36,7 @@
                         <div class="card-body">
                             <p class="text-muted">{{ $fields['desc'] }}</p>
 
-                            <div class="row mb-3">
+                            <div class="row mt-3">
                                 <div class="col">
                                     @foreach($fields['elements'] as $field)
                                     @includeIf('backend.settings.fields.' . $field['type'] )

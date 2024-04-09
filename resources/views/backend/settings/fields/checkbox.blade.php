@@ -3,7 +3,7 @@ $required = (Str::contains($field['rules'], 'required')) ? "required" : "";
 $required_mark = ($required != "") ? '<span class="text-danger"> <strong>*</strong> </span>' : '';
 @endphp
 
-<div class="form-group mb-3 {{ $errors->has($field['name']) ? ' has-error' : '' }}">
+<div class="form-group mt-3 {{ $errors->has($field['name']) ? ' has-error' : '' }}">
     <div class="checkbox">
         <label>
             <input type='hidden' value='0' name='{{ $field['name'] }}' class='form-label'>

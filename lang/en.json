@@ -7,7 +7,7 @@
 
     "Welcome to": "Welcome to :name Admin Dashboard.",
     "Dashboard": "Dashboard",
-    "Admin Dashboard": "Admin Dashboard",
+    "Admin Dashboard": ":name Admin Dashboard",
 
     "Name": "Name",
     "Email": "Email",
@@ -39,6 +39,7 @@
 
     "Activity Log": "Activity Log",
     "Log": "Log",
+    "Logs": "Logs",
     "Current": "Current",
     "Old": "Old",
     "At": "At",

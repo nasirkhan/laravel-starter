@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-1/2 text-sm text-gray-500">
+                <div class="sm:w-1/2 text-sm text-gray-500">
                     Except where otherwise noted, content on this site is created by <a class="hover:underline"
                         href="{{ $author_url }}" rel="cc:attributionURL dct:creator">{{ $author }}</a> and licensed
                     under <a class="hover:underline" href="https://creativecommons.org/licenses/by-sa/4.0"
