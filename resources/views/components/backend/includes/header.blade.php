@@ -17,9 +17,8 @@ $notifications_latest = optional($notifications)->take(5);
                         <div class="clock" id="liveClock" onload="showTime()"></div>
                     </div>
                 </div>
-                <a class="nav-link hide-theme-dark px-0" data-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-original-title="Enable dark mode" href="?theme=dark" aria-label="Enable dark mode">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
+                <button class="nav-link hide-theme-dark px-0" data-toggle="tooltip" data-bs-placement="bottom"
+                    data-bs-original-title="Enable dark mode" data-coreui-theme-value="dark" aria-label="Enable dark mode">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -27,10 +26,9 @@ $notifications_latest = optional($notifications)->take(5);
                         <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z">
                         </path>
                     </svg>
-                </a>
-                <a class="nav-link hide-theme-light px-0" data-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-original-title="Enable light mode" href="?theme=light" aria-label="Enable light mode">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
+                </button>
+                <button class="nav-link hide-theme-light px-0" data-toggle="tooltip" data-bs-placement="bottom"
+                    data-bs-original-title="Enable light mode" data-coreui-theme-value="light" aria-label="Enable light mode">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -40,7 +38,7 @@ $notifications_latest = optional($notifications)->take(5);
                             d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
                         </path>
                     </svg>
-                </a>
+                </button>
                 <div class="nav-item dropdown d-flex me-3">
                     <a class="nav-link px-0" data-bs-toggle="dropdown" href="#" aria-label="Show notifications"
                         tabindex="-1">
