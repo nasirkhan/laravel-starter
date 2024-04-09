@@ -1,7 +1,8 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with the latest Laravel framework."></p>
 
-# Laravel Starter (based on Laravel 10.x)
-**Laravel Starter** is a Laravel 10.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `User` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects.
+# Laravel Starter (based on Laravel 11.x)
+**Laravel Starter** is a Laravel 11.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `Users` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects.
+Here Frontend and Backend are completely separated with separate routes, controllers and theme as well.
 
 Please let me know your feedback and comments.
 
@@ -101,7 +102,6 @@ It is a modular application, and some modules are installed by default. It will 
   * Github
   * Build in a way adding more is much easy now
 * User Profile with Avatar
-  * Separate User Profile table
 * Role-Permissions for Users
 * Dynamic Menu System
 * Language Switcher
@@ -109,9 +109,11 @@ It is a modular application, and some modules are installed by default. It will 
 * Backend Theme
   * Bootstrap 5, CoreUI
   * Fontawesome 6
+  * Dark Mode
 * Frontend Theme
   * Tailwind
   * Fontawesome 6
+  * Dark Mode
 * Article Module
   * Posts
   * Categories
@@ -164,11 +166,6 @@ This project is configured with Laravel Sail (https://laravel.com/docs/sail). Yo
 6. Run the command `sail artisan migrate --seed`
 7. Link storage directory: `sail artisan storage:link`
 8. Since Sail is already up, you can just visit http://localhost:80
-
-## Icons
-FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
-
-* **FontAwesome** - https://fontawesome.com
 
 
 # Screenshots
