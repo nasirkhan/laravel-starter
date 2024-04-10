@@ -81,10 +81,6 @@
                 <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d"
                     alt="Page preview">
             </div>
-            {{-- <div class="row-span-4 rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
-                <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/288f56cb-0cb0-4652-be17-9f65288558bb"
-                    alt="Page preview">
-            </div> --}}
             <div class="rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
                 <img src="https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4"
                     alt="Page preview">

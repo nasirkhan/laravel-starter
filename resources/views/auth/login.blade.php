@@ -8,7 +8,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -44,4 +44,8 @@
             </x-primary-button>
         </div>
     </form>
+    
+    <div class="py-2 text-gray-600 dark:text-gray-400">
+        Create an account? <a href="{{ route('register') }}" class="underline">Register</a>
+    </div>
 </x-guest-layout>
