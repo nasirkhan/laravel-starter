@@ -145,9 +145,15 @@ It is a modular application, and some modules are installed by default. It will 
 
 Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
-1. Open the terminal and run the command `composer create-project nasirkhan/laravel-starter`. This will download and install the `Laravel Starter` and run the post installation commands. 
-2. `sqlite` is the default database, if you want to change please update database settings at `.env` file
-3. Link storage directory: `php artisan storage:link`
+1. Open the terminal and run the following command, this will download and install the `Laravel Starter` and run the post-installation commands. 
+```bash
+composer create-project nasirkhan/laravel-starter
+```
+2. The default database is `sqlite`, if you want to change please update the database settings at `.env` file
+3. To create a link from the storage directory, run the following command from the project root:
+```php
+php artisan storage:link
+```
 4. If you run the `create-project` command from `Laravel Hard` then the site will be available at [http://laravel-starter.test](http://laravel-starter.test). You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
 
 *After creating the new permissions use the following commands to update cashed permissions.*
