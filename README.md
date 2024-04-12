@@ -4,7 +4,11 @@
 **Laravel Starter** is a Laravel 11.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `Users` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based project.
 Here Frontend and Backend are completely separated with separate routes, controllers, and themes as well.
 
-Please let me know your feedback and comments.
+***Please let me know your feedback and comments.***
+
+[![Latest Stable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v)](https://packagist.org/packages/nasirkhan/laravel-starter) [![Latest Unstable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v/unstable)](https://packagist.org/packages/nasirkhan/laravel-starter) [![CircleCI Build](https://github.styleci.io/repos/105638882/shield?style=flat)](https://packagist.org/packages/nasirkhan/laravel-starter)
+[![License](http://poser.pugx.org/nasirkhan/laravel-starter/license)](https://packagist.org/packages/nasirkhan/laravel-starter) [![PHP Version Require](http://poser.pugx.org/nasirkhan/laravel-starter/require/php)](https://packagist.org/packages/nasirkhan/laravel-starter)
+
 
 # Reporting a Vulnerability
 If you discover any security-related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
