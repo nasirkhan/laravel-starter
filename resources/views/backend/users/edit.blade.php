@@ -32,7 +32,7 @@
                 {{ html()->modelForm($user, 'PATCH', route('backend.users.update', $user->id))->class('form-horizontal')->acceptsFiles()->open() }}
 
                 <div class="form-group row">
-                    {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-control-label')->for('name') }}
+                    {{ html()->label(__('labels.backend.users.fields.avatar'))->class('col-md-2 form-label')->for('name') }}
 
                     <div class="col-md-5 mb-3">
                         <img class="user-profile-image img-fluid img-thumbnail"
@@ -248,7 +248,7 @@
 
                 @can('edit_users_permissions')
                     <div class="form-group row mb-3">
-                        {{ html()->label(__('Abilities'))->class('col-sm-2 form-control-label') }}
+                        {{ html()->label(__('Abilities'))->class('col-sm-2 form-label') }}
                         <div class="col">
                             <div class="row">
                                 <div class="col-sm-6 mb-3">

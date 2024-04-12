@@ -32,8 +32,8 @@
                 {{ html()->form('POST', route('backend.users.store'))->class('form-horizontal')->open() }}
                 {{ csrf_field() }}
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.first_name'))->class('col-sm-2 form-control-label')->for('first_name') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.first_name'))->class('col-sm-2 form-label')->for('first_name') }}
                     <div class="col-sm-10">
                         {{ html()->text('first_name')
                                 ->class('form-control')
@@ -43,8 +43,8 @@
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.last_name'))->class('col-sm-2 form-control-label')->for('last_name') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.last_name'))->class('col-sm-2 form-label')->for('last_name') }}
                     <div class="col-sm-10">
                         {{ html()->text('last_name')
                                 ->class('form-control')
@@ -54,8 +54,8 @@
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.email'))->class('col-sm-2 form-control-label')->for('email') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.email'))->class('col-sm-2 form-label')->for('email') }}
 
                     <div class="col-sm-10">
                         {{ html()->email('email')
@@ -66,8 +66,8 @@
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.password'))->class('col-sm-2 form-control-label')->for('password') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.password'))->class('col-sm-2 form-label')->for('password') }}
 
                     <div class="col-sm-10">
                         {{ html()->password('password')
@@ -77,8 +77,8 @@
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-sm-2 form-control-label')->for('password_confirmation') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-sm-2 form-label')->for('password_confirmation') }}
 
                     <div class="col-sm-10">
                         {{ html()->password('password_confirmation')
@@ -88,35 +88,35 @@
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.status'))->class('col-6 col-sm-2 form-control-label')->for('status') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.status'))->class('col-6 col-sm-2 form-label')->for('status') }}
 
                     <div class="col-6 col-sm-10">
                         {{ html()->checkbox('status', true, '1') }} @lang('Active')
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-6 col-sm-2 form-control-label')->for('confirmed') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.confirmed'))->class('col-6 col-sm-2 form-label')->for('confirmed') }}
 
                     <div class="col-6 col-sm-10">
                         {{ html()->checkbox('confirmed', true, '1') }} @lang('Email Confirmed')
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.email_credentials'))->class('col-6 col-sm-2 form-control-label')->for('confirmed') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label(__('labels.backend.users.fields.email_credentials'))->class('col-6 col-sm-2 form-label')->for('confirmed') }}
 
                     <div class="col-6 col-sm-10">
                         {{ html()->checkbox('email_credentials', true, '1') }} @lang('Email Credentials')
                     </div>
                 </div>
 
-                <div class="form-group row  mb-3">
-                    {{ html()->label('Abilities')->class('col-sm-2 form-control-label') }}
+                <div class="form-group row mb-3">
+                    {{ html()->label('Abilities')->class('col-sm-2 form-label') }}
 
                     <div class="col">
-                        <div class="row  mb-3">
+                        <div class="row mb-3">
                             <div class="col-12 col-sm-7">
                                 <div class="card card-accent-info">
                                     <div class="card-header">
@@ -172,7 +172,7 @@
                 </div>
                 <!--form-group-->
 
-                <div class="row  mb-3">
+                <div class="row mb-3">
                     <div class="col-6">
                         <div class="form-group">
                             <x-buttons.create title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}">
@@ -196,7 +196,7 @@
     </div>
 
     <div class="card-footer">
-        <div class="row  mb-3">
+        <div class="row mb-3">
             <div class="col">
                 <small class="float-end text-muted">
 
