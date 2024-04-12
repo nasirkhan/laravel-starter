@@ -142,7 +142,6 @@
                         </div>
                     @endif
                 @endauth
-
                 <div class="flex flex-col justify-between p-4">
                     <div class="font-semibold">
                         {{ label_case($field_name = 'bio') }}
