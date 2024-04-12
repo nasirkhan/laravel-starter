@@ -3,9 +3,9 @@
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item>
-</x-backend-breadcrumbs>
+<x-backend.breadcrumbs>
+    <x-backend.breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend.breadcrumb-item>
+</x-backend.breadcrumbs>
 @endsection
 
 @section('content')
@@ -14,15 +14,12 @@
         <x-backend.section-header>
             <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
             <x-slot name="toolbar">
                 <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}" />
             </x-slot>
         </x-backend.section-header>
         
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 <table class="table table-hover table-responsive-sm">
                     <thead>
@@ -47,9 +44,9 @@
                             </td>
                             <td class="text-end">
                                 @can('edit_'.$module_name)
-                                <x-buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
+                                <x-backend.buttons.edit route='{!!route("backend.$module_name.edit", $module_name_singular)!!}' title="{{__('Edit')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
                                 @endcan
-                                <x-buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
+                                <x-backend.buttons.show route='{!!route("backend.$module_name.show", $module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" small="true" />
                             </td>
                         </tr>
                         @endforeach

@@ -18,14 +18,21 @@ class UserLoginSuccess
     public $request;
 
     /**
-     * Create a new event instance.
-     *
-     * @return void
+     * Login Success Event Construct.
      */
     public function __construct(Request $request, User $user)
     {
         $this->user = $user;
-        $this->request = $request;
+        $this->request = $this->prepareRequestData($request);
+    }
+
+    public function prepareRequestData($request)
+    {
+        $data = $request->all();
+
+        $data['last_ip'] = request()->getClientIp();
+
+        return $data;
     }
 
     /**

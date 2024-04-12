@@ -201,7 +201,7 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $this->validate($request, [
+        $request->validate($request, [
             'name' => 'required|max:20|unique:roles,name,'.$id,
             'permissions' => 'required',
         ]);

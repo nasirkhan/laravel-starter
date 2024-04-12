@@ -25,71 +25,33 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     protected $guarded = [
         'id',
         'updated_at',
-        '_token',
-        '_method',
-        'password_confirmation',
-    ];
-
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'date_of_birth' => 'datetime',
-        'email_verified_at' => 'datetime',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
-     * Retrieve the providers associated with the user.
+     * Get the attributes that should be cast.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return array<string, string>
      */
-    public function providers()
+    protected function casts(): array
     {
-        return $this->hasMany('App\Models\UserProvider');
-    }
-
-    /**
-     * Retrieves the profile of the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function profile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
-    }
-
-    /**
-     * Get the user profile associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function userprofile()
-    {
-        return $this->hasOne('App\Models\Userprofile');
-    }
-
-    /**
-     * Get the list of users related to the current User.
-     */
-    public function getRolesListAttribute()
-    {
-        return array_map('intval', $this->roles->pluck('id')->toArray());
-    }
-
-    /**
-     * Route notifications for the Slack channel.
-     *
-     * @param  \Illuminate\Notifications\Notification  $notification
-     * @return string
-     */
-    public function routeNotificationForSlack($notification)
-    {
-        return env('SLACK_NOTIFICATION_WEBHOOK');
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'date_of_birth' => 'datetime',
+            'last_login' => 'datetime',
+            'deleted_at' => 'datetime',
+            'social_profiles' => 'array',
+        ];
     }
 
     /**
@@ -123,5 +85,23 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             $table->deleted_by = Auth::id();
             $table->save();
         });
+    }
+
+    /**
+     * Retrieve the providers associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function providers()
+    {
+        return $this->hasMany('App\Models\UserProvider');
+    }
+
+    /**
+     * Get the list of users related to the current User.
+     */
+    public function getRolesListAttribute()
+    {
+        return array_map('intval', $this->roles->pluck('id')->toArray());
     }
 }

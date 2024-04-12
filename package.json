@@ -1,35 +1,27 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build"
     },
     "devDependencies": {
-        "@coreui/coreui": "^4.2.6",
-        "@coreui/icons": "^2.1.0",
-        "@coreui/utils": "^2.0.1",
-        "@fortawesome/fontawesome-free": "^6.3.0",
-        "@popperjs/core": "^2.11.6",
-        "@tailwindcss/forms": "^0.5.3",
-        "alpinejs": "^3.12.0",
+        "@coreui/coreui": "^5.0.0",
+        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@popperjs/core": "^2.11.8",
+        "@tailwindcss/forms": "^0.5.2",
+        "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
-        "axios": "^1.6.0",
-        "bootstrap": "^5.2.3",
-        "jquery": "^3.6.4",
-        "laravel-vite-plugin": "^0.7.3",
-        "perfect-scrollbar": "^1.5.5",
-        "postcss-import": "^15.1.0",
-        "postcss-loader": "^7.0.2",
-        "resolve-url-loader": "^5.0.0",
-        "sass": "^1.59.2",
-        "sass-loader": "^13.2.0",
-        "simplebar": "^6.2.1",
-        "tailwindcss": "^3.2.7",
-        "vite": "^4.5.3"
-    },
-    "dependencies": {
-        "-": "^0.0.1",
-        "@alpinejs/collapse": "^3.12.0",
-        "d": "^1.0.1"
+        "axios": "^1.6.4",
+        "bootstrap": "^5.3.3",
+        "flowbite": "^2.3.0",
+        "jquery": "^3.7.1",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.31",
+        "sass": "^1.72.0",
+        "sass-loader": "^14.1.1",
+        "simplebar": "^6.2.5",
+        "tailwindcss": "^3.1.0",
+        "vite": "^5.0"
     }
 }

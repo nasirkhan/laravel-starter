@@ -3,9 +3,9 @@
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend-breadcrumb-item>
-</x-backend-breadcrumbs>
+<x-backend.breadcrumbs>
+    <x-backend.breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend.breadcrumb-item>
+</x-backend.breadcrumbs>
 @endsection
 
 @section('content')
@@ -23,8 +23,6 @@
                 <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary" data-toggle="tooltip" title="{{ ucwords($module_name) }} List"><i class="fas fa-list"></i> List</a>
             </x-slot>
         </x-backend.section-header>
-
-        <hr>
 
         <div class="row mt-4">
             <div class="col">

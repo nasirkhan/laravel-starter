@@ -30,10 +30,6 @@ class CategoryServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(base_path('Modules/Category/database/migrations'));
 
-        // adding global middleware
-        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
-        $kernel->pushMiddleware('Modules\Category\Http\Middleware\GenerateMenus');
-
         // register commands
         $this->registerCommands('\Modules\Category\Console\Commands');
     }
@@ -47,7 +43,23 @@ class CategoryServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
 
+        // Event Service Provider
         $this->app->register(EventServiceProvider::class);
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            base_path('Modules/Category/Config/config.php') => config_path($this->moduleNameLower.'.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            base_path('Modules/Category/Config/config.php'), $this->moduleNameLower
+        );
     }
 
     /**
@@ -59,7 +71,7 @@ class CategoryServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
 
-        $sourcePath = module_path($this->moduleName, 'Resources/views');
+        $sourcePath = base_path('Modules/Category/Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath,
@@ -88,20 +100,16 @@ class CategoryServiceProvider extends ServiceProvider
         return [];
     }
 
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
+    private function getPublishableViewPaths(): array
     {
-        $this->publishes([
-            base_path('Modules/Category/Config/config.php') => config_path($this->moduleNameLower.'.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            base_path('Modules/Category/Config/config.php'),
-            $this->moduleNameLower
-        );
+        $paths = [];
+        foreach (Config::get('view.paths') as $path) {
+            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
+                $paths[] = $path.'/modules/'.$this->moduleNameLower;
+            }
+        }
+
+        return $paths;
     }
 
     /**
@@ -121,17 +129,5 @@ class CategoryServiceProvider extends ServiceProvider
         }
 
         $this->commands($classes);
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        foreach (Config::get('view.paths') as $path) {
-            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
-                $paths[] = $path.'/modules/'.$this->moduleNameLower;
-            }
-        }
-
-        return $paths;
     }
 }

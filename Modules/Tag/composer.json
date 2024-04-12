@@ -2,7 +2,6 @@
     "name": "nasirkhan/tag",
     "description": "",
     "type": "laravel-module",
-    "version": "v5.0.0",
     "authors": [
         {
             "name": "Nasir Khan",

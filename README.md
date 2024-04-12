@@ -1,9 +1,13 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with the latest Laravel framework."></p>
 
-# Laravel Starter (based on Laravel 10.x)
-**Laravel Starter** is a Laravel 10.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `User` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects.
+# Laravel Starter (based on Laravel 11.x)
+**Laravel Starter** is a Laravel 11.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `Users` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based project.
+Here Frontend and Backend are completely separated with separate routes, controllers, and themes as well.
 
-Please let me know your feedback and comments.
+***Please let me know your feedback and comments.***
+
+[![Latest Stable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v)](https://packagist.org/packages/nasirkhan/laravel-starter) [![Latest Unstable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v/unstable)](https://packagist.org/packages/nasirkhan/laravel-starter) [![StyleCI Build](https://github.styleci.io/repos/105638882/shield?style=flat)](https://packagist.org/packages/nasirkhan/laravel-starter) [![License](http://poser.pugx.org/nasirkhan/laravel-starter/license)](https://packagist.org/packages/nasirkhan/laravel-starter) [![PHP Version Require](http://poser.pugx.org/nasirkhan/laravel-starter/require/php)](https://packagist.org/packages/nasirkhan/laravel-starter)
+
 
 # Reporting a Vulnerability
 If you discover any security-related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
@@ -35,7 +39,7 @@ php artisan starter:insert-demo-data --fresh
 
 There are options to truncate the `posts, categories, tags, and comments` tables and insert new demo data.
 
-`--fresh` option will truncate the tables, without this command new set of data will be inserted.
+`--fresh` option will truncate the tables, without this command a new set of data will be inserted.
 
 ```php
 
@@ -49,13 +53,13 @@ We have created a number of custom commands for the project. The commands are li
 
 ## Create New module
 
-To create a project use the following command, you have repalce the MODULE_NAME with the name of the module.
+To create a project use the following command, you have to replace the MODULE_NAME with the name of the module.
 
 ```php
 php artisan module:build MODULE_NAME
 ```
 
-You may want to use `--force` option to overwrite the existing module. if you use this option, it will replace all the exisitng files with the defalut stub files.
+You may want to use `--force` option to overwrite the existing module. if you use this option, it will replace all the existing files with the default stub files.
 
 ```php
 php artisan module:build MODULE_NAME --force
@@ -67,11 +71,11 @@ php artisan module:build MODULE_NAME --force
 composer clear-all
 ```
 
-this is a shortcut command clear all cache including config, route, and more
+this is a shortcut command to clear all cache including config, route, and more
 
 ## Code Style Fix
 
-We are now using `Laravel Pint` to make the code style stays clean and consistent as the Laravel Framework. Use the following command to apply CS-Fix.
+We are now using `Laravel Pint` to make the code style stay as clean and consistent as the Laravel Framework. Use the following command to apply CS-Fix.
 
 ```bash
 composer pint
@@ -84,7 +88,7 @@ Several custom commands are available to add and update `role-permissions`. Plea
 
 # Features
 
-The `Laravel Starter` comes with several features which are the most common in almost all applications. It is a template project which means it is intended to build in a way that it can be used for other projects.
+The `Laravel Starter` comes with several features which are the most common in almost all applications. It is a template project which means it is intended to be built in a way that it can be used for other projects.
 
 It is a modular application, and some modules are installed by default. It will be helpful to use it as a base for future applications.
 
@@ -99,9 +103,8 @@ It is a modular application, and some modules are installed by default. It will 
   * Google
   * Facebook
   * Github
-  * Build in a way adding more is much easy now
+  * Build in a way adding more is much easier now
 * User Profile with Avatar
-  * Separate User Profile table
 * Role-Permissions for Users
 * Dynamic Menu System
 * Language Switcher
@@ -109,9 +112,11 @@ It is a modular application, and some modules are installed by default. It will 
 * Backend Theme
   * Bootstrap 5, CoreUI
   * Fontawesome 6
+  * Dark Mode
 * Frontend Theme
   * Tailwind
   * Fontawesome 6
+  * Dark Mode
 * Article Module
   * Posts
   * Categories
@@ -144,7 +149,7 @@ Follow the steps mentioned below to install and run the project. You may find mo
 2. Go to the project directory and run `composer install`
 3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
 4. Update the database name and credentials in `.env` file
-5. Run the command to generate application key `php artisan key:generate`
+5. Run the command to generate the application key `php artisan key:generate`
 6. Run the command `php artisan migrate --seed`
 7. Link storage directory: `php artisan storage:link`
 8. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
@@ -165,17 +170,13 @@ This project is configured with Laravel Sail (https://laravel.com/docs/sail). Yo
 7. Link storage directory: `sail artisan storage:link`
 8. Since Sail is already up, you can just visit http://localhost:80
 
-## Icons
-FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
-
-* **FontAwesome** - https://fontawesome.com
-
 
 # Screenshots
 
 __Home Page__
 
-![Laravel Starter Home](https://github.com/nasirkhan/laravel-starter/assets/396987/027a2c39-09f4-440f-90a9-955aff51eb85)
+![Laravel Starter Homepage Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/1cf5ce5a-f374-4bae-b5a3-69e8d7ff684d)
+![Laravel Starter Homepage](https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d)
 
 __Login Page__
 
@@ -183,16 +184,18 @@ __Login Page__
 
 __Posts Page__
 
-![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/bc184450-0f87-4471-a022-abf31337bef4)
+![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/288f56cb-0cb0-4652-be17-9f65288558bb)
 
 __Backend Dashboard__
 
-![Backend Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/b9ca9cd8-fa7c-43f0-b54f-47e7c4966d9c)
+![Laravel Starter Admin Dashboard Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4)
+![Laravel Starter Admin Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/f8131011-2ecc-4a11-961f-85e02cb8f7a1)
 
 ---
 
-![List-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/413b3c75-4a1f-47e3-8885-bc6bd475213c)
+![Laravel Starter Posts List](https://github.com/nasirkhan/laravel-starter/assets/396987/c032769e-78b2-4dbf-bc5e-687645125796)
 
 ---
 
-![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/b067e211-1208-49a6-859b-7a6810e3f3bb)
+![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/6421b8e5-3c69-4c1f-9518-875e72be77c0)
+

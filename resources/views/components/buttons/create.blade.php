@@ -4,7 +4,7 @@
 <a href='{{$route}}'
     class='btn btn-success {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
     data-toggle="tooltip"
-    title="{{ $title }}">
+    title="{{ __($title) }}">
     <i class="{{$icon}}"></i>
     {{ $slot }}
 </a>
@@ -12,7 +12,7 @@
 <button type="submit"
     class='btn btn-success {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
     data-toggle="tooltip"
-    title="{{ $title }}">
+    title="{{ __($title) }}">
     <i class="{{$icon}}"></i>
     {{ $slot }}
 </button>

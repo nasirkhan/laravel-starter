@@ -6,7 +6,6 @@ use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserProvider;
-use App\Providers\RouteServiceProvider;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -30,7 +29,7 @@ class SocialLoginController extends Controller
             return $redirectTo;
         }
 
-        return RouteServiceProvider::HOME;
+        return redirect()->route('home');
     }
 
     /**
@@ -65,7 +64,7 @@ class SocialLoginController extends Controller
             return redirect('/');
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(route('home', absolute: false));
     }
 
     /**
@@ -118,7 +117,7 @@ class SocialLoginController extends Controller
 
             flash('Email address is required!')->error()->important();
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(route('home', absolute: false));
         }
 
         $user = User::create([
@@ -132,7 +131,7 @@ class SocialLoginController extends Controller
         $user->avatar = $media->getUrl();
         $user->save();
 
-        event(new UserRegistered($user));
+        event(new UserRegistered(request(), $user));
 
         UserProvider::create([
             'user_id' => $user->id,

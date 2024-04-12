@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,29 +9,32 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_registration_screen_can_be_rendered()
+    public function test_registration_screen_can_be_rendered(): void
     {
         $response = $this->get('/register');
 
-        $response->assertStatus(200);
+        if (config('app.user_registration')) {
+            $response->assertStatus(200);
+        } else {
+            $response->assertStatus(404);
+        }
     }
 
-    public function test_new_users_can_register()
+    public function test_new_users_can_register(): void
     {
-        $response = $this->post('/register', [
-            'first_name' => 'Test',
-            'last_name' => 'User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        if (config('app.user_registration')) {
+            $response = $this->post('/register', [
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+                'password' => 'password',
+                'password_confirmation' => 'password',
+            ]);
 
-        $response = $this->post('/login', [
-            'email' => 'test@example.com',
-            'password' => 'password',
-        ]);
-
-        $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+            $this->assertAuthenticated();
+            $response->assertRedirect(route('home', absolute: false));
+        } else {
+            $response = $this->get('/register');
+            $response->assertStatus(404);
+        }
     }
 }

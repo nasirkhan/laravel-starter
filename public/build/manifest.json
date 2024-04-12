@@ -1,54 +1,66 @@
 {
+  "_popper-BAn7w8_p.js": {
+    "file": "assets/popper-BAn7w8_p.js",
+    "name": "popper"
+  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400-003f1154.ttf",
+    "file": "assets/fa-brands-400-DHHcbFjz.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400-faae6fc0.woff2",
+    "file": "assets/fa-brands-400-Ch568Ea9.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400-7d81a1a7.ttf",
+    "file": "assets/fa-regular-400-C54-fRIQ.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400-9169d8be.woff2",
+    "file": "assets/fa-regular-400-9VThgXHM.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900-cea79b34.ttf",
+    "file": "assets/fa-solid-900-Cm9M9sZB.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900-886c8611.woff2",
+    "file": "assets/fa-solid-900-QWY35r5r.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf": {
-    "file": "assets/fa-v4compatibility-455e8e72.ttf",
+    "file": "assets/fa-v4compatibility-DLBX5pNp.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
-    "file": "assets/fa-v4compatibility-335fd7d9.woff2",
+    "file": "assets/fa-v4compatibility-BRdYr4HJ.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-56928b57.css",
-    "isEntry": true,
-    "src": "resources/css/app-frontend.css"
+    "file": "assets/app-frontend-DL7wzm74.css",
+    "src": "resources/css/app-frontend.css",
+    "isEntry": true
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-03f51593.js",
+    "file": "assets/app-backend-B2OmcelK.js",
+    "name": "app-backend",
+    "src": "resources/js/app-backend.js",
     "isEntry": true,
-    "src": "resources/js/app-backend.js"
+    "imports": [
+      "_popper-BAn7w8_p.js"
+    ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-02317797.js",
+    "file": "assets/app-frontend-BjAWzxDJ.js",
+    "name": "app-frontend",
+    "src": "resources/js/app-frontend.js",
     "isEntry": true,
-    "src": "resources/js/app-frontend.js"
+    "imports": [
+      "_popper-BAn7w8_p.js"
+    ]
   },
   "resources/sass/app-backend.scss": {
-    "file": "assets/app-backend-24464b21.css",
-    "isEntry": true,
-    "src": "resources/sass/app-backend.scss"
+    "file": "assets/app-backend-A-kwPWnt.css",
+    "src": "resources/sass/app-backend.scss",
+    "isEntry": true
   }
 }

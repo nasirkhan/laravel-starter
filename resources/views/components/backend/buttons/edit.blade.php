@@ -1,19 +1,15 @@
-@props(["route"=>"", "icon"=>"fas fa-wrench", "title", "small"=>"", "class"=>""])
+@props(['route' => '', 'icon' => 'fas fa-wrench', 'title', 'small' => '', 'class' => ''])
 
-@if($route)
-<a href='{{$route}}'
-    class='btn btn-primary m-1 {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
-    data-toggle="tooltip"
-    title="{{ $title }}">
-    <i class="{{$icon}}"></i>
-    {{ $slot }}
-</a>
+@if ($route)
+    <a class='btn btn-outline-primary {{ $small == 'true' ? 'btn-sm' : '' }} {{ $class }} m-1'
+        data-toggle="tooltip" href='{{ $route }}' title="{{ $title }}">
+        <i class="{{ $icon }} fa-fw"></i>
+        {!! ($slot != "") ? '&nbsp;' . $slot : '' !!}
+    </a>
 @else
-<button type="submit"
-    class='btn btn-primary m-1 {{($small=='true')? 'btn-sm' : ''}} {{$class}}'
-    data-toggle="tooltip"
-    title="{{ $title }}">
-    <i class="{{$icon}}"></i>
-    {{ $slot }}
-</button>
+    <button class='btn btn-outline-primary {{ $small == 'true' ? 'btn-sm' : '' }} {{ $class }} m-1'
+        data-toggle="tooltip" type="submit" title="{{ $title }}">
+        <i class="{{ $icon }} fa-fw"></i>
+        {!! ($slot != "") ? '&nbsp;' . $slot : '' !!}
+    </button>
 @endif

@@ -23,7 +23,7 @@ class CategoriesController extends BackendBaseController
         $this->module_path = 'category::backend';
 
         // module icon
-        $this->module_icon = 'fa-solid fa-sitemap';
+        $this->module_icon = 'fa-solid fa-diagram-project';
 
         // module model name, path
         $this->module_model = "Modules\Category\Models\Category";
@@ -45,9 +45,16 @@ class CategoriesController extends BackendBaseController
 
         $module_action = 'Store';
 
-        $validatedData = $request->validate([
+        $validated_request = $request->validate([
             'name' => 'required|max:191|unique:'.$module_model.',name',
             'slug' => 'nullable|max:191|unique:'.$module_model.',slug',
+            'group_name' => 'nullable|max:191',
+            'description' => 'nullable|max:191',
+            'meta_title' => 'nullable|max:191',
+            'meta_description' => 'nullable',
+            'meta_keyword' => 'nullable',
+            'order' => 'nullable|integer',
+            'status' => 'nullable|max:191',
         ]);
 
         $$module_name_singular = $module_model::create($request->except('image'));
@@ -58,7 +65,7 @@ class CategoriesController extends BackendBaseController
             $$module_name_singular->save();
         }
 
-        flash(icon()."New '".Str::singular($module_title)."' Added")->success()->important();
+        flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
@@ -111,9 +118,16 @@ class CategoriesController extends BackendBaseController
 
         $module_action = 'Update';
 
-        $validatedData = $request->validate([
+        $validated_request = $request->validate([
             'name' => 'required|max:191|unique:'.$module_model.',name,'.$id,
             'slug' => 'nullable|max:191|unique:'.$module_model.',slug,'.$id,
+            'group_name' => 'nullable|max:191',
+            'description' => 'nullable|max:191',
+            'meta_title' => 'nullable|max:191',
+            'meta_description' => 'nullable',
+            'meta_keyword' => 'nullable',
+            'order' => 'nullable|integer',
+            'status' => 'required|max:191',
         ]);
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -141,7 +155,7 @@ class CategoriesController extends BackendBaseController
             }
         }
 
-        flash(icon().' '.Str::singular($module_title)."' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 

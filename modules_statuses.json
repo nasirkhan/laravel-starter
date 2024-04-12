@@ -1,6 +1,5 @@
 {
-    "Article": true,
-    "Tag": true,
-    "Comment": true,
-    "Category": true
+    "Post": true,
+    "Category": true,
+    "Tag": true
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 trait Authorizable
@@ -32,7 +33,7 @@ trait Authorizable
     public function callAction($method, $parameters)
     {
         if ($ability = $this->getAbility($method)) {
-            $this->authorize($ability);
+            Gate::authorize($ability);
         }
 
         return parent::callAction($method, $parameters);

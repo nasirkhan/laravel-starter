@@ -4,6 +4,7 @@ namespace App\Models\Presenters;
 
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -12,6 +13,16 @@ use Illuminate\Support\Facades\Cache;
 trait UserPresenter
 {
     /**
+     * Get User Avatar.
+     */
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
+        );
+    }
+
+    /**
      * Get Status Label.
      */
     public function getStatusLabelAttribute()
@@ -19,15 +30,15 @@ trait UserPresenter
         $return_string = '';
         switch ($this->status) {
             case '1':
-                $return_string = '<span class="badge bg-success">Active</span>';
+                $return_string = '<span class="badge text-bg-success">Active</span>';
                 break;
 
             case '2':
-                $return_string = '<span class="badge bg-warning text-dark">Blocked</span>';
+                $return_string = '<span class="badge text-bg-danger">Blocked</span>';
                 break;
 
             default:
-                $return_string = '<span class="badge bg-primary">Status:'.$this->status.'</span>';
+                $return_string = '<span class="badge text-bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
 
@@ -42,10 +53,10 @@ trait UserPresenter
     public function getConfirmedLabelAttribute()
     {
         if ($this->email_verified_at !== null) {
-            return '<span class="badge bg-success">Confirmed</span>';
+            return '<span class="badge text-bg-primary">Confirmed</span>';
         }
 
-        return '<span class="badge bg-danger">Not Confirmed</span>';
+        return '<span class="badge text-bg-danger">Not Confirmed</span>';
     }
 
     /**
@@ -74,5 +85,30 @@ trait UserPresenter
         });
 
         return $roles->where('model_id', $this->id);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $value = ucwords(strtolower($value));
+        $this->attributes['name'] = $value;
+
+        $name_parts = split_name($value);
+        $this->attributes['first_name'] = $name_parts[0];
+        $this->attributes['last_name'] = $name_parts[1];
+    }
+
+    /**
+     * Array keys for social_profiles field.
+     */
+    public static function socialFieldsNames()
+    {
+        return [
+            'website_url',
+            'facebook_url',
+            'twitter_url',
+            'instagram_url',
+            'youtube_url',
+            'linkedin_url',
+        ];
     }
 }

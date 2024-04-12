@@ -6,7 +6,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
 
 /**
  * Class PermissionRoleTableSeeder.
@@ -20,8 +19,6 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-
         // Create Roles
         $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
         $admin = Role::create(['id' => '2', 'name' => 'administrator']);
@@ -31,13 +28,11 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Create Permissions
         Permission::firstOrCreate(['name' => 'view_backend']);
-        Permission::firstOrCreate(['name' => 'edit_settings']);
-        Permission::firstOrCreate(['name' => 'view_logs']);
 
         $permissions = Permission::defaultPermissions();
 
-        foreach ($permissions as $perms) {
-            Permission::firstOrCreate(['name' => $perms]);
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
         Artisan::call('auth:permission', [
@@ -63,10 +58,8 @@ class PermissionRoleTableSeeder extends Seeder
         echo "\n\n";
 
         // Assign Permissions to Roles
-        $admin->givePermissionTo(Permission::all());
+        $admin->givePermissionTo('view_backend');
         $manager->givePermissionTo('view_backend');
         $executive->givePermissionTo('view_backend');
-
-        Schema::enableForeignKeyConstraints();
     }
 }

@@ -12,7 +12,9 @@ return [
     'namespace' => 'Modules',
 
     'stubs' => [
-        'path' => base_path('stubs/laravel-starter-stubs'),
+        // 'path' => base_path('stubs/laravel-starter-stubs'),
+
+        'path' => base_path('vendor/nasirkhan/module-manager/src/stubs'),
     ],
 
     'module' => [
@@ -33,7 +35,6 @@ return [
             'route_api' => ['routes/api.stub', 'routes/api.php'],
             'controller_backend' => ['Http/Controllers/Backend/stubBackendController.stub', 'Http/Controllers/Backend/stubBackendController.php'],
             'controller_frontend' => ['Http/Controllers/Frontend/stubFrontendController.stub', 'Http/Controllers/Frontend/stubFrontendController.php'],
-            'middleware_menu' => ['Http/Middleware/GenerateMenus.stub', 'Http/Middleware/GenerateMenus.php'],
             'views_backend_index' => ['Resources/views/backend/stubViews/index.blade.stub', 'Resources/views/backend/stubViews/index.blade.php'],
             'views_backend_index_datatable' => ['Resources/views/backend/stubViews/index_datatable.blade.stub', 'Resources/views/backend/stubViews/index_datatable.blade.php'],
             'views_backend_create' => ['Resources/views/backend/stubViews/create.blade.stub', 'Resources/views/backend/stubViews/create.blade.php'],
@@ -61,5 +62,9 @@ return [
             'name' => 'Nasir Khan',
             'email' => 'nasir8891@gmail.com',
         ],
+    ],
+
+    'files' => [
+        'module-list' => base_path('modules_statuses.json'),
     ],
 ];

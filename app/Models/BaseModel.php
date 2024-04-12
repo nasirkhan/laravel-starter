@@ -19,19 +19,20 @@ class BaseModel extends Model implements HasMedia
     protected $guarded = [
         'id',
         'updated_at',
-        '_token',
-        '_method',
     ];
 
-    protected $casts = [
-        'deleted_at' => 'datetime',
-        'published_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'deleted_at' => 'datetime',
+            'published_at' => 'datetime',
+        ];
+    }
 
     /**
      * Create Converted copies of uploaded images.
      */
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(250)
@@ -159,5 +160,69 @@ class BaseModel extends Model implements HasMedia
             $table->deleted_by = Auth::id();
             $table->save();
         });
+    }
+
+    /**
+     * Set the 'meta title'.
+     * If no value submitted use the 'Title'.
+     *
+     * @param [type]
+     */
+    public function setMetaTitleAttribute($value)
+    {
+        $this->attributes['meta_title'] = $value;
+
+        if (empty($value)) {
+            $this->attributes['meta_title'] = $this->attributes['name'];
+        }
+    }
+
+    /**
+     * Set the 'meta description'
+     * If no value submitted use the default 'meta_description'.
+     *
+     * @param [type]
+     */
+    public function setMetaDescriptionAttribute($value)
+    {
+        $this->attributes['meta_description'] = $value;
+
+        if (empty($value)) {
+            $this->attributes['meta_description'] = setting('meta_description');
+        }
+    }
+
+    /**
+     * Set the 'meta description'
+     * If no value submitted use the default 'meta_description'.
+     *
+     * @param [type]
+     */
+    public function setMetaKeywordAttribute($value)
+    {
+        $this->attributes['meta_keyword'] = $value;
+
+        if (empty($value)) {
+            $this->attributes['meta_keyword'] = setting('meta_keyword');
+        }
+    }
+
+    /**
+     * Set the meta meta_og_image
+     * If no value submitted use the 'Title'.
+     *
+     * @param [type]
+     */
+    public function setMetaOgImageAttribute($value)
+    {
+        $this->attributes['meta_og_image'] = $value;
+
+        if (empty($value)) {
+            if (isset($this->attributes['image'])) {
+                $this->attributes['meta_og_image'] = $this->attributes['image'];
+            } else {
+                $this->attributes['meta_og_image'] = setting('meta_image');
+            }
+        }
     }
 }

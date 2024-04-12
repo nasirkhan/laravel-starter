@@ -3,7 +3,7 @@
 @section('title') @lang("Dashboard") @endsection
 
 @section('breadcrumbs')
-<x-backend-breadcrumbs />
+<x-backend.breadcrumbs />
 @endsection
 
 @section('content')
@@ -11,11 +11,8 @@
     <div class="card-body">
 
         <x-backend.section-header>
-            @lang("Welcome to", ['name'=>config('app.name')])
+            @lang("Admin Dashboard")
 
-            <x-slot name="subtitle">
-                {{ date_today() }}
-            </x-slot>
             <x-slot name="toolbar">
                 <button class="btn btn-outline-primary mb-1" type="button" data-toggle="tooltip" data-coreui-placement="top" title="Tooltip">
                     <i class="fa-solid fa-bullhorn"></i>
@@ -30,6 +27,7 @@
     </div>
 </div>
 
+{{-- Demo content --}}
 @include("backend.includes.dashboard_demo_data")
 
 @endsection

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 class LanguageController extends Controller
 {
     public function switch($language)
     {
-        app()->setLocale($language);
+        App::setLocale($language);
 
         session()->put('locale', $language);
 

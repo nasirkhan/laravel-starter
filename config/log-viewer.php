@@ -36,8 +36,12 @@ return [
      |  Theme
      | -----------------------------------------------------------------
      |  Supported themes :
-     |    'bootstrap-3', 'bootstrap-4'
-     |  Make your own theme by adding a folder to the views directory and specifying it here.
+     |    'laravel-starter'
+     |    'bootstrap-5'
+     |    'bootstrap-4'
+     |    'bootstrap-3'
+     |
+     |  You can make your own theme by adding a folder to the views directory and specifying it here.
      */
 
     'theme' => 'laravel-starter',
@@ -52,13 +56,12 @@ return [
 
         'attributes' => [
             'prefix' => 'admin/log-viewer',
-            'middleware' => ['web', 'auth', 'permission:view_logs'],
-        ],
-        // 'attributes' => [
-        //     'prefix'     => 'log-viewer',
+            'middleware' => ['web', 'auth', 'can:view_logs'],
 
-        //     'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
-        // ],
+            // 'middleware' => env('ARCANEDEV_LOGVIEWER_MIDDLEWARE') ? explode(',', env('ARCANEDEV_LOGVIEWER_MIDDLEWARE')) : null,
+        ],
+
+        'show' => 'log-viewer::logs.show',
     ],
 
     /* -----------------------------------------------------------------
@@ -75,7 +78,7 @@ return [
      */
 
     'download' => [
-        'prefix' => 'laravel-',
+        'prefix' => 'laravel-starter',
 
         'extension' => 'log',
     ],

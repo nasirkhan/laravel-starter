@@ -1,15 +1,15 @@
 @extends ("backend.layouts.app")
 
-@section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
+@section('title') {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
+<x-backend.breadcrumbs>
+    <x-backend.breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ __($module_title) }}
-    </x-backend-breadcrumb-item>
+    </x-backend.breadcrumb-item>
 
-    <x-backend-breadcrumb-item type="active">{{ __($module_action) }}</x-backend-breadcrumb-item>
-</x-backend-breadcrumbs>
+    <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
+</x-backend.breadcrumbs>
 @endsection
 
 @section("content")
@@ -27,8 +27,7 @@
             </x-slot>
         </x-backend.section-header>
 
-        <hr>
-        <div class="row mt-4">
+        <div class="row">
             <div class="col">
                 {{ html()->modelForm($$module_name_singular, 'PATCH', route("backend.$module_name.update", $$module_name_singular->id))->class('form-horizontal')->open() }}
 
@@ -41,7 +40,7 @@
                     ?>
                     <div class="col-12 col-sm-2">
                         <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                         </div>
                     </div>
                     <div class="col-12 col-sm-10">
@@ -60,7 +59,7 @@
                     ?>
                     <div class="col-12 col-sm-2">
                         <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! fielf_required($required) !!}
+                            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
                         </div>
                     </div>
                     <div class="col-12 col-sm-10">

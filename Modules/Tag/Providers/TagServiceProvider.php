@@ -28,14 +28,10 @@ class TagServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
-
-        // adding global middleware
-        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
-        $kernel->pushMiddleware('Modules\Tag\Http\Middleware\GenerateMenus');
+        $this->loadMigrationsFrom(base_path('Modules/Tag/database/migrations'));
 
         // register commands
-        $this->registerCommands('\Modules\Tag\Console');
+        $this->registerCommands('\Modules\Tag\Console\Commands');
     }
 
     /**
@@ -46,6 +42,24 @@ class TagServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        // Event Service Provider
+        $this->app->register(EventServiceProvider::class);
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $this->publishes([
+            base_path('Modules/Tag/Config/config.php') => config_path($this->moduleNameLower.'.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            base_path('Modules/Tag/Config/config.php'), $this->moduleNameLower
+        );
     }
 
     /**
@@ -57,7 +71,7 @@ class TagServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
 
-        $sourcePath = module_path($this->moduleName, 'Resources/views');
+        $sourcePath = base_path('Modules/Tag/Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath,
@@ -73,13 +87,7 @@ class TagServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/'.$this->moduleNameLower);
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
-        } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
-        }
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'tag');
     }
 
     /**
@@ -92,20 +100,16 @@ class TagServiceProvider extends ServiceProvider
         return [];
     }
 
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
+    private function getPublishableViewPaths(): array
     {
-        $this->publishes([
-            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower.'.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/config.php'),
-            $this->moduleNameLower
-        );
+        $paths = [];
+        foreach (Config::get('view.paths') as $path) {
+            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
+                $paths[] = $path.'/modules/'.$this->moduleNameLower;
+            }
+        }
+
+        return $paths;
     }
 
     /**
@@ -125,17 +129,5 @@ class TagServiceProvider extends ServiceProvider
         }
 
         $this->commands($classes);
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        foreach (Config::get('view.paths') as $path) {
-            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
-                $paths[] = $path.'/modules/'.$this->moduleNameLower;
-            }
-        }
-
-        return $paths;
     }
 }

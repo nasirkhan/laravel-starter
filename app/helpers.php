@@ -18,6 +18,21 @@ if (! function_exists('app_name')) {
 /*
  * Global helpers file with misc functions.
  */
+if (! function_exists('app_url')) {
+    /**
+     * Helper to grab the application name.
+     *
+     * @return mixed
+     */
+    function app_url()
+    {
+        return config('app.url');
+    }
+}
+
+/*
+ * Global helpers file with misc functions.
+ */
 if (! function_exists('user_registration')) {
     /**
      * Helper to grab the application name.
@@ -26,7 +41,7 @@ if (! function_exists('user_registration')) {
      */
     function user_registration()
     {
-        $user_registration = false;
+        $user_registration = config('app.user_registration');
 
         if (env('USER_REGISTRATION') === true) {
             $user_registration = true;
@@ -123,21 +138,21 @@ if (! function_exists('show_column_value')) {
 
 /*
  *
- * fielf_required
+ * field_required
  * Show a * if field is required
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('fielf_required')) {
+if (! function_exists('field_required')) {
     /**
      * Prepare the Column Name for Lables.
      */
-    function fielf_required($required)
+    function field_required($required)
     {
         $return_text = '';
 
         if ($required !== '') {
-            $return_text = '<span class="text-danger">*</span>';
+            $return_text = '&nbsp;<span class="text-danger">*</span>';
         }
 
         return $return_text;
@@ -517,10 +532,29 @@ if (! function_exists('demo_mode')) {
     {
         $return_string = false;
 
-        if (env('DEMO_MODE') === 'true') {
+        if (env('DEMO_MODE') === true) {
             $return_string = true;
         }
 
         return $return_string;
+    }
+}
+
+/*
+ * Split Name to First Name and Last Name
+ */
+if (! function_exists('split_name')) {
+    /**
+     * Split Name to First Name and Last Name.
+     *
+     * @return mixed
+     */
+    function split_name($name)
+    {
+        $name = trim($name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim(preg_replace('#'.preg_quote($last_name, '#').'#', '', $name));
+
+        return [$first_name, $last_name];
     }
 }

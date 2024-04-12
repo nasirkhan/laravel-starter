@@ -7,7 +7,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Schema;
 
 /**
  * Class UserTableSeeder.
@@ -21,88 +20,55 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-
         $faker = \Faker\Factory::create();
 
-        // Add the master administrator, user id of 1
         $users = [
             [
                 'id' => 1,
-                'first_name' => 'Super',
-                'last_name' => 'Admin',
+                'username' => '100001',
                 'name' => 'Super Admin',
                 'email' => 'super@admin.com',
-                'password' => Hash::make('secret'),
-                'username' => '100001',
-                'mobile' => $faker->phoneNumber,
-                'date_of_birth' => $faker->date,
-                'avatar' => 'img/default-avatar.jpg',
-                'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
+                'password' => Hash::make('secretpassword'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 2,
-                'first_name' => 'Admin',
-                'last_name' => 'Istrator',
+                'username' => '100002',
                 'name' => 'Admin Istrator',
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('secret'),
-                'username' => '100002',
-                'mobile' => $faker->phoneNumber,
-                'date_of_birth' => $faker->date,
-                'avatar' => 'img/default-avatar.jpg',
-                'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 3,
-                'first_name' => 'Manager',
-                'last_name' => 'User User',
-                'name' => 'Manager',
+                'username' => '100003',
+                'name' => 'Manager User',
                 'email' => 'manager@manager.com',
                 'password' => Hash::make('secret'),
-                'username' => '100003',
-                'mobile' => $faker->phoneNumber,
-                'date_of_birth' => $faker->date,
-                'avatar' => 'img/default-avatar.jpg',
-                'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 4,
-                'first_name' => 'Executive',
-                'last_name' => 'User',
+                'username' => '100004',
                 'name' => 'Executive User',
                 'email' => 'executive@executive.com',
                 'password' => Hash::make('secret'),
-                'username' => '100004',
-                'mobile' => $faker->phoneNumber,
-                'date_of_birth' => $faker->date,
-                'avatar' => 'img/default-avatar.jpg',
-                'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
                 'id' => 5,
-                'first_name' => 'General',
-                'last_name' => 'User',
+                'username' => '100005',
                 'name' => 'General User',
                 'email' => 'user@user.com',
                 'password' => Hash::make('secret'),
-                'username' => '100005',
-                'mobile' => $faker->phoneNumber,
-                'date_of_birth' => $faker->date,
-                'avatar' => 'img/default-avatar.jpg',
-                'gender' => $faker->randomElement(['Male', 'Female', 'Other']),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -114,7 +80,5 @@ class UserTableSeeder extends Seeder
 
             event(new UserCreated($user));
         }
-
-        Schema::enableForeignKeyConstraints();
     }
 }

@@ -94,17 +94,17 @@ return [
     |--------------------------------------------------------------------------
      */
 
-    'disk' => 'public-file-manager',
+    'disk' => 'public',
 
     'rename_file' => true,
 
-    'rename_duplicates' => true,
+    'rename_duplicates' => false,
 
-    'alphanumeric_filename' => true,
+    'alphanumeric_filename' => false,
 
-    'alphanumeric_directory' => true,
+    'alphanumeric_directory' => false,
 
-    'should_validate_size' => true,
+    'should_validate_size' => false,
 
     'should_validate_mime' => true,
 
@@ -115,6 +115,9 @@ return [
 
     // mimetypes of executables to prevent from uploading
     'disallowed_mimetypes' => ['text/x-php', 'text/html', 'text/plain'],
+
+    // extensions of executables to prevent from uploading
+    'disallowed_extensions' => ['php', 'html'],
 
     // Item Columns
     'item_columns' => ['name', 'url', 'time', 'icon', 'is_file', 'is_image', 'thumb_url'],
