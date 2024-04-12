@@ -45,7 +45,7 @@
                 {{ html()->form('PATCH', route('backend.users.changePasswordUpdate', $$module_name_singular->id))->class('form-horizontal')->open() }}
 
                 <div class="form-group row mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
+                    {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-label')->for('password') }}
 
                     <div class="col-md-10">
                         {{ html()->password('password')
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="form-group row mb-3">
-                    {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
+                    {{ html()->label(__('labels.backend.users.fields.password_confirmation'))->class('col-md-2 form-label')->for('password_confirmation') }}
 
                     <div class="col-md-10">
                         {{ html()->password('password_confirmation')
