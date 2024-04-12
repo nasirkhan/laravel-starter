@@ -145,14 +145,10 @@ It is a modular application, and some modules are installed by default. It will 
 
 Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
-1. Clone or download the repository
-2. Go to the project directory and run `composer install`
-3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
-4. Update the database name and credentials in `.env` file
-5. Run the command to generate the application key `php artisan key:generate`
-6. Run the command `php artisan migrate --seed`
-7. Link storage directory: `php artisan storage:link`
-8. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
+1. Open the terminal and run the command `composer create-project nasirkhan/laravel-starter`. This will download and install the `Laravel Starter` and run the post installation commands. 
+2. `sqlite` is the default database, if you want to change please update database settings at `.env` file
+3. Link storage directory: `php artisan storage:link`
+4. If you run the `create-project` command from `Laravel Hard` then the site will be available at [http://laravel-starter.test](http://laravel-starter.test). You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
 
 *After creating the new permissions use the following commands to update cashed permissions.*
 
