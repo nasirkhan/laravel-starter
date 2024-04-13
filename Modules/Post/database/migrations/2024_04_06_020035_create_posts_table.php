@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Post\Enums\PostStatus;
 
 return new class extends Migration
 {
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('intro')->nullable();
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable();
             $table->string('type')->nullable();
             $table->integer('category_id')->unsigned()->nullable();
             $table->string('category_name')->nullable();
@@ -33,7 +34,7 @@ return new class extends Migration
 
             $table->integer('hits')->default(0)->unsigned();
             $table->integer('order')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string('status')->default(PostStatus::Published->name);
 
             $table->integer('moderated_by')->unsigned()->nullable();
             $table->datetime('moderated_at')->nullable();

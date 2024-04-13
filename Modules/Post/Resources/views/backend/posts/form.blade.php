@@ -114,11 +114,7 @@
             $field_lable = __("post::$module_name.$field_name");
             $field_placeholder = __('Select an option');
             $required = 'required';
-            $select_options = [
-                'Article' => 'Article',
-                'Feature' => 'Feature',
-                'News' => 'News',
-            ];
+            $select_options = \Modules\Post\Enums\PostType::toArray();
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }} {!! field_required($required) !!}
             {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
@@ -167,11 +163,7 @@
             $field_lable = __("post::$module_name.$field_name");
             $field_placeholder = __('Select an option');
             $required = 'required';
-            $select_options = [
-                '1' => 'Published',
-                '0' => 'Unpublished',
-                '2' => 'Draft',
-            ];
+            $select_options = \Modules\Post\Enums\PostStatus::toArray();
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
             {!! field_required($required) !!}
@@ -251,21 +243,6 @@
         <div class="form-group">
             <?php
             $field_name = 'meta_og_image';
-            $field_lable = __("post::$module_name.$field_name");
-            $field_placeholder = $field_lable;
-            $required = '';
-            ?>
-            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
-            {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 mb-3">
-        <div class="form-group">
-            <?php
-            $field_name = 'meta_og_url';
             $field_lable = __("post::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = '';

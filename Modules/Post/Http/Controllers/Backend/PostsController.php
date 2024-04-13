@@ -4,10 +4,13 @@ namespace Modules\Post\Http\Controllers\Backend;
 
 use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
-use Illuminate\Support\Str;
-use Modules\Category\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Modules\Post\Enums\PostStatus;
+use Modules\Post\Enums\PostType;
 
 class PostsController extends BackendBaseController
 {
@@ -50,19 +53,38 @@ class PostsController extends BackendBaseController
 
         $module_action = 'Store';
 
-        $data = $request->except('tags_list');
+        $validated_data = $request->validate([
+            'name' => 'required|max:191',
+            'slug' => 'nullable|max:191',
+            'created_by_alias' => 'nullable|max:191',
+            'intro' => 'required',
+            'content' => 'required',
+            'image' => 'required|max:191',
+            'category_id' => 'required|integer',
+            'type' => Rule::enum(PostType::class),
+            'is_featured' => 'required|integer',
+            'tags_list' => 'nullable|array',
+            'status' => Rule::enum(PostStatus::class),
+            'published_at' => 'required|date',
+            'meta_title' => 'nullable|max:191',
+            'meta_keywords' => 'nullable|max:191',
+            'order' => 'nullable|integer',
+            'meta_description' => 'nullable',
+            'meta_og_image' => 'nullable|max:191',
+        ]);
+
+        $data = Arr::except($validated_data, 'tags_list');
         $data['created_by_name'] = auth()->user()->name;
 
         $$module_name_singular = $module_model::create($data);
         $$module_name_singular->tags()->attach($request->input('tags_list'));
 
-        flash("New '" . Str::singular($module_title) . "' Added")->success()->important();
+        flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/{$module_name}");
     }
-
 
     /**
      * Updates a resource.
@@ -86,9 +108,31 @@ class PostsController extends BackendBaseController
 
         $module_action = 'Update';
 
+        $validated_data = $request->validate([
+            'name' => 'required|max:191',
+            'slug' => 'nullable|max:191',
+            'created_by_alias' => 'nullable|max:191',
+            'intro' => 'required',
+            'content' => 'required',
+            'image' => 'required|max:191',
+            'category_id' => 'required|integer',
+            'type' => Rule::enum(PostType::class),
+            'is_featured' => 'required|integer',
+            'tags_list' => 'nullable|array',
+            'status' => Rule::enum(PostStatus::class),
+            'published_at' => 'required|date',
+            'meta_title' => 'nullable|max:191',
+            'meta_keywords' => 'nullable|max:191',
+            'order' => 'nullable|integer',
+            'meta_description' => 'nullable',
+            'meta_og_image' => 'nullable|max:191',
+        ]);
+
+        $data = Arr::except($validated_data, 'tags_list');
+
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $$module_name_singular->update($request->except('tags_list'));
+        $$module_name_singular->update($data);
 
         if ($request->input('tags_list') === null) {
             $tags_list = [];
@@ -97,9 +141,9 @@ class PostsController extends BackendBaseController
         }
         $$module_name_singular->tags()->sync($tags_list);
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }
