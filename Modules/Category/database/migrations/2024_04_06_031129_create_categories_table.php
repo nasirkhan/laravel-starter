@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Category\Enums\CategoryStatus;
 
 return new class extends Migration
 {
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->text('meta_keyword')->nullable();
 
             $table->integer('order')->nullable();
-            $table->string('status')->default('Active');
+            $table->string('status')->default(CategoryStatus::Active->name);
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
