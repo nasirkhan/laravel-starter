@@ -84,7 +84,7 @@
             {!! field_required($required) !!}
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label' => 'Image', 'aria-describedby' => 'button-image']) }}
-                <button class="btn btn-outline-info" id="{{ $field_name }}" data-input="{{ $field_name }}"
+                <button class="btn btn-outline-info" id="button-image" data-input="button-image"
                     type="button"><i class="fas fa-folder-open"></i>&nbsp;@lang('Browse')</button>
             </div>
 
@@ -98,13 +98,13 @@
             <?php
             $field_name = 'category_id';
             $field_lable = __("post::$module_name.$field_name");
-            $field_relation = 'category';
+            $field_options = (!empty($data))?optional($data->category())->pluck('name', 'id'):'';
+            $selected = (!empty($data))?optional($data->category())->pluck('id')->toArray():'';
             $field_placeholder = __('Select an option');
             $required = 'required';
             ?>
-            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
-            {!! field_required($required) !!}
-            {{ html()->select($field_name, isset($$module_name_singular) ? optional($$module_name_singular->$field_relation)->pluck('name', 'id') : '')->placeholder($field_placeholder)->class('form-control select2-category')->attributes(["$required"]) }}
+            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }} {!! field_required($required) !!}
+            {{ html()->select($field_name, $field_options, $selected)->placeholder($field_placeholder)->class('form-select select2-category')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-12 col-sm-4 mb-3">
@@ -120,9 +120,8 @@
                 'News' => 'News',
             ];
             ?>
-            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
-            {!! field_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }} {!! field_required($required) !!}
+            {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-12 col-sm-4 mb-3">
@@ -133,13 +132,13 @@
             $field_placeholder = __('Select an option');
             $required = 'required';
             $select_options = [
-                '1' => 'Yes',
                 '0' => 'No',
+                '1' => 'Yes',
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
             {!! field_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -149,19 +148,14 @@
             <?php
             $field_name = 'tags_list[]';
             $field_lable = __("post::$module_name.tags");
-            $field_relation = 'tags';
+            $field_options = (!empty($data))?optional($data->tags)->pluck('name', 'id'):'';
+            $selected = (!empty($data))?optional($data->tags)->pluck('id')->toArray():'';
             $field_placeholder = __('Select an option');
             $required = '';
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
             {!! field_required($required) !!}
-            {{ html()->multiselect(
-                    $field_name,
-                    isset($$module_name_singular) ? optional($$module_name_singular->$field_relation)->pluck('name', 'id') : '',
-                    isset($$module_name_singular)
-                        ? optional($$module_name_singular->$field_relation)->pluck('id')->toArray()
-                        : '',
-                )->class('form-control select2-tags')->attributes(["$required"]) }}
+            {{ html()->multiselect( $field_name, $field_options, $selected)->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -360,7 +354,7 @@
             });
 
             $('.select2-category').select2({
-                theme: "bootstrap4",
+                theme: 'bootstrap-5',
                 placeholder: '@lang('Select an option')',
                 minimumInputLength: 2,
                 allowClear: true,
@@ -382,7 +376,7 @@
             });
 
             $('.select2-tags').select2({
-                // theme: "bootstrap4",
+                theme: 'bootstrap-5',
                 placeholder: '@lang('Select an option')',
                 minimumInputLength: 2,
                 allowClear: true,

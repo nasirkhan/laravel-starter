@@ -28,7 +28,7 @@
         "spatie/laravel-html": "^3.6",
         "spatie/laravel-medialibrary": "^11.4",
         "spatie/laravel-permission": "^6.4",
-        "unisharp/laravel-filemanager": "^2.8",
+        "unisharp/laravel-filemanager": "^2.9",
         "yajra/laravel-datatables-oracle": "^11.0"
     },
     "require-dev": {
