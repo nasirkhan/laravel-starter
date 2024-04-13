@@ -101,7 +101,6 @@
         $('#datatable').DataTable({
             processing: true,
             serverSide: true,
-            autoWidth: true,
             responsive: true,
             ajax: '{{ route("backend.$module_name.index_data") }}',
             columns: [{

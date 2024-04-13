@@ -4,6 +4,7 @@ namespace Modules\Category\database\factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Category\Enums\CategoryStatus;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -28,7 +29,7 @@ class CategoryFactory extends Factory
             'name' => substr($this->faker->text(15), 0, -1),
             'slug' => '',
             'description' => $this->faker->paragraph,
-            'status' => 1,
+            'status' => $this->faker->randomElement(CategoryStatus::getAllNames()),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

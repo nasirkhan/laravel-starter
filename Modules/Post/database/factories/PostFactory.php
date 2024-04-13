@@ -4,6 +4,8 @@ namespace Modules\Post\database\factories;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Post\Enums\PostStatus;
+use Modules\Post\Enums\PostType;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -29,10 +31,10 @@ class PostFactory extends Factory
             'slug' => '',
             'intro' => $this->faker->paragraph,
             'content' => $this->faker->paragraphs(rand(5, 7), true),
-            'type' => $this->faker->randomElement(['Article', 'Blog', 'News']),
+            'type' => $this->faker->randomElement(PostType::getAllNames()),
             'is_featured' => $this->faker->randomElement([1, 0]),
             'image' => 'https://picsum.photos/1200/630?random='.rand(1, 50),
-            'status' => 1,
+            'status' => $this->faker->randomElement(PostStatus::getAllNames()),
             'category_id' => $this->faker->numberBetween(1, 5),
             'meta_title' => '',
             'meta_keywords' => '',
