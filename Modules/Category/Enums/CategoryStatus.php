@@ -2,7 +2,7 @@
 
 namespace Modules\Category\Enums;
 
-enum CategoryStatus: string
+enum CategoryStatus
 {
     case Active = 'Active';
     case Inactive = 'Inactive';
