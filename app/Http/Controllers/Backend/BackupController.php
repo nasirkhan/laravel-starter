@@ -117,7 +117,7 @@ class BackupController extends Controller
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
 
             // return the results as a response to the ajax call
-            flash(icon().'New backup created')->success()->important();
+            flash('New backup created')->success()->important();
 
             return redirect()->back();
         } catch (Exception $e) {

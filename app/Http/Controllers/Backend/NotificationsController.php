@@ -125,7 +125,7 @@ class NotificationsController extends Controller
 
         $user->notifications()->delete();
 
-        Flash::success("<i class='fas fa-check'></i> All Notifications Deleted")->important();
+        flash('All Notifications Deleted')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -152,7 +152,7 @@ class NotificationsController extends Controller
 
         $user->unreadNotifications()->update(['read_at' => now()]);
 
-        Flash::success("<i class='fas fa-check'></i> All Notifications Marked As Read")->important();
+        flash('All Notifications Marked As Read')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
