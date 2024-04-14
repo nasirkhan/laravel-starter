@@ -261,7 +261,7 @@ class UserController extends Controller
 
         event(new UserCreated($$module_name_singular));
 
-        flash("New '" . Str::singular($module_title) . "' Created")->success()->important();
+        flash("New '".Str::singular($module_title)."' Created")->success()->important();
 
         if ($request->email_credentials === 1) {
             $data = [
@@ -372,7 +372,7 @@ class UserController extends Controller
 
         $$module_name_singular->update($request_data);
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         return redirect("admin/{$module_name}");
     }
@@ -443,12 +443,11 @@ class UserController extends Controller
         $validated_data = $request->validate([
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'. $id,
+            'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'.$id,
             // 'password' => 'required|confirmed|min:4',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
-
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -457,7 +456,8 @@ class UserController extends Controller
         if ($id === 1) {
             $user->syncRoles(['super admin']);
 
-            flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+            flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+
             return redirect("admin/{$module_name}");
         }
 
@@ -485,7 +485,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -638,7 +638,7 @@ class UserController extends Controller
 
             event(new UserUpdated($$module_name_singular));
 
-            flash($$module_name_singular->name . ' User Successfully Blocked!')->success()->important();
+            flash($$module_name_singular->name.' User Successfully Blocked!')->success()->important();
 
             return redirect()->back();
         } catch (Exception $e) {
