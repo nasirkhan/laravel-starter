@@ -8,7 +8,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -117,7 +116,7 @@ class RolesController extends Controller
             'permissions' => 'nullable|array',
         ]);
 
-        // Update Name 
+        // Update Name
         $data = Arr::except($validated_data, ['permissions']);
         $$module_name_singular = Role::create($data);
 
@@ -211,8 +210,8 @@ class RolesController extends Controller
             'name' => 'required|max:100|unique:roles,name,'.$id,
             'permissions' => 'nullable|array',
         ]);
-        
-        // Update Name 
+
+        // Update Name
         $data = Arr::except($validated_data, ['permissions']);
         $$module_name_singular->update($data);
 
@@ -220,7 +219,7 @@ class RolesController extends Controller
         $permissions = isset($validated_data['permissions']) ? $validated_data['permissions'] : [];
         $$module_name_singular->syncPermissions($permissions);
 
-        flash(label_case($$module_name_singular->name . ' ' . $module_name_singular) . " updated successfully!")->success()->important();
+        flash(label_case($$module_name_singular->name.' '.$module_name_singular).' updated successfully!')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -260,14 +259,14 @@ class RolesController extends Controller
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->route("backend.{$module_name}.index");
-        } else if (in_array($role_name, $user_roles->toArray())) {
-            Flash::warning("You can not delete your Role!")->important();
+        } elseif (in_array($role_name, $user_roles->toArray())) {
+            Flash::warning('You can not delete your Role!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->route("backend.{$module_name}.index");
-        } else if ($role_users) {
-            Flash::warning("Can not be deleted! ".$role_users.' user(s) found!')->important();
+        } elseif ($role_users) {
+            Flash::warning('Can not be deleted! '.$role_users.' user(s) found!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

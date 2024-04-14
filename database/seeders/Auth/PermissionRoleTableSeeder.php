@@ -50,9 +50,8 @@ class PermissionRoleTableSeeder extends Seeder
         echo "\n\n";
 
         /**
-         * Create Roles and Assign Permissions to Roles
+         * Create Roles and Assign Permissions to Roles.
          */
-
         $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
 
         $admin = Role::create(['id' => '2', 'name' => 'administrator']);
@@ -65,9 +64,5 @@ class PermissionRoleTableSeeder extends Seeder
         $executive->givePermissionTo('view_backend');
 
         $user = Role::create(['id' => '5', 'name' => 'user']);
-
-        
-        
-        
     }
 }
