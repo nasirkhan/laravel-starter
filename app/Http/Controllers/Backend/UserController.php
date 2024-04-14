@@ -435,7 +435,6 @@ class UserController extends Controller
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'.$id,
-            // 'password' => 'required|confirmed|min:4',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -448,6 +447,8 @@ class UserController extends Controller
             $user->syncRoles(['super admin']);
 
             flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+
+            Artisan::call('cache:clear');
 
             return redirect("admin/{$module_name}");
         }
@@ -549,7 +550,7 @@ class UserController extends Controller
     public function restore($id)
     {
         if (! auth()->user()->can('restore_users')) {
-            $id = auth()->user()->id;
+            abort(403);
         }
 
         $module_title = $this->module_title;
@@ -564,8 +565,6 @@ class UserController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
 
         $$module_name_singular->restore();
-
-        $$module_name_singular->userprofile()->withTrashed()->restore();
 
         event(new UserUpdated($$module_name_singular));
 
@@ -587,7 +586,7 @@ class UserController extends Controller
     public function block($id)
     {
         if (! auth()->user()->can('delete_users')) {
-            $id = auth()->user()->id;
+            abort(403);
         }
 
         $module_title = $this->module_title;
@@ -634,7 +633,7 @@ class UserController extends Controller
     public function unblock($id)
     {
         if (! auth()->user()->can('delete_users')) {
-            $id = auth()->user()->id;
+            abort(403);
         }
 
         $module_title = $this->module_title;
@@ -702,7 +701,7 @@ class UserController extends Controller
         }
         $user_provider = UserProvider::findOrFail($user_provider_id);
 
-        if ($user_id === $user_provider->user->id) {
+        if ($user_id == $user_provider->user->id) {
             $user_provider->delete();
 
             flash('Unlinked from User, "'.$user_provider->user->name.'"!')->success()->important();
