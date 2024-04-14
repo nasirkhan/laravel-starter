@@ -18,9 +18,6 @@
         <x-backend.section-header>
             <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
 
-            <x-slot name="subtitle">
-                @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-            </x-slot>
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back />
                 <x-buttons.show route='{!!route("backend.$module_name.show", $$module_name_singular)!!}' title="{{__('Show')}} {{ ucwords(Str::singular($module_name)) }}" class="ms-1" />
@@ -64,8 +61,8 @@
                     </div>
                     <div class="col-12 col-sm-10">
                         <div class="form-group">
-                            {{ __("List of permissions") }}
-                            <hr>
+                            {{ __("Select permissions from the list:") }}
+                            {{-- <hr> --}}
                             @if ($permissions->count())
                             @foreach($permissions as $permission)
                             <div class="checkbox">

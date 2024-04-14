@@ -24,9 +24,9 @@
         </x-backend.section-header>
         
         <div class="row">
-            <div class="col">
+            <div class="col-12 col-sm-6">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-bordered table-hover">
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                             <td>{{ $$module_name_singular->name }}</td>
@@ -55,6 +55,24 @@
                             <td>{{ $$module_name_singular->updated_at }}<br /><small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small></td>
                         </tr>
 
+                    </table>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>List of users (<small>Total: {{ $users->count() }}</small>)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td> <a href="{{ route("backend.users.show", $user->id) }}">{{ $user->name }}</a> <span class="float-end">{!! $user->status_label !!}</span></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

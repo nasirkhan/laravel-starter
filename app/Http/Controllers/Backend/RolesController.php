@@ -151,11 +151,13 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $users = User::role($$module_name_singular->name)->get();
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "backend.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'users')
         );
     }
 
