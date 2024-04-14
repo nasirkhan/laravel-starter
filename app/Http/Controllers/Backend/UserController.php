@@ -441,7 +441,7 @@ class UserController extends Controller
         ]);
 
         $$module_name_singular = User::findOrFail($id);
-        
+
         $$module_name_singular->update($request->except(['roles', 'permissions']));
 
         if ($id === 1) {
