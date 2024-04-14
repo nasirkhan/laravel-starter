@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -217,7 +218,7 @@ class UserController extends Controller
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
-            'password' => 'required|confirmed|min:4',
+            'password' => 'required|confirmed|min:6',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -232,28 +233,16 @@ class UserController extends Controller
             $data_array = Arr::add($data_array, 'email_verified_at', null);
         }
 
+        // Create a User
         $$module_name_singular = User::create($data_array);
 
-        $roles = $request['roles'];
-        $permissions = $request['permissions'];
-
         // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        } else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
-        }
+        $$module_name_singular->syncRoles(isset($validated_data['roles']) ? $validated_data['roles'] : []);
 
         // Sync Permissions
-        if (isset($permissions)) {
-            $$module_name_singular->syncPermissions($permissions);
-        } else {
-            $permissions = [];
-            $$module_name_singular->syncPermissions($permissions);
-        }
+        $$module_name_singular->syncPermissions(isset($validated_data['permissions']) ? $validated_data['permissions'] : []);
 
-        // Username
+        // Set Username
         $id = $$module_name_singular->id;
         $username = config('app.initial_username') + $id;
         $$module_name_singular->username = $username;
@@ -271,6 +260,8 @@ class UserController extends Controller
 
             flash('Account Credentials Sent to User.')->success()->important();
         }
+
+        Artisan::call('cache:clear');
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -450,7 +441,7 @@ class UserController extends Controller
         ]);
 
         $$module_name_singular = User::findOrFail($id);
-
+        
         $$module_name_singular->update($request->except(['roles', 'permissions']));
 
         if ($id === 1) {
@@ -461,27 +452,13 @@ class UserController extends Controller
             return redirect("admin/{$module_name}");
         }
 
-        $roles = $request['roles'];
-        $permissions = $request['permissions'];
-
-        dd($$module_name_singular->getRoleNames());
         // Sync Roles
-        if (isset($roles)) {
-            $$module_name_singular->syncRoles($roles);
-        } else {
-            $roles = [];
-            $$module_name_singular->syncRoles($roles);
-        }
+        $$module_name_singular->syncRoles(isset($validated_data['roles']) ? $validated_data['roles'] : []);
 
-        dd($$module_name_singular->getRoleNames());
-        dd($roles);
         // Sync Permissions
-        if (isset($permissions)) {
-            $$module_name_singular->syncPermissions($permissions);
-        } else {
-            $permissions = [];
-            $$module_name_singular->syncPermissions($permissions);
-        }
+        $$module_name_singular->syncPermissions(isset($validated_data['permissions']) ? $validated_data['permissions'] : []);
+
+        Artisan::call('cache:clear');
 
         event(new UserUpdated($$module_name_singular));
 

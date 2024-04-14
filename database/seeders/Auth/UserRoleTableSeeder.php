@@ -4,6 +4,7 @@ namespace Database\Seeders\Auth;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class UserRoleTableSeeder.
@@ -23,6 +24,6 @@ class UserRoleTableSeeder extends Seeder
         User::findOrFail(4)->assignRole('executive');
         User::findOrFail(5)->assignRole('user');
 
-        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+        Artisan::call('cache:clear');
     }
 }
