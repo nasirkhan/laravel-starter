@@ -94,8 +94,8 @@ if (! function_exists('show_column_value')) {
      */
     function show_column_value($valueObject, $column, $return_format = '')
     {
-        $column_name = $column->Field;
-        $column_type = $column->Type;
+        $column_name = $column->name;
+        $column_type = $column->type;
 
         $value = $valueObject->$column_name;
 

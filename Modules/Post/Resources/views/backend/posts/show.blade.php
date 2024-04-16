@@ -33,19 +33,19 @@
                 <ul>
                     <li>
                         <a
-                            href="{{ route('backend.categories.show', [encode_id($$module_name_singular->category_id), $$module_name_singular->category->slug]) }}">{{ $$module_name_singular->category->name }}</a>
+                            href="{{ route('backend.categories.show', [$$module_name_singular->category_id, $$module_name_singular->category->slug]) }}">{{ $$module_name_singular->category->name }}</a>
                     </li>
                 </ul>
 
                 <h5>
-                    Tags
+                    Tags <small>({{ count($$module_name_singular->tags) }})</small>
                 </h5>
 
                 <ul>
                     @foreach ($$module_name_singular->tags as $tag)
                         <li>
                             <a
-                                href="{{ route('backend.tags.show', [encode_id($tag->id), $tag->slug]) }}">{{ $tag->name }}</a>
+                                href="{{ route('backend.tags.show', [$tag->id, $tag->slug]) }}">{{ $tag->name }}</a>
                         </li>
                     @endforeach
                 </ul>
