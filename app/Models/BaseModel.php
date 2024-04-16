@@ -177,35 +177,35 @@ class BaseModel extends Model implements HasMedia
         }
     }
 
-    /**
-     * Set the 'meta description'
-     * If no value submitted use the default 'meta_description'.
-     *
-     * @param [type]
-     */
-    public function setMetaDescriptionAttribute($value)
-    {
-        $this->attributes['meta_description'] = $value;
+    // /**
+    //  * Set the 'meta description'
+    //  * If no value submitted use the default 'meta_description'.
+    //  *
+    //  * @param [type]
+    //  */
+    // public function setMetaDescriptionAttribute($value)
+    // {
+    //     $this->attributes['meta_description'] = $value;
 
-        if (empty($value)) {
-            $this->attributes['meta_description'] = setting('meta_description');
-        }
-    }
+    //     if (empty($value)) {
+    //         $this->attributes['meta_description'] = setting('meta_description');
+    //     }
+    // }
 
-    /**
-     * Set the 'meta description'
-     * If no value submitted use the default 'meta_description'.
-     *
-     * @param [type]
-     */
-    public function setMetaKeywordAttribute($value)
-    {
-        $this->attributes['meta_keyword'] = $value;
+    // /**
+    //  * Set the 'meta description'
+    //  * If no value submitted use the default 'meta_description'.
+    //  *
+    //  * @param [type]
+    //  */
+    // public function setMetaKeywordAttribute($value)
+    // {
+    //     $this->attributes['meta_keyword'] = $value;
 
-        if (empty($value)) {
-            $this->attributes['meta_keyword'] = setting('meta_keyword');
-        }
-    }
+    //     if (empty($value)) {
+    //         $this->attributes['meta_keyword'] = setting('meta_keyword');
+    //     }
+    // }
 
     /**
      * Set the meta meta_og_image

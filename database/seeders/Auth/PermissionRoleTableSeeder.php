@@ -19,20 +19,12 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        // Create Roles
-        $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
-        $admin = Role::create(['id' => '2', 'name' => 'administrator']);
-        $manager = Role::create(['id' => '3', 'name' => 'manager']);
-        $executive = Role::create(['id' => '4', 'name' => 'executive']);
-        $user = Role::create(['id' => '5', 'name' => 'user']);
-
         // Create Permissions
-        Permission::firstOrCreate(['name' => 'view_backend']);
-
         $permissions = Permission::defaultPermissions();
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            $permission = Permission::make(['name' => $permission]);
+            $permission->saveOrFail();
         }
 
         Artisan::call('auth:permission', [
@@ -57,9 +49,20 @@ class PermissionRoleTableSeeder extends Seeder
 
         echo "\n\n";
 
-        // Assign Permissions to Roles
-        $admin->givePermissionTo('view_backend');
+        /**
+         * Create Roles and Assign Permissions to Roles.
+         */
+        $super_admin = Role::create(['id' => '1', 'name' => 'super admin']);
+
+        $admin = Role::create(['id' => '2', 'name' => 'administrator']);
+        $admin->givePermissionTo(['view_backend', 'edit_settings']);
+
+        $manager = Role::create(['id' => '3', 'name' => 'manager']);
         $manager->givePermissionTo('view_backend');
+
+        $executive = Role::create(['id' => '4', 'name' => 'executive']);
         $executive->givePermissionTo('view_backend');
+
+        $user = Role::create(['id' => '5', 'name' => 'user']);
     }
 }
