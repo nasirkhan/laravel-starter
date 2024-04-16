@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Modules\Category\Models\Category;
 use Modules\Comment\Models\Comment;
 use Modules\Post\Models\Post;
@@ -101,7 +102,7 @@ class InsertDemoData extends Command
 
         if ($confirmed) {
             // Disable foreign key checks!
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            Schema::disableForeignKeyConstraints();
 
             foreach ($tables_list as $row) {
                 $table_name = $row;
@@ -112,7 +113,7 @@ class InsertDemoData extends Command
             }
 
             // Enable foreign key checks!
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            Schema::enableForeignKeyConstraints();
         } else {
             $this->warn('Skipped database truncate.');
         }

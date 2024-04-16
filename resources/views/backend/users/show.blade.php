@@ -69,21 +69,6 @@
                                 <td>{{ $user->$field_name }}</td>
                             </tr>
                         @endforeach
-                        <div class="row">
-                            <div class="col-12 mb-3">
-                                <div class="form-group">
-                                    <?php
-                                    $field_name = 'url_website';
-                                    $field_lable = label_case($field_name);
-                                    $field_placeholder = $field_lable;
-                                    $required = '';
-                                    ?>
-                                    {{ html()->label($field_lable, $field_name)->class('form-label') }}
-                                    {!! fielf_required($required) !!}
-                                    {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-                                </div>
-                            </div>
-                        </div>
                         <tr>
                             <th>{{ __('labels.backend.users.fields.password') }}</th>
                             <td>

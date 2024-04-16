@@ -6,7 +6,9 @@ use App\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Laracasts\Flash\Flash;
@@ -109,17 +111,20 @@ class RolesController extends Controller
 
         $module_action = 'Store';
 
-        $$module_name_singular = Role::create($request->except('permissions'));
+        $validated_data = $request->validate([
+            'name' => 'required|max:100|unique:roles,name',
+            'permissions' => 'nullable|array',
+        ]);
 
-        $permissions = $request['permissions'];
+        // Update Name
+        $data = Arr::except($validated_data, ['permissions']);
+        $$module_name_singular = Role::create($data);
 
         // Sync Permissions
-        if (isset($permissions)) {
-            $$module_name_singular->syncPermissions($permissions);
-        } else {
-            $permissions = [];
-            $$module_name_singular->syncPermissions($permissions);
-        }
+        $permissions = isset($validated_data['permissions']) ? $validated_data['permissions'] : [];
+        $$module_name_singular->syncPermissions($permissions);
+
+        flash("{$$module_name_singular->name} {$module_name_singular} created successfully!")->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -146,11 +151,13 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $users = User::role($$module_name_singular->name)->get();
+
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
             "backend.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'users')
         );
     }
 
@@ -201,25 +208,20 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        $request->validate($request, [
-            'name' => 'required|max:20|unique:roles,name,'.$id,
-            'permissions' => 'required',
+        $validated_data = $request->validate([
+            'name' => 'required|max:100|unique:roles,name,'.$id,
+            'permissions' => 'nullable|array',
         ]);
 
-        $input = $request->except(['permissions']);
-        $permissions = $request['permissions'];
-        $$module_name_singular->fill($input)->save();
+        // Update Name
+        $data = Arr::except($validated_data, ['permissions']);
+        $$module_name_singular->update($data);
 
-        $p_all = Permission::all(); //Get all permissions
+        // Update Permissions
+        $permissions = isset($validated_data['permissions']) ? $validated_data['permissions'] : [];
+        $$module_name_singular->syncPermissions($permissions);
 
-        foreach ($p_all as $p) {
-            $$module_name_singular->revokePermissionTo($p); //Remove all permissions associated with role
-        }
-
-        foreach ($permissions as $permission) {
-            $p = Permission::where('name', '=', $permission)->firstOrFail(); //Get corresponding form //permission in db
-            $$module_name_singular->givePermissionTo($p);  //Assign permission to role
-        }
+        flash(label_case($$module_name_singular->name.' '.$module_name_singular).' updated successfully!')->success()->important();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -245,26 +247,28 @@ class RolesController extends Controller
         $module_action = 'Destroy';
 
         $$module_name_singular = Role::findOrFail($id);
+        $role_name = $$module_name_singular->name;
 
-        $user_roles = auth()->user()->roles()->pluck('id');
-        $role_users = $$module_name_singular->users;
+        $user_roles = auth()->user()->getRoleNames();
 
-        if ($id === 1) {
-            Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete 'Administrator'!")->important();
+        $role_users = User::with('roles')->get()->filter(
+            fn ($user) => $user->roles->where('name', $role_name)->toArray()
+        )->count();
 
-            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
-
-            return redirect()->route("backend.{$module_name}.index");
-        }
-        if (in_array($id, $user_roles->toArray())) {
-            Flash::warning("<i class='fas fa-exclamation-triangle'></i> You can not delete your Role!")->important();
+        if ($id == 1) {
+            Flash::warning("You can not delete {$$module_name_singular->name} role!")->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
             return redirect()->route("backend.{$module_name}.index");
-        }
-        if ($role_users->count()) {
-            Flash::warning("<i class='fas fa-exclamation-triangle'></i> Can not be deleted! ".$role_users->count().' user found!')->important();
+        } elseif (in_array($role_name, $user_roles->toArray())) {
+            Flash::warning('You can not delete your Role!')->important();
+
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
+            return redirect()->route("backend.{$module_name}.index");
+        } elseif ($role_users) {
+            Flash::warning('Can not be deleted! '.$role_users.' user(s) found!')->important();
 
             Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -277,7 +281,7 @@ class RolesController extends Controller
 
                 Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
-                return redirect()->back();
+                return redirect()->route("backend.{$module_name}.index");
             }
         } catch (\Exception $e) {
             Log::error($e);
