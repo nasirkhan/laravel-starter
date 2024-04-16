@@ -88,7 +88,7 @@ class RolesController extends Controller
         $module_action = 'Create';
 
         $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
+        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
@@ -179,7 +179,7 @@ class RolesController extends Controller
 
         $module_action = 'Edit';
 
-        $permissions = Permission::select('name', 'id')->get();
+        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         $$module_name_singular = $module_model::findOrFail($id);
 

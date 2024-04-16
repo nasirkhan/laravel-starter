@@ -209,6 +209,4 @@
         </div>
 
     </x-backend.layouts.create>
-
-
 @endsection

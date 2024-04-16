@@ -40,8 +40,9 @@
         <div class="row">
             <div class="col">
                 @if ($data != "")
-                <small class="float-end text-muted">
+                <small class="float-end text-muted text-end">
                     @lang('Updated at'): {{$data->updated_at->diffForHumans()}},
+                    <br class="d-block d-sm-none">
                     @lang('Created at'): {{$data->created_at->isoFormat('LLLL')}}
                 </small>
                 @endif

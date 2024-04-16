@@ -190,7 +190,7 @@ class UserController extends Controller
         $module_action = 'Create';
 
         $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
+        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         return view(
             "backend.{$module_name}.create",
@@ -397,7 +397,7 @@ class UserController extends Controller
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
         $roles = Role::get();
-        $permissions = Permission::select('name', 'id')->get();
+        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
