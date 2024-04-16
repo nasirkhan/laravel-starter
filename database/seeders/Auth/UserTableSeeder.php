@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100001',
                 'name' => 'Super Admin',
                 'email' => 'super@admin.com',
-                'password' => Hash::make('secretpassword'),
+                'password' => Hash::make('secret'),
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
