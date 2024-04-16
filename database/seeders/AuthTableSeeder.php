@@ -19,9 +19,6 @@ class AuthTableSeeder extends Seeder
      */
     public function run()
     {
-        // Reset cached roles and permissions
-        app()['cache']->forget('spatie.permission.cache');
-
         $this->call(UserTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(UserRoleTableSeeder::class);
