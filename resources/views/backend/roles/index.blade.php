@@ -20,7 +20,7 @@
 
                 <x-slot name="toolbar">
                     <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
-                        route='{{ route("backend.$module_name.create") }}' />
+                        route='{{ route("backend.$module_name.create") }}' :small=true />
                 </x-slot>
             </x-backend.section-header>
 
@@ -70,14 +70,14 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <div class="col-7">
+                <div class="col-12 col-sm-7">
                     <div class="float-left">
                         {!! $$module_name->total() !!} {{ __('labels.backend.total') }}
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-sm-5">
                     <div class="float-end">
-                        {!! $$module_name->render() !!}
+                        {{ $$module_name->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>

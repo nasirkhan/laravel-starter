@@ -8,7 +8,7 @@
 @section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon='{{ $module_icon }}'>
-            {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }}
+            {{ $$module_name_singular->name }}
         </x-backend.breadcrumb-item>
 
         <x-backend.breadcrumb-item type="active">{{ __($module_title) }}
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'first_name';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = 'required';
                             ?>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'last_name';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = 'required';
                             ?>
@@ -75,7 +75,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'email';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = 'required';
                             ?>
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'mobile';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = '';
                             ?>
@@ -102,7 +102,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'gender';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = '-- Select an option --';
                             $required = '';
                             $select_options = [
@@ -120,7 +120,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'date_of_birth';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = '';
                             ?>
@@ -135,7 +135,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'address';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = '';
                             ?>
@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <?php
                             $field_name = 'bio';
-                            $field_lable = label_case($field_name);
+                            $field_lable = __(label_case($field_name));
                             $field_placeholder = $field_lable;
                             $required = '';
                             ?>

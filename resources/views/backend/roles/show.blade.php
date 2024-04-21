@@ -20,10 +20,10 @@
                 class="text-muted">{{ __($module_title) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
+                <x-backend.buttons.return-back :small=true />
                 <x-backend.buttons.edit class="ms-1"
                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' />
+                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' :small=true />
             </x-slot>
         </x-backend.section-header>
 

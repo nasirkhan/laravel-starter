@@ -22,9 +22,9 @@
                     class="text-muted">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
-                    <x-backend.buttons.return-back />
+                    <x-backend.buttons.return-back :small=true />
                     <x-buttons.show class="ms-1" title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
-                        route='{!! route("backend.$module_name.show", $$module_name_singular) !!}' />
+                        route='{!! route("backend.$module_name.show", $$module_name_singular) !!}' :small=true />
                 </x-slot>
             </x-backend.section-header>
 

@@ -8,7 +8,7 @@
 @section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon='{{ $module_icon }}'>
-            {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }}
+            {{ $$module_name_singular->name }}
         </x-backend.breadcrumb-item>
 
         <x-backend.breadcrumb-item type="active">{{ __($module_title) }}
@@ -20,16 +20,15 @@
     <x-backend.layouts.show :data="$user">
 
         <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} -
-            {{ $$module_name_singular->username }} <small class="text-muted">{{ __($module_title) }}
+            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small class="text-muted">{{ __($module_title) }}
                 {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
-                <a class="btn btn-primary m-1" data-toggle="tooltip" href="{{ route('backend.users.index') }}"
+                <x-backend.buttons.return-back :small=true />
+                <a class="btn btn-primary btn-sm m-1" data-toggle="tooltip" href="{{ route('backend.users.index') }}"
                     title="List"><i class="fas fa-list"></i> List</a>
                 <x-buttons.edit title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' />
+                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' :small=true />
             </x-slot>
         </x-backend.section-header>
 
