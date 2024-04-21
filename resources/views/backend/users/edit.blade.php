@@ -1,29 +1,32 @@
 @extends('backend.layouts.app')
 
 @section('title')
-    {{$$module_name_singular->name}} - {{ $$module_name_singular->username }} - {{ __($module_action) }} {{ __($module_title) }}
+    {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }} - {{ __($module_action) }}
+    {{ __($module_title) }}
 @endsection
 
 @section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon='{{ $module_icon }}'>
-            {{$$module_name_singular->name}} - {{ $$module_name_singular->username }}
+            {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }}
         </x-backend.breadcrumb-item>
 
-        <x-backend.breadcrumb-item type="active">{{ __($module_title) }} {{ __($module_action) }}</x-backend.breadcrumb-item>
+        <x-backend.breadcrumb-item type="active">{{ __($module_title) }}
+            {{ __($module_action) }}</x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
 @endsection
 
 @section('content')
     <x-backend.layouts.edit :data="$user">
         <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{$$module_name_singular->name}} - {{ $$module_name_singular->username }} <small
-                class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
+            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small class="text-muted">{{ __($module_title) }}
+                {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back />
-                <x-buttons.show class="ms-1" title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.show", $$module_name_singular) !!}' />
+                <x-backend.buttons.return-back :small=true />
+                <x-backend.buttons.show class="ms-1"
+                    title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
+                    route='{!! route("backend.$module_name.show", $$module_name_singular) !!}' :small=true />
             </x-slot>
         </x-backend.section-header>
 
@@ -153,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @php
                     $socialFieldsNames = $$module_name_singular->socialFieldsNames();
                 @endphp
@@ -162,7 +165,7 @@
                         <div class="col-12 col-sm-6 mb-3">
                             <div class="form-group">
                                 <?php
-                                $field_name = 'social_profiles['.$item.']';
+                                $field_name = 'social_profiles[' . $item . ']';
                                 $field_lable = label_case($item);
                                 $field_placeholder = $field_lable;
                                 $required = '';
@@ -237,7 +240,8 @@
                         <div class="form-group">
                             @forelse ($user->providers as $provider)
                                 <li>
-                                    <i class="fab fa-{{ $provider->provider }} fa-fw"></i> {{ label_case($provider->provider) }}
+                                    <i class="fab fa-{{ $provider->provider }} fa-fw"></i>
+                                    {{ label_case($provider->provider) }}
                                 </li>
                             @empty
                                 {{ __('No social profile added!') }}
@@ -262,7 +266,7 @@
                                                     <div class="card mb-3">
                                                         <div class="card-header">
                                                             <div class="checkbox">
-                                                                {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-' . $role->id) .'&nbsp;' .ucwords($role->name) . "&nbsp;(" .$role->name .')')->for('role-' . $role->id) }}
+                                                                {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-' . $role->id) .'&nbsp;' .ucwords($role->name) .'&nbsp;(' .$role->name .')')->for('role-' . $role->id) }}
                                                             </div>
                                                         </div>
                                                         <div class="card-body">

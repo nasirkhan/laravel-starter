@@ -84,7 +84,7 @@
             {!! field_required($required) !!}
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label' => 'Image', 'aria-describedby' => 'button-image']) }}
-                <button class="btn btn-outline-info" id="button-image" data-input="button-image"
+                <button class="btn btn-outline-info" id="button-image" data-input="{{ $field_name }}"
                     type="button"><i class="fas fa-folder-open"></i>&nbsp;@lang('Browse')</button>
             </div>
 
@@ -98,12 +98,13 @@
             <?php
             $field_name = 'category_id';
             $field_lable = __("post::$module_name.$field_name");
-            $field_options = (!empty($data))?optional($data->category())->pluck('name', 'id'):'';
-            $selected = (!empty($data))?optional($data->category())->pluck('id')->toArray():'';
+            $field_options = !empty($data) ? optional($data->category())->pluck('name', 'id') : '';
+            $selected = !empty($data) ? optional($data->category())->pluck('id')->toArray() : '';
             $field_placeholder = __('Select an option');
             $required = 'required';
             ?>
-            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }} {!! field_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
+            {!! field_required($required) !!}
             {{ html()->select($field_name, $field_options, $selected)->placeholder($field_placeholder)->class('form-select select2-category')->attributes(["$required"]) }}
         </div>
     </div>
@@ -116,7 +117,8 @@
             $required = 'required';
             $select_options = \Modules\Post\Enums\PostType::toArray();
             ?>
-            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }} {!! field_required($required) !!}
+            {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
+            {!! field_required($required) !!}
             {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
@@ -144,14 +146,18 @@
             <?php
             $field_name = 'tags_list[]';
             $field_lable = __("post::$module_name.tags");
-            $field_options = (!empty($data))?optional($data->tags)->pluck('name', 'id'):'';
-            $selected = (!empty($data))?optional($data->tags)->pluck('id')->toArray():'';
+            $field_options = !empty($data) ? optional($data->tags)->pluck('name', 'id') : '';
+            $selected = !empty($data)
+                ? optional($data->tags)
+                    ->pluck('id')
+                    ->toArray()
+                : '';
             $field_placeholder = __('Select an option');
             $required = '';
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label')->for($field_name) }}
             {!! field_required($required) !!}
-            {{ html()->multiselect( $field_name, $field_options, $selected)->class('form-control select2-tags')->attributes(["$required"]) }}
+            {{ html()->multiselect($field_name, $field_options, $selected)->class('form-control select2-tags')->attributes(["$required"]) }}
         </div>
     </div>
 </div>
@@ -254,8 +260,6 @@
     </div>
 </div>
 
-<!-- Select2 Library -->
-<x-library.select2 />
 
 @push('after-styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
@@ -323,6 +327,8 @@
         $('#button-image').filemanager('image');
     </script>
 
+    <!-- Select2 Library -->
+    <x-library.select2 />
     <script type="module">
         $(document).ready(function() {
             $(document).on('select2:open', () => {

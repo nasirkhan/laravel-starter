@@ -44,8 +44,7 @@
                 <ul>
                     @foreach ($$module_name_singular->tags as $tag)
                         <li>
-                            <a
-                                href="{{ route('backend.tags.show', [$tag->id, $tag->slug]) }}">{{ $tag->name }}</a>
+                            <a href="{{ route('backend.tags.show', [$tag->id, $tag->slug]) }}">{{ $tag->name }}</a>
                         </li>
                     @endforeach
                 </ul>

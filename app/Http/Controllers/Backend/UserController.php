@@ -44,7 +44,7 @@ class UserController extends Controller
         $this->module_name = 'users';
 
         // directory path of the module
-        $this->module_path = 'users';
+        $this->module_path = 'backend';
 
         // module icon
         $this->module_icon = 'fa-solid fa-user-group';
@@ -77,7 +77,7 @@ class UserController extends Controller
         Log::info("'{$title}' viewed by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.{$module_path}.index",
+            "{$module_path}.{$module_name}.index",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
         );
     }
@@ -193,7 +193,7 @@ class UserController extends Controller
         $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         return view(
-            "backend.{$module_name}.create",
+            "{$module_path}.{$module_name}.create",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'roles', 'permissions')
         );
     }
@@ -290,7 +290,7 @@ class UserController extends Controller
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.{$module_name}.show",
+            "{$module_path}.{$module_name}.show",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
@@ -324,7 +324,7 @@ class UserController extends Controller
         $$module_name_singular = $module_model::findOrFail($id);
 
         return view(
-            "backend.{$module_name}.changePassword",
+            "{$module_path}.{$module_name}.changePassword",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
@@ -402,7 +402,7 @@ class UserController extends Controller
         Log::info(label_case($module_title.' '.$module_action)." | '".$$module_name_singular->name.'(ID:'.$$module_name_singular->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
 
         return view(
-            "backend.{$module_name}.edit",
+            "{$module_path}.{$module_name}.edit",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'roles', 'permissions', 'userRoles', 'userPermissions')
         );
     }
@@ -528,16 +528,15 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
-        $module_action = 'Deleted List';
-        $page_heading = $module_title;
+        $module_action = 'Trash List';
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        Log::info(label_case($module_action).' '.label_case($module_name).' by User:'.auth()->user()->name);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "backend.{$module_name}.trash",
-            compact('module_name', 'module_title', "{$module_name}", 'module_icon', 'page_heading', 'module_action')
+            "{$module_path}.{$module_name}.trash",
+            compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
