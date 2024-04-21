@@ -8,7 +8,7 @@
 @section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon='{{ $module_icon }}'>
-            {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }}
+            {{ $$module_name_singular->name }}
         </x-backend.breadcrumb-item>
 
         <x-backend.breadcrumb-item type="active">{{ __($module_title) }}

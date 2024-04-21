@@ -20,7 +20,7 @@
 
                 <x-slot name="toolbar">
                     <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
-                        route='{{ route("backend.$module_name.create") }}' />
+                        route='{{ route("backend.$module_name.create") }}' :small=true />
                 </x-slot>
             </x-backend.section-header>
 
