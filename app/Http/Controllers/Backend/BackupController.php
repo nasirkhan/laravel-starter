@@ -68,7 +68,7 @@ class BackupController extends Controller
             if (substr($f, -4) === '.zip' && $disk->exists($f)) {
                 $$module_name[] = [
                     'file_path' => $f,
-                    'file_name' => str_replace(config('backup.backup.name').'/', '', $f),
+                    'file_name' => str_replace(config('backup.backup.name') . '/', '', $f),
                     'file_size_byte' => $disk->size($f),
                     'file_size' => humanFilesize($disk->size($f)),
                     'last_modified_timestamp' => $disk->lastModified($f),
@@ -114,7 +114,7 @@ class BackupController extends Controller
             $output = Artisan::output();
 
             // Log the results
-            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
+            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n" . $output);
 
             // return the results as a response to the ajax call
             flash('New backup created')->success()->important();
@@ -135,7 +135,7 @@ class BackupController extends Controller
     public function download($file_name)
     {
         $disk = Storage::disk('local');
-        $file = config('backup.backup.name').'/'.$file_name;
+        $file = config('backup.backup.name') . '/' . $file_name;
 
         if ($disk->exists($file)) {
             return Storage::download($file);
@@ -149,7 +149,7 @@ class BackupController extends Controller
     public function delete($file_name)
     {
         $disk = Storage::disk('local');
-        $file = config('backup.backup.name').'/'.$file_name;
+        $file = config('backup.backup.name') . '/' . $file_name;
 
         if ($disk->exists($file)) {
             $disk->delete($file);
