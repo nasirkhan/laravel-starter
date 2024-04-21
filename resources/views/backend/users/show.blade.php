@@ -39,9 +39,11 @@
                     <table class="table-bordered table-hover table">
                         <tr>
                             <th>{{ __('labels.backend.users.fields.avatar') }}</th>
-                            <td><img class="user-profile-image img-fluid img-thumbnail"
+                            <td>
+                                <img class="user-profile-image img-fluid img-thumbnail"
                                     src="{{ asset($$module_name_singular->avatar) }}"
-                                    style="max-height:200px; max-width:200px;" /></td>
+                                    style="max-height:200px; max-width:200px;" />
+                            </td>
                         </tr>
 
                         @php
@@ -165,22 +167,22 @@
                         <a class="btn btn-danger mt-1" data-method="PATCH" data-token="{{ csrf_token() }}"
                             data-toggle="tooltip" data-confirm="Are you sure?"
                             href="{{ route('backend.users.block', $user) }}" title="{{ __('labels.backend.block') }}"><i
-                                class="fas fa-ban"></i> Block</a>
+                                class="fas fa-ban"></i> @lang('Block')</a>
                     @endif
                     @if ($user->status == 2)
                         <a class="btn btn-info mt-1" data-method="PATCH" data-token="{{ csrf_token() }}"
                             data-toggle="tooltip" data-confirm="Are you sure?"
                             href="{{ route('backend.users.unblock', $user) }}"
-                            title="{{ __('labels.backend.unblock') }}"><i class="fas fa-check"></i> Unblock</a>
+                            title="{{ __('labels.backend.unblock') }}"><i class="fas fa-check"></i> @lang('Unblock')</a>
                     @endif
                     <a class="btn btn-danger mt-1" data-method="DELETE" data-token="{{ csrf_token() }}"
                         data-toggle="tooltip" data-confirm="Are you sure?"
                         href="{{ route('backend.users.destroy', $user) }}" title="{{ __('labels.backend.delete') }}"><i
-                            class="fas fa-trash-alt"></i> Delete</a>
+                            class="fas fa-trash-alt"></i> @lang('Delete')</a>
                     @if ($user->email_verified_at == null)
                         <a class="btn btn-primary mt-1" data-toggle="tooltip"
                             href="{{ route('backend.users.emailConfirmationResend', $user->id) }}"
-                            title="Send Confirmation Email"><i class="fas fa-envelope"></i> Email Confirmation</a>
+                            title="Send Confirmation Email"><i class="fas fa-envelope"></i> @lang('Email Confirmation')</a>
                     @endif
                 </div>
             </div>
