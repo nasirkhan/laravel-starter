@@ -84,7 +84,7 @@
             {!! field_required($required) !!}
             <div class="input-group mb-3">
                 {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label' => 'Image', 'aria-describedby' => 'button-image']) }}
-                <button class="btn btn-outline-info" id="button-image" data-input="button-image"
+                <button class="btn btn-outline-info" id="button-image" data-input="{{$field_name}}"
                     type="button"><i class="fas fa-folder-open"></i>&nbsp;@lang('Browse')</button>
             </div>
 
