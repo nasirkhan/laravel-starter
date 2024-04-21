@@ -38,8 +38,8 @@
                                     </a>
                                 </li>
                                 <!-- <li>
-                                    <hr class="dropdown-divider">
-                                </li> -->
+                                            <hr class="dropdown-divider">
+                                        </li> -->
                             </ul>
                         </div>
                     @endcan
