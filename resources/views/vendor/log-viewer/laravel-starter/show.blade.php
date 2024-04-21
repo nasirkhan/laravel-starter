@@ -214,7 +214,7 @@ $module_icon = 'fa-solid fa-list-check';
                         </div>
                     </div>
 
-                    {!! $entries->appends(compact('query'))->render() !!}
+                    {!! $entries->appends(compact('query'))->render('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>

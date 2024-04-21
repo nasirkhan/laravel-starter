@@ -90,7 +90,7 @@ $module_icon = 'fa-solid fa-list-check';
                 </table>
             </div>
 
-            {{ $rows->render() }}
+            {{ $rows->links('pagination::bootstrap-5') }}
         </div>
     </div>
 
