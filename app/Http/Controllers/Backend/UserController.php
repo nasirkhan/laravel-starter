@@ -532,7 +532,7 @@ class UserController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.trash",
