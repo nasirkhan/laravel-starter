@@ -210,7 +210,7 @@ if (! function_exists('encode_id')) {
      */
     function encode_id($id)
     {
-        $sqids = new Sqids\Sqids(alphabet:'abcdefghijklmnopqrstuvwxyz1234567890', blocklist: ['0e82', '0e09', '0001']);
+        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
 
         return $sqids->encode([$id]);
     }
@@ -228,7 +228,7 @@ if (! function_exists('decode_id')) {
      */
     function decode_id($hashid)
     {
-        $sqids = new Sqids\Sqids(alphabet:'abcdefghijklmnopqrstuvwxyz1234567890', blocklist: ['0e82', '0e09', '0001']);
+        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
         $id = $sqids->decode($hashid);
 
         if (count($id)) {
