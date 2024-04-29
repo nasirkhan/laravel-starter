@@ -16,7 +16,6 @@
     "require": {
         "php": "^8.2",
         "arcanedev/log-viewer": "^11.0",
-        "hashids/hashids": "^5.0",
         "intervention/image-laravel": "^1.2",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^11.0",
