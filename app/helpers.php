@@ -206,7 +206,7 @@ if (! function_exists('humanFilesize')) {
  */
 if (! function_exists('encode_id')) {
     /**
-     * Encode Id to a Hashids / Sqids
+     * Encode Id to a Hashids / Sqids.
      */
     function encode_id($id)
     {
@@ -224,7 +224,7 @@ if (! function_exists('encode_id')) {
  */
 if (! function_exists('decode_id')) {
     /**
-     * Decode Id from Hashids / Sqids
+     * Decode Id from Hashids / Sqids.
      */
     function decode_id($hashid)
     {
