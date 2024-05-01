@@ -74,7 +74,7 @@ class UserController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.index",
@@ -170,7 +170,7 @@ class UserController extends Controller
             ];
         }
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return response()->json($$module_name);
     }
@@ -194,7 +194,7 @@ class UserController extends Controller
         $roles = Role::get();
         $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.create",
@@ -268,7 +268,7 @@ class UserController extends Controller
 
         Artisan::call('cache:clear');
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return redirect("admin/{$module_name}");
     }
@@ -409,7 +409,7 @@ class UserController extends Controller
         $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
-        
+
         return view(
             "{$module_path}.{$module_name}.edit",
             compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'roles', 'permissions', 'userRoles', 'userPermissions')
@@ -509,7 +509,7 @@ class UserController extends Controller
             flash('You can not delete this user!')->warning()->important();
 
             logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
-            
+
             return redirect()->back();
         }
 
