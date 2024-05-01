@@ -58,7 +58,7 @@ class BackendBaseController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::paginate();
+        $$module_name = $module_model::paginate(15);
 
         logUserAccess($module_title.' '.$module_action);
 

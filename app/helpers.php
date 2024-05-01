@@ -200,36 +200,36 @@ if (! function_exists('humanFilesize')) {
 
 /*
  *
- * Encode Id to a Hashids\Hashids
+ * Encode Id to a Hashids / Sqids
  *
  * ------------------------------------------------------------------------
  */
 if (! function_exists('encode_id')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Encode Id to a Hashids / Sqids.
      */
     function encode_id($id)
     {
-        $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
+        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
 
-        return $hashids->encode($id);
+        return $sqids->encode([$id]);
     }
 }
 
 /*
  *
- * Decode Id to a Hashids\Hashids
+ * Decode Id from Hashids / Sqids
  *
  * ------------------------------------------------------------------------
  */
 if (! function_exists('decode_id')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Decode Id from Hashids / Sqids.
      */
     function decode_id($hashid)
     {
-        $hashids = new Hashids\Hashids(config('app.salt'), 3, 'abcdefghijklmnopqrstuvwxyz1234567890');
-        $id = $hashids->decode($hashid);
+        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
+        $id = $sqids->decode($hashid);
 
         if (count($id)) {
             return $id[0];

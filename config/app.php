@@ -133,8 +133,6 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'salt' => 'zXfMPtcERG7XVFF4yUsSaRgOg',
-
     'previous_keys' => [
         ...array_filter(
             explode(',', env('APP_PREVIOUS_KEYS', ''))
