@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,7 +19,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         parent::setUp();
 
-        // seed the database 
+        // seed the database
         // $this->seed();
 
         Artisan::call('db:seed');
@@ -33,8 +32,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Backend Dashboard Test
+     * Backend Dashboard Test.
      *
      * ---------------------------------------------------------------
      */
@@ -48,8 +46,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Notifications Test
+     * Notifications Test.
      *
      * ---------------------------------------------------------------
      */
@@ -61,8 +58,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Settings Test
+     * Settings Test.
      *
      * ---------------------------------------------------------------
      */
@@ -74,8 +70,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Backups Test
+     * Backups Test.
      *
      * ---------------------------------------------------------------
      */
@@ -87,8 +82,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Users Test
+     * Users Test.
      *
      * ---------------------------------------------------------------
      */
@@ -109,7 +103,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_show_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i);
+            $response = $this->get('/admin/users/'.$i);
 
             $response->assertStatus(200);
         }
@@ -118,7 +112,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_edit_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i . '/edit');
+            $response = $this->get('/admin/users/'.$i.'/edit');
 
             $response->assertStatus(200);
         }
@@ -134,7 +128,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $user->delete();
 
-        $this->assertSoftDeleted($user);        
+        $this->assertSoftDeleted($user);
     }
 
     public function test_super_admin_user_can_view_trashed_user(): void
@@ -149,7 +143,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $this->assertDatabaseMissing('users', [
             'id' => $model_id,
-            'deleted_at' => null
+            'deleted_at' => null,
         ]);
     }
 
@@ -157,7 +151,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/users/' . $model_id);
+        $response = $this->delete('/admin/users/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -186,15 +180,14 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_change_password_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i . '/change-password');
+            $response = $this->get('/admin/users/'.$i.'/change-password');
 
             $response->assertStatus(200);
         }
     }
 
     /**
-     * 
-     * Roles Test
+     * Roles Test.
      *
      * ---------------------------------------------------------------
      */
@@ -220,7 +213,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_show_role(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/roles/' . $i);
+            $response = $this->get('/admin/roles/'.$i);
 
             $response->assertStatus(200);
         }
@@ -229,7 +222,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_edit_role(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/roles/' . $i . '/edit');
+            $response = $this->get('/admin/roles/'.$i.'/edit');
 
             $response->assertStatus(200);
         }
@@ -251,8 +244,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Log Viewer Test
+     * Log Viewer Test.
      *
      * ---------------------------------------------------------------
      */
@@ -271,8 +263,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Posts Test
+     * Posts Test.
      *
      * ---------------------------------------------------------------
      */
@@ -329,7 +320,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $this->assertDatabaseMissing('posts', [
             'id' => $model_id,
-            'deleted_at' => null
+            'deleted_at' => null,
         ]);
     }
 
@@ -337,7 +328,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/posts/' . $model_id);
+        $response = $this->delete('/admin/posts/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -364,8 +355,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Categories Test
+     * Categories Test.
      *
      * ---------------------------------------------------------------
      */
@@ -422,7 +412,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $this->assertDatabaseMissing('categories', [
             'id' => $model_id,
-            'deleted_at' => null
+            'deleted_at' => null,
         ]);
     }
 
@@ -430,7 +420,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/categories/' . $model_id);
+        $response = $this->delete('/admin/categories/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -457,8 +447,7 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * 
-     * Tags Test
+     * Tags Test.
      *
      * ---------------------------------------------------------------
      */
@@ -515,7 +504,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $this->assertDatabaseMissing('tags', [
             'id' => $model_id,
-            'deleted_at' => null
+            'deleted_at' => null,
         ]);
     }
 
@@ -523,7 +512,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/tags/' . $model_id);
+        $response = $this->delete('/admin/tags/'.$model_id);
 
         $response->assertStatus(302);
 
