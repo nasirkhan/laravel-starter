@@ -19,14 +19,15 @@
 @section('content')
     <x-backend.layouts.edit :data="$user">
         <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small class="text-muted">{{ __($module_title) }}
+            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small
+                class="text-muted">{{ __($module_title) }}
                 {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back :small=true />
                 <x-backend.buttons.show class="ms-1"
-                    title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.show", $$module_name_singular) !!}' :small=true />
+                    title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}" route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'
+                    :small=true />
             </x-slot>
         </x-backend.section-header>
 
@@ -266,7 +267,16 @@
                                                     <div class="card mb-3">
                                                         <div class="card-header">
                                                             <div class="checkbox">
-                                                                {{ html()->label(html()->checkbox('roles[]', in_array($role->name, $userRoles), $role->name)->id('role-' . $role->id) .'&nbsp;' .ucwords($role->name) .'&nbsp;(' .$role->name .')')->for('role-' . $role->id) }}
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input"
+                                                                        id="{{ 'role-' . $role->id }}" name="roles[]"
+                                                                        type="checkbox" value="{{ $role->name }}"
+                                                                        {{ in_array($role->name, $userRoles) ? 'checked' : '' }}>
+                                                                    <label class="form-check-label"
+                                                                        for="{{ 'role-' . $role->id }}">
+                                                                        {{ label_case($role->name) . ' (' . $role->name . ')' }}
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
@@ -297,8 +307,15 @@
                                         <div class="card-body">
                                             @if ($permissions->count())
                                                 @foreach ($permissions as $permission)
-                                                    <div class="checkbox">
-                                                        {{ html()->label(html()->checkbox('permissions[]', in_array($permission->name, $userPermissions), $permission->name)->id('permission-' . $permission->id) .' ' .$permission->name)->for('permission-' . $permission->id) }}
+                                                    <div class="mb-2">
+                                                        <input class="form-check-input"
+                                                            id="{{ 'permission-' . $permission->id }}" name="permissions[]"
+                                                            type="checkbox" value="{{ $permission->name }}"
+                                                            {{ in_array($permission->name, $userPermissions) ? 'checked' : '' }}>
+                                                        <label class="form-check-label"
+                                                            for="{{ 'permission-' . $permission->id }}">
+                                                            {{ label_case($permission->name) . ' (' . $permission->name . ')' }}
+                                                        </label>
                                                     </div>
                                                 @endforeach
                                             @endif
