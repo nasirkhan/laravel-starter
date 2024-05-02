@@ -7,7 +7,9 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
+use Modules\Category\Models\Category;
 use Modules\Post\Models\Post;
+use Modules\Tag\Models\Tag;
 use Tests\TestCase;
 
 class BackendViewSuperAdminTest extends TestCase
@@ -203,6 +205,11 @@ class BackendViewSuperAdminTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_super_admin_user_can_view_roles_count(): void
+    {
+        $this->assertDatabaseCount('roles', 5);
+    }
+
     public function test_super_admin_user_can_create_role(): void
     {
         $response = $this->get('/admin/roles/create');
@@ -390,6 +397,65 @@ class BackendViewSuperAdminTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_super_admin_user_can_delete_category(): void
+    {
+        $model_id = 5;
+
+        $model = Category::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertSoftDeleted($model);
+    }
+
+    public function test_super_admin_user_can_view_trashed_category(): void
+    {
+        $model_id = 5;
+
+        $model = Category::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertDatabaseMissing('categories', [
+            'id' => $model_id,
+            'deleted_at' => null
+        ]);
+    }
+
+    public function test_super_admin_user_can_restore_trashed_category(): void
+    {
+        $model_id = 5;
+
+        $response = $this->delete('/admin/categories/' . $model_id);
+
+        $response->assertStatus(302);
+
+        $response->assertRedirect('/admin/categories');
+
+        $model = Category::withTrashed()->find($model_id)->first();
+
+        $model->restore();
+
+        $this->assertModelExists($model);
+    }
+
+    public function test_super_admin_user_can_restore_category(): void
+    {
+        $model_id = 5;
+
+        $model = Category::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertSoftDeleted($model);
+    }
+
     /**
      * 
      * Tags Test
@@ -424,19 +490,62 @@ class BackendViewSuperAdminTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_super_admin_user_can_view_tags_trashed(): void
-    {
-        $response = $this->get('/admin/tags/trashed');
-
-        $response->assertStatus(200);
-    }
-
     public function test_super_admin_user_can_delete_tag(): void
     {
-        $response = $this->delete('/admin/tags/'. 1);
+        $model_id = 5;
+
+        $model = Tag::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertSoftDeleted($model);
+    }
+
+    public function test_super_admin_user_can_view_trashed_tag(): void
+    {
+        $model_id = 5;
+
+        $model = Tag::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertDatabaseMissing('tags', [
+            'id' => $model_id,
+            'deleted_at' => null
+        ]);
+    }
+
+    public function test_super_admin_user_can_restore_trashed_tag(): void
+    {
+        $model_id = 5;
+
+        $response = $this->delete('/admin/tags/' . $model_id);
 
         $response->assertStatus(302);
 
         $response->assertRedirect('/admin/tags');
+
+        $model = Tag::withTrashed()->find($model_id)->first();
+
+        $model->restore();
+
+        $this->assertModelExists($model);
+    }
+
+    public function test_super_admin_user_can_restore_tag(): void
+    {
+        $model_id = 5;
+
+        $model = Tag::find($model_id);
+
+        $this->assertModelExists($model);
+
+        $model->delete();
+
+        $this->assertSoftDeleted($model);
     }
 }
