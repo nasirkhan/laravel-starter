@@ -43,7 +43,7 @@ There are options to truncate the `posts, categories, tags, and comments` tables
 
 ```php
 
-php artisan starter:insert-demo-data --fresh
+php artisan laravel-starter:insert-demo-data --fresh
 
 ```
 
