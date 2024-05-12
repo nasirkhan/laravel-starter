@@ -33,59 +33,68 @@ $notifications_latest = optional($notifications)->take(5);
             </a>
         </li>
 
-        @can('view_posts')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.posts.index') }}">
-                    <i class="nav-icon fa-regular fa-file-lines"></i>&nbsp;@lang('Posts')
-                </a>
-            </li>
-        @endcan
-        @can('view_categories')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.categories.index') }}">
-                    <i class="nav-icon fa-solid fa-diagram-project"></i>&nbsp;@lang('Categories')
-                </a>
-            </li>
-        @endcan
-        @can('view_tags')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.tags.index') }}">
-                    <i class="nav-icon fa-solid fa-tags"></i>&nbsp;@lang('Tags')
-                </a>
-            </li>
-        @endcan
+        @php
+            $module_name = "posts";
+            $text = __('Posts');
+            $icon = "fa-regular fa-file-lines";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
-        @can('edit_settings')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.settings') }}">
-                    <i class="nav-icon fa-solid fa-gears"></i>&nbsp;@lang('Settings')
-                </a>
-            </li>
-        @endcan
-
-        @can('view_backups')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.backups.index') }}">
-                    <i class="nav-icon fa-solid fa-box-archive"></i>&nbsp;@lang('Backups')
-                </a>
-            </li>
-        @endcan
-
-        @can('view_users')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.users.index') }}">
-                    <i class="nav-icon fa-solid fa-user-group"></i>&nbsp;@lang('Users')
-                </a>
-            </li>
-        @endcan
-
-        @can('view_roles')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('backend.roles.index') }}">
-                    <i class="nav-icon fa-solid fa-user-shield"></i>&nbsp;@lang('Roles')
-                </a>
-            </li>
-        @endcan
+        @php
+            $module_name = "categories";
+            $text = __('Categories');
+            $icon = "fa-solid fa-diagram-project";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        
+        @php
+            $module_name = "tags";
+            $text = __('Tags');
+            $icon = "fa-solid fa-tags";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        
+        @php
+            $module_name = "settings";
+            $text = __('Settings');
+            $icon = "fa-solid fa-gears";
+            $permission = "edit_".$module_name;
+            $url = route('backend.'.$module_name);
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        
+        @php
+            $module_name = "backups";
+            $text = __('Backups');
+            $icon = "fa-solid fa-box-archive";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        
+        @php
+            $module_name = "users";
+            $text = __('Users');
+            $icon = "fa-solid fa-user-group";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
+        
+        @php
+            $module_name = "roles";
+            $text = __('Roles');
+            $icon = "fa-solid fa-user-shield";
+            $permission = "view_".$module_name;
+            $url = route('backend.'.$module_name.'.index');
+        @endphp
+        <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
         @can('view_logs')
             <li class="nav-group" aria-expanded="true">
