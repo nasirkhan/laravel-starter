@@ -19,35 +19,7 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        // Create Permissions
-        $permissions = Permission::defaultPermissions();
-
-        foreach ($permissions as $permission) {
-            $permission = Permission::make(['name' => $permission]);
-            $permission->saveOrFail();
-        }
-
-        Artisan::call('auth:permission', [
-            'name' => 'posts',
-        ]);
-        echo "\n _Posts_ Permissions Created.";
-
-        Artisan::call('auth:permission', [
-            'name' => 'categories',
-        ]);
-        echo "\n _Categories_ Permissions Created.";
-
-        Artisan::call('auth:permission', [
-            'name' => 'tags',
-        ]);
-        echo "\n _Tags_ Permissions Created.";
-
-        Artisan::call('auth:permission', [
-            'name' => 'comments',
-        ]);
-        echo "\n _Comments_ Permissions Created.";
-
-        echo "\n\n";
+        $this->CreateDefaultPermissions();
 
         /**
          * Create Roles and Assign Permissions to Roles.
@@ -64,5 +36,39 @@ class PermissionRoleTableSeeder extends Seeder
         $executive->givePermissionTo('view_backend');
 
         $user = Role::create(['id' => '5', 'name' => 'user']);
+    }
+
+    public function CreateDefaultPermissions()
+    {
+        // Create Permissions
+        $permissions = Permission::defaultPermissions();
+
+        foreach ($permissions as $permission) {
+            $permission = Permission::make(['name' => $permission]);
+            $permission->saveOrFail();
+        }
+        echo "\n Default Permissions Created. \n";
+
+        Artisan::call('auth:permissions', [
+            'name' => 'posts',
+        ]);
+        echo "\n _Posts_ Permissions Created.";
+
+        Artisan::call('auth:permissions', [
+            'name' => 'categories',
+        ]);
+        echo "\n _Categories_ Permissions Created.";
+
+        Artisan::call('auth:permissions', [
+            'name' => 'tags',
+        ]);
+        echo "\n _Tags_ Permissions Created.";
+
+        Artisan::call('auth:permissions', [
+            'name' => 'comments',
+        ]);
+        echo "\n _Comments_ Permissions Created.";
+
+        echo "\n\n";
     }
 }
