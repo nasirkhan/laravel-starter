@@ -20,9 +20,9 @@ class BackendViewSuperAdminTest extends TestCase
         parent::setUp();
 
         // seed the database
-        // $this->seed();
+        $this->seed();
 
-        Artisan::call('db:seed');
+        // Artisan::call('db:seed');
         Artisan::call('laravel-starter:insert-demo-data');
 
         // Get Super Admin
