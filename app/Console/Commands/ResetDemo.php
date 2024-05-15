@@ -32,21 +32,20 @@ class ResetDemo extends Command
             $this->warn("\n\n Demo Mode is ON \n");
 
             $this->resetDemoData();
-        }
-        else {
+        } else {
             $this->warn("\n\n Demo Mode is OFF \n");
         }
     }
 
     public function resetDemoData()
     {
-        $this->info("Reset Database and migrate fresh");
+        $this->info('Reset Database and migrate fresh');
         Artisan::call('migrate:fresh');
 
-        $this->info("Reset Database seeds");
+        $this->info('Reset Database seeds');
         Artisan::call('db:seed');
 
-        $this->info("Insert Demo Data again");
+        $this->info('Insert Demo Data again');
         Artisan::call('laravel-starter:insert-demo-data');
     }
 }
