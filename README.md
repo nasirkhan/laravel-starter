@@ -33,7 +33,7 @@ If you want to test the application on your local machine with additional demo d
 
 ```php
 
-php artisan starter:insert-demo-data
+php artisan laravel-starter:insert-demo-data
 
 ```
 

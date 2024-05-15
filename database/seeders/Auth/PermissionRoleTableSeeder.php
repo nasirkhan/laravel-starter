@@ -27,22 +27,22 @@ class PermissionRoleTableSeeder extends Seeder
             $permission->saveOrFail();
         }
 
-        Artisan::call('auth:permission', [
+        Artisan::call('auth:permissions', [
             'name' => 'posts',
         ]);
         echo "\n _Posts_ Permissions Created.";
 
-        Artisan::call('auth:permission', [
+        Artisan::call('auth:permissions', [
             'name' => 'categories',
         ]);
         echo "\n _Categories_ Permissions Created.";
 
-        Artisan::call('auth:permission', [
+        Artisan::call('auth:permissions', [
             'name' => 'tags',
         ]);
         echo "\n _Tags_ Permissions Created.";
 
-        Artisan::call('auth:permission', [
+        Artisan::call('auth:permissions', [
             'name' => 'comments',
         ]);
         echo "\n _Comments_ Permissions Created.";

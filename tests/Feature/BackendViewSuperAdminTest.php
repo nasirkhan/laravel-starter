@@ -23,7 +23,7 @@ class BackendViewSuperAdminTest extends TestCase
         // $this->seed();
 
         Artisan::call('db:seed');
-        Artisan::call('starter:insert-demo-data');
+        Artisan::call('laravel-starter:insert-demo-data');
 
         // Get Super Admin
         $user = User::whereId(1)->first();
