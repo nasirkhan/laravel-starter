@@ -38,7 +38,8 @@ class PermissionRoleTableSeeder extends Seeder
         $user = Role::create(['id' => '5', 'name' => 'user']);
     }
 
-    public function CreateDefaultPermissions() {
+    public function CreateDefaultPermissions()
+    {
         // Create Permissions
         $permissions = Permission::defaultPermissions();
 
