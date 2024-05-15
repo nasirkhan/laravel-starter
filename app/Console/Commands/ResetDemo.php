@@ -32,8 +32,7 @@ class ResetDemo extends Command
             $this->warn("\n\n Demo Mode is ON \n");
 
             $this->resetDemoData();
-        }
-        else {
+        } else {
             $this->warn("\n\n Demo Mode is OFF \n");
         }
     }
