@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class ResetDemo extends Command
 {
@@ -39,13 +38,13 @@ class ResetDemo extends Command
 
     public function resetDemoData()
     {
-        $this->info("Reset Database and migrate fresh");
+        $this->info('Reset Database and migrate fresh');
         $this->callSilently('migrate:fresh', ['--no-interaction' => true]);
 
-        $this->info("Reset Database seeds");
+        $this->info('Reset Database seeds');
         $this->callSilently('db:seed', ['--no-interaction' => true]);
 
-        $this->info("Insert Demo Data again");
+        $this->info('Insert Demo Data again');
         $this->callSilently('laravel-starter:insert-demo-data', ['--no-interaction' => true]);
     }
 }
