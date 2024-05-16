@@ -46,5 +46,7 @@ class ResetDemo extends Command
 
         $this->info('Insert Demo Data again');
         $this->callSilently('laravel-starter:insert-demo-data', ['--no-interaction' => true]);
+
+        $this->callSilently('cache:clear', ['--no-interaction' => true]);
     }
 }
