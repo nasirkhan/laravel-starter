@@ -103,7 +103,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_show_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i);
+            $response = $this->get('/admin/users/'.$i);
 
             $response->assertStatus(200);
         }
@@ -112,7 +112,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_edit_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i . '/edit');
+            $response = $this->get('/admin/users/'.$i.'/edit');
 
             $response->assertStatus(200);
         }
@@ -151,7 +151,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/users/' . $model_id);
+        $response = $this->delete('/admin/users/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -180,7 +180,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_view_change_password_user(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/users/' . $i . '/change-password');
+            $response = $this->get('/admin/users/'.$i.'/change-password');
 
             $response->assertStatus(200);
         }
@@ -229,7 +229,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_show_role(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/roles/' . $i);
+            $response = $this->get('/admin/roles/'.$i);
 
             $response->assertStatus(200);
         }
@@ -238,7 +238,7 @@ class BackendViewSuperAdminTest extends TestCase
     public function test_super_admin_user_can_edit_role(): void
     {
         for ($i = 1; $i <= 5; $i++) {
-            $response = $this->get('/admin/roles/' . $i . '/edit');
+            $response = $this->get('/admin/roles/'.$i.'/edit');
 
             $response->assertStatus(200);
         }
@@ -344,7 +344,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/posts/' . $model_id);
+        $response = $this->delete('/admin/posts/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -436,7 +436,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/categories/' . $model_id);
+        $response = $this->delete('/admin/categories/'.$model_id);
 
         $response->assertStatus(302);
 
@@ -528,7 +528,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $model_id = 5;
 
-        $response = $this->delete('/admin/tags/' . $model_id);
+        $response = $this->delete('/admin/tags/'.$model_id);
 
         $response->assertStatus(302);
 
