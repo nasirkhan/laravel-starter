@@ -348,10 +348,6 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request, $id)
     {
-        $request->validate([
-            'password' => 'required|confirmed|min:6',
-        ]);
-
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -360,6 +356,10 @@ class UserController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Change Password Update';
+
+        $request->validate([
+            'password' => 'required|confirmed|min:6',
+        ]);
 
         if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
@@ -376,7 +376,7 @@ class UserController extends Controller
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
-        return redirect("admin/{$module_name}");
+        return redirect("admin/{$module_name}/{$id}");
     }
 
     /**
