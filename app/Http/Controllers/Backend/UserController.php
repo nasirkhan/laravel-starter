@@ -359,6 +359,8 @@ class UserController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
+        $module_action = 'Change Password Update';
+
         if (! auth()->user()->can('edit_users')) {
             $id = auth()->user()->id;
         }
