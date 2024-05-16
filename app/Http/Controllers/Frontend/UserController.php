@@ -173,7 +173,7 @@ class UserController extends Controller
         if ($id !== auth()->user()->id) {
             return redirect()->route('frontend.users.profile', encode_id($id));
         }
-        
+
         $request->validate([
             'first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
@@ -188,7 +188,7 @@ class UserController extends Controller
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
-        
+
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
             if ($$module_name_singular->getMedia($module_name)->first()) {
