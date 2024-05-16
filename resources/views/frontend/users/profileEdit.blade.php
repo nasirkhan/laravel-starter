@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="mt-5 sm:col-span-2 sm:mt-0">
-                {{ html()->modelForm($$module_name_singular, 'PATCH', route('frontend.users.profileUpdate', encode_id($$module_name_singular->id)))->acceptsFiles()->open() }}
+                {{ html()->modelForm($$module_name_singular, 'PATCH', route('frontend.users.profileUpdate'))->acceptsFiles()->open() }}
                 <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
                     <div class="grid grid-cols-6 gap-6">
 
