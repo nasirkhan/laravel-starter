@@ -1,4 +1,22 @@
 {
+    "Home": "প্রথম পাতা",
+    "Contact": "যোগাযোগ",
+    "Login": "লগইন",
+    "Log in": "লগইন",
+    "Register": "নিবন্ধন",
+
+    "About": "আমাদের সম্পর্কে",
+    "Privacy": "গোপনীয়তা",
+    "Terms": "শর্তসমূহ",
+    "FAQs": "বজিপ্র",
+    "FAQ": "বজিপ্র",
+
+    "Remember me": "লগইন মনে রাখুন",
+    "Forgot your password?": "পাসওয়ার্ড ভুলে গিয়েছেন?",
+    "Create an account?": "অ্যাকাউন্ট তৈরী করবেন?",
+    "Already registered?": "আগে নিবন্ধন করেছেন? লগইন করুন",
+    "Email Password Reset Link": "পাসওয়ার্ড রিসেট লিংক ইমেইল করুন",
+
     "Welcome to": ":name অ্যাডমিন ড্যাশবোর্ডে স্বাগতম",
     "Dashboard": "ড্যাশবোর্ড",
     "Admin Dashboard": "অ্যাডমিন ড্যাশবোর্ড",
@@ -7,6 +25,7 @@
     "Email": "ইমেইল",
     "Password": "পাসওয়ার্ড",
     "Password Confirmation": "পাসওয়ার্ড (পুনরায়)",
+    "Confirm Password": "পাসওয়ার্ড (পুনরায়)",
 
     "Value": "Value",
     "Index": "Index",
