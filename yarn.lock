@@ -740,9 +740,9 @@ jquery@^3.7.1:
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 laravel-vite-plugin@^1.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-1.0.2.tgz#97575181a1f870532b39ab3b423b53f01385feba"
-  integrity sha512-Mcclml10khYzBVxDwJro8wnVDwD4i7XOSEMACQNnarvTnHjrjXLLL+B/Snif2wYAyElsOqagJZ7VAinb/2vF5g==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-1.0.3.tgz#76b33b11535cccd6612de178289e9c2ea4ede933"
+  integrity sha512-PIAOwL50f7GtC6rE7yfPf/35ho8Yd5GjVosfP/mEw1P9g2Pkz5TYkHpm2RdCYTqhohPd4WIsa1RutxJf0xIBEg==
   dependencies:
     picocolors "^1.0.0"
     vite-plugin-full-reload "^1.1.0"
