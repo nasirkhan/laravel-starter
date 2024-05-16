@@ -262,10 +262,10 @@
 
 
 @push('after-styles')
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
     <style>
-        .note-popover .popover-content, .panel-heading.note-toolbar {
-            border-bottom: 1px solid #dedede;
+        .note-editor.note-frame :after {
+            display: none;
         }
 
         .note-editor .note-toolbar .note-dropdown-menu,
@@ -276,20 +276,8 @@
 @endpush
 
 @push('after-scripts')
-    <script type="module" src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-        };
-
-        CKEDITOR.replace('content', options);
-    </script>
-
-    {{-- <script type="module" src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.js"></script> --}}
-    {{-- <script type="module">
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script type="module">
         // Define function to open filemanager window
         var lfm = function(options, cb) {
             var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
@@ -332,7 +320,7 @@
                 lfm: LFMButton
             }
         });
-    </script> --}}
+    </script>
 
     <script type="module" src="{{ asset('vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
     <script type="module">
