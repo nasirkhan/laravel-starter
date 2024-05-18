@@ -21,9 +21,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         // seed the database
         $this->seed();
-
         // Artisan::call('db:seed');
-        Artisan::call('laravel-starter:insert-demo-data');
 
         // Get Super Admin
         $user = User::whereId(1)->first();
@@ -285,6 +283,8 @@ class BackendViewSuperAdminTest extends TestCase
      */
     public function test_super_admin_user_can_view_posts_index(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/posts');
 
         $response->assertStatus(200);
@@ -292,6 +292,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_create_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/posts/create');
 
         $response->assertStatus(200);
@@ -299,6 +301,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_show_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/posts/1');
 
         $response->assertStatus(200);
@@ -306,6 +310,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_edit_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/posts/1/edit');
 
         $response->assertStatus(200);
@@ -313,6 +319,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_delete_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Post::find($model_id);
@@ -326,6 +334,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_view_trashed_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Post::find($model_id);
@@ -342,6 +352,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_trashed_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $response = $this->delete('/admin/posts/' . $model_id);
@@ -359,6 +371,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_post(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Post::find($model_id);
@@ -377,6 +391,8 @@ class BackendViewSuperAdminTest extends TestCase
      */
     public function test_super_admin_user_can_view_categories_index(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/categories');
 
         $response->assertStatus(200);
@@ -384,6 +400,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_create_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/categories/create');
 
         $response->assertStatus(200);
@@ -391,6 +409,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_show_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/categories/1');
 
         $response->assertStatus(200);
@@ -398,6 +418,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_edit_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/categories/1/edit');
 
         $response->assertStatus(200);
@@ -405,6 +427,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_delete_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Category::find($model_id);
@@ -418,6 +442,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_view_trashed_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Category::find($model_id);
@@ -434,6 +460,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_trashed_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $response = $this->delete('/admin/categories/' . $model_id);
@@ -451,6 +479,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_category(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Category::find($model_id);
@@ -469,6 +499,8 @@ class BackendViewSuperAdminTest extends TestCase
      */
     public function test_super_admin_user_can_view_tags_index(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/tags');
 
         $response->assertStatus(200);
@@ -476,6 +508,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_create_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/tags/create');
 
         $response->assertStatus(200);
@@ -483,6 +517,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_show_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/tags/1');
 
         $response->assertStatus(200);
@@ -490,6 +526,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_edit_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $response = $this->get('/admin/tags/1/edit');
 
         $response->assertStatus(200);
@@ -497,6 +535,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_delete_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Tag::find($model_id);
@@ -510,6 +550,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_view_trashed_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Tag::find($model_id);
@@ -526,6 +568,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_trashed_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $response = $this->delete('/admin/tags/' . $model_id);
@@ -543,6 +587,8 @@ class BackendViewSuperAdminTest extends TestCase
 
     public function test_super_admin_user_can_restore_tag(): void
     {
+        Artisan::call('laravel-starter:insert-demo-data');
+
         $model_id = 5;
 
         $model = Tag::find($model_id);
