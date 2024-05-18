@@ -202,7 +202,7 @@ class UserController extends Controller
             $$module_name_singular->save();
         }
 
-        return redirect()->route('frontend.users.profile', encode_id($$module_name_singular->id))->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile', $$module_name_singular->username)->with('flash_success', 'Update successful!');
     }
 
     /**

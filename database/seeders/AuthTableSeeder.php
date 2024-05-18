@@ -20,7 +20,10 @@ class AuthTableSeeder extends Seeder
     public function run()
     {
         $this->call(UserTableSeeder::class);
+        echo "\n Default Users Created. \n";
         $this->call(PermissionRoleTableSeeder::class);
+        echo "\n Default Permissions Created. \n";
         $this->call(UserRoleTableSeeder::class);
+        echo "\n Default Roles created and assigned to Users. \n";
     }
 }
