@@ -68,7 +68,8 @@ class SettingController extends Controller
     public function store(Request $request)
     {
         $rules = Setting::getValidationRules();
-        $data = $request->validate($request, $rules);
+
+        $data = $request->validate($rules);
 
         $validSettings = array_keys($rules);
 
