@@ -47,7 +47,6 @@ class PermissionRoleTableSeeder extends Seeder
             $permission = Permission::make(['name' => $permission]);
             $permission->saveOrFail();
         }
-        echo "\n Default Permissions Created. \n";
 
         Artisan::call('auth:permissions', [
             'name' => 'posts',
