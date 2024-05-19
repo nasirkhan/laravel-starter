@@ -2,13 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
-use Modules\Category\Models\Category;
-use Modules\Post\Models\Post;
-use Modules\Tag\Models\Tag;
 use Tests\TestCase;
 
 class TestTest extends TestCase
@@ -28,6 +24,7 @@ class TestTest extends TestCase
 
         $this->actingAs($user);
     }
+
     /**
      * Backend Dashboard Test.
      *
@@ -54,8 +51,8 @@ class TestTest extends TestCase
                 $fields_data[$name] = $value;
             }
         }
-        
-        $fields_data['app_name'] = "Awesome Laravel Starter";
+
+        $fields_data['app_name'] = 'Awesome Laravel Starter';
 
         dump($fields_data);
 
@@ -70,7 +67,6 @@ class TestTest extends TestCase
 
         // $response->assertRedirect(route('backend.settings'));
         $response->assertRedirect(route('frontend.index'));
-
 
         // dump($response->getContent());
     }
