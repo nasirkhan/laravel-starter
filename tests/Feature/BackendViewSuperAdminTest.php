@@ -67,6 +67,48 @@ class BackendViewSuperAdminTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_super_admin_user_can_udpate_settings(): void
+    {
+        $fields_data = [];
+
+        foreach (config('setting_fields') as $section => $fields) {
+            foreach ($fields['elements'] as $field) {
+                $name = $field['name'];
+                $value = $field['value'];
+
+                $fields_data[$name] = $value;
+            }
+        }
+
+        $fields_data['app_name'] = "Awesome Laravel Starter";
+
+        $response = $this->postJson(route('backend.settings.store'), $fields_data);
+
+        $response->assertStatus(302);
+    }
+
+    public function test_except_super_admin_user_can_not_udpate_settings(): void
+    {
+        $user = User::whereId(5)->first();
+
+        $this->actingAs($user);
+
+        $fields_data = [];
+
+        foreach (config('setting_fields') as $section => $fields) {
+            foreach ($fields['elements'] as $field) {
+                $name = $field['name'];
+                $value = $field['value'];
+
+                $fields_data[$name] = $value;
+            }
+        }
+
+        $response = $this->postJson(route('backend.settings.store'), $fields_data);
+
+        $response->assertStatus(403);
+    }
+
     /**
      * Backups Test.
      *
@@ -189,8 +231,8 @@ class BackendViewSuperAdminTest extends TestCase
         $user_id = 5;
 
         $response = $this
-            ->postJson(route('backend.users.changePasswordUpdate', $user_id), [
-                '_method' => 'PATCH',
+            ->patchJson(route('backend.users.changePasswordUpdate', $user_id), [
+                // '_method' => 'PATCH',
                 'password' => '123456',
                 'password_confirmation' => '123456',
             ]);
