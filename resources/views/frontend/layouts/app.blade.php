@@ -29,7 +29,8 @@
     </head>
 
     <body>
-
+        <x-selected-theme />
+        
         @include('frontend.includes.header')
 
         <main class="bg-white dark:bg-gray-800">
