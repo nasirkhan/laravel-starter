@@ -24,7 +24,27 @@
     </div>
     @else
     <div class="btn-toolbar d-block text-end" role="toolbar" aria-label="Toolbar with buttons">
-        @if (Str::endsWith(Route::currentRouteName(), 'create'))
+        @if (Str::endsWith(Route::currentRouteName(), 'index'))
+            @can('add_' . $module_name)
+                <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
+                    small="true" route='{{ route("backend.$module_name.create") }}' />
+            @endcan
+            @can('restore_' . $module_name)
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" data-coreui-toggle="dropdown"
+                        type="button" aria-expanded="false">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href='{{ route("backend.$module_name.trashed") }}'>
+                                <i class="fas fa-eye-slash"></i> @lang('View trash')
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            @endcan
+        @elseif (Str::endsWith(Route::currentRouteName(), 'create'))
         <x-backend.buttons.return-back small="true" />
         <a href='{{ route("backend.$module_name.index") }}' class="btn btn-secondary btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_title) }} List"><i class="fas fa-list-ul"></i> List</a>
 

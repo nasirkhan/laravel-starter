@@ -12,6 +12,7 @@
         @vite(['resources/js/app-frontend.js'])
     </head>
     <body class="font-sans antialiased">
+        <x-selected-theme />
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
