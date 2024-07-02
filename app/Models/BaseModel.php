@@ -81,7 +81,7 @@ class BaseModel extends Model implements HasMedia
                 break;
         }
 
-        return $columns;
+        return json_decode(json_encode($columns));
     }
 
     /**
@@ -113,7 +113,7 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     * Get Status Label.
+     * Get Status Label as text.
      */
     public function getStatusLabelTextAttribute()
     {
@@ -162,6 +162,11 @@ class BaseModel extends Model implements HasMedia
         }
     }
 
+    /**
+     * Boot the model and attach event listeners.
+     *
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();
@@ -203,36 +208,6 @@ class BaseModel extends Model implements HasMedia
             $this->attributes['meta_title'] = $this->attributes['name'];
         }
     }
-
-    // /**
-    //  * Set the 'meta description'
-    //  * If no value submitted use the default 'meta_description'.
-    //  *
-    //  * @param [type]
-    //  */
-    // public function setMetaDescriptionAttribute($value)
-    // {
-    //     $this->attributes['meta_description'] = $value;
-
-    //     if (empty($value)) {
-    //         $this->attributes['meta_description'] = setting('meta_description');
-    //     }
-    // }
-
-    // /**
-    //  * Set the 'meta description'
-    //  * If no value submitted use the default 'meta_description'.
-    //  *
-    //  * @param [type]
-    //  */
-    // public function setMetaKeywordAttribute($value)
-    // {
-    //     $this->attributes['meta_keyword'] = $value;
-
-    //     if (empty($value)) {
-    //         $this->attributes['meta_keyword'] = setting('meta_keyword');
-    //     }
-    // }
 
     /**
      * Set the meta meta_og_image
