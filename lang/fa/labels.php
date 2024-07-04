@@ -84,6 +84,7 @@ return [
                 'password_confirmation' => 'تایید رمز عبور',
                 'confirmed' => 'تایید شد',
                 'active' => 'فعال',
+                'email_credentials' => 'اعتبار سنجی ایمیل',
                 'roles' => 'نقش ها',
                 'permissions' => 'اجازه ها',
                 'social' => 'اجتماعی',
