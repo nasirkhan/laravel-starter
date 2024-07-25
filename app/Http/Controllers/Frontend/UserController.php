@@ -189,6 +189,10 @@ class UserController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        // TODO: Use validated data
+        $data = $request->all();
+        $$module_name_singular->update($data);
+
         // Handle Avatar upload
         if ($request->hasFile('avatar')) {
             if ($$module_name_singular->getMedia($module_name)->first()) {
@@ -206,7 +210,7 @@ class UserController extends Controller
     }
 
     /**
-     * Change password for a user.
+     * Change the password for a user.
      *
      * @param  int  $id
      * @param  int  $id  The ID of the user.
