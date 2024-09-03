@@ -166,7 +166,7 @@ if (! function_exists('setting')) {
     function setting($key, $default = null)
     {
         if (is_null($key)) {
-            return new App\Models\Setting();
+            return new App\Models\Setting;
         }
 
         if (is_array($key)) {

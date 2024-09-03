@@ -36,14 +36,14 @@ class EmailNotificationOnUserRegistered implements ShouldQueue
         if ($user->password === '') {
             // Register via social do not have passwords
             try {
-                $user->notify(new NewRegistrationNotificationForSocial());
+                $user->notify(new NewRegistrationNotificationForSocial);
             } catch (\Exception $e) {
                 Log::error('UserRegisteredListener: Email Send Failed.');
                 Log::error($e);
             }
         } else {
             try {
-                $user->notify(new NewRegistrationNotification());
+                $user->notify(new NewRegistrationNotification);
             } catch (\Exception $e) {
                 Log::error('UserRegisteredListener: Email Send Failed.');
                 Log::error($e);
