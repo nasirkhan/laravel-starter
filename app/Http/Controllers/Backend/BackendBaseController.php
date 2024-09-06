@@ -91,7 +91,7 @@ class BackendBaseController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('slug', 'LIKE', "%{$term}%")->limit(7)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('slug', 'LIKE', "%{$term}%")->active()->limit(7)->get();
 
         $$module_name = [];
 
