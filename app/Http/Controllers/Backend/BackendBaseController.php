@@ -98,7 +98,7 @@ class BackendBaseController extends Controller
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id' => $row->id,
-                'text' => $row->name.' (Slug: '.$row->slug.')',
+                'text' => $row->name,
             ];
         }
 
