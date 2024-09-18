@@ -20,7 +20,7 @@
         {!! $slot !!}
     </div>
     <div class="px-5 pb-5 text-end">
-        <a class="inline-flex items-center rounded bg-gray-200 px-3 py-2 text-sm text-gray-700 outline outline-1 outline-gray-800 hover:bg-gray-700 hover:text-gray-100 focus:outline-none"
+        <a class="inline-flex items-center rounded bg-gray-200 px-3 py-2 text-sm text-gray-700 outline outline-1 outline-gray-800 hover:bg-gray-700 hover:text-gray-100 focus:outline-none dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             href="{{ $url }}">
             View details
             <svg class="-mr-1 ml-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
