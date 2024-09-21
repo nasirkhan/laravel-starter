@@ -53,11 +53,11 @@
                             $$module_name_singular->category->slug,
                         ])" :text="$$module_name_singular->category_name" />
                     </p>
-                    <p>
+                    <div class="mt-4">
                         @foreach ($$module_name_singular->tags as $tag)
                             <x-frontend.badge :url="route('frontend.tags.show', [encode_id($tag->id), $tag->slug])" :text="$tag->name" />
                         @endforeach
-                    </p>
+                    </div>
                 </x-frontend.card>
             @endforeach
         </div>

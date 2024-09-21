@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Modules\Post\Enums\PostStatus;
 use Modules\Post\Models\Presenters\PostPresenter;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -40,6 +41,11 @@ class Post extends BaseModel
         return $this->morphToMany('Modules\Tag\Models\Tag', 'taggable');
     }
 
+    public function scopePublishedAndScheduled($query)
+    {
+        return $query->where('status', '=', PostStatus::Published->value);
+    }
+
     /**
      * Get the list of Published Articles.
      *
@@ -48,20 +54,12 @@ class Post extends BaseModel
      */
     public function scopePublished($query)
     {
-        return $query->where('status', '=', '1')
-            ->where('published_at', '<=', Carbon::now());
-    }
-
-    public function scopePublishedAndScheduled($query)
-    {
-        return $query->where('status', '=', '1');
+        return $query->publishedAndScheduled()->where('published_at', '<=', Carbon::now());
     }
 
     public function scopeFeatured($query)
     {
-        return $query->where('is_featured', '=', 'Yes')
-            ->where('status', '=', '1')
-            ->where('published_at', '<=', Carbon::now());
+        return $query->publishedAndScheduled()->where('is_featured', '=', 'Yes');
     }
 
     /**
@@ -72,9 +70,7 @@ class Post extends BaseModel
      */
     public function scopeRecentlyPublished($query)
     {
-        return $query->where('status', '=', '1')
-            ->whereDate('published_at', '<=', Carbon::today()->toDateString())
-            ->orderBy('published_at', 'desc');
+        return $query->publishedAndScheduled()->orderBy('published_at', 'desc');
     }
 
     /**
