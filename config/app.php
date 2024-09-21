@@ -88,6 +88,7 @@ return [
         'ar' => 'العربی (AR)',
         'bn' => 'বাংলা (BN)',
         'en' => 'English (EN)',
+        'fa' => 'فارسی (FA)',
         'vi' => 'Vietnamese (VI)',
     ],
 
