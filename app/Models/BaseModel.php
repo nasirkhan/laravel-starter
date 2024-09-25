@@ -227,4 +227,15 @@ class BaseModel extends Model implements HasMedia
             }
         }
     }
+
+    /**
+     * Scope a query to only include active models.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return void
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('status', '=', 1);
+    }
 }
