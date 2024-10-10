@@ -79,7 +79,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend', 'prefix' => 'admin'
     Route::group(['middleware' => ['can:edit_settings']], function () {
         $module_name = 'settings';
         $controller_name = 'SettingController';
-        Route::get("{$module_name}", "{$controller_name}@index")->name("{$module_name}");
+        Route::get("{$module_name}", "{$controller_name}@index")->name("{$module_name}.index");
         Route::post("{$module_name}", "{$controller_name}@store")->name("{$module_name}.store");
     });
 
