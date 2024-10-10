@@ -65,7 +65,7 @@ $notifications_latest = optional($notifications)->take(5);
             $text = __('Settings');
             $icon = "fa-solid fa-gears";
             $permission = "edit_".$module_name;
-            $url = route('backend.'.$module_name);
+            $url = route('backend.'.$module_name.'.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
         
