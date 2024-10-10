@@ -11,7 +11,7 @@
 
         <div class="row mt-4">
             <div class="col">
-                {{ html()->modelForm($data, 'PATCH', route("backend.$module_name.update", $data))->class('form')->acceptsFiles()->open() }}
+                {{ html()->modelForm($data, 'PATCH', route("backend.$module_name.update", $data))->acceptsFiles()->open() }}
 
                 @include ("$module_path.$module_name.form")
 
