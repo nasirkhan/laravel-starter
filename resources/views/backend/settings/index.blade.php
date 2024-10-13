@@ -19,36 +19,36 @@
 
             <div class="row mt-4">
                 <div class="col">
-                    
+
                     {{ html()->form('POST', route("backend.$module_name.store"))->open() }}
 
-                        @if (count(config('setting_fields', [])))
-                            @foreach (config('setting_fields') as $section => $fields)
-                                <div class="card card-accent-primary mb-4">
-                                    <div class="card-header">
-                                        <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
-                                        &nbsp;{{ $fields['title'] }}
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="text-muted">{{ $fields['desc'] }}</p>
+                    @if (count(config('setting_fields', [])))
+                        @foreach (config('setting_fields') as $section => $fields)
+                            <div class="card card-accent-primary mb-4">
+                                <div class="card-header">
+                                    <i class="{{ Arr::get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>
+                                    &nbsp;{{ $fields['title'] }}
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted">{{ $fields['desc'] }}</p>
 
-                                        <div class="row mt-3">
-                                            <div class="col">
-                                                @foreach ($fields['elements'] as $field)
-                                                    @includeIf('backend.settings.fields.' . $field['type'])
-                                                @endforeach
-                                            </div>
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            @foreach ($fields['elements'] as $field)
+                                                @includeIf('backend.settings.fields.' . $field['type'])
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @endif
-
-                        <div class="row m-b-md">
-                            <div class="col-md-12">
-                                <x-backend.buttons.save />
                             </div>
+                        @endforeach
+                    @endif
+
+                    <div class="row m-b-md">
+                        <div class="col-md-12">
+                            <x-backend.buttons.save />
                         </div>
+                    </div>
 
                     {{ html()->form()->close() }}
                 </div>

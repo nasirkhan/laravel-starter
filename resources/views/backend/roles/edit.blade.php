@@ -66,7 +66,7 @@
                         <div class="col-12 col-sm-10">
                             <div class="form-group">
                                 {{ __('Select permissions from the list:') }}
-                                
+
                                 @if ($permissions->count())
                                     @foreach ($permissions as $permission)
                                         <div class="form-check">

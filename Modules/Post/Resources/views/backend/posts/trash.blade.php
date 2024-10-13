@@ -12,5 +12,5 @@
 @endsection
 
 @section('content')
-<x-backend.layouts.trash :data="$$module_name" :module_name="$module_name" :module_path="$module_path" :module_title="$module_title" :module_icon="$module_icon" />
+    <x-backend.layouts.trash :data="$$module_name" :module_name="$module_name" :module_path="$module_path" :module_title="$module_title" :module_icon="$module_icon" />
 @endsection

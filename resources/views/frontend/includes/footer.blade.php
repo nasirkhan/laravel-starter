@@ -11,10 +11,12 @@
                 <a class="mx-2 hover:underline md:mx-3" href="#">@lang('About')</a>
             </li>
             <li>
-                <a class="mx-2 hover:underline md:mx-3" href="{{ route('privacy') }}" wire:navigate.hover>@lang('Privacy')</a>
+                <a class="mx-2 hover:underline md:mx-3" href="{{ route('privacy') }}"
+                    wire:navigate.hover>@lang('Privacy')</a>
             </li>
             <li>
-                <a class="mx-2 hover:underline md:mx-3" href="{{ route('terms') }}" wire:navigate.hover>@lang('Terms')</a>
+                <a class="mx-2 hover:underline md:mx-3" href="{{ route('terms') }}"
+                    wire:navigate.hover>@lang('Terms')</a>
             </li>
             <li>
                 <a class="mx-2 hover:underline md:mx-3" href="#">@lang('FAQs')</a>

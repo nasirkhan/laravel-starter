@@ -20,7 +20,8 @@
     <x-backend.layouts.show :data="$user">
 
         <x-backend.section-header>
-            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small class="text-muted">{{ __($module_title) }}
+            <i class="{{ $module_icon }}"></i> {{ $$module_name_singular->name }} <small
+                class="text-muted">{{ __($module_title) }}
                 {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">

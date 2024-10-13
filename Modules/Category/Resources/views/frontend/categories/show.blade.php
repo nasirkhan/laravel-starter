@@ -20,8 +20,6 @@
         </p>
     </x-frontend.header-block>
 
-
-
     <section class="bg-white p-6 text-gray-600 dark:bg-gray-700 dark:text-gray-300 sm:p-20">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-1">
             <div class="text-center">

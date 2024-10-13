@@ -37,7 +37,8 @@
                                         <ul class="fa-ul">
                                             @foreach ($user->getRoleNames() as $role)
                                                 <li>
-                                                    <span class="fa-li"><i class="fa-solid fa-user-shield fa-fw"></i></span>
+                                                    <span class="fa-li"><i
+                                                            class="fa-solid fa-user-shield fa-fw"></i></span>
                                                     {{ ucwords($role) }}
                                                 </li>
                                             @endforeach

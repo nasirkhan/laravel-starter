@@ -34,65 +34,65 @@ $notifications_latest = optional($notifications)->take(5);
         </li>
 
         @php
-            $module_name = "posts";
+            $module_name = 'posts';
             $text = __('Posts');
-            $icon = "fa-regular fa-file-lines";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-regular fa-file-lines';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
         @php
-            $module_name = "categories";
+            $module_name = 'categories';
             $text = __('Categories');
-            $icon = "fa-solid fa-diagram-project";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-diagram-project';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
-        
+
         @php
-            $module_name = "tags";
+            $module_name = 'tags';
             $text = __('Tags');
-            $icon = "fa-solid fa-tags";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-tags';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
-        
+
         @php
-            $module_name = "settings";
+            $module_name = 'settings';
             $text = __('Settings');
-            $icon = "fa-solid fa-gears";
-            $permission = "edit_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-gears';
+            $permission = 'edit_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
-        
+
         @php
-            $module_name = "backups";
+            $module_name = 'backups';
             $text = __('Backups');
-            $icon = "fa-solid fa-box-archive";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-box-archive';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
-        
+
         @php
-            $module_name = "users";
+            $module_name = 'users';
             $text = __('Users');
-            $icon = "fa-solid fa-user-group";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-user-group';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
-        
+
         @php
-            $module_name = "roles";
+            $module_name = 'roles';
             $text = __('Roles');
-            $icon = "fa-solid fa-user-shield";
-            $permission = "view_".$module_name;
-            $url = route('backend.'.$module_name.'.index');
+            $icon = 'fa-solid fa-user-shield';
+            $permission = 'view_' . $module_name;
+            $url = route('backend.' . $module_name . '.index');
         @endphp
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 

@@ -18,7 +18,8 @@ $notifications_latest = optional($notifications)->take(5);
                     </div>
                 </div>
                 <button class="nav-link hide-theme-dark px-0" data-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-original-title="Enable dark mode" data-coreui-theme-value="dark" aria-label="Enable dark mode">
+                    data-bs-original-title="Enable dark mode" data-coreui-theme-value="dark"
+                    aria-label="Enable dark mode">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -28,7 +29,8 @@ $notifications_latest = optional($notifications)->take(5);
                     </svg>
                 </button>
                 <button class="nav-link hide-theme-light px-0" data-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-original-title="Enable light mode" data-coreui-theme-value="light" aria-label="Enable light mode">
+                    data-bs-original-title="Enable light mode" data-coreui-theme-value="light"
+                    aria-label="Enable light mode">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                         stroke-linejoin="round">
