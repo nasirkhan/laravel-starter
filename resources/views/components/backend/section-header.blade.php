@@ -37,11 +37,11 @@
             @if (Str::endsWith(Route::currentRouteName(), 'index'))
                 <x-backend.buttons.return-back />
 
-                @if (auth()->user()->can('add_' . $module_name) && Route::has('backend.'.$module_name.'.create'))
+                @if (auth()->user()->can('add_' . $module_name) && Route::has('backend.' . $module_name . '.create'))
                     <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
                         small="true" route='{{ route("backend.$module_name.create") }}' />
                 @endif
-                @if (auth()->user()->can('restore_' . $module_name) && Route::has('backend.'.$module_name.'.create'))
+                @if (auth()->user()->can('restore_' . $module_name) && Route::has('backend.' . $module_name . '.create'))
                     <div class="btn-group">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" data-coreui-toggle="dropdown"
                             type="button" aria-expanded="false">
@@ -64,8 +64,9 @@
                 <x-buttons.show class="ms-1" title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $data) !!}' small="true" />
             @elseif (Str::endsWith(Route::currentRouteName(), 'show'))
-                @if (auth()->user()->can('edit_' . $module_name) && Route::has('backend.'.$module_name.'.edit'))
-                    <x-buttons.edit class="m-1" title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
+                @if (auth()->user()->can('edit_' . $module_name) && Route::has('backend.' . $module_name . '.edit'))
+                    <x-buttons.edit class="m-1"
+                        title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{!! route("backend.$module_name.edit", $data) !!}' small="true" />
                 @endif
                 <a class="btn btn-secondary btn-sm" data-toggle="tooltip"

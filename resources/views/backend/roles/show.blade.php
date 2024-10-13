@@ -22,8 +22,8 @@
             <x-slot name="toolbar">
                 <x-backend.buttons.return-back :small=true />
                 <x-backend.buttons.edit class="ms-1"
-                    title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' :small=true />
+                    title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}" route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}'
+                    :small=true />
             </x-slot>
         </x-backend.section-header>
 
@@ -76,7 +76,8 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td> <a href="{{ route('backend.users.show', $user->id) }}">{{ $user->name }}</a>
-                                        <span class="float-end">{!! $user->status_label !!}</span></td>
+                                        <span class="float-end">{!! $user->status_label !!}</span>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

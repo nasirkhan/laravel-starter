@@ -260,7 +260,6 @@
     </div>
 </div>
 
-
 @push('after-styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
     <style>

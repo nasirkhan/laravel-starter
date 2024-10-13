@@ -66,7 +66,6 @@
         </div>
     </div>
 
-
     {{-- footer --}}
     <x-backend.includes.footer />
 </div>

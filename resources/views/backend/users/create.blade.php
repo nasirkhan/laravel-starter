@@ -28,7 +28,7 @@
 
         <div class="row mt-4">
             <div class="col">
-                {{ html()->form('POST', route("backend.$module_name.store"))->class('form')->acceptsFiles()->open() }}
+                {{ html()->form('POST', route("backend.$module_name.store"))->acceptsFiles()->open() }}
 
                 <div class="row">
                     <div class="col-12 col-sm-6 mb-3">

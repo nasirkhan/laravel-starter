@@ -4,7 +4,8 @@
     <section class="mx-auto max-w-screen-xl bg-white p-6 text-gray-600 sm:p-20">
         <div class="grid grid-cols-1">
             <p>
-                At {{ app_name() }}, accessible at <a href="{{ config('app.url') }}">{{ config('app.url') }}</a>, one of our main priorities is the privacy
+                At {{ app_name() }}, accessible at <a href="{{ config('app.url') }}">{{ config('app.url') }}</a>, one
+                of our main priorities is the privacy
                 of our visitors. This Privacy Policy document contains types of information that is collected and
                 recorded by {{ app_name() }} and how we use it.
             </p>
