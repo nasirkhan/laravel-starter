@@ -10,14 +10,14 @@
         class="form-control {{ Arr::get($field, 'class') }} {{ $errors->has($field['name']) ? ' is-invalid' : '' }}"
         id="{{ $field['name'] }}" placeholder="{{ $field['label'] }}" rows="6" {{ $required }}>
     @if (isset($field['display']))
-    @if ($field['display'] == 'raw')
+@if ($field['display'] == 'raw')
 {!! old($field['name'], setting($field['name'])) !!}
 @else
 {{ old($field['name'], setting($field['name'])) }}
 @endif
 @else
 {{ old($field['name'], setting($field['name'])) }}
-    @endif
+@endif
     </textarea>
 
     @if ($errors->has($field['name']))
