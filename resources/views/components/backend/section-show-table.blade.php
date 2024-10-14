@@ -1,21 +1,25 @@
-@props(['data' => '', 'module_name'])
+@props([
+    "data" => "",
+    "module_name",
+])
 <p>
-    @lang('All values of :module_name (Id: :id)', ['module_name' => ucwords(Str::singular($module_name)), 'id' => $data->id])
+    @lang("All values of :module_name (Id: :id)", ["module_name" => ucwords(Str::singular($module_name)), "id" => $data->id])
 </p>
-<table class="table table-responsive-sm table-hover table-bordered">
+<table class="table-responsive-sm table-hover table-bordered table">
     <?php
     $all_columns = $data->getTableColumns();
     ?>
+
     <thead>
         <tr>
             <th scope="col">
                 <strong>
-                    @lang('Name')
+                    @lang("Name")
                 </strong>
             </th>
             <th scope="col">
                 <strong>
-                    @lang('Value')
+                    @lang("Value")
                 </strong>
             </th>
         </tr>

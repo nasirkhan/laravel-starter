@@ -81,6 +81,20 @@ We are now using `Laravel Pint` to make the code style stay as clean and consist
 composer pint
 ```
 
+Along with Laravel Pint, we are using `prettier` to format the blade templates. You can install the `prettier` extension in your favorite editor.
+The following command will format the blade templates.
+
+```bash
+npm run format
+```
+
+or if you are using `yarn` then you can use the following command.
+
+```bash
+yarn format
+```
+
+
 ## Role - Permissions
 
 Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples.

@@ -21,6 +21,7 @@
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "prettier": "^3.3.3",
+        "prettier-plugin-blade": "2",
         "prettier-plugin-tailwindcss": "^0.6.8",
         "sass": "^1.72.0",
         "sass-loader": "^14.1.1",

@@ -1,4 +1,4 @@
-@props(['title' => app_name(), 'sub_title' => ''])
+@props(["title" => app_name(), "sub_title" => ""])
 
 <section class="bg-gray-100 py-20 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
     <div class="container mx-auto flex flex-col items-center justify-center px-5">
@@ -11,7 +11,7 @@
 
             {!! $slot !!}
 
-            @include('frontend.includes.messages')
+            @include("frontend.includes.messages")
         </div>
     </div>
 </section>

@@ -1,20 +1,21 @@
 <p>
-    @lang('All values of :module_name (Id: :id)', ['module_name' => ucwords($module_name_singular), 'id' => $$module_name_singular->id])
+    @lang("All values of :module_name (Id: :id)", ["module_name" => ucwords($module_name_singular), "id" => $$module_name_singular->id])
 </p>
-<table class="table table-responsive-sm table-hover table-bordered">
+<table class="table-responsive-sm table-hover table-bordered table">
     <?php
     $all_columns = $$module_name_singular->getTableColumns();
     ?>
+
     <thead>
         <tr>
             <th scope="col">
                 <strong>
-                    @lang('Name')
+                    @lang("Name")
                 </strong>
             </th>
             <th scope="col">
                 <strong>
-                    @lang('Value')
+                    @lang("Value")
                 </strong>
             </th>
         </tr>

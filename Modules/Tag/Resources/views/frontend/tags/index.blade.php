@@ -1,14 +1,12 @@
-@extends('frontend.layouts.app')
+@extends("frontend.layouts.app")
 
-@section('title')
+@section("title")
     {{ __($module_title) }}
 @endsection
 
-@section('content')
+@section("content")
     <x-frontend.header-block :title="__($module_title)">
-        <p class="mb-8 leading-relaxed">
-            The list of {{ __($module_name) }}.
-        </p>
+        <p class="mb-8 leading-relaxed">The list of {{ __($module_name) }}.</p>
     </x-frontend.header-block>
 
     <section class="bg-white p-6 text-gray-600 dark:bg-gray-700 sm:p-20">
