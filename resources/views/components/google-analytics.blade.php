@@ -1,7 +1,8 @@
-@if (setting('google_analytics') !== '')
+@if (setting("google_analytics") !== "")
     @php
-        $google_analytics = setting('google_analytics');
+        $google_analytics = setting("google_analytics");
     @endphp
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $google_analytics }}"></script>
     <script>

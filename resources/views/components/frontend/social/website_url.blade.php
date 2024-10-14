@@ -1,8 +1,22 @@
-<a class="text-gray-700 hover:text-opacity-75 dark:text-gray-300" href="{{ setting('website_url') }}"
-    aria-label="Website URL" target="_blank" rel="noopener noreferrer">
-    <svg class="icon icon-tabler icons-tabler-outline icon-tabler-world-www" xmlns="http://www.w3.org/2000/svg"
-        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
+<a
+    class="text-gray-700 hover:text-opacity-75 dark:text-gray-300"
+    href="{{ setting("website_url") }}"
+    aria-label="Website URL"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <svg
+        class="icon icon-tabler icons-tabler-outline icon-tabler-world-www"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4" />
         <path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4" />
