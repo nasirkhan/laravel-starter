@@ -3,7 +3,7 @@
     "semi": true,
     "tabWidth": 4,
     "trailingComma": "all",
-    "plugins": ["@shufo/prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+    "plugins": ["prettier-plugin-blade", "prettier-plugin-tailwindcss"],
     "overrides": [
         {
             "files": ["*.blade.php"],
