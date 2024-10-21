@@ -84,6 +84,15 @@
                     small="true"
                 />
             @elseif (Str::endsWith(Route::currentRouteName(), "show"))
+                @if (Route::has("frontend.$module_name.show"))
+                    <x-backend.buttons.public
+                        class=""
+                        title="{{ __('Public') }}"
+                        route='{!! route("frontend.$module_name.show", encode_id($data->id)) !!}'
+                        small="true"
+                    />
+                @endif
+
                 @if (auth()->user()->can("edit_" . $module_name) && Route::has("backend." . $module_name . ".edit"))
                     <x-buttons.edit
                         class="m-1"
