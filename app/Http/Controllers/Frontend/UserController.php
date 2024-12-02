@@ -255,27 +255,26 @@ class UserController extends Controller
      */
     public function changePasswordUpdate(Request $request)
     {
-        $id = auth()->user()->id;
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
 
-        if ($id !== auth()->user()->id) {
-            return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id));
-        }
+        $module_action = 'change Password Update';
 
-        $request->validate($request, [
+        $validated = $request->validate([
             'password' => 'required|confirmed|min:6',
         ]);
 
-        $module_name = $this->module_name;
-        $module_name_singular = Str::singular($this->module_name);
-
         $$module_name_singular = auth()->user();
 
-        $request_data = $request->only('password');
-        $request_data['password'] = Hash::make($request_data['password']);
+        $validated['password'] = Hash::make($validated['password']);
 
-        $$module_name_singular->update($request_data);
+        $$module_name_singular->update($validated);
 
-        return redirect()->route('frontend.users.profile', encode_id(auth()->user()->id))->with('flash_success', 'Update successful!');
+        return redirect()->route('frontend.users.profile')->with('flash_success', 'Update successful!');
     }
 
     /**
