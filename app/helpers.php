@@ -502,7 +502,7 @@ if (! function_exists('language_direction')) {
             'fa', //  'فارسی', Persian
             'glk', //  'گیلکی', Gilaki
             'he', //  'עברית', Hebrew
-            'lrc', //- 'لوری', Northern Luri
+            'lrc', // - 'لوری', Northern Luri
             'mzn', //  'مازِرونی', Mazanderani
             'pnb', //  'پنجابی', Western Punjabi
             'ps', //  'پښتو', Pashto
