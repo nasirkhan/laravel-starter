@@ -11,14 +11,14 @@
                 <img class="h-24 rounded" src="{{ asset("img/logo-square.jpg") }}" alt="{{ app_name() }}" />
             </div>
             <h1
-                class="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white sm:text-6xl"
+                class="mb-6 text-4xl leading-none font-extrabold tracking-tight text-gray-900 sm:text-6xl dark:text-white"
             >
                 {{ app_name() }}
             </h1>
-            <p class="mb-10 text-lg font-normal text-gray-500 dark:text-gray-400 sm:px-16 sm:text-2xl xl:px-48">
+            <p class="mb-10 text-lg font-normal text-gray-500 sm:px-16 sm:text-2xl xl:px-48 dark:text-gray-400">
                 {!! setting("app_description") !!}
             </p>
-            <div class="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
+            <div class="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 lg:mb-16">
                 <a
                     class="inline-flex items-center justify-center rounded-lg bg-gray-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-300"
                     href="https://github.com/nasirkhan/laravel-starter"
@@ -82,7 +82,7 @@
     <section class="bg-gray-100 py-20 text-gray-600 dark:bg-gray-700 dark:text-gray-400">
         <div class="container mx-auto flex flex-col items-center justify-center px-5">
             <div class="w-full text-center lg:w-2/3">
-                <h1 class="mb-4 text-3xl font-medium text-gray-800 dark:text-gray-200 sm:text-4xl">
+                <h1 class="mb-4 text-3xl font-medium text-gray-800 sm:text-4xl dark:text-gray-200">
                     {{ __("Screenshots of the project") }}
                 </h1>
 
@@ -96,26 +96,30 @@
 
     <section class="bg-gray-50 pb-20 dark:bg-gray-700">
         <div class="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2">
-            <div class="rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
+                    loading="lazy"
                     src="https://github.com/nasirkhan/laravel-starter/assets/396987/1cf5ce5a-f374-4bae-b5a3-69e8d7ff684d"
                     alt="Page preview"
                 />
             </div>
-            <div class="rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
+                    loading="lazy"
                     src="https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d"
                     alt="Page preview"
                 />
             </div>
-            <div class="rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
+                    loading="lazy"
                     src="https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4"
                     alt="Page preview"
                 />
             </div>
-            <div class="rounded-lg p-3 shadow-lg dark:bg-gray-800 sm:p-10">
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
+                    loading="lazy"
                     src="https://github.com/nasirkhan/laravel-starter/assets/396987/f8131011-2ecc-4a11-961f-85e02cb8f7a1"
                     alt="Page preview"
                 />

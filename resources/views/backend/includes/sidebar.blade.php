@@ -121,29 +121,6 @@ $notifications_latest = optional($notifications)->take(5);
 
         <x-backend.sidebar-nav-item :permission="$permission" :url="$url" :icon="$icon" :text="$text" />
 
-        @can("view_logs")
-            <li class="nav-group" aria-expanded="true">
-                <a class="nav-link nav-group-toggle" href="#">
-                    <i class="nav-icon fa-solid fa-list-ul"></i>
-                    &nbsp;
-                    @lang("Logs")
-                </a>
-                <ul class="nav-group-items compact" style="height: auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("log-viewer::dashboard") }}">
-                            <span class="nav-icon"><span class="nav-icon-bullet"></span></span>
-                            Log Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("log-viewer::logs.list") }}">
-                            <span class="nav-icon"><span class="nav-icon-bullet"></span></span>
-                            Daily Log
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endcan
     </ul>
     <div class="sidebar-footer border-top d-none d-md-flex">
         <button class="sidebar-toggler" data-coreui-toggle="unfoldable" type="button"></button>
