@@ -15,33 +15,33 @@
     "type": "project",
     "require": {
         "php": "^8.2",
-        "intervention/image-laravel": "^1.5",
+        "arcanedev/log-viewer": "^11.0",
+        "intervention/image-laravel": "^1.2",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^12.0",
-        "laravel/pail": "^1.2",
-        "laravel/socialite": "^5.19",
-        "laravel/tinker": "^2.10",
+        "laravel/socialite": "^5.12",
+        "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
-        "nasirkhan/module-manager": "^3.0",
-        "spatie/laravel-activitylog": "^4.10",
-        "spatie/laravel-backup": "^9.2",
-        "spatie/laravel-html": "^3.12",
-        "spatie/laravel-medialibrary": "^11.12",
-        "spatie/laravel-permission": "^6.16",
-        "sqids/sqids": "^0.5.0",
-        "unisharp/laravel-filemanager": "^2.0",
-        "yajra/laravel-datatables-oracle": "^12.0"
+        "nasirkhan/module-manager": "^2.0",
+        "spatie/laravel-activitylog": "^4.8",
+        "spatie/laravel-backup": "^8.6",
+        "spatie/laravel-html": "^3.6",
+        "spatie/laravel-medialibrary": "^11.4",
+        "spatie/laravel-permission": "^6.4",
+        "sqids/sqids": "^0.4.1",
+        "unisharp/laravel-filemanager": "^2.9",
+        "yajra/laravel-datatables-oracle": "^11.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.15",
-        "fakerphp/faker": "^1.24",
-        "laravel/breeze": "^2.3",
-        "laravel/pail": "^1.2",
-        "laravel/pint": "^1.21",
-        "laravel/sail": "^1.41",
+        "barryvdh/laravel-debugbar": "^3.12",
+        "fakerphp/faker": "^1.23",
+        "laravel/breeze": "^2.0",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.7",
-        "phpunit/phpunit": "^11.5"
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
         "psr-4": {
@@ -73,11 +73,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
-        ],
-        "dev": [
-            "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+            "@php artisan migrate --seed"
         ],
         "clear-all": [
             "composer dumpautoload -o",
