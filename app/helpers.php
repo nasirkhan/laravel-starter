@@ -152,7 +152,7 @@ if (! function_exists('field_required')) {
         $return_text = '';
 
         if ($required !== '') {
-            $return_text = '&nbsp;<span class="text-danger">*</span>';
+            $return_text = '&nbsp;<span class="text-danger text-red-500">*</span>';
         }
 
         return $return_text;

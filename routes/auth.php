@@ -10,36 +10,51 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Auth\ForgotPassword;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 
-// Check if registration is enabled
-if (user_registration()) {
-    Route::middleware('guest')->group(function () {
-        Route::get('register', [RegisteredUserController::class, 'create'])
-            ->name('register');
-
-        Route::post('register', [RegisteredUserController::class, 'store']);
-    });
-}
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
-
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
-
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+    Route::get('login', Login::class)->name('login');
+    if (user_registration()) {
+        Route::get('register', Register::class)->name('register');
+    }
+    Route::get('forgot-password', ForgotPassword::class)->name('password.request');
+    Route::get('reset-password/{token}', ResetPassword::class)->name('password.reset');
 });
+
+
+// // Check if registration is enabled
+// if (user_registration()) {
+//     Route::middleware('guest')->group(function () {
+//         Route::get('register', [RegisteredUserController::class, 'create'])
+//             ->name('register');
+
+//         Route::post('register', [RegisteredUserController::class, 'store']);
+//     });
+// }
+
+// Route::middleware('guest')->group(function () {
+//     // Route::get('login', [AuthenticatedSessionController::class, 'create'])
+//     //     ->name('login');
+
+//     // Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+//     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+//         ->name('password.request');
+
+//     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+//         ->name('password.email');
+
+//     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+//         ->name('password.reset');
+
+//     Route::post('reset-password', [NewPasswordController::class, 'store'])
+//         ->name('password.store');
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
@@ -60,9 +75,12 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    // Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    //     ->name('logout');
 });
+
+Route::post('logout', App\Livewire\Actions\Logout::class)
+    ->name('logout');
 
 // Social Login Routes
 Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
