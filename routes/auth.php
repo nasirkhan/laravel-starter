@@ -16,7 +16,6 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 
-
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)->name('login');
     if (user_registration()) {
@@ -25,7 +24,6 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', ForgotPassword::class)->name('password.request');
     Route::get('reset-password/{token}', ResetPassword::class)->name('password.reset');
 });
-
 
 // // Check if registration is enabled
 // if (user_registration()) {
