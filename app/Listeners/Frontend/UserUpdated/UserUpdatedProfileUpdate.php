@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Backend\UserCreated;
+namespace App\Listeners\Frontend\UserUpdated;
 
-use App\Events\Backend\UserCreated;
+use App\Events\Frontend\UserUpdated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserCreatedNotifySuperUser implements ShouldQueue
+class UserUpdatedProfileUpdate implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,7 +21,7 @@ class UserCreatedNotifySuperUser implements ShouldQueue
      *
      * @return void
      */
-    public function handle(UserCreated $event)
+    public function handle(UserUpdated $event)
     {
         $user = $event->user;
     }
