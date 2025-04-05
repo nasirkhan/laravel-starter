@@ -4,8 +4,10 @@ namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Forgot password')]
 #[Layout('components.layouts.auth')]
 class ForgotPassword extends Component
 {

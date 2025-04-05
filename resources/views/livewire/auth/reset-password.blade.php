@@ -5,23 +5,48 @@
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
-        <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email')"
+        {{-- Email Address --}}
+        @php
+            $field_name = "email";
+            $filed_label = __("Email Address");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="email"
-            required
-            autocomplete="email"
+            :label="$filed_label"
+            :required="$required"
         />
 
-        <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Password')"
+        {{-- Password --}}
+        @php
+            $field_name = "password";
+            $filed_label = __("Password");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Password')"
+            :label="$filed_label"
+            :required="$required"
+        />
+        {{-- Confirm Password --}}
+        @php
+            $field_name = "password_confirmation";
+            $filed_label = __("Confirm Password");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
+            type="password"
+            :label="$filed_label"
+            :required="$required"
         />
 
         <!-- Confirm Password -->
@@ -35,9 +60,9 @@
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Reset password') }}
-            </flux:button>
+            <x-button class="w-full" variant="primary" type="submit">
+                {{ __("Reset password") }}
+            </x-button>
         </div>
     </form>
 </div>

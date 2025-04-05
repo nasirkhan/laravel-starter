@@ -8,11 +8,10 @@
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="login" class="flex flex-col gap-6">
-        <!-- Email Address -->
-
+        {{-- Email Address --}}
         @php
             $field_name = "email";
-            $filed_label = __("Email address");
+            $filed_label = __("Email Address");
             $field_placeholder = $filed_label;
             $required = "required";
         @endphp
@@ -24,6 +23,7 @@
             :required="$required"
         />
 
+        {{-- Password --}}
         @php
             $field_name = "password";
             $filed_label = __("Password");

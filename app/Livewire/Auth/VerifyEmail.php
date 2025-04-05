@@ -6,8 +6,10 @@ use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Verify Email')]
 #[Layout('components.layouts.auth')]
 class VerifyEmail extends Component
 {

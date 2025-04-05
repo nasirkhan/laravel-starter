@@ -6,55 +6,77 @@
 
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
-        <flux:input
-            wire:model="name"
-            :label="__('Name')"
+        @php
+            $field_name = "name";
+            $filed_label = __("Full Name");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="text"
-            required
-            autofocus
-            autocomplete="name"
-            :placeholder="__('Full name')"
+            :label="$filed_label"
+            :required="$required"
         />
 
         <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
+        @php
+            $field_name = "email";
+            $filed_label = __("Email Address");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="email"
-            required
-            autocomplete="email"
-            placeholder="email@example.com"
+            :label="$filed_label"
+            :required="$required"
         />
 
         <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Password')"
+        @php
+            $field_name = "password";
+            $filed_label = __("Password");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Password')"
+            :label="$filed_label"
+            :required="$required"
         />
 
         <!-- Confirm Password -->
-        <flux:input
-            wire:model="password_confirmation"
-            :label="__('Confirm password')"
+        @php
+            $field_name = "password_confirmation";
+            $filed_label = __("Confirm Password");
+            $field_placeholder = $filed_label;
+            $required = "required";
+        @endphp
+
+        <x-frontend.form.input
+            wire:model="{{ $field_name }}"
             type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Confirm password')"
+            :label="$filed_label"
+            :required="$required"
         />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <x-button class="w-full" variant="primary" type="submit">
                 {{ __('Create account') }}
-            </flux:button>
+            </x-button>
         </div>
     </form>
 
-    <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
+    <div class="space-x-1 text-center text-sm text-zinc-600 tracking-widest dark:text-zinc-400">
         {{ __('Already have an account?') }}
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
+
+        <x-frontend.link class="text-sm" :href="route('login')" wire:navigate>
+            {{ __('Log in') }}
+        </x-frontend.link>
     </div>
 </div>
