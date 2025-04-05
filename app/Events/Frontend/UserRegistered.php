@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-
 use Illuminate\Queue\SerializesModels;
 
 class UserRegistered
@@ -24,7 +23,7 @@ class UserRegistered
     {
         $this->user = $user;
     }
-    
+
     /**
      * Get the channels the event should broadcast on.
      *
