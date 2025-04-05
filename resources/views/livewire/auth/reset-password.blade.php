@@ -49,16 +49,6 @@
             :required="$required"
         />
 
-        <!-- Confirm Password -->
-        <flux:input
-            wire:model="password_confirmation"
-            :label="__('Confirm password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Confirm password')"
-        />
-
         <div class="flex items-center justify-end">
             <x-button class="w-full" variant="primary" type="submit">
                 {{ __("Reset password") }}
