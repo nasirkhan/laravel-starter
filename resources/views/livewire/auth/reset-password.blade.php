@@ -34,6 +34,7 @@
             :label="$filed_label"
             :required="$required"
         />
+        
         {{-- Confirm Password --}}
         @php
             $field_name = "password_confirmation";
