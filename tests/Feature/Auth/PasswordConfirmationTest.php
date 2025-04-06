@@ -2,8 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Livewire\Auth\ConfirmPassword;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase
@@ -23,22 +25,27 @@ class PasswordConfirmationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/confirm-password', [
-            'password' => 'password',
-        ]);
+        $this->actingAs($user);
 
-        $response->assertRedirect();
-        $response->assertSessionHasNoErrors();
+        $response = Livewire::test(ConfirmPassword::class)
+            ->set('password', 'password')
+            ->call('confirmPassword');
+
+        $response
+            ->assertHasNoErrors()
+            ->assertRedirect(route('home', absolute: false));
     }
 
     public function test_password_is_not_confirmed_with_invalid_password(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/confirm-password', [
-            'password' => 'wrong-password',
-        ]);
+        $this->actingAs($user);
 
-        $response->assertSessionHasErrors();
+        $response = Livewire::test(ConfirmPassword::class)
+            ->set('password', 'wrong-password')
+            ->call('confirmPassword');
+
+        $response->assertHasErrors(['password']);
     }
 }

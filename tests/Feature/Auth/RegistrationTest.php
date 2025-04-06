@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Livewire\Auth\Register;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
@@ -23,15 +25,18 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register(): void
     {
         if (config('app.user_registration')) {
-            $response = $this->post('/register', [
-                'name' => 'Test User',
-                'email' => 'test@example.com',
-                'password' => 'password',
-                'password_confirmation' => 'password',
-            ]);
+            $response = Livewire::test(Register::class)
+                ->set('name', 'Test User')
+                ->set('email', 'test@example.com')
+                ->set('password', 'password')
+                ->set('password_confirmation', 'password')
+                ->call('register');
+
+            $response
+                ->assertHasNoErrors()
+                ->assertRedirect(route('home', absolute: false));
 
             $this->assertAuthenticated();
-            $response->assertRedirect(route('home', absolute: false));
         } else {
             $response = $this->get('/register');
             $response->assertStatus(404);
