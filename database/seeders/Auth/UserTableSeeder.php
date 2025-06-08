@@ -6,7 +6,6 @@ use App\Events\Backend\UserCreated;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserTableSeeder.
@@ -28,7 +27,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100001',
                 'name' => 'Super Admin',
                 'email' => 'super@admin.com',
-                'password' => Hash::make('secret'),
+                'password' => 'secret',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -38,7 +37,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100002',
                 'name' => 'Admin Istrator',
                 'email' => 'admin@admin.com',
-                'password' => Hash::make('secret'),
+                'password' => 'secret',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -48,7 +47,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100003',
                 'name' => 'Manager User',
                 'email' => 'manager@manager.com',
-                'password' => Hash::make('secret'),
+                'password' => 'secret',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -58,7 +57,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100004',
                 'name' => 'Executive User',
                 'email' => 'executive@executive.com',
-                'password' => Hash::make('secret'),
+                'password' => 'secret',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -68,7 +67,7 @@ class UserTableSeeder extends Seeder
                 'username' => '100005',
                 'name' => 'General User',
                 'email' => 'user@user.com',
-                'password' => Hash::make('secret'),
+                'password' => 'secret',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

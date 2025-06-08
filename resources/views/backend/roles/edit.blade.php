@@ -94,9 +94,10 @@
                                 <x-backend.buttons.save />
                             </div>
                         </div>
-
+                        
                         <div class="col-8">
                             <div class="float-end">
+                                @can("delete_" . $module_name)
                                 <a
                                     class="btn btn-danger"
                                     data-method="DELETE"
@@ -107,6 +108,7 @@
                                 >
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
+                                @endcan
                                 <x-backend.buttons.return-back>Cancel</x-backend.buttons.return-back>
                             </div>
                         </div>

@@ -150,14 +150,10 @@
             </div>
         </div>
     </div>
+    
     <div class="row">
-        <div class="col-7">
-            <div class="float-left">{!! $users->total() !!} {{ __("labels.backend.total") }}</div>
-        </div>
-        <div class="col-5">
-            <div class="float-end">
-                {!! $users->links() !!}
-            </div>
+        <div class="col-12">
+            {!! $users->links() !!}
         </div>
     </div>
 </div>

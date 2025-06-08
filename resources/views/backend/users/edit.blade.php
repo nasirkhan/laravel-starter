@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "first_name";
@@ -70,7 +70,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "last_name";
@@ -84,7 +84,7 @@
                             {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "email";
@@ -98,7 +98,7 @@
                             {{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "mobile";
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "gender";
@@ -135,7 +135,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "date_of_birth";
@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "address";
@@ -166,7 +166,7 @@
                             {{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 mb-3">
+                    <div class="col-sm-6 col-12 mb-3">
                         <div class="form-group">
                             <?php
                             $field_name = "bio";
@@ -188,7 +188,7 @@
 
                 <div class="row">
                     @foreach ($$module_name_singular->socialFieldsNames() as $item)
-                        <div class="col-12 col-sm-6 mb-3">
+                        <div class="col-sm-6 col-12 mb-3">
                             <div class="form-group">
                                 <?php
                                 $field_name = "social_profiles[" . $item . "]";
@@ -213,20 +213,21 @@
                     $required = "required";
                     ?>
 
-                    <div class="col-12 col-sm-2">
+                    <div class="col-sm-2 col-12">
                         <div class="form-group">
                             {{ html()->label($field_lable, $field_name)->class("form-label") }}
                             {!! field_required($required) !!}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-10">
+                    <div class="col-sm-10 col-12">
                         <div class="form-group">
                             <a
                                 class="btn btn-outline-primary btn-sm"
                                 href="{{ route("backend.users.changePassword", $user->id) }}"
                             >
                                 <i class="fas fa-key"></i>
-                                Change password
+                                &nbsp;
+                                @lang("Change Password")
                             </a>
                         </div>
                     </div>
@@ -240,13 +241,13 @@
                     $required = "";
                     ?>
 
-                    <div class="col-12 col-sm-2">
+                    <div class="col-sm-2 col-12">
                         <div class="form-group">
                             {{ html()->label($field_lable, $field_name)->class("form-label") }}
                             {!! field_required($required) !!}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-10">
+                    <div class="col-sm-10 col-12">
                         <div class="form-group">
                             @if ($user->email_verified_at == null)
                                 <a
@@ -273,13 +274,13 @@
                     $required = "";
                     ?>
 
-                    <div class="col-12 col-sm-2">
+                    <div class="col-sm-2 col-12">
                         <div class="form-group">
                             {{ html()->label($field_lable, $field_name)->class("form-label") }}
                             {!! field_required($required) !!}
                         </div>
                     </div>
-                    <div class="col-12 col-sm-10">
+                    <div class="col-sm-10 col-12">
                         <div class="form-group">
                             @forelse ($user->providers as $provider)
                                 <li>
@@ -322,7 +323,7 @@
                                                                         class="form-check-label"
                                                                         for="{{ "role-" . $role->id }}"
                                                                     >
-                                                                        {{ label_case($role->name) . " (" . $role->name . ")" }}
+                                                                        &nbsp;{{ label_case($role->name) . " (" . $role->name . ")" }}
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -368,7 +369,7 @@
                                                             class="form-check-label"
                                                             for="{{ "permission-" . $permission->id }}"
                                                         >
-                                                            {{ label_case($permission->name) . " (" . $permission->name . ")" }}
+                                                            &nbsp;{{ label_case($permission->name) . " (" . $permission->name . ")" }}
                                                         </label>
                                                     </div>
                                                 @endforeach
@@ -391,46 +392,47 @@
                     <div class="col-8 mb-3">
                         <div class="float-end">
                             @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
-                                    <a
-                                        class="btn btn-danger"
-                                        data-method="PATCH"
-                                        data-token="{{ csrf_token() }}"
-                                        data-toggle="tooltip"
-                                        data-confirm="Are you sure?"
-                                        href="{{ route("backend.users.block", $$module_name_singular) }}"
-                                        title="{{ __("labels.backend.block") }}"
-                                    >
-                                        <i class="fas fa-ban"></i>
-                                    </a>
+                                <a
+                                    class="btn btn-danger"
+                                    data-method="PATCH"
+                                    data-token="{{ csrf_token() }}"
+                                    data-toggle="tooltip"
+                                    data-confirm="Are you sure?"
+                                    href="{{ route("backend.users.block", $$module_name_singular) }}"
+                                    title="{{ __("labels.backend.block") }}"
+                                >
+                                    <i class="fas fa-ban"></i>
+                                </a>
                             @endif
 
                             @if ($$module_name_singular->status == 2)
-                                    <a
-                                        class="btn btn-info"
-                                        data-method="PATCH"
-                                        data-token="{{ csrf_token() }}"
-                                        data-toggle="tooltip"
-                                        data-confirm="Are you sure?"
-                                        href="{{ route("backend.users.unblock", $$module_name_singular) }}"
-                                        title="{{ __("labels.backend.unblock") }}"
-                                    >
-                                        <i class="fas fa-check"></i>
-                                        Unblock
-                                    </a>
+                                <a
+                                    class="btn btn-info"
+                                    data-method="PATCH"
+                                    data-token="{{ csrf_token() }}"
+                                    data-toggle="tooltip"
+                                    data-confirm="Are you sure?"
+                                    href="{{ route("backend.users.unblock", $$module_name_singular) }}"
+                                    title="{{ __("labels.backend.unblock") }}"
+                                >
+                                    <i class="fas fa-check"></i>
+                                    Unblock
+                                </a>
                             @endif
 
                             @if ($$module_name_singular->email_verified_at == null)
-                                    <a
-                                        class="btn btn-primary"
-                                        data-toggle="tooltip"
-                                        href="{{ route("backend.users.emailConfirmationResend", $$module_name_singular->id) }}"
-                                        title="Send Confirmation Email"
-                                    >
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
+                                <a
+                                    class="btn btn-primary"
+                                    data-toggle="tooltip"
+                                    href="{{ route("backend.users.emailConfirmationResend", $$module_name_singular->id) }}"
+                                    title="Send Confirmation Email"
+                                >
+                                    <i class="fas fa-envelope"></i>
+                                </a>
                             @endif
 
-                            @if ($$module_name_singular->id != 1)
+                            @can("delete_" . $module_name)
+                                @if ($$module_name_singular->id != 1)
                                     <a
                                         class="btn btn-danger"
                                         data-method="DELETE"
@@ -442,7 +444,8 @@
                                         <i class="fas fa-trash-alt"></i>
                                         Delete
                                     </a>
-                            @endif
+                                @endif
+                            @endcan
 
                             <x-backend.buttons.return-back>@lang("Cancel")</x-backend.buttons.return-back>
                         </div>

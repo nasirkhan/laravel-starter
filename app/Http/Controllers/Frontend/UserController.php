@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -270,7 +269,7 @@ class UserController extends Controller
 
         $$module_name_singular = auth()->user();
 
-        $validated['password'] = Hash::make($validated['password']);
+        $validated['password'] = $validated['password'];
 
         $$module_name_singular->update($validated);
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasHashedMediaTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
-    use HasHashedMediaTrait;
-    use SoftDeletes;
+    use HasHashedMediaTrait, SoftDeletes;
 
     protected $guarded = [
         'id',

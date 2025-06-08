@@ -6,5 +6,5 @@
     title="{{ __("Return Back") }}"
 >
     <i class="fas fa-reply fa-fw"></i>
-    &nbsp;{!! $slot != "" ? "&nbsp;" . $slot : "" !!}
+    {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
 </button>

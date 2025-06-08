@@ -22,10 +22,12 @@
                 <small class="text-muted">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
+                    <x-backend.buttons.return-back :small="true" />
                     @can("add_" . $module_name)
                         <x-backend.buttons.create
                             route='{{ route("backend.$module_name.create") }}'
                             title="{{ __(ucwords(Str::singular($module_name))) }} {{ __('Create') }}"
+                            :small="true"
                         />
                     @endcan
                 </x-slot>
