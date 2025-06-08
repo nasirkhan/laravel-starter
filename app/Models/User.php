@@ -55,39 +55,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     }
 
     /**
-     * Boot the model.
-     *
-     * Register the model's event listeners.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-        });
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        static::saving(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-            $table->save();
-        });
-    }
-
-    /**
      * Retrieve the providers associated with the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
