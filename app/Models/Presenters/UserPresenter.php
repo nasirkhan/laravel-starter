@@ -93,7 +93,7 @@ trait UserPresenter
      */
     public function getRolesListAttribute(): array
     {
-        return $this->roles->pluck('id')->map(fn($id) => (int) $id)->toArray();
+        return $this->roles->pluck('id')->map(fn ($id) => (int) $id)->toArray();
     }
 
     public function setNameAttribute($value)
@@ -108,7 +108,7 @@ trait UserPresenter
 
     public function setPasswordAttribute($value)
     {
-        if (!empty($value)) {
+        if (! empty($value)) {
             $this->attributes['password'] = Hash::make($value);
         }
     }
