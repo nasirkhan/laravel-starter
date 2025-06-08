@@ -32,7 +32,7 @@
             </div>
             <div class="mt-5 sm:col-span-2 sm:mt-0">
                 {{ html()->modelForm($$module_name_singular, "PATCH", route("frontend.users.profileUpdate"))->acceptsFiles()->open() }}
-                <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
+                <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
                             <?php
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="mt-5 sm:col-span-2 sm:mt-0">
-                <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
+                <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6">
                             <label class="block-inline text-sm font-medium text-gray-700" for="first_name">Email</label>
@@ -250,12 +250,12 @@
 
                             {{ html()->label($field_lable, $field_name)->class("block text-sm font-medium text-gray-700") }}
                             {!! field_required($required) !!}
-                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm")->attributes(["$required"]) }}
+                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("mt-1 block w-full py-3 px-3 border border-gray-300 bg-white dark:bg-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm")->attributes(["$required"]) }}
                         </div>
                     </div>
-                    <div class="mt-4 bg-gray-50 px-4 text-end sm:px-6">
+                    <div class="mt-6 bg-gray-50 px-4 text-end sm:px-6">
                         <button
-                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
                             type="submit"
                         >
                             Save
@@ -281,7 +281,7 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:col-span-2 sm:mt-0">
-                    <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
+                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 text-center">
                                 <a href="{{ route("frontend.users.changePassword") }}">
