@@ -230,7 +230,7 @@ class UserController extends Controller
         $data_array = Arr::except($validated_data, ['_token', 'roles', 'permissions', 'password_confirmation']);
 
         $data_array['name'] = $request->first_name.' '.$request->last_name;
-        $data_array['password'] = Hash::make($request->password);
+        $data_array['password'] = $request->password;
 
         if ($request->confirmed === 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
@@ -368,7 +368,7 @@ class UserController extends Controller
         $$module_name_singular = User::findOrFail($id);
 
         $request_data = $request->only('password');
-        $request_data['password'] = Hash::make($request_data['password']);
+        $request_data['password'] = $request_data['password'];
 
         $$module_name_singular->update($request_data);
 

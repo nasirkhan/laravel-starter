@@ -6,6 +6,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Presenter Class for Book Module.
@@ -87,6 +88,14 @@ trait UserPresenter
         return $roles->where('model_id', $this->id);
     }
 
+    /**
+     * Get the list of users related to the current User.
+     */
+    public function getRolesListAttribute(): array
+    {
+        return $this->roles->pluck('id')->map(fn($id) => (int) $id)->toArray();
+    }
+
     public function setNameAttribute($value)
     {
         $value = ucwords(strtolower($value));
@@ -95,6 +104,13 @@ trait UserPresenter
         $name_parts = split_name($value);
         $this->attributes['first_name'] = $name_parts[0];
         $this->attributes['last_name'] = $name_parts[1];
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = Hash::make($value);
+        }
     }
 
     /**

@@ -270,7 +270,7 @@ class UserController extends Controller
 
         $$module_name_singular = auth()->user();
 
-        $validated['password'] = Hash::make($validated['password']);
+        $validated['password'] = $validated['password'];
 
         $$module_name_singular->update($validated);
 
