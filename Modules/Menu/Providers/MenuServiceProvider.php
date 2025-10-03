@@ -2,10 +2,10 @@
 
 namespace Modules\Menu\Providers;
 
-use Modules\Menu\Livewire\MenuItemComponent;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Modules\Menu\Livewire\MenuItemComponent;
 use Symfony\Component\Finder\Finder;
 
 class MenuServiceProvider extends ServiceProvider
@@ -91,7 +91,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'menu');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'menu');
     }
 
     /**
