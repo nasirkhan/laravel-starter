@@ -14,7 +14,6 @@ export default defineConfig({
                 'resources/sass/app-backend.scss',
                 'resources/js/app-backend.js',
             ],
-            // refresh: true,
             refresh: [
                 'app/View/Components/**',
                 'lang/**',
@@ -32,4 +31,28 @@ export default defineConfig({
             '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui'),
         }
     },
+    build: {
+        // Enable code splitting
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    'vendor': ['axios', 'jquery'],
+                    'coreui': ['@coreui/coreui'],
+                    'bootstrap': ['bootstrap'],
+                }
+            }
+        },
+        // Enable minification
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true, // Remove console.log in production
+                drop_debugger: true,
+            }
+        }
+    },
+    // Enable CSS optimization
+    css: {
+        devSourcemap: true
+    }
 });
