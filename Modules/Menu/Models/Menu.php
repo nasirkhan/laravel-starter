@@ -4,8 +4,8 @@ namespace Modules\Menu\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends BaseModel
 {
@@ -92,14 +92,14 @@ class Menu extends BaseModel
         }
 
         // If not public, user must be authenticated
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
         // Check permissions
         if ($this->permissions) {
             foreach ($this->permissions as $permission) {
-                if (!$user->can($permission)) {
+                if (! $user->can($permission)) {
                     return false;
                 }
             }
@@ -114,7 +114,7 @@ class Menu extends BaseModel
                     break;
                 }
             }
-            if (!$hasRole) {
+            if (! $hasRole) {
                 return false;
             }
         }
