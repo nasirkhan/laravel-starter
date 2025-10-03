@@ -56,8 +56,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     /**
      * Retrieve the providers associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function providers(): HasMany
     {
