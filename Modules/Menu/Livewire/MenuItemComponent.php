@@ -51,7 +51,7 @@ class MenuItemComponent extends Component
     public function mount($menuItem = null)
     {
         $this->menuItem = $menuItem;
-        
+
         // Load dropdown data
         $this->loadDropdownData();
 
@@ -100,12 +100,12 @@ class MenuItemComponent extends Component
     {
         if ($this->menu_id) {
             $query = MenuItem::where('menu_id', $this->menu_id);
-            
+
             // Exclude current item if editing
             if ($this->menuItem) {
                 $query->where('id', '!=', $this->menuItem->id);
             }
-            
+
             $this->parent_items = $query->pluck('name', 'id')->toArray();
         } else {
             $this->parent_items = [];
@@ -146,13 +146,13 @@ class MenuItemComponent extends Component
     public function resetForm()
     {
         $this->reset([
-            'menu_id', 'parent_id', 'name', 'slug', 'sort_order', 'url', 
-            'route_name', 'route_parameters', 'description', 'icon', 
-            'badge_text', 'badge_color', 'css_classes', 'html_attributes', 
-            'permissions', 'roles', 'locale', 'meta_title', 'meta_description', 
-            'meta_keywords', 'custom_data', 'note'
+            'menu_id', 'parent_id', 'name', 'slug', 'sort_order', 'url',
+            'route_name', 'route_parameters', 'description', 'icon',
+            'badge_text', 'badge_color', 'css_classes', 'html_attributes',
+            'permissions', 'roles', 'locale', 'meta_title', 'meta_description',
+            'meta_keywords', 'custom_data', 'note',
         ]);
-        
+
         // Reset to defaults
         $this->type = 'link';
         $this->status = 1;
@@ -160,10 +160,10 @@ class MenuItemComponent extends Component
         $this->is_visible = 1;
         $this->opens_new_tab = 0;
         $this->sort_order = 0;
-        
+
         // Clear errors
         $this->resetErrorBag();
-        
+
         // Reload dropdown data
         $this->loadDropdownData();
     }
@@ -198,9 +198,9 @@ class MenuItemComponent extends Component
         if ($this->slug) {
             $uniqueRule = 'unique:menu_items,slug';
             if ($this->menuItem) {
-                $uniqueRule .= ',' . $this->menuItem->id;
+                $uniqueRule .= ','.$this->menuItem->id;
             }
-            $rules['slug'] = $rules['slug'] . '|' . $uniqueRule;
+            $rules['slug'] = $rules['slug'].'|'.$uniqueRule;
         }
 
         return $rules;
@@ -215,7 +215,7 @@ class MenuItemComponent extends Component
             $this->validateJsonFields();
 
             // Auto-generate slug if empty
-            if (empty($this->slug) && !empty($this->name)) {
+            if (empty($this->slug) && ! empty($this->name)) {
                 $this->slug = \Illuminate\Support\Str::slug($this->name);
             }
 
@@ -224,60 +224,63 @@ class MenuItemComponent extends Component
             if ($this->menuItem) {
                 // Update existing menu item
                 $this->menuItem->update($data);
-                $message = 'Menu Item "' . $this->name . '" updated successfully!';
+                $message = 'Menu Item "'.$this->name.'" updated successfully!';
                 $route = 'backend.menuitems.show';
                 $params = $this->menuItem->id;
 
                 // Log the update
-                logUserAccess('MenuItem Update | Id: ' . $this->menuItem->id);
+                logUserAccess('MenuItem Update | Id: '.$this->menuItem->id);
             } else {
                 // Create new menu item
                 $menuItem = MenuItem::create($data);
-                $message = 'Menu Item "' . $this->name . '" created successfully!';
+                $message = 'Menu Item "'.$this->name.'" created successfully!';
                 $route = 'backend.menuitems.show';
                 $params = $menuItem->id;
 
                 // Log the creation
-                logUserAccess('MenuItem Store | Id: ' . $menuItem->id);
+                logUserAccess('MenuItem Store | Id: '.$menuItem->id);
             }
 
             session()->flash('flash_success', $message);
-            return redirect()->route($route, $params);
 
+            return redirect()->route($route, $params);
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Re-throw validation exceptions to show field errors
             throw $e;
         } catch (\Exception $e) {
-            $this->addError('general', 'Error saving menu item: ' . $e->getMessage());
-            session()->flash('flash_danger', 'Error saving menu item: ' . $e->getMessage());
+            $this->addError('general', 'Error saving menu item: '.$e->getMessage());
+            session()->flash('flash_danger', 'Error saving menu item: '.$e->getMessage());
         }
     }
 
     protected function validateJsonFields()
     {
         // Validate route_parameters as JSON
-        if ($this->route_parameters && !empty(trim($this->route_parameters))) {
+        if ($this->route_parameters && ! empty(trim($this->route_parameters))) {
             $decoded = json_decode($this->route_parameters, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $this->addError('route_parameters', 'Route parameters must be valid JSON.');
+
                 return;
             }
         }
 
         // Validate html_attributes as JSON
-        if ($this->html_attributes && !empty(trim($this->html_attributes))) {
+        if ($this->html_attributes && ! empty(trim($this->html_attributes))) {
             $decoded = json_decode($this->html_attributes, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $this->addError('html_attributes', 'HTML attributes must be valid JSON.');
+
                 return;
             }
         }
 
         // Validate custom_data as JSON
-        if ($this->custom_data && !empty(trim($this->custom_data))) {
+        if ($this->custom_data && ! empty(trim($this->custom_data))) {
             $decoded = json_decode($this->custom_data, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $this->addError('custom_data', 'Custom data must be valid JSON.');
+
                 return;
             }
         }
@@ -326,7 +329,7 @@ class MenuItemComponent extends Component
     public function updatedName()
     {
         // Auto-generate slug when name changes (only if slug is empty)
-        if (empty($this->slug) && !empty($this->name)) {
+        if (empty($this->slug) && ! empty($this->name)) {
             $this->generateSlug();
         }
     }
