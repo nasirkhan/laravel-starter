@@ -24,14 +24,14 @@ class MenuItemComponent extends Component
     public $icon;
     public $badge_text;
     public $badge_color;
-    public $opens_new_tab = false;
+    public $opens_new_tab = 0;
     public $css_classes;
     public $html_attributes;
     public $permissions = [];
     public $roles = [];
     public $status = 1;
-    public $is_active = true;
-    public $is_visible = true;
+    public $is_active = 1;
+    public $is_visible = 1;
     public $locale;
     public $meta_title;
     public $meta_description;
@@ -127,14 +127,14 @@ class MenuItemComponent extends Component
         $this->icon = $this->menuItem->icon;
         $this->badge_text = $this->menuItem->badge_text;
         $this->badge_color = $this->menuItem->badge_color;
-        $this->opens_new_tab = $this->menuItem->opens_new_tab ?? false;
+        $this->opens_new_tab = $this->menuItem->opens_new_tab ? 1 : 0;
         $this->css_classes = $this->menuItem->css_classes;
         $this->html_attributes = $this->menuItem->html_attributes;
         $this->permissions = $this->menuItem->permissions ?? [];
         $this->roles = $this->menuItem->roles ?? [];
         $this->status = $this->menuItem->status ?? 1;
-        $this->is_active = $this->menuItem->is_active ?? true;
-        $this->is_visible = $this->menuItem->is_visible ?? true;
+        $this->is_active = $this->menuItem->is_active ? 1 : 0;
+        $this->is_visible = $this->menuItem->is_visible ? 1 : 0;
         $this->locale = $this->menuItem->locale;
         $this->meta_title = $this->menuItem->meta_title;
         $this->meta_description = $this->menuItem->meta_description;
@@ -156,9 +156,9 @@ class MenuItemComponent extends Component
         // Reset to defaults
         $this->type = 'link';
         $this->status = 1;
-        $this->is_active = true;
-        $this->is_visible = true;
-        $this->opens_new_tab = false;
+        $this->is_active = 1;
+        $this->is_visible = 1;
+        $this->opens_new_tab = 0;
         $this->sort_order = 0;
         
         // Clear errors
@@ -299,14 +299,14 @@ class MenuItemComponent extends Component
             'icon' => $this->icon ?: null,
             'badge_text' => $this->badge_text ?: null,
             'badge_color' => $this->badge_color ?: null,
-            'opens_new_tab' => $this->opens_new_tab ?? false,
+            'opens_new_tab' => (bool) $this->opens_new_tab,
             'css_classes' => $this->css_classes ?: null,
             'html_attributes' => $this->html_attributes ?: null,
             'permissions' => $this->permissions ?: null,
             'roles' => $this->roles ?: null,
             'status' => $this->status,
-            'is_active' => $this->is_active ?? true,
-            'is_visible' => $this->is_visible ?? true,
+            'is_active' => (bool) $this->is_active,
+            'is_visible' => (bool) $this->is_visible,
             'locale' => $this->locale ?: null,
             'meta_title' => $this->meta_title ?: null,
             'meta_description' => $this->meta_description ?: null,

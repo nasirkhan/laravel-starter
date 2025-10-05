@@ -247,10 +247,14 @@
         </div>
         <div class="col-sm-3 col-12 mb-3">
             <div class="form-group">
-                <div class="form-check form-switch">
-                    <input type="checkbox" wire:model="opens_new_tab" class="form-check-input" id="opens_new_tab" />
-                    <label for="opens_new_tab" class="form-check-label">Open in New Tab</label>
-                </div>
+                <label for="opens_new_tab" class="form-label">Open in New Tab</label>
+                <select wire:model="opens_new_tab" class="form-select" id="opens_new_tab">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                @error("opens_new_tab")
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
     </div>
@@ -346,18 +350,26 @@
         </div>
         <div class="col-sm-3 col-12 mb-3">
             <div class="form-group">
-                <div class="form-check form-switch">
-                    <input type="checkbox" wire:model="is_active" class="form-check-input" id="is_active" />
-                    <label for="is_active" class="form-check-label">Active</label>
-                </div>
+                <label for="is_active" class="form-label">Active</label>
+                <select wire:model="is_active" class="form-select" id="is_active">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                @error("is_active")
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
         <div class="col-sm-3 col-12 mb-3">
             <div class="form-group">
-                <div class="form-check form-switch">
-                    <input type="checkbox" wire:model="is_visible" class="form-check-input" id="is_visible" />
-                    <label for="is_visible" class="form-check-label">Visible</label>
-                </div>
+                <label for="is_visible" class="form-label">Visible</label>
+                <select wire:model="is_visible" class="form-select" id="is_visible">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                @error("is_visible")
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
         <div class="col-sm-3 col-12 mb-3">
