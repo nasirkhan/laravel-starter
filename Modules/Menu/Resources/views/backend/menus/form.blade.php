@@ -88,7 +88,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-12 col-sm-4 mb-3">
@@ -204,7 +204,7 @@
             ];
             ?>
             {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
-            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+            {{ html()->select($field_name, $select_options)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-12 col-sm-3 mb-3">
