@@ -3,10 +3,9 @@
 namespace Modules\Menu\Http\Controllers\Backend;
 
 use App\Authorizable;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Backend\BackendBaseController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MenuItemsController extends BackendBaseController
 {
@@ -46,7 +45,7 @@ class MenuItemsController extends BackendBaseController
 
         $module_action = 'Create';
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.create",
@@ -75,9 +74,9 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::create($request->all());
 
-        flash("New '" . Str::singular($module_title) . "' Added")->success()->important();
+        flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect("admin/{$module_name}");
     }
@@ -101,7 +100,7 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.show",
@@ -129,7 +128,7 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.edit",
@@ -163,9 +162,9 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular->update($request->all());
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }

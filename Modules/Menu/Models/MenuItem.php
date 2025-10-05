@@ -4,9 +4,9 @@ namespace Modules\Menu\Models;
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MenuItem extends BaseModel
 {
@@ -120,9 +120,9 @@ class MenuItem extends BaseModel
      */
     public function isExternal(): bool
     {
-        return $this->type === 'external' || 
-               (filter_var($this->url, FILTER_VALIDATE_URL) && 
-                !str_contains($this->url, config('app.url')));
+        return $this->type === 'external' ||
+               (filter_var($this->url, FILTER_VALIDATE_URL) &&
+                ! str_contains($this->url, config('app.url')));
     }
 
     /**
@@ -151,8 +151,8 @@ class MenuItem extends BaseModel
     public function isCurrentlyActive(): bool
     {
         $currentRoute = request()->route();
-        
-        if (!$currentRoute) {
+
+        if (! $currentRoute) {
             return false;
         }
 
@@ -199,19 +199,19 @@ class MenuItem extends BaseModel
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
 
         // If requires auth but user is not authenticated
-        if ($this->requires_auth && !$user) {
+        if ($this->requires_auth && ! $user) {
             return false;
         }
 
         // If not guest accessible and user is not authenticated
-        if (!$this->is_guest_accessible && !$user) {
+        if (! $this->is_guest_accessible && ! $user) {
             return false;
         }
 
         // Check permissions
         if ($this->permissions && $user) {
             foreach ($this->permissions as $permission) {
-                if (!$user->can($permission)) {
+                if (! $user->can($permission)) {
                     return false;
                 }
             }
@@ -226,7 +226,7 @@ class MenuItem extends BaseModel
                     break;
                 }
             }
-            if (!$hasRole) {
+            if (! $hasRole) {
                 return false;
             }
         }
@@ -242,7 +242,7 @@ class MenuItem extends BaseModel
         return $query->visible()
                     ->where(function ($q) use ($user) {
                         $q->where('is_guest_accessible', true);
-                        
+
                         if ($user) {
                             $q->orWhere('requires_auth', true);
                         }

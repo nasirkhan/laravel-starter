@@ -3,8 +3,8 @@
 namespace Modules\Menu\database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Menu\Models\MenuItem;
 use Modules\Menu\Models\Menu;
+use Modules\Menu\Models\MenuItem;
 
 class MenuItemFactory extends Factory
 {
@@ -24,7 +24,7 @@ class MenuItemFactory extends Factory
     {
         $types = ['link', 'dropdown', 'divider', 'heading', 'external'];
         $icons = ['fas fa-home', 'fas fa-user', 'fas fa-cog', 'fas fa-info', 'fas fa-envelope'];
-        
+
         return [
             'menu_id' => Menu::factory(),
             'name' => $this->faker->words(2, true),
@@ -43,17 +43,17 @@ class MenuItemFactory extends Factory
             'css_classes' => $this->faker->optional()->words(2, true),
             'html_attributes' => $this->faker->optional()->randomElement([
                 ['data-toggle' => 'tooltip'],
-                ['data-placement' => 'top']
+                ['data-placement' => 'top'],
             ]),
             'permissions' => $this->faker->optional()->randomElement([
                 ['view_backend'],
                 ['edit_posts', 'view_posts'],
-                []
+                [],
             ]),
             'roles' => $this->faker->optional()->randomElement([
                 ['admin'],
                 ['editor', 'author'],
-                []
+                [],
             ]),
             'is_guest_accessible' => $this->faker->boolean(70), // 70% chance
             'requires_auth' => $this->faker->boolean(30), // 30% chance
@@ -66,7 +66,7 @@ class MenuItemFactory extends Factory
             'meta_keywords' => $this->faker->optional()->words(5, true),
             'custom_data' => $this->faker->optional()->randomElement([
                 ['priority' => 'high'],
-                ['category' => 'navigation']
+                ['category' => 'navigation'],
             ]),
             'note' => $this->faker->optional()->sentence(),
             'status' => $this->faker->randomElement([0, 1, 2]), // disabled, enabled, draft

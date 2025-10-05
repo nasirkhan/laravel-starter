@@ -26,5 +26,4 @@ class MenusController extends BackendBaseController
         // module model name, path
         $this->module_model = "Modules\Menu\Models\Menu";
     }
-
 }
