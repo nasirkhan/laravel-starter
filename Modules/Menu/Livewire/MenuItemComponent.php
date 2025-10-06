@@ -53,7 +53,7 @@ class MenuItemComponent extends Component
         $this->menuItem = $menuItem;
 
         // If a menu_id is provided (for preselection), set it
-        if ($menu_id && !$this->menuItem) {
+        if ($menu_id && ! $this->menuItem) {
             $this->menu_id = $menu_id;
         }
 
