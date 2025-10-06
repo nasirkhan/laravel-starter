@@ -2,7 +2,7 @@
 
 @if ($route)
     <a
-        class="btn btn-success {{ $small == "true" ? "btn-sm" : "" }} {{ $class }}"
+        class="btn btn-success {{ $small == "true" ? "btn-sm" : "" }} {{ $class }} m-1"
         data-toggle="tooltip"
         href="{{ $route }}"
         title="{{ __($title) }}"

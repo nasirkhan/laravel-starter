@@ -48,9 +48,14 @@ class MenuItemComponent extends Component
     // Menu item being edited (if any)
     public $menuItem;
 
-    public function mount($menuItem = null)
+    public function mount($menuItem = null, $menu_id = null)
     {
         $this->menuItem = $menuItem;
+
+        // If a menu_id is provided (for preselection), set it
+        if ($menu_id && !$this->menuItem) {
+            $this->menu_id = $menu_id;
+        }
 
         // Load dropdown data
         $this->loadDropdownData();
