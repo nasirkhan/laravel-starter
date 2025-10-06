@@ -198,16 +198,6 @@ class MenuItem extends BaseModel
     {
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
 
-        // If requires auth but user is not authenticated
-        if ($this->requires_auth && ! $user) {
-            return false;
-        }
-
-        // If not guest accessible and user is not authenticated
-        if (! $this->is_guest_accessible && ! $user) {
-            return false;
-        }
-
         // Check permissions
         if ($this->permissions && $user) {
             foreach ($this->permissions as $permission) {
@@ -239,14 +229,7 @@ class MenuItem extends BaseModel
      */
     public function scopeAccessible($query, $user = null)
     {
-        return $query->visible()
-                    ->where(function ($q) use ($user) {
-                        $q->where('is_guest_accessible', true);
-
-                        if ($user) {
-                            $q->orWhere('requires_auth', true);
-                        }
-                    });
+        return $query->visible();
     }
 
     /**
