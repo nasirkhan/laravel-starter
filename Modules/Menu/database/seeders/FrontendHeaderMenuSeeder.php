@@ -73,7 +73,7 @@ class FrontendHeaderMenuSeeder extends Seeder
                         'is_active' => true,
                         'is_visible' => true,
                     ],
-                ]
+                ],
             ],
             [
                 'name' => 'Services',
@@ -113,7 +113,7 @@ class FrontendHeaderMenuSeeder extends Seeder
                         'is_active' => true,
                         'is_visible' => true,
                     ],
-                ]
+                ],
             ],
             [
                 'name' => 'Blog',
@@ -145,7 +145,7 @@ class FrontendHeaderMenuSeeder extends Seeder
         foreach ($menuItems as $itemData) {
             $children = $itemData['children'] ?? null;
             unset($itemData['children']);
-            
+
             $itemData['menu_id'] = $menu->id;
             $menuItem = MenuItem::create($itemData);
 
