@@ -27,6 +27,12 @@
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
                     <x-backend.buttons.return-back />
+                    <x-backend.buttons.list 
+                        route="{{ route("backend.$module_name.index") }}"
+                        title="{{ __('menu::text.menu_list') }}"
+                        icon="fas fa-list"
+                        small="true"
+                    />
                     <x-backend.buttons.create 
                         route="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}"
                         title="{{ __('menu::text.add_menu_item') }}"

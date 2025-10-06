@@ -135,12 +135,16 @@
             <?php
             $field_name = 'is_public';
             $field_lable = 'Public Menu';
+            $field_placeholder = "-- Select visibility --";
+            $required = "";
+            $select_options = [
+                '1' => 'Yes - Allow guests to see this menu',
+                '0' => 'No - Require authentication'
+            ];
             ?>
-            <div class="form-check form-switch">
-                {{ html()->checkbox($field_name, true, '1')->class('form-check-input')->id($field_name) }}
-                {{ html()->label($field_lable, $field_name)->class('form-check-label') }}
-                <small class="form-text text-muted">Allow guests to see this menu</small>
-            </div>
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
+            <small class="form-text text-muted">Control guest access to this menu</small>
         </div>
     </div>
     <div class="col-12 col-sm-4 mb-3">
@@ -209,20 +213,34 @@
     </div>
     <div class="col-12 col-sm-3 mb-3">
         <div class="form-group">
-            <?php $field_name = 'is_active'; ?>
-            <div class="form-check form-switch">
-                {{ html()->checkbox($field_name, true, '1')->class('form-check-input')->id($field_name) }}
-                {{ html()->label('Active', $field_name)->class('form-check-label') }}
-            </div>
+            <?php
+            $field_name = 'is_active';
+            $field_lable = 'Active Status';
+            $field_placeholder = "-- Select status --";
+            $required = "";
+            $select_options = [
+                '1' => 'Yes - Menu is active',
+                '0' => 'No - Menu is inactive'
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
     <div class="col-12 col-sm-3 mb-3">
         <div class="form-group">
-            <?php $field_name = 'is_visible'; ?>
-            <div class="form-check form-switch">
-                {{ html()->checkbox($field_name, true, '1')->class('form-check-input')->id($field_name) }}
-                {{ html()->label('Visible', $field_name)->class('form-check-label') }}
-            </div>
+            <?php
+            $field_name = 'is_visible';
+            $field_lable = 'Visibility';
+            $field_placeholder = "-- Select visibility --";
+            $required = "";
+            $select_options = [
+                '1' => 'Yes - Menu is visible',
+                '0' => 'No - Menu is hidden'
+            ];
+            ?>
+            {{ html()->label($field_lable, $field_name)->class('form-label') }} {!! field_required($required) !!}
+            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class('form-select')->attributes(["$required"]) }}
         </div>
     </div>
 </div>

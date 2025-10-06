@@ -17,6 +17,7 @@ return [
     'menu_items' => 'Menu Items',
     'add_menu_item' => 'Add Menu Item',
     'add_item' => 'Add Item',
+    'menu_list' => 'Menu List',
     'no_menu_items' => 'No menu items found for this menu.',
     'add_first_item' => 'Add the first menu item',
     'order' => 'Order',

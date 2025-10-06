@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
 
-class FrontendHeaderMenuSeeder extends Seeder
+class FrontendMenuSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -159,6 +159,59 @@ class FrontendHeaderMenuSeeder extends Seeder
             }
         }
 
-        $this->command->info('Frontend Header Menu seeded successfully!');
+        // Create footer navigation menu
+        $footerMenu = Menu::create([
+            'name' => 'Frontend Footer Navigation',
+            'location' => 'frontend-footer',
+            'description' => 'Footer links for frontend',
+            'locale' => 'en',
+            'is_public' => true,
+            'is_active' => true,
+            'is_visible' => true,
+            'sort_order' => 1,
+        ]);
+
+        // Create footer menu items
+        $footerMenuItems = [
+            [
+                'name' => 'About',
+                'type' => 'link',
+                'url' => '#',
+                'sort_order' => 1,
+                'is_active' => true,
+                'is_visible' => true,
+            ],
+            [
+                'name' => 'Privacy',
+                'type' => 'link',
+                'route_name' => 'frontend.privacy',
+                'sort_order' => 2,
+                'is_active' => true,
+                'is_visible' => true,
+            ],
+            [
+                'name' => 'Terms',
+                'type' => 'link',
+                'route_name' => 'frontend.terms',
+                'sort_order' => 3,
+                'is_active' => true,
+                'is_visible' => true,
+            ],
+            [
+                'name' => 'Contact',
+                'type' => 'link',
+                'url' => '#',
+                'sort_order' => 5,
+                'is_active' => true,
+                'is_visible' => true,
+            ],
+        ];
+
+        foreach ($footerMenuItems as $itemData) {
+            $itemData['menu_id'] = $footerMenu->id;
+            MenuItem::create($itemData);
+        }
+
+        $this->command->info('Frontend Header and Footer Menus seeded successfully!');
     }
 }
