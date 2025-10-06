@@ -10,7 +10,7 @@ return [
     'updated_by' => 'Updated By',
     'deleted_by' => 'Deleted By',
     'action' => 'Action',
-    
+
     // Menu specific
     'location' => 'Location',
     'locale' => 'Locale',
@@ -24,7 +24,7 @@ return [
     'type' => 'Type',
     'url_route' => 'URL/Route',
     'actions' => 'Actions',
-    
+
     // Status badges
     'active' => 'Active',
     'inactive' => 'Inactive',
