@@ -38,7 +38,7 @@
             <li class="relative group">
                 <button 
                     type="button" 
-                    class="border-transparent dark:border-transparent flex items-center justify-between w-full md:w-auto border-b-2 px-3 py-2 font-semibold text-gray-800 transition duration-200 ease-in hover:border-gray-700 hover:opacity-75 dark:text-white dark:hover:border-gray-300 dark:hover:opacity-75 sm:my-0 sm:py-1"
+                    class="border-transparent dark:border-transparent cursor-pointer flex items-center justify-between w-full md:w-auto border-b-2 px-3 py-2 font-semibold text-gray-800 transition duration-200 ease-in hover:border-gray-700 hover:opacity-75 dark:text-white dark:hover:border-gray-300 dark:hover:opacity-75 sm:my-0 sm:py-1"
                     data-dropdown-toggle="dropdown-{{ $item->id }}"
                 >
                     {{ $item->getDisplayTitle() }}

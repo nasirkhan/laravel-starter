@@ -68,6 +68,10 @@ class MenuItemComponent extends Component
 
     public function updatedMenuId()
     {
+        // Reset parent_id when menu changes
+        $this->parent_id = null;
+        
+        // Load new parent items for the selected menu
         $this->loadParentItems();
     }
 
@@ -104,22 +108,64 @@ class MenuItemComponent extends Component
     protected function loadParentItems()
     {
         if ($this->menu_id) {
-            $query = MenuItem::where('menu_id', $this->menu_id);
+            $query = MenuItem::where('menu_id', $this->menu_id)
+                            ->where('is_active', true)
+                            ->where('is_visible', true)
+                            ->orderBy('sort_order')
+                            ->orderBy('name');
 
-            // Exclude current item if editing
+            // Exclude current item and its descendants if editing
             if ($this->menuItem) {
-                $query->where('id', '!=', $this->menuItem->id);
+                $excludeIds = [$this->menuItem->id];
+                
+                // Get all descendant IDs to prevent circular references
+                $descendants = $this->getDescendantIds($this->menuItem->id);
+                $excludeIds = array_merge($excludeIds, $descendants);
+                
+                $query->whereNotIn('id', $excludeIds);
             }
+
+            // Only allow items that can have children (not dividers)
+            $query->where('type', '!=', 'divider');
 
             $this->parent_items = $query->pluck('name', 'id')->toArray();
         } else {
             $this->parent_items = [];
         }
+        
+        // Reset parent_id if it's no longer valid
+        if ($this->parent_id && !array_key_exists($this->parent_id, $this->parent_items)) {
+            $this->parent_id = null;
+        }
+    }
+
+    /**
+     * Get all descendant IDs of a menu item to prevent circular references
+     */
+    private function getDescendantIds($parentId, $depth = 0, $maxDepth = 10)
+    {
+        if ($depth >= $maxDepth) {
+            return []; // Prevent infinite recursion
+        }
+        
+        $descendants = [];
+        $children = MenuItem::where('parent_id', $parentId)->pluck('id');
+        
+        foreach ($children as $childId) {
+            $descendants[] = $childId;
+            $descendants = array_merge($descendants, $this->getDescendantIds($childId, $depth + 1, $maxDepth));
+        }
+        
+        return $descendants;
     }
 
     protected function populateFormFromMenuItem()
     {
         $this->menu_id = $this->menuItem->menu_id;
+        
+        // Load parent items for the selected menu first
+        $this->loadParentItems();
+        
         $this->parent_id = $this->menuItem->parent_id;
         $this->type = $this->menuItem->type ?? 'link';
         $this->name = $this->menuItem->name;

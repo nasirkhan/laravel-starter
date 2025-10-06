@@ -52,13 +52,25 @@
         <div class="col-sm-4 col-12 mb-3">
             <div class="form-group">
                 <label for="parent_id" class="form-label">Parent Item</label>
-                <select wire:model="parent_id" class="form-select">
+                <select wire:model="parent_id" class="form-select" wire:key="parent-{{ $menu_id }}" @if(!$menu_id) disabled @endif>
                     <option value="">-- No Parent (Root Level) --</option>
-                    @foreach ($parent_items as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
-                    @endforeach
+                    @if($menu_id)
+                        @forelse ($parent_items as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                        @empty
+                            <option value="" disabled>No parent items available</option>
+                        @endforelse
+                    @else
+                        <option value="" disabled>Select a menu first</option>
+                    @endif
                 </select>
-                <small class="form-text text-muted">Select parent item to create dropdown menu</small>
+                <small class="form-text text-muted">
+                    @if($menu_id)
+                        Select parent item to create dropdown menu
+                    @else
+                        Select a menu first to see available parent items
+                    @endif
+                </small>
                 @error("parent_id")
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
