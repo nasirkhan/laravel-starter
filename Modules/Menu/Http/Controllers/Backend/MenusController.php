@@ -21,7 +21,7 @@ class MenusController extends BackendBaseController
         $this->module_path = 'menu::backend';
 
         // module icon
-        $this->module_icon = 'fa-regular fa-sun';
+        $this->module_icon = 'fa-solid fa-list';
 
         // module model name, path
         $this->module_model = "Modules\Menu\Models\Menu";
