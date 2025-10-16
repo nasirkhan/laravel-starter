@@ -13,7 +13,7 @@ echo "Creating Footer Menu...\n";
 
 // Create footer menu if it doesn't exist
 $footerMenu = Menu::where('location', 'frontend-footer')->first();
-if (!$footerMenu) {
+if (! $footerMenu) {
     $footerMenu = Menu::create([
         'name' => 'Frontend Footer Navigation',
         'location' => 'frontend-footer',
@@ -24,7 +24,7 @@ if (!$footerMenu) {
         'is_visible' => true,
         'sort_order' => 1,
     ]);
-    
+
     echo "Footer menu created with ID: {$footerMenu->id}\n";
 } else {
     echo "Footer menu already exists with ID: {$footerMenu->id}\n";
@@ -76,13 +76,13 @@ $footerMenuItems = [
 
 foreach ($footerMenuItems as $itemData) {
     $itemData['menu_id'] = $footerMenu->id;
-    
+
     // Check if item already exists
     $existingItem = MenuItem::where('menu_id', $footerMenu->id)
                            ->where('name', $itemData['name'])
                            ->first();
-    
-    if (!$existingItem) {
+
+    if (! $existingItem) {
         MenuItem::create($itemData);
         echo "Created menu item: {$itemData['name']}\n";
     } else {
