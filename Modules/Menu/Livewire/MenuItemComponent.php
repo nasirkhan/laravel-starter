@@ -68,7 +68,7 @@ class MenuItemComponent extends Component
     {
         // Reset parent_id when menu changes
         $this->parent_id = null;
-        
+
         // Load new parent items for the selected menu
         $this->loadParentItems();
     }
@@ -115,11 +115,11 @@ class MenuItemComponent extends Component
             // Exclude current item and its descendants if editing
             if ($this->menuItem) {
                 $excludeIds = [$this->menuItem->id];
-                
+
                 // Get all descendant IDs to prevent circular references
                 $descendants = $this->getDescendantIds($this->menuItem->id);
                 $excludeIds = array_merge($excludeIds, $descendants);
-                
+
                 $query->whereNotIn('id', $excludeIds);
             }
 
@@ -130,40 +130,40 @@ class MenuItemComponent extends Component
         } else {
             $this->parent_items = [];
         }
-        
+
         // Reset parent_id if it's no longer valid
-        if ($this->parent_id && !array_key_exists($this->parent_id, $this->parent_items)) {
+        if ($this->parent_id && ! array_key_exists($this->parent_id, $this->parent_items)) {
             $this->parent_id = null;
         }
     }
 
     /**
-     * Get all descendant IDs of a menu item to prevent circular references
+     * Get all descendant IDs of a menu item to prevent circular references.
      */
     private function getDescendantIds($parentId, $depth = 0, $maxDepth = 10)
     {
         if ($depth >= $maxDepth) {
             return []; // Prevent infinite recursion
         }
-        
+
         $descendants = [];
         $children = MenuItem::where('parent_id', $parentId)->pluck('id');
-        
+
         foreach ($children as $childId) {
             $descendants[] = $childId;
             $descendants = array_merge($descendants, $this->getDescendantIds($childId, $depth + 1, $maxDepth));
         }
-        
+
         return $descendants;
     }
 
     protected function populateFormFromMenuItem()
     {
         $this->menu_id = $this->menuItem->menu_id;
-        
+
         // Load parent items for the selected menu first
         $this->loadParentItems();
-        
+
         $this->parent_id = $this->menuItem->parent_id;
         $this->type = $this->menuItem->type ?? 'link';
         $this->name = $this->menuItem->name;
