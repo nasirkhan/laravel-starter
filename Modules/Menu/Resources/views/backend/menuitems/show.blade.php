@@ -225,7 +225,7 @@
             </div>
         </div>
 
-        @if($$module_name_singular->description || $$module_name_singular->meta_title || $$module_name_singular->meta_description || $$module_name_singular->meta_keywords)
+        @if($$module_name_singular->description || $$module_name_singular->meta_title)
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -244,15 +244,7 @@
                             <dd class="col-sm-10">{{ $$module_name_singular->meta_title }}</dd>
                             @endif
 
-                            @if($$module_name_singular->meta_description)
-                            <dt class="col-sm-2">Meta Description:</dt>
-                            <dd class="col-sm-10">{{ $$module_name_singular->meta_description }}</dd>
-                            @endif
 
-                            @if($$module_name_singular->meta_keywords)
-                            <dt class="col-sm-2">Meta Keywords:</dt>
-                            <dd class="col-sm-10">{{ $$module_name_singular->meta_keywords }}</dd>
-                            @endif
                         </dl>
                     </div>
                 </div>

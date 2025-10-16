@@ -62,8 +62,6 @@ class MenuItemFactory extends Factory
 
             'locale' => $this->faker->optional()->randomElement(['en', 'es', 'fr']),
             'meta_title' => $this->faker->optional()->sentence(3),
-            'meta_description' => $this->faker->optional()->sentence(),
-            'meta_keywords' => $this->faker->optional()->words(5, true),
             'custom_data' => $this->faker->optional()->randomElement([
                 ['priority' => 'high'],
                 ['category' => 'navigation'],

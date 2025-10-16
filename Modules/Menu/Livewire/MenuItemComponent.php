@@ -34,8 +34,6 @@ class MenuItemComponent extends Component
     public $is_visible = 1;
     public $locale;
     public $meta_title;
-    public $meta_description;
-    public $meta_keywords;
     public $custom_data;
     public $note;
 
@@ -188,8 +186,6 @@ class MenuItemComponent extends Component
         $this->is_visible = $this->menuItem->is_visible ? 1 : 0;
         $this->locale = $this->menuItem->locale;
         $this->meta_title = $this->menuItem->meta_title;
-        $this->meta_description = $this->menuItem->meta_description;
-        $this->meta_keywords = $this->menuItem->meta_keywords;
         $this->custom_data = $this->menuItem->custom_data;
         $this->note = $this->menuItem->note;
     }
@@ -200,8 +196,8 @@ class MenuItemComponent extends Component
             'menu_id', 'parent_id', 'name', 'slug', 'sort_order', 'url',
             'route_name', 'route_parameters', 'description', 'icon',
             'badge_text', 'badge_color', 'css_classes', 'html_attributes',
-            'permissions', 'roles', 'locale', 'meta_title', 'meta_description',
-            'meta_keywords', 'custom_data', 'note',
+            'permissions', 'roles', 'locale', 'meta_title',
+            'custom_data', 'note',
         ]);
 
         // Reset to defaults
@@ -240,8 +236,6 @@ class MenuItemComponent extends Component
             'css_classes' => 'nullable|string|max:500',
             'locale' => 'nullable|string|max:5',
             'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string|max:500',
-            'meta_keywords' => 'nullable|string|max:255',
             'note' => 'nullable|string|max:1000',
         ];
 
@@ -363,8 +357,6 @@ class MenuItemComponent extends Component
             'is_visible' => (bool) $this->is_visible,
             'locale' => $this->locale ?: null,
             'meta_title' => $this->meta_title ?: null,
-            'meta_description' => $this->meta_description ?: null,
-            'meta_keywords' => $this->meta_keywords ?: null,
             'custom_data' => $this->custom_data ?: null,
             'note' => $this->note ?: null,
         ];

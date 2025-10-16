@@ -417,34 +417,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-sm-4 col-12 mb-3">
-            <div class="form-group">
-                <label for="meta_description" class="form-label">Meta Description</label>
-                <textarea
-                    wire:model="meta_description"
-                    class="form-control"
-                    rows="2"
-                    placeholder="Brief description for search engines"
-                ></textarea>
-                @error("meta_description")
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-sm-4 col-12 mb-3">
-            <div class="form-group">
-                <label for="meta_keywords" class="form-label">Meta Keywords</label>
-                <input
-                    type="text"
-                    wire:model="meta_keywords"
-                    class="form-control"
-                    placeholder="keyword1, keyword2, keyword3"
-                />
-                @error("meta_keywords")
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
+
     </div>
 
     {{-- Additional Data & Notes --}}
