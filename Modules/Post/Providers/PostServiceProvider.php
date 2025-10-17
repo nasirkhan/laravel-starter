@@ -32,6 +32,9 @@ class PostServiceProvider extends ServiceProvider
 
         // register commands
         $this->registerCommands('\Modules\Post\Console\Commands');
+
+        // Register seeders
+        $this->registerSeeders();
     }
 
     /**
@@ -129,5 +132,23 @@ class PostServiceProvider extends ServiceProvider
         }
 
         $this->commands($classes);
+    }
+
+    /**
+     * Register module seeders.
+     *
+     * @return void
+     */
+    protected function registerSeeders()
+    {
+        // Publish seeders so they can be customized
+        $this->publishes([
+            base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
+        ], $this->moduleNameLower.'-seeders');
+
+        // Register the seeder in the container for automatic discovery
+        $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
+            return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
+        });
     }
 }

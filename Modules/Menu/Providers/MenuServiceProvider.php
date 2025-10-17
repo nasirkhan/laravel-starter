@@ -1,22 +1,25 @@
 <?php
 
-namespace Modules\Tag\Providers;
+namespace Modules\Menu\Providers;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Menu\Livewire\MenuItemComponent;
 use Symfony\Component\Finder\Finder;
 
-class TagServiceProvider extends ServiceProvider
+class MenuServiceProvider extends ServiceProvider
 {
     /**
      * @var string
      */
-    protected $moduleName = 'Tag';
+    protected $moduleName = 'Menu';
 
     /**
      * @var string
      */
-    protected $moduleNameLower = 'tag';
+    protected $moduleNameLower = 'menu';
 
     /**
      * Boot the application events.
@@ -28,10 +31,12 @@ class TagServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->loadMigrationsFrom(base_path('Modules/Tag/database/migrations'));
+        $this->loadMigrationsFrom(base_path('Modules/Menu/database/migrations'));
 
         // register commands
-        $this->registerCommands('\Modules\Tag\Console\Commands');
+        $this->registerCommands('\Modules\Menu\Console\Commands');
+
+        $this->registerLivewireComponents();
 
         // Register seeders
         $this->registerSeeders();
@@ -58,10 +63,10 @@ class TagServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            base_path('Modules/Tag/Config/config.php') => config_path($this->moduleNameLower.'.php'),
+            base_path('Modules/Menu/Config/config.php') => config_path($this->moduleNameLower.'.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            base_path('Modules/Tag/Config/config.php'), $this->moduleNameLower
+            base_path('Modules/Menu/Config/config.php'), $this->moduleNameLower
         );
     }
 
@@ -74,7 +79,7 @@ class TagServiceProvider extends ServiceProvider
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
 
-        $sourcePath = base_path('Modules/Tag/Resources/views');
+        $sourcePath = base_path('Modules/Menu/Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath,
@@ -90,7 +95,7 @@ class TagServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'tag');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'menu');
     }
 
     /**
@@ -106,7 +111,9 @@ class TagServiceProvider extends ServiceProvider
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (Config::get('view.paths') as $path) {
+        // Use app configuration for view paths, fallback to default
+        $viewPaths = $this->app['config']['view.paths'] ?? [resource_path('views')];
+        foreach ($viewPaths as $path) {
             if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
                 $paths[] = $path.'/modules/'.$this->moduleNameLower;
             }
@@ -135,6 +142,16 @@ class TagServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register Livewire components.
+     *
+     * @return void
+     */
+    protected function registerLivewireComponents()
+    {
+        Livewire::component('menu-item-component', MenuItemComponent::class);
+    }
+
+    /**
      * Register module seeders.
      *
      * @return void
@@ -150,5 +167,12 @@ class TagServiceProvider extends ServiceProvider
         $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
             return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
         });
+
+        // Register a console command for seeding
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Modules\Menu\Console\Commands\SeedMenuCommand::class,
+            ]);
+        }
     }
 }
