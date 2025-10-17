@@ -1,4 +1,4 @@
-@props(['location', 'cssClass' => 'flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-8', 'itemComponent' => null])
+@props(['location' => 'admin-sidebar', 'cssClass' => 'sidebar-nav', 'containerTag' => 'ul'])
 
 @php
     use Modules\Menu\Models\Menu;
@@ -7,12 +7,6 @@
     // Get current locale and user info once
     $currentLocale = app()->getLocale();
     $user = auth()->user();
-    
-    // Determine which menu item component to use based on location
-    $menuItemComponent = $itemComponent ?? match($location) {
-        'frontend-footer' => 'components.frontend.footer-menu-item',
-        default => 'components.frontend.menu-item'
-    };
     
     // STEP 1: Get all menus based on menu location
     $menus = Menu::byLocation($location)
@@ -156,13 +150,13 @@
 @endphp
 
 @if($processedMenus->isNotEmpty())
-    <ul class="{{ $cssClass }}">
+    <{{ $containerTag }} class="{{ $cssClass }}" data-coreui="navigation" data-simplebar>
         @foreach($processedMenus as $menu)
             @if($menu->hierarchicalItems && $menu->hierarchicalItems->isNotEmpty())
                 @foreach($menu->hierarchicalItems as $menuItem)
-                    @include($menuItemComponent, ['item' => $menuItem, 'optimized' => true])
+                    @include('components.backend.dynamic-menu-item', ['item' => $menuItem, 'optimized' => true])
                 @endforeach
             @endif
         @endforeach
-    </ul>
+    </{{ $containerTag }}>
 @endif

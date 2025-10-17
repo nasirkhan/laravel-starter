@@ -3,7 +3,8 @@
 @php
     $url = $item->getFullUrl();
     $isActive = $item->isCurrentlyActive();
-    $hasChildren = $item->hasChildren();
+    // Use optimized children check that doesn't trigger database queries
+    $hasChildren = isset($item->children) && $item->children instanceof \Illuminate\Support\Collection && $item->children->isNotEmpty();
     $target = $item->opens_new_tab ? '_blank' : null;
     $htmlAttributes = $item->html_attributes ?? [];
     
@@ -50,7 +51,7 @@
                 <!-- Dropdown menu -->
                 <div id="dropdown-{{ $item->id }}" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full left-0 mt-1">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
-                        @foreach($item->children as $childItem)
+                        @foreach(($item->children ?? collect()) as $childItem)
                             @if($childItem->userCanSee())
                                 <li>
                                     @if($childItem->type === 'divider')
