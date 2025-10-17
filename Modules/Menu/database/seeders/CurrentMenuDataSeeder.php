@@ -16,11 +16,11 @@ class CurrentMenuDataSeeder extends Seeder
     {
         // Disable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
+
         // Clear existing data
         MenuItem::truncate();
         Menu::truncate();
-        
+
         // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
@@ -35,7 +35,7 @@ class CurrentMenuDataSeeder extends Seeder
             'css_classes' => null,
             'settings' => [
                 'max_depth' => null,
-                'cache_duration' => null
+                'cache_duration' => null,
             ],
             'permissions' => null,
             'roles' => null,
@@ -60,7 +60,7 @@ class CurrentMenuDataSeeder extends Seeder
             'css_classes' => null,
             'settings' => [
                 'max_depth' => null,
-                'cache_duration' => null
+                'cache_duration' => null,
             ],
             'permissions' => null,
             'roles' => null,
@@ -80,11 +80,11 @@ class CurrentMenuDataSeeder extends Seeder
         // Create Footer Menu Items
         $this->createFooterMenuItems($footerMenu);
 
-        echo 'Frontend Header and Footer Menus seeded successfully!' . PHP_EOL;
+        echo 'Frontend Header and Footer Menus seeded successfully!'.PHP_EOL;
     }
 
     /**
-     * Create top menu items
+     * Create top menu items.
      */
     private function createTopMenuItems(Menu $menu): void
     {
@@ -294,7 +294,7 @@ class CurrentMenuDataSeeder extends Seeder
     }
 
     /**
-     * Create footer menu items
+     * Create footer menu items.
      */
     private function createFooterMenuItems(Menu $menu): void
     {
