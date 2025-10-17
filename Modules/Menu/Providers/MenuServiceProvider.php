@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Menu\Livewire\MenuItemComponent;
 use Symfony\Component\Finder\Finder;
+use Illuminate\Database\Events\SchemaDumped;
+use Illuminate\Support\Facades\Event;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,9 @@ class MenuServiceProvider extends ServiceProvider
         $this->registerCommands('\Modules\Menu\Console\Commands');
 
         $this->registerLivewireComponents();
+        
+        // Register seeders
+        $this->registerSeeders();
     }
 
     /**
@@ -145,5 +150,30 @@ class MenuServiceProvider extends ServiceProvider
     protected function registerLivewireComponents()
     {
         Livewire::component('menu-item-component', MenuItemComponent::class);
+    }
+
+    /**
+     * Register module seeders.
+     *
+     * @return void
+     */
+    protected function registerSeeders()
+    {
+        // Publish seeders so they can be customized
+        $this->publishes([
+            base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
+        ], $this->moduleNameLower.'-seeders');
+
+        // Register the seeder in the container for automatic discovery
+        $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
+            return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
+        });
+
+        // Register a console command for seeding
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Modules\Menu\Console\Commands\SeedMenuCommand::class,
+            ]);
+        }
     }
 }
