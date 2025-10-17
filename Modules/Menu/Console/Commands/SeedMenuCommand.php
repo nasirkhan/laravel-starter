@@ -31,11 +31,8 @@ class SeedMenuCommand extends Command
         $seeder = new MenuDatabaseSeeder;
         $seeder->run();
 
-
         $this->info('Menu module seeded successfully!');
-
 
         return 0;
     }
 }
-

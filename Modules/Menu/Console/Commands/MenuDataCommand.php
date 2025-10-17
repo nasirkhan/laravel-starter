@@ -41,7 +41,8 @@ class MenuDataCommand extends Command
             case 'reset':
                 return $this->resetMenuData();
             default:
-                $this->error("Invalid action. Available actions: seed, export, reset");
+                $this->error('Invalid action. Available actions: seed, export, reset');
+
                 return 1;
         }
     }
@@ -52,21 +53,24 @@ class MenuDataCommand extends Command
     protected function seedFromJson()
     {
         $dataFile = base_path('Modules/Menu/database/seeders/data/menu_data.json');
-        
-        if (!File::exists($dataFile)) {
+
+        if (! File::exists($dataFile)) {
             $this->error("Menu data file not found: {$dataFile}");
+
             return 1;
         }
 
         $data = json_decode(File::get($dataFile), true);
-        
-        if (!$data || !isset($data['menus']) || !isset($data['menu_items'])) {
+
+        if (! $data || ! isset($data['menus']) || ! isset($data['menu_items'])) {
             $this->error("Invalid menu data format in: {$dataFile}");
+
             return 1;
         }
 
-        if (!$this->option('force') && !$this->confirm('This will truncate existing menu data and seed from JSON. Continue?')) {
+        if (! $this->option('force') && ! $this->confirm('This will truncate existing menu data and seed from JSON. Continue?')) {
             $this->info('Operation cancelled.');
+
             return 0;
         }
 
@@ -107,6 +111,7 @@ class MenuDataCommand extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->info('Menu data seeded successfully from JSON!');
+
         return 0;
     }
 
@@ -122,7 +127,7 @@ class MenuDataCommand extends Command
 
         $data = [
             'menus' => $menus,
-            'menu_items' => $menuItems
+            'menu_items' => $menuItems,
         ];
 
         $dataFile = base_path('Modules/Menu/database/seeders/data/menu_data.json');
@@ -131,8 +136,8 @@ class MenuDataCommand extends Command
         File::put($dataFile, $jsonData);
 
         $this->info("Menu data exported successfully to: {$dataFile}");
-        $this->info("Exported " . count($menus) . " menus and " . count($menuItems) . " menu items");
-        
+        $this->info('Exported '.count($menus).' menus and '.count($menuItems).' menu items');
+
         return 0;
     }
 
@@ -141,8 +146,9 @@ class MenuDataCommand extends Command
      */
     protected function resetMenuData()
     {
-        if (!$this->option('force') && !$this->confirm('This will permanently delete all menu data. Are you sure?')) {
+        if (! $this->option('force') && ! $this->confirm('This will permanently delete all menu data. Are you sure?')) {
             $this->info('Operation cancelled.');
+
             return 0;
         }
 
@@ -154,7 +160,7 @@ class MenuDataCommand extends Command
         // Truncate all menu data
         $itemCount = MenuItem::count();
         $menuCount = Menu::count();
-        
+
         MenuItem::truncate();
         Menu::truncate();
 
@@ -162,7 +168,7 @@ class MenuDataCommand extends Command
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->info("Reset complete! Deleted {$menuCount} menus and {$itemCount} menu items.");
-        
+
         return 0;
     }
 }

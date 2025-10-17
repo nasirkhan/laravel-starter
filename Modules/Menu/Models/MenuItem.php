@@ -89,34 +89,34 @@ class MenuItem extends BaseModel
     public function scopeAccessibleByUser($query, $user = null)
     {
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
-        
-        if (!$user) {
+
+        if (! $user) {
             return $query->where('is_public', true);
         }
-        
+
         // Get user permissions and roles once
         $userPermissions = $user->getPermissionNames()->toArray();
         $userRoles = $user->getRoleNames()->toArray();
-        
-        return $query->where(function($q) use ($userPermissions, $userRoles) {
+
+        return $query->where(function ($q) use ($userPermissions, $userRoles) {
             $q->where('is_public', true)
-              ->orWhere(function($subQuery) use ($userPermissions, $userRoles) {
-                  $subQuery->where(function($permQuery) use ($userPermissions) {
-                      $permQuery->whereNull('permissions');
-                      if (!empty($userPermissions)) {
-                          foreach ($userPermissions as $permission) {
-                              $permQuery->orWhereJsonContains('permissions', $permission);
-                          }
-                      }
-                  })->where(function($roleQuery) use ($userRoles) {
-                      $roleQuery->whereNull('roles');
-                      if (!empty($userRoles)) {
-                          foreach ($userRoles as $role) {
-                              $roleQuery->orWhereJsonContains('roles', $role);
-                          }
-                      }
-                  });
-              });
+                ->orWhere(function ($subQuery) use ($userPermissions, $userRoles) {
+                    $subQuery->where(function ($permQuery) use ($userPermissions) {
+                        $permQuery->whereNull('permissions');
+                        if (! empty($userPermissions)) {
+                            foreach ($userPermissions as $permission) {
+                                $permQuery->orWhereJsonContains('permissions', $permission);
+                            }
+                        }
+                    })->where(function ($roleQuery) use ($userRoles) {
+                        $roleQuery->whereNull('roles');
+                        if (! empty($userRoles)) {
+                            foreach ($userRoles as $role) {
+                                $roleQuery->orWhereJsonContains('roles', $role);
+                            }
+                        }
+                    });
+                });
         });
     }
 

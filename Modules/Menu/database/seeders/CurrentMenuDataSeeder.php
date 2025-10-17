@@ -16,25 +16,27 @@ class CurrentMenuDataSeeder extends Seeder
     public function run(): void
     {
         // Load menu data from JSON file
-        $dataFile = __DIR__ . '/data/menu_data.json';
-        
-        if (!File::exists($dataFile)) {
+        $dataFile = __DIR__.'/data/menu_data.json';
+
+        if (! File::exists($dataFile)) {
             if (property_exists($this, 'command') && $this->command) {
                 $this->command->error("Menu data file not found: {$dataFile}");
             } else {
                 echo "Menu data file not found: {$dataFile}\n";
             }
+
             return;
         }
 
         $data = json_decode(File::get($dataFile), true);
-        
-        if (!$data || !isset($data['menus']) || !isset($data['menu_items'])) {
+
+        if (! $data || ! isset($data['menus']) || ! isset($data['menu_items'])) {
             if (property_exists($this, 'command') && $this->command) {
                 $this->command->error("Invalid menu data format in: {$dataFile}");
             } else {
                 echo "Invalid menu data format in: {$dataFile}\n";
             }
+
             return;
         }
 

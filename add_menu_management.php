@@ -1,20 +1,20 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 
-$app = require_once __DIR__ . '/bootstrap/app.php';
+$app = require_once __DIR__.'/bootstrap/app.php';
 $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
 
-echo "Adding Menu Management items..." . PHP_EOL;
+echo 'Adding Menu Management items...'.PHP_EOL;
 
 // Get the admin sidebar menu
 $adminMenu = Menu::where('location', 'admin-sidebar')->first();
 
-if (!$adminMenu) {
-    echo "Admin sidebar menu not found!" . PHP_EOL;
+if (! $adminMenu) {
+    echo 'Admin sidebar menu not found!'.PHP_EOL;
     exit(1);
 }
 
@@ -24,7 +24,7 @@ $existingMenuManagement = MenuItem::where('menu_id', $adminMenu->id)
     ->first();
 
 if ($existingMenuManagement) {
-    echo "Menu Management already exists! Skipping..." . PHP_EOL;
+    echo 'Menu Management already exists! Skipping...'.PHP_EOL;
     exit(0);
 }
 
@@ -52,10 +52,10 @@ $menuManagement = MenuItem::create([
     'badge_text' => null,
     'badge_color' => null,
     'note' => 'Parent menu for menu management',
-    'status' => 1
+    'status' => 1,
 ]);
 
-echo "Created Menu Management parent item (ID: {$menuManagement->id})" . PHP_EOL;
+echo "Created Menu Management parent item (ID: {$menuManagement->id})".PHP_EOL;
 
 // Add Menus child item
 $menusItem = MenuItem::create([
@@ -81,10 +81,10 @@ $menusItem = MenuItem::create([
     'badge_text' => null,
     'badge_color' => null,
     'note' => 'Manage menu containers',
-    'status' => 1
+    'status' => 1,
 ]);
 
-echo "Created Menus item (ID: {$menusItem->id})" . PHP_EOL;
+echo "Created Menus item (ID: {$menusItem->id})".PHP_EOL;
 
 // Add Menu Items child item
 $menuItemsItem = MenuItem::create([
@@ -110,9 +110,9 @@ $menuItemsItem = MenuItem::create([
     'badge_text' => null,
     'badge_color' => null,
     'note' => 'Manage individual menu items',
-    'status' => 1
+    'status' => 1,
 ]);
 
-echo "Created Menu Items item (ID: {$menuItemsItem->id})" . PHP_EOL;
+echo "Created Menu Items item (ID: {$menuItemsItem->id})".PHP_EOL;
 
-echo PHP_EOL . "Menu management items added successfully!" . PHP_EOL;
+echo PHP_EOL.'Menu management items added successfully!'.PHP_EOL;
