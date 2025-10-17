@@ -13,31 +13,31 @@ trait AutoDiscoverModuleSeeders
     protected function callModuleSeeders()
     {
         $modulesStatusFile = base_path('modules_statuses.json');
-        
-        if (!File::exists($modulesStatusFile)) {
+
+        if (! File::exists($modulesStatusFile)) {
             return;
         }
 
         $modulesStatus = json_decode(File::get($modulesStatusFile), true);
-        
-        if (!is_array($modulesStatus)) {
+
+        if (! is_array($modulesStatus)) {
             return;
         }
 
         foreach ($modulesStatus as $moduleName => $isEnabled) {
-            if (!$isEnabled) {
+            if (! $isEnabled) {
                 continue; // Skip disabled modules
             }
 
             $moduleNameLower = strtolower($moduleName);
-            $seederBinding = $moduleNameLower . '.database.seeder';
+            $seederBinding = $moduleNameLower.'.database.seeder';
 
             if (App::bound($seederBinding)) {
                 try {
                     $seederClass = App::make($seederBinding);
                     $this->call($seederClass);
                 } catch (\Exception $e) {
-                    $this->command->warn("Failed to seed module '{$moduleName}': " . $e->getMessage());
+                    $this->command->warn("Failed to seed module '{$moduleName}': ".$e->getMessage());
                     // Continue with other modules
                 }
             }
