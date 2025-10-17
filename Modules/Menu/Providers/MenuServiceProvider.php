@@ -3,12 +3,11 @@
 namespace Modules\Menu\Providers;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Menu\Livewire\MenuItemComponent;
 use Symfony\Component\Finder\Finder;
-use Illuminate\Database\Events\SchemaDumped;
-use Illuminate\Support\Facades\Event;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -38,7 +37,7 @@ class MenuServiceProvider extends ServiceProvider
         $this->registerCommands('\Modules\Menu\Console\Commands');
 
         $this->registerLivewireComponents();
-        
+
         // Register seeders
         $this->registerSeeders();
     }
@@ -130,7 +129,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     protected function registerCommands($namespace = '')
     {
-        $finder = new Finder(); // from Symfony\Component\Finder;
+        $finder = new Finder; // from Symfony\Component\Finder;
         $finder->files()->name('*.php')->in(__DIR__.'/../Console');
 
         $classes = [];

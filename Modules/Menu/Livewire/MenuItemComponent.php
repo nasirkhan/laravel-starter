@@ -12,35 +12,62 @@ class MenuItemComponent extends Component
 {
     // Form properties
     public $menu_id;
+
     public $parent_id;
+
     public $type = 'link';
+
     public $name;
+
     public $slug;
+
     public $sort_order = 0;
+
     public $url;
+
     public $route_name;
+
     public $route_parameters;
+
     public $description;
+
     public $icon;
+
     public $badge_text;
+
     public $badge_color;
+
     public $opens_new_tab = 0;
+
     public $css_classes;
+
     public $html_attributes;
+
     public $permissions = [];
+
     public $roles = [];
+
     public $status = 1;
+
     public $is_active = 1;
+
     public $is_visible = 1;
+
     public $locale;
+
     public $meta_title;
+
     public $custom_data;
+
     public $note;
 
     // Data for dropdowns
     public $menus = [];
+
     public $parent_items = [];
+
     public $available_permissions = [];
+
     public $available_roles = [];
 
     // Menu item being edited (if any)
@@ -107,10 +134,10 @@ class MenuItemComponent extends Component
     {
         if ($this->menu_id) {
             $query = MenuItem::where('menu_id', $this->menu_id)
-                            ->where('is_active', true)
-                            ->where('is_visible', true)
-                            ->orderBy('sort_order')
-                            ->orderBy('name');
+                ->where('is_active', true)
+                ->where('is_visible', true)
+                ->orderBy('sort_order')
+                ->orderBy('name');
 
             // Exclude current item and its descendants if editing
             if ($this->menuItem) {

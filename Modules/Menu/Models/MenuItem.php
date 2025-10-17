@@ -80,7 +80,7 @@ class MenuItem extends BaseModel
     public function scopeVisible($query)
     {
         return $query->where('is_visible', true)
-                    ->where('is_active', true);
+            ->where('is_active', true);
     }
 
     /**
