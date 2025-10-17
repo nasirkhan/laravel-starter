@@ -27,12 +27,12 @@ class SeedMenuCommand extends Command
     public function handle()
     {
         $this->info('Seeding Menu module...');
-        
+
         $seeder = new MenuDatabaseSeeder();
         $seeder->run();
-        
+
         $this->info('Menu module seeded successfully!');
-        
+
         return 0;
     }
 }
