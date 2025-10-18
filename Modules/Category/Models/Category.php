@@ -27,8 +27,8 @@ class Category extends BaseModel
 
     /**
      * Override the active scope to work with CategoryStatus enum.
-     * 
-     * @param Builder $query
+     *
+     * @param  Builder  $query
      * @return void
      */
     public function scopeActive(Builder $query): void
