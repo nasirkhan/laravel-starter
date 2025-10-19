@@ -88,7 +88,12 @@
                             </x-buttons.create>
                         </div>
                     </div>
-                    <div class="col-6">
+                </div>
+                {{ html()->form()->close() }}
+                
+                <!-- Cancel button outside the form to prevent accidental form submission -->
+                <div class="row">
+                    <div class="col-12 mt-3">
                         <div class="float-end">
                             <div class="form-group">
                                 <x-buttons.cancel />
@@ -96,7 +101,6 @@
                         </div>
                     </div>
                 </div>
-                {{ html()->form()->close() }}
             </div>
         </div>
     </x-backend.layouts.create>
