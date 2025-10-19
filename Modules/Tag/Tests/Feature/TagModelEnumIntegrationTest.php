@@ -12,7 +12,7 @@ class TagModelEnumIntegrationTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test that Tag model correctly casts status to TagStatus enum
+     * Test that Tag model correctly casts status to TagStatus enum.
      */
     public function test_tag_model_casts_status_to_enum(): void
     {
@@ -29,7 +29,7 @@ class TagModelEnumIntegrationTest extends TestCase
     }
 
     /**
-     * Test that Tag model active scope works with enum values
+     * Test that Tag model active scope works with enum values.
      */
     public function test_tag_active_scope_works_with_enum(): void
     {
@@ -51,7 +51,7 @@ class TagModelEnumIntegrationTest extends TestCase
     }
 
     /**
-     * Test that TagFactory works correctly with enum cases
+     * Test that TagFactory works correctly with enum cases.
      */
     public function test_tag_factory_creates_valid_enum_status(): void
     {
@@ -62,7 +62,7 @@ class TagModelEnumIntegrationTest extends TestCase
     }
 
     /**
-     * Test that all TagStatus enum values are valid
+     * Test that all TagStatus enum values are valid.
      */
     public function test_tag_status_enum_values_are_correct(): void
     {
@@ -78,7 +78,7 @@ class TagModelEnumIntegrationTest extends TestCase
     }
 
     /**
-     * Test that TagStatus enum helper methods work correctly
+     * Test that TagStatus enum helper methods work correctly.
      */
     public function test_tag_status_enum_helper_methods(): void
     {
@@ -96,7 +96,7 @@ class TagModelEnumIntegrationTest extends TestCase
     }
 
     /**
-     * Test that Tag model works with string status values (backward compatibility)
+     * Test that Tag model works with string status values (backward compatibility).
      */
     public function test_tag_model_handles_string_status_values(): void
     {
