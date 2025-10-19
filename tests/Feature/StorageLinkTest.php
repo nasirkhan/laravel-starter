@@ -16,9 +16,9 @@ class StorageLinkTest extends TestCase
 
         // Check that the storage symlink exists (Windows junction or Unix symlink)
         $this->assertTrue(
-            is_link($publicStoragePath) || 
-            is_dir($publicStoragePath) || 
-            file_exists($publicStoragePath), 
+            is_link($publicStoragePath) ||
+            is_dir($publicStoragePath) ||
+            file_exists($publicStoragePath),
             'Storage symlink/junction/directory should exist in public directory'
         );
 
@@ -30,7 +30,7 @@ class StorageLinkTest extends TestCase
                 // Normalize paths for comparison (Windows path format)
                 $normalizedTarget = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $correctStorageTarget);
                 $normalizedActual = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $actualTarget);
-                
+
                 $this->assertEquals($normalizedTarget, $normalizedActual,
                     "Storage symlink should point to {$normalizedTarget} but points to {$normalizedActual}");
             }
@@ -54,12 +54,12 @@ class StorageLinkTest extends TestCase
 
         try {
             // Test that the file is accessible through the public storage link
-            $this->assertTrue(file_exists($publicStoragePath), 
+            $this->assertTrue(file_exists($publicStoragePath),
                 'File should be accessible through the storage symlink/junction');
-                
+
             // Test that the content is correct
             $content = file_get_contents($publicStoragePath);
-            $this->assertEquals('test image content', $content, 
+            $this->assertEquals('test image content', $content,
                 'File content should be accessible through the storage symlink/junction');
         } finally {
             // Clean up the test file
@@ -93,44 +93,44 @@ class StorageLinkTest extends TestCase
 
         // Verify the link was created correctly (Windows compatible)
         $this->assertTrue(
-            is_link($publicStoragePath) || 
-            is_dir($publicStoragePath) || 
-            file_exists($publicStoragePath), 
+            is_link($publicStoragePath) ||
+            is_dir($publicStoragePath) ||
+            file_exists($publicStoragePath),
             'Storage symlink/junction/directory should be created'
         );
-            
+
         // Test the link works by checking if we can access files through it
         if (file_exists($publicStoragePath)) {
             $expectedTarget = storage_path('app/public');
-            
+
             // On Windows junctions, try readlink
             $actualTarget = @readlink($publicStoragePath);
             if ($actualTarget !== false) {
                 // Normalize paths for Windows comparison
                 $normalizedExpected = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $expectedTarget);
                 $normalizedActual = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $actualTarget);
-                
+
                 $this->assertEquals($normalizedExpected, $normalizedActual,
                     'Storage symlink should point to correct directory');
             }
         }
     }
-    
+
     /**
      * Helper method to recursively delete a directory.
      */
     private function deleteDirectory($dir)
     {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             return false;
         }
-        
-        $files = array_diff(scandir($dir), array('.', '..'));
+
+        $files = array_diff(scandir($dir), ['.', '..']);
         foreach ($files as $file) {
-            $path = $dir . DIRECTORY_SEPARATOR . $file;
+            $path = $dir.DIRECTORY_SEPARATOR.$file;
             is_dir($path) ? $this->deleteDirectory($path) : unlink($path);
         }
-        
+
         return rmdir($dir);
     }
 }
