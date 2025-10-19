@@ -109,11 +109,19 @@
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                                 @endcan
-                                <x-backend.buttons.return-back>Cancel</x-backend.buttons.return-back>
                             </div>
                         </div>
                     </div>
                     {{ html()->form()->close() }}
+                    
+                    <!-- Cancel button outside the form to prevent accidental form submission -->
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <div class="float-end">
+                                <x-backend.buttons.return-back>Cancel</x-backend.buttons.return-back>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
