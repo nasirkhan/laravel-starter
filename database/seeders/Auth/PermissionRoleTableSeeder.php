@@ -51,23 +51,29 @@ class PermissionRoleTableSeeder extends Seeder
         Artisan::call('auth:permissions', [
             'name' => 'posts',
         ]);
-        echo "\n _Posts_ Permissions Created.";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('_Posts_ Permissions Created.');
+        }
 
         Artisan::call('auth:permissions', [
             'name' => 'categories',
         ]);
-        echo "\n _Categories_ Permissions Created.";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('_Categories_ Permissions Created.');
+        }
 
         Artisan::call('auth:permissions', [
             'name' => 'tags',
         ]);
-        echo "\n _Tags_ Permissions Created.";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('_Tags_ Permissions Created.');
+        }
 
         Artisan::call('auth:permissions', [
             'name' => 'comments',
         ]);
-        echo "\n _Comments_ Permissions Created.";
-
-        echo "\n\n";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('_Comments_ Permissions Created.');
+        }
     }
 }

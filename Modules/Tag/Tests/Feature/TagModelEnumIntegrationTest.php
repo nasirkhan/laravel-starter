@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Modules\Tag;
+namespace Modules\Tag\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Tag\Enums\TagStatus;
