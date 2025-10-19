@@ -447,11 +447,19 @@
                                 @endif
                             @endcan
 
-                            <x-backend.buttons.return-back>@lang("Cancel")</x-backend.buttons.return-back>
                         </div>
                     </div>
                 </div>
                 {{ html()->closeModelForm() }}
+                
+                <!-- Cancel button outside the form to prevent accidental form submission -->
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="float-end">
+                            <x-backend.buttons.return-back>@lang("Cancel")</x-backend.buttons.return-back>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--/.col-->
         </div>
