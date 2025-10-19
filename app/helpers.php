@@ -119,7 +119,7 @@ if (! function_exists('show_column_value')) {
         }
         if ($column_type === 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type !== 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
+        } elseif ($column_type !== 'json' && is_string($value) && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -129,7 +129,12 @@ if (! function_exists('show_column_value')) {
                                 <figcaption class="figure-caption">Path: '.$value.'</figcaption>
                             </figure>';
         } else {
-            $return_text = $value;
+            // Handle enum objects by converting to their string value
+            if ($value instanceof \BackedEnum) {
+                $return_text = $value->value;
+            } else {
+                $return_text = $value;
+            }
         }
 
         return $return_text;
