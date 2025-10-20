@@ -486,10 +486,17 @@
         </div>
         <div class="col-4">
             <div class="float-end">
-                <a href="{{ route("backend.menuitems.index") }}" class="btn btn-secondary">
-                    <i class="fas fa-times-circle"></i>
-                    Cancel
-                </a>
+                @if($menu_id)
+                    <a href="{{ route('backend.menus.show', $menu_id) }}" class="btn btn-secondary">
+                        <i class="fas fa-times-circle"></i>
+                        Cancel
+                    </a>
+                @else
+                    <a href="{{ route('backend.menuitems.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-times-circle"></i>
+                        Cancel
+                    </a>
+                @endif
             </div>
         </div>
     </div>

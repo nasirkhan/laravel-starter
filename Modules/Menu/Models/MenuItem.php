@@ -235,29 +235,28 @@ class MenuItem extends BaseModel
     {
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
 
-        // Check permissions
-        if ($this->permissions && $user) {
+        // Public items are always accessible
+        if ($this->is_public) {
+            return true;
+        }
+
+        // If not public, user must be authenticated
+        if (! $user) {
+            return false;
+        }
+
+        // Check permissions - user needs ANY of the required permissions (OR logic)
+        if ($this->permissions && is_array($this->permissions) && ! empty($this->permissions)) {
             foreach ($this->permissions as $permission) {
-                if (! $user->can($permission)) {
-                    return false;
+                if ($user->can($permission)) {
+                    return true; // User has at least one required permission
                 }
             }
+
+            return false; // User doesn't have any of the required permissions
         }
 
-        // Check roles
-        if ($this->roles && $user) {
-            $hasRole = false;
-            foreach ($this->roles as $role) {
-                if ($user->hasRole($role)) {
-                    $hasRole = true;
-                    break;
-                }
-            }
-            if (! $hasRole) {
-                return false;
-            }
-        }
-
+        // If no permissions specified, authenticated user can see it
         return true;
     }
 

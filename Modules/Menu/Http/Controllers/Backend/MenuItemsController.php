@@ -57,7 +57,7 @@ class MenuItemsController extends BackendBaseController
      * Store a new resource in the database.
      *
      * @param  Request  $request  The request object containing the data to be stored.
-     * @return RedirectResponse The response object that redirects to the index page of the module.
+     * @return RedirectResponse The response object that redirects to the parent menu's show page.
      *
      * @throws Exception If there is an error during the creation of the resource.
      */
@@ -78,7 +78,8 @@ class MenuItemsController extends BackendBaseController
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect("admin/{$module_name}");
+        // Redirect back to the parent menu's show page
+        return redirect()->route('backend.menus.show', $$module_name_singular->menu_id);
     }
 
     /**
@@ -143,7 +144,7 @@ class MenuItemsController extends BackendBaseController
      * @param  Request  $request  The request object.
      * @param  mixed  $id  The ID of the resource to update.
      * @return Response
-     * @return RedirectResponse The redirect response.
+     * @return RedirectResponse The redirect response to the parent menu's show page.
      *
      * @throws ModelNotFoundException If the resource is not found.
      */
@@ -166,6 +167,7 @@ class MenuItemsController extends BackendBaseController
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
+        // Redirect back to the parent menu's show page
+        return redirect()->route('backend.menus.show', $$module_name_singular->menu_id);
     }
 }

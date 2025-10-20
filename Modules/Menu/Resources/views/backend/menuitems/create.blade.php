@@ -6,10 +6,15 @@
 
 @section("breadcrumbs")
     <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{route("backend.$module_name.index")}}' icon="{{ $module_icon }}">
-            {{ __($module_title) }}
+        <x-backend.breadcrumb-item route='{{route("backend.menus.index")}}' icon="fa-solid fa-list">
+            {{ __('Menus') }}
         </x-backend.breadcrumb-item>
-        <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
+        @if(request('menu_id'))
+            <x-backend.breadcrumb-item route='{{route("backend.menus.show", request("menu_id"))}}' icon="{{ $module_icon }}">
+                {{ __('Menu Details') }}
+            </x-backend.breadcrumb-item>
+        @endif
+        <x-backend.breadcrumb-item type="active">{{ __($module_action) }} {{ __($module_title) }}</x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
 @endsection
 
