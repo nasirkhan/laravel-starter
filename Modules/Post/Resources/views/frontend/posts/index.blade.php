@@ -65,7 +65,7 @@
                                 encode_id($$module_name_singular->category_id),
                                 $$module_name_singular->category->slug,
                             ])"
-                            :text="$$module_name_singular->category_name"
+                            :text="$$module_name_singular->category->name"
                         />
                     </p>
                     <div class="mt-4">
