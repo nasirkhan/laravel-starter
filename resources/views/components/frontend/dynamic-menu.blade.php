@@ -6,6 +6,7 @@
     
     // Get current locale and user info once
     $currentLocale = app()->getLocale();
+    $defaultLocale = config('app.fallback_locale', 'en');
     $user = auth()->user();
     
     // Determine which menu item component to use based on location
@@ -15,6 +16,7 @@
     };
     
     // STEP 1: Get all menus based on menu location
+    // Try current locale first
     $menus = Menu::byLocation($location)
         ->activeAndVisible()
         ->where(function($query) use ($currentLocale) {
@@ -25,6 +27,26 @@
         ->filter(function($menu) use ($user) {
             return $menu->userCanSee($user);
         });
+    
+    // If no menus found and current locale is not default, try default locale
+    if ($menus->isEmpty() && $currentLocale !== $defaultLocale) {
+        
+        $menus = Menu::byLocation($location)
+            ->activeAndVisible()
+            ->where(function($query) use ($defaultLocale) {
+                $query->where('locale', $defaultLocale)
+                      ->orWhereNull('locale');
+            })
+            ->get()
+            ->filter(function($menu) use ($user) {
+                return $menu->userCanSee($user);
+            });
+        
+        // Use default locale for menu items query if we fell back
+        if ($menus->isNotEmpty()) {
+            $currentLocale = $defaultLocale;
+        }
+    }
     
     if ($menus->isEmpty()) {
         $processedMenus = collect();
