@@ -1,4 +1,4 @@
-@props(['item'])
+@props(['item', 'optimized' => false])
 
 @php
     $url = $item->getFullUrl();
@@ -34,7 +34,8 @@
                 </a>
             </li>
             @foreach($item->children as $childItem)
-                @if($childItem->userCanSee() && $childItem->type !== 'divider')
+                {{-- Skip permission check if optimized mode (already filtered by parent) --}}
+                @if(($optimized || $childItem->userCanSee()) && $childItem->type !== 'divider')
                     <li>
                         <a class="mx-2 hover:underline md:mx-3 text-sm {{ $childItem->isCurrentlyActive() ? 'font-semibold' : '' }}" 
                            href="{{ $childItem->getFullUrl() }}"

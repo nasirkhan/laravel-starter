@@ -36,20 +36,11 @@
             ->orderBy('sort_order', 'asc')
             ->get();
         
-        // Get user permissions and roles once for filtering
-        $userPermissions = $user ? $user->getPermissionNames()->toArray() : [];
-        $userRoles = $user ? $user->getRoleNames()->toArray() : [];
-        
         // Filter menu items by user permissions using Laravel's authorization
         $accessibleItems = $allMenuItems->filter(function($item) use ($user) {
-            // Public items are always accessible
-            if ($item->is_public) {
-                return true;
-            }
-            
-            // If no user, only show public items
+            // If no user, only show items with no permissions required
             if (!$user) {
-                return false;
+                return !$item->permissions || empty($item->permissions);
             }
             
             // If item has no permissions specified, it's accessible to authenticated users
