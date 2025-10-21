@@ -3,7 +3,8 @@
 @php
     $url = $item->getFullUrl();
     $isActive = $item->isCurrentlyActive();
-    $hasChildren = $item->hasChildren();
+    // Use optimized children check that doesn't trigger database queries when children are already loaded
+    $hasChildren = isset($item->children) && $item->children instanceof \Illuminate\Support\Collection && $item->children->isNotEmpty();
     $target = $item->opens_new_tab ? '_blank' : null;
 @endphp
 

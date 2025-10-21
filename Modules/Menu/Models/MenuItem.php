@@ -137,15 +137,22 @@ class MenuItem extends BaseModel
     }
 
     /**
-     * Check if menu item has children.
+     * Check if menu item has children (without database query).
+     * Use $item->children collection if already loaded, otherwise query database.
      */
     public function hasChildren(): bool
     {
+        // If children relationship is loaded, use that
+        if ($this->relationLoaded('children')) {
+            return $this->children->isNotEmpty();
+        }
+
+        // Otherwise, query database (fallback)
         return $this->children()->count() > 0;
     }
 
     /**
-     * Check if menu item is a dropdown.
+     * Check if menu item is a dropdown (without database query if children loaded).
      */
     public function isDropdown(): bool
     {
