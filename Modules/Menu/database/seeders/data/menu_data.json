@@ -13,19 +13,12 @@
                 "cache_duration": 60
             },
             "permissions": null,
-            "roles": null,
             "is_public": true,
             "is_active": true,
             "is_visible": true,
             "locale": "en",
             "note": "Primary navigation for all frontend pages",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 2,
@@ -40,19 +33,12 @@
                 "cache_duration": 120
             },
             "permissions": null,
-            "roles": null,
             "is_public": true,
             "is_active": true,
             "is_visible": true,
             "locale": "en",
             "note": "Footer links for additional navigation",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 3,
@@ -66,25 +52,13 @@
                 "max_depth": 2,
                 "cache_duration": 30
             },
-            "permissions": [
-                "view_backend"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_backend"],
             "is_public": false,
             "is_active": true,
             "is_visible": true,
             "locale": "en",
             "note": "Backend administrative navigation menu",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         }
     ],
     "menu_items": [
@@ -96,7 +70,7 @@
             "slug": "home",
             "description": "Homepage link",
             "type": "external",
-            "url": "\/",
+            "url": "/",
             "route_name": null,
             "route_parameters": null,
             "opens_new_tab": false,
@@ -109,7 +83,6 @@
             "css_classes": "nav-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -118,13 +91,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 2,
@@ -147,7 +114,6 @@
             "css_classes": "nav-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -156,13 +122,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 3,
@@ -185,7 +145,6 @@
             "css_classes": "nav-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -194,13 +153,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 4,
@@ -223,7 +176,6 @@
             "css_classes": "nav-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -232,13 +184,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 5,
@@ -261,7 +207,6 @@
             "css_classes": "nav-link dropdown-toggle",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -270,13 +215,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 6,
@@ -299,7 +238,6 @@
             "css_classes": "footer-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -308,13 +246,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 7,
@@ -337,7 +269,6 @@
             "css_classes": "footer-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -346,13 +277,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 8,
@@ -375,7 +300,6 @@
             "css_classes": "footer-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -384,13 +308,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 9,
@@ -413,7 +331,6 @@
             "css_classes": "footer-link",
             "html_attributes": null,
             "permissions": null,
-            "roles": null,
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -422,13 +339,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 10,
@@ -450,13 +361,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_backend"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_backend"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -465,13 +370,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 11,
@@ -493,13 +392,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_backend"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_backend"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -508,41 +401,29 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 12,
             "menu_id": 3,
-            "parent_id": 21,
+            "parent_id": null,
             "name": "Menus",
             "slug": "menus",
-            "description": "Manage menu containers",
+            "description": "Manage menus and navigation",
             "type": "link",
             "url": null,
             "route_name": "backend.menus.index",
             "route_parameters": null,
             "opens_new_tab": false,
-            "sort_order": 1,
+            "sort_order": 9,
             "depth": 0,
             "path": null,
-            "icon": "fa-solid fa-list",
+            "icon": "fa-solid fa-bars",
             "badge_text": null,
             "badge_color": null,
-            "css_classes": null,
+            "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_menus"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_menus"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -550,14 +431,8 @@
             "meta_description": null,
             "meta_keywords": null,
             "custom_data": null,
-            "note": "Manage menu containers",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:59.000000Z",
-            "deleted_at": null
+            "note": "Manage menus and navigation",
+            "status": 1
         },
         {
             "id": 13,
@@ -579,14 +454,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_posts"
-            ],
-            "roles": [
-                "super admin",
-                "admin",
-                "editor"
-            ],
+            "permissions": ["view_posts"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -595,56 +463,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
-        },
-        {
-            "id": 14,
-            "menu_id": 3,
-            "parent_id": 21,
-            "name": "Menu Items",
-            "slug": "menu-items",
-            "description": "Manage individual menu items",
-            "type": "link",
-            "url": null,
-            "route_name": "backend.menuitems.index",
-            "route_parameters": null,
-            "opens_new_tab": false,
-            "sort_order": 2,
-            "depth": 0,
-            "path": null,
-            "icon": "fa-solid fa-link",
-            "badge_text": null,
-            "badge_color": null,
-            "css_classes": null,
-            "html_attributes": null,
-            "permissions": [
-                "view_menus"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
-            "is_visible": true,
-            "is_active": true,
-            "locale": "en",
-            "meta_title": "Menu Items",
-            "meta_description": null,
-            "meta_keywords": null,
-            "custom_data": null,
-            "note": "Manage individual menu items",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:59.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 15,
@@ -666,14 +485,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_categories"
-            ],
-            "roles": [
-                "super admin",
-                "admin",
-                "editor"
-            ],
+            "permissions": ["view_categories"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -682,13 +494,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 16,
@@ -710,14 +516,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_tags"
-            ],
-            "roles": [
-                "super admin",
-                "admin",
-                "editor"
-            ],
+            "permissions": ["view_tags"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -726,13 +525,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 17,
@@ -754,13 +547,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "edit_settings"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["edit_settings"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -769,13 +556,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 18,
@@ -797,13 +578,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_backups"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_backups"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -812,13 +587,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 19,
@@ -840,13 +609,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_users"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_users"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -855,13 +618,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         },
         {
             "id": 20,
@@ -883,13 +640,7 @@
             "badge_color": null,
             "css_classes": "nav-link",
             "html_attributes": null,
-            "permissions": [
-                "view_roles"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
+            "permissions": ["view_roles"],
             "is_visible": true,
             "is_active": true,
             "locale": "en",
@@ -898,56 +649,7 @@
             "meta_keywords": null,
             "custom_data": null,
             "note": null,
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
-        },
-        {
-            "id": 21,
-            "menu_id": 3,
-            "parent_id": null,
-            "name": "Menu Management",
-            "slug": "menu-management",
-            "description": "Manage website menus and navigation",
-            "type": "dropdown",
-            "url": null,
-            "route_name": null,
-            "route_parameters": null,
-            "opens_new_tab": false,
-            "sort_order": 100,
-            "depth": 0,
-            "path": null,
-            "icon": "fa-solid fa-bars",
-            "badge_text": null,
-            "badge_color": null,
-            "css_classes": null,
-            "html_attributes": null,
-            "permissions": [
-                "view_menus"
-            ],
-            "roles": [
-                "super admin",
-                "admin"
-            ],
-            "is_visible": true,
-            "is_active": true,
-            "locale": "en",
-            "meta_title": "Menu Management",
-            "meta_description": null,
-            "meta_keywords": null,
-            "custom_data": null,
-            "note": "Parent menu for menu management",
-            "status": 1,
-            "created_by": null,
-            "updated_by": null,
-            "deleted_by": null,
-            "created_at": "2025-10-17T09:14:32.000000Z",
-            "updated_at": "2025-10-17T09:14:32.000000Z",
-            "deleted_at": null
+            "status": 1
         }
     ]
 }

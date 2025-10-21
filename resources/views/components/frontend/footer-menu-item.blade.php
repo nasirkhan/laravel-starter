@@ -1,9 +1,10 @@
-@props(['item'])
+@props(['item', 'optimized' => false])
 
 @php
     $url = $item->getFullUrl();
     $isActive = $item->isCurrentlyActive();
-    $hasChildren = $item->hasChildren();
+    // Use optimized children check that doesn't trigger database queries when children are already loaded
+    $hasChildren = isset($item->children) && $item->children instanceof \Illuminate\Support\Collection && $item->children->isNotEmpty();
     $target = $item->opens_new_tab ? '_blank' : null;
 @endphp
 
@@ -33,7 +34,8 @@
                 </a>
             </li>
             @foreach($item->children as $childItem)
-                @if($childItem->userCanSee() && $childItem->type !== 'divider')
+                {{-- Skip permission check if optimized mode (already filtered by parent) --}}
+                @if(($optimized || $childItem->userCanSee()) && $childItem->type !== 'divider')
                     <li>
                         <a class="mx-2 hover:underline md:mx-3 text-sm {{ $childItem->isCurrentlyActive() ? 'font-semibold' : '' }}" 
                            href="{{ $childItem->getFullUrl() }}"

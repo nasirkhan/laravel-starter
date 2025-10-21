@@ -21,7 +21,7 @@ return [
                 'data' => 'text', // data type, string, int, boolean
                 'name' => 'app_description', // unique name for field
                 'label' => 'App Description', // you know what label it is
-                'rules' => 'required', // validation rule of laravel
+                'rules' => 'nullable', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Laravel Starter is a CMS like modular starter application project built with Laravel. This starter project can be used as a foundation to build your own projects.', // default value if you want
             ],
@@ -164,7 +164,7 @@ return [
                 'data' => 'text', // data type, string, int, boolean
                 'name' => 'meta_description', // unique name for field
                 'label' => 'Meta Description', // you know what label it is
-                'rules' => 'required', // validation rule of laravel
+                'rules' => 'nullable', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Laravel Starter is a CMS like modular starter application project built with latest Laravel. This starter project can be used as a foundation to build your own projects.', // default value if you want
             ],

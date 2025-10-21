@@ -43,64 +43,29 @@
             ->orderBy('sort_order', 'asc')
             ->get();
         
-        // Get user permissions and roles once for filtering
-        $userPermissions = $user ? $user->getPermissionNames()->toArray() : [];
-        $userRoles = $user ? $user->getRoleNames()->toArray() : [];
-        
-        // Filter menu items by user permissions in PHP (no additional database queries)
-        $accessibleItems = $allMenuItems->filter(function($item) use ($user, $userPermissions, $userRoles) {
-            // Public items are always accessible
-            if ($item->is_public) {
-                return true;
-            }
-            
-            // If no user, only show public items
+        // Filter menu items by user permissions using Laravel's authorization
+        $accessibleItems = $allMenuItems->filter(function($item) use ($user) {
+            // If no user, only show items with no permissions required
             if (!$user) {
-                return false;
+                return !$item->permissions || empty($item->permissions);
             }
             
-            // If item has no permissions and no roles specified, it's accessible to authenticated users
-            if ((!$item->permissions || empty($item->permissions)) && (!$item->roles || empty($item->roles))) {
+            // If item has no permissions specified, it's accessible to authenticated users
+            if (!$item->permissions || empty($item->permissions)) {
                 return true;
             }
             
-            // Check permissions OR roles (user needs either the required permission OR role)
-            $hasPermission = false;
-            $hasRole = false;
-            
-            // Check permissions (if specified)
-            if ($item->permissions && is_array($item->permissions) && !empty($item->permissions)) {
+            // Check if user has ANY of the required permissions using Laravel's can()
+            // This automatically handles "super admin" role which passes all permissions
+            if (is_array($item->permissions)) {
                 foreach ($item->permissions as $permission) {
-                    if (in_array($permission, $userPermissions)) {
-                        $hasPermission = true;
-                        break;
+                    if ($user->can($permission)) {
+                        return true;
                     }
                 }
             }
             
-            // Check roles (if specified)
-            if ($item->roles && is_array($item->roles) && !empty($item->roles)) {
-                foreach ($item->roles as $role) {
-                    if (in_array($role, $userRoles)) {
-                        $hasRole = true;
-                        break;
-                    }
-                }
-            }
-            
-            // User needs either permission OR role (if item has both specified)
-            $needsPermission = $item->permissions && is_array($item->permissions) && !empty($item->permissions);
-            $needsRole = $item->roles && is_array($item->roles) && !empty($item->roles);
-            
-            if ($needsPermission && $needsRole) {
-                return $hasPermission || $hasRole; // Either permission OR role
-            } elseif ($needsPermission) {
-                return $hasPermission; // Only permission required
-            } elseif ($needsRole) {
-                return $hasRole; // Only role required
-            }
-            
-            return true; // No specific requirements
+            return false;
         });
         
         // STEP 3: Rearrange the collection based on parent-child relation (no database queries)

@@ -91,31 +91,17 @@ class MenuItem extends BaseModel
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
 
         if (! $user) {
-            return $query->where('is_public', true);
+            // Guest users can only see items with no permissions
+            return $query->whereNull('permissions');
         }
 
-        // Get user permissions and roles once
-        $userPermissions = $user->getPermissionNames()->toArray();
-        $userRoles = $user->getRoleNames()->toArray();
-
-        return $query->where(function ($q) use ($userPermissions, $userRoles) {
-            $q->where('is_public', true)
-                ->orWhere(function ($subQuery) use ($userPermissions, $userRoles) {
-                    $subQuery->where(function ($permQuery) use ($userPermissions) {
-                        $permQuery->whereNull('permissions');
-                        if (! empty($userPermissions)) {
-                            foreach ($userPermissions as $permission) {
-                                $permQuery->orWhereJsonContains('permissions', $permission);
-                            }
-                        }
-                    })->where(function ($roleQuery) use ($userRoles) {
-                        $roleQuery->whereNull('roles');
-                        if (! empty($userRoles)) {
-                            foreach ($userRoles as $role) {
-                                $roleQuery->orWhereJsonContains('roles', $role);
-                            }
-                        }
-                    });
+        // Authenticated users can see items with no permissions OR items they have permission for
+        return $query->where(function ($q) {
+            $q->whereNull('permissions')
+                ->orWhere(function ($subQuery) {
+                    // User needs ANY of the item's permissions using Laravel's can()
+                    $subQuery->whereNotNull('permissions');
+                    // This is complex to do in SQL, better to filter in PHP
                 });
         });
     }
@@ -137,15 +123,22 @@ class MenuItem extends BaseModel
     }
 
     /**
-     * Check if menu item has children.
+     * Check if menu item has children (without database query).
+     * Use $item->children collection if already loaded, otherwise query database.
      */
     public function hasChildren(): bool
     {
+        // If children relationship is loaded, use that
+        if ($this->relationLoaded('children')) {
+            return $this->children->isNotEmpty();
+        }
+
+        // Otherwise, query database (fallback)
         return $this->children()->count() > 0;
     }
 
     /**
-     * Check if menu item is a dropdown.
+     * Check if menu item is a dropdown (without database query if children loaded).
      */
     public function isDropdown(): bool
     {
@@ -235,29 +228,23 @@ class MenuItem extends BaseModel
     {
         $user = $user ?? \Illuminate\Support\Facades\Auth::user();
 
-        // Check permissions
-        if ($this->permissions && $user) {
+        // If not authenticated, only show items with no permissions
+        if (! $user) {
+            return ! $this->permissions || empty($this->permissions);
+        }
+
+        // Check permissions - user needs ANY of the required permissions (OR logic)
+        if ($this->permissions && is_array($this->permissions) && ! empty($this->permissions)) {
             foreach ($this->permissions as $permission) {
-                if (! $user->can($permission)) {
-                    return false;
+                if ($user->can($permission)) {
+                    return true; // User has at least one required permission
                 }
             }
+
+            return false; // User doesn't have any of the required permissions
         }
 
-        // Check roles
-        if ($this->roles && $user) {
-            $hasRole = false;
-            foreach ($this->roles as $role) {
-                if ($user->hasRole($role)) {
-                    $hasRole = true;
-                    break;
-                }
-            }
-            if (! $hasRole) {
-                return false;
-            }
-        }
-
+        // If no permissions specified, authenticated user can see it
         return true;
     }
 

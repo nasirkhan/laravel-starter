@@ -55,8 +55,6 @@ class MenuItemFactory extends Factory
                 ['editor', 'author'],
                 [],
             ]),
-            'is_guest_accessible' => $this->faker->boolean(70), // 70% chance
-            'requires_auth' => $this->faker->boolean(30), // 30% chance
             'is_visible' => $this->faker->boolean(90), // 90% chance
             'is_active' => $this->faker->boolean(95), // 95% chance
 
@@ -156,30 +154,6 @@ class MenuItemFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'is_visible' => false,
             'status' => 0,
-        ]);
-    }
-
-    /**
-     * Create a guest-accessible menu item.
-     */
-    public function guestAccessible(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'is_guest_accessible' => true,
-            'requires_auth' => false,
-            'permissions' => null,
-            'roles' => null,
-        ]);
-    }
-
-    /**
-     * Create an auth-required menu item.
-     */
-    public function authRequired(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'is_guest_accessible' => false,
-            'requires_auth' => true,
         ]);
     }
 }

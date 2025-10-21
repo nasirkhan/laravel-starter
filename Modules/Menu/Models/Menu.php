@@ -183,29 +183,18 @@ class Menu extends BaseModel
             return false;
         }
 
-        // Check permissions
-        if ($this->permissions) {
+        // Check permissions - user needs ANY of the required permissions (OR logic)
+        if ($this->permissions && is_array($this->permissions) && ! empty($this->permissions)) {
             foreach ($this->permissions as $permission) {
-                if (! $user->can($permission)) {
-                    return false;
+                if ($user->can($permission)) {
+                    return true; // User has at least one required permission
                 }
             }
+
+            return false; // User doesn't have any of the required permissions
         }
 
-        // Check roles
-        if ($this->roles) {
-            $hasRole = false;
-            foreach ($this->roles as $role) {
-                if ($user->hasRole($role)) {
-                    $hasRole = true;
-                    break;
-                }
-            }
-            if (! $hasRole) {
-                return false;
-            }
-        }
-
+        // If no permissions specified, authenticated user can see it
         return true;
     }
 

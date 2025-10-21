@@ -1,4 +1,4 @@
-@props(['item'])
+@props(['item', 'optimized' => false])
 
 @php
     $url = $item->getFullUrl();
@@ -52,7 +52,8 @@
                 <div id="dropdown-{{ $item->id }}" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full left-0 mt-1">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         @foreach(($item->children ?? collect()) as $childItem)
-                            @if($childItem->userCanSee())
+                            {{-- Skip permission check if optimized mode (already filtered by parent) --}}
+                            @if($optimized || $childItem->userCanSee())
                                 <li>
                                     @if($childItem->type === 'divider')
                                         <div class="border-t border-gray-200 dark:border-gray-600 mx-2"></div>

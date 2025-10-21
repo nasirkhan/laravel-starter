@@ -4,8 +4,11 @@
 
 @section('breadcrumbs')
 <x-backend.breadcrumbs>
-    <x-backend.breadcrumb-item route='{{ route("backend.menuitems.index") }}' icon='{{ $module_icon }}'>
-        {{ __($module_title) }}
+    <x-backend.breadcrumb-item route='{{ route("backend.menus.index") }}' icon='fa-solid fa-list'>
+        {{ __('Menus') }}
+    </x-backend.breadcrumb-item>
+    <x-backend.breadcrumb-item route='{{ route("backend.menus.show", $$module_name_singular->menu_id) }}' icon='fa-solid fa-list'>
+        {{ $$module_name_singular->menu->name }}
     </x-backend.breadcrumb-item>
     <x-backend.breadcrumb-item type="active">{{ $$module_name_singular->name }}</x-backend.breadcrumb-item>
 </x-backend.breadcrumbs>
@@ -26,7 +29,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('backend.menuitems.index') }}" class="btn btn-secondary btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_title) }} List"><i class="fas fa-list-ul"></i> List</a>
+                    <a href="{{ route('backend.menus.show', $$module_name_singular->menu_id) }}" class="btn btn-secondary btn-sm ms-1" data-toggle="tooltip" title="Back to Menu"><i class="fas fa-arrow-left"></i> Back to Menu</a>
                     <a href="{{ route('backend.menuitems.edit', $$module_name_singular) }}" class="btn btn-primary btn-sm ms-1" data-toggle="tooltip" title="Edit {{ __($module_title) }}"><i class="fas fa-wrench"></i> Edit</a>
                 </div>
             </div>
