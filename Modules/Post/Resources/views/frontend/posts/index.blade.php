@@ -79,7 +79,7 @@
                 </x-frontend.card>
             @endforeach
         </div>
-        <div class="mt-4">
+        <div class="mt-8 w-full">
             {{ $$module_name->links() }}
         </div>
     </section>
