@@ -26,7 +26,7 @@
                 </x-frontend.card>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center w-100 mt-3">
+        <div class="mt-4">
             {{ $$module_name->links() }}
         </div>
     </section>
