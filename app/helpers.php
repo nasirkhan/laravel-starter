@@ -484,7 +484,7 @@ if (! function_exists('date_today')) {
     /**
      * Return Date with weekday.
      * Carbon Locale will be considered here.
-     * Example: শুক্রবার, ২৪ জুলাই ২০২০ or Friday, July 24, 2020
+     * Example: শুক্রবার, ২৪ জুলাই ২০২০ or Friday, July 24, 2020.
      */
     function date_today(): string
     {
