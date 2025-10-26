@@ -90,7 +90,7 @@
                         href="{{ route("register") }}" wire:navigate
                     >
                         <svg
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt me-2"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -117,7 +117,7 @@
                     href="{{ route("login") }}" wire:navigate
                 >
                     <svg
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-login me-2"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-login"
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
                         height="24"
@@ -165,7 +165,7 @@
                                 >
                                     <div class="inline-flex items-center">
                                         <svg
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard me-2"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
                                             height="24"
