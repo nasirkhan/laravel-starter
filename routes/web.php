@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\LanguageController;
+use App\Livewire\Frontend\Home;
+use App\Livewire\Frontend\Users\ChangePassword;
+use App\Livewire\Frontend\Users\Profile;
+use App\Livewire\Frontend\Users\ProfileEdit;
+use App\Livewire\Frontend\Users\Show;
 use App\Livewire\Privacy;
 use App\Livewire\Terms;
 use Illuminate\Support\Facades\Route;
@@ -23,19 +27,19 @@ require __DIR__.'/auth.php';
 */
 
 // home route
-Route::get('home', [FrontendController::class, 'index'])->name('home');
+Route::get('home', Home::class)->name('home');
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::get('dashboard', 'App\Http\Controllers\Frontend\FrontendController@index')->name('dashboard');
+Route::get('dashboard', Home::class)->name('dashboard');
 
 // pages
 Route::get('terms', Terms::class)->name('terms');
 Route::get('privacy', Privacy::class)->name('privacy');
 
-Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.'], function () {
-    Route::get('/', 'FrontendController@index')->name('index');
+Route::group(['as' => 'frontend.'], function () {
+    Route::get('/', Home::class)->name('index');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
@@ -45,14 +49,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend', 'as' => 'frontend.
         * ---------------------------------------------------------------------
         */
         $module_name = 'users';
-        $controller_name = 'UserController';
-        Route::get('profile/edit', ['as' => "{$module_name}.profileEdit", 'uses' => "{$controller_name}@profileEdit"]);
-        Route::patch('profile/edit', ['as' => "{$module_name}.profileUpdate", 'uses' => "{$controller_name}@profileUpdate"]);
-        Route::get('profile/changePassword', ['as' => "{$module_name}.changePassword", 'uses' => "{$controller_name}@changePassword"]);
-        Route::patch('profile/changePassword', ['as' => "{$module_name}.changePasswordUpdate", 'uses' => "{$controller_name}@changePasswordUpdate"]);
-        Route::get('profile/{username?}', ['as' => "{$module_name}.profile", 'uses' => "{$controller_name}@profile"]);
-        Route::get("{$module_name}/emailConfirmationResend", ['as' => "{$module_name}.emailConfirmationResend", 'uses' => "{$controller_name}@emailConfirmationResend"]);
-        Route::delete("{$module_name}/userProviderDestroy", ['as' => "{$module_name}.userProviderDestroy", 'uses' => "{$controller_name}@userProviderDestroy"]);
+        Route::get('profile/edit', ProfileEdit::class)->name("{$module_name}.profileEdit");
+        Route::get('profile/changePassword', ChangePassword::class)->name("{$module_name}.changePassword");
+        Route::get('profile/{username?}', Profile::class)->name("{$module_name}.profile");
+        
+        // Keep these as controller routes for now (POST/PATCH/DELETE methods)
+        $controller_name = 'App\Http\Controllers\Frontend\UserController';
+        Route::get("{$module_name}/emailConfirmationResend", ["{$controller_name}", 'emailConfirmationResend'])->name("{$module_name}.emailConfirmationResend");
+        Route::delete("{$module_name}/userProviderDestroy", ["{$controller_name}", 'userProviderDestroy'])->name("{$module_name}.userProviderDestroy");
     });
 });
 
