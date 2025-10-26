@@ -63,7 +63,7 @@
                                         </span>
                                     @else
                                         <a href="{{ $childItem->getFullUrl() }}" 
-                                           @if($childItem->opens_new_tab) target="_blank" @endif
+                                           @if($childItem->opens_new_tab) target="_blank" @else wire:navigate @endif
                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white {{ $childItem->isCurrentlyActive() ? 'text-blue-700 dark:text-blue-500' : '' }}">
                                             {{ $childItem->getDisplayTitle() }}
                                         </a>
