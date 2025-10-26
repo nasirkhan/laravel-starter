@@ -12,7 +12,6 @@
         "@fortawesome/fontawesome-free": "^7.1.0",
         "@popperjs/core": "^2.11.8",
         "@shufo/prettier-plugin-blade": "^1.16.1",
-        "@tailwindcss/forms": "^0.5.10",
         "@tailwindcss/vite": "^4.0.0",
         "axios": "^1.11.0",
         "bootstrap": "^5.3.3",
@@ -24,10 +23,8 @@
         "prettier-plugin-blade": "^2.1.21",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "sass": "^1.86.1",
-        "sass-loader": "^16.0.5",
         "simplebar": "^6.3.0",
         "tailwindcss": "^4.0.0",
-        "terser": "^5.44.0",
         "vite": "^7.0.7"
     }
 }

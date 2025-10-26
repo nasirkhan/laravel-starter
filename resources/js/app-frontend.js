@@ -1,17 +1,6 @@
 import './bootstrap';
 import 'flowbite';
 
-// Re-initialize Flowbite components after Livewire updates
-document.addEventListener('livewire:navigated', () => {
-    initFlowbite();
-});
-document.addEventListener('livewire:load', () => {
-    initFlowbite();
-});
-document.addEventListener('livewire:update', () => {
-    initFlowbite();
-});
-
 /**
  * Frontend Theme Switcher
  * ------------------------------------------------------------------
@@ -47,14 +36,16 @@ function updateThemeToggleIcons() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    setInitialTheme();
-    updateThemeToggleIcons();
-
+// Initialize theme toggle
+function initThemeToggle() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     if (!themeToggleBtn) return;
-
-    themeToggleBtn.addEventListener('click', function () {
+    
+    // Remove any existing listeners to prevent duplicates
+    const newBtn = themeToggleBtn.cloneNode(true);
+    themeToggleBtn.parentNode.replaceChild(newBtn, themeToggleBtn);
+    
+    newBtn.addEventListener('click', function () {
         // Toggle theme
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
@@ -65,4 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateThemeToggleIcons();
     });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    setInitialTheme();
+    updateThemeToggleIcons();
+    initThemeToggle();
+});
+
+// Re-initialize Flowbite components after Livewire navigation (SPA-like page transitions)
+document.addEventListener('livewire:navigated', () => {
+    initFlowbite();
+    updateThemeToggleIcons();
+    initThemeToggle();
+});
+
+// Re-initialize Flowbite components after Livewire updates the DOM (for dynamic content)
+document.addEventListener('livewire:update', () => {
+    initFlowbite();
 });
