@@ -61,8 +61,8 @@ class ProfileEdit extends Component
     public function mount()
     {
         $user = Auth::user();
-        
-        if (!$user instanceof User) {
+
+        if (! $user instanceof User) {
             abort(401);
         }
 

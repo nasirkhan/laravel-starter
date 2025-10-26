@@ -23,13 +23,13 @@ class Profile extends Component
     public function mount(?string $username = null)
     {
         $authUser = Auth::user();
-        
-        if (!$authUser instanceof User) {
+
+        if (! $authUser instanceof User) {
             $this->username = $username ?? '';
         } else {
             $this->username = $username ?? $authUser->username;
         }
-        
+
         $this->user = User::whereUsername($this->username)->firstOrFail();
     }
 

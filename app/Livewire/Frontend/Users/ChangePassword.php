@@ -30,8 +30,8 @@ class ChangePassword extends Component
     public function mount(): void
     {
         $user = Auth::user();
-        
-        if (!$user instanceof User) {
+
+        if (! $user instanceof User) {
             abort(401);
         }
 

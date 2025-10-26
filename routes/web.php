@@ -5,7 +5,6 @@ use App\Livewire\Frontend\Home;
 use App\Livewire\Frontend\Users\ChangePassword;
 use App\Livewire\Frontend\Users\Profile;
 use App\Livewire\Frontend\Users\ProfileEdit;
-use App\Livewire\Frontend\Users\Show;
 use App\Livewire\Privacy;
 use App\Livewire\Terms;
 use Illuminate\Support\Facades\Route;
@@ -52,7 +51,7 @@ Route::group(['as' => 'frontend.'], function () {
         Route::get('profile/edit', ProfileEdit::class)->name("{$module_name}.profileEdit");
         Route::get('profile/changePassword', ChangePassword::class)->name("{$module_name}.changePassword");
         Route::get('profile/{username?}', Profile::class)->name("{$module_name}.profile");
-        
+
         // Keep these as controller routes for now (POST/PATCH/DELETE methods)
         $controller_name = 'App\Http\Controllers\Frontend\UserController';
         Route::get("{$module_name}/emailConfirmationResend", ["{$controller_name}", 'emailConfirmationResend'])->name("{$module_name}.emailConfirmationResend");
