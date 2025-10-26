@@ -1,6 +1,6 @@
 <a
-    class="text-green-700 hover:text-opacity-75"
-    href="{{ setting("whatsapp_url") }}"
+    class="text-green-700 hover:text-green-700/75"
+    href="{{ setting('social_whatsapp') }}"
     aria-label="Whatsapp"
     target="_blank"
     rel="noopener noreferrer"

@@ -1,7 +1,7 @@
 <div>
     <div class="container mx-auto flex w-full flex-col items-center justify-center">
         <div
-            class="mb-2 w-full rounded-md border bg-white px-4 py-5 shadow dark:bg-gray-600 dark:text-gray-300 sm:px-6"
+            class="mb-2 w-full rounded-md border bg-white px-4 py-5 shadow-sm dark:bg-gray-600 dark:text-gray-300 sm:px-6"
         >
             <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-200">
                 @lang("Recent Posts")
@@ -16,13 +16,13 @@
 
                 <li class="mb-2 flex flex-row border-gray-400">
                     <div
-                        class="flex flex-1 transform cursor-pointer select-none items-center justify-between rounded-md bg-white p-4 shadow transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-gray-600 dark:text-gray-300"
+                        class="flex flex-1 transform cursor-pointer select-none items-center justify-between rounded-md bg-white p-4 shadow-sm transition duration-500 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-gray-600 dark:text-gray-300"
                     >
                         <div class="flex">
                             <div class="mr-4 flex h-10 flex-col items-center justify-center">
                                 <a class="relative block" href="{{ $details_url }}">
                                     <img
-                                        class="mx-auto h-10 rounded object-cover"
+                                        class="mx-auto h-10 rounded-sm object-cover"
                                         src="{{ $row->image }}"
                                         alt="{{ $row->name }}"
                                     />

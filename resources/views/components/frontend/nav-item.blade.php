@@ -10,7 +10,7 @@ $active_classes = "border-transparent dark:border-transparent";
 
 if ($active) {
     $active_classes =
-        "rounded border-gray-700 bg-gray-200 hover:opacity-75 dark:border-gray-300 dark:bg-gray-700 sm:rounded-none sm:bg-transparent dark:sm:rounded-none dark:sm:bg-transparent";
+        "rounded-sm border-gray-700 bg-gray-200 hover:opacity-75 dark:border-gray-300 dark:bg-gray-700 sm:rounded-none sm:bg-transparent dark:sm:rounded-none dark:sm:bg-transparent";
 }
 ?>
 

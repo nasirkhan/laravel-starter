@@ -114,7 +114,7 @@
                             <div class="mt-8">
                                 <a href="{{ route("frontend.users.profileEdit") }}">
                                     <div
-                                        class="w-full rounded border-2 border-gray-900 px-6 py-2 text-sm text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-none"
+                                        class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden"
                                     >
                                         Edit Profile
                                     </div>
@@ -126,7 +126,7 @@
                             <div class="mt-8">
                                 <a href="{{ route("frontend.users.changePassword") }}">
                                     <div
-                                        class="w-full rounded border-2 border-gray-900 px-6 py-2 text-sm text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-none"
+                                        class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden"
                                     >
                                         Change Password
                                     </div>

@@ -49,7 +49,7 @@
                 </button>
                 
                 <!-- Dropdown menu -->
-                <div id="dropdown-{{ $item->id }}" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full left-0 mt-1">
+                <div id="dropdown-{{ $item->id }}" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-full left-0 mt-1">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400">
                         @foreach(($item->children ?? collect()) as $childItem)
                             {{-- Skip permission check if optimized mode (already filtered by parent) --}}

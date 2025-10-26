@@ -1,6 +1,6 @@
 <a
-    class="text-blue-500 hover:text-opacity-75"
-    href="{{ setting("twitter_url") }}"
+    class="text-blue-500 hover:text-blue-500/75"
+    href="{{ setting('social_twitter') }}"
     aria-label="Twitter"
     target="_blank"
     rel="noopener noreferrer"

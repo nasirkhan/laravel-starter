@@ -24,7 +24,7 @@
                     <div class="pt-4 text-center">
                         <a href="{{ route("frontend.users.profile") }}">
                             <div
-                                class="w-full rounded border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-none dark:border-gray-500"
+                                class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden dark:border-gray-500"
                             >
                                 @lang(" View Profile")
                             </div>
@@ -46,7 +46,7 @@
 
                             {{ html()->label($field_lable, $field_name)->class("block-inline text-sm font-medium text-gray-700") }}
                             {!! field_required($required) !!}
-                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("mt-1 border-gray-300 w-full py-2 px-4 bg-white dark:bg-gray-100 text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent")->attributes(["$required"]) }}
+                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("mt-1 border-gray-300 w-full py-2 px-4 bg-white dark:bg-gray-100 text-gray-700 placeholder-gray-300 rounded-sm border shadow-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-transparent")->attributes(["$required"]) }}
                         </div>
                         <div class="col-span-6 sm:col-span-3">
                             <?php
@@ -58,11 +58,11 @@
 
                             {{ html()->label($field_lable, $field_name)->class("block-inline text-sm font-medium text-gray-700") }}
                             {!! field_required($required) !!}
-                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("mt-1 border-gray-300 w-full py-2 px-4 bg-white dark:bg-gray-100 text-gray-700 placeholder-gray-300 rounded border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent")->attributes(["$required"]) }}
+                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("mt-1 border-gray-300 w-full py-2 px-4 bg-white dark:bg-gray-100 text-gray-700 placeholder-gray-300 rounded-sm border shadow-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-transparent")->attributes(["$required"]) }}
                         </div>
                         <div class="col-span-6 bg-gray-50 px-4 py-3 text-end sm:px-6">
                             <button
-                                class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 type="submit"
                             >
                                 @lang("Update Password")
@@ -92,7 +92,7 @@
                             <div class="col-span-6 text-center">
                                 <a href="{{ route("frontend.users.profileEdit") }}">
                                     <div
-                                        class="w-full rounded border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-none"
+                                        class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden"
                                     >
                                         @lang("Edit Profile")
                                     </div>

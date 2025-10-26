@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
     plugins: [
@@ -28,11 +32,10 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui'),
+            '~coreui': resolve(__dirname, 'node_modules/@coreui/coreui'),
         }
     },
     build: {
-        // Enable code splitting
         rollupOptions: {
             output: {
                 manualChunks: {
@@ -42,16 +45,8 @@ export default defineConfig({
                 }
             }
         },
-        // Enable minification
-        minify: 'terser',
-        terserOptions: {
-            compress: {
-                drop_console: true, // Remove console.log in production
-                drop_debugger: true,
-            }
-        }
+        minify: true,
     },
-    // Enable CSS optimization
     css: {
         devSourcemap: true
     }
