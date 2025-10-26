@@ -1,6 +1,6 @@
 <a
-    class="text-gray-700 hover:text-opacity-75 dark:text-gray-300"
-    href="{{ setting("website_url") }}"
+    class="text-gray-700 hover:text-gray-700/75 dark:text-gray-300 dark:hover:text-gray-300/75"
+    href="{{ setting('social_website') }}"
     aria-label="Website URL"
     target="_blank"
     rel="noopener noreferrer"

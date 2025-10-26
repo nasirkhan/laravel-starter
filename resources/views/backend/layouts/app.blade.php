@@ -48,7 +48,7 @@
             {{-- header --}}
             @include("backend.includes.header")
 
-            <div class="body flex-grow-1">
+            <div class="body flex grow">
                 <div class="container-lg">
                     @include("flash::message")
 

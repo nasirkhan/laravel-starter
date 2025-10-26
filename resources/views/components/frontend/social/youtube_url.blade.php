@@ -1,6 +1,6 @@
 <a
-    class="text-red-500 hover:text-opacity-75"
-    href="{{ setting("youtube_url") }}"
+    class="text-red-500 hover:text-red-500/75"
+    href="{{ setting('social_youtube') }}"
     aria-label="Youtube"
     target="_blank"
     rel="noopener noreferrer"

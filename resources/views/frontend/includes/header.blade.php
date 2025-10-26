@@ -5,7 +5,7 @@
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
             <button
-                class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 id="theme-toggle"
                 type="button"
             >
@@ -34,7 +34,7 @@
             </button>
 
             <button
-                class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 data-dropdown-toggle="language-dropdown-menu"
                 type="button"
             >
@@ -63,7 +63,7 @@
             </button>
             <!-- Dropdown:language-dropdown-menu -->
             <div
-                class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+                class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
                 id="language-dropdown-menu"
             >
                 <ul class="py-2 font-medium" role="none">
@@ -86,7 +86,7 @@
             @guest
                 @if (user_registration())
                     <a
-                        class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                         href="{{ route("register") }}" wire:navigate
                     >
                         <svg
@@ -113,7 +113,7 @@
                 @endif
 
                 <a
-                    class="inline-flex cursor-pointer items-center justify-center rounded px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                     href="{{ route("login") }}" wire:navigate
                 >
                     <svg
@@ -152,7 +152,7 @@
                 </button>
                 <!-- Dropdown:user-dropdown-menu -->
                 <div
-                    class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+                    class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
                     id="user-dropdown-menu"
                 >
                     <ul class="py-2 font-medium" role="none">
@@ -299,7 +299,7 @@
             @endauth
 
             <button
-                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
                 data-collapse-toggle="navbar-language"
                 type="button"
                 aria-controls="navbar-language"

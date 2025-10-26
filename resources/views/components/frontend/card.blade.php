@@ -4,7 +4,7 @@
     "image" => "",
 ])
 
-<div class="flex flex-col rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+<div class="flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
     @if ($image)
         <div class="overflow-hidden rounded-t-lg">
             <a href="{{ $url }}">
@@ -30,7 +30,7 @@
     @if ($url)
         <div class="px-5 pb-5 text-end">
             <a
-                class="inline-flex items-center rounded bg-gray-200 px-3 py-2 text-sm text-gray-700 outline outline-1 outline-gray-800 hover:bg-gray-700 hover:text-gray-100 focus:outline-none dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="inline-flex items-center rounded-sm bg-gray-200 px-3 py-2 text-sm text-gray-700 outline outline-1 outline-gray-800 hover:bg-gray-700 hover:text-gray-100 focus:outline-hidden dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 href="{{ $url }}"
             >
                 View details

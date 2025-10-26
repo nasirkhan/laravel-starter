@@ -1,5 +1,5 @@
 <a
-    class="text-blue-600 hover:text-opacity-75"
+    class="text-blue-600 hover:text-blue-600/75"
     href="{{ setting("facebook_url") }}"
     aria-label="Facebook"
     target="_blank"

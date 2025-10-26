@@ -1,5 +1,5 @@
 <a
-    class="text-pink-600 hover:text-opacity-75"
+    class="text-pink-600 hover:text-pink-600/75"
     href="{{ setting("instagram_url") }}"
     aria-label="Instagram"
     target="_blank"
