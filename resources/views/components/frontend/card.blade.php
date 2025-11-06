@@ -4,10 +4,15 @@
     "image" => "",
 ])
 
+<?php
+// Determine if URL is internal (doesn't start with http:// or https:// or other protocols)
+$isInternalUrl = $url && !preg_match('/^(https?:|mailto:|tel:|#)/', $url);
+?>
+
 <div class="flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
     @if ($image)
         <div class="overflow-hidden rounded-t-lg">
-            <a href="{{ $url }}">
+            <a href="{{ $url }}" @if($isInternalUrl) wire:navigate @endif>
                 <img
                     class="transform rounded-t-lg duration-300 hover:scale-110"
                     src="{{ $image }}"
@@ -18,7 +23,7 @@
     @endif
 
     <div class="mt-5 px-5">
-        <a href="{{ $url }}">
+        <a href="{{ $url }}" @if($isInternalUrl) wire:navigate @endif>
             <h5 class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-300 sm:mb-4 sm:text-xl">
                 {{ $name }}
             </h5>
@@ -32,6 +37,7 @@
             <a
                 class="inline-flex items-center rounded-sm bg-gray-200 px-3 py-2 text-sm text-gray-700 outline outline-1 outline-gray-800 hover:bg-gray-700 hover:text-gray-100 focus:outline-hidden dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 href="{{ $url }}"
+                @if($isInternalUrl) wire:navigate @endif
             >
                 View details
                 <svg
