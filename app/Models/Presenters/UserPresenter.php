@@ -6,7 +6,6 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Presenter Class for Book Module.
