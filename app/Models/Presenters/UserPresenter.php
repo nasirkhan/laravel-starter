@@ -106,13 +106,6 @@ trait UserPresenter
         $this->attributes['last_name'] = $name_parts[1];
     }
 
-    public function setPasswordAttribute($value)
-    {
-        if (! empty($value)) {
-            $this->attributes['password'] = Hash::make($value);
-        }
-    }
-
     /**
      * Array keys for social_profiles field.
      */

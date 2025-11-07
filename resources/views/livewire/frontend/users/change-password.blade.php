@@ -30,7 +30,7 @@
                     <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="password" class="block-inline text-sm font-medium text-gray-700">
+                                <label for="password" class="block text-sm font-medium text-gray-700">
                                     @lang('Password')
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -46,7 +46,7 @@
                                 @enderror
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="password_confirmation" class="block-inline text-sm font-medium text-gray-700">
+                                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
                                     @lang('Confirm Password')
                                     <span class="text-red-500">*</span>
                                 </label>

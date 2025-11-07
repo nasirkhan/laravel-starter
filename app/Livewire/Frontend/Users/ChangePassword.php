@@ -51,7 +51,7 @@ class ChangePassword extends Component
         $this->validate();
 
         $this->user->update([
-            'password' => Hash::make($this->password),
+            'password' => $this->password,
         ]);
 
         $this->reset(['password', 'password_confirmation']);
