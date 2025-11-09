@@ -17,7 +17,6 @@ class EventServiceProvider extends ServiceProvider
         /**
          * Frontend.
          */
-
         PostViewed::class => [
             IncrementPostHits::class,
         ],
