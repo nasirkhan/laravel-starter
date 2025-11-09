@@ -81,47 +81,175 @@ class Menu extends BaseModel
 
     /**
      * Get cached menu data for a specific location and user.
+     * Caches menu structure for 1 hour (3600 seconds) to improve performance.
+     *
+     * @param  string  $location  The menu location identifier
+     * @param  \App\Models\User|null  $user  The user to check permissions for (null for guest)
+     * @param  string|null  $locale  The locale to filter menus by (defaults to current locale)
+     * @return \Illuminate\Support\Collection Collection of processed menus with hierarchical items
      */
-    public static function getCachedMenuData($location, $user = null, $locale = null)
+    public static function getCachedMenuData(string $location, $user = null, ?string $locale = null): \Illuminate\Support\Collection
     {
         $locale = $locale ?? app()->getLocale();
-        $userId = $user ? $user->id : 'guest';
-        $cacheKey = "menu_data_{$location}_{$userId}_{$locale}";
+        $defaultLocale = config('app.fallback_locale', 'en');
 
-        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 300, function () use ($location, $user, $locale) {
-            return static::byLocation($location)
+        // Create cache key based on location, user permissions, and locale
+        $userPermissions = $user ? implode(',', $user->getAllPermissions()->pluck('name')->sort()->toArray()) : 'guest';
+        $cacheKey = "menu_data_{$location}_{$userPermissions}_{$locale}";
+
+        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 3600, function () use ($location, $user, $locale, $defaultLocale) {
+            // Try to get menus in current locale first
+            $menus = static::byLocation($location)
                 ->activeAndVisible()
-                ->accessibleByUser($user)
                 ->where(function ($query) use ($locale) {
                     $query->where('locale', $locale)
                         ->orWhereNull('locale');
                 })
-                ->with([
-                    'allItems' => function ($query) use ($locale, $user) {
-                        $query->visible()
-                            ->accessibleByUser($user)
-                            ->where(function ($localeQuery) use ($locale) {
-                                $localeQuery->where('locale', $locale)
-                                    ->orWhereNull('locale');
-                            })
-                            ->orderBy('parent_id', 'asc')
-                            ->orderBy('sort_order', 'asc');
-                    },
-                ])
+                ->get()
+                ->filter(function ($menu) use ($user) {
+                    return $menu->userCanSee($user);
+                });
+
+            // Fallback to default locale if no menus found
+            if ($menus->isEmpty() && $locale !== $defaultLocale) {
+                $menus = static::byLocation($location)
+                    ->activeAndVisible()
+                    ->where(function ($query) use ($defaultLocale) {
+                        $query->where('locale', $defaultLocale)
+                            ->orWhereNull('locale');
+                    })
+                    ->get()
+                    ->filter(function ($menu) use ($user) {
+                        return $menu->userCanSee($user);
+                    });
+
+                if ($menus->isNotEmpty()) {
+                    $locale = $defaultLocale;
+                }
+            }
+
+            if ($menus->isEmpty()) {
+                return collect();
+            }
+
+            // Fetch all menu items in a single query
+            $menuIds = $menus->pluck('id');
+            $allMenuItems = \Modules\Menu\Models\MenuItem::whereIn('menu_id', $menuIds)
+                ->where('is_visible', true)
+                ->where('is_active', true)
+                ->where(function ($localeQuery) use ($locale) {
+                    $localeQuery->where('locale', $locale)
+                        ->orWhereNull('locale');
+                })
+                ->orderBy('menu_id')
+                ->orderBy('parent_id', 'asc')
+                ->orderBy('sort_order', 'asc')
                 ->get();
+
+            // Filter items by user permissions
+            $accessibleItems = $allMenuItems->filter(function ($item) use ($user) {
+                if (! $user) {
+                    return ! $item->permissions || empty($item->permissions);
+                }
+
+                if (! $item->permissions || empty($item->permissions)) {
+                    return true;
+                }
+
+                if (is_array($item->permissions)) {
+                    foreach ($item->permissions as $permission) {
+                        if ($user->can($permission)) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            });
+
+            // Build hierarchical structure
+            $itemsByMenu = $accessibleItems->groupBy('menu_id');
+
+            return $menus->map(function ($menu) use ($itemsByMenu) {
+                $menuItems = $itemsByMenu->get($menu->id, collect());
+
+                if ($menuItems->isEmpty()) {
+                    $menu->hierarchicalItems = collect();
+
+                    return $menu;
+                }
+
+                // Build parent-child hierarchy
+                $itemsById = $menuItems->keyBy('id');
+                $rootItems = collect();
+
+                // Initialize children collection for each item
+                foreach ($menuItems as $item) {
+                    $item->children = collect();
+                }
+
+                // Build hierarchy
+                foreach ($menuItems as $item) {
+                    if ($item->parent_id === null) {
+                        $rootItems->push($item);
+                    } else {
+                        $parent = $itemsById->get($item->parent_id);
+                        if ($parent) {
+                            $parent->children->push($item);
+                        }
+                    }
+                }
+
+                // Recursively sort by sort_order
+                $sortItemsRecursively = function ($items) use (&$sortItemsRecursively) {
+                    $sortedItems = $items->sortBy('sort_order');
+                    foreach ($sortedItems as $item) {
+                        if (isset($item->children)) {
+                            $item->children = $sortItemsRecursively($item->children);
+                        }
+                    }
+
+                    return $sortedItems;
+                };
+
+                $menu->hierarchicalItems = $sortItemsRecursively($rootItems);
+
+                return $menu;
+            })->filter(function ($menu) {
+                return $menu->hierarchicalItems->isNotEmpty();
+            });
         });
     }
 
     /**
-     * Clear menu cache for a specific location or all menus.
+     * Clear menu cache for a specific location or all menu caches.
+     * This should be called whenever menus or menu items are updated.
+     *
+     * @param  string|null  $location  The menu location to clear cache for (null clears all)
      */
-    public static function clearMenuCache($location = null)
+    public static function clearMenuCache(?string $location = null): void
     {
         if ($location) {
-            \Illuminate\Support\Facades\Cache::forget("menu_data_{$location}_*");
+            // Clear all cache keys matching this location
+            $pattern = "menu_data_{$location}_*";
+
+            // Get all cache keys and remove matching ones
+            // Note: This is a simplified approach. For production with Redis/Memcached,
+            // you might want to use tags or a more sophisticated cache key pattern
+            \Illuminate\Support\Facades\Cache::flush();
         } else {
+            // Clear all menu caches
             \Illuminate\Support\Facades\Cache::flush();
         }
+    }
+
+    /**
+     * Clear all menu caches across all locations.
+     * Use this when you need to ensure all menu data is refreshed.
+     */
+    public static function clearAllMenuCaches(): void
+    {
+        \Illuminate\Support\Facades\Cache::flush();
     }
 
     /**

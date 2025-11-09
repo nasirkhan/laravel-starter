@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Menu\Livewire\MenuItemComponent;
+use Modules\Menu\Models\Menu;
+use Modules\Menu\Models\MenuItem;
+use Modules\Menu\Observers\MenuItemObserver;
+use Modules\Menu\Observers\MenuObserver;
 use Symfony\Component\Finder\Finder;
 
 class MenuServiceProvider extends ServiceProvider
@@ -40,6 +44,9 @@ class MenuServiceProvider extends ServiceProvider
 
         // Register seeders
         $this->registerSeeders();
+
+        // Register model observers for automatic cache clearing
+        $this->registerObservers();
     }
 
     /**
@@ -174,5 +181,16 @@ class MenuServiceProvider extends ServiceProvider
                 \Modules\Menu\Console\Commands\SeedMenuCommand::class,
             ]);
         }
+    }
+
+    /**
+     * Register model observers for automatic cache clearing.
+     *
+     * @return void
+     */
+    protected function registerObservers()
+    {
+        Menu::observe(MenuObserver::class);
+        MenuItem::observe(MenuItemObserver::class);
     }
 }
