@@ -274,9 +274,16 @@ $notifications_latest = optional($notifications)->take(5);
                     aria-expanded="false"
                 >
                     <div class="avatar avatar-md">
+                        @php
+                            $avatar = asset(auth()->user()->avatar);
+
+                            if (!file_exists($avatar)) {
+                                $avatar = asset('img/default-avatar.jpg');
+                            }
+                        @endphp
                         <img
                             class="avatar-img"
-                            src="{{ asset(auth()->user()->avatar) }}"
+                            src="{{ $avatar }}"
                             alt="{{ asset(auth()->user()->name) }}"
                         />
                     </div>
