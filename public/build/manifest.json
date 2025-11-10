@@ -3,12 +3,12 @@
     "file": "assets/bootstrap-l0sNRNKZ.js",
     "name": "bootstrap"
   },
-  "_coreui-RCLjmsZw.js": {
-    "file": "assets/coreui-RCLjmsZw.js",
+  "_coreui-CSSgqa1P.js": {
+    "file": "assets/coreui-CSSgqa1P.js",
     "name": "coreui"
   },
-  "_vendor-BTtkv7m9.js": {
-    "file": "assets/vendor-BTtkv7m9.js",
+  "_vendor-BmeMIso4.js": {
+    "file": "assets/vendor-BmeMIso4.js",
     "name": "vendor"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
@@ -28,37 +28,39 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-DcnuJ3aT.css",
+    "file": "assets/app-frontend-gL558Q2O.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true,
+    "name": "app-frontend",
     "names": [
       "app-frontend.css"
     ]
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-DFP_t0yb.js",
+    "file": "assets/app-backend-CEbJnBix.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,
     "imports": [
-      "_coreui-RCLjmsZw.js",
-      "_vendor-BTtkv7m9.js"
+      "_coreui-CSSgqa1P.js",
+      "_vendor-BmeMIso4.js"
     ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-CBhdBypW.js",
+    "file": "assets/app-frontend-CnRTo51D.js",
     "name": "app-frontend",
     "src": "resources/js/app-frontend.js",
     "isEntry": true,
     "imports": [
-      "_vendor-BTtkv7m9.js",
-      "_coreui-RCLjmsZw.js"
+      "_vendor-BmeMIso4.js",
+      "_coreui-CSSgqa1P.js"
     ]
   },
   "resources/sass/app-backend.scss": {
-    "file": "assets/app-backend-Dl61E-ln.css",
+    "file": "assets/app-backend-BiAXDTn3.css",
     "src": "resources/sass/app-backend.scss",
     "isEntry": true,
+    "name": "app-backend",
     "names": [
       "app-backend.css"
     ]
