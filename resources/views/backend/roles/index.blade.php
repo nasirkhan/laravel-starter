@@ -37,6 +37,7 @@
                                 <tr>
                                     <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                                     <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
+                                    <th>{{ __("labels.backend.$module_name.fields.users_count") }}</th>
                                     <th class="text-end">{{ __("labels.backend.action") }}</th>
                                 </tr>
                             </thead>
@@ -54,6 +55,9 @@
                                                     <li>{{ $permission->name }}</li>
                                                 @endforeach
                                             </ul>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-primary">{{ $module_name_singular->users_count }}</span>
                                         </td>
                                         <td class="text-end">
                                             @can("edit_" . $module_name)
