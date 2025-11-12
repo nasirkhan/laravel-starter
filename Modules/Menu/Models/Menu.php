@@ -297,24 +297,36 @@ class Menu extends BaseModel
             // Menu is public OR user has required access
             $q->where('is_public', true)
                 ->orWhere(function ($accessQuery) use ($userPermissions, $userRoles) {
-                    // User has required permissions (if any specified)
+                    // For menus with permissions: user must have at least one required permission
                     $accessQuery->where(function ($permQuery) use ($userPermissions) {
-                        $permQuery->whereNull('permissions');
-                        if (! empty($userPermissions)) {
-                            foreach ($userPermissions as $permission) {
-                                $permQuery->orWhereJsonContains('permissions', $permission);
-                            }
-                        }
+                        // If menu has no permissions, this part is satisfied
+                        $permQuery->whereNull('permissions')
+                            ->orWhere(function ($requiredPerms) use ($userPermissions) {
+                                // Menu has permissions - user must have at least one
+                                $requiredPerms->whereNotNull('permissions');
+                                if (! empty($userPermissions)) {
+                                    foreach ($userPermissions as $permission) {
+                                        $requiredPerms->orWhereJsonContains('permissions', $permission);
+                                    }
+                                }
+                                // If user has no permissions but menu requires them, this will be false
+                            });
                     });
 
-                    // AND user has required roles (if any specified)
+                    // For menus with roles: user must have at least one required role
                     $accessQuery->where(function ($roleQuery) use ($userRoles) {
-                        $roleQuery->whereNull('roles');
-                        if (! empty($userRoles)) {
-                            foreach ($userRoles as $role) {
-                                $roleQuery->orWhereJsonContains('roles', $role);
-                            }
-                        }
+                        // If menu has no roles, this part is satisfied
+                        $roleQuery->whereNull('roles')
+                            ->orWhere(function ($requiredRoles) use ($userRoles) {
+                                // Menu has roles - user must have at least one
+                                $requiredRoles->whereNotNull('roles');
+                                if (! empty($userRoles)) {
+                                    foreach ($userRoles as $role) {
+                                        $requiredRoles->orWhereJsonContains('roles', $role);
+                                    }
+                                }
+                                // If user has no roles but menu requires them, this will be false
+                            });
                     });
                 });
         });
