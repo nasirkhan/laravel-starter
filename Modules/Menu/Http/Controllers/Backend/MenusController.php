@@ -57,8 +57,14 @@ class MenusController extends BackendBaseController
             return redirect()->route("backend.{$module_name}.index");
         }
 
+        // Store location before deletion for cache clearing
+        $location = $$module_name_singular->location;
+
         // Proceed with deletion if no menu items exist
         $$module_name_singular->delete();
+
+        // Clear menu cache for this location
+        \Modules\Menu\Models\Menu::clearMenuCache($location);
 
         flash(Str::singular($module_title).' Deleted Successfully!')->success()->important();
 

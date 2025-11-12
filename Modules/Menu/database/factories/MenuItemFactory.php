@@ -27,6 +27,7 @@ class MenuItemFactory extends Factory
 
         return [
             'menu_id' => Menu::factory(),
+            'parent_id' => null,
             'name' => $this->faker->words(2, true),
             'slug' => $this->faker->slug,
             'description' => $this->faker->sentence(),
@@ -37,6 +38,7 @@ class MenuItemFactory extends Factory
             'opens_new_tab' => $this->faker->boolean(20), // 20% chance
             'sort_order' => $this->faker->numberBetween(0, 100),
             'depth' => 0,
+            'path' => null,
             'icon' => $this->faker->optional()->randomElement($icons),
             'badge_text' => $this->faker->optional()->word(),
             'badge_color' => $this->faker->optional()->randomElement(['primary', 'secondary', 'success', 'danger']),
@@ -57,9 +59,10 @@ class MenuItemFactory extends Factory
             ]),
             'is_visible' => $this->faker->boolean(90), // 90% chance
             'is_active' => $this->faker->boolean(95), // 95% chance
-
             'locale' => $this->faker->optional()->randomElement(['en', 'es', 'fr']),
             'meta_title' => $this->faker->optional()->sentence(3),
+            'meta_description' => $this->faker->optional()->sentence(),
+            'meta_keywords' => $this->faker->optional()->words(3, true),
             'custom_data' => $this->faker->optional()->randomElement([
                 ['priority' => 'high'],
                 ['category' => 'navigation'],

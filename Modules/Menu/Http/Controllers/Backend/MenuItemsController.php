@@ -74,6 +74,11 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::create($request->all());
 
+        // Clear menu cache when a new menu item is created
+        if ($$module_name_singular->menu) {
+            \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->menu->location);
+        }
+
         flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
@@ -162,6 +167,11 @@ class MenuItemsController extends BackendBaseController
         $$module_name_singular = $module_model::findOrFail($id);
 
         $$module_name_singular->update($request->all());
+
+        // Clear menu cache when a menu item is updated
+        if ($$module_name_singular->menu) {
+            \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->menu->location);
+        }
 
         flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 

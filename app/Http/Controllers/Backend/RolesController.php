@@ -61,7 +61,7 @@ class RolesController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = $module_model::with('permissions')->paginate();
+        $$module_name = $module_model::with('permissions')->withCount('users')->paginate();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
 

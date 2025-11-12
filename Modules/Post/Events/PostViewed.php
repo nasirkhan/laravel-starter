@@ -2,12 +2,13 @@
 
 namespace Modules\Post\Events;
 
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Modules\Post\Models\Post;
 
 class PostViewed
 {
-    use SerializesModels;
+    use Dispatchable, SerializesModels;
 
     public $post;
 

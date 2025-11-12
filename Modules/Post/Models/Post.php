@@ -74,6 +74,14 @@ class Post extends BaseModel
     }
 
     /**
+     * Increment the hits/views count for the post.
+     */
+    public function incrementHits(): bool
+    {
+        return $this->increment('hits');
+    }
+
+    /**
      * Create a new factory instance for the model.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
