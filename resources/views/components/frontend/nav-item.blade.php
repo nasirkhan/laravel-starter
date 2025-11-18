@@ -23,7 +23,11 @@ $shouldNavigate = $target === '_self';
         href="{{ $href }}"
         target="{{ $target }}"
         @if($shouldNavigate) wire:navigate @endif
+        @if($target === '_blank') aria-label="{{ $slot }} (opens in new tab)" @endif
     >
         {{ $slot }}
+        @if($target === '_blank')
+            <span class="sr-only">(opens in new tab)</span>
+        @endif
     </a>
 </li>

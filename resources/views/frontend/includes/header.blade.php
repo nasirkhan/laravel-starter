@@ -1,6 +1,11 @@
-<nav class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900">
+<nav class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900" role="navigation" aria-label="Main navigation">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-blue-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Skip to main content
+    </a>
+
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between p-4">
-        <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/" wire:navigate>
+        <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/" wire:navigate aria-label="Go to homepage">
             <img class="h-9" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
@@ -8,6 +13,8 @@
                 class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 id="theme-toggle"
                 type="button"
+                aria-label="Toggle between light and dark theme"
+                aria-pressed="false"
             >
                 <svg
                     class="hidden h-5 w-5"
@@ -37,6 +44,9 @@
                 class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 data-dropdown-toggle="language-dropdown-menu"
                 type="button"
+                aria-label="Select language"
+                aria-haspopup="true"
+                aria-expanded="false"
             >
                 <svg
                     class="icon icon-tabler icons-tabler-outline icon-tabler-language"
@@ -65,6 +75,8 @@
             <div
                 class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
                 id="language-dropdown-menu"
+                role="menu"
+                aria-label="Language selection menu"
             >
                 <ul class="py-2 font-medium" role="none">
                     @foreach (config("app.available_locales") as $locale_code => $locale_name)
@@ -144,8 +156,11 @@
                     class="inline-flex cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                     data-dropdown-toggle="user-dropdown-menu"
                     type="button"
+                    aria-label="User menu"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                 >
-                    <img class="h-9 rounded-md" src="{{ asset(Auth::user()->avatar) }}" alt="" />
+                    <img class="h-9 rounded-md" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}'s profile picture" />
                     <span class="ms-2 hidden sm:block">
                         {{ Auth::user()->last_name }}
                     </span>
@@ -154,6 +169,8 @@
                 <div
                     class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
                     id="user-dropdown-menu"
+                    role="menu"
+                    aria-label="User account menu"
                 >
                     <ul class="py-2 font-medium" role="none">
                         @can("view_backend")
@@ -307,6 +324,7 @@
                 type="button"
                 aria-controls="navbar-language"
                 aria-expanded="false"
+                aria-label="Toggle navigation menu"
             >
                 <span class="sr-only">Open main menu</span>
                 <svg

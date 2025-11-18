@@ -29,8 +29,12 @@
                 <a class="mx-2 hover:underline md:mx-3 {{ $isActive ? 'font-semibold' : '' }}" 
                    href="{{ $url }}"
                    @if($target) target="{{ $target }}" @endif
-                   @if($item->opens_new_tab && $url !== '#') wire:navigate.hover @endif>
+                   @if($item->opens_new_tab && $url !== '#') wire:navigate.hover @endif
+                   @if($item->opens_new_tab) aria-label="{{ $item->getDisplayTitle() }} (opens in new tab)" @endif>
                     {{ $item->getDisplayTitle() }}
+                    @if($item->opens_new_tab)
+                        <span class="sr-only">(opens in new tab)</span>
+                    @endif
                 </a>
             </li>
             @foreach($item->children as $childItem)
@@ -40,8 +44,12 @@
                         <a class="mx-2 hover:underline md:mx-3 text-sm {{ $childItem->isCurrentlyActive() ? 'font-semibold' : '' }}" 
                            href="{{ $childItem->getFullUrl() }}"
                            @if($childItem->opens_new_tab) target="_blank" @endif
-                           @if(!$childItem->opens_new_tab && $childItem->getFullUrl() !== '#') wire:navigate.hover @endif>
+                           @if(!$childItem->opens_new_tab && $childItem->getFullUrl() !== '#') wire:navigate.hover @endif
+                           @if($childItem->opens_new_tab) aria-label="{{ $childItem->getDisplayTitle() }} (opens in new tab)" @endif>
                             {{ $childItem->getDisplayTitle() }}
+                            @if($childItem->opens_new_tab)
+                                <span class="sr-only">(opens in new tab)</span>
+                            @endif
                         </a>
                     </li>
                 @endif
@@ -65,8 +73,12 @@
             <a class="mx-2 hover:underline md:mx-3 {{ $isActive ? 'font-semibold' : '' }}" 
                href="{{ $url }}"
                @if($target) target="{{ $target }}" @endif
-               @if(!$item->opens_new_tab && $url !== '#') wire:navigate.hover @endif>
+               @if(!$item->opens_new_tab && $url !== '#') wire:navigate.hover @endif
+               @if($item->opens_new_tab) aria-label="{{ $item->getDisplayTitle() }} (opens in new tab)" @endif>
                 {{ $item->getDisplayTitle() }}
+                @if($item->opens_new_tab)
+                    <span class="sr-only">(opens in new tab)</span>
+                @endif
             </a>
         </li>
         @break
