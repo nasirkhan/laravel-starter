@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\BackendBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Modules\Post\Enums\PostStatus;
@@ -74,7 +75,7 @@ class PostsController extends BackendBaseController
         ]);
 
         $data = Arr::except($validated_data, 'tags_list');
-        $data['created_by_name'] = auth()->user()->name;
+        $data['created_by_name'] = Auth::user()->name;
 
         $$module_name_singular = $module_model::create($data);
         $$module_name_singular->tags()->attach($request->input('tags_list'));

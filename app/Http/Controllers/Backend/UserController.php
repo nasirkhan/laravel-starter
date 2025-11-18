@@ -16,6 +16,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -321,8 +322,8 @@ class UserController extends Controller
         $page_heading = label_case($module_title);
         $title = $page_heading.' '.label_case($module_action);
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -360,8 +361,8 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         $$module_name_singular = User::findOrFail($id);
@@ -388,8 +389,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         $module_title = $this->module_title;
@@ -428,8 +429,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         $module_title = $this->module_title;
@@ -506,7 +507,7 @@ class UserController extends Controller
 
         $module_action = 'destroy';
 
-        if (auth()->user()->id === $id || $id === 1) {
+        if (Auth::user()->id === $id || $id === 1) {
             flash('You can not delete this user!')->warning()->important();
 
             logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
@@ -514,8 +515,8 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -567,7 +568,7 @@ class UserController extends Controller
      */
     public function restore($id)
     {
-        if (! auth()->user()->can('restore_users')) {
+        if (! Auth::user()->can('restore_users')) {
             abort(403);
         }
 
@@ -603,7 +604,7 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (! auth()->user()->can('delete_users')) {
+        if (! Auth::user()->can('delete_users')) {
             abort(403);
         }
 
@@ -616,10 +617,10 @@ class UserController extends Controller
 
         $module_action = 'Block';
 
-        if (auth()->user()->id == $id || $id == 1) {
+        if (Auth::user()->id == $id || $id == 1) {
             flash("You can not 'Block' this user!")->success()->important();
 
-            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
             return redirect()->back();
         }
@@ -648,7 +649,7 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (! auth()->user()->can('delete_users')) {
+        if (! Auth::user()->can('delete_users')) {
             abort(403);
         }
 
@@ -661,10 +662,10 @@ class UserController extends Controller
 
         $module_action = 'Unblock';
 
-        if (auth()->user()->id == $id || $id == 1) {
+        if (Auth::user()->id == $id || $id == 1) {
             flash("You can not 'Unblock' this user!")->warning()->important();
 
-            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.auth()->user()->name.'(ID:'.auth()->user()->id.')');
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
             return redirect()->back();
         }
@@ -743,8 +744,8 @@ class UserController extends Controller
 
         $module_action = 'Email Confirmation Resend';
 
-        if (! auth()->user()->can('edit_users')) {
-            $id = auth()->user()->id;
+        if (! Auth::user()->can('edit_users')) {
+            $id = Auth::user()->id;
         }
 
         // if ($id !== auth()->user()->id) {

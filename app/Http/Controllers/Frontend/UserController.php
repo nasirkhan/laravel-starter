@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserProvider;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -88,11 +89,11 @@ class UserController extends Controller
     {
         $id = decode_id($id);
 
-        if ($id !== auth()->user()->id) {
-            if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
-                Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
+        if ($id !== Auth::user()->id) {
+            if (Auth::user()->hasAnyRole(['administrator', 'super admin'])) {
+                Log::info(Auth::user()->name.' ('.Auth::user()->id.') - User Requested for Email Verification.');
             } else {
-                Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
+                Log::warning(Auth::user()->name.' ('.Auth::user()->id.') - User trying to confirm another users email.');
 
                 abort('404');
             }

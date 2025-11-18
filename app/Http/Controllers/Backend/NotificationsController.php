@@ -55,8 +55,8 @@ class NotificationsController extends Controller
 
         $module_action = 'List';
 
-        $$module_name = auth()->user()->notifications()->paginate();
-        $unread_notifications_count = auth()->user()->unreadNotifications()->count();
+        $$module_name = Auth::user()->notifications()->paginate();
+        $unread_notifications_count = Auth::user()->unreadNotifications()->count();
 
         Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
@@ -83,7 +83,7 @@ class NotificationsController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = Notification::where('id', '=', $id)->where('notifiable_id', '=', auth()->user()->id)->first();
+        $$module_name_singular = Notification::where('id', '=', $id)->where('notifiable_id', '=', Auth::user()->id)->first();
 
         if ($$module_name_singular) {
             if ($$module_name_singular->read_at === '') {
@@ -120,7 +120,7 @@ class NotificationsController extends Controller
 
         $module_action = 'Delete All';
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         $user->notifications()->delete();
 
@@ -147,7 +147,7 @@ class NotificationsController extends Controller
 
         $module_action = 'Mark All As Read';
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         $user->unreadNotifications()->update(['read_at' => now()]);
 
