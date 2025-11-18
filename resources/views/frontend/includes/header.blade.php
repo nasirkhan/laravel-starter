@@ -1,6 +1,13 @@
-<nav class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900" role="navigation" aria-label="Main navigation">
+<nav
+    class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900"
+    role="navigation"
+    aria-label="Main navigation"
+>
     <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-blue-600 text-white px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <a
+        href="#main-content"
+        class="sr-only z-50 rounded-md bg-blue-600 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    >
         Skip to main content
     </a>
 
@@ -10,7 +17,7 @@
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
             <button
-                class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-1 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 id="theme-toggle"
                 type="button"
                 aria-label="Toggle between light and dark theme"
@@ -41,7 +48,7 @@
             </button>
 
             <button
-                class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-3 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 data-dropdown-toggle="language-dropdown-menu"
                 type="button"
                 aria-label="Select language"
@@ -98,8 +105,9 @@
             @guest
                 @if (user_registration())
                     <a
-                        class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                        href="{{ route("register") }}" wire:navigate
+                        class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-4 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                        href="{{ route("register") }}"
+                        wire:navigate
                     >
                         <svg
                             class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt"
@@ -125,8 +133,9 @@
                 @endif
 
                 <a
-                    class="inline-flex cursor-pointer items-center justify-center rounded-sm px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                    href="{{ route("login") }}" wire:navigate
+                    class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-4 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="{{ route("login") }}"
+                    wire:navigate
                 >
                     <svg
                         class="icon icon-tabler icons-tabler-outline icon-tabler-login"
@@ -160,7 +169,11 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                 >
-                    <img class="h-9 rounded-md" src="{{ asset(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}'s profile picture" />
+                    <img
+                        class="h-9 rounded-md"
+                        src="{{ asset(Auth::user()->avatar) }}"
+                        alt="{{ Auth::user()->name }}'s profile picture"
+                    />
                     <span class="ms-2 hidden sm:block">
                         {{ Auth::user()->last_name }}
                     </span>
@@ -319,7 +332,7 @@
             @endauth
 
             <button
-                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-hidden md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 data-collapse-toggle="navbar-language"
                 type="button"
                 aria-controls="navbar-language"
