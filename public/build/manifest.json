@@ -1,15 +1,7 @@
 {
-  "_bootstrap-l0sNRNKZ.js": {
-    "file": "assets/bootstrap-l0sNRNKZ.js",
-    "name": "bootstrap"
-  },
-  "_coreui-CSSgqa1P.js": {
-    "file": "assets/coreui-CSSgqa1P.js",
-    "name": "coreui"
-  },
-  "_vendor-BmeMIso4.js": {
-    "file": "assets/vendor-BmeMIso4.js",
-    "name": "vendor"
+  "_popper-BDxvxioy.js": {
+    "file": "assets/popper-BDxvxioy.js",
+    "name": "popper"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
@@ -28,7 +20,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-gL558Q2O.css",
+    "file": "assets/app-frontend-CGAYKRdF.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true,
     "name": "app-frontend",
@@ -37,23 +29,21 @@
     ]
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-CEbJnBix.js",
+    "file": "assets/app-backend-ChALy0bL.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,
     "imports": [
-      "_coreui-CSSgqa1P.js",
-      "_vendor-BmeMIso4.js"
+      "_popper-BDxvxioy.js"
     ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-CnRTo51D.js",
+    "file": "assets/app-frontend-DmhiuY0N.js",
     "name": "app-frontend",
     "src": "resources/js/app-frontend.js",
     "isEntry": true,
     "imports": [
-      "_vendor-BmeMIso4.js",
-      "_coreui-CSSgqa1P.js"
+      "_popper-BDxvxioy.js"
     ]
   },
   "resources/sass/app-backend.scss": {
