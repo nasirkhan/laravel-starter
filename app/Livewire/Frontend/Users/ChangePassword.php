@@ -14,7 +14,6 @@ use Livewire\Component;
 #[Title('Change Password')]
 class ChangePassword extends Component
 {
-    /** @var User */
     public User $user;
 
     #[Validate('required|string|min:6|confirmed')]
