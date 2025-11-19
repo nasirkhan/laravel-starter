@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Modules\Category\Models\Category;
 use Modules\Post\Models\Post;
 use Modules\Tag\Models\Tag;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class RouteAccessibilityTest extends TestCase
@@ -44,7 +44,7 @@ class RouteAccessibilityTest extends TestCase
         ]);
 
         foreach ($routes as $route) {
-            if (!in_array('GET', $route->methods())) {
+            if (! in_array('GET', $route->methods())) {
                 continue;
             }
 
@@ -128,8 +128,8 @@ class RouteAccessibilityTest extends TestCase
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
                 $this->assertNotEquals(500, $status, "Route {$uri} returned 500.");
             } catch (\Exception $e) {
-                echo "\nEXCEPTION ON ROUTE: {$uri} - " . $e->getMessage() . "\n";
-                $this->fail("Route {$uri} threw exception: " . $e->getMessage());
+                echo "\nEXCEPTION ON ROUTE: {$uri} - ".$e->getMessage()."\n";
+                $this->fail("Route {$uri} threw exception: ".$e->getMessage());
             }
         }
     }
