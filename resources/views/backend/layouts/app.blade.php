@@ -49,7 +49,7 @@
             @include("backend.includes.header")
 
             <div class="body flex grow">
-                <div class="container-lg">
+                <div class="container-lg px-4 py-2">
                     @include("flash::message")
 
                     <!-- Errors block -->

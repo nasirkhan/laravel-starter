@@ -4,6 +4,6 @@
 
 @use "backend_variables";
 
-@use "/resources/vendors/coreui/src/scss/style.scss";
+@use "/node_modules/@coreui/coreui/scss/coreui.scss";
 
 @use "backend_custom";
