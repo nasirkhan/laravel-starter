@@ -1,8 +1,11 @@
+import $ from 'jquery';
 import * as coreui from '@coreui/coreui';
 import "/node_modules/simplebar/dist/simplebar.min.js";
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
 
+window.$ = $;
+window.jQuery = $;
 window.coreui = coreui;
 
 // Initialize sidebar immediately if DOM is ready, or wait for DOMContentLoaded

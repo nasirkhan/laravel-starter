@@ -32,7 +32,7 @@
 
         @include("frontend.includes.header")
 
-        <main class="bg-white dark:bg-gray-800">
+        <main class="bg-white dark:bg-gray-800" id="main-content" role="main">
             @yield("content")
         </main>
 

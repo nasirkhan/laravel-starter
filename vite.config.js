@@ -1,11 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export default defineConfig({
     plugins: [
@@ -30,24 +25,4 @@ export default defineConfig({
             ],
         }),
     ],
-    resolve: {
-        alias: {
-            '~coreui': resolve(__dirname, 'node_modules/@coreui/coreui'),
-        }
-    },
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    'vendor': ['axios', 'jquery'],
-                    'coreui': ['@coreui/coreui'],
-                    'bootstrap': ['bootstrap'],
-                }
-            }
-        },
-        minify: true,
-    },
-    css: {
-        devSourcemap: true
-    }
 });

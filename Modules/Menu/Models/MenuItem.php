@@ -160,18 +160,22 @@ class MenuItem extends BaseModel
      */
     public function getFullUrl(): ?string
     {
-        if ($this->url) {
+        // If URL is present, use it directly
+        if (! empty($this->url)) {
             return $this->url;
         }
 
-        if ($this->route_name) {
+        // If URL is empty, fall back to route_name
+        if (! empty($this->route_name)) {
             try {
                 return route($this->route_name, $this->route_parameters ?? []);
             } catch (\Exception $e) {
+                // If route doesn't exist, return placeholder
                 return '#';
             }
         }
 
+        // If both URL and route_name are empty, return placeholder
         return '#';
     }
 
