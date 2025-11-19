@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import path from 'path';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
+        tailwindcss(),
         laravel({
             input: [
                 'resources/css/app-frontend.css',
@@ -12,7 +13,6 @@ export default defineConfig({
                 'resources/sass/app-backend.scss',
                 'resources/js/app-backend.js',
             ],
-            // refresh: true,
             refresh: [
                 'app/View/Components/**',
                 'lang/**',
@@ -25,9 +25,4 @@ export default defineConfig({
             ],
         }),
     ],
-    resolve: {
-        alias: {
-            '~coreui': path.resolve(__dirname, 'node_modules/@coreui/coreui'),
-        }
-    },
 });

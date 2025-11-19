@@ -30,7 +30,7 @@ class UserLoginSuccess
     {
         $data = $request->all();
 
-        $data['last_ip'] = request()->getClientIp();
+        $data['last_ip'] = optional(request())->getClientIp();
 
         return $data;
     }

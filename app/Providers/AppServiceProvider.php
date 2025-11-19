@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -34,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
          * Register Event Listeners.
          */
         $this->registerEventListeners();
+
+        /**
+         * Register Model Observers.
+         * This is where you can register observers for your models.
+         */
+        // User model observer
+        User::observe(UserObserver::class);
 
         /**
          * Implicitly grant "Super Admin" role all permissions

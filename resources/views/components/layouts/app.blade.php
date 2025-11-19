@@ -1,48 +1,24 @@
+<!-- filepath: c:\wamp64\www\laravel\laravel-starter\resources\views\components\layouts\app.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ language_direction() }}">
+    <head>
+        @include('partials.head')
+    </head>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>{{ $title ?? '' }} | {{ config('app.name') }} </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ setting('meta_description') }}">
-    <meta name="keyword" content="{{ setting('meta_keyword') }}">
-    @include('frontend.includes.meta')
+    <body>
+        <!-- Header -->
+        @include('frontend.includes.header')
 
-    <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-    <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
+        <!-- Main Content -->
+        <main class="">
+            {{ $slot }}
+        </main>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Footer -->
+        @include('frontend.includes.footer')
 
-    @livewireStyles
-
-    @vite(['resources/css/app-frontend.css'])
-    @vite(['resources/js/app-frontend.js'])
-
-    @stack('after-styles')
-
-    <x-google-analytics />
-</head>
-
-<body>
-
-    @include('frontend.includes.header')
-
-    <main class="">
-        {{ $slot }}
-    </main>
-
-    @include('frontend.includes.footer')
-
-    <!-- Scripts -->
-    @livewireScripts
-    @stack('after-scripts')
-    
-</body>
-
+        <!-- Scripts -->
+        @livewireScripts
+        @stack('after-scripts')
+    </body>
 </html>

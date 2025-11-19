@@ -87,6 +87,14 @@ trait UserPresenter
         return $roles->where('model_id', $this->id);
     }
 
+    /**
+     * Get the list of users related to the current User.
+     */
+    public function getRolesListAttribute(): array
+    {
+        return $this->roles->pluck('id')->map(fn ($id) => (int) $id)->toArray();
+    }
+
     public function setNameAttribute($value)
     {
         $value = ucwords(strtolower($value));

@@ -91,14 +91,14 @@ class BackendBaseController extends Controller
             return response()->json([]);
         }
 
-        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('slug', 'LIKE', "%{$term}%")->limit(7)->get();
+        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('slug', 'LIKE', "%{$term}%")->active()->limit(7)->get();
 
         $$module_name = [];
 
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id' => $row->id,
-                'text' => $row->name.' (Slug: '.$row->slug.')',
+                'text' => $row->name,
             ];
         }
 

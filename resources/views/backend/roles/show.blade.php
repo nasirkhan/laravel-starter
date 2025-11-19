@@ -1,29 +1,33 @@
-@extends ('backend.layouts.app')
+@extends("backend.layouts.app")
 
-@section('title')
-    {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }}
+@section("title")
+        {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }}
 @endsection
 
-@section('breadcrumbs')
+@section("breadcrumbs")
     <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon='{{ $module_icon }}'>
+        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ __($module_title) }}
         </x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
 @endsection
 
-@section('content')
+@section("content")
     <x-backend.layouts.show :data="$$module_name_singular">
         <x-backend.section-header>
-            <i class="{{ $module_icon }} fa-fw"></i> {{ $$module_name_singular->name }} <small
-                class="text-muted">{{ __($module_title) }}</small>
+            <i class="{{ $module_icon }} fa-fw"></i>
+            {{ $$module_name_singular->name }}
+            <small class="text-muted">{{ __($module_title) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back :small=true />
-                <x-backend.buttons.edit class="ms-1"
+                <x-backend.buttons.return-back :small="true" />
+                <x-backend.buttons.edit
+                    class="ms-1"
                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}' :small=true />
+                    route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}'
+                    :small="true"
+                />
             </x-slot>
         </x-backend.section-header>
 
@@ -51,16 +55,21 @@
 
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.created_at") }}</th>
-                            <td>{{ $$module_name_singular->created_at }}<br><small>({{ $$module_name_singular->created_at->diffForHumans() }})</small>
+                            <td>
+                                {{ $$module_name_singular->created_at }}
+                                <br />
+                                <small>({{ $$module_name_singular->created_at->diffForHumans() }})</small>
                             </td>
                         </tr>
 
                         <tr>
                             <th>{{ __("labels.backend.$module_name.fields.updated_at") }}</th>
-                            <td>{{ $$module_name_singular->updated_at }}<br /><small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small>
+                            <td>
+                                {{ $$module_name_singular->updated_at }}
+                                <br />
+                                <small>({{ $$module_name_singular->updated_at->diffForHumans() }})</small>
                             </td>
                         </tr>
-
                     </table>
                 </div>
             </div>
@@ -69,14 +78,20 @@
                     <table class="table-bordered table">
                         <thead>
                             <tr>
-                                <th>List of users (<small>Total: {{ $users->count() }}</small>)</th>
+                                <th>
+                                    List of users (
+                                    <small>Total: {{ $users->count() }}</small>
+                                    )
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td> <a href="{{ route('backend.users.show', $user->id) }}">{{ $user->name }}</a>
-                                        <span class="float-end">{!! $user->status_label !!}</span></td>
+                                    <td>
+                                        <a href="{{ route("backend.users.show", $user->id) }}">{{ $user->name }}</a>
+                                        <span class="float-end">{!! $user->status_label !!}</span>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -84,7 +99,5 @@
                 </div>
             </div>
         </div>
-
     </x-backend.layouts.show>
-
 @endsection

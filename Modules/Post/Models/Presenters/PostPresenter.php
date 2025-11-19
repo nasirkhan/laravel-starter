@@ -3,6 +3,7 @@
 namespace Modules\Post\Models\Presenters;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Modules\Category\Models\Category;
 use Modules\Post\Enums\PostStatus;
@@ -98,7 +99,7 @@ trait PostPresenter
         $this->attributes['created_by_name'] = trim(label_case($value));
 
         if (empty($value)) {
-            $this->attributes['created_by_name'] = auth()->user()->name;
+            $this->attributes['created_by_name'] = Auth::user()->name;
         }
     }
 

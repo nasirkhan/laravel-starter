@@ -1,16 +1,31 @@
 @php
-$required = (Str::contains($field['rules'], 'required')) ? "required" : "";
-$required_mark = ($required != "") ? '<span class="text-danger"> <strong>*</strong> </span>' : '';
+    $required = Str::contains($field["rules"], "required") ? "required" : "";
+    $required_mark = $required != "" ? '<span class="text-danger"> <strong>*</strong> </span>' : "";
 @endphp
 
-<div class="form-group mt-3 {{ $errors->has($field['name']) ? ' has-error' : '' }}">
+<div class="form-group {{ $errors->has($field["name"]) ? " has-error" : "" }} mt-3">
     <div class="checkbox">
-        <label>
-            <input type='hidden' value='0' name='{{ $field['name'] }}' class='form-label'>
-            <input name=" {{ $field['name'] }}" value="{{ \Illuminate\Support\Arr::get($field, 'value', '1') }}" type="checkbox" @if(old($field['name'], setting($field['name']))) checked="checked" @endif>
-            {{ $field['label'] }}
-        </label> {!! $required_mark !!}
+        <label class="form-label" for="{{ $field["name"] }}">
+            <strong>{{ __($field["label"]) }}</strong>
+            ({{ $field["name"] }})
+        </label>
+        {!! $required_mark !!}
+        <br />
 
-        @if ($errors->has($field['name'])) <small class="help-block">{{ $errors->first($field['name']) }}</small> @endif
+        <label>
+            <input class="form-label" name="{{ $field["name"] }}" type="hidden" value="0" />
+            <input
+                name=" {{ $field["name"] }}"
+                type="checkbox"
+                value="{{ \Illuminate\Support\Arr::get($field, "value", "1") }}"
+                @if (old($field['name'], setting($field['name']))) checked="checked" @endif
+            />
+            {{ $field["label"] }}
+        </label>
+        {!! $required_mark !!}
+
+        @if ($errors->has($field["name"]))
+            <small class="help-block">{{ $errors->first($field["name"]) }}</small>
+        @endif
     </div>
 </div>

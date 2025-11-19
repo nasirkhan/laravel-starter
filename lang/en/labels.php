@@ -122,6 +122,7 @@ return [
                 'name' => 'Name',
                 'status' => 'Status',
                 'permissions' => 'Permissions',
+                'users_count' => 'Users Count',
                 'created_at' => 'Created At',
                 'updated_at' => 'Updated At',
             ],

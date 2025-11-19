@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasHashedMediaTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BaseModel extends Model implements HasMedia
 {
-    use HasHashedMediaTrait;
-    use SoftDeletes;
+    use HasHashedMediaTrait, SoftDeletes;
 
     protected $guarded = [
         'id',
@@ -81,7 +81,7 @@ class BaseModel extends Model implements HasMedia
                 break;
         }
 
-        return $columns;
+        return json_decode(json_encode($columns));
     }
 
     /**
@@ -113,7 +113,7 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     * Get Status Label.
+     * Get Status Label as text.
      */
     public function getStatusLabelTextAttribute()
     {
@@ -162,6 +162,11 @@ class BaseModel extends Model implements HasMedia
         }
     }
 
+    /**
+     * Boot the model and attach event listeners.
+     *
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();
@@ -204,36 +209,6 @@ class BaseModel extends Model implements HasMedia
         }
     }
 
-    // /**
-    //  * Set the 'meta description'
-    //  * If no value submitted use the default 'meta_description'.
-    //  *
-    //  * @param [type]
-    //  */
-    // public function setMetaDescriptionAttribute($value)
-    // {
-    //     $this->attributes['meta_description'] = $value;
-
-    //     if (empty($value)) {
-    //         $this->attributes['meta_description'] = setting('meta_description');
-    //     }
-    // }
-
-    // /**
-    //  * Set the 'meta description'
-    //  * If no value submitted use the default 'meta_description'.
-    //  *
-    //  * @param [type]
-    //  */
-    // public function setMetaKeywordAttribute($value)
-    // {
-    //     $this->attributes['meta_keyword'] = $value;
-
-    //     if (empty($value)) {
-    //         $this->attributes['meta_keyword'] = setting('meta_keyword');
-    //     }
-    // }
-
     /**
      * Set the meta meta_og_image
      * If no value submitted use the 'Title'.
@@ -251,5 +226,13 @@ class BaseModel extends Model implements HasMedia
                 $this->attributes['meta_og_image'] = setting('meta_image');
             }
         }
+    }
+
+    /**
+     * Scope a query to only include active models.
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('status', '=', 1);
     }
 }

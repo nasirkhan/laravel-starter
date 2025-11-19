@@ -1,8 +1,9 @@
-@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-@import "/node_modules/simplebar/dist/simplebar.css";
+@use "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
-@import "backend_variables";
+@use "/node_modules/simplebar/dist/simplebar.css";
 
-@import "resources/vendors/coreui/src/scss/style.scss";
+@use "backend_variables";
 
-@import "backend_custom";
+@use "/node_modules/@coreui/coreui/scss/coreui.scss";
+
+@use "backend_custom";

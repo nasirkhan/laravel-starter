@@ -1,5 +1,15 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss";
+
+/* Import Flowbite theme */
+@import "flowbite/src/themes/default";
+
+/* Configure Flowbite source */
+@source "../node_modules/flowbite";
+
+/* Import Flowbite plugin */
+@plugin "flowbite/plugin";
+
+/* Dark mode variant configuration for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
 
 /* @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'; */

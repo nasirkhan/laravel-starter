@@ -1,5 +1,0 @@
-# Enforce Unix newlines
-* text=auto eol=lf
-
-# Don't diff or textually merge source maps
-*.map binary

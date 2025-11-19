@@ -29,7 +29,7 @@ class CategoryFactory extends Factory
             'name' => substr($this->faker->text(15), 0, -1),
             'slug' => '',
             'description' => $this->faker->paragraph,
-            'status' => $this->faker->randomElement(CategoryStatus::getAllNames()),
+            'status' => $this->faker->randomElement(CategoryStatus::cases()),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

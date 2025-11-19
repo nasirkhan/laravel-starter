@@ -2,35 +2,29 @@
 
 namespace Modules\Category\database\seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Modules\Category\Models\Category;
 
 class CategoryDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // Disable foreign key checks!
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        /*
-         * Categories Seed
-         * ------------------
-         */
-
-        // DB::table('categories')->truncate();
-        // echo "Truncate: categories \n";
+        // Authenticate as the first user to satisfy BaseModel's created_by requirement
+        $user = User::first();
+        Auth::login($user);
 
         Category::factory()->count(20)->create();
-        $rows = Category::all();
-        echo " Insert: categories \n\n";
 
-        // Enable foreign key checks!
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // Clear authentication after seeding
+        Auth::logout();
+
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Category Module Seeded');
+        }
     }
 }

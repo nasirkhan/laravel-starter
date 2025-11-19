@@ -13,4 +13,14 @@ class Role extends \Spatie\Permission\Models\Role
     {
         $this->attributes['name'] = strtolower($value);
     }
+
+    /**
+     * Get the count of users assigned to this role.
+     *
+     * @return int
+     */
+    public function getUsersCountAttribute()
+    {
+        return $this->users()->count();
+    }
 }

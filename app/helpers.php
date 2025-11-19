@@ -1,15 +1,19 @@
 <?php
 
+use App\Models\Setting;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Sqids\Sqids;
+
 /*
  * Global helpers file with misc functions.
  */
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name.
-     *
-     * @return mixed
      */
-    function app_name()
+    function app_name(): string
     {
         return config('app.name');
     }
@@ -20,11 +24,9 @@ if (! function_exists('app_name')) {
  */
 if (! function_exists('app_url')) {
     /**
-     * Helper to grab the application name.
-     *
-     * @return mixed
+     * Helper to grab the application URL.
      */
-    function app_url()
+    function app_url(): string
     {
         return config('app.url');
     }
@@ -35,19 +37,17 @@ if (! function_exists('app_url')) {
  */
 if (! function_exists('user_registration')) {
     /**
-     * Helper to grab the application name.
-     *
-     * @return mixed
+     * Helper to check if user registration is enabled.
      */
-    function user_registration()
+    function user_registration(): bool
     {
         $user_registration = config('app.user_registration');
 
-        if (env('USER_REGISTRATION') === true) {
+        if ((bool) env('USER_REGISTRATION')) {
             $user_registration = true;
         }
 
-        return $user_registration;
+        return (bool) $user_registration;
     }
 }
 
@@ -59,9 +59,9 @@ if (! function_exists('user_registration')) {
  */
 if (! function_exists('label_case')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Prepare the Column Name for Labels.
      */
-    function label_case($text)
+    function label_case(string $text): string
     {
         $order = ['_', '-'];
         $replace = ' ';
@@ -81,18 +81,14 @@ if (! function_exists('label_case')) {
  */
 if (! function_exists('show_column_value')) {
     /**
-     * Generates the function comment for the given function.
+     * Generates the formatted column value based on its type.
      *
-     * @param  string  $valueObject  Model Object
-     * @param  string  $column  Column Name
-     * @param  string  $return_format  Return Type
-     * @param  mixed  $valueObject  The value object.
-     * @param  mixed  $column  The column.
-     * @param  string  $return_format  The return format. Default is empty string.
-     * @return string Raw/Formatted Column Value
-     * @return mixed The column value or formatted value.
+     * @param  object  $valueObject  The model object.
+     * @param  object  $column  The column object with name and type properties.
+     * @param  string  $return_format  The return format ('raw' for unformatted).
+     * @return string|null The formatted column value or null.
      */
-    function show_column_value($valueObject, $column, $return_format = '')
+    function show_column_value(object $valueObject, object $column, string $return_format = ''): ?string
     {
         $column_name = $column->name;
         $column_type = $column->type;
@@ -108,18 +104,18 @@ if (! function_exists('show_column_value')) {
         }
 
         if (($column_type === 'date') && $value !== '') {
-            $datetime = \Carbon\Carbon::parse($value);
+            $datetime = Carbon::parse($value);
 
             return $datetime->isoFormat('LL');
         }
         if (($column_type === 'datetime' || $column_type === 'timestamp') && $value !== '') {
-            $datetime = \Carbon\Carbon::parse($value);
+            $datetime = Carbon::parse($value);
 
             return $datetime->isoFormat('LLLL');
         }
         if ($column_type === 'json') {
             $return_text = json_encode($value);
-        } elseif ($column_type !== 'json' && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
+        } elseif ($column_type !== 'json' && is_string($value) && \Illuminate\Support\Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
@@ -129,7 +125,12 @@ if (! function_exists('show_column_value')) {
                                 <figcaption class="figure-caption">Path: '.$value.'</figcaption>
                             </figure>';
         } else {
-            $return_text = $value;
+            // Handle enum objects by converting to their string value
+            if ($value instanceof \BackedEnum) {
+                $return_text = $value->value;
+            } else {
+                $return_text = $value;
+            }
         }
 
         return $return_text;
@@ -145,14 +146,14 @@ if (! function_exists('show_column_value')) {
  */
 if (! function_exists('field_required')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Show a * if field is required.
      */
-    function field_required($required)
+    function field_required(string $required): string
     {
         $return_text = '';
 
         if ($required !== '') {
-            $return_text = '&nbsp;<span class="text-danger">*</span>';
+            $return_text = '&nbsp;<span class="text-danger text-red-500">*</span>';
         }
 
         return $return_text;
@@ -163,17 +164,24 @@ if (! function_exists('field_required')) {
  * Get or Set the Settings Values.
  */
 if (! function_exists('setting')) {
+    /**
+     * Get or Set the Settings Values.
+     *
+     * @param  mixed  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
     function setting($key, $default = null)
     {
         if (is_null($key)) {
-            return new App\Models\Setting();
+            return new Setting;
         }
 
         if (is_array($key)) {
-            return App\Models\Setting::set($key[0], $key[1]);
+            return Setting::set($key[0], $key[1]);
         }
 
-        $value = App\Models\Setting::get($key);
+        $value = Setting::get($key);
 
         return is_null($value) ? value($default) : $value;
     }
@@ -183,7 +191,10 @@ if (! function_exists('setting')) {
  * Show Human readable file size
  */
 if (! function_exists('humanFilesize')) {
-    function humanFilesize($size, $precision = 2)
+    /**
+     * Show Human readable file size.
+     */
+    function humanFilesize(int|float $size, int $precision = 2): string
     {
         $units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         $step = 1024;
@@ -206,11 +217,14 @@ if (! function_exists('humanFilesize')) {
  */
 if (! function_exists('encode_id')) {
     /**
-     * Encode Id to a Hashids / Sqids.
+     * Encode Id to Sqids.
      */
-    function encode_id($id)
+    function encode_id(int $id): string
     {
-        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
+        static $sqids;
+        if (! $sqids) {
+            $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
+        }
 
         return $sqids->encode([$id]);
     }
@@ -224,17 +238,17 @@ if (! function_exists('encode_id')) {
  */
 if (! function_exists('decode_id')) {
     /**
-     * Decode Id from Hashids / Sqids.
+     * Decode Id from Sqids.
      */
-    function decode_id($hashid)
+    function decode_id(string $hashid): ?int
     {
-        $sqids = new Sqids\Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
+        static $sqids;
+        if (! $sqids) {
+            $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
+        }
         $id = $sqids->decode($hashid);
 
-        if (count($id)) {
-            return $id[0];
-        }
-        abort(404);
+        return count($id) ? $id[0] : null;
     }
 }
 
@@ -249,10 +263,8 @@ if (! function_exists('slug_format')) {
     /**
      * Format a string to Slug.
      */
-    function slug_format($string)
+    function slug_format(string $string): string
     {
-        $base_string = $string;
-
         $string = preg_replace('/\s+/u', '-', trim($string));
         $string = str_replace('/', '-', $string);
         $string = str_replace('\\', '-', $string);
@@ -272,9 +284,9 @@ if (! function_exists('slug_format')) {
  */
 if (! function_exists('icon')) {
     /**
-     * Format a string to Slug.
+     * A short and easy way to show icon fonts.
      */
-    function icon($string = 'fa-regular fa-circle-check')
+    function icon(string $string = 'fa-regular fa-circle-check'): string
     {
         return "<i class='".$string."'></i>&nbsp;";
     }
@@ -290,17 +302,17 @@ if (! function_exists('icon')) {
  */
 if (! function_exists('logUserAccess')) {
     /**
-     * Format a string to Slug.
+     * Get current user's name and id and log as debug data. Additional text can be added too.
      */
-    function logUserAccess($text = '')
+    function logUserAccess(string $text = ''): void
     {
         $auth_text = '';
 
-        if (\Auth::check()) {
-            $auth_text = 'User:'.\Auth::user()->name.' (ID:'.\Auth::user()->id.')';
+        if (Auth::check()) {
+            $auth_text = 'User:'.Auth::user()->name.' (ID:'.Auth::user()->id.')';
         }
 
-        \Log::debug(label_case($text)." | {$auth_text}");
+        Log::debug(label_case($text)." | {$auth_text}");
     }
 }
 
@@ -313,9 +325,9 @@ if (! function_exists('logUserAccess')) {
  */
 if (! function_exists('bn2enNumber')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Convert a Bengali number to English.
      */
-    function bn2enNumber($number)
+    function bn2enNumber(string $number): string
     {
         $search_array = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
         $replace_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
@@ -333,9 +345,9 @@ if (! function_exists('bn2enNumber')) {
  */
 if (! function_exists('en2bnNumber')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Convert an English number to Bengali.
      */
-    function en2bnNumber($number)
+    function en2bnNumber(string $number): string
     {
         $search_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
         $replace_array = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
@@ -353,9 +365,9 @@ if (! function_exists('en2bnNumber')) {
  */
 if (! function_exists('en2bnDate')) {
     /**
-     * Convert a English number to Bengali.
+     * Convert an English date to Bengali.
      */
-    function en2bnDate($date)
+    function en2bnDate(string $date): string
     {
         // Convert numbers
         $search_array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
@@ -394,7 +406,11 @@ if (! function_exists('en2bnDate')) {
  * ------------------------------------------------------------------------
  */
 if (! function_exists('banglaDate')) {
-    function banglaDate($date_input = '')
+    /**
+     * Get the Date of Bengali Calendar from the Gregorian Calendar.
+     * By default, it will return the Today's Date.
+     */
+    function banglaDate(string $date_input = ''): string
     {
         if ($date_input === '') {
             $date_input = date('Y-m-d');
@@ -444,18 +460,17 @@ if (! function_exists('banglaDate')) {
  */
 if (! function_exists('generate_rgb_code')) {
     /**
-     * Prepare the Column Name for Lables.
+     * Generate an RGB color code string.
      */
-    function generate_rgb_code($opacity = '0.9')
+    function generate_rgb_code(string $opacity = '0.9'): string
     {
-        $str = '';
+        $values = [];
         for ($i = 1; $i <= 3; $i++) {
-            $num = mt_rand(0, 255);
-            $str .= "{$num},";
+            $values[] = mt_rand(0, 255);
         }
-        $str .= "{$opacity},";
+        $values[] = $opacity;
 
-        return substr($str, 0, -1);
+        return implode(',', $values);
     }
 }
 
@@ -468,25 +483,20 @@ if (! function_exists('generate_rgb_code')) {
 if (! function_exists('date_today')) {
     /**
      * Return Date with weekday.
-     *
-     * Carbon Locale will be considered here
-     * Example:
-     * শুক্রবার, ২৪ জুলাই ২০২০
-     * Friday, July 24, 2020
+     * Carbon Locale will be considered here.
+     * Example: শুক্রবার, ২৪ জুলাই ২০২০ or Friday, July 24, 2020.
      */
-    function date_today()
+    function date_today(): string
     {
-        return \Carbon\Carbon::now()->isoFormat('dddd, LL');
+        return Carbon::now()->isoFormat('dddd, LL');
     }
 }
 
 if (! function_exists('language_direction')) {
     /**
-     * return direction of languages.
-     *
-     * @return string
+     * Return direction of languages.
      */
-    function language_direction($language = null)
+    function language_direction(?string $language = null): string
     {
         if (empty($language)) {
             $language = app()->getLocale();
@@ -502,7 +512,7 @@ if (! function_exists('language_direction')) {
             'fa', //  'فارسی', Persian
             'glk', //  'گیلکی', Gilaki
             'he', //  'עברית', Hebrew
-            'lrc', //- 'لوری', Northern Luri
+            'lrc', // - 'لوری', Northern Luri
             'mzn', //  'مازِرونی', Mazanderani
             'pnb', //  'پنجابی', Western Punjabi
             'ps', //  'پښتو', Pashto
@@ -524,19 +534,11 @@ if (! function_exists('language_direction')) {
  */
 if (! function_exists('demo_mode')) {
     /**
-     * Helper to grab the application name.
-     *
-     * @return mixed
+     * Check if application is in demo mode.
      */
-    function demo_mode()
+    function demo_mode(): bool
     {
-        $return_string = false;
-
-        if (env('DEMO_MODE') === true) {
-            $return_string = true;
-        }
-
-        return $return_string;
+        return (bool) env('DEMO_MODE');
     }
 }
 
@@ -546,10 +548,8 @@ if (! function_exists('demo_mode')) {
 if (! function_exists('split_name')) {
     /**
      * Split Name to First Name and Last Name.
-     *
-     * @return mixed
      */
-    function split_name($name)
+    function split_name(string $name): array
     {
         $name = trim($name);
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);

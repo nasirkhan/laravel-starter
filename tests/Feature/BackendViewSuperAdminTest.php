@@ -300,25 +300,6 @@ class BackendViewSuperAdminTest extends TestCase
     }
 
     /**
-     * Log Viewer Test.
-     *
-     * ---------------------------------------------------------------
-     */
-    public function test_super_admin_user_can_view_logs_index(): void
-    {
-        $response = $this->get('/admin/log-viewer');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_view_logs_view(): void
-    {
-        $response = $this->get('/admin/log-viewer/logs');
-
-        $response->assertStatus(200);
-    }
-
-    /**
      * Posts Test.
      *
      * ---------------------------------------------------------------

@@ -52,7 +52,7 @@ class FrontendPublicViewTest extends TestCase
 
         $response->assertStatus(200);
 
-        $value = 'Email Password Reset Link';
+        $value = 'Email password reset link';
 
         $response->assertSeeText($value, $escxaped = true);
     }

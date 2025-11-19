@@ -1,9 +1,33 @@
+import $ from 'jquery';
 import * as coreui from '@coreui/coreui';
 import "/node_modules/simplebar/dist/simplebar.min.js";
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
 
+window.$ = $;
+window.jQuery = $;
 window.coreui = coreui;
+
+// Initialize sidebar immediately if DOM is ready, or wait for DOMContentLoaded
+function initializeSidebar() {
+    const sidebar = document.querySelector('#sidebar');
+    if (sidebar && window.coreui && window.coreui.Sidebar) {
+        try {
+            // Create sidebar instance if it doesn't exist
+            if (!window.coreui.Sidebar.getInstance(sidebar)) {
+                new window.coreui.Sidebar(sidebar);
+            }
+        } catch (error) {
+            console.warn('Failed to initialize sidebar:', error);
+        }
+    }
+}
+
+// Try to initialize immediately (in case DOM is already loaded)
+initializeSidebar();
+
+// Also initialize on DOMContentLoaded to be safe
+document.addEventListener('DOMContentLoaded', initializeSidebar);
 
 // Enable tooltips everywhere
 const tooltipTriggerList = document.querySelectorAll('[data-toggle="tooltip"]')

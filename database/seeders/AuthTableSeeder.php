@@ -20,10 +20,23 @@ class AuthTableSeeder extends Seeder
     public function run()
     {
         $this->call(UserTableSeeder::class);
-        echo "\n Default Users Created. \n";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Default Users Created.');
+        }
+
         $this->call(PermissionRoleTableSeeder::class);
-        echo "\n Default Permissions Created. \n";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Default Permissions Created.');
+        }
+
         $this->call(UserRoleTableSeeder::class);
-        echo "\n Default Roles created and assigned to Users. \n";
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Default Roles created and assigned to Users.');
+        }
+
+        // Single summary message for tests (only show during debugging)
+        if (app()->runningUnitTests() && env('SHOW_TEST_SEEDING', false)) {
+            $this->command->line('<fg=green>✓</fg=green> Auth seeding completed for test');
+        }
     }
 }

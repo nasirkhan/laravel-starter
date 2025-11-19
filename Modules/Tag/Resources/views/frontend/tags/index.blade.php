@@ -1,14 +1,12 @@
-@extends('frontend.layouts.app')
+@extends("frontend.layouts.app")
 
-@section('title')
+@section("title")
     {{ __($module_title) }}
 @endsection
 
-@section('content')
+@section("content")
     <x-frontend.header-block :title="__($module_title)">
-        <p class="mb-8 leading-relaxed">
-            The list of {{ __($module_name) }}.
-        </p>
+        <p class="mb-8 leading-relaxed">The list of {{ __($module_name) }}.</p>
     </x-frontend.header-block>
 
     <section class="bg-white p-6 text-gray-600 dark:bg-gray-700 sm:p-20">
@@ -28,7 +26,7 @@
                 </x-frontend.card>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center w-100 mt-3">
+        <div class="mt-8 w-full">
             {{ $$module_name->links() }}
         </div>
     </section>

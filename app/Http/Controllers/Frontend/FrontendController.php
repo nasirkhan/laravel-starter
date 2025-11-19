@@ -15,24 +15,4 @@ class FrontendController extends Controller
     {
         return view('frontend.index');
     }
-
-    /**
-     * Privacy Policy Page.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function privacy()
-    {
-        return view('frontend.privacy');
-    }
-
-    /**
-     * Terms & Conditions Page.
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function terms()
-    {
-        return view('frontend.terms');
-    }
 }
