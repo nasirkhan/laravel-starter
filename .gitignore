@@ -11,13 +11,14 @@
 Homestead.json
 Homestead.yaml
 auth.json
+composer.local.json
+composer.local.lock
 npm-debug.log
 yarn-error.log
 /.idea
 /.fleet
 /.vscode
 *.cache
-
 
 
 
