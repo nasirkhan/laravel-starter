@@ -22,7 +22,7 @@
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10",
         "livewire/livewire": "^3.4",
-        "nasirkhan/module-manager": "^3.0",
+        "nasirkhan/module-manager": "^4.0",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-backup": "^9.2",
         "spatie/laravel-html": "^3.12",
