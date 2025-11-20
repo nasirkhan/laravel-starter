@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\BackupController;
+use App\Http\Controllers\Backend\NotificationsController;
+use App\Http\Controllers\Backend\RolesController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\UserController as BackendUserController;
+use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\LanguageController;
 use App\Livewire\Frontend\Home;
 use App\Livewire\Frontend\Users\ChangePassword;
@@ -8,13 +15,6 @@ use App\Livewire\Frontend\Users\ProfileEdit;
 use App\Livewire\Privacy;
 use App\Livewire\Terms;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\Backend\SettingController;
-use App\Http\Controllers\Backend\NotificationsController;
-use App\Http\Controllers\Backend\BackupController;
-use App\Http\Controllers\Backend\RolesController;
-use App\Http\Controllers\Backend\UserController as BackendUserController;
-use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 
 /*
 *
@@ -23,7 +23,7 @@ use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 * --------------------------------------------------------------------
 */
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 /*
 *
