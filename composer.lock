@@ -2927,16 +2927,16 @@
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "v4.0.0",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nasirkhan/module-manager.git",
-                "reference": "ed43c9cdb4976291a98e32974092c3e30d4ef44a"
+                "reference": "37dbe2e05a0e1f0d04f8979b40aa8ac21fc1e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/ed43c9cdb4976291a98e32974092c3e30d4ef44a",
-                "reference": "ed43c9cdb4976291a98e32974092c3e30d4ef44a",
+                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/37dbe2e05a0e1f0d04f8979b40aa8ac21fc1e822",
+                "reference": "37dbe2e05a0e1f0d04f8979b40aa8ac21fc1e822",
                 "shasum": ""
             },
             "require": {
@@ -2981,9 +2981,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nasirkhan/module-manager/issues",
-                "source": "https://github.com/nasirkhan/module-manager/tree/v4.0.0"
+                "source": "https://github.com/nasirkhan/module-manager/tree/v4.2.0"
             },
-            "time": "2025-11-20T08:58:51+00:00"
+            "time": "2025-11-20T18:52:31+00:00"
         },
         {
             "name": "nesbot/carbon",
