@@ -25,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
+         * Prevent lazy loading, silently discarding attributes, and accessing missing attributes.
+         */
+        \Illuminate\Database\Eloquent\Model::shouldBeStrict(! app()->isProduction());
+
+        /**
          * Change default string length.
          *
          * MariaDB 10.5 allows index keys to be 3072 chars.
