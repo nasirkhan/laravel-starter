@@ -129,8 +129,8 @@ class RouteAccessibilityTest extends TestCase
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
                 $this->assertNotEquals(500, $status, "Route {$uri} returned 500.");
             } catch (\Exception $e) {
-                echo "\nEXCEPTION ON ROUTE: {$uri} - " . $e->getMessage() . "\n";
-                $this->fail("Route {$uri} threw exception: " . $e->getMessage());
+                echo "\nEXCEPTION ON ROUTE: {$uri} - ".$e->getMessage()."\n";
+                $this->fail("Route {$uri} threw exception: ".$e->getMessage());
             }
         }
     }

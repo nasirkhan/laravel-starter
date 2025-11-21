@@ -18,7 +18,7 @@ trait UserPresenter
     protected function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
+            get: fn ($value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
         );
     }
 
@@ -38,7 +38,7 @@ trait UserPresenter
                 break;
 
             default:
-                $return_string = '<span class="badge text-bg-primary">Status:' . $this->status . '</span>';
+                $return_string = '<span class="badge text-bg-primary">Status:'.$this->status.'</span>';
                 break;
         }
 
@@ -92,7 +92,7 @@ trait UserPresenter
      */
     public function getRolesListAttribute(): array
     {
-        return $this->roles->pluck('id')->map(fn($id) => (int) $id)->toArray();
+        return $this->roles->pluck('id')->map(fn ($id) => (int) $id)->toArray();
     }
 
     public function setNameAttribute($value)
