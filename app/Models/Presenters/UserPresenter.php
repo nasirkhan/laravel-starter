@@ -119,4 +119,34 @@ trait UserPresenter
             'linkedin_url',
         ];
     }
+
+    public function getUrlWebsiteAttribute()
+    {
+        return $this->social_profiles['website_url'] ?? null;
+    }
+
+    public function getUrlFacebookAttribute()
+    {
+        return $this->social_profiles['facebook_url'] ?? null;
+    }
+
+    public function getUrlTwitterAttribute()
+    {
+        return $this->social_profiles['twitter_url'] ?? null;
+    }
+
+    public function getUrlInstagramAttribute()
+    {
+        return $this->social_profiles['instagram_url'] ?? null;
+    }
+
+    public function getUrlLinkedinAttribute()
+    {
+        return $this->social_profiles['linkedin_url'] ?? null;
+    }
+
+    public function getUrlYoutubeAttribute()
+    {
+        return $this->social_profiles['youtube_url'] ?? null;
+    }
 }

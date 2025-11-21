@@ -28,6 +28,7 @@ class RouteAccessibilityTest extends TestCase
         $user = User::factory()->create([
             'username' => 'testuser',
         ]);
+        $user = $user->fresh();
 
         // Create a category and post for post routes
         $category = Category::factory()->create([

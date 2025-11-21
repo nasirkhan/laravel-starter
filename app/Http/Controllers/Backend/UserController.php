@@ -191,7 +191,7 @@ class UserController extends Controller
 
         $module_action = 'Create';
 
-        $roles = Role::get();
+        $roles = Role::with('permissions')->get();
         $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         logUserAccess($module_title.' '.$module_action);
@@ -290,7 +290,7 @@ class UserController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = $module_model::with(['providers', 'roles', 'permissions'])->findOrFail($id);
 
         logUserAccess(__METHOD__." | {$$module_name_singular->name} ($id)");
 
@@ -407,7 +407,7 @@ class UserController extends Controller
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        $roles = Role::get();
+        $roles = Role::with('permissions')->get();
         $permissions = Permission::select('name', 'id')->orderBy('id')->get();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
