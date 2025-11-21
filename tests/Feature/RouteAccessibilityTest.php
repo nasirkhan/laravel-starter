@@ -28,6 +28,7 @@ class RouteAccessibilityTest extends TestCase
         $user = User::factory()->create([
             'username' => 'testuser',
         ]);
+        $user = $user->fresh();
 
         // Create a category and post for post routes
         $category = Category::factory()->create([
@@ -128,8 +129,8 @@ class RouteAccessibilityTest extends TestCase
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
                 $this->assertNotEquals(500, $status, "Route {$uri} returned 500.");
             } catch (\Exception $e) {
-                echo "\nEXCEPTION ON ROUTE: {$uri} - ".$e->getMessage()."\n";
-                $this->fail("Route {$uri} threw exception: ".$e->getMessage());
+                echo "\nEXCEPTION ON ROUTE: {$uri} - " . $e->getMessage() . "\n";
+                $this->fail("Route {$uri} threw exception: " . $e->getMessage());
             }
         }
     }

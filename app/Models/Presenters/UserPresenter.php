@@ -18,7 +18,7 @@ trait UserPresenter
     protected function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
+            get: fn($value) => ($value == '') ? '/img/default-avatar.jpg' : $value,
         );
     }
 
@@ -38,7 +38,7 @@ trait UserPresenter
                 break;
 
             default:
-                $return_string = '<span class="badge text-bg-primary">Status:'.$this->status.'</span>';
+                $return_string = '<span class="badge text-bg-primary">Status:' . $this->status . '</span>';
                 break;
         }
 
@@ -92,7 +92,7 @@ trait UserPresenter
      */
     public function getRolesListAttribute(): array
     {
-        return $this->roles->pluck('id')->map(fn ($id) => (int) $id)->toArray();
+        return $this->roles->pluck('id')->map(fn($id) => (int) $id)->toArray();
     }
 
     public function setNameAttribute($value)
@@ -118,5 +118,35 @@ trait UserPresenter
             'youtube_url',
             'linkedin_url',
         ];
+    }
+
+    public function getUrlWebsiteAttribute()
+    {
+        return $this->social_profiles['website_url'] ?? null;
+    }
+
+    public function getUrlFacebookAttribute()
+    {
+        return $this->social_profiles['facebook_url'] ?? null;
+    }
+
+    public function getUrlTwitterAttribute()
+    {
+        return $this->social_profiles['twitter_url'] ?? null;
+    }
+
+    public function getUrlInstagramAttribute()
+    {
+        return $this->social_profiles['instagram_url'] ?? null;
+    }
+
+    public function getUrlLinkedinAttribute()
+    {
+        return $this->social_profiles['linkedin_url'] ?? null;
+    }
+
+    public function getUrlYoutubeAttribute()
+    {
+        return $this->social_profiles['youtube_url'] ?? null;
     }
 }

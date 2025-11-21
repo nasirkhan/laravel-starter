@@ -84,7 +84,10 @@ class UserEditTest extends TestCase
         $formClosePos = strpos($content, '</form>');
         $cancelButtonPos = strpos($content, 'Cancel');
 
-        $this->assertGreaterThan($formClosePos, $cancelButtonPos,
-            'Cancel button should appear after the form closes to prevent accidental form submission');
+        $this->assertGreaterThan(
+            $formClosePos,
+            $cancelButtonPos,
+            'Cancel button should appear after the form closes to prevent accidental form submission'
+        );
     }
 }
