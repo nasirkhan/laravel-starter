@@ -58,7 +58,7 @@ class NotificationsController extends Controller
         $$module_name = Auth::user()->notifications()->paginate();
         $unread_notifications_count = Auth::user()->unreadNotifications()->count();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        logUserAccess($module_title . ' ' . $module_action);
 
         return view(
             "backend.{$module_path}.index",
@@ -91,11 +91,11 @@ class NotificationsController extends Controller
                 $$module_name_singular->save();
             }
         } else {
-            Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+            logUserAccess($module_title . ' ' . $module_action);
             abort(404);
         }
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        logUserAccess($module_title . ' ' . $module_action);
 
         return view(
             "backend.{$module_name}.show",
@@ -126,7 +126,7 @@ class NotificationsController extends Controller
 
         flash('All Notifications Deleted')->success()->important();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        logUserAccess($module_title . ' ' . $module_action);
 
         return back();
     }
@@ -153,7 +153,7 @@ class NotificationsController extends Controller
 
         flash('All Notifications Marked As Read')->success()->important();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        logUserAccess($module_title . ' ' . $module_action);
 
         return back();
     }
