@@ -68,7 +68,7 @@ class BackupController extends Controller
             if (substr($f, -4) === '.zip' && $disk->exists($f)) {
                 $$module_name[] = [
                     'file_path' => $f,
-                    'file_name' => str_replace(config('backup.backup.name') . '/', '', $f),
+                    'file_name' => str_replace(config('backup.backup.name').'/', '', $f),
                     'file_size_byte' => $disk->size($f),
                     'file_size' => humanFilesize($disk->size($f)),
                     'last_modified_timestamp' => $disk->lastModified($f),
@@ -81,7 +81,7 @@ class BackupController extends Controller
         // reverse the backups, so the newest one would be on top
         $$module_name = array_reverse($$module_name);
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "backend.{$module_path}.backups",
@@ -109,7 +109,7 @@ class BackupController extends Controller
         if (demo_mode()) {
             flash('Backup Creation Skillped on Demo Mode!')->warning()->important();
 
-            logUserAccess($module_title . ' ' . $module_action);
+            logUserAccess($module_title.' '.$module_action);
 
             return redirect()->route("backend.{$module_path}.index");
         }
@@ -120,9 +120,9 @@ class BackupController extends Controller
             $output = Artisan::output();
 
             // Log the results
-            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n" . $output);
+            Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
 
-            logUserAccess($module_title . ' ' . $module_action);
+            logUserAccess($module_title.' '.$module_action);
 
             // return the results as a response to the ajax call
             flash('New backup created')->success()->important();
@@ -143,15 +143,15 @@ class BackupController extends Controller
     public function download($file_name)
     {
         $disk = Storage::disk('local');
-        $file = config('backup.backup.name') . '/' . $file_name;
+        $file = config('backup.backup.name').'/'.$file_name;
 
         if ($disk->exists($file)) {
-            logUserAccess(__METHOD__ .  ' | Downloaded backup file: ' . $file_name);
+            logUserAccess(__METHOD__.' | Downloaded backup file: '.$file_name);
 
             return Storage::download($file);
         }
 
-        logUserAccess(__METHOD__ .  ' | Failed to download backup file: ' . $file_name);
+        logUserAccess(__METHOD__.' | Failed to download backup file: '.$file_name);
 
         abort(404, "The backup file doesn't exist.");
     }
@@ -162,21 +162,21 @@ class BackupController extends Controller
     public function delete($file_name)
     {
         $disk = Storage::disk('local');
-        $file = config('backup.backup.name') . '/' . $file_name;
+        $file = config('backup.backup.name').'/'.$file_name;
 
         if ($disk->exists($file)) {
-            logUserAccess(__METHOD__ .  ' | Deleting backup file: ' . $file_name);
+            logUserAccess(__METHOD__.' | Deleting backup file: '.$file_name);
 
             $disk->delete($file);
 
             flash("`{$file_name}` deleted successfully.")->success()->important();
 
-            logUserAccess(__METHOD__ .  ' | Deleted backup file: ' . $file_name);
+            logUserAccess(__METHOD__.' | Deleted backup file: '.$file_name);
 
             return redirect()->back();
         }
 
-        logUserAccess(__METHOD__ .  ' | Failed to delete backup file: ' . $file_name);
+        logUserAccess(__METHOD__.' | Failed to delete backup file: '.$file_name);
 
         abort(404, "The backup file doesn't exist.");
     }

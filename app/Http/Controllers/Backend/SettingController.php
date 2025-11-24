@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class SettingController extends Controller
@@ -57,7 +55,7 @@ class SettingController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "backend.{$module_path}.index",
@@ -88,7 +86,7 @@ class SettingController extends Controller
             }
         }
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return redirect()->back()->with('status', 'Settings has been saved.');
     }
