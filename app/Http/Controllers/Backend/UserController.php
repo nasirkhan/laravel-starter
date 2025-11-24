@@ -72,7 +72,7 @@ class UserController extends Controller
         $page_heading = ucfirst($module_title);
         $title = $page_heading . ' ' . ucfirst($module_action);
 
-        $$module_name = $module_model::paginate();
+        // $$module_name = $module_model::paginate();
 
         logUserAccess($module_title . ' ' . $module_action);
 
@@ -191,8 +191,12 @@ class UserController extends Controller
 
         $module_action = 'Create';
 
-        $roles = Role::with('permissions')->get();
-        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
+        $roles = \Illuminate\Support\Facades\Cache::rememberForever('roles_with_permissions', function () {
+            return Role::with('permissions')->get();
+        });
+        $permissions = \Illuminate\Support\Facades\Cache::rememberForever('permissions_list', function () {
+            return Permission::select('name', 'id')->orderBy('id')->get();
+        });
 
         logUserAccess($module_title . ' ' . $module_action);
 
@@ -247,6 +251,9 @@ class UserController extends Controller
         // Sync Permissions
         $$module_name_singular->syncPermissions(isset($validated_data['permissions']) ? $validated_data['permissions'] : []);
 
+        // Clear user's permission cache
+        $$module_name_singular->clearPermissionCache();
+
         // Set Username
         $id = $$module_name_singular->id;
         $username = config('app.initial_username') + $id;
@@ -290,7 +297,7 @@ class UserController extends Controller
 
         $module_action = 'Show';
 
-        $$module_name_singular = $module_model::with(['providers', 'roles', 'permissions'])->findOrFail($id);
+        $$module_name_singular = $module_model::with(['providers', 'roles.permissions', 'permissions'])->findOrFail($id);
 
         logUserAccess(__METHOD__ . " | {$$module_name_singular->name} ($id)");
 
@@ -407,8 +414,12 @@ class UserController extends Controller
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        $roles = Role::with('permissions')->get();
-        $permissions = Permission::select('name', 'id')->orderBy('id')->get();
+        $roles = \Illuminate\Support\Facades\Cache::rememberForever('roles_with_permissions', function () {
+            return Role::with('permissions')->get();
+        });
+        $permissions = \Illuminate\Support\Facades\Cache::rememberForever('permissions_list', function () {
+            return Permission::select('name', 'id')->orderBy('id')->get();
+        });
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -475,6 +486,9 @@ class UserController extends Controller
 
         // Sync Permissions
         $$module_name_singular->syncPermissions((isset($validated_data['permissions'])) ? $validated_data['permissions'] : []);
+
+        // Clear user's permission cache
+        $$module_name_singular->clearPermissionCache();
 
         // Clear Cache
         Artisan::call('cache:clear');
