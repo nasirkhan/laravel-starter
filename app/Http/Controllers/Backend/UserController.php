@@ -70,11 +70,11 @@ class UserController extends Controller
         $module_action = 'List';
 
         $page_heading = ucfirst($module_title);
-        $title = $page_heading . ' ' . ucfirst($module_action);
+        $title = $page_heading.' '.ucfirst($module_action);
 
         // $$module_name = $module_model::paginate();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.index",
@@ -111,7 +111,7 @@ class UserController extends Controller
             ->editColumn('name', '<strong>{{$name}}</strong>')
             ->editColumn('status', function ($data) {
                 $return_data = $data->status_label;
-                $return_data .= '<br>' . $data->confirmed_label;
+                $return_data .= '<br>'.$data->confirmed_label;
 
                 return $return_data;
             })
@@ -151,7 +151,7 @@ class UserController extends Controller
         $module_action = 'Index List';
 
         $page_heading = label_case($module_title);
-        $title = $page_heading . ' ' . label_case($module_action);
+        $title = $page_heading.' '.label_case($module_action);
 
         $term = trim($request->q);
 
@@ -166,11 +166,11 @@ class UserController extends Controller
         foreach ($query_data as $row) {
             $$module_name[] = [
                 'id' => $row->id,
-                'text' => $row->name . ' (Email: ' . $row->email . ')',
+                'text' => $row->name.' (Email: '.$row->email.')',
             ];
         }
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return response()->json($$module_name);
     }
@@ -198,7 +198,7 @@ class UserController extends Controller
             return Permission::select('name', 'id')->orderBy('id')->get();
         });
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.create",
@@ -233,7 +233,7 @@ class UserController extends Controller
 
         $data_array = Arr::except($validated_data, ['_token', 'roles', 'permissions', 'password_confirmation']);
 
-        $data_array['name'] = $request->first_name . ' ' . $request->last_name;
+        $data_array['name'] = $request->first_name.' '.$request->last_name;
         $data_array['password'] = $request->password;
 
         if ($request->confirmed === 1) {
@@ -262,7 +262,7 @@ class UserController extends Controller
 
         event(new UserCreated($$module_name_singular));
 
-        flash("New '" . Str::singular($module_title) . "' Created")->success()->important();
+        flash("New '".Str::singular($module_title)."' Created")->success()->important();
 
         if ($request->email_credentials === 1) {
             $data = [
@@ -275,7 +275,7 @@ class UserController extends Controller
 
         Artisan::call('cache:clear');
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return redirect("admin/{$module_name}");
     }
@@ -299,7 +299,7 @@ class UserController extends Controller
 
         $$module_name_singular = $module_model::with(['providers', 'roles.permissions', 'permissions'])->findOrFail($id);
 
-        logUserAccess(__METHOD__ . " | {$$module_name_singular->name} ($id)");
+        logUserAccess(__METHOD__." | {$$module_name_singular->name} ($id)");
 
         return view(
             "{$module_path}.{$module_name}.show",
@@ -327,7 +327,7 @@ class UserController extends Controller
         $module_action = 'Change Password';
 
         $page_heading = label_case($module_title);
-        $title = $page_heading . ' ' . label_case($module_action);
+        $title = $page_heading.' '.label_case($module_action);
 
         if (! Auth::user()->can('edit_users')) {
             $id = Auth::user()->id;
@@ -379,7 +379,7 @@ class UserController extends Controller
 
         $$module_name_singular->update($request_data);
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -456,12 +456,12 @@ class UserController extends Controller
         $validated_data = $request->validate([
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
-            'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,' . $id,
+            'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'.$id,
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
 
-        $validated_data['name'] = $validated_data['first_name'] . ' ' . $validated_data['last_name'];
+        $validated_data['name'] = $validated_data['first_name'].' '.$validated_data['last_name'];
 
         $$module_name_singular = User::findOrFail($id);
 
@@ -473,7 +473,7 @@ class UserController extends Controller
             // Clear Cache
             Artisan::call('cache:clear');
 
-            flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+            flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
             return redirect("admin/{$module_name}");
         }
@@ -495,7 +495,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -539,7 +539,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash($$module_name_singular->name . ' User Successfully Deleted!')->success()->important();
+        flash($$module_name_singular->name.' User Successfully Deleted!')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} ($id)");
 
@@ -564,7 +564,7 @@ class UserController extends Controller
 
         $$module_name = $module_model::onlyTrashed()->orderBy('deleted_at', 'desc')->paginate();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         logUserAccess("{$module_title} {$module_action}");
 
@@ -601,7 +601,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash($$module_name_singular->name . ' Successfully Restoreded!')->success()->important();
+        flash($$module_name_singular->name.' Successfully Restoreded!')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -634,7 +634,7 @@ class UserController extends Controller
         if (Auth::user()->id == $id || $id == 1) {
             flash("You can not 'Block' this user!")->success()->important();
 
-            Log::notice(label_case($module_title . ' ' . $module_action) . ' Failed | User:' . Auth::user()->name . '(ID:' . Auth::user()->id . ')');
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
             return redirect()->back();
         }
@@ -646,7 +646,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash($$module_name_singular->name . ' User Successfully Blocked!')->success()->important();
+        flash($$module_name_singular->name.' User Successfully Blocked!')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -679,7 +679,7 @@ class UserController extends Controller
         if (Auth::user()->id == $id || $id == 1) {
             flash("You can not 'Unblock' this user!")->warning()->important();
 
-            Log::notice(label_case($module_title . ' ' . $module_action) . ' Failed | User:' . Auth::user()->name . '(ID:' . Auth::user()->id . ')');
+            Log::notice(label_case($module_title.' '.$module_action).' Failed | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
 
             return redirect()->back();
         }
@@ -691,7 +691,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash($$module_name_singular->name . ' - User Successfully Unblocked!')->success()->important();
+        flash($$module_name_singular->name.' - User Successfully Unblocked!')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -728,7 +728,7 @@ class UserController extends Controller
         if ($user_id == $user_provider->user->id) {
             $user_provider->delete();
 
-            flash('Unlinked from User, "' . $user_provider->user->name . '"!')->success()->important();
+            flash('Unlinked from User, "'.$user_provider->user->name.'"!')->success()->important();
 
             return redirect()->back();
         }
@@ -776,7 +776,7 @@ class UserController extends Controller
 
         if ($user) {
             if ($user->email_verified_at === null) {
-                Log::info($user->name . ' (' . $user->id . ') - User Requested for Email Verification.');
+                Log::info($user->name.' ('.$user->id.') - User Requested for Email Verification.');
 
                 // Send Email To Registered User
                 $user->sendEmailVerificationNotification();
@@ -785,11 +785,11 @@ class UserController extends Controller
 
                 return redirect()->back();
             }
-            Log::info($user->name . ' (' . $user->id . ') - User Requested but Email already verified at.' . $user->email_verified_at);
+            Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
-            flash($user->name . ', You already confirmed your email address at ' . $user->email_verified_at->isoFormat('LL'))->success()->important();
+            flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
 
-            logUserAccess($module_title . ' ' . $module_action);
+            logUserAccess($module_title.' '.$module_action);
 
             return redirect()->back();
         }
