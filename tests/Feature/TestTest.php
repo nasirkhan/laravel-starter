@@ -54,12 +54,9 @@ class TestTest extends TestCase
 
         $fields_data['app_name'] = 'Awesome Laravel Starter';
 
-        dump($fields_data);
-
         $response = $this->postJson(route('backend.settings.store'), $fields_data);
 
         $response->assertStatus(302);
-        dump($response->getContent());
 
         // dump(setting('app_name'));
         // $response->assertSeeText('Awesome Laravel Starter');

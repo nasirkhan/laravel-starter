@@ -118,19 +118,11 @@ class RouteAccessibilityTest extends TestCase
 
                 $status = $response->getStatusCode();
 
-                if ($status === 500) {
-                    $exception = $response->exception ? $response->exception->getMessage() : 'Unknown error';
-                    echo "\nFAILED ROUTE (500): {$uri} - {$exception}\n";
-                } elseif ($status === 404) {
-                    echo "\nFAILED ROUTE (404): {$uri}\n";
-                }
-
                 // Assert status is not 404 (Not Found) and not 500 (Server Error)
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
                 $this->assertNotEquals(500, $status, "Route {$uri} returned 500.");
             } catch (\Exception $e) {
-                echo "\nEXCEPTION ON ROUTE: {$uri} - ".$e->getMessage()."\n";
-                $this->fail("Route {$uri} threw exception: ".$e->getMessage());
+                $this->fail("Route {$uri} threw exception: " . $e->getMessage());
             }
         }
     }
