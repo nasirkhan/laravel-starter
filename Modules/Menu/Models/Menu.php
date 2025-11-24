@@ -235,19 +235,19 @@ class Menu extends BaseModel
             if ($location) {
                 // Try to clear specific menu cache keys for the location
                 $prefix = \Illuminate\Support\Facades\Cache::getPrefix();
-                $pattern = $prefix . 'menu_data_' . $location;
+                $pattern = $prefix.'menu_data_'.$location;
 
                 // For database cache, we can query and delete specific keys
                 if (method_exists($cacheStore, 'getStore') && $cacheStore->getStore() instanceof \Illuminate\Cache\DatabaseStore) {
                     try {
                         // Delete cache entries that match our menu pattern
                         \Illuminate\Support\Facades\DB::table('cache')
-                            ->where('key', 'like', $pattern . '%')
+                            ->where('key', 'like', $pattern.'%')
                             ->delete();
                     } catch (\Exception $e) {
                         // If database query fails, don't clear cache to avoid breaking other functionality
                         // Log the error for debugging
-                        \Illuminate\Support\Facades\Log::warning('Failed to clear menu cache from database: ' . $e->getMessage());
+                        \Illuminate\Support\Facades\Log::warning('Failed to clear menu cache from database: '.$e->getMessage());
                     }
                 } elseif ($cacheStore instanceof \Illuminate\Cache\RedisStore) {
                     // For Redis, selective clearing is complex and error-prone in CI/CD
@@ -257,7 +257,7 @@ class Menu extends BaseModel
                     // For other cache drivers (file, memcached, array, etc.), we need to be more careful
                     // Only flush if we can be sure it won't break other functionality
                     // For now, we'll skip clearing to avoid potential issues in CI/CD
-                    \Illuminate\Support\Facades\Log::info('Menu cache clearing skipped for cache driver: ' . get_class($cacheStore));
+                    \Illuminate\Support\Facades\Log::info('Menu cache clearing skipped for cache driver: '.get_class($cacheStore));
                 }
             } else {
                 // Clear all menu caches - this is more aggressive but necessary for complete cache clearing
@@ -265,7 +265,7 @@ class Menu extends BaseModel
             }
         } catch (\Exception $e) {
             // If anything goes wrong with cache clearing, log it but don't fail
-            \Illuminate\Support\Facades\Log::error('Menu cache clearing failed: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Menu cache clearing failed: '.$e->getMessage());
         }
     }
 
