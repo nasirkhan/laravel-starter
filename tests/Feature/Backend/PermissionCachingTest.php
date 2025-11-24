@@ -42,7 +42,7 @@ class PermissionCachingTest extends TestCase
         $roles = $this->user->roles;
 
         $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
-        $cacheKey = 'roles_user_' . $this->user->id . '_' . $lastUpdated;
+        $cacheKey = 'roles_user_'.$this->user->id.'_'.$lastUpdated;
 
         $this->assertTrue(Cache::has($cacheKey), 'Roles should be cached after first access');
         $this->assertCount(1, $roles);
@@ -58,7 +58,7 @@ class PermissionCachingTest extends TestCase
         $permissions = $this->user->permissions;
 
         $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
-        $cacheKey = 'permissions_user_' . $this->user->id . '_' . $lastUpdated;
+        $cacheKey = 'permissions_user_'.$this->user->id.'_'.$lastUpdated;
 
         $this->assertTrue(Cache::has($cacheKey), 'Permissions should be cached after first access');
         $this->assertCount(1, $permissions);
@@ -135,8 +135,8 @@ class PermissionCachingTest extends TestCase
         $this->assertNotEquals($oldLastUpdated, $newLastUpdated, 'Timestamp should have changed');
 
         // Old cache key should not exist
-        $oldCacheKey = 'roles_user_' . $this->user->id . '_' . $oldLastUpdated;
-        $newCacheKey = 'roles_user_' . $this->user->id . '_' . $newLastUpdated;
+        $oldCacheKey = 'roles_user_'.$this->user->id.'_'.$oldLastUpdated;
+        $newCacheKey = 'roles_user_'.$this->user->id.'_'.$newLastUpdated;
 
         $this->assertTrue(Cache::has($newCacheKey), 'New cache key should exist');
     }
@@ -150,7 +150,7 @@ class PermissionCachingTest extends TestCase
         $this->user->roles;
 
         $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
-        $cacheKey = 'roles_user_' . $this->user->id . '_' . $lastUpdated;
+        $cacheKey = 'roles_user_'.$this->user->id.'_'.$lastUpdated;
 
         $this->assertTrue(Cache::has($cacheKey));
 

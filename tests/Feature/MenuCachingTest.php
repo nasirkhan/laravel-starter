@@ -28,8 +28,8 @@ class MenuCachingTest extends TestCase
         $user2 = User::factory()->create();
 
         // The cache keys should be different for different users
-        $cacheKey1 = 'menu_data_test-location_' . $user1->id . '_en';
-        $cacheKey2 = 'menu_data_test-location_' . $user2->id . '_en';
+        $cacheKey1 = 'menu_data_test-location_'.$user1->id.'_en';
+        $cacheKey2 = 'menu_data_test-location_'.$user2->id.'_en';
 
         $this->assertNotEquals($cacheKey1, $cacheKey2, 'Cache keys should be different for different users');
     }
@@ -37,11 +37,11 @@ class MenuCachingTest extends TestCase
     #[Test]
     public function menu_cache_key_format_is_correct()
     {
-        $expectedFormat = 'menu_data_test-location_' . $this->user->id . '_en';
+        $expectedFormat = 'menu_data_test-location_'.$this->user->id.'_en';
 
         // Verify the cache key format includes location, user ID, and locale
         $this->assertStringContainsString('menu_data_', $expectedFormat);
-        $this->assertStringContainsString((string)$this->user->id, $expectedFormat);
+        $this->assertStringContainsString((string) $this->user->id, $expectedFormat);
         $this->assertStringContainsString('_en', $expectedFormat);
     }
 }
