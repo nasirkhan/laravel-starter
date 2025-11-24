@@ -77,14 +77,14 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     public function clearPermissionCache()
     {
         $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
-        \Illuminate\Support\Facades\Cache::forget('roles_user_' . $this->id . '_' . $lastUpdated);
-        \Illuminate\Support\Facades\Cache::forget('permissions_user_' . $this->id . '_' . $lastUpdated);
+        \Illuminate\Support\Facades\Cache::forget('roles_user_'.$this->id.'_'.$lastUpdated);
+        \Illuminate\Support\Facades\Cache::forget('permissions_user_'.$this->id.'_'.$lastUpdated);
     }
 
     /**
      * Override Spatie's hasRole to use cached roles.
      */
-    public function hasRole($roles, string $guard = null): bool
+    public function hasRole($roles, ?string $guard = null): bool
     {
         if (! static::$useCachedPermissions) {
             return $this->hasRoleOriginal($roles, $guard);
@@ -120,6 +120,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                     return true;
                 }
             }
+
             return false;
         }
 

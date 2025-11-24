@@ -2,8 +2,6 @@
 
 namespace App\Models\Presenters;
 
-use App\Models\Permission;
-use App\Models\Role;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 
@@ -65,7 +63,7 @@ trait UserPresenter
     public function getPermissionsAttribute()
     {
         $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
-        $cacheKey = 'permissions_user_' . $this->id . '_' . $lastUpdated;
+        $cacheKey = 'permissions_user_'.$this->id.'_'.$lastUpdated;
 
         // Check cache first
         if (Cache::has($cacheKey)) {
@@ -76,6 +74,7 @@ trait UserPresenter
         if ($this->relationLoaded('permissions')) {
             $permissions = $this->getRelation('permissions');
             Cache::forever($cacheKey, $permissions);
+
             return $permissions;
         }
 
@@ -93,7 +92,7 @@ trait UserPresenter
     public function getRolesAttribute()
     {
         $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
-        $cacheKey = 'roles_user_' . $this->id . '_' . $lastUpdated;
+        $cacheKey = 'roles_user_'.$this->id.'_'.$lastUpdated;
 
         // Check cache first
         if (Cache::has($cacheKey)) {
@@ -104,6 +103,7 @@ trait UserPresenter
         if ($this->relationLoaded('roles')) {
             $roles = $this->getRelation('roles');
             Cache::forever($cacheKey, $roles);
+
             return $roles;
         }
 
