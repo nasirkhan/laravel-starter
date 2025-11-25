@@ -102,6 +102,8 @@ class BackendBaseController extends Controller
             ];
         }
 
+        logUserAccess($module_title.' '.$module_action);
+
         return response()->json($$module_name);
     }
 

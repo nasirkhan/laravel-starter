@@ -23,26 +23,35 @@ class RouteAccessibilityTest extends TestCase
     {
         $routes = Route::getRoutes();
 
-        // Create a user for auth tests, ensuring username is set for profile routes
+        // Create a user for auth tests
         /** @var \App\Models\User $user */
         $user = User::factory()->create([
             'username' => 'testuser',
         ]);
+
+        // Create role if it doesn't exist
+        if (! \Spatie\Permission\Models\Role::where('name', 'super-admin')->exists()) {
+            \Spatie\Permission\Models\Role::create(['name' => 'super-admin']);
+        }
+
+        $user->assignRole('super-admin'); // Ensure user has access to everything
         $user = $user->fresh();
 
-        // Create a category and post for post routes
-        $category = Category::factory()->create([
-            'slug' => 'test-category-slug',
-        ]);
-        $tag = Tag::factory()->create([
-            'slug' => 'test-tag-slug',
-        ]);
+        // Create necessary data for route parameters
+        $category = Category::factory()->create(['slug' => 'test-category-slug']);
+        $tag = Tag::factory()->create(['slug' => 'test-tag-slug']);
         $post = Post::factory()->create([
             'category_id' => $category->id,
             'slug' => 'test-post-slug',
             'name' => 'Test Post',
             'created_by_name' => 'Test User',
         ]);
+
+        // Create a menu with nested items to test lazy loading fix
+        $menu = \Modules\Menu\Models\Menu::factory()->create(['location' => 'backend-sidebar-1']);
+        $parentItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'name' => 'Parent']);
+        $childItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $parentItem->id, 'name' => 'Child']);
+        $grandChildItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $childItem->id, 'name' => 'Grandchild']);
 
         foreach ($routes as $route) {
             if (! in_array('GET', $route->methods())) {
@@ -51,38 +60,16 @@ class RouteAccessibilityTest extends TestCase
 
             $uri = $route->uri();
 
-            // Skip debugbar routes if present
-            if (str_contains($uri, '_debugbar')) {
-                continue;
-            }
-
-            // Skip ignition routes if present
-            if (str_contains($uri, '_ignition')) {
-                continue;
-            }
-
-            // Skip sanctum routes
-            if (str_contains($uri, 'sanctum')) {
-                continue;
-            }
-
-            // Skip livewire routes (often internal or POST)
-            if (str_contains($uri, 'livewire')) {
-                continue;
-            }
-
-            // Skip filemanager routes (known to cause issues/require specific setup)
-            if (str_contains($uri, 'filemanager')) {
-                continue;
-            }
-
-            // Skip download routes (return binary response)
-            if (str_contains($uri, 'download')) {
-                continue;
-            }
-
-            // Skip email confirmation resend route (throttled)
-            if (str_contains($uri, 'emailConfirmationResend')) {
+            // Skip debugbar, ignition, sanctum, etc.
+            if (
+                str_contains($uri, '_debugbar') ||
+                str_contains($uri, '_ignition') ||
+                str_contains($uri, 'sanctum') ||
+                str_contains($uri, 'livewire') ||
+                str_contains($uri, 'filemanager') ||
+                str_contains($uri, 'download') ||
+                str_contains($uri, 'emailConfirmationResend')
+            ) {
                 continue;
             }
 
@@ -90,6 +77,7 @@ class RouteAccessibilityTest extends TestCase
             if (str_contains($uri, '{')) {
                 $uri = str_replace('{language}', 'en', $uri);
 
+                // Module specific replacements
                 if (str_contains($uri, 'posts')) {
                     $uri = str_replace('{id}', encode_id($post->id), $uri);
                     $uri = str_replace('{slug?}', $post->slug, $uri);
@@ -99,10 +87,17 @@ class RouteAccessibilityTest extends TestCase
                 } elseif (str_contains($uri, 'tags')) {
                     $uri = str_replace('{id}', encode_id($tag->id), $uri);
                     $uri = str_replace('{slug?}', $tag->slug, $uri);
+                } elseif (str_contains($uri, 'menus')) {
+                    $uri = str_replace('{id}', $menu->id, $uri);
+                    $uri = str_replace('{slug?}', 'dummy-slug', $uri);
+                } elseif (str_contains($uri, 'menuitems')) {
+                    $uri = str_replace('{id}', $parentItem->id, $uri);
                 } else {
+                    // Generic fallback
                     $uri = str_replace('{id}', $user->id, $uri);
                 }
 
+                // Common parameters
                 $uri = str_replace('{slug?}', 'dummy-slug', $uri);
                 $uri = str_replace('{username?}', $user->username, $uri);
                 $uri = str_replace('{file_name}', 'dummy.txt', $uri);
@@ -118,18 +113,16 @@ class RouteAccessibilityTest extends TestCase
 
                 $status = $response->getStatusCode();
 
-                if ($status === 500) {
-                    $exception = $response->exception ? $response->exception->getMessage() : 'Unknown error';
-                    echo "\nFAILED ROUTE (500): {$uri} - {$exception}\n";
-                } elseif ($status === 404) {
-                    echo "\nFAILED ROUTE (404): {$uri}\n";
-                }
-
                 // Assert status is not 404 (Not Found) and not 500 (Server Error)
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
-                $this->assertNotEquals(500, $status, "Route {$uri} returned 500.");
+                $this->assertNotEquals(500, $status, "Route {$uri} returned 500. Exception: ".$response->exception?->getMessage());
+
+                // Specifically check for lazy loading violations if enabled in test environment
+                if ($response->exception) {
+                    $this->assertStringNotContainsString('LazyLoadingViolationException', $response->exception->getMessage(), "Route {$uri} caused LazyLoadingViolationException.");
+                }
             } catch (\Exception $e) {
-                echo "\nEXCEPTION ON ROUTE: {$uri} - ".$e->getMessage()."\n";
+                dump("Route {$uri} failed: ".$e->getMessage());
                 $this->fail("Route {$uri} threw exception: ".$e->getMessage());
             }
         }

@@ -34,11 +34,11 @@
                     <div class="table-responsive">
                         <table class="table-hover table-bordered table">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                                     <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
                                     <th>{{ __("labels.backend.$module_name.fields.users_count") }}</th>
-                                    <th class="text-end">{{ __("labels.backend.action") }}</th>
+                                    <th>{{ __("labels.backend.action") }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,8 +56,10 @@
                                                 @endforeach
                                             </ul>
                                         </td>
-                                        <td>
-                                            <span class="badge bg-primary">{{ $module_name_singular->users_count }}</span>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary">
+                                                {{ $module_name_singular->users_count }}
+                                            </span>
                                         </td>
                                         <td class="text-end">
                                             @can("edit_" . $module_name)
@@ -84,13 +86,8 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <div class="col-12 col-sm-7">
-                    <div class="float-left">{!! $$module_name->total() !!} {{ __("labels.backend.total") }}</div>
-                </div>
-                <div class="col-12 col-sm-5">
-                    <div class="float-end">
-                        {{ $$module_name->links("pagination::bootstrap-5") }}
-                    </div>
+                <div class="col-12 mt-2">
+                    {{ $$module_name->links("pagination::bootstrap-5") }}
                 </div>
             </div>
         </div>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class SettingController extends Controller
@@ -57,7 +55,7 @@ class SettingController extends Controller
 
         $$module_name = $module_model::paginate();
 
-        Log::info(label_case($module_title.' '.$module_action).' | User:'.Auth::user()->name.'(ID:'.Auth::user()->id.')');
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "backend.{$module_path}.index",
@@ -67,6 +65,15 @@ class SettingController extends Controller
 
     public function store(Request $request)
     {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Store';
+
         $rules = Setting::getValidationRules();
 
         $data = $request->validate($rules);
@@ -78,6 +85,8 @@ class SettingController extends Controller
                 Setting::add($key, $val, Setting::getDataType($key));
             }
         }
+
+        logUserAccess($module_title.' '.$module_action);
 
         return redirect()->back()->with('status', 'Settings has been saved.');
     }

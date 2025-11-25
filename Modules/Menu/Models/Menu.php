@@ -93,9 +93,9 @@ class Menu extends BaseModel
         $locale = $locale ?? app()->getLocale();
         $defaultLocale = config('app.fallback_locale', 'en');
 
-        // Create cache key based on location, user permissions, and locale
-        $userPermissions = $user ? implode(',', $user->getAllPermissions()->pluck('name')->sort()->toArray()) : 'guest';
-        $cacheKey = "menu_data_{$location}_{$userPermissions}_{$locale}";
+        // Create cache key based on location, user id, and locale
+        $userId = $user ? $user->id : 'guest';
+        $cacheKey = "menu_data_{$location}_{$userId}_{$locale}";
 
         return \Illuminate\Support\Facades\Cache::remember($cacheKey, 3600, function () use ($location, $user, $locale, $defaultLocale) {
             // Try to get menus in current locale first

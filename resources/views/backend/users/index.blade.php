@@ -22,7 +22,7 @@
                 :module_action="$module_action"
             />
 
-            <livewire:users-index />
+            <livewire:backend.users-index />
         </div>
         <div class="card-footer"></div>
     </div>

@@ -2,8 +2,6 @@
 
 namespace App\Models\Presenters;
 
-use App\Models\Permission;
-use App\Models\Role;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 
@@ -64,27 +62,55 @@ trait UserPresenter
      */
     public function getPermissionsAttribute()
     {
-        $permissions = Cache::rememberForever('permissions_cache', function () {
-            return Permission::select('permissions.*', 'model_has_permissions.*')
-                ->join('model_has_permissions', 'permissions.id', '=', 'model_has_permissions.permission_id')
-                ->get();
-        });
+        $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
+        $cacheKey = 'permissions_user_'.$this->id.'_'.$lastUpdated;
 
-        return $permissions->where('model_id', $this->id);
+        // Check cache first
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+        // If relation is loaded (via eager loading), cache it and return
+        if ($this->relationLoaded('permissions')) {
+            $permissions = $this->getRelation('permissions');
+            Cache::forever($cacheKey, $permissions);
+
+            return $permissions;
+        }
+
+        // Otherwise, query and cache
+        return Cache::rememberForever($cacheKey, function () {
+            return $this->permissions()->get();
+        });
     }
 
     /**
-     * Cache Roles Query.
+     * Get the user's roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getRolesAttribute()
     {
-        $roles = Cache::rememberForever('roles_cache', function () {
-            return Role::select('roles.*', 'model_has_roles.*')
-                ->join('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
-                ->get();
-        });
+        $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
+        $cacheKey = 'roles_user_'.$this->id.'_'.$lastUpdated;
 
-        return $roles->where('model_id', $this->id);
+        // Check cache first
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+        // If relation is loaded (via eager loading), cache it and return
+        if ($this->relationLoaded('roles')) {
+            $roles = $this->getRelation('roles');
+            Cache::forever($cacheKey, $roles);
+
+            return $roles;
+        }
+
+        // Otherwise, query and cache
+        return Cache::rememberForever($cacheKey, function () {
+            return $this->roles()->with('permissions')->get();
+        });
     }
 
     /**

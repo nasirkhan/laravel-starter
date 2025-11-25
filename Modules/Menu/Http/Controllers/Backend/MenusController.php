@@ -29,6 +29,37 @@ class MenusController extends BackendBaseController
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show($id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Show';
+
+        // Eager load items and their children recursively to prevent lazy loading violations
+        // We load up to 5 levels deep which should be sufficient for most menus
+        $$module_name_singular = $module_model::with([
+            'items.children.children.children.children',
+        ])->findOrFail($id);
+
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+
+        return view(
+            "{$module_path}.{$module_name}.show",
+            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}")
+        );
+    }
+
+    /**
      * Remove the specified resource from storage.
      * Prevents deletion if the menu has menu items.
      *

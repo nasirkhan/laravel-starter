@@ -81,6 +81,8 @@ class BackupController extends Controller
         // reverse the backups, so the newest one would be on top
         $$module_name = array_reverse($$module_name);
 
+        logUserAccess($module_title.' '.$module_action);
+
         return view(
             "backend.{$module_path}.backups",
             compact('module_title', 'module_name', "{$module_name}", 'module_path', 'module_icon', 'module_action', 'module_name_singular')
@@ -102,8 +104,12 @@ class BackupController extends Controller
         $module_model = $this->module_model;
         $module_name_singular = Str::singular($module_name);
 
+        $module_action = 'Create';
+
         if (demo_mode()) {
             flash('Backup Creation Skillped on Demo Mode!')->warning()->important();
+
+            logUserAccess($module_title.' '.$module_action);
 
             return redirect()->route("backend.{$module_path}.index");
         }
@@ -115,6 +121,8 @@ class BackupController extends Controller
 
             // Log the results
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
+
+            logUserAccess($module_title.' '.$module_action);
 
             // return the results as a response to the ajax call
             flash('New backup created')->success()->important();
@@ -138,8 +146,13 @@ class BackupController extends Controller
         $file = config('backup.backup.name').'/'.$file_name;
 
         if ($disk->exists($file)) {
+            logUserAccess(__METHOD__.' | Downloaded backup file: '.$file_name);
+
             return Storage::download($file);
         }
+
+        logUserAccess(__METHOD__.' | Failed to download backup file: '.$file_name);
+
         abort(404, "The backup file doesn't exist.");
     }
 
@@ -152,12 +165,19 @@ class BackupController extends Controller
         $file = config('backup.backup.name').'/'.$file_name;
 
         if ($disk->exists($file)) {
+            logUserAccess(__METHOD__.' | Deleting backup file: '.$file_name);
+
             $disk->delete($file);
 
             flash("`{$file_name}` deleted successfully.")->success()->important();
 
+            logUserAccess(__METHOD__.' | Deleted backup file: '.$file_name);
+
             return redirect()->back();
         }
+
+        logUserAccess(__METHOD__.' | Failed to delete backup file: '.$file_name);
+
         abort(404, "The backup file doesn't exist.");
     }
 }
