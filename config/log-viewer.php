@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'back_to_system_url' => config('app.url', null) . '/admin',
+    'back_to_system_url' => config('app.url', null).'/admin',
 
     'back_to_system_label' => 'Back to Admin Dashboard', // Displayed by default: "Back to {{ app.name }}"
 
