@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-sm text-gray-500 sm:w-1/2">
+                <div class="mt-1 text-sm text-gray-500 sm:max-w-2xl">
                     Except where otherwise noted, content on this site is created by
                     <a class="hover:underline" href="{{ $author_url }}" rel="cc:attributionURL dct:creator">
                         {{ $author }}
