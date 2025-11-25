@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NotificationsController extends Controller
@@ -58,7 +57,7 @@ class NotificationsController extends Controller
         $$module_name = Auth::user()->notifications()->paginate();
         $unread_notifications_count = Auth::user()->unreadNotifications()->count();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "backend.{$module_path}.index",
@@ -91,11 +90,11 @@ class NotificationsController extends Controller
                 $$module_name_singular->save();
             }
         } else {
-            logUserAccess($module_title . ' ' . $module_action);
+            logUserAccess($module_title.' '.$module_action);
             abort(404);
         }
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "backend.{$module_name}.show",
@@ -126,7 +125,7 @@ class NotificationsController extends Controller
 
         flash('All Notifications Deleted')->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return back();
     }
@@ -153,7 +152,7 @@ class NotificationsController extends Controller
 
         flash('All Notifications Marked As Read')->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return back();
     }
