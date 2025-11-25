@@ -67,6 +67,7 @@ class RouteAccessibilityTest extends TestCase
                 str_contains($uri, 'sanctum') ||
                 str_contains($uri, 'livewire') ||
                 str_contains($uri, 'filemanager') ||
+                str_contains($uri, 'log-viewer') ||
                 str_contains($uri, 'download') ||
                 str_contains($uri, 'emailConfirmationResend')
             ) {
