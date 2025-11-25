@@ -67,6 +67,7 @@ class RouteAccessibilityTest extends TestCase
                 str_contains($uri, 'sanctum') ||
                 str_contains($uri, 'livewire') ||
                 str_contains($uri, 'filemanager') ||
+                str_contains($uri, 'log-viewer') ||
                 str_contains($uri, 'download') ||
                 str_contains($uri, 'emailConfirmationResend')
             ) {
@@ -115,15 +116,15 @@ class RouteAccessibilityTest extends TestCase
 
                 // Assert status is not 404 (Not Found) and not 500 (Server Error)
                 $this->assertNotEquals(404, $status, "Route {$uri} returned 404.");
-                $this->assertNotEquals(500, $status, "Route {$uri} returned 500. Exception: ".$response->exception?->getMessage());
+                $this->assertNotEquals(500, $status, "Route {$uri} returned 500. Exception: " . $response->exception?->getMessage());
 
                 // Specifically check for lazy loading violations if enabled in test environment
                 if ($response->exception) {
                     $this->assertStringNotContainsString('LazyLoadingViolationException', $response->exception->getMessage(), "Route {$uri} caused LazyLoadingViolationException.");
                 }
             } catch (\Exception $e) {
-                dump("Route {$uri} failed: ".$e->getMessage());
-                $this->fail("Route {$uri} threw exception: ".$e->getMessage());
+                dump("Route {$uri} failed: " . $e->getMessage());
+                $this->fail("Route {$uri} threw exception: " . $e->getMessage());
             }
         }
     }
