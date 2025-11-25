@@ -51,7 +51,7 @@ class MenusController extends BackendBaseController
             'items.children.children.children.children',
         ])->findOrFail($id);
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.show",
@@ -81,9 +81,9 @@ class MenusController extends BackendBaseController
         if ($$module_name_singular->allItems()->count() > 0) {
             $itemCount = $$module_name_singular->allItems()->count();
 
-            flash("Cannot delete menu '" . $$module_name_singular->name . "'! This menu has {$itemCount} menu item(s). Please delete all menu items first.", 'warning');
+            flash("Cannot delete menu '".$$module_name_singular->name."'! This menu has {$itemCount} menu item(s). Please delete all menu items first.", 'warning');
 
-            logUserAccess($module_title . ' ' . $module_action . ' Failed | Id: ' . $$module_name_singular->id . ' | Reason: Has menu items');
+            logUserAccess($module_title.' '.$module_action.' Failed | Id: '.$$module_name_singular->id.' | Reason: Has menu items');
 
             return redirect()->route("backend.{$module_name}.index");
         }
@@ -97,9 +97,9 @@ class MenusController extends BackendBaseController
         // Clear menu cache for this location
         \Modules\Menu\Models\Menu::clearMenuCache($location);
 
-        flash(Str::singular($module_title) . ' Deleted Successfully!')->success()->important();
+        flash(Str::singular($module_title).' Deleted Successfully!')->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route("backend.{$module_name}.index");
     }
