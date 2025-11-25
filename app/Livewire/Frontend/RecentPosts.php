@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Frontend;
 
 use Livewire\Component;
 use Modules\Post\Models\Post;
@@ -17,6 +17,6 @@ class RecentPosts extends Component
 
         $recentPosts = Post::recentlyPublished()->take($limit)->get();
 
-        return view('livewire.recent-posts', compact('recentPosts'));
+        return view('livewire.frontend.recent-posts', compact('recentPosts'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Frontend;
 
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -14,6 +14,6 @@ class Privacy extends Component
         $company_name = app_name();
         $app_email = setting('email');
 
-        return view('livewire.privacy', compact('title', 'company_name', 'app_email'));
+        return view('livewire.frontend.privacy', compact('title', 'company_name', 'app_email'));
     }
 }
