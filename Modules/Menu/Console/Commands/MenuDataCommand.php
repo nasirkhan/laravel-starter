@@ -55,7 +55,7 @@ class MenuDataCommand extends Command
         $files = glob(base_path('Modules/*/database/seeders/data/menu_data.php'));
 
         if (empty($files)) {
-            $this->error("No menu_data.php files found in Modules.");
+            $this->error('No menu_data.php files found in Modules.');
 
             return 1;
         }
@@ -79,7 +79,7 @@ class MenuDataCommand extends Command
         $allMenuItems = [];
 
         foreach ($files as $file) {
-            $this->line("Reading: " . str_replace(base_path() . DIRECTORY_SEPARATOR, '', $file));
+            $this->line('Reading: '.str_replace(base_path().DIRECTORY_SEPARATOR, '', $file));
             $data = require $file;
 
             if (isset($data['menus']) && is_array($data['menus'])) {
@@ -138,9 +138,9 @@ class MenuDataCommand extends Command
         ];
 
         $dataFile = base_path('Modules/Menu/database/seeders/data/menu_data.php');
-        
+
         // Convert to short array syntax string
-        $content = "<?php\n\nreturn " . $this->varExportShort($data) . ";\n";
+        $content = "<?php\n\nreturn ".$this->varExportShort($data).";\n";
 
         File::put($dataFile, $content);
 
@@ -151,16 +151,16 @@ class MenuDataCommand extends Command
     }
 
     /**
-     * Custom var_export with short array syntax
+     * Custom var_export with short array syntax.
      */
     private function varExportShort($expression, $return = true)
     {
         $export = var_export($expression, true);
-        $export = preg_replace("/^([ ]*)(.*)/m", '$1$1$2', $export);
+        $export = preg_replace('/^([ ]*)(.*)/m', '$1$1$2', $export);
         $array = preg_split("/\r\n|\n|\r/", $export);
-        $array = preg_replace(["/\s*array\s\($/", "/\)(,)?$/", "/\s=>\s$/"], [NULL, ']$1', ' => ['], $array);
-        $export = join(PHP_EOL, array_filter(["["] + $array));
-        
+        $array = preg_replace(["/\s*array\s\($/", "/\)(,)?$/", "/\s=>\s$/"], [null, ']$1', ' => ['], $array);
+        $export = join(PHP_EOL, array_filter(['['] + $array));
+
         return $export;
     }
 
