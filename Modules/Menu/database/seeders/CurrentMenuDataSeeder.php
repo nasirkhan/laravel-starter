@@ -4,7 +4,6 @@ namespace Modules\Menu\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
 
@@ -19,11 +18,11 @@ class CurrentMenuDataSeeder extends Seeder
         $files = glob(base_path('Modules/*/database/seeders/data/menu_data.php'));
 
         if (empty($files)) {
-            $message = "No menu_data.php files found in Modules.";
+            $message = 'No menu_data.php files found in Modules.';
             if (property_exists($this, 'command') && $this->command) {
                 $this->command->error($message);
             } else {
-                echo $message . PHP_EOL;
+                echo $message.PHP_EOL;
             }
 
             return;
@@ -69,5 +68,4 @@ class CurrentMenuDataSeeder extends Seeder
         // Re-enable foreign key constraints
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
-
 }
