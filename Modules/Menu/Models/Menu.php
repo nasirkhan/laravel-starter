@@ -6,6 +6,7 @@ use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Menu extends BaseModel
 {
@@ -88,16 +89,36 @@ class Menu extends BaseModel
      * @param  string|null  $locale  The locale to filter menus by (defaults to current locale)
      * @return \Illuminate\Support\Collection Collection of processed menus with hierarchical items
      */
+    /**
+     * Get the current cache version for a location.
+     */
+    public static function getMenuCacheVersion(string $location): string
+    {
+        return Cache::rememberForever("menu_version_{$location}", function () {
+            return (string) time();
+        });
+    }
+
+    /**
+     * Get cached menu data for a specific location and user.
+     * Caches menu structure for 1 hour (3600 seconds) to improve performance.
+     *
+     * @param  string  $location  The menu location identifier
+     * @param  \App\Models\User|null  $user  The user to check permissions for (null for guest)
+     * @param  string|null  $locale  The locale to filter menus by (defaults to current locale)
+     * @return \Illuminate\Support\Collection Collection of processed menus with hierarchical items
+     */
     public static function getCachedMenuData(string $location, $user = null, ?string $locale = null): \Illuminate\Support\Collection
     {
         $locale = $locale ?? app()->getLocale();
         $defaultLocale = config('app.fallback_locale', 'en');
+        $version = static::getMenuCacheVersion($location);
 
-        // Create cache key based on location, user id, and locale
+        // Create cache key based on location, user id, locale, AND version
         $userId = $user ? $user->id : 'guest';
-        $cacheKey = "menu_data_{$location}_{$userId}_{$locale}";
+        $cacheKey = "menu_data_{$location}_{$userId}_{$locale}_{$version}";
 
-        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 3600, function () use ($location, $user, $locale, $defaultLocale) {
+        return Cache::remember($cacheKey, 3600, function () use ($location, $user, $locale, $defaultLocale) {
             // Try to get menus in current locale first
             $menus = static::byLocation($location)
                 ->activeAndVisible()
@@ -134,7 +155,7 @@ class Menu extends BaseModel
 
             // Fetch all menu items in a single query
             $menuIds = $menus->pluck('id');
-            $allMenuItems = \Modules\Menu\Models\MenuItem::whereIn('menu_id', $menuIds)
+            $allMenuItems = MenuItem::whereIn('menu_id', $menuIds)
                 ->where('is_visible', true)
                 ->where('is_active', true)
                 ->where(function ($localeQuery) use ($locale) {
@@ -229,43 +250,15 @@ class Menu extends BaseModel
      */
     public static function clearMenuCache(?string $location = null): void
     {
-        try {
-            $cacheStore = \Illuminate\Support\Facades\Cache::store();
-
-            if ($location) {
-                // Try to clear specific menu cache keys for the location
-                $prefix = \Illuminate\Support\Facades\Cache::getPrefix();
-                $pattern = $prefix.'menu_data_'.$location;
-
-                // For database cache, we can query and delete specific keys
-                if (method_exists($cacheStore, 'getStore') && $cacheStore->getStore() instanceof \Illuminate\Cache\DatabaseStore) {
-                    try {
-                        // Delete cache entries that match our menu pattern
-                        \Illuminate\Support\Facades\DB::table('cache')
-                            ->where('key', 'like', $pattern.'%')
-                            ->delete();
-                    } catch (\Exception $e) {
-                        // If database query fails, don't clear cache to avoid breaking other functionality
-                        // Log the error for debugging
-                        \Illuminate\Support\Facades\Log::warning('Failed to clear menu cache from database: '.$e->getMessage());
-                    }
-                } elseif ($cacheStore instanceof \Illuminate\Cache\RedisStore) {
-                    // For Redis, selective clearing is complex and error-prone in CI/CD
-                    // Skip selective clearing to avoid potential issues
-                    \Illuminate\Support\Facades\Log::info("Menu cache clearing skipped for Redis cache driver (location: {$location})");
-                } else {
-                    // For other cache drivers (file, memcached, array, etc.), we need to be more careful
-                    // Only flush if we can be sure it won't break other functionality
-                    // For now, we'll skip clearing to avoid potential issues in CI/CD
-                    \Illuminate\Support\Facades\Log::info('Menu cache clearing skipped for cache driver: '.get_class($cacheStore));
-                }
-            } else {
-                // Clear all menu caches - this is more aggressive but necessary for complete cache clearing
-                \Illuminate\Support\Facades\Cache::flush();
-            }
-        } catch (\Exception $e) {
-            // If anything goes wrong with cache clearing, log it but don't fail
-            \Illuminate\Support\Facades\Log::error('Menu cache clearing failed: '.$e->getMessage());
+        if ($location) {
+            // Update the version timestamp, effectively invalidating all previous keys for this location
+            Cache::forever("menu_version_{$location}", (string) time());
+        } else {
+            // If no location specified, we can't easily clear all "versions" without knowing all locations.
+            // But usually we know the location.
+            // For a global clear, we might still need flush, or we could iterate known locations if we tracked them.
+            // For now, falling back to flush for global clear is safer if we don't track locations.
+            Cache::flush();
         }
     }
 
@@ -275,7 +268,7 @@ class Menu extends BaseModel
      */
     public static function clearAllMenuCaches(): void
     {
-        \Illuminate\Support\Facades\Cache::flush();
+        Cache::flush();
     }
 
     /**

@@ -51,7 +51,7 @@ class MenusController extends BackendBaseController
             'items.children.children.children.children',
         ])->findOrFail($id);
 
-        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.show",
@@ -81,9 +81,9 @@ class MenusController extends BackendBaseController
         if ($$module_name_singular->allItems()->count() > 0) {
             $itemCount = $$module_name_singular->allItems()->count();
 
-            flash("Cannot delete menu '".$$module_name_singular->name."'! This menu has {$itemCount} menu item(s). Please delete all menu items first.", 'warning');
+            flash("Cannot delete menu '" . $$module_name_singular->name . "'! This menu has {$itemCount} menu item(s). Please delete all menu items first.", 'warning');
 
-            logUserAccess($module_title.' '.$module_action.' Failed | Id: '.$$module_name_singular->id.' | Reason: Has menu items');
+            logUserAccess($module_title . ' ' . $module_action . ' Failed | Id: ' . $$module_name_singular->id . ' | Reason: Has menu items');
 
             return redirect()->route("backend.{$module_name}.index");
         }
@@ -97,10 +97,38 @@ class MenusController extends BackendBaseController
         // Clear menu cache for this location
         \Modules\Menu\Models\Menu::clearMenuCache($location);
 
-        flash(Str::singular($module_title).' Deleted Successfully!')->success()->important();
+        flash(Str::singular($module_title) . ' Deleted Successfully!')->success()->important();
 
-        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+    }
 
-        return redirect()->route("backend.{$module_name}.index");
+    /**
+     * Updates a resource.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(\Illuminate\Http\Request $request, $id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        $$module_name_singular->update($request->all());
+
+        // Clear menu cache for this location
+        \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->location);
+
+        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+
+        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+
+        return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }
 }
