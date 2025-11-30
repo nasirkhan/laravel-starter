@@ -19,6 +19,8 @@ class BaseModel extends Model implements HasMedia
     protected $guarded = [
         'id',
         'updated_at',
+        '_token',
+        '_method',
     ];
 
     protected function casts(): array
@@ -27,6 +29,22 @@ class BaseModel extends Model implements HasMedia
             'deleted_at' => 'datetime',
             'published_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Fill the model with an array of attributes.
+     *
+     * @param  array  $attributes
+     * @return $this
+     *
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
+     */
+    public function fill(array $attributes)
+    {
+        unset($attributes['_token']);
+        unset($attributes['_method']);
+
+        return parent::fill($attributes);
     }
 
     /**
@@ -52,7 +70,7 @@ class BaseModel extends Model implements HasMedia
      */
     public function getTableColumns()
     {
-        $table_name = DB::getTablePrefix().$this->getTable();
+        $table_name = DB::getTablePrefix() . $this->getTable();
 
         switch (config('database.default')) {
             case 'sqlite':
@@ -60,7 +78,7 @@ class BaseModel extends Model implements HasMedia
                 break;
             case 'mysql':
             case 'mariadb':
-                $columns = DB::select('SHOW COLUMNS FROM '.$table_name);
+                $columns = DB::select('SHOW COLUMNS FROM ' . $table_name);
                 $columns = array_map(function ($column) {
                     return [
                         'name' => $column->Field,
@@ -105,7 +123,7 @@ class BaseModel extends Model implements HasMedia
                 break;
 
             default:
-                $return_string = '<span class="badge bg-primary">Status:'.$this->status.'</span>';
+                $return_string = '<span class="badge bg-primary">Status:' . $this->status . '</span>';
                 break;
         }
 
@@ -138,14 +156,6 @@ class BaseModel extends Model implements HasMedia
         }
 
         return $return_string;
-    }
-
-    /**
-     *  Set 'Name' attribute value.
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = trim($value);
     }
 
     /**
