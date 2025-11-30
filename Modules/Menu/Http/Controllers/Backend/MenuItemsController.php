@@ -46,7 +46,7 @@ class MenuItemsController extends BackendBaseController
 
         $module_action = 'Create';
 
-        logUserAccess($module_title . ' ' . $module_action);
+        logUserAccess($module_title.' '.$module_action);
 
         return view(
             "{$module_path}.{$module_name}.create",
@@ -80,9 +80,9 @@ class MenuItemsController extends BackendBaseController
             \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->menu->location);
         }
 
-        flash("New '" . Str::singular($module_title) . "' Added")->success()->important();
+        flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         // Redirect back to the parent menu's show page
         return redirect()->route('backend.menus.show', $$module_name_singular->menu_id);
@@ -107,7 +107,7 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.show",
@@ -135,7 +135,7 @@ class MenuItemsController extends BackendBaseController
 
         $$module_name_singular = $module_model::findOrFail($id);
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
             "{$module_path}.{$module_name}.edit",
@@ -174,9 +174,9 @@ class MenuItemsController extends BackendBaseController
             \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->menu->location);
         }
 
-        flash(Str::singular($module_title) . "' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         // Redirect back to the parent menu's show page
         return redirect()->route('backend.menus.show', $$module_name_singular->menu_id);
@@ -211,9 +211,9 @@ class MenuItemsController extends BackendBaseController
             }
         }
 
-        flash(label_case($module_name_singular) . ' Deleted Successfully!')->success()->important();
+        flash(label_case($module_name_singular).' Deleted Successfully!')->success()->important();
 
-        logUserAccess($module_title . ' ' . $module_action . ' | Id: ' . $$module_name_singular->id);
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return redirect()->route('backend.menus.show', $menuId);
     }
