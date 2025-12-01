@@ -267,6 +267,7 @@ if (! function_exists('slug_format')) {
     {
         $string = preg_replace('/\s+/u', '-', trim($string));
         $string = str_replace('/', '-', $string);
+        $string = str_replace('.', '', $string);
         $string = str_replace('\\', '-', $string);
         $string = strtolower($string);
 
