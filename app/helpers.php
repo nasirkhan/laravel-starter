@@ -128,8 +128,10 @@ if (! function_exists('show_column_value')) {
             // Handle enum objects by converting to their string value
             if ($value instanceof \BackedEnum) {
                 $return_text = $value->value;
-            } else {
+            } else if (is_string($value)) {
                 $return_text = $value;
+            } else {
+                $return_text = json_encode($value);
             }
         }
 
