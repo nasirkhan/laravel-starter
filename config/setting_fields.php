@@ -43,6 +43,26 @@ return [
                 'class' => '', // any class for input
                 'value' => '1', // default value if you want
             ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'show_language_dropdown', // unique name for field
+                'label' => 'Show Language Dropdown', // you know what label it is
+                'rules' => 'nullable', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '1', // default value if you want
+                'help' => 'Show or hide the language selection dropdown in both frontend and backend.', // Help text for the input field.
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'show_theme_dropdown', // unique name for field
+                'label' => 'Show Theme Dropdown', // you know what label it is
+                'rules' => 'nullable', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '1', // default value if you want
+                'help' => 'Show or hide the theme selection dropdown in both frontend and backend.', // Help text for the input field.
+            ],
         ],
     ],
     'email' => [

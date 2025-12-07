@@ -68,6 +68,7 @@ $notifications_latest = optional($notifications)->take(5);
                 </ul>
             </li>
         </ul>
+@if (setting('show_theme_dropdown'))
         <ul class="header-nav">
             <li class="nav-item dropdown">
                 <button
@@ -220,6 +221,8 @@ $notifications_latest = optional($notifications)->take(5);
                 </ul>
             </li>
         </ul>
+    @endif
+@if (setting('show_language_dropdown'))
         <ul class="header-nav">
             <li class="nav-item dropdown">
                 <button
@@ -263,6 +266,7 @@ $notifications_latest = optional($notifications)->take(5);
                 </ul>
             </li>
         </ul>
+    @endif
         <ul class="header-nav">
             <li class="nav-item dropdown">
                 <a

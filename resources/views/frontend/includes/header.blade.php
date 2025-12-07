@@ -16,6 +16,7 @@
             <img class="h-9" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
+@if (setting('show_theme_dropdown'))
             <button
                 class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 id="theme-toggle"
@@ -46,7 +47,9 @@
                     ></path>
                 </svg>
             </button>
+        @endif
 
+@if (setting('show_language_dropdown'))
             <button
                 class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-3 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                 data-dropdown-toggle="language-dropdown-menu"
@@ -101,6 +104,7 @@
                     @endforeach
                 </ul>
             </div>
+        @endif
 
             @guest
                 @if (user_registration())
