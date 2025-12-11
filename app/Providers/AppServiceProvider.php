@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
          * MariaDB 10.5 allows index keys to be 3072 chars.
          * MySQL 8.0 appears to be allowing only 1000 chars.
          */
-        Schema::defaultStringLength(125);
+        Schema::defaultStringLength(191);
 
         /**
          * Register Event Listeners.
