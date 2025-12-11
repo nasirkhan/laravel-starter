@@ -16,7 +16,9 @@ class PermissionCachingTest extends TestCase
     use RefreshDatabase;
 
     protected User $user;
+
     protected Role $role;
+
     protected Permission $permission;
 
     protected function setUp(): void
