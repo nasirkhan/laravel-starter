@@ -204,40 +204,6 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     * Set the 'meta title'.
-     * If no value submitted use the 'Title'.
-     *
-     * @param [type]
-     */
-    public function setMetaTitleAttribute($value)
-    {
-        $this->attributes['meta_title'] = $value;
-
-        if (empty($value)) {
-            $this->attributes['meta_title'] = $this->attributes['name'];
-        }
-    }
-
-    /**
-     * Set the meta meta_og_image
-     * If no value submitted use the 'Title'.
-     *
-     * @param [type]
-     */
-    public function setMetaOgImageAttribute($value)
-    {
-        $this->attributes['meta_og_image'] = $value;
-
-        if (empty($value)) {
-            if (isset($this->attributes['image'])) {
-                $this->attributes['meta_og_image'] = $this->attributes['image'];
-            } else {
-                $this->attributes['meta_og_image'] = setting('meta_image');
-            }
-        }
-    }
-
-    /**
      * Scope a query to only include active models.
      */
     public function scopeActive(Builder $query): void
