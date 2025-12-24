@@ -16,6 +16,6 @@ class IncrementPostHits implements ShouldQueue
     public function handle(PostViewed $event): void
     {
         $event->post->incrementHits();
-        logger()->info('Post hits incremented for Post ID: ' . $event->post->id);
+        logger()->info('Post hits incremented for Post ID: '.$event->post->id);
     }
 }
