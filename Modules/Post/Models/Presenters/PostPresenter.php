@@ -38,7 +38,7 @@ trait PostPresenter
     {
         $diff = Carbon::now()->diffInHours($this->published_at);
 
-        if ($diff < 24) {
+        if ($diff < 24 && $diff >= 0) {
             return $this->published_at->diffForHumans();
         }
 
@@ -49,7 +49,7 @@ trait PostPresenter
     {
         $diff = Carbon::now()->diffInHours($this->published_at);
 
-        if ($diff < 24) {
+        if ($diff < 24 && $diff >= 0) {
             return $this->published_at->diffForHumans();
         }
         $date_string = $this->published_at->isoFormat('llll');
