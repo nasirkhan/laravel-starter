@@ -1,14 +1,25 @@
 {{-- Fallback Sidebar Menu: Load menu items from menu_data.json (in case dynamic menu is empty) --}}
 @php
-    // Load menu data from JSON file
-    $menuDataPath = base_path('Modules/Menu/database/seeders/data/menu_data.json');
+    // Load menu data from PHP files
+    $files = glob(base_path('Modules/*/database/seeders/data/menu_data.php'));
     $fallbackMenuItems = collect();
     
-    if (file_exists($menuDataPath)) {
-        $menuData = json_decode(file_get_contents($menuDataPath), true);
+    if (!empty($files)) {
+        $allMenus = [];
+        $allMenuItems = [];
+
+        foreach ($files as $file) {
+            $data = require $file;
+            if (isset($data['menus']) && is_array($data['menus'])) {
+                $allMenus = array_merge($allMenus, $data['menus']);
+            }
+            if (isset($data['menu_items']) && is_array($data['menu_items'])) {
+                $allMenuItems = array_merge($allMenuItems, $data['menu_items']);
+            }
+        }
         
         // Find admin-sidebar menu
-        $adminMenu = collect($menuData['menus'] ?? [])
+        $adminMenu = collect($allMenus)
             ->where('location', 'admin-sidebar')
             ->where('is_active', true)
             ->where('is_visible', true)
@@ -16,7 +27,7 @@
         
         if ($adminMenu) {
             // Get menu items for this menu
-            $menuItems = collect($menuData['menu_items'] ?? [])
+            $menuItems = collect($allMenuItems)
                 ->where('menu_id', $adminMenu['id'])
                 ->where('is_active', true)
                 ->where('is_visible', true)

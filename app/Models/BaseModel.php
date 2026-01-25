@@ -19,6 +19,8 @@ class BaseModel extends Model implements HasMedia
     protected $guarded = [
         'id',
         'updated_at',
+        '_token',
+        '_method',
     ];
 
     protected function casts(): array
@@ -27,6 +29,21 @@ class BaseModel extends Model implements HasMedia
             'deleted_at' => 'datetime',
             'published_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Fill the model with an array of attributes.
+     *
+     * @return $this
+     *
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
+     */
+    public function fill(array $attributes)
+    {
+        unset($attributes['_token']);
+        unset($attributes['_method']);
+
+        return parent::fill($attributes);
     }
 
     /**
@@ -141,14 +158,6 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
-     *  Set 'Name' attribute value.
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = trim($value);
-    }
-
-    /**
      * Set the 'Slug'.
      * If no value submitted 'Name' will be used as slug
      * str_slug helper method was used to format the text.
@@ -192,40 +201,6 @@ class BaseModel extends Model implements HasMedia
             $table->deleted_by = Auth::id();
             $table->save();
         });
-    }
-
-    /**
-     * Set the 'meta title'.
-     * If no value submitted use the 'Title'.
-     *
-     * @param [type]
-     */
-    public function setMetaTitleAttribute($value)
-    {
-        $this->attributes['meta_title'] = $value;
-
-        if (empty($value)) {
-            $this->attributes['meta_title'] = $this->attributes['name'];
-        }
-    }
-
-    /**
-     * Set the meta meta_og_image
-     * If no value submitted use the 'Title'.
-     *
-     * @param [type]
-     */
-    public function setMetaOgImageAttribute($value)
-    {
-        $this->attributes['meta_og_image'] = $value;
-
-        if (empty($value)) {
-            if (isset($this->attributes['image'])) {
-                $this->attributes['meta_og_image'] = $this->attributes['image'];
-            } else {
-                $this->attributes['meta_og_image'] = setting('meta_image');
-            }
-        }
     }
 
     /**

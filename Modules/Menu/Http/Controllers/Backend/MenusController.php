@@ -100,7 +100,35 @@ class MenusController extends BackendBaseController
         flash(Str::singular($module_title).' Deleted Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+    }
 
-        return redirect()->route("backend.{$module_name}.index");
+    /**
+     * Updates a resource.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(\Illuminate\Http\Request $request, $id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Update';
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        $$module_name_singular->update($request->all());
+
+        // Clear menu cache for this location
+        \Modules\Menu\Models\Menu::clearMenuCache($$module_name_singular->location);
+
+        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+
+        return redirect()->route("backend.{$module_name}.show", $$module_name_singular->id);
     }
 }

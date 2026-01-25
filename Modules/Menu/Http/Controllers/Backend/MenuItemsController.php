@@ -6,6 +6,7 @@ use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Modules\Menu\Models\Menu;
 
 class MenuItemsController extends BackendBaseController
 {
@@ -179,5 +180,41 @@ class MenuItemsController extends BackendBaseController
 
         // Redirect back to the parent menu's show page
         return redirect()->route('backend.menus.show', $$module_name_singular->menu_id);
+    }
+
+    /**
+     * Destroys a record from the database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'destroy';
+
+        $$module_name_singular = $module_model::findOrFail($id);
+
+        $menuId = $$module_name_singular->menu_id;
+
+        $$module_name_singular->delete();
+
+        // Clear menu cache when a menu item is deleted
+        if ($menuId) {
+            $menu = Menu::find($menuId);
+            if ($menu) {
+                Menu::clearMenuCache($menu->location);
+            }
+        }
+
+        flash(label_case($module_name_singular).' Deleted Successfully!')->success()->important();
+
+        logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+
+        return redirect()->route('backend.menus.show', $menuId);
     }
 }

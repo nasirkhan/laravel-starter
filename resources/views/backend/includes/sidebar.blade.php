@@ -35,7 +35,7 @@ $notifications_latest = optional($notifications)->take(5);
     {{-- Dynamic Menu from Database --}}
     <x-backend.dynamic-menu location="admin-sidebar" />
 
-    {{-- Fallback: Load menu items from menu_data.json (in case dynamic menu is empty) --}}
+    {{-- Fallback: Load menu items from menu_data.php (in case dynamic menu is empty) --}}
     @php
         $hasMenuItems = \Modules\Menu\Models\Menu::getCachedMenuData("admin-sidebar", auth()->user())->isNotEmpty();
     @endphp

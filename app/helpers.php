@@ -128,8 +128,10 @@ if (! function_exists('show_column_value')) {
             // Handle enum objects by converting to their string value
             if ($value instanceof \BackedEnum) {
                 $return_text = $value->value;
-            } else {
+            } elseif (is_string($value)) {
                 $return_text = $value;
+            } else {
+                $return_text = json_encode($value);
             }
         }
 
@@ -267,6 +269,7 @@ if (! function_exists('slug_format')) {
     {
         $string = preg_replace('/\s+/u', '-', trim($string));
         $string = str_replace('/', '-', $string);
+        $string = str_replace('.', '', $string);
         $string = str_replace('\\', '-', $string);
         $string = strtolower($string);
 
