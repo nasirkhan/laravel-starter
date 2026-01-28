@@ -100,6 +100,8 @@ class MenusController extends BackendBaseController
         flash(Str::singular($module_title).' Deleted Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
+
+        return redirect()->route("backend.{$module_name}.index");
     }
 
     /**

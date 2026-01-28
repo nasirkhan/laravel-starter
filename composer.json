@@ -21,7 +21,7 @@
         "laravel/pail": "^1.2",
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10",
-        "livewire/livewire": "^3.4",
+        "livewire/livewire": "4.0",
         "nasirkhan/module-manager": "^4.0",
         "opcodesio/log-viewer": "^3.21",
         "spatie/laravel-activitylog": "^4.10",

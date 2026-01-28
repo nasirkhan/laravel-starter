@@ -33,19 +33,19 @@ require __DIR__.'/auth.php';
 */
 
 // home route
-Route::get('home', Home::class)->name('home');
+Route::livewire('home', Home::class)->name('home');
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::get('dashboard', Home::class)->name('dashboard');
+Route::livewire('dashboard', Home::class)->name('dashboard');
 
 // pages
-Route::get('terms', Terms::class)->name('terms');
-Route::get('privacy', Privacy::class)->name('privacy');
+Route::livewire('terms', Terms::class)->name('terms');
+Route::livewire('privacy', Privacy::class)->name('privacy');
 
 Route::group(['as' => 'frontend.'], function () {
-    Route::get('/', Home::class)->name('index');
+    Route::livewire('/', Home::class)->name('index');
 
     Route::group(['middleware' => ['auth']], function () {
         /*
@@ -55,9 +55,9 @@ Route::group(['as' => 'frontend.'], function () {
         * ---------------------------------------------------------------------
         */
         $module_name = 'users';
-        Route::get('profile/edit', ProfileEdit::class)->name("{$module_name}.profileEdit");
-        Route::get('profile/changePassword', ChangePassword::class)->name("{$module_name}.changePassword");
-        Route::get('profile/{username?}', Profile::class)->name("{$module_name}.profile");
+        Route::livewire('profile/edit', ProfileEdit::class)->name("{$module_name}.profileEdit");
+        Route::livewire('profile/changePassword', ChangePassword::class)->name("{$module_name}.changePassword");
+        Route::livewire('profile/{username?}', Profile::class)->name("{$module_name}.profile");
 
         // Keep these as controller routes for now (POST/PATCH/DELETE methods)
         Route::get("{$module_name}/emailConfirmationResend", [FrontendUserController::class, 'emailConfirmationResend'])->name("{$module_name}.emailConfirmationResend");

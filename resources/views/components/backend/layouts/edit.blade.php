@@ -46,12 +46,20 @@
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 @endcan
-                                <x-backend.buttons.cancel />
                             </div>
                         </div>
                     </div>
 
                     {{ html()->closeModelForm() }}
+
+                    {{-- Cancel button outside the form to prevent accidental form submission --}}
+                    <div class="row">
+                        <div class="col mt-4">
+                            <div class="float-end">
+                                <x-backend.buttons.cancel />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
