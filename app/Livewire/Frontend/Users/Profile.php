@@ -47,8 +47,8 @@ class Profile extends Component
         $body_class = 'profile-page';
         $meta_page_type = 'profile';
         
-        // Exclude hidden attributes from User model
-        $user = $this->user->except($this->user->getHidden());
+        // Pass model to view - it has $hidden attributes that are automatically excluded
+        $user = $this->user;
 
         return view('livewire.frontend.users.profile', [
             'module_name' => $module_name,

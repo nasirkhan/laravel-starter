@@ -4,6 +4,8 @@ namespace Modules\Post\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Post\Livewire\Frontend\RecentPosts;
 use Symfony\Component\Finder\Finder;
 
 class PostServiceProvider extends ServiceProvider
@@ -35,6 +37,9 @@ class PostServiceProvider extends ServiceProvider
 
         // Register seeders
         $this->registerSeeders();
+
+        // register Livewire components
+        $this->registerLivewireComponents();
     }
 
     /**
@@ -150,5 +155,15 @@ class PostServiceProvider extends ServiceProvider
         $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
             return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
         });
+    }
+
+    /**
+     * Register Livewire components.
+     *
+     * @return void
+     */
+    protected function registerLivewireComponents()
+    {
+        Livewire::component('frontend-recent-posts', RecentPosts::class);
     }
 }

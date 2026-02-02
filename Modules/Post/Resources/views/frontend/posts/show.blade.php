@@ -151,13 +151,13 @@
                 </div>
 
                 <div class="py-5">
-                    {{-- @include('post::frontend.posts.blocks.comments') --}}
+                    
                 </div>
             </div>
 
             <div class="flex flex-col sm:w-4/12">
                 <div class="py-5 sm:pt-0">
-                    <livewire:frontend.recent-posts />
+                    <livewire:frontend-recent-posts />
                 </div>
             </div>
         </div>

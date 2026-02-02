@@ -72,8 +72,8 @@ class ChangePassword extends Component
         $module_action = 'Change Password';
         $body_class = 'profile-page';
         
-        // Exclude hidden attributes from User model
-        $user = $this->user->except($this->user->getHidden());
+        // Pass model to view - it has $hidden attributes that are automatically excluded
+        $user = $this->user;
 
         return view('livewire.frontend.users.change-password', [
             'module_title' => $module_title,
