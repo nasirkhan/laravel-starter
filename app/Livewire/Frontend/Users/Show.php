@@ -3,7 +3,6 @@
 namespace App\Livewire\Frontend\Users;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -32,30 +31,16 @@ class Show extends Component
      */
     public function render()
     {
-        $module_title = 'Users';
-        $module_name = 'users';
-        $module_path = 'users';
-        $module_icon = 'fas fa-users';
-        $module_name_singular = Str::singular($module_name);
-        $module_action = 'Show';
-        $body_class = 'profile-page';
-        $meta_page_type = 'profile';
-
-        $$module_name_singular = $this->user;
-
-        return view(
-            'livewire.frontend.users.show',
-            compact(
-                'module_title',
-                'module_name',
-                'module_path',
-                'module_icon',
-                'module_action',
-                'module_name_singular',
-                $module_name_singular,
-                'body_class',
-                'meta_page_type'
-            )
-        );
+        return view('livewire.frontend.users.show', [
+            'module_title' => 'Users',
+            'module_name' => 'users',
+            'module_path' => 'users',
+            'module_icon' => 'fas fa-users',
+            'module_name_singular' => 'user',
+            'module_action' => 'Show',
+            'user' => $this->user,
+            'body_class' => 'profile-page',
+            'meta_page_type' => 'profile',
+        ]);
     }
 }

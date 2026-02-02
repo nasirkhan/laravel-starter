@@ -4,7 +4,6 @@ namespace App\Livewire\Frontend\Users;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -130,28 +129,15 @@ class ProfileEdit extends Component
      */
     public function render()
     {
-        $module_title = 'Users';
-        $module_name = 'users';
-        $module_path = 'users';
-        $module_icon = 'fas fa-users';
-        $module_name_singular = Str::singular($module_name);
-        $module_action = 'Edit Profile';
-        $body_class = 'profile-page';
-
-        $$module_name_singular = $this->user;
-
-        return view(
-            'livewire.frontend.users.profile-edit',
-            compact(
-                'module_title',
-                'module_name',
-                'module_path',
-                'module_icon',
-                'module_action',
-                'module_name_singular',
-                $module_name_singular,
-                'body_class'
-            )
-        );
+        return view('livewire.frontend.users.profile-edit', [
+            'module_title' => 'Users',
+            'module_name' => 'users',
+            'module_path' => 'users',
+            'module_icon' => 'fas fa-users',
+            'module_name_singular' => 'user',
+            'module_action' => 'Edit Profile',
+            'user' => $this->user,
+            'body_class' => 'profile-page',
+        ]);
     }
 }
