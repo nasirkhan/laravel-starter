@@ -63,7 +63,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Display welcome message
+     * Display welcome message.
      */
     protected function displayWelcome(): void
     {
@@ -77,7 +77,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Confirm installation
+     * Confirm installation.
      */
     protected function confirmInstallation(): bool
     {
@@ -95,7 +95,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Setup environment file
+     * Setup environment file.
      */
     protected function setupEnvironment(): bool
     {
@@ -120,7 +120,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Setup database
+     * Setup database.
      */
     protected function setupDatabase(): bool
     {
@@ -150,7 +150,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Setup SQLite database
+     * Setup SQLite database.
      */
     protected function setupSQLite(): bool
     {
@@ -171,7 +171,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Run database migrations
+     * Run database migrations.
      */
     protected function runMigrations(): bool
     {
@@ -191,7 +191,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Seed database
+     * Seed database.
      */
     protected function seedDatabase(): void
     {
@@ -211,7 +211,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Finalize installation
+     * Finalize installation.
      */
     protected function finalizeInstallation(): void
     {
@@ -237,7 +237,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Display success message
+     * Display success message.
      */
     protected function displaySuccessMessage(): void
     {
@@ -265,7 +265,7 @@ class StarterInstallCommand extends Command
     }
 
     /**
-     * Update environment file
+     * Update environment file.
      */
     protected function updateEnvFile(string $key, string $value): void
     {

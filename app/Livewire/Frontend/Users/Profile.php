@@ -46,7 +46,7 @@ class Profile extends Component
         $module_action = 'Profile';
         $body_class = 'profile-page';
         $meta_page_type = 'profile';
-        
+
         // Exclude hidden attributes from User model
         $user = $this->user->except($this->user->getHidden());
 
