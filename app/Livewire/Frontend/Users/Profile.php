@@ -46,7 +46,7 @@ class Profile extends Component
         $module_action = 'Profile';
         $body_class = 'profile-page';
         $meta_page_type = 'profile';
-        
+
         // Pass model to view - it has $hidden attributes that are automatically excluded
         $user = $this->user;
 

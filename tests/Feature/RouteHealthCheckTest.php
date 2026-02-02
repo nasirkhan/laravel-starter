@@ -27,7 +27,7 @@ class RouteHealthCheckTest extends TestCase
     }
 
     /**
-     * Test all public routes return 200 or redirect appropriately
+     * Test all public routes return 200 or redirect appropriately.
      */
     public function test_public_routes_are_accessible(): void
     {
@@ -40,7 +40,7 @@ class RouteHealthCheckTest extends TestCase
 
         foreach ($publicRoutes as $route) {
             $response = $this->get($route);
-            
+
             $this->assertContains(
                 $response->status(),
                 [200, 302],
@@ -50,7 +50,7 @@ class RouteHealthCheckTest extends TestCase
     }
 
     /**
-     * Test authenticated user routes
+     * Test authenticated user routes.
      */
     public function test_authenticated_user_routes_are_accessible(): void
     {
@@ -63,7 +63,7 @@ class RouteHealthCheckTest extends TestCase
 
         foreach ($authenticatedRoutes as $route) {
             $response = $this->get($route);
-            
+
             $this->assertContains(
                 $response->status(),
                 [200, 302],
@@ -73,7 +73,7 @@ class RouteHealthCheckTest extends TestCase
     }
 
     /**
-     * Test admin routes require authentication and authorization
+     * Test admin routes require authentication and authorization.
      */
     public function test_admin_routes_require_admin_access(): void
     {
@@ -92,7 +92,7 @@ class RouteHealthCheckTest extends TestCase
     }
 
     /**
-     * Test admin routes with admin user
+     * Test admin routes with admin user.
      */
     public function test_admin_routes_work_for_admin_users(): void
     {
@@ -104,7 +104,7 @@ class RouteHealthCheckTest extends TestCase
 
         foreach ($adminRoutes as $route) {
             $response = $this->get($route);
-            
+
             $this->assertContains(
                 $response->status(),
                 [200, 302],
@@ -114,7 +114,7 @@ class RouteHealthCheckTest extends TestCase
     }
 
     /**
-     * Test all registered routes don't throw 500 errors
+     * Test all registered routes don't throw 500 errors.
      */
     public function test_all_get_routes_return_valid_responses(): void
     {
@@ -126,7 +126,7 @@ class RouteHealthCheckTest extends TestCase
 
         foreach ($routes as $route) {
             // Only test GET routes
-            if (!in_array('GET', $route->methods()) && !in_array('HEAD', $route->methods())) {
+            if (! in_array('GET', $route->methods()) && ! in_array('HEAD', $route->methods())) {
                 continue;
             }
 
@@ -151,11 +151,11 @@ class RouteHealthCheckTest extends TestCase
             $testedRoutes++;
 
             try {
-                $response = $this->get('/' . $uri);
+                $response = $this->get('/'.$uri);
 
                 // Handle BinaryFileResponse (downloads, etc.)
-                $statusCode = method_exists($response, 'status') 
-                    ? $response->status() 
+                $statusCode = method_exists($response, 'status')
+                    ? $response->status()
                     : $response->getStatusCode();
 
                 // Should not return 500 errors
@@ -167,7 +167,7 @@ class RouteHealthCheckTest extends TestCase
 
                 // Valid status codes
                 $validStatuses = [200, 201, 302, 401, 403, 404];
-                if (!in_array($statusCode, $validStatuses)) {
+                if (! in_array($statusCode, $validStatuses)) {
                     $failedRoutes[] = [
                         'uri' => $uri,
                         'status' => $statusCode,
@@ -183,7 +183,7 @@ class RouteHealthCheckTest extends TestCase
 
         $this->assertEmpty(
             $failedRoutes,
-            "Some routes failed:\n" . json_encode($failedRoutes, JSON_PRETTY_PRINT)
+            "Some routes failed:\n".json_encode($failedRoutes, JSON_PRETTY_PRINT)
         );
 
         $this->assertGreaterThan(
