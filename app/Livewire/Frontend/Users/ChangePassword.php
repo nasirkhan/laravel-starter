@@ -14,7 +14,7 @@ use Livewire\Component;
 #[Title('Change Password')]
 class ChangePassword extends Component
 {
-    public User $user;
+    protected User $user;
 
     #[Validate('required|string|min:6|confirmed')]
     public string $password = '';
@@ -61,8 +61,6 @@ class ChangePassword extends Component
 
     /**
      * Render the component.
-     *
-     * @return \Illuminate\View\View
      */
     public function render()
     {
@@ -73,21 +71,19 @@ class ChangePassword extends Component
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Change Password';
         $body_class = 'profile-page';
+        
+        // Exclude hidden attributes from User model
+        $user = $this->user->except($this->user->getHidden());
 
-        $$module_name_singular = $this->user;
-
-        return view(
-            'livewire.frontend.users.change-password',
-            compact(
-                'module_title',
-                'module_name',
-                'module_path',
-                'module_icon',
-                'module_action',
-                'module_name_singular',
-                $module_name_singular,
-                'body_class'
-            )
-        );
+        return view('livewire.frontend.users.change-password', [
+            'module_title' => $module_title,
+            'module_name' => $module_name,
+            'module_path' => $module_path,
+            'module_icon' => $module_icon,
+            'module_action' => $module_action,
+            'module_name_singular' => $module_name_singular,
+            'user' => $user,
+            'body_class' => $body_class,
+        ]);
     }
 }

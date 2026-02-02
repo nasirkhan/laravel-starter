@@ -13,7 +13,7 @@ use Livewire\Component;
 #[Title('User Profile')]
 class Profile extends Component
 {
-    public User $user;
+    protected User $user;
 
     public string $username;
 
@@ -35,8 +35,6 @@ class Profile extends Component
 
     /**
      * Render the component.
-     *
-     * @return \Illuminate\View\View
      */
     public function render()
     {
@@ -48,21 +46,19 @@ class Profile extends Component
         $module_action = 'Profile';
         $body_class = 'profile-page';
         $meta_page_type = 'profile';
+        
+        // Exclude hidden attributes from User model
+        $user = $this->user->except($this->user->getHidden());
 
-        $$module_name_singular = $this->user;
-
-        return view(
-            'livewire.frontend.users.profile',
-            compact(
-                'module_name',
-                'module_name_singular',
-                $module_name_singular,
-                'module_icon',
-                'module_action',
-                'module_title',
-                'body_class',
-                'meta_page_type'
-            )
-        );
+        return view('livewire.frontend.users.profile', [
+            'module_name' => $module_name,
+            'module_name_singular' => $module_name_singular,
+            'user' => $user,
+            'module_icon' => $module_icon,
+            'module_action' => $module_action,
+            'module_title' => $module_title,
+            'body_class' => $body_class,
+            'meta_page_type' => $meta_page_type,
+        ]);
     }
 }
