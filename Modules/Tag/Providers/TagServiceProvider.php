@@ -28,7 +28,16 @@ class TagServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+
+        // Load migrations from module
         $this->loadMigrationsFrom(base_path('Modules/Tag/database/migrations'));
+
+        // Publish migrations with proper tags
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                base_path('Modules/Tag/database/migrations') => database_path('migrations'),
+            ], ['migrations', 'tag-migrations']);
+        }
 
         // register commands
         $this->registerCommands('\Modules\Tag\Console\Commands');
@@ -57,12 +66,17 @@ class TagServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->publishes([
-            base_path('Modules/Tag/Config/config.php') => config_path($this->moduleNameLower.'.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            base_path('Modules/Tag/Config/config.php'), $this->moduleNameLower
-        );
+        $configPath = base_path('Modules/Tag/Config/config.php');
+
+        // Merge config from module (package defaults)
+        $this->mergeConfigFrom($configPath, $this->moduleNameLower);
+
+        // Publish config for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $configPath => config_path($this->moduleNameLower.'.php'),
+            ], ['config', 'tag-config', 'tag-module-config']);
+        }
     }
 
     /**
@@ -72,15 +86,17 @@ class TagServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
-
         $sourcePath = base_path('Modules/Tag/Resources/views');
 
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ], ['views', $this->moduleNameLower.'-module-views']);
+        // Load views from module with 'tag' namespace
+        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
 
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
+        // Publish views for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $sourcePath => resource_path('views/vendor/'.$this->moduleNameLower),
+            ], ['views', 'tag-views', 'tag-module-views']);
+        }
     }
 
     /**
@@ -101,18 +117,6 @@ class TagServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        foreach (Config::get('view.paths') as $path) {
-            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
-                $paths[] = $path.'/modules/'.$this->moduleNameLower;
-            }
-        }
-
-        return $paths;
     }
 
     /**
@@ -142,9 +146,11 @@ class TagServiceProvider extends ServiceProvider
     protected function registerSeeders()
     {
         // Publish seeders so they can be customized
-        $this->publishes([
-            base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
-        ], $this->moduleNameLower.'-seeders');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
+            ], ['seeders', 'tag-seeders']);
+        }
 
         // Register the seeder in the container for automatic discovery
         $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {

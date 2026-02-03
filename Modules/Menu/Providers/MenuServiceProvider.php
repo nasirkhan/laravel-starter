@@ -35,7 +35,16 @@ class MenuServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+
+        // Load migrations from module
         $this->loadMigrationsFrom(base_path('Modules/Menu/database/migrations'));
+
+        // Publish migrations with proper tags
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                base_path('Modules/Menu/database/migrations') => database_path('migrations'),
+            ], ['migrations', 'menu-migrations']);
+        }
 
         // register commands
         $this->registerCommands('\Modules\Menu\Console\Commands');
@@ -69,12 +78,17 @@ class MenuServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->publishes([
-            base_path('Modules/Menu/Config/config.php') => config_path($this->moduleNameLower.'.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            base_path('Modules/Menu/Config/config.php'), $this->moduleNameLower
-        );
+        $configPath = base_path('Modules/Menu/Config/config.php');
+
+        // Merge config from module (package defaults)
+        $this->mergeConfigFrom($configPath, $this->moduleNameLower);
+
+        // Publish config for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $configPath => config_path($this->moduleNameLower.'.php'),
+            ], ['config', 'menu-config', 'menu-module-config']);
+        }
     }
 
     /**
@@ -84,15 +98,17 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
-
         $sourcePath = base_path('Modules/Menu/Resources/views');
 
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ], ['views', $this->moduleNameLower.'-module-views']);
+        // Load views from module with 'menu' namespace
+        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
 
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
+        // Publish views for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $sourcePath => resource_path('views/vendor/'.$this->moduleNameLower),
+            ], ['views', 'menu-views', 'menu-module-views']);
+        }
     }
 
     /**
@@ -113,20 +129,6 @@ class MenuServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
-    }
-
-    private function getPublishableViewPaths(): array
-    {
-        $paths = [];
-        // Use app configuration for view paths, fallback to default
-        $viewPaths = $this->app['config']['view.paths'] ?? [resource_path('views')];
-        foreach ($viewPaths as $path) {
-            if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
-                $paths[] = $path.'/modules/'.$this->moduleNameLower;
-            }
-        }
-
-        return $paths;
     }
 
     /**
@@ -155,7 +157,16 @@ class MenuServiceProvider extends ServiceProvider
      */
     protected function registerLivewireComponents()
     {
-        Livewire::component('menu-item-component', MenuItemComponent::class);
+        // Register with proper namespace for module (use dot notation)
+        Livewire::component('menu.menu-item-component', MenuItemComponent::class);
+
+        // Publish Livewire components (both class and view) for full customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                base_path('Modules/Menu/Livewire') => app_path('Livewire/Menu'),
+                base_path('Modules/Menu/Resources/views/livewire') => resource_path('views/livewire/menu'),
+            ], ['menu-livewire-components']);
+        }
     }
 
     /**
@@ -166,9 +177,11 @@ class MenuServiceProvider extends ServiceProvider
     protected function registerSeeders()
     {
         // Publish seeders so they can be customized
-        $this->publishes([
-            base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
-        ], $this->moduleNameLower.'-seeders');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                base_path('Modules/'.$this->moduleName.'/database/seeders') => database_path('seeders/'.$this->moduleName),
+            ], ['seeders', 'menu-seeders']);
+        }
 
         // Register the seeder in the container for automatic discovery
         $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
