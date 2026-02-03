@@ -22,7 +22,7 @@
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10",
         "livewire/livewire": "4.0",
-        "nasirkhan/module-manager": "@dev",
+        "nasirkhan/module-manager": "dev-dev",
         "opcodesio/log-viewer": "^3.21",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-backup": "^9.2",
