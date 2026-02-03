@@ -1,7 +1,7 @@
 @props(['location' => 'admin-sidebar', 'cssClass' => 'sidebar-nav', 'containerTag' => 'ul'])
 
 @php
-    use Modules\Menu\Models\Menu;
+    use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
     
     $user = auth()->user();
     $currentLocale = app()->getLocale();

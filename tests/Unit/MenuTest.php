@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
-use Modules\Menu\Models\Menu;
-use Modules\Menu\Models\MenuItem;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
 use Tests\TestCase;
 
 class MenuTest extends TestCase

@@ -2934,7 +2934,7 @@
             "dist": {
                 "type": "path",
                 "url": "../module-manager",
-                "reference": "0a9a2163c5b6ee3569493c2d541029e9fb80d427"
+                "reference": "0d2009a178fbdf0b8b7b84955f47ba5018bf982c"
             },
             "require": {
                 "laravel/framework": "^v12.0",

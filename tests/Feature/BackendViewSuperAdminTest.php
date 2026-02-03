@@ -6,9 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
-use Modules\Category\Models\Category;
-use Modules\Post\Models\Post;
-use Modules\Tag\Models\Tag;
+use Nasirkhan\ModuleManager\Modules\Category\Models\Category;
+use Nasirkhan\ModuleManager\Modules\Post\Models\Post;
+use Nasirkhan\ModuleManager\Modules\Tag\Models\Tag;
 use Tests\TestCase;
 
 class BackendViewSuperAdminTest extends TestCase

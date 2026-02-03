@@ -37,7 +37,7 @@ $notifications_latest = optional($notifications)->take(5);
 
     {{-- Fallback: Load menu items from menu_data.php (in case dynamic menu is empty) --}}
     @php
-        $hasMenuItems = \Modules\Menu\Models\Menu::getCachedMenuData("admin-sidebar", auth()->user())->isNotEmpty();
+        $hasMenuItems = \Nasirkhan\ModuleManager\Modules\Menu\Models\Menu::getCachedMenuData("admin-sidebar", auth()->user())->isNotEmpty();
     @endphp
 
     @if (! $hasMenuItems)

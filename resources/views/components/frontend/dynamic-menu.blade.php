@@ -1,7 +1,7 @@
 @props(['location', 'cssClass' => 'flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-8', 'itemComponent' => null])
 
 @php
-    use Modules\Menu\Models\Menu;
+    use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
     
     $user = auth()->user();
     $currentLocale = app()->getLocale();
