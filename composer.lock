@@ -2934,7 +2934,7 @@
             "dist": {
                 "type": "path",
                 "url": "../module-manager",
-                "reference": "8636bda47908dd4e1411c89b6ac050d89f28b3fb"
+                "reference": "0a9a2163c5b6ee3569493c2d541029e9fb80d427"
             },
             "require": {
                 "laravel/framework": "^v12.0",
@@ -2945,7 +2945,10 @@
                 "laravel": {
                     "providers": [
                         "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider",
-                        "Nasirkhan\\ModuleManager\\Modules\\Post\\Providers\\PostServiceProvider"
+                        "Nasirkhan\\ModuleManager\\Modules\\Post\\Providers\\PostServiceProvider",
+                        "Nasirkhan\\ModuleManager\\Modules\\Category\\Providers\\CategoryServiceProvider",
+                        "Nasirkhan\\ModuleManager\\Modules\\Tag\\Providers\\TagServiceProvider",
+                        "Nasirkhan\\ModuleManager\\Modules\\Menu\\Providers\\MenuServiceProvider"
                     ],
                     "aliases": {
                         "ModuleManager": "Nasirkhan\\ModuleManager\\ModuleManagerFacade"
