@@ -329,16 +329,18 @@
 ### ⏳ Pending - High Priority (Laravel-Starter)
 
 **Convert CRUD Routes to Livewire:**
-- [ ] Frontend user profile update (POST/PATCH → Livewire)
-- [ ] Frontend password change (PATCH → Livewire)
+- [x] Frontend user profile update (POST/PATCH → Livewire) - ✅ Already implemented (ProfileEdit.php)
+- [x] Frontend password change (PATCH → Livewire) - ✅ Already implemented (ChangePassword.php)
 - [ ] Backend CRUD operations (still using controllers)
 - [ ] Replace form submissions with Livewire components
 - [ ] Update routes from Route::post() to Livewire routes
-- [ ] Add #[Validate], #[Locked] attributes to Livewire components
-- [ ] Update tests for Livewire components
+- [x] Add #[Validate], #[Locked] attributes to Livewire components - ✅ Already implemented
+- [x] Update tests for Livewire components - ✅ 16 auth tests passing (35 assertions)
 
 **Security Enhancements:**
-- [ ] Implement rate limiting on sensitive routes (login, password reset)
+- [x] Implement rate limiting on sensitive routes (login, password reset) - ✅ Implemented
+  - Login: 5 attempts per email+IP, with lockout event
+  - Password Reset: 3 attempts per email+IP, 60 second decay
 - [ ] Add 2FA (Two-Factor Authentication) module
 - [ ] Add API token management UI
 - [ ] Add audit logging for sensitive actions (user deletion, role changes)
