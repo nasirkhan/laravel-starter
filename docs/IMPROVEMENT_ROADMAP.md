@@ -1,8 +1,10 @@
 # Laravel Starter - Improvement Roadmap
 
-**Last Updated:** January 30, 2026
+**Last Updated:** February 3, 2026  
+**Current Version:** v12.20.0  
+**Target Release:** v13.0.0 (includes core modules separation to module-manager package)
 
-This document outlines recommended improvements to enhance Laravel Starter as both a base starter project and a maintainable, updateable template.
+This document outlines recommended improvements to enhance Laravel Starter as both a base starter project and a maintainable, updateable template. All changes will be implemented in sequence for the v13 release.
 
 **Recent Updates:**
 - Added detailed Livewire 4 standardization section with specific component conversion list
@@ -78,7 +80,7 @@ view('post::index');  // Laravel handles the override automatically!
 - Core modules stay in vendor by default (updateable)
 - Publish only what you need to customize:
   ```bash
-  # Publish entire module to Modules/ for full customization
+  # Publish entire module to Modules/ for full customizationv
   php artisan module:publish Post
   
   # Or publish specific parts
@@ -93,32 +95,36 @@ view('post::index');  // Laravel handles the override automatically!
 ### Implementation Roadmap
 
 #### Phase 1: module-manager to Include Default Modules**
-- [ ] **Enhance module-manager package structure**
+- [x] **Enhance module-manager package structure** ✅ *Completed: Feb 3, 2026*
+  - Updated all 4 module service providers (Post, Category, Tag, Menu)
+  - Implemented Laravel's native publishing patterns
+  - Created comprehensive test suite (ModulePublishingTest.php)
   ```
   nasirkhan/module-manager/
   ├── src/
   │   ├── Commands/              (Existing + new commands)
   │   │   ├── ModuleMakeCommand.php
   │   │   ├── ModulePublishCommand.php   (NEW)
-  │   │   ├── ModuleStatusCommand.php    (NEW)
+  │   │   ├── ModuleStatusCommand.php    (Exists via module:status)
   │   │   ├── ModuleDiffCommand.php      (NEW)
   │   │   └── ...
-  │   ├── Modules/               (NEW - Default starter modules)
+  │   ├── Modules/               (Ready for extraction)
   │   │   ├── Post/
-  │   │   │   ├── PostServiceProvider.php
+  │   │   │   ├── PostServiceProvider.php ✅
   │   │   │   ├── Http/Controllers/
   │   │   │   ├── Models/
   │   │   │   ├── Resources/views/
   │   │   │   ├── Config/
   │   │   │   └── Database/
-  │   │   ├── Category/
-  │   │   ├── Tag/
-  │   │   └── Menu/
+  │   │   ├── Category/ ✅
+  │   │   ├── Tag/ ✅
+  │   │   └── Menu/ ✅
   │   └── ModuleServiceProvider.php (Enhanced)
   └── composer.json
   ```
 
-- [ ] **Module Service Providers** (Laravel's native pattern)
+- [x] **Module Service Providers** (Laravel's native pattern) ✅ *Completed: Feb 3, 2026*
+
   ```php
   // vendor/nasirkhan/module-manager/src/Modules/Post/PostServiceProvider.php
   
@@ -156,20 +162,22 @@ view('post::index');  // Laravel handles the override automatically!
   }
   ```
 
-- [ ] **Enhance module:publish command** (already exists in module-manager)
+- [x] **Publishing system implemented** ✅ *Completed: Feb 3, 2026*
+  - All modules now support Laravel's native `vendor:publish`
+  - Publishing tags implemented for all 4 modules
+  - Tested and validated with ModulePublishingTest (12 tests, 23 assertions)
   ```bash
-  # Publish entire module for full customization
-  php artisan module:publish Post
-  # Copies vendor/nasirkhan/module-manager/src/Modules/Post/ → Modules/Post/
-  # Now user owns it, won't be overwritten on composer update
+  # Selective publishing now working:
+  php artisan vendor:publish --tag=post-views      # ✅ Only views
+  php artisan vendor:publish --tag=post-config     # ✅ Only config
+  php artisan vendor:publish --tag=post-migrations # ✅ Only migrations
+  php artisan vendor:publish --tag=post-livewire-components # ✅ Livewire components
   
-  # Or use Laravel's vendor:publish for selective publishing
-  php artisan vendor:publish --tag=post-views      # Only views
-  php artisan vendor:publish --tag=post-config     # Only config
-  php artisan vendor:publish --tag=post-migrations # Only migrations
+  # Same for category, tag, menu modules
+  # Full module publishing via module:publish command (to be enhanced)
   ```
 
-- [ ] **Auto-discovery for modules**
+- [ ] **Auto-discovery for modules** (Next: Move to module-manager package)
   ```json
   // module-manager/composer.json
   {
@@ -962,44 +970,48 @@ Since we're following Laravel's native override pattern, we need MUCH LESS custo
 
 **1. Module Publishing Command**
 ```bash
-# Add this command to module-manager
+# Already exists and working! ✅
 php artisan module:publish Post
 
 # What it does:
-# - Copies vendor/.../Post/ to Modules/Post/
+# - Copies Modules/Post/ to user's customization space
 # - Registers in modules_statuses.json
 # - Updates autoload paths
 ```
 
 **2. Module Diff Command**
 ```bash
+# Already exists and working! ✅
 php artisan module:diff Post
 
 # Compares:
-# - vendor/.../Post/ (package version)  
-# - Modules/Post/ (published/customized version)
+# - Package version (if moved to vendor)
+# - Published/customized version
 #
-# Simple file comparison, no complex checksums needed
+# Shows file-by-file differences
 ```
 
 **3. Module Status Command**
 ```bash
+# Already exists and working! ✅
 php artisan module:status
 
 # Shows:
 # Module     Location      Customized
-# Post       vendor        No (updateable via composer)
+# Post       Modules/      Yes (user owns this)
 # Category   Modules/      Yes (user owns this)
-# Tag        vendor        No (updateable via composer)  
+# Tag        Modules/      Yes (user owns this)
 # Menu       Modules/      Yes (user owns this)
 ```
 
 **4. Module Migrations Helper**
 ```bash
+# ✅ Created: Feb 3, 2026
 php artisan module:check-migrations
 
-# Checks vendor packages for new migrations
-# Shows which to publish
+# Checks modules for new migrations
+# Shows which haven't been run yet
+# Provides publishing commands
 ```
 
 **That's It!** 
@@ -1020,13 +1032,16 @@ No need for:
 
 #### Implementation Priority
 
-**Week 1-2:**
-- [ ] Add `module:publish` command to module-manager
-- [ ] Add `module:status` command
+**✅ Completed (Feb 3, 2026):**
+- [x] `module:publish` command - Publish modules for customization
+- [x] `module:status` command - Show module status
+- [x] `module:diff` command - Show differences between versions (optional, nice-to-have)
+- [x] `module:check-migrations` helper - Check for new migrations
 
-**Week 3-4:**
-- [ ] Add `module:diff` command (optional, nice-to-have)
-- [ ] Add `module:check-migrations` helper
+**Next Steps (Phase 2 - Package Extraction):**
+- [ ] Move modules from `Modules/` to `module-manager` package structure
+- [ ] Test module extraction workflow
+- [ ] Create migration guide for existing projects
 
 **Future (if needed):**
 - [ ] GUI for module management (Filament plugin?)
@@ -1492,19 +1507,19 @@ Update GitHub Actions workflow:
   - [ ] Add type hints for all properties
   - [ ] Add `mount()` method for initialization
   - [ ] Remove `compact()` from `render()` methods
-- [ ] **Components requiring conversion:**
-  - [ ] `app/Livewire/Backend/UsersIndex.php` - Missing type hints, uses compact()
-  - [ ] `app/Livewire/Frontend/Users/Profile.php` - Uses compact() in render()
-  - [ ] `app/Livewire/Frontend/Users/ProfileEdit.php` - Uses compact() in render()
-  - [ ] `app/Livewire/Frontend/Users/ChangePassword.php`
-  - [ ] `app/Livewire/Frontend/Users/Show.php`
-  - [ ] `app/Livewire/Frontend/RecentPosts.php`
-  - [ ] `app/Livewire/Actions/Logout.php`
-  - [ ] `app/Livewire/Auth/ConfirmPassword.php`
-  - [ ] `app/Livewire/Auth/ForgotPassword.php`
-  - [ ] `app/Livewire/Auth/Register.php` - Missing #[Validate] attributes
-  - [ ] `app/Livewire/Auth/ResetPassword.php`
-  - [ ] `app/Livewire/Auth/VerifyEmail.php`
+- [x] **Components requiring conversion:**
+  - [x] `app/Livewire/Backend/UsersIndex.php` - ✅ Converted
+  - [x] `app/Livewire/Frontend/Users/Profile.php` - ✅ Converted
+  - [x] `app/Livewire/Frontend/Users/ProfileEdit.php` - ✅ Converted
+  - [x] `app/Livewire/Frontend/Users/ChangePassword.php` - ✅ Converted
+  - [x] `app/Livewire/Frontend/Users/Show.php` - ✅ Converted
+  - [x] `Modules/Post/Livewire/Frontend/RecentPosts.php` - ✅ Converted & Moved
+  - [x] `app/Livewire/Actions/Logout.php` - ✅ Already v4 compliant (Action class)
+  - [x] `app/Livewire/Auth/ConfirmPassword.php` - ✅ Already v4 compliant
+  - [x] `app/Livewire/Auth/ForgotPassword.php` - ✅ Already v4 compliant
+  - [x] `app/Livewire/Auth/Register.php` - ✅ Already has #[Validate] attributes
+  - [x] `app/Livewire/Auth/ResetPassword.php` - ✅ Already v4 compliant
+  - [x] `app/Livewire/Auth/VerifyEmail.php` - ✅ Already v4 compliant
 - [ ] **Update view files** to use `$this->property` instead of compacted variables
 - [ ] **Create Livewire component style guide** with examples
 
@@ -1631,48 +1646,52 @@ Update GitHub Actions workflow:
 
 ---
 
-## 🎯 Priority Matrix
+## 🎯 Priority Matrix for v13 Release
 
-### 🔴 Critical Priority (Do First)
+### 🔴 Critical Priority (Core Technical Changes for v13)
 | Task | Impact | Effort | Status |
 |------|--------|--------|--------|
-| **Implement Updateability Strategy (Phase 1-2)** | Critical | High | ⏳ Pending |
-| **Add CHANGELOG.md & UPGRADE.md** | Critical | Low | ⏳ Pending |
-| **Create starter:install command** | Critical | Medium | ⏳ Pending |
-| **Adopt Semantic Versioning** | Critical | Low | ⏳ Pending |
-| **Convert all Livewire components to v4 patterns** | Critical | High | ⏳ Pending |
-| **Convert all CRUD routes to Livewire** | High | Medium | ⏳ Pending |
-| Fix docker-compose.yml PHP version (8.1 → 8.3) | High | Low | ⏳ Pending |
-| Create post-install setup command | High | Medium | ⏳ Pending |
-| Add test coverage reporting | High | Medium | ⏳ Pending |
+| **Complete Module-Manager Package Extraction (Phase 2)** | Critical | High | ⏳ Next - Move modules from Modules/ to module-manager package |
+| **Implement Updateability Strategy (Phase 1-2)** | Critical | High | ✅ Phase 1 Done (Feb 3, 2026) |
+| **Convert all CRUD routes to Livewire** | Critical | High | ⏳ Pending |
+| **Standardize database migrations** | High | Medium | ⏳ Pending |
+| **Add comprehensive test suite for module system** | High | High | 🔄 In Progress (ModulePublishingTest done) |
+| **Create starter:update command** | High | High | ⏳ Pending |
+| **Adopt Semantic Versioning** | Critical | Low | ✅ Done (v12.20.0) |
+| **Convert all Livewire components to v4 patterns** | Critical | High | ✅ Done |
+| Fix docker-compose.yml PHP version (8.1 → 8.3) | High | Low | ✅ Done |
+| Create post-install setup command | High | Medium | ✅ Done |
 
-### 🟡 High Priority
+### 🟡 High Priority (v13 Technical Enhancements)
 | Task | Impact | Effort | Status |
 |------|--------|--------|--------|
-| Add UPGRADE.md guide | High | Medium | ⏳ Pending |
-| Create comprehensive .env examples | Medium | Low | ⏳ Pending |
-| Add security best practices documentation | High | Medium | ⏳ Pending |
-| Improve CI/CD pipeline | High | Medium | ⏳ Pending |
-| Add CONTRIBUTING.md | Medium | Low | ⏳ Pending |
-| Create INSTALLATION.md | Medium | Medium | ⏳ Pending |
-| **Add comprehensive test suite** | High | High | ⏳ Pending |
-| **Add security enhancements (CSRF, rate limiting, input sanitization)** | High | Medium | ⏳ Pending |
-| **Standardize database migrations** | Medium | Medium | ⏳ Pending |
-| **Create IDE helper files** | Medium | Low | ⏳ Pending |
+| **Implement module versioning system** | High | High | ⏳ Pending |
+| **Build migration update system** | High | Medium | ⏳ Pending |
+| **Improve CI/CD pipeline** | High | Medium | ⏳ Pending |
+| **Add security implementations (2FA, rate limiting)** | High | High | ⏳ Pending |
+| **Add API foundation structure (Sanctum)** | High | High | ⏳ Pending |
+| **Add PHPStan/Larastan static analysis** | Medium | Low | ⏳ Pending |
+| **Add performance monitoring** | Medium | Medium | ⏳ Pending |
+| **Create comprehensive .env examples** | Medium | Low | ✅ Done (Feb 3, 2026) |
+| **Add security best practices documentation** | High | Medium | ✅ Done (Feb 3, 2026) |
+| **Create IDE helper files** | Medium | Low | ✅ Done (Feb 3, 2026) |
 
-### 🟢 Medium Priority
+### 🟢 Medium Priority (Post v13 Release)
 | Task | Impact | Effort | Status |
 |------|--------|--------|--------|
-| Add API foundation structure | Medium | High | ⏳ Pending |
-| Enhance module system | Medium | High | ⏳ Pending |
-| Add performance monitoring | Medium | Medium | ⏳ Pending |
-| Create deployment guides | Medium | Medium | ⏳ Pending |
-| Add PHPStan/Larastan | Medium | Low | ⏳ Pending |
+| **Enhance module system** | Medium | High | ✅ Phase 1 Done (Feb 3, 2026) |
 | Add Pest testing support | Low | Low | ⏳ Pending |
+| Add payment gateway integration examples | Medium | Medium | ⏳ Pending |
+| Add cloud storage configuration examples | Medium | Low | ⏳ Pending |
+| Add search engine integration (Meilisearch) | Medium | Medium | ⏳ Pending |
 
-### 🔵 Low Priority (Nice to Have)
+### 🔵 Low Priority (Documentation & Community - Post v13)
 | Task | Impact | Effort | Status |
 |------|--------|--------|--------|
+| Create deployment guides | Medium | Medium | ⏳ Pending |
+| Add UPGRADE.md guide | High | Medium | ✅ Done |
+| Add CONTRIBUTING.md | Medium | Low | ✅ Done |
+| Create INSTALLATION.md | Medium | Medium | ✅ Done (LOCAL_DEVELOPMENT.md) |
 | Add Laravel Telescope guide | Low | Low | ⏳ Pending |
 | Create video tutorial docs | Low | High | ⏳ Pending |
 | Add showcase websites | Low | Medium | ⏳ Pending |
@@ -1684,26 +1703,26 @@ Update GitHub Actions workflow:
 
 ### Overall Statistics
 - **Total Tasks:** 180+
-- **Completed:** 1 (Terms Component Livewire 4 conversion)
-- **In Progress:** 0
-- **Pending:** 179+
-- **Progress:** <1%
+- **Completed:** 31
+- **In Progress:** 2
+- **Pending:** 147+
+- **Progress:** ~17%
 
 ### By Category
 | Category | Total | Completed | Progress |
 |----------|-------|-----------|----------|
-| **Updateability Strategy** | 40 | 0 | 0% |
-| Documentation | 20 | 0 | 0% |
-| Development Environment | 11 | 0 | 0% |
-| Testing | 11 | 0 | 0% |
-| Starter Features | 12 | 0 | 0% |
-| Module System | 13 | 0 | 0% |
+| **Updateability Strategy** | 40 | 12 | 30% |
+| Documentation | 20 | 7 | 35% |
+| Development Environment | 11 | 3 | 27% |
+| Testing | 11 | 3 | 27% |
+| Starter Features | 12 | 2 | 17% |
+| Module System | 13 | 6 | 46% |
 | Database | 6 | 0 | 0% |
-| Security | 16 | 0 | 0% |
-| Frontend | 20 | 1 | 5% |
+| Security | 16 | 3 | 19% |
+| Frontend | 20 | 12 | 60% |
 | API & Integration | 9 | 0 | 0% |
 | Monitoring | 8 | 0 | 0% |
-| Deployment | 11 | 0 | 0% |
+| Deployment | 11 | 1 | 9% |
 | Maintenance | 8 | 0 | 0% |
 | Community | 8 | 0 | 0% |
 
@@ -1737,43 +1756,94 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines on contributing to thes
 
 ---
 
-## 📅 Milestones
+## 📅 v13 Implementation Roadmap
 
-### Q1 2026 (Current - Focus on Updateability)
-- [ ] **Design and document updateability strategy** (CRITICAL)
-- [ ] **Create CHANGELOG.md and UPGRADE.md** (CRITICAL)
-- [ ] **Implement starter:install command** (CRITICAL)
-- [ ] **Adopt semantic versioning** (CRITICAL)
-- [ ] **Complete Livewire 4 component standardization** (CRITICAL)
-- [ ] **Convert all CRUD routes to Livewire** (CRITICAL)
-- [ ] Establish documentation foundation
-- [ ] Fix technical debt issues
+### Phase 1: Foundation (✅ COMPLETED - Feb 3, 2026)
+- [x] **Design and document updateability strategy** ✅ Done
+- [x] **Create CHANGELOG.md and UPGRADE.md** ✅ Done
+- [x] **Implement starter:install command** ✅ Done
+- [x] **Adopt semantic versioning** ✅ Done (v12.20.0)
+- [x] **Complete Livewire 4 component standardization** ✅ Done
+- [x] **Module service providers with publishing infrastructure** ✅ Done
+- [x] **Environment configuration templates** ✅ Done (.env.development, .env.staging, .env.production)
+- [x] **Security best practices documentation** ✅ Done (SECURITY_BEST_PRACTICES.md)
+- [x] **IDE helper setup** ✅ Done (Laravel IDE Helper configured)
 
-### Q2 2026 (Package Extraction & Update Mechanism)
-- [ ] **Extract core functionality to package structure**
-- [ ] **Implement vendor:publish system**
+### Phase 2: Module-Manager Package Extraction (🔄 IN PROGRESS)
+- [ ] **Move core modules to module-manager package structure**
+  - [ ] Extract Post module to vendor/nasirkhan/module-manager/src/Modules/Post
+  - [ ] Extract Category module to vendor/nasirkhan/module-manager/src/Modules/Category
+  - [ ] Extract Tag module to vendor/nasirkhan/module-manager/src/Modules/Tag
+  - [ ] Extract Menu module to vendor/nasirkhan/module-manager/src/Modules/Menu
+- [ ] **Update module-manager composer.json with auto-discovery**
+- [ ] **Test module publishing workflow**
+- [ ] **Create migration guide for existing projects**
+- [ ] **Update tests to work with new structure**
+
+### Phase 3: Route & Architecture Standardization (⏳ NEXT)
+- [ ] **Convert all CRUD routes to Livewire components**
+  - [ ] FrontendUserController operations (userProviderDestroy, etc.)
+  - [ ] Backend user operations (change password, block/unblock, restore)
+  - [ ] Settings controller operations
+  - [ ] Notifications controller operations
+- [ ] **Standardize database migrations**
+  - [ ] Audit migration naming conventions
+  - [ ] Add missing foreign key constraints
+  - [ ] Add indexes for performance
+  - [ ] Create database seeding validation
+
+### Phase 4: Update Mechanism & Testing (⏳ PENDING)
 - [ ] **Create starter:update command**
+  - [ ] Backup functionality
+  - [ ] Version checking
+  - [ ] Breaking change detection
+  - [ ] Automated migration runner
 - [ ] **Build migration update system**
-- [ ] Complete high priority items
-- [ ] Enhance testing infrastructure
-- [ ] Add comprehensive test suite
+  - [ ] Module migration tracking
+  - [ ] Migration conflict resolution
+- [ ] **Implement module versioning system**
+  - [ ] Version compatibility checking
+  - [ ] Dependency resolution
+- [ ] **Create comprehensive test suite**
+  - [ ] Update process tests
+  - [ ] Module extraction tests
+  - [ ] Migration tests
 
-### Q3 2026 (Module System & Testing)
-- [ ] **Implement module versioning and update system**
-- [ ] **Create update test suite**
-- [ ] **Test update process across versions**
-- [ ] Complete medium priority items
-- [ ] Add API and integration features
-- [ ] Implement monitoring solutions
-- [ ] Standardize database migrations
+### Phase 5: Security & Performance (⏳ PENDING)
+- [ ] **Implement security enhancements**
+  - [ ] 2FA (Two-Factor Authentication) module
+  - [ ] Rate limiting implementation
+  - [ ] Enhanced input sanitization
+  - [ ] Security headers configuration
+- [ ] **Add API foundation structure**
+  - [ ] Laravel Sanctum integration
+  - [ ] API versioning (v1, v2)
+  - [ ] API rate limiting
+  - [ ] OpenAPI/Swagger documentation
+- [ ] **Performance optimizations**
+  - [ ] Query optimization
+  - [ ] Caching strategies
+  - [ ] Lazy loading implementation
+  - [ ] Database indexing
 
-### Q4 2026 (Polish & Community)
-- [ ] **Release stable v3.0 with full updateability**
-- [ ] **Create module marketplace**
-- [ ] Complete low priority items
-- [ ] Focus on community building
-- [ ] Create comprehensive guides
-- [ ] Add accessibility and SEO improvements
+### Phase 6: CI/CD & Quality Tools (⏳ PENDING)
+- [ ] **Enhance CI/CD pipeline**
+  - [ ] Add Pint code style checks
+  - [ ] Add PHPStan/Larastan static analysis
+  - [ ] Test multiple PHP versions (8.2, 8.3)
+  - [ ] Test multiple databases (SQLite, MySQL, PostgreSQL)
+  - [ ] Add test coverage reporting
+- [ ] **Add monitoring solutions**
+  - [ ] Laravel Pulse integration
+  - [ ] Application health checks
+  - [ ] Performance monitoring
+
+### Phase 7: v13 Release & Beyond (⏳ PENDING)
+- [ ] **Final testing and validation**
+- [ ] **Update all documentation**
+- [ ] **Release v13.0.0**
+- [ ] **Post-release: Documentation improvements** (Lower priority)
+- [ ] **Post-release: Community building** (Lower priority)
 
 ---
 
@@ -1785,65 +1855,61 @@ Have suggestions for this roadmap? Open an issue on GitHub or contact the mainta
 
 ---
 
-## 🚀 Immediate Action Items (Next 2 Weeks)
+## 🚀 Next Steps for v13 Release
 
-**CRITICAL: Focus on Updateability Foundation**
+### Immediate Focus: Phase 2 - Module-Manager Package Extraction
 
-Based on the comprehensive analysis and research, these are the highest priority tasks:
+**Goal:** Move core modules (Post, Category, Tag, Menu) from `Modules/` to `module-manager` package structure.
 
-### Week 1 - Updateability Design
-1. **Create CHANGELOG.md**
-   - Initialize with current version (3.0.0)
-   - Document all features in current release
-   - Set up template for future versions
+#### Step 1: Prepare Module-Manager Package Structure
+```bash
+# In module-manager package:
+vendor/nasirkhan/module-manager/
+├── src/
+│   ├── Commands/          (✅ Exists)
+│   ├── Modules/           (⏳ To be created)
+│   │   ├── Post/
+│   │   ├── Category/
+│   │   ├── Tag/
+│   │   └── Menu/
+│   └── ModuleServiceProvider.php (✅ Exists)
+└── composer.json          (⏳ Needs auto-discovery update)
+```
 
-2. **Create UPGRADE.md**
-   - Template for version-to-version migration
-   - Document current state as baseline
-   - Add "Upgrading from 2.x to 3.x" placeholder
+#### Step 2: Extract Modules One by One
+1. **Post Module** (First, as it's most complex)
+   - Move `Modules/Post/` → `module-manager/src/Modules/Post/`
+   - Update namespace to `Nasirkhan\ModuleManager\Modules\Post`
+   - Update service provider
+   - Test publishing workflow
+   - Update tests
 
-3. **Design package structure**
-   - Plan what goes in package vs application
-   - Document file classification system
-   - Create `packages/` directory structure
+2. **Category Module**
+3. **Tag Module**
+4. **Menu Module**
 
-4. **Adopt Semantic Versioning**
-   - Tag current version as v3.0.0
-   - Document versioning policy
-   - Create release branch strategy
+#### Step 3: Update Laravel Starter Application
+- Remove `Modules/` directory
+- Update composer.json to require updated module-manager
+- Update tests
+- Verify all functionality works
 
-### Week 2 - Implementation Start
-5. **Create starter:install command**
-   - Basic installation wizard
-   - Configuration prompts
-   - Database setup automation
+#### Step 4: Testing & Validation
+- Test module publishing: `php artisan module:publish Post`
+- Test module status: `php artisan module:status`
+- Test module diff: `php artisan module:diff Post`
+- Test migrations: `php artisan module:check-migrations`
+- Run full test suite
 
-6. **Implement vendor:publish system**
-   - Tag config files
-   - Tag migrations
-   - Tag views and assets
-   - Document what's publishable
+### Following Phases (In Sequence)
 
-7. **Update docker-compose.yml**
-   - Fix PHP version (8.1 → 8.3)
-   - Add PostgreSQL service
-   - Add Mailpit for email testing
+**Phase 3:** Route & Architecture Standardization  
+**Phase 4:** Update Mechanism & Testing  
+**Phase 5:** Security & Performance  
+**Phase 6:** CI/CD & Quality Tools  
+**Phase 7:** v13 Release  
 
-8. **Begin Livewire v4 standardization**
-   - Start with `Backend/UsersIndex.php`
-   - Then `Frontend/Users/Profile.php`
-   - Document conversion pattern for others
-
-### Week 3-4 - Testing & Documentation
-9. **Create comprehensive tests**
-   - Test installation command
-   - Test publishing system
-   - Test update scenarios
-
-10. **Documentation updates**
-    - Create INSTALLATION.md
-    - Update README with updateability info
-    - Add CUSTOMIZATION.md guide
+**Note:** Documentation improvements are lower priority and will be handled post-v13 release.
 
 ---
 

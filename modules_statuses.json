@@ -1,6 +1,11 @@
 {
-    "Post": true,
     "Category": true,
     "Tag": true,
-    "Menu": true
+    "Menu": true,
+    "Post": {
+        "published": true,
+        "published_at": "2026-02-03T08:15:54.703122Z",
+        "location": "user",
+        "version": "1.0.0"
+    }
 }
