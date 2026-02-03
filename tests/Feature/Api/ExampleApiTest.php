@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\Api;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Builders\UserBuilder;
 use Tests\TestCase;
 
 /**
  * API Testing Examples
- * 
+ *
  * These tests demonstrate best practices for testing REST APIs:
  * - Authentication testing
  * - CRUD operations
@@ -32,10 +31,10 @@ class ExampleApiTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'status',
-                'timestamp'
+                'timestamp',
             ])
             ->assertJson([
-                'status' => 'ok'
+                'status' => 'ok',
             ]);
     }
 
@@ -53,12 +52,12 @@ class ExampleApiTest extends TestCase
     public function test_authenticated_user_can_access_api(): void
     {
         $user = UserBuilder::make()->create();
-        
+
         // Create API token
         $token = $user->createToken('test-token')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
             'Accept' => 'application/json',
         ])->getJson('/api/user');
 
@@ -83,14 +82,14 @@ class ExampleApiTest extends TestCase
         $token = $user->createToken('test-token')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->getJson('/api/users?page=1&per_page=10');
 
         $response
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
-                    '*' => ['id', 'name', 'email']
+                    '*' => ['id', 'name', 'email'],
                 ],
                 'meta' => [
                     'current_page',
@@ -102,7 +101,7 @@ class ExampleApiTest extends TestCase
                     'last',
                     'prev',
                     'next',
-                ]
+                ],
             ])
             ->assertJsonPath('meta.per_page', 10);
     }
@@ -116,7 +115,7 @@ class ExampleApiTest extends TestCase
         $token = $user->createToken('test-token')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->postJson('/api/users', [
             'name' => '', // Empty name should fail
             'email' => 'invalid-email', // Invalid email format
@@ -130,7 +129,7 @@ class ExampleApiTest extends TestCase
                 'errors' => [
                     'name',
                     'email',
-                ]
+                ],
             ]);
     }
 
@@ -148,7 +147,7 @@ class ExampleApiTest extends TestCase
         ];
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->postJson('/api/resources', $data);
 
         $response
@@ -160,7 +159,7 @@ class ExampleApiTest extends TestCase
                     'name',
                     'description',
                     'created_at',
-                ]
+                ],
             ]);
     }
 
@@ -177,7 +176,7 @@ class ExampleApiTest extends TestCase
         ];
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->putJson("/api/resources/{$resource->id}", $updateData);
 
         $response
@@ -193,7 +192,7 @@ class ExampleApiTest extends TestCase
         $resource = $this->createTestResource();
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->deleteJson("/api/resources/{$resource->id}");
 
         $response->assertStatus(204);
@@ -212,7 +211,7 @@ class ExampleApiTest extends TestCase
         $token = $user->createToken('test-token')->plainTextToken;
 
         $headers = [
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ];
 
         // Make multiple requests to trigger rate limit
@@ -233,13 +232,13 @@ class ExampleApiTest extends TestCase
         $token = $user->createToken('test-token')->plainTextToken;
 
         $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => 'Bearer '.$token,
         ])->getJson('/api/resources/99999');
 
         $response
             ->assertStatus(404)
             ->assertJsonStructure([
-                'message'
+                'message',
             ]);
     }
 

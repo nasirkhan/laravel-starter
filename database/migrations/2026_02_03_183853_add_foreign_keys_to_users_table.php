@@ -18,19 +18,19 @@ return new class extends Migration
             // Self-referencing foreign keys for audit trail
             // These track which user created/updated/deleted other users
             $table->foreign('created_by')
-                  ->references('id')
-                  ->on('users')
-                  ->noActionOnDelete();
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
 
             $table->foreign('updated_by')
-                  ->references('id')
-                  ->on('users')
-                  ->noActionOnDelete();
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
 
             $table->foreign('deleted_by')
-                  ->references('id')
-                  ->on('users')
-                  ->noActionOnDelete();
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
         });
     }
 

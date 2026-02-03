@@ -19,10 +19,10 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->assertSee('Log in to your account')
-                    ->assertSee('Email Address')
-                    ->assertSee('Password')
-                    ->assertSee('Log in');
+                ->assertSee('Log in to your account')
+                ->assertSee('Email Address')
+                ->assertSee('Password')
+                ->assertSee('Log in');
         });
     }
 
@@ -39,12 +39,12 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
-                    ->type('email', $user->email)
-                    ->type('password', 'password')
-                    ->press('Log in')
-                    ->waitForLocation('/dashboard', 10)
-                    ->assertPathIs('/dashboard')
-                    ->assertAuthenticated();
+                ->type('email', $user->email)
+                ->type('password', 'password')
+                ->press('Log in')
+                ->waitForLocation('/dashboard', 10)
+                ->assertPathIs('/dashboard')
+                ->assertAuthenticated();
         });
     }
 
@@ -60,12 +60,12 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
-                    ->type('email', $user->email)
-                    ->type('password', 'wrong-password')
-                    ->press('Log in')
-                    ->waitForText('These credentials do not match our records', 5)
-                    ->assertPathIs('/login')
-                    ->assertGuest();
+                ->type('email', $user->email)
+                ->type('password', 'wrong-password')
+                ->press('Log in')
+                ->waitForText('These credentials do not match our records', 5)
+                ->assertPathIs('/login')
+                ->assertGuest();
         });
     }
 
@@ -82,15 +82,15 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
-                    ->type('email', $user->email)
-                    ->type('password', 'password')
-                    ->check('remember')
-                    ->press('Log in')
-                    ->waitForLocation('/dashboard', 10)
-                    ->assertPathIs('/dashboard');
+                ->type('email', $user->email)
+                ->type('password', 'password')
+                ->check('remember')
+                ->press('Log in')
+                ->waitForLocation('/dashboard', 10)
+                ->assertPathIs('/dashboard');
 
             // Check if remember me cookie is set
-            $browser->assertHasCookie('remember_web_' . sha1(User::class));
+            $browser->assertHasCookie('remember_web_'.sha1(User::class));
         });
     }
 
@@ -105,11 +105,11 @@ class LoginTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit('/dashboard')
-                    ->assertAuthenticated()
-                    ->clickLink('Logout')
-                    ->waitForLocation('/', 10)
-                    ->assertGuest();
+                ->visit('/dashboard')
+                ->assertAuthenticated()
+                ->clickLink('Logout')
+                ->waitForLocation('/', 10)
+                ->assertGuest();
         });
     }
 
@@ -120,10 +120,10 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                    ->press('Log in')
-                    ->waitForText('The email field is required', 5)
-                    ->assertSee('The email field is required')
-                    ->assertSee('The password field is required');
+                ->press('Log in')
+                ->waitForText('The email field is required', 5)
+                ->assertSee('The email field is required')
+                ->assertSee('The password field is required');
         });
     }
 }
