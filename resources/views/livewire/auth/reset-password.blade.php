@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Reset password')" :description="__('Please enter your new password below')" />
+    <x-frontend.auth-header :title="__('Reset password')" :description="__('Please enter your new password below')" />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
         {{-- Email Address --}}
@@ -51,9 +51,9 @@
         />
 
         <div class="flex items-center justify-end">
-            <x-button class="w-full" variant="primary" type="submit">
+            <x-frontend.button class="w-full" variant="primary" type="submit">
                 {{ __("Reset password") }}
-            </x-button>
+            </x-frontend.button>
         </div>
     </form>
 </div>

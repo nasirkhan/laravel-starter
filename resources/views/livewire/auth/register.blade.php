@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
+    <x-frontend.auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->
@@ -66,9 +66,9 @@
         />
 
         <div class="flex items-center justify-end">
-            <x-button class="w-full" variant="primary" type="submit">
+            <x-frontend.button class="w-full" variant="primary" type="submit">
                 {{ __('Create account') }}
-            </x-button>
+            </x-frontend.button>
         </div>
     </form>
 

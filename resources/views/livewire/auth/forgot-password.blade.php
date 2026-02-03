@@ -1,11 +1,11 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header
+    <x-frontend.auth-header
         :title="__('Forgot password')"
         :description="__('Enter your email to receive a password reset link')"
     />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="sendPasswordResetLink" class="flex flex-col gap-6">
         <!-- Email Address -->
@@ -24,9 +24,9 @@
         />
 
         <div class="flex items-center justify-end">
-            <x-button class="w-full" variant="primary" type="submit">
+            <x-frontend.button class="w-full" variant="primary" type="submit">
                 {{ __("Email password reset link") }}
-            </x-button>
+            </x-frontend.button>
         </div>
     </form>
 

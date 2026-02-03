@@ -1,11 +1,11 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header
+    <x-frontend.auth-header
         :title="__('Confirm password')"
         :description="__('This is a secure area of the application. Please confirm your password before continuing.')"
     />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="confirmPassword" class="flex flex-col gap-6">
         {{-- Password --}}
@@ -23,8 +23,8 @@
             :required="$required"
         />
 
-        <x-button class="w-full" variant="primary" type="submit">
+        <x-frontend.button class="w-full" variant="primary" type="submit">
             {{ __("Confirm") }}
-        </x-button>
+        </x-frontend.button>
     </form>
 </div>
