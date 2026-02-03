@@ -13,7 +13,7 @@ class LoginTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
-     * Test user can view login page
+     * Test user can view login page.
      */
     public function test_user_can_view_login_page(): void
     {
@@ -27,7 +27,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * Test user can login with valid credentials
+     * Test user can login with valid credentials.
      */
     public function test_user_can_login_with_valid_credentials(): void
     {
@@ -49,7 +49,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * Test user cannot login with invalid credentials
+     * Test user cannot login with invalid credentials.
      */
     public function test_user_cannot_login_with_invalid_credentials(): void
     {
@@ -70,7 +70,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * Test remember me functionality
+     * Test remember me functionality.
      */
     public function test_remember_me_functionality(): void
     {
@@ -95,7 +95,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * Test user can logout
+     * Test user can logout.
      */
     public function test_user_can_logout(): void
     {
@@ -114,7 +114,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
-     * Test validation errors are displayed
+     * Test validation errors are displayed.
      */
     public function test_validation_errors_are_displayed(): void
     {
