@@ -71,7 +71,7 @@ class ChangePassword extends Component
         $module_name_singular = Str::singular($module_name);
         $module_action = 'Change Password';
         $body_class = 'profile-page';
-        
+
         // Pass model to view - it has $hidden attributes that are automatically excluded
         $user = $this->user;
 
