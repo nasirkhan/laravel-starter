@@ -2,5 +2,6 @@
     "Post": true,
     "Category": true,
     "Tag": true,
-    "Menu": true
+    "Menu": true,
+    "TestExample": true
 }
