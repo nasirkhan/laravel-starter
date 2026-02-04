@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Observers\UserObserver;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -60,34 +59,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function registerEventListeners()
     {
-        /**
-         * Auth Event Listeners.
-         */
-        // Event::listen(
-        //     'App\Events\Auth\UserLoginSuccess',
-        //     'App\Listeners\Auth\UpdateLoginData',
-        //     'App\Listeners\Auth\SendPodcastNotification'
-        // );
-
-        /**
-         * Frontend Event Listeners.
-         */
-        // Event::listen('App\Events\Frontend\UserRegistered',
-        //     'App\Listeners\Frontend\UserRegistered\EmailNotificationOnUserRegistered'
-        // );
-
-        /**
-         * Backend Event Listeners.
-         */
-        // Event::listen(
-        //     'App\Events\Backend\UserCreated',
-        //     'App\Listeners\Backend\UserCreated\UserCreatedProfileCreate',
-        //     'App\Listeners\Backend\UserCreated\UserCreatedNotifySuperUser'
-        // );
-
-        // Event::listen(
-        //     'App\Events\Backend\UserUpdated',
-        //     'App\Listeners\Backend\UserUpdated\UserUpdatedNotifyUser'
-        // );
+        // Register event listeners here when needed
     }
 }

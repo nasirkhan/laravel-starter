@@ -36,14 +36,12 @@ class UserBuilder
     {
         $this->attributes['name'] = $name;
 
-
         return $this;
     }
 
     public function withEmail(string $email): self
     {
         $this->attributes['email'] = $email;
-
 
         return $this;
     }
@@ -52,14 +50,12 @@ class UserBuilder
     {
         $this->attributes['password'] = bcrypt($password);
 
-
         return $this;
     }
 
     public function withUsername(string $username): self
     {
         $this->attributes['username'] = $username;
-
 
         return $this;
     }
@@ -68,7 +64,6 @@ class UserBuilder
     {
         $this->roles[] = 'super admin';
 
-
         return $this;
     }
 
@@ -76,14 +71,12 @@ class UserBuilder
     {
         $this->roles[] = $role;
 
-
         return $this;
     }
 
     public function withPermission(string $permission): self
     {
         $this->permissions[] = $permission;
-
 
         return $this;
     }
@@ -93,7 +86,6 @@ class UserBuilder
         $this->shouldVerify = true;
         $this->attributes['email_verified_at'] = now();
 
-
         return $this;
     }
 
@@ -102,14 +94,12 @@ class UserBuilder
         $this->shouldVerify = false;
         $this->attributes['email_verified_at'] = null;
 
-
         return $this;
     }
 
     public function active(): self
     {
         $this->attributes['status'] = 1;
-
 
         return $this;
     }
@@ -118,14 +108,12 @@ class UserBuilder
     {
         $this->attributes['status'] = 0;
 
-
         return $this;
     }
 
     public function withMobile(string $mobile): self
     {
         $this->attributes['mobile'] = $mobile;
-
 
         return $this;
     }
@@ -134,14 +122,12 @@ class UserBuilder
     {
         $this->attributes['gender'] = $gender;
 
-
         return $this;
     }
 
     public function withDateOfBirth(string $date): self
     {
         $this->attributes['date_of_birth'] = $date;
-
 
         return $this;
     }
@@ -150,14 +136,12 @@ class UserBuilder
     {
         $this->attributes['avatar'] = $url;
 
-
         return $this;
     }
 
     public function withLastLogin(): self
     {
         $this->attributes['last_login'] = now();
-
 
         return $this;
     }
@@ -166,14 +150,12 @@ class UserBuilder
     {
         $this->attributes['last_ip'] = $ip;
 
-
         return $this;
     }
 
     public function withAddress(?string $address = null): self
     {
         $this->attributes['address'] = $address ?? 'Test Address';
-
 
         return $this;
     }
@@ -182,7 +164,6 @@ class UserBuilder
     {
         $this->attributes['bio'] = $bio ?? 'Test Bio';
 
-
         return $this;
     }
 
@@ -190,14 +171,12 @@ class UserBuilder
     {
         $this->attributes['url'] = $url ?? 'https://example.com';
 
-
         return $this;
     }
 
     public function withUrlText(?string $urlText = null): self
     {
         $this->attributes['url_text'] = $urlText ?? 'Example';
-
 
         return $this;
     }
@@ -210,13 +189,11 @@ class UserBuilder
         $user = User::factory()->create($this->attributes);
 
         if (! empty($this->roles)) {
-        if (! empty($this->roles)) {
             foreach ($this->roles as $role) {
                 $user->assignRole($role);
             }
         }
 
-        if (! empty($this->permissions)) {
         if (! empty($this->permissions)) {
             foreach ($this->permissions as $permission) {
                 $user->givePermissionTo($permission);
@@ -236,14 +213,13 @@ class UserBuilder
             $users[] = $this->create();
         }
 
-
         return $users;
     }
 
     /**
      * Build the user without persisting to database.
      */
-    public function make(): User
+    public function build(): User
     {
         return User::factory()->make($this->attributes);
     }
