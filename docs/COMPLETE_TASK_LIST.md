@@ -1,9 +1,10 @@
-# Laravel v13 Upgrade - Complete Task List (All Phases)
+# Laravel Starter - Complete Task List (All Phases)
 
 **Created:** February 3, 2026  
-**Last Updated:** February 3, 2026  
+**Last Updated:** February 4, 2026  
 **Status:** Phase 3 In Progress  
-**Current Task:** Database Migration Standardization (Complete - Awaiting Review)
+**Current Task:** Package Extraction Strategy (Core Minimization)
+**Architecture:** Minimal Core + Feature Packages
 
 ---
 
@@ -11,9 +12,10 @@
 
 - **Phase 1:** Foundation & Livewire 4 - ✅ Complete (Jan 2026)
 - **Phase 2:** Module Extraction - ✅ Complete (Feb 3, 2026)
-- **Phase 3:** Architecture Standardization - 🔄 In Progress (Feb 3, 2026)
-- **Phase 4:** Laravel 13 Upgrade - ⏳ Planned
-- **Phase 5:** Final Polish & Documentation - ⏳ Planned
+- **Phase 3:** Core Minimization & Package Extraction - 🔄 In Progress (Feb 4, 2026)
+- **Phase 4:** Package Development & Testing - ⏳ Planned
+- **Phase 5:** Laravel 13 Upgrade - ⏳ Planned
+- **Phase 6:** Final Polish & Documentation - ⏳ Planned
 
 ---
 
@@ -199,7 +201,14 @@
 
 ---
 
-## 📦 Phase 3: Architecture Standardization (🔄 In Progress - Feb 3, 2026)
+## 📦 Phase 3: Core Minimization & Package Extraction (🔄 In Progress - Feb 4, 2026)
+
+**Vision:** Transform laravel-starter into a minimal core with feature packages for easy maintenance and updates.
+
+**Architecture Strategy:**
+- **Core (laravel-starter):** Authentication, User model, basic layouts, testing infrastructure (~5MB)
+- **Feature Packages:** Admin panel, components, security, settings, modules, etc.
+- **Benefits:** Easy updates, modular, reusable, independently versioned
 
 ### ✅ Database Migration Standardization (COMPLETE - Feb 3, 2026)
 
@@ -326,37 +335,58 @@
 - **Files Modified:** 10+
 - **All modules versioned:** Post 1.0.0, Category 1.0.0, Tag 1.0.0, Menu 1.0.0
 
-### ⏳ Pending - High Priority (Laravel-Starter)
+### ⏳ High Priority - Package Extraction (Current Sprint)
 
-**Convert CRUD Routes to Livewire:**
-- [x] Frontend user profile update (POST/PATCH → Livewire) - ✅ Already implemented (ProfileEdit.php)
-- [x] Frontend password change (PATCH → Livewire) - ✅ Already implemented (ChangePassword.php)
-- [ ] Backend CRUD operations (still using controllers)
-- [ ] Replace form submissions with Livewire components
-- [ ] Update routes from Route::post() to Livewire routes
-- [x] Add #[Validate], #[Locked] attributes to Livewire components - ✅ Already implemented
-- [x] Update tests for Livewire components - ✅ 16 auth tests passing (35 assertions)
+**1. Create nasirkhan/laravel-components Package (HIGHEST PRIORITY - Quick Win)**
+- [ ] Set up package repository structure
+- [ ] Move all 15 frontend components (ui/, forms/, navigation/)
+- [ ] Create ComponentServiceProvider with publishable views
+- [ ] Move COMPONENTS.md and ALPINE_EXAMPLES.md to package
+- [ ] Add Storybook/component preview (optional)
+- [ ] Create README with installation instructions
+- [ ] Publish to Packagist
+- [ ] Update laravel-starter to require package
+- [ ] Test component publishing and usage
+- [ ] Write package tests (15+ component tests)
 
-**Security Enhancements:**
-- [x] Implement rate limiting on sensitive routes (login, password reset) - ✅ Implemented
-  - Login: 5 attempts per email+IP, with lockout event
-  - Password Reset: 3 attempts per email+IP, 60 second decay
-- [ ] Add 2FA (Two-Factor Authentication) module
-- [ ] Add API token management UI
-- [ ] Add audit logging for sensitive actions (user deletion, role changes)
-- [ ] Create input sanitization helpers
-- [ ] Add Content Security Policy (CSP) headers
-- [ ] Implement password strength validation with zxcvbn
-- [ ] Add session management (view active sessions, revoke)
+**2. Create nasirkhan/laravel-admin Package (HIGH IMPACT)**
+- [ ] Set up package repository structure
+- [ ] Move backend controllers: UserController, RolesController, SettingController, BackupController, NotificationsController
+- [ ] Move backend views and layouts
+- [ ] Move backend routes (admin routes)
+- [ ] Create AdminServiceProvider with publishable assets
+- [ ] Add DataTables integration
+- [ ] Add role/permission management UI (Spatie wrapper)
+- [ ] Add activity log UI
+- [ ] Add dashboard views
+- [ ] Create installation command: `php artisan admin:install`
+- [ ] Write comprehensive tests (50+ tests)
+- [ ] Document admin features in README
 
-**Performance Optimizations:**
-- [ ] Add query optimization (eager loading checks)
-- [ ] Implement caching strategies (menu cache, route cache)
-- [ ] Add lazy loading for images (loading="lazy")
-- [ ] Verify pagination on all list views
-- [ ] Create performance monitoring setup (Laravel Telescope/Debugbar)
-- [ ] Add database query logging for N+1 detection
-- [ ] Optimize Livewire component rerendering
+**3. Slim Down Core Dependencies**
+- [ ] Move Spatie packages to respective feature packages:
+  - [ ] spatie/laravel-backup → laravel-backup-ui package
+  - [ ] spatie/laravel-permission → laravel-admin package
+  - [ ] spatie/laravel-activitylog → laravel-admin package
+  - [ ] spatie/laravel-medialibrary → keep in core (used by User model)
+- [ ] Remove unisharp/laravel-filemanager from core → move to package
+- [ ] Remove yajra/laravel-datatables-oracle from core → move to laravel-admin
+- [ ] Update composer.json with minimal dependencies
+- [ ] Document core dependencies in README
+
+**4. Core Content Audit**
+- [ ] Identify what stays in core:
+  - [x] Authentication (Login, Register, Password Reset) ✅
+  - [x] User model + basic profile ✅
+  - [x] Base layouts (app, guest) ✅
+  - [x] Testing infrastructure ✅
+  - [ ] Helpers and traits
+  - [ ] Base middleware
+- [ ] Remove from core (move to packages):
+  - [ ] Backend controllers → laravel-admin
+  - [ ] Frontend components → laravel-components
+  - [ ] Settings management → laravel-settings
+  - [ ] Social login → laravel-social-auth
 
 ### ✅ Frontend Component Organization (COMPLETE - Feb 3, 2026)
 
@@ -435,25 +465,81 @@
 - **Prop Validation:** All components
 - **Status:** ✅ Complete and ready for use
 
-### ⏳ Pending - Medium Priority
+### ⏳ Medium Priority - Additional Feature Packages
 
-**Move Components to Module-Manager Package:**
-- [ ] Identify general-purpose components suitable for package
-- [ ] Move reusable form components to module-manager
-- [ ] Move reusable UI components (buttons, modal) to package
-- [ ] Update component namespaces for package use
-- [ ] Create component documentation in package
-- [ ] Publish components from package to application
-- [ ] Update module views to use package components
-- [ ] Test component usage across all modules
+**5. Create nasirkhan/laravel-security Package**
+- [ ] Set up package repository structure
+- [ ] Implement Two-Factor Authentication (2FA):
+  - [ ] TOTP (Google Authenticator, Authy)
+  - [ ] SMS-based 2FA (Twilio integration)
+  - [ ] Email-based 2FA
+  - [ ] Recovery codes
+- [ ] API Token Management UI
+- [ ] Session Management:
+  - [ ] View active sessions
+  - [ ] Revoke sessions
+  - [ ] Device tracking
+- [ ] Advanced Rate Limiting:
+  - [ ] Configurable rate limits
+  - [ ] IP-based blocking
+  - [ ] Login attempt tracking
+- [ ] Audit Logging UI:
+  - [ ] User actions logging
+  - [ ] Admin actions logging
+  - [ ] Search and filter logs
+- [ ] Security Headers Middleware:
+  - [ ] Content Security Policy (CSP)
+  - [ ] X-Frame-Options
+  - [ ] X-Content-Type-Options
+- [ ] Password Strength Validation (zxcvbn integration)
+- [ ] Input Sanitization Helpers
+- [ ] Write comprehensive tests (60+ tests)
 
-**API Foundation:**
-- [ ] Add Laravel Sanctum authentication
-- [ ] Create API versioning structure (v1, v2)
-- [ ] Add API rate limiting
-- [ ] Create API documentation (OpenAPI/Swagger)
-- [ ] Add API resource transformers
-- [ ] Create API test suite
+**6. Create nasirkhan/laravel-settings Package**
+- [ ] Set up package repository structure
+- [ ] Settings CRUD with groups/tabs
+- [ ] Cache-backed settings (Redis/File)
+- [ ] Setting Types:
+  - [ ] Text, Number, Boolean
+  - [ ] Select, Multi-select
+  - [ ] File upload
+  - [ ] Rich text (WYSIWYG)
+  - [ ] JSON
+- [ ] Settings UI components (forms)
+- [ ] Migration generator for settings schema
+- [ ] Settings validation
+- [ ] Settings export/import
+- [ ] Create installation command
+- [ ] Write tests (30+ tests)
+
+**7. Create nasirkhan/laravel-backup-ui Package**
+- [ ] Set up package repository structure
+- [ ] Spatie Backup integration
+- [ ] Backup list UI with status indicators
+- [ ] Download backup files
+- [ ] Restore from backup (with confirmation)
+- [ ] Backup schedule configuration UI
+- [ ] Email notification configuration
+- [ ] Storage disk selection
+- [ ] Backup health monitoring
+- [ ] Automatic cleanup configuration
+- [ ] Write tests (25+ tests)
+
+**8. Create nasirkhan/laravel-social-auth Package**
+- [ ] Set up package repository structure
+- [ ] Laravel Socialite wrapper
+- [ ] Provider Configuration UI:
+  - [ ] Google, Facebook, GitHub, Twitter, LinkedIn
+  - [ ] Enable/disable providers
+  - [ ] Client ID/Secret configuration
+- [ ] Social Account Linking:
+  - [ ] Link multiple providers to one account
+  - [ ] Unlink social accounts
+  - [ ] Manage connected accounts UI
+- [ ] Social Profile Data Sync
+- [ ] Avatar import from social profiles
+- [ ] Provider callback handling
+- [ ] Write tests (35+ tests)
 
 ### ✅ Testing Infrastructure (COMPLETE - Feb 4, 2026)
 
@@ -546,7 +632,54 @@ php artisan test --coverage --min=70
 
 ---
 
-## 📦 Phase 4: Laravel 13 Upgrade (⏳ Planned)
+## 📦 Phase 4: Package Development & Testing (⏳ Planned)
+
+### ⏳ Package Integration & Testing
+
+**Package Ecosystem Documentation:**
+- [ ] Create ARCHITECTURE.md explaining package strategy
+- [ ] Document minimal core philosophy
+- [ ] Create package dependency matrix
+- [ ] Add installation guides for each package
+- [ ] Create quick-start guides
+- [ ] Add troubleshooting sections
+
+**Package Installer Command:**
+- [ ] Create `php artisan starter:install {package}` command
+- [ ] Auto-detect package dependencies
+- [ ] Run package migrations automatically
+- [ ] Run package seeders (optional)
+- [ ] Publish config and views (optional)
+- [ ] Display post-installation instructions
+
+**Module-Manager Enhancements:**
+- [ ] Add module scaffolding command: `php artisan module:make {name}`
+- [ ] Generate module structure (models, controllers, views, tests)
+- [ ] Add module templates/presets
+- [ ] Create module marketplace concept
+- [ ] Add module update/rollback system
+- [ ] Improve dependency resolution
+
+**Cross-Package Testing:**
+- [ ] Test all packages together
+- [ ] Test selective package installation
+- [ ] Test package upgrades
+- [ ] Verify no dependency conflicts
+- [ ] Test package removal/uninstallation
+- [ ] Performance testing with all packages
+- [ ] Memory usage profiling
+
+**Package Publishing:**
+- [ ] Publish all packages to Packagist
+- [ ] Set up semantic versioning (SemVer)
+- [ ] Create GitHub releases for each package
+- [ ] Add package badges (version, downloads, tests)
+- [ ] Set up automated testing (GitHub Actions)
+- [ ] Configure Dependabot for security updates
+
+---
+
+## 📦 Phase 5: Laravel 13 Upgrade (⏳ Planned)
 
 ### ⏳ Pending
 
@@ -580,7 +713,7 @@ php artisan test --coverage --min=70
 
 ---
 
-## 📦 Phase 5: Final Polish & Documentation (⏳ Planned)
+## 📦 Phase 6: Final Polish & Documentation (⏳ Planned)
 
 ### ⏳ Pending
 
@@ -642,26 +775,39 @@ php artisan test --coverage --min=70
 
 **Phase 1:** Foundation & Livewire 4 - ✅ **100% Complete** (Jan 2026)
 **Phase 2:** Module Extraction - ✅ **100% Complete** (Feb 3, 2026)
-**Phase 3:** Architecture Standardization - 🔄 **40% Complete** (Feb 4, 2026)
+**Phase 3:** Core Minimization & Package Extraction - 🔄 **25% Complete** (Feb 4, 2026)
 - ✅ Database Migration Standardization - Complete (Feb 3, 2026)
 - ✅ Module-Manager Package Enhancements - Complete (Feb 3, 2026)
 - ✅ Frontend Component Organization - Complete (Feb 3, 2026)
 - ✅ Testing Infrastructure - Complete (Feb 4, 2026)
-- ⏳ CRUD to Livewire Conversion - Next
-- ⏳ Security Enhancements - Planned
-- ⏳ Performance Optimizations - Planned
-**Phase 4:** Laravel 13 Upgrade - ⏳ **0% Complete** (Planned)
-**Phase 5:** Final Polish - ⏳ **0% Complete** (Planned)
+- ⏳ Laravel Components Package - **NEXT (Highest Priority)**
+- ⏳ Laravel Admin Package - Planned
+- ⏳ Core Dependency Cleanup - Planned
+- ⏳ Security Package - Planned
+- ⏳ Settings Package - Planned
+- ⏳ Backup UI Package - Planned
+- ⏳ Social Auth Package - Planned
+**Phase 4:** Package Development & Testing - ⏳ **0% Complete** (Planned)
+**Phase 5:** Laravel 13 Upgrade - ⏳ **0% Complete** (Planned)
+**Phase 6:** Final Polish - ⏳ **0% Complete** (Planned)
 
-### Current Sprint (Feb 3-10, 2026)
+### Current Sprint (Feb 4-11, 2026)
+
+**Focus: Core Minimization & Package Extraction**
 
 - [x] Phase 2 completion and testing - ✅ Complete
 - [x] Database migration standardization - ✅ Complete
 - [x] Module-Manager package enhancements - ✅ Complete  
 - [x] Frontend component organization - ✅ Complete (Feb 3, 2026)
 - [x] Testing infrastructure - ✅ Complete (Feb 4, 2026)
-- [ ] Route conversion to Livewire - **NEXT TASK**
-- [ ] Security enhancements - Planned for next sprint
+- [ ] **Create laravel-components package** - **CURRENT TASK (Quick Win)**
+- [ ] Create laravel-admin package - Next
+- [ ] Slim down core dependencies - After admin package
+
+**Deferred to Future Sprints:**
+- Route conversion to Livewire → Move to laravel-admin package
+- Security enhancements → Create laravel-security package
+- Performance optimizations → Per-package basis
 
 ### Test Results (Latest - Feb 4, 2026)
 
@@ -687,27 +833,77 @@ php artisan test --coverage --min=70
 
 ## 🎯 Next Steps (Immediate)
 
-1. ✅ ~~Complete Database Migration Standardization~~ **DONE - Feb 3, 2026**
-   - All migrations created and staged
-   - Awaiting manual review and commit
+### Sprint 1: Component Package (Feb 4-7, 2026) - **CURRENT**
 
-2. **Manual Review & Commit** (CURRENT)
-   - Review all 8 migration files
-   - Review DATABASE_MIGRATION_STANDARDS.md
-   - Commit to both repositories
-   - Run migrations: `php artisan migrate`
-   - Test rollback: `php artisan migrate:rollback --step=8`
+1. **Create nasirkhan/laravel-components Package** (Highest Priority - Quick Win)
+   - Set up repository: `module-manager/../laravel-components`
+   - Create package structure (src/, config/, resources/)
+   - Move all 15 components from laravel-starter
+   - Create ComponentServiceProvider
+   - Move COMPONENTS.md and ALPINE_EXAMPLES.md
+   - Add composer.json with dependencies
+   - Write package tests (15+ tests)
+   - Create README with installation guide
+   - Test component publishing
+   - Update laravel-starter to require package
 
-3. **Convert CRUD to Livewire** (NEXT)
-   - Start with frontend user profile routes
-   - Move to backend admin CRUD routes
-   - Update tests for Livewire components
-   - Remove old controller methods
+### Sprint 2: Admin Package (Feb 8-14, 2026)
 
-4. **Security Enhancements** (After Livewire)
-   - Implement rate limiting
-   - Add 2FA module
-   - Security audit
+2. **Create nasirkhan/laravel-admin Package** (High Impact)
+   - Set up repository structure
+   - Move backend controllers (6 controllers)
+   - Move backend views and layouts
+   - Move backend routes
+   - Integrate DataTables, Spatie packages
+   - Create AdminServiceProvider
+   - Add installation command
+   - Write comprehensive tests (50+ tests)
+   - Create admin documentation
+   - Update laravel-starter to require package
+
+### Sprint 3: Core Cleanup (Feb 15-21, 2026)
+
+3. **Slim Down Core Dependencies**
+   - Move Spatie packages to feature packages
+   - Remove DataTables from core
+   - Remove FileManager from core
+   - Update composer.json (minimal dependencies)
+   - Test core functionality still works
+   - Document core vs package dependencies
+
+### Sprint 4: Security & Settings Packages (Feb 22-28, 2026)
+
+4. **Create laravel-security Package**
+   - Implement 2FA (TOTP, SMS, Email)
+   - Session management
+   - API token management
+   - Audit logging UI
+   - Security headers
+   - Write comprehensive tests
+
+5. **Create laravel-settings Package**
+   - Settings CRUD with cache
+   - Settings UI components
+   - Setting types (text, boolean, file, etc.)
+   - Write tests
+
+### Future Sprints
+
+6. **Additional Packages** (March 2026)
+   - laravel-backup-ui
+   - laravel-social-auth
+   - Module-manager enhancements
+
+7. **Package Ecosystem** (April 2026)
+   - ARCHITECTURE.md documentation
+   - Package installer command
+   - Cross-package testing
+   - Publish to Packagist
+
+8. **Laravel 13 Upgrade** (May 2026)
+   - After all packages are stable
+   - Upgrade core first
+   - Then upgrade each package
 
 ---
 
@@ -715,8 +911,9 @@ php artisan test --coverage --min=70
 
 - **Commit Policy:** All commits are manual review - no auto-commits
 - **Branches:**
-  - Laravel-starter: `v13` branch
+  - Laravel-starter: `v13` branch (core)
   - Module-manager: `dev-dev` branch
+  - All new packages: `main` branch (following GitHub convention)
 - **Testing:** Full test suite must pass before moving to next phase
 - **Documentation:** Breaking changes documented in UPGRADE.md
 - **Migration Strategy:** Non-breaking additive migrations only
@@ -725,6 +922,36 @@ php artisan test --coverage --min=70
   - `nullOnDelete()` - Optional relationships (posts → categories)
   - `noActionOnDelete()` - Audit trail preservation (created_by → users)
 
+### Package Naming Conventions
+
+**Package Names:**
+- `nasirkhan/laravel-starter` - Minimal core (authentication, user model, layouts)
+- `nasirkhan/laravel-admin` - Complete admin panel foundation
+- `nasirkhan/laravel-components` - Reusable UI components
+- `nasirkhan/laravel-security` - Security features (2FA, audit, tokens)
+- `nasirkhan/laravel-settings` - Settings management
+- `nasirkhan/laravel-backup-ui` - Backup management UI
+- `nasirkhan/laravel-social-auth` - Social authentication
+- `nasirkhan/module-manager` - Module system (existing)
+
+**Repository Structure:**
+```
+Herd/
+├── laravel-starter/          # Core (minimal)
+├── module-manager/           # Module system
+├── laravel-admin/           # Admin panel package (NEW)
+├── laravel-components/      # UI components package (NEW)
+├── laravel-security/        # Security package (NEW)
+├── laravel-settings/        # Settings package (NEW)
+├── laravel-backup-ui/       # Backup UI package (NEW)
+└── laravel-social-auth/     # Social auth package (NEW)
+```
+
+**Core Philosophy:**
+- **Core:** Keep only essentials (auth, user, layouts, testing infrastructure)
+- **Packages:** Feature-complete, independently versioned, optional
+- **Benefits:** Easy updates, modular, reusable, maintainable
+
 ---
 
-**Last Updated:** February 3, 2026 - Frontend Component Organization Complete, All Components Documented with Alpine.js Examples
+**Last Updated:** February 4, 2026 - Architecture Shift to Minimal Core + Feature Packages Strategy. Priority: Create laravel-components package (Quick Win).
