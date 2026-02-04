@@ -5,7 +5,7 @@ namespace Tests\Builders;
 use App\Models\User;
 
 /**
- * Test Data Builder for User model
+ * Test Data Builder for User model.
  *
  * Provides a fluent interface for creating test users with specific attributes.
  *

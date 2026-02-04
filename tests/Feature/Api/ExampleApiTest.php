@@ -7,7 +7,7 @@ use Tests\Builders\UserBuilder;
 use Tests\TestCase;
 
 /**
- * API Testing Examples
+ * API Testing Examples.
  *
  * These tests demonstrate best practices for testing REST APIs:
  * - Authentication testing
