@@ -130,6 +130,14 @@
 - [x] Tests: MenuTest.php, MenuItemTest.php
 - [x] Service Provider: MenuServiceProvider.php
 
+**Backup Module (6 files - Feb 9, 2026):**
+- [x] Controllers: BackupController.php (list, create, download, delete)
+- [x] Routes: web.php (4 routes)
+- [x] Views: backups.blade.php
+- [x] Providers: BackupServiceProvider.php, RouteServiceProvider.php
+- [x] Documentation: README.md
+- [x] Service Provider: BackupServiceProvider.php
+
 ### ✅ Namespace Migration (All 140 Files)
 
 - [x] Updated all namespaces to `Nasirkhan\ModuleManager\Modules\*`
@@ -365,7 +373,7 @@
 
 **3. Slim Down Core Dependencies**
 - [ ] Move Spatie packages to respective feature packages:
-  - [ ] spatie/laravel-backup → laravel-backup-ui package
+  - [x] spatie/laravel-backup → ✅ Moved to module-manager as Backup module (Feb 9, 2026)
   - [ ] spatie/laravel-permission → laravel-admin package
   - [ ] spatie/laravel-activitylog → laravel-admin package
   - [ ] spatie/laravel-medialibrary → keep in core (used by User model)
@@ -512,18 +520,23 @@
 - [ ] Create installation command
 - [ ] Write tests (30+ tests)
 
-**7. Create nasirkhan/laravel-backup-ui Package**
-- [ ] Set up package repository structure
-- [ ] Spatie Backup integration
-- [ ] Backup list UI with status indicators
-- [ ] Download backup files
-- [ ] Restore from backup (with confirmation)
-- [ ] Backup schedule configuration UI
-- [ ] Email notification configuration
-- [ ] Storage disk selection
-- [ ] Backup health monitoring
-- [ ] Automatic cleanup configuration
-- [ ] Write tests (25+ tests)
+**7. ✅ Backup Management (MOVED TO MODULE-MANAGER - Feb 9, 2026)**
+- [x] Set up module structure in module-manager
+- [x] Spatie Backup integration
+- [x] Backup list UI with status indicators
+- [x] Download backup files
+- [x] Delete backup files
+- [x] Create new backups on-demand
+- [x] BackupController with authorization
+- [x] Backup routes with middleware
+- [x] Module README documentation
+- [x] Service providers (BackupServiceProvider, RouteServiceProvider)
+- [x] Views with backend layout integration
+- [x] Removed from laravel-starter core
+- [ ] Write tests (25+ tests) - TODO
+- [ ] Advanced features (restore, schedule config, health monitoring) - Future
+
+**Note:** Backup functionality is now available as the Backup module in module-manager, not as a separate package. This consolidates functionality and reduces package sprawl.
 
 **8. Create nasirkhan/laravel-social-auth Package**
 - [ ] Set up package repository structure
@@ -890,9 +903,9 @@ php artisan test --coverage --min=70
 ### Future Sprints
 
 6. **Additional Packages** (March 2026)
-   - laravel-backup-ui
    - laravel-social-auth
    - Module-manager enhancements
+   - ✅ Backup module (Complete - Feb 9, 2026)
 
 7. **Package Ecosystem** (April 2026)
    - ARCHITECTURE.md documentation
@@ -930,20 +943,18 @@ php artisan test --coverage --min=70
 - `nasirkhan/laravel-components` - Reusable UI components
 - `nasirkhan/laravel-security` - Security features (2FA, audit, tokens)
 - `nasirkhan/laravel-settings` - Settings management
-- `nasirkhan/laravel-backup-ui` - Backup management UI
 - `nasirkhan/laravel-social-auth` - Social authentication
-- `nasirkhan/module-manager` - Module system (existing)
+- `nasirkhan/module-manager` - Module system with Post, Category, Tag, Menu, **Backup** modules
 
 **Repository Structure:**
 ```
 Herd/
 ├── laravel-starter/          # Core (minimal)
-├── module-manager/           # Module system
+├── module-manager/           # Module system + Backup module (Feb 9, 2026)
 ├── laravel-admin/           # Admin panel package (NEW)
 ├── laravel-components/      # UI components package (NEW)
 ├── laravel-security/        # Security package (NEW)
 ├── laravel-settings/        # Settings package (NEW)
-├── laravel-backup-ui/       # Backup UI package (NEW)
 └── laravel-social-auth/     # Social auth package (NEW)
 ```
 
@@ -954,4 +965,4 @@ Herd/
 
 ---
 
-**Last Updated:** February 4, 2026 - Architecture Shift to Minimal Core + Feature Packages Strategy. Priority: Create laravel-components package (Quick Win).
+**Last Updated:** February 9, 2026 - Moved Backup functionality to module-manager as Backup module (6 files). This consolidates backup management into the module system rather than creating a separate laravel-backup-ui package.

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\SettingController;
@@ -102,18 +101,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::get("{$module_name}/markAllAsRead", [NotificationsController::class, 'markAllAsRead'])->name("{$module_name}.markAllAsRead");
     Route::delete("{$module_name}/deleteAll", [NotificationsController::class, 'deleteAll'])->name("{$module_name}.deleteAll");
     Route::get("{$module_name}/{id}", [NotificationsController::class, 'show'])->name("{$module_name}.show");
-
-    /*
-     *
-     *  Backup Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'backups';
-    Route::get("{$module_name}", [BackupController::class, 'index'])->name("{$module_name}.index");
-    Route::get("{$module_name}/create", [BackupController::class, 'create'])->name("{$module_name}.create");
-    Route::get("{$module_name}/download/{file_name}", [BackupController::class, 'download'])->name("{$module_name}.download");
-    Route::get("{$module_name}/delete/{file_name}", [BackupController::class, 'delete'])->name("{$module_name}.delete");
 
     /*
      *
