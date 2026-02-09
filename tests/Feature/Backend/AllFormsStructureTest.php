@@ -83,7 +83,7 @@ class AllFormsStructureTest extends TestCase
 
     /**
      * Test that forms using layout components inherit the fix.
-     * 
+     *
      * Note: Module forms (Post, Category, Tag, Menu) have been moved to module-manager package
      * and should be tested within their respective module test suites.
      */
