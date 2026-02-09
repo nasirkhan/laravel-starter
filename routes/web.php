@@ -130,10 +130,3 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::patch("{$module_name}/{id}/unblock", [BackendUserController::class, 'unblock'])->name("{$module_name}.unblock")->middleware('can:block_users');
     Route::resource("{$module_name}", BackendUserController::class);
 });
-
-/**
- * File Manager Routes.
- */
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth', 'can:view_backend']], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});

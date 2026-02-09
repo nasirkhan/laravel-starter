@@ -83,41 +83,15 @@ class AllFormsStructureTest extends TestCase
 
     /**
      * Test that forms using layout components inherit the fix.
+     * 
+     * Note: Module forms (Post, Category, Tag, Menu) have been moved to module-manager package
+     * and should be tested within their respective module test suites.
      */
     public function test_modular_forms_inherit_cancel_button_fix(): void
     {
-        $modularForms = [
-            // These forms use x-backend.layouts.edit which we fixed
-            'Modules/Category/Resources/views/backend/categories/edit.blade.php',
-            'Modules/Post/Resources/views/backend/posts/edit.blade.php',
-            'Modules/Tag/Resources/views/backend/tags/edit.blade.php',
-
-            // These forms use x-backend.layouts.create which we fixed
-            'Modules/Category/Resources/views/backend/categories/create.blade.php',
-            'Modules/Post/Resources/views/backend/posts/create.blade.php',
-            'Modules/Tag/Resources/views/backend/tags/create.blade.php',
-        ];
-
-        foreach ($modularForms as $formFile) {
-            $fullPath = base_path($formFile);
-
-            if (file_exists($fullPath)) {
-                $content = file_get_contents($fullPath);
-
-                // These should use x-backend.layouts.edit or x-backend.layouts.create
-                $usesLayoutComponent =
-                    strpos($content, 'x-backend.layouts.edit') !== false ||
-                    strpos($content, 'x-backend.layouts.create') !== false;
-
-                if ($usesLayoutComponent) {
-                    $this->assertTrue(true, "Form {$formFile} uses layout component which has our fix");
-                } else {
-                    // If not using layout component, should have direct fix
-                    $this->assertStringContainsString('Cancel button outside the form', $content,
-                        "Form {$formFile} should either use layout component or have direct fix");
-                }
-            }
-        }
+        // Module forms have been moved to module-manager package
+        // They should be tested in their respective module test suites
+        $this->markTestSkipped('Module forms moved to module-manager package - test in module test suites');
     }
 
     /**

@@ -136,7 +136,24 @@
 - [x] Views: backups.blade.php
 - [x] Providers: BackupServiceProvider.php, RouteServiceProvider.php
 - [x] Documentation: README.md
-- [x] Service Provider: BackupServiceProvider.php
+- [x] Tests: BackupSuperAdminTest.php (3 tests)
+
+**FileManager Module (6 files - Feb 9, 2026):**
+- [x] Routes: web.php (UniSharp LFM integration)
+- [x] Config: lfm.php (file upload and validation settings)
+- [x] Providers: FileManagerServiceProvider.php, RouteServiceProvider.php
+- [x] Documentation: README.md with CKEditor/TinyMCE integration examples
+- [x] Module metadata: module.json
+- [x] Moved from laravel-starter core to module-manager
+
+**Module Test Migration (Feb 9, 2026):**
+- [x] Split BackendViewSuperAdminTest into module-specific tests
+- [x] Post module: PostSuperAdminTest.php (8 tests)
+- [x] Category module: CategorySuperAdminTest.php (8 tests)
+- [x] Tag module: TagSuperAdminTest.php (8 tests)
+- [x] Backup module: BackupSuperAdminTest.php (3 tests)
+- [x] Kept core tests in laravel-starter (Dashboard, Notifications, Settings, Users, Roles)
+- [x] Total module tests: 27 tests moved to modules
 
 ### ✅ Namespace Migration (All 140 Files)
 
@@ -372,14 +389,15 @@
 - [ ] Document admin features in README
 
 **3. Slim Down Core Dependencies**
-- [ ] Move Spatie packages to respective feature packages:
+- [x] Move Spatie packages to respective feature packages:
   - [x] spatie/laravel-backup → ✅ Moved to module-manager as Backup module (Feb 9, 2026)
   - [ ] spatie/laravel-permission → laravel-admin package
   - [ ] spatie/laravel-activitylog → laravel-admin package
   - [ ] spatie/laravel-medialibrary → keep in core (used by User model)
-- [ ] Remove unisharp/laravel-filemanager from core → move to package
+- [x] unisharp/laravel-filemanager → ✅ Moved to module-manager as FileManager module (Feb 9, 2026)
+- [x] sqids/sqids → ✅ Moved to module-manager (Feb 9, 2026) - Used by modules, not core
 - [ ] Remove yajra/laravel-datatables-oracle from core → move to laravel-admin
-- [ ] Update composer.json with minimal dependencies
+- [x] Update composer.json with minimal dependencies - In progress
 - [ ] Document core dependencies in README
 
 **4. Core Content Audit**
@@ -965,4 +983,16 @@ Herd/
 
 ---
 
-**Last Updated:** February 9, 2026 - Moved Backup functionality to module-manager as Backup module (6 files). This consolidates backup management into the module system rather than creating a separate laravel-backup-ui package.
+**Last Updated:** February 9, 2026 
+
+**Latest Changes:**
+- ✅ Moved Backup functionality to module-manager as Backup module (6 files)
+- ✅ Moved FileManager (Laravel File Manager) to module-manager as FileManager module (6 files)  
+- ✅ Moved package dependencies: `spatie/laravel-backup`, `unisharp/laravel-filemanager`, `sqids/sqids` from laravel-starter to module-manager
+- ✅ Removed FileManager routes and config from laravel-starter core
+- ✅ Fixed duplicate `spatie/laravel-backup` entry in composer.json
+- ✅ Split BackendViewSuperAdminTest into module-specific tests (27 tests migrated to modules)
+- ✅ Created dedicated test files for Post, Category, Tag, and Backup modules
+
+**Module Count:** 6 modules total (Post, Category, Tag, Menu, Backup, FileManager)
+**Test Coverage:** Module tests now live within their respective modules for better organization
