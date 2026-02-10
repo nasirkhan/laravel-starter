@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0b3af72a215a8e468872e166102fc4b",
+    "content-hash": "51d0f8967d2d2a9240e09002af5f5675",
     "packages": [
         {
             "name": "brick/math",
@@ -2928,6 +2928,72 @@
                 }
             ],
             "time": "2026-01-02T08:56:05+00:00"
+        },
+        {
+            "name": "nasirkhan/laravel-cube",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../laravel-starter-packages/laravel-cube",
+                "reference": "eaeb4f481a067e49ad3ea65ec407e0b2a7a5f6e7"
+            },
+            "require": {
+                "illuminate/support": "^11.0|^12.0",
+                "illuminate/view": "^11.0|^12.0",
+                "livewire/livewire": "^3.0|^4.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.0",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nasirkhan\\LaravelCube\\CubeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nasirkhan\\LaravelCube\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Nasirkhan\\LaravelCube\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nasir Khan Saikat",
+                    "email": "nasir8891@gmail.com",
+                    "homepage": "https://github.com/nasirkhan",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
+            "homepage": "https://github.com/nasirkhan/laravel-cube",
+            "keywords": [
+                "alpine",
+                "blade-components",
+                "bootstrap",
+                "components",
+                "cube",
+                "flowbite",
+                "forms",
+                "laravel",
+                "navigation",
+                "tailwind",
+                "ui-components"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "nasirkhan/module-manager",
@@ -11046,6 +11112,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "nasirkhan/laravel-cube": 20,
         "nasirkhan/module-manager": 20
     },
     "prefer-stable": true,

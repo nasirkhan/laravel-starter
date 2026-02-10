@@ -17,6 +17,10 @@
         {
             "type": "path",
             "url": "../laravel-starter-packages/module-manager"
+        },
+        {
+            "type": "path",
+            "url": "../laravel-starter-packages/laravel-cube"
         }
     ],
     "require": {
@@ -28,6 +32,7 @@
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10",
         "livewire/livewire": "4.0",
+        "nasirkhan/laravel-cube": "@dev",
         "nasirkhan/module-manager": "@dev",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",

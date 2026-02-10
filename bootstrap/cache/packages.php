@@ -107,6 +107,13 @@
       0 => 'Livewire\\LivewireServiceProvider',
     ),
   ),
+  'nasirkhan/laravel-cube' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Nasirkhan\\LaravelCube\\CubeServiceProvider',
+    ),
+  ),
   'nasirkhan/module-manager' => 
   array (
     'providers' => 
