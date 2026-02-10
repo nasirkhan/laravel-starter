@@ -1,7 +1,8 @@
 {
-    "Post": true,
+    "Backup": true,
     "Category": true,
-    "Tag": true,
+    "FileManager": true,
     "Menu": true,
-    "TestExample": true
+    "Post": true,
+    "Tag": true
 }
