@@ -2,6 +2,7 @@
     "Backup": true,
     "Category": true,
     "FileManager": true,
+    "LogViewer": true,
     "Menu": true,
     "Post": true,
     "Tag": true

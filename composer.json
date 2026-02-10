@@ -23,7 +23,6 @@
         "laravel/tinker": "^2.10",
         "livewire/livewire": "4.0",
         "nasirkhan/module-manager": "dev-dev",
-        "opcodesio/log-viewer": "^3.21",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
