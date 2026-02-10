@@ -5,7 +5,6 @@ use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController as BackendUserController;
-use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\LanguageController;
 use App\Livewire\Frontend\Home;
 use App\Livewire\Frontend\Privacy;
@@ -57,10 +56,6 @@ Route::group(['as' => 'frontend.'], function () {
         Route::livewire('profile/edit', ProfileEdit::class)->name("{$module_name}.profileEdit");
         Route::livewire('profile/changePassword', ChangePassword::class)->name("{$module_name}.changePassword");
         Route::livewire('profile/{username?}', Profile::class)->name("{$module_name}.profile");
-
-        // Keep these as controller routes for now (POST/PATCH/DELETE methods)
-        Route::get("{$module_name}/emailConfirmationResend", [FrontendUserController::class, 'emailConfirmationResend'])->name("{$module_name}.emailConfirmationResend");
-        Route::delete("{$module_name}/userProviderDestroy", [FrontendUserController::class, 'userProviderDestroy'])->name("{$module_name}.userProviderDestroy");
     });
 });
 

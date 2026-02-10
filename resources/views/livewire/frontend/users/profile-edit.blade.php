@@ -4,6 +4,11 @@
     </div>
 
     <div class="container mx-auto max-w-7xl px-4 py-10 sm:px-6">
+        {{-- Email Verification Alert --}}
+        <div class="mb-6">
+            <livewire:frontend.users.resend-email-confirmation />
+        </div>
+
         <div class="mb-10 sm:grid sm:grid-cols-3 sm:gap-6">
             <div class="sm:col-span-1">
                 <div class="px-4 sm:px-0">
@@ -227,5 +232,60 @@
                 </div>
             </div>
         </div>
+
+        @if($user->providers && $user->providers->count() > 0)
+            <div class="hidden sm:block" aria-hidden="true">
+                <div class="mb-10 py-4">
+                    <div class="border-t border-gray-200"></div>
+                </div>
+            </div>
+
+            <div class="mb-10 mt-10 sm:mt-0">
+                <div class="sm:grid sm:grid-cols-3 sm:gap-6">
+                    <div class="sm:col-span-1">
+                        <div class="px-4 sm:px-0">
+                            <h3 class="text-lg font-medium leading-6 text-gray-800 dark:text-gray-200">Connected Accounts</h3>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Manage your social authentication providers.</p>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:col-span-2 sm:mt-0">
+                        <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
+                            <div class="space-y-4">
+                                @foreach($user->providers as $provider)
+                                    <div class="flex items-center justify-between rounded-md border border-gray-200 p-4">
+                                        <div class="flex items-center">
+                                            <div class="shrink-0">
+                                                @if($provider->provider === 'github')
+                                                    <i class="fab fa-github text-2xl text-gray-800"></i>
+                                                @elseif($provider->provider === 'google')
+                                                    <i class="fab fa-google text-2xl text-red-500"></i>
+                                                @elseif($provider->provider === 'facebook')
+                                                    <i class="fab fa-facebook text-2xl text-blue-600"></i>
+                                                @elseif($provider->provider === 'twitter')
+                                                    <i class="fab fa-twitter text-2xl text-blue-400"></i>
+                                                @else
+                                                    <i class="fas fa-link text-2xl text-gray-500"></i>
+                                                @endif
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                    {{ ucfirst($provider->provider) }}
+                                                </p>
+                                                <p class="text-xs text-gray-500">
+                                                    Connected on {{ $provider->created_at->format('M d, Y') }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <livewire:frontend.users.unlink-provider :userProviderId="$provider->id" :key="'provider-'.$provider->id" />
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
