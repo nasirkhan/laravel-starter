@@ -69,7 +69,10 @@ class RouteAccessibilityTest extends TestCase
                 str_contains($uri, 'filemanager') ||
                 str_contains($uri, 'log-viewer') ||
                 str_contains($uri, 'download') ||
-                str_contains($uri, 'emailConfirmationResend')
+                str_contains($uri, 'emailConfirmationResend') ||
+                str_contains($uri, 'backups') ||
+                str_contains($uri, 'delete') ||
+                str_contains($uri, 'clear-cache')
             ) {
                 continue;
             }

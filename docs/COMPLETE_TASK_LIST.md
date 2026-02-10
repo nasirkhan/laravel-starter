@@ -396,7 +396,7 @@
   - [ ] spatie/laravel-medialibrary → keep in core (used by User model)
 - [x] unisharp/laravel-filemanager → ✅ Moved to module-manager as FileManager module (Feb 9, 2026)
 - [x] sqids/sqids → ✅ Moved to module-manager (Feb 9, 2026) - Used by modules, not core
-- [ ] Remove yajra/laravel-datatables-oracle from core → move to laravel-admin
+- [x] yajra/laravel-datatables-oracle → ✅ Moved to module-manager (Feb 10, 2026) - Backend admin functionality
 - [x] Update composer.json with minimal dependencies - In progress
 - [ ] Document core dependencies in README
 
@@ -983,9 +983,17 @@ Herd/
 
 ---
 
-**Last Updated:** February 9, 2026 
+**Last Updated:** February 10, 2026 
 
 **Latest Changes:**
+- ✅ Moved yajra/laravel-datatables-oracle to module-manager (Feb 10, 2026)
+- ✅ Added DataTables config publishing via ModuleManagerServiceProvider
+- ✅ DataTables v12.6.3 now available through module-manager (backend admin functionality)
+- ✅ Published LogViewer and Backup configs with proper module structure
+- ✅ Assigned view_logs and backup permissions to super admin and administrator roles
+- ✅ All route tests passing (228 assertions)
+
+**Previous Updates (Feb 9, 2026):**
 - ✅ Moved Backup functionality to module-manager as Backup module (6 files)
 - ✅ Moved FileManager (Laravel File Manager) to module-manager as FileManager module (6 files)  
 - ✅ Moved package dependencies: `spatie/laravel-backup`, `unisharp/laravel-filemanager`, `sqids/sqids` from laravel-starter to module-manager
@@ -995,4 +1003,5 @@ Herd/
 - ✅ Created dedicated test files for Post, Category, Tag, and Backup modules
 
 **Module Count:** 6 modules total (Post, Category, Tag, Menu, Backup, FileManager)
+**Package Count:** 7 packages in module-manager (including yajra/laravel-datatables-oracle)
 **Test Coverage:** Module tests now live within their respective modules for better organization

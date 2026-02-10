@@ -51,7 +51,8 @@
     47 => 'Spatie\\Permission\\PermissionServiceProvider',
     48 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
     49 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
-    50 => 'App\\Providers\\AppServiceProvider',
+    50 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    51 => 'App\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -87,7 +88,8 @@
     29 => 'Spatie\\Permission\\PermissionServiceProvider',
     30 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
     31 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
-    32 => 'App\\Providers\\AppServiceProvider',
+    32 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    33 => 'App\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (
