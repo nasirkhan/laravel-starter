@@ -5,7 +5,6 @@ namespace Tests\Feature\Frontend\Users;
 use App\Livewire\Frontend\Users\ResendEmailConfirmation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\TestCase;
 
