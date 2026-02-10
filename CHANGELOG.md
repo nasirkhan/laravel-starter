@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Placeholder for next version features
+
+## [12.20.0] - 2026-02-10
+
+### Added
 - Updateability strategy implementation following Laravel's native override pattern
 - Module publishing system for selective customization
 - Livewire v4 component standardization
@@ -24,29 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Docker compose PHP version (8.1 → 8.3)
-
-## [12.20.0] - 2026-01-26
-
-### Added
-- Laravel 12 support
-- PHP 8.3 support
-- Livewire 4.0 integration with modern attributes (#[Layout], #[Title], #[Validate], #[Locked])
-- Modular architecture with clear Backend/Frontend separation
-- Role-based permissions system (Spatie Laravel Permission)
-- Social authentication integration (Google, Facebook, GitHub) via Laravel Socialite
-- Multi-language support (Bengali, English, Farsi, Hindi, Turkish, Vietnamese)
-- Activity logging system (Spatie Laravel Activitylog)
-- Media library management (Spatie Laravel Medialibrary)
-- Automated backup system (Spatie Laravel Backup)
-- Dynamic menu system with hierarchical support
-- Dark mode support throughout application
-- Laravel Herd compatibility
-- Comprehensive helper functions
-- DataTables integration for data listing
-- File manager integration (Laravel File Manager)
-- Log viewer for application monitoring
-- Tailwind CSS 3.x for modern styling
-- Vite for asset bundling
 
 ### Features
 - **Authentication & Authorization**
@@ -105,9 +87,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clear directory structure
 - Modular code organization
 
-## [12.19.0 and earlier] - 2025
+## [2.x] - 2024
 
-For previous version history, see [GitHub Releases](https://github.com/nasirkhan/laravel-starter/releases)
+Previous versions (before comprehensive changelog implementation)
 
 [Unreleased]: https://github.com/nasirkhan/laravel-starter/compare/v12.20.0...HEAD
 [12.20.0]: https://github.com/nasirkhan/laravel-starter/releases/tag/v12.20.0

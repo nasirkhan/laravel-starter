@@ -63,7 +63,7 @@ Before creating bug reports, please check existing issues to avoid duplicates.
 **Environment:**
 - Laravel Starter: 12.20.0
 - Laravel: 12.0
-- PHP: 8.2
+- PHP: 8.3.4
 - OS: Windows 11
 - DB: MySQL 8.0
 
@@ -111,7 +111,7 @@ See [Pull Request Process](#pull-request-process) below.
 
 ### Prerequisites
 
-- PHP 8.2 or higher
+- PHP 8.3 or higher
 - Composer 2.0+
 - Node.js 18+ and NPM 9+
 - Database (MySQL 8.0+, PostgreSQL 13+, or SQLite)

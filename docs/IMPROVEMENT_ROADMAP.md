@@ -206,15 +206,15 @@ view('post::index');  // Laravel handles the override automatically!
   
 - [ ] **Version compatibility matrix**
   ```
-  Laravel Starter 3.x → Laravel 12.x, PHP 8.2-8.3
-  Laravel Starter 2.x → Laravel 11.x, PHP 8.1-8.2
-  Laravel Starter 1.x → Laravel 10.x, PHP 8.1
-  ```module-manager  # Updates both tools AND default modules
+  Laravel Starter 12.x → Laravel 12.x, PHP 8.2-8.3, Livewire 4.x
+  Laravel Starter 2.x  → Laravel 11.x, PHP 8.1-8.2, Livewire 3.x
+  Laravel Starter 1.x  → Laravel 10.x, PHP 8.1, Livewire 2.x
   ```
-  - Defaultnch strategy**
-  - `main` - Latest stable release
-  - `develop` - Next version development
-  - `3.x`, `2.x` - Maintenance branches for older versions
+
+- [ ] **Branch strategy**
+  - `main` - Latest stable release (v12.x)
+  - `develop` - Next version development (v13.x)
+  - `12.x`, `2.x`, `1.x` - Maintenance branches for older versions
 
 #### Phase 3: Update Mechanism (Laravel Native)
 
@@ -236,8 +236,8 @@ view('post::index');  // Laravel handles the override automatically!
   # Module    Location           Version    Updates
   # -------   ---------          -------    -------
   # Post      vendor (package)   v3.1.0     ✓ Up to date
-  # Category  Modules/ (custom)  v3.0.0     ⚠ Customized, check changelog
-  # Tag       vendor (package)   v3.0.0     → v3.1.0 available
+  # Category  Modules/ (custom)  v12.20.0   ⚠ Customized, check changelog
+  # Tag       vendor (package)   v12.20.0   → v12.21.0 available
   # Menu      Modules/ (custom)  v2.9.0     ⚠ Customized, 2 versions behind
   ```
 
@@ -768,7 +768,7 @@ php artisan module:diff Post
 # Shows:
 # Differences betweenmodule-manager/src/Modules
 # - vendor/nasirkhan/laravel-starter-modules/src/Post/ (v3.1.0)
-# - Modules/Post/ (your v3.0.0 customized version)
+# - Modules/Post/ (your v12.20.0 customized version)
 # 
 # Review changes and manually merge if desired
 
@@ -1182,7 +1182,7 @@ php artisan module:publish Post
 
 # Output:
 # Updating nasirkhan/module-manager (v4.0.0 => v5.0
-# Updating nasirkhan/laravel-starter-modules (v3.0.0 => v3.1.0)
+# Updating nasirkhan/laravel-starter-modules (v12.20.0 => v12.21.0)
 
 # Check for new migrations
 php artisan module:check-migrations
@@ -1248,7 +1248,7 @@ php artisan module:diff Post
 # Output:
 # ┌─ Post Module Differences ──────────────────────┐
 # │ Package: v3.1.0                                 │
-# │ Your Module: v3.0.0 (customized)                │
+# │ Your Module: v12.20.0 (customized)              │
 # │                                                  │
 # │ Changed Files:                                  │
 # │ M Http/Controllers/PostController.php           │

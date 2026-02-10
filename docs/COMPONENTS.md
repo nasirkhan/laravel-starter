@@ -2,7 +2,7 @@
 
 **Last Updated:** February 3, 2026  
 **Laravel Version:** 12.x  
-**Livewire Version:** 3.x
+**Livewire Version:** 4.x
 
 This document provides comprehensive documentation for all Blade components in the Laravel Starter application, including usage examples, prop validation, and Alpine.js integration patterns.
 

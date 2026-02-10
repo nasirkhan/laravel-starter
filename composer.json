@@ -13,6 +13,12 @@
     ],
     "license": "GPL-3.0-or-later",
     "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-starter-packages/module-manager"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "intervention/image-laravel": "^1.5",
@@ -22,7 +28,7 @@
         "laravel/socialite": "^5.19",
         "laravel/tinker": "^2.10",
         "livewire/livewire": "4.0",
-        "nasirkhan/module-manager": "dev-dev",
+        "nasirkhan/module-manager": "@dev",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
@@ -30,18 +36,14 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
-        "barryvdh/laravel-ide-helper": "^3.6",
         "fakerphp/faker": "^1.24",
         "laravel/boost": "^2.0",
         "laravel/breeze": "^2.3",
-        "laravel/dusk": "^8.3",
         "laravel/pail": "^1.2",
         "laravel/pint": "^1.21",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.7",
-        "pestphp/pest": "^3.8",
-        "pestphp/pest-plugin-laravel": "^3.2",
         "phpunit/phpunit": "^11.5"
     },
     "autoload": {
@@ -92,16 +94,6 @@
         ],
         "pint": [
             "pint"
-        ],
-        "ide-helper": [
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:models -N",
-            "@php artisan ide-helper:meta"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
         ]
     },
     "extra": {
@@ -115,16 +107,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true,
-            "infection/extension-installer": false
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true,
-    "repositories": {
-        "module-manager": {
-            "type": "path",
-            "url": "../module-manager"
-        }
-    }
+    "prefer-stable": true
 }

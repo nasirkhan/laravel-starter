@@ -4,9 +4,8 @@ This guide provides step-by-step instructions for upgrading between major versio
 
 ## Table of Contents
 - [General Upgrade Tips](#general-upgrade-tips)
-- [Current Version: 12.20.0](#current-version-1220)
-- [Future Upgrades](#future-upgrades)
-- [Version History](#version-history)
+- [Upgrading to 13.0 from 12.x](#upgrading-to-130-from-12x)
+- [Upgrading to 12.20.0 from 2.x](#upgrading-to-12200-from-2x)
 
 ---
 
@@ -49,73 +48,47 @@ This guide provides step-by-step instructions for upgrading between major versio
    php artisan test
    ```
 
-3. **Review Module Status**
-   ```bash
-   php artisan module:status
-   ```
-
-4. **Review Error Logs**
+3. **Review Error Logs**
    - Check storage/logs for any issues
    - Monitor application behavior
 
 ---
 
-## Current Version: 12.20.0
+## Upgrading to 13.0 from 12.x
 
-Laravel Starter is currently at version **12.20.0**, based on Laravel 12.x with PHP 8.3 support.
+> **Estimated Time:** TBD  
+> **Difficulty:** TBD  
+> **Risk Level:** TBD
 
-### Key Features in Current Version
-- Laravel 12.x framework
-- PHP 8.2 support
-- Livewire 4.0 integration
-- Modular architecture with Backend/Frontend separation
-- Role-based permissions (Spatie)
-- Social login (Google, Facebook, GitHub)
-- Multi-language support (Bengali, English, Farsi, Hindi, Turkish, Vietnamese)
-- Log viewer integration
-- Dark mode support throughout
-- Dynamic menu system
-- Activity logging
-- Media library
-- Automated backups
-
-### What's New in Recent Releases
-
-**v12.20.0** (Latest - January 2026)
-- Resolved menu data format conflict
-- Various code style improvements
-- Enhanced stability
-
-**v12.19.0** (November 2025)
-- Code structure refactoring
-- Improved readability and maintainability
-
-**v12.18.0** (November 2025)
-- Log viewer integration with CoreUI styling
-- Enhanced logging capabilities
-
-For complete version history, see [GitHub Releases](https://github.com/nasirkhan/laravel-starter/releases).
+**Note:** Version 13.0.0 is planned for future release. This section will be updated when v13.0.0 is ready.
 
 ---
 
-## Future Upgrades
+## Upgrading to 12.20.0 from 2.x
 
-### Planning for Version 13.x
+> **Estimated Time:** 30-60 minutes  
+> **Difficulty:** Medium  
+> **Risk Level:** Low (with proper testing)
 
-> **Note:** This section is for future planning when Laravel 13 is released
+### Requirements
 
-When upgrading to a future major version (e.g., 13.x), the following changes are planned:
+- PHP 8.3 or higher
+- Laravel 12.x
+- Composer 2.0 or higher
+- Node.js 18+ and NPM 9+
 
-#### Planned Module System Enhancement
+### High Impact Changes
 
-**Current (12.x):**
+#### 1. Module System Refactored to Package-Based Architecture
+
+**Before (2.x):**
 ```php
-// Modules in Modules/ directory (current approach)
+// Modules always in Modules/ directory
 use Modules\Post\Models\Post;
 use Modules\Post\Http\Controllers\PostController;
 ```
 
-**Future (13.x - Planned):**
+**After (12.20.0):**
 ```php
 // Modules in vendor by default (updateable via composer)
 use Nasirkhan\ModuleManager\Modules\Post\Models\Post;
@@ -126,15 +99,27 @@ use Modules\Post\Models\Post;
 use Modules\Post\Http\Controllers\PostController;
 ```
 
-This approach will allow:
-- Package modules updateable via `composer update`
-- Selective customization by publishing specific modules
-- Clear separation between package code and custom code
-- Native Laravel override patterns
+#### 2. Configuration Publishing System Introduced
 
-#### Upgrade Process (When 13.x is Released)
+Configuration files can now be published separately from modules.
 
-**Step 1: Check Module Status**
+#### 3. View Override Pattern Changed
+
+Views now follow Laravel's native vendor override pattern.
+
+### Step-by-Step Upgrade Process
+
+#### Step 1: Update Dependencies
+
+```bash
+# Update composer dependencies
+composer update nasirkhan/module-manager
+
+# Clear all caches
+php artisan clear-all
+```
+
+#### Step 2: Check Module Status
 
 ```bash
 # See which modules you have and their status
@@ -166,44 +151,212 @@ php artisan module:diff Menu
 - Keep your customizations
 - Or re-publish and re-apply customizations
 
-**Step 2: Update Dependencies**
+#### Step 4: Update Namespaces (If Needed)
+
+If you moved modules from `Modules/` to vendor packages:
+
+**Find and replace in your codebase:**
 ```bash
-composer update
-npm install && npm run build
+# Example: Update Post module references
+Modules\Post\  →  Nasirkhan\ModuleManager\Modules\Post\
 ```
 
-**Step 3: Test Thoroughly**
+**Or**, if you want to keep using custom modules:
 ```bash
+# Publish the module to Modules/ directory
+php artisan module:publish Post
+```
+
+#### Step 5: Publish New Configuration
+
+```bash
+# Publish module-manager configuration
+php artisan vendor:publish --tag=module-manager-config
+
+# Review and update config/module-manager.php if needed
+```
+
+#### Step 6: Check for New Migrations
+
+```bash
+# Check if packages have new migrations
+php artisan module:check-migrations
+
+# Publish new migrations if found
+php artisan vendor:publish --tag=post-migrations
+php artisan vendor:publish --tag=category-migrations
+
+# Run migrations
+php artisan migrate
+```
+
+#### Step 7: Update Frontend Assets
+
+```bash
+# Reinstall npm packages
+npm install
+
+# Rebuild assets
+npm run build
+```
+
+#### Step 8: Run Tests
+
+```bash
+# Run full test suite
 php artisan test
+
+# If tests fail, review error messages and update accordingly
+```
+
+#### Step 9: Update Custom Code
+
+Review and update any custom code that extends module classes:
+
+**Example:**
+```php
+// If you extended PostController
+// app/Http/Controllers/CustomPostController.php
+
+namespace App\Http\Controllers;
+
+// Update import
+use Nasirkhan\ModuleManager\Modules\Post\Http\Controllers\PostController as BaseController;
+
+class CustomPostController extends BaseController
+{
+    // Your customizations
+}
+```
+
+### Breaking Changes
+
+#### Module Resolution
+
+**Impact:** High if you have deep integration with modules
+
+**What Changed:**
+- Default module location changed from `Modules/` to vendor package
+- Namespace changed for package modules
+- Module autoloading follows Laravel's package pattern
+
+**Migration:**
+```php
+// Old way (3.x)
+use Modules\Post\Models\Post;
+
+// New way (4.x) - Package modules
+use Nasirkhan\ModuleManager\Modules\Post\Models\Post;
+
+// Or publish module and keep old namespace
+php artisan module:publish Post
+use Modules\Post\Models\Post;  // Still works!
+```
+
+#### View Resolution
+
+**Impact:** Low - Laravel handles this automatically
+
+**What Changed:**
+- Views now use Laravel's native vendor override system
+- Package views automatically check `resources/views/vendor/{package}/` first
+
+**Migration:**
+```bash
+# To customize views, publish them
+php artisan vendor:publish --tag=post-views
+
+# Edit in: resources/views/vendor/post/index.blade.php
+# Laravel automatically uses your version
+```
+
+#### Configuration Merging
+
+**Impact:** Low
+
+**What Changed:**
+- Module configs now use `mergeConfigFrom()`
+- Published configs override package defaults
+
+**Migration:**
+```bash
+# Publish config to customize
+php artisan vendor:publish --tag=post-config
+
+# Edit: config/post.php
+# Your values automatically override package defaults
+```
+
+### Medium Impact Changes
+
+#### Service Provider Registration
+
+**What Changed:**
+- Module service providers auto-register from vendor
+- Published modules use existing registration
+
+**Action Required:**
+- None if using default setup
+- If customized, ensure providers are registered in `bootstrap/providers.php`
+
+### Low Impact Changes
+
+#### Command Signatures
+
+**What Changed:**
+- New commands added: `module:publish`, `module:status`, `module:diff`, `module:check-migrations`
+
+**Action Required:**
+- None - new functionality is additive
+
+### Troubleshooting
+
+#### "Class not found" Errors
+
+```bash
+# Run composer dump-autoload
+composer dump-autoload
+
+# Clear cache
+php artisan clear-all
+```
+
+#### Views Not Loading
+
+```bash
+# Clear view cache
+php artisan view:clear
+
+# Verify view paths
+php artisan about
+```
+
+#### Modules Not Showing in Status
+
+```bash
+# Ensure package is installed
+composer require nasirkhan/module-manager
+
+# Check vendor/nasirkhan/module-manager/src/Modules/ exists
+```
+
+### Rollback Instructions
+
+If you need to rollback:
+
+```bash
+# Restore from git
+git reset --hard HEAD~1
+
+# Or restore database backup
+# Restore files from backup
 ```
 
 ---
 
-## Version History
+## Legacy Information
 
-### What Changed Between Versions
-
-For detailed version history and changelogs, see:
-- [CHANGELOG.md](CHANGELOG.md) - Comprehensive change log
-- [GitHub Releases](https://github.com/nasirkhan/laravel-starter/releases) - Official releases
-
-### Major Milestones
-
-**v12.x Series** (2025-2026)
-- Laravel 12.x support
-- PHP 8.3 support  
-- Livewire 4.0 integration
-- Enhanced modular architecture
-- Log viewer integration
-- Continuous improvements and bug fixes
-
-**v11.x Series** (2024-2025)
-- Laravel 11.x support
-- Initial Livewire 4 adoption
-- Module system enhancements
-
-**Earlier Versions**
-- See [GitHub Releases](https://github.com/nasirkhan/laravel-starter/releases) for complete history
+> **Note:** For upgrades from very old versions (pre-2.x), please consult the project's Git history or contact support.
 
 ---
 

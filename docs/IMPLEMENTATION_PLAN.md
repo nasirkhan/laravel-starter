@@ -49,25 +49,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Updateability strategy implementation
-- Module publishing system
-- Livewire v4 standardization
+- Placeholder for next version features
 
-## [12.20.0] - Latest
+## [12.20.0] - 2026-02-10
 
 ### Added
 - Laravel 12 support
 - PHP 8.3 support
 - Livewire 4.0 integration
+- Updateability strategy implementation
+- Module publishing system
+- Livewire v4 standardization
 - Modular architecture
 - Role-based permissions (Spatie)
 - Social login (Google, Facebook, GitHub)
-- Multi-language support (including Turkish)
+- Multi-language support
 - Activity logging
 - Media library and backups
 - Dynamic menu system
 - Dark mode support
-- Log viewer integration
 
 [Unreleased]: https://github.com/nasirkhan/laravel-starter/compare/v12.20.0...HEAD
 [12.20.0]: https://github.com/nasirkhan/laravel-starter/releases/tag/v12.20.0
@@ -82,39 +82,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This guide provides instructions for upgrading between major versions of Laravel Starter.
 
 ## Table of Contents
-- [Upgrading to 13.x from 12.x](#upgrading-to-13x-from-12x)
-- [Current Version](#current-version-1220)
+- [Upgrading to 12.20.0 from 2.x](#upgrading-to-12200-from-2x)
+- [Upgrading to 13.0 from 12.x](#upgrading-to-130-from-12x)
 
 ---
 
-## Current Version: 12.20.0
+## Upgrading to 13.0 from 12.x
 
-The current stable version is v12.20.0, based on Laravel 12.x with PHP 8.3 support.
+> **Estimated Time:** TBD
 
-### Key Features
-- Laravel 12.x framework
-- PHP 8.3 support
-- Livewire 4.0 integration
-- Modular architecture
-- Role-based permissions (Spatie)
-- Social login (Google, Facebook, GitHub)
-- Multi-language support
-- Log viewer integration
-- Dark mode support
+**Note:** Version 13.0.0 is planned for future release. This section will be updated when v13.0.0 development begins.
 
 ---
 
-## Upgrading to 13.x from 12.x
+## Upgrading to 12.20.0 from 2.x
 
-> **Estimated Time:** 30-60 minutes  
-> **Note:** This is for future upgrades when 13.x is released
+> **Estimated Time:** 30-60 minutes
 
 ### Requirements
 - PHP 8.3+
-- Laravel 13+
+- Laravel 12+
 - Composer 2.0+
 
-### Planned High Impact Changes
+### High Impact Changes
 - Module system refactored to package-based architecture
 - Configuration publishing system introduced
 - View override patterns changed
@@ -150,16 +140,16 @@ php artisan module:diff Category
 php artisan test
 ```
 
-### Planned Breaking Changes
+### Breaking Changes
 
 #### Module Resolution
-**Current (12.x):**
+**Before (2.x):**
 ```php
-// Modules in Modules/ directory
+// Modules always in Modules/ directory
 use Modules\Post\Models\Post;
 ```
 
-**Future (13.x):**
+**After (12.20.0):**
 ```php
 // Modules in vendor by default, can be published
 use Nasirkhan\ModuleManager\Modules\Post\Models\Post;

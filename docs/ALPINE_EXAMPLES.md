@@ -1,7 +1,7 @@
 # Alpine.js Integration Examples
 
 **Last Updated:** February 3, 2026  
-**Alpine.js Version:** Included with Livewire 3.x
+**Alpine.js Version:** Included with Livewire 4.x
 
 This document provides practical Alpine.js integration examples for Laravel Starter components.
 
