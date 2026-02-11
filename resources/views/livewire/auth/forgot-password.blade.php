@@ -24,7 +24,7 @@
         />
 
         <div class="flex items-center justify-end">
-            <x-frontend.button class="w-full" variant="primary" type="submit">
+            <x-cube::button class="w-full" variant="primary" type="submit">
                 {{ __("Email password reset link") }}
             </x-frontend.button>
         </div>

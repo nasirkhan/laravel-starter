@@ -66,9 +66,9 @@
         />
 
         <div class="flex items-center justify-end">
-            <x-frontend.button class="w-full" variant="primary" type="submit">
+            <x-cube::button class="w-full" variant="primary" type="submit">
                 {{ __('Create account') }}
-            </x-frontend.button>
+            </x-cube::button>
         </div>
     </form>
 

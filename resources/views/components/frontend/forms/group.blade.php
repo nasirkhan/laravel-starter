@@ -21,7 +21,7 @@
 
 <div {{ $attributes->merge(['class' => 'mb-4']) }}>
     @if($label)
-        <x-forms.label 
+        <x-cube::label 
             :for="$name" 
             :value="$label" 
             :required="$required"
@@ -34,7 +34,7 @@
     </div>
     
     @if($error)
-        <x-forms.error :messages="$error" />
+        <x-cube::error :messages="$error" />
     @endif
     
     @if($help)

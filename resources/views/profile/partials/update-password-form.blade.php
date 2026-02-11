@@ -14,43 +14,43 @@
         @method("put")
 
         <div>
-            <x-frontend.input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-frontend.text-input
+            <x-cube::label for="update_password_current_password" :value="__('Current Password')" />
+            <x-cube::input
                 id="update_password_current_password"
                 name="current_password"
                 type="password"
                 class="mt-1 block w-full"
                 autocomplete="current-password"
             />
-            <x-frontend.input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+            <x-cube::error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
         </div>
 
         <div>
-            <x-frontend.input-label for="update_password_password" :value="__('New Password')" />
-            <x-frontend.text-input
+            <x-cube::label for="update_password_password" :value="__('New Password')" />
+            <x-cube::input
                 id="update_password_password"
                 name="password"
                 type="password"
                 class="mt-1 block w-full"
                 autocomplete="new-password"
             />
-            <x-frontend.input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            <x-cube::error :messages="$errors->updatePassword->get('password')" class="mt-2" />
         </div>
 
         <div>
-            <x-frontend.input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-frontend.text-input
+            <x-cube::label for="update_password_password_confirmation" :value="__('Confirm Password')" />
+            <x-cube::input
                 id="update_password_password_confirmation"
                 name="password_confirmation"
                 type="password"
                 class="mt-1 block w-full"
                 autocomplete="new-password"
             />
-            <x-frontend.input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            <x-cube::error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">
-            <x-frontend.primary-button>{{ __("Save") }}</x-frontend.primary-button>
+            <x-cube::button variant="primary">{{ __("Save") }}</x-cube::button>
 
             @if (session("status") === "password-updated")
                 <p

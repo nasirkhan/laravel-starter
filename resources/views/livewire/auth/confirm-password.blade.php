@@ -23,7 +23,7 @@
             :required="$required"
         />
 
-        <x-frontend.button class="w-full" variant="primary" type="submit">
+        <x-cube::button class="w-full" variant="primary" type="submit">
             {{ __("Confirm") }}
         </x-frontend.button>
     </form>

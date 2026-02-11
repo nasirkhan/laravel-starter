@@ -50,9 +50,9 @@
         </div>
 
         <div class="flex items-center justify-end">
-            <x-frontend.button class="w-full" variant="primary" type="submit">
+            <x-cube::button class="w-full" variant="primary" type="submit">
                 {{ __("Log in") }}
-            </x-frontend.button>
+            </x-cube::button>
         </div>
     </form>
 

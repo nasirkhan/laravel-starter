@@ -18,8 +18,8 @@
         @method("patch")
 
         <div>
-            <x-frontend.input-label for="name" :value="__('Name')" />
-            <x-frontend.text-input
+            <x-cube::label for="name" :value="__('Name')" />
+            <x-cube::input
                 id="name"
                 name="name"
                 type="text"
@@ -29,12 +29,12 @@
                 autofocus
                 autocomplete="name"
             />
-            <x-frontend.input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-cube::error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-frontend.input-label for="email" :value="__('Email')" />
-            <x-frontend.text-input
+            <x-cube::label for="email" :value="__('Email')" />
+            <x-cube::input
                 id="email"
                 name="email"
                 type="email"
@@ -43,7 +43,7 @@
                 required
                 autocomplete="username"
             />
-            <x-frontend.input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-cube::error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-frontend.primary-button>{{ __("Save") }}</x-frontend.primary-button>
+            <x-cube::button variant="primary">{{ __("Save") }}</x-cube::button>
 
             @if (session("status") === "profile-updated")
                 <p
