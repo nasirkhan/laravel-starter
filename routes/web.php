@@ -3,7 +3,6 @@
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\RolesController;
-use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController as BackendUserController;
 use App\Http\Controllers\LanguageController;
 use App\Livewire\Frontend\Home;
@@ -72,18 +71,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
      */
     Route::get('/', [BackendController::class, 'index'])->name('home');
     Route::get('dashboard', [BackendController::class, 'index'])->name('dashboard');
-
-    /*
-     *
-     *  Settings Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    Route::group(['middleware' => ['can:edit_settings']], function () {
-        $module_name = 'settings';
-        Route::get("{$module_name}", [SettingController::class, 'index'])->name("{$module_name}.index");
-        Route::post("{$module_name}", [SettingController::class, 'store'])->name("{$module_name}.store");
-    });
 
     /*
      *

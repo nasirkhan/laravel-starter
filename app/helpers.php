@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
 
 /*

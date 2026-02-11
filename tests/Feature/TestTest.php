@@ -43,7 +43,7 @@ class TestTest extends TestCase
     {
         $fields_data = [];
 
-        foreach (config('setting_fields') as $section => $fields) {
+        foreach (config('settings.setting_fields') as $section => $fields) {
             foreach ($fields['elements'] as $field) {
                 $name = $field['name'];
                 $value = $field['value'];
