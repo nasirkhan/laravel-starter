@@ -6,27 +6,27 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ $$module_name_singular->name }}
-        </x-backend.breadcrumb-item>
+        </x-cube::backend-breadcrumb-item>
 
-        <x-backend.breadcrumb-item type="active">
+        <x-cube::backend-breadcrumb-item type="active">
             {{ __($module_title) }}
             {{ __($module_action) }}
-        </x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        </x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
-    <x-backend.layouts.show :data="$user">
-        <x-backend.section-header>
+    <x-cube::backend-layout-show :data="$user">
+        <x-cube::backend-section-header>
             <i class="{{ $module_icon }}"></i>
             {{ $$module_name_singular->name }}
             <small class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back :small="true" />
+                <x-cube::backend-button-return-back :small="true" />
                 <a
                     class="btn btn-primary btn-sm m-1"
                     data-toggle="tooltip"
@@ -42,7 +42,7 @@
                     :small="true"
                 />
             </x-slot>
-        </x-backend.section-header>
+        </x-cube::backend-section-header>
 
         <div class="row">
             <div class="col">
@@ -247,5 +247,5 @@
                 </div>
             </div>
         </div>
-    </x-backend.layouts.show>
+    </x-cube::backend-layout-show>
 @endsection

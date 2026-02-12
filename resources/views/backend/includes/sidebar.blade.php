@@ -33,7 +33,7 @@ $notifications_latest = optional($notifications)->take(5);
     </div>
 
     {{-- Dynamic Menu from Database --}}
-    <x-backend.dynamic-menu location="admin-sidebar" />
+    <x-cube::backend-dynamic-menu location="admin-sidebar" />
 
     {{-- Fallback: Load menu items from menu_data.php (in case dynamic menu is empty) --}}
     @php
@@ -41,7 +41,7 @@ $notifications_latest = optional($notifications)->take(5);
     @endphp
 
     @if (! $hasMenuItems)
-        <x-backend.fallback-sidebar-menu />
+        <x-cube::backend-fallback-sidebar-menu />
     @endif
 
     <div class="sidebar-footer border-top d-none d-md-flex">

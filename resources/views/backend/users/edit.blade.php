@@ -6,35 +6,35 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ $$module_name_singular->name }}
-        </x-backend.breadcrumb-item>
+        </x-cube::backend-breadcrumb-item>
 
-        <x-backend.breadcrumb-item type="active">
+        <x-cube::backend-breadcrumb-item type="active">
             {{ __($module_title) }}
             {{ __($module_action) }}
-        </x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        </x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
-    <x-backend.layouts.edit :data="$user">
-        <x-backend.section-header>
+    <x-cube::backend-layout-edit :data="$user">
+        <x-cube::backend-section-header>
             <i class="{{ $module_icon }}"></i>
             {{ $$module_name_singular->name }}
             <small class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back :small="true" />
-                <x-backend.buttons.show
+                <x-cube::backend-button-return-back :small="true" />
+                <x-cube::backend-button-show
                     class="ms-1"
                     title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'
                     :small="true"
                 />
             </x-slot>
-        </x-backend.section-header>
+        </x-cube::backend-section-header>
 
         <div class="row mt-4">
             <div class="col">
@@ -385,7 +385,7 @@
                 <div class="row">
                     <div class="col-4 mb-3">
                         <div class="form-group">
-                            <x-backend.buttons.save />
+                            <x-cube::backend-button-save />
                         </div>
                     </div>
 
@@ -456,12 +456,12 @@
                 <div class="row">
                     <div class="col-12 mb-3">
                         <div class="float-end">
-                            <x-backend.buttons.return-back>@lang("Cancel")</x-backend.buttons.return-back>
+                            <x-cube::backend-button-return-back>@lang("Cancel")</x-cube::backend-button-return-back>
                         </div>
                     </div>
                 </div>
             </div>
             <!--/.col-->
         </div>
-    </x-backend.layouts.edit>
+    </x-cube::backend-layout-edit>
 @endsection

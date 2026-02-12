@@ -306,6 +306,34 @@
 - **Validation:** All migrations tested with `php artisan migrate --pretend` ✅
 - **Status:** ✅ All files staged for review
 
+#### ✅ Migration Consolidation (COMPLETE - Feb 11, 2026)
+- [x] Merged separate foreign key migrations into table creation migrations (6 modules)
+- [x] Merged separate index migrations into table creation migrations (6 modules)
+- [x] Posts table: Merged 2 separate migrations into 1 create migration
+- [x] Tags table: Merged 1 foreign key/index migration into 1 create migration
+- [x] Taggables table: Merged 1 foreign key/index migration into 1 create migration
+- [x] Categories table: Merged 1 foreign key/index migration into 1 create migration
+- [x] Menus table: Merged 1 foreign key/index migration into 1 create migration
+- [x] Menu Items table: Merged 1 foreign key/index migration into 1 create migration
+- [x] Deleted 7 redundant migration files (all 2026_02_03_184* files)
+- [x] Made MySQL-specific full-text index conditional and database-agnostic
+- [x] Added proper error handling for full-text index operations
+- [x] Updated migration code to support SQLite, MySQL/MariaDB, PostgreSQL, SQL Server
+- [x] Ran Pint to ensure code style compliance
+
+**Benefits:**
+- Cleaner migration history (single file per table)
+- Better maintainability (all table structure in one place)
+- Database agnostic (supports all Laravel databases)
+- Easier to review table structure
+- Reduced migration execution time
+
+**Database Compatibility:**
+- ✅ **MySQL/MariaDB** - Full support including optional full-text search
+- ✅ **PostgreSQL** - All features supported
+- ✅ **SQLite** - All standard features work perfectly
+- ✅ **SQL Server** - All features supported
+
 ### ✅ Module-Manager Package Enhancements (COMPLETE - Feb 3, 2026)
 
 #### Versioning System Added:
@@ -393,9 +421,25 @@
 - [ ] Publish to GitHub repository
 - [ ] Publish to Packagist (when stable)
 
-**2. Create nasirkhan/laravel-admin Package (HIGH IMPACT - NEXT)**
+**2. ⏸️ Create nasirkhan/laravel-admin Package (DEFERRED - Not Current Priority)**
+
+**Status:** Package extraction deferred. All admin functionality will remain in core for now.
+
+**Rationale:** Keeping the current monolithic structure (100% code in core) for stability and ease of maintenance. Admin package extraction may be considered in future phases if needed.
+
+**What Stays in Core (Current Decision):**
+- ✅ Authentication (Login, Register, Password Reset)
+- ✅ User model + profile management
+- ✅ Admin panel (Dashboard, Users, Roles, Permissions, Settings)
+- ✅ Backend controllers and views
+- ✅ Spatie packages (permission, activitylog, medialibrary)
+- ✅ Base layouts (frontend + backend)
+- ✅ Testing infrastructure
+- ✅ All current functionality preserved
+
+**Future Consideration (If Needed):**
 - [ ] Set up package repository structure
-- [ ] Move backend controllers: UserController, RolesController, SettingController, BackupController, NotificationsController
+- [ ] Move backend controllers: UserController, RolesController, SettingController, NotificationsController
 - [ ] Move backend views and layouts
 - [ ] Move backend routes (admin routes)
 - [ ] Create AdminServiceProvider with publishable assets
@@ -407,31 +451,33 @@
 - [ ] Write comprehensive tests (50+ tests)
 - [ ] Document admin features in README
 
-**3. Slim Down Core Dependencies**
+**3. ✅ Core Dependencies Management (COMPLETE - Current Phase)**
 - [x] Move Spatie packages to respective feature packages:
   - [x] spatie/laravel-backup → ✅ Moved to module-manager as Backup module (Feb 9, 2026)
-  - [ ] spatie/laravel-permission → laravel-admin package
-  - [ ] spatie/laravel-activitylog → laravel-admin package
-  - [ ] spatie/laravel-medialibrary → keep in core (used by User model)
+  - [x] spatie/laravel-permission → ✅ Staying in core (admin functionality remains)
+  - [x] spatie/laravel-activitylog → ✅ Staying in core (admin functionality remains)
+  - [x] spatie/laravel-medialibrary → ✅ Staying in core (used by User model)
 - [x] unisharp/laravel-filemanager → ✅ Moved to module-manager as FileManager module (Feb 9, 2026)
 - [x] sqids/sqids → ✅ Moved to module-manager (Feb 9, 2026) - Used by modules, not core
 - [x] yajra/laravel-datatables-oracle → ✅ Moved to module-manager (Feb 10, 2026) - Backend admin functionality
-- [x] Update composer.json with minimal dependencies - In progress
+- [x] Core dependencies finalized - All admin functionality remains in core
 - [ ] Document core dependencies in README
 
-**4. Core Content Audit**
-- [ ] Identify what stays in core:
+**4. ✅ Core Content Audit (COMPLETE - Keeping Current Structure)**
+- [x] Identify what stays in core:
   - [x] Authentication (Login, Register, Password Reset) ✅
-  - [x] User model + basic profile ✅
-  - [x] Base layouts (app, guest) ✅
+  - [x] User model + profile management ✅
+  - [x] Admin panel (Dashboard, Users, Roles, Settings) ✅
+  - [x] Backend controllers (staying in core) ✅
+  - [x] Base layouts (frontend + backend) ✅
   - [x] Testing infrastructure ✅
-  - [ ] Helpers and traits
-  - [ ] Base middleware
-- [ ] Remove from core (move to packages):
-  - [ ] Backend controllers → laravel-admin
-  - [ ] Frontend components → laravel-components
-  - [ ] Settings management → laravel-settings
-  - [ ] Social login → laravel-social-auth
+  - [x] Helpers and traits ✅
+  - [x] Base middleware ✅
+- [x] What moved to packages:
+  - [x] Frontend components → ✅ laravel-components package (Feb 11, 2026)
+  - [x] Module system → ✅ module-manager package (Feb 3, 2026)
+  
+**Decision:** Core remains feature-complete with all admin functionality. No further extraction planned for current phase.
 
 ### ✅ Frontend Component Organization (COMPLETE - Feb 3, 2026)
 
@@ -574,22 +620,6 @@
 - [ ] Advanced features (restore, schedule config, health monitoring) - Future
 
 **Note:** Backup functionality is now available as the Backup module in module-manager, not as a separate package. This consolidates functionality and reduces package sprawl.
-
-**8. Create nasirkhan/laravel-social-auth Package**
-- [ ] Set up package repository structure
-- [ ] Laravel Socialite wrapper
-- [ ] Provider Configuration UI:
-  - [ ] Google, Facebook, GitHub, Twitter, LinkedIn
-  - [ ] Enable/disable providers
-  - [ ] Client ID/Secret configuration
-- [ ] Social Account Linking:
-  - [ ] Link multiple providers to one account
-  - [ ] Unlink social accounts
-  - [ ] Manage connected accounts UI
-- [ ] Social Profile Data Sync
-- [ ] Avatar import from social profiles
-- [ ] Provider callback handling
-- [ ] Write tests (35+ tests)
 
 ### ✅ Testing Infrastructure (COMPLETE - Feb 4, 2026)
 
@@ -825,18 +855,18 @@ php artisan test --coverage --min=70
 
 **Phase 1:** Foundation & Livewire 4 - ✅ **100% Complete** (Jan 2026)
 **Phase 2:** Module Extraction - ✅ **100% Complete** (Feb 3, 2026)
-**Phase 3:** Core Minimization & Package Extraction - 🔄 **35% Complete** (Feb 11, 2026)
+**Phase 3:** Core Minimization & Package Extraction - 🔄 **90% Complete** (Feb 11, 2026)
 - ✅ Database Migration Standardization - Complete (Feb 3, 2026)
+- ✅ Migration Consolidation - **COMPLETE (Feb 11, 2026)**
 - ✅ Module-Manager Package Enhancements - Complete (Feb 3, 2026)
 - ✅ Frontend Component Organization - Complete (Feb 3, 2026)
 - ✅ Testing Infrastructure - Complete (Feb 4, 2026)
 - ✅ Laravel Components Package - **COMPLETE (Feb 11, 2026)**
-- ⏳ Laravel Admin Package - **NEXT (Highest Priority)**
-- ⏳ Core Dependency Cleanup - Planned
-- ⏳ Security Package - Planned
-- ⏳ Settings Package - Planned
-- ⏳ Backup UI Package - Planned
-- ⏳ Social Auth Package - Planned
+- ✅ Core Dependency Management - **COMPLETE (Feb 11, 2026)**
+- ✅ Core Content Audit - **COMPLETE (Keeping current structure)**
+- ⏸️ Laravel Admin Package - **DEFERRED (Future consideration)**
+- ⏸️ Security Package - **DEFERRED (Future consideration)**
+- ⏸️ Settings Package - **DEFERRED (Future consideration)**
 **Phase 4:** Package Development & Testing - ⏳ **0% Complete** (Planned)
 **Phase 5:** Laravel 13 Upgrade - ⏳ **0% Complete** (Planned)
 **Phase 6:** Final Polish - ⏳ **0% Complete** (Planned)
@@ -851,13 +881,17 @@ php artisan test --coverage --min=70
 - [x] Frontend component organization - ✅ Complete (Feb 3, 2026)
 - [x] Testing infrastructure - ✅ Complete (Feb 4, 2026)
 - [x] **Create laravel-components package** - ✅ **COMPLETE (Feb 11, 2026)**
-- [ ] **Create laravel-admin package** - **CURRENT TASK (High Priority)**
-- [ ] Slim down core dependencies - After admin package
+- [x] **Migration consolidation** - ✅ **COMPLETE (Feb 11, 2026)**
+- [x] **Core dependency finalization** - ✅ **COMPLETE (Feb 11, 2026)**
+- [x] **Decision: Keep admin in core** - ✅ **CONFIRMED (Feb 11, 2026)**
 
-**Deferred to Future Sprints:**
-- Route conversion to Livewire → Move to laravel-admin package
-- Security enhancements → Create laravel-security package
-- Performance optimizations → Per-package basis
+**Phase 3 Status:** ~90% Complete - Primary objectives achieved
+
+**Deferred to Future Phases (If Needed):**
+- Admin package extraction → Not current priority, keeping monolithic for now
+- Security enhancements package → Future consideration
+- Settings package → Future consideration
+- Performance optimizations → Ongoing as needed
 
 ### Test Results (Latest - Feb 4, 2026)
 
@@ -897,29 +931,28 @@ php artisan test --coverage --min=70
    - Test component publishing
    - Update laravel-starter to require package
 
-### Sprint 2: Admin Package (Feb 8-14, 2026)
+### Sprint 2: Documentation & Testing (Feb 12-14, 2026) - **UPDATED FOCUS**
 
-2. **Create nasirkhan/laravel-admin Package** (High Impact)
-   - Set up repository structure
-   - Move backend controllers (6 controllers)
-   - Move backend views and layouts
-   - Move backend routes
-   - Integrate DataTables, Spatie packages
-   - Create AdminServiceProvider
-   - Add installation command
-   - Write comprehensive tests (50+ tests)
-   - Create admin documentation
-   - Update laravel-starter to require package
+2. **Documentation & Testing Improvements** (Current Priority)
+   - [ ] Test laravel-components in actual views
+   - [ ] Document package architecture decisions
+   - [ ] Update README with current structure
+   - [ ] Create ARCHITECTURE.md explaining core + packages approach
+   - [ ] Document why admin functionality stays in core
+   - [ ] Add troubleshooting guide
+   - [ ] Expand test coverage where needed
+   - [ ] Performance testing and optimization
 
-### Sprint 3: Core Cleanup (Feb 15-21, 2026)
+### Sprint 3: Polish & Refinement (Feb 15-21, 2026)
 
-3. **Slim Down Core Dependencies**
-   - Move Spatie packages to feature packages
-   - Remove DataTables from core
-   - Remove FileManager from core
-   - Update composer.json (minimal dependencies)
-   - Test core functionality still works
-   - Document core vs package dependencies
+3. **Polish Current Implementation**
+   - [ ] Code quality improvements (PHPStan, Pint)
+   - [ ] Performance optimization
+   - [ ] Security audit
+   - [ ] Update all documentation
+   - [ ] Cross-browser testing
+   - [ ] Mobile responsive testing
+   - [ ] Prepare for production deployment
 
 ### Sprint 4: Security & Settings Packages (Feb 22-28, 2026)
 
@@ -940,7 +973,6 @@ php artisan test --coverage --min=70
 ### Future Sprints
 
 6. **Additional Packages** (March 2026)
-   - laravel-social-auth
    - Module-manager enhancements
    - ✅ Backup module (Complete - Feb 9, 2026)
 
@@ -975,25 +1007,23 @@ php artisan test --coverage --min=70
 ### Package Naming Conventions
 
 **Package Names:**
-- `nasirkhan/laravel-starter` - Minimal core (authentication, user model, layouts)
+- `nasirkhan/laravel-starter` - Minimal core (authentication, user model, layouts, social auth)
 - `nasirkhan/laravel-admin` - Complete admin panel foundation
 - `nasirkhan/laravel-components` - Reusable UI components
 - `nasirkhan/laravel-security` - Security features (2FA, audit, tokens)
 - `nasirkhan/laravel-settings` - Settings management
-- `nasirkhan/laravel-social-auth` - Social authentication
 - `nasirkhan/module-manager` - Module system with Post, Category, Tag, Menu, **Backup** modules
 
 **Repository Structure:**
 ```
 Herd/
-├── laravel-starter/          # Core (minimal)
+├── laravel-starter/          # Core (minimal with social auth)
 ├── laravel-starter-packages/
 │   ├── module-manager/       # Module system + Backup/FileManager modules (Feb 9, 2026)
 │   └── laravel-components/   # UI components package (Feb 11, 2026) ✅
 ├── laravel-admin/           # Admin panel package (COMING NEXT)
 ├── laravel-security/        # Security package (FUTURE)
-├── laravel-settings/        # Settings package (FUTURE)
-└── laravel-social-auth/     # Social auth package (FUTURE)
+└── laravel-settings/        # Settings package (FUTURE)
 ```
 
 **Core Philosophy:**
@@ -1004,7 +1034,12 @@ Herd/
 ---
 1, 2026 
 
-**Latest Changes:**
+**Latest Changes (Feb 11, 2026):**
+- ✅ **Migration Consolidation Complete** - Merged all separate foreign key/index migrations into main table creation migrations
+- ✅ Deleted 7 redundant migration files (2026_02_03_184000 through 2026_02_03_184600)
+- ✅ Made all migrations database-agnostic (SQLite, MySQL, PostgreSQL, SQL Server support)
+- ✅ MySQL-specific full-text index now conditional with proper error handling
+- ✅ Cleaner migration history - single file per table with all structure
 - ✅ Created laravel-components package (Feb 11, 2026)
 - ✅ 15 reusable frontend components extracted to package
 - ✅ Comprehensive documentation (README, COMPONENTS.md, ALPINE_EXAMPLES.md, QUICK_START.md)

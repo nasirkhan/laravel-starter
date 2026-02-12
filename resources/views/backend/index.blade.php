@@ -5,13 +5,13 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs />
+    <x-cube::backend-breadcrumbs />
 @endsection
 
 @section("content")
     <div class="card mb-4">
         <div class="card-body">
-            <x-backend.section-header>
+            <x-cube::backend-section-header>
                 @lang("Admin Dashboard")
 
                 <x-slot name="toolbar">
@@ -25,7 +25,7 @@
                         <i class="fa-solid fa-bullhorn"></i>
                     </button>
                 </x-slot>
-            </x-backend.section-header>
+            </x-cube::backend-section-header>
 
             <!-- Dashboard Content Area -->
 
