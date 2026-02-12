@@ -32,8 +32,8 @@
 
     <div class="space-x-1 text-center text-sm text-zinc-600">
         {{ __("Or, return to") }}
-        <x-frontend.link class="text-sm" :href="route('login')" wire:navigate>
+        <x-cube::link class="text-sm" :href="route('login')" wire:navigate>
             {{ __("log in") }}
-        </x-frontend.link>
+        </x-cube::link>
     </div>
 </div>

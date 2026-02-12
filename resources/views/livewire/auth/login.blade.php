@@ -43,9 +43,9 @@
             <x-frontend.form.checkbox wire:model="remember" :label="__('Remember me')" />
 
             @if (Route::has("password.request"))
-                <x-frontend.link class="text-sm" :href="route('password.request')" wire:navigate>
+                <x-cube::link class="text-sm" :href="route('password.request')" wire:navigate>
                     {{ __("Forgot your password?") }}
-                </x-frontend.link>
+                </x-cube::link>
             @endif
         </div>
 
@@ -59,7 +59,7 @@
     @if (Route::has("register"))
         <div class="space-x-1 text-center text-sm tracking-widest text-zinc-600 dark:text-zinc-400">
             {{ __('Don\'t have an account?') }}
-            <x-frontend.link :href="route('register')" wire:navigate>{{ __("Sign up") }}</x-frontend.link>
+            <x-cube::link :href="route('register')" wire:navigate>{{ __("Sign up") }}</x-cube::link>
         </div>
     @endif
 </div>

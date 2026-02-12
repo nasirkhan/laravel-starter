@@ -75,8 +75,8 @@
     <div class="space-x-1 text-center text-sm text-zinc-600 tracking-widest dark:text-zinc-400">
         {{ __('Already have an account?') }}
 
-        <x-frontend.link class="text-sm" :href="route('login')" wire:navigate>
+        <x-cube::link class="text-sm" :href="route('login')" wire:navigate>
             {{ __('Log in') }}
-        </x-frontend.link>
+        </x-cube::link>
     </div>
 </div>

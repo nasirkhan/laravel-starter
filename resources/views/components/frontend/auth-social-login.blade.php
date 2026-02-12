@@ -4,21 +4,21 @@
 
         <div class="pb-4 text-center">
             @if (env("FACEBOOK_ACTIVE"))
-                <x-frontend.button-a href="{{ route('social.login', 'facebook') }}" class="bg-blue-600 hover:bg-blue-700">
+                <x-cube::button-link href="{{ route('social.login', 'facebook') }}" class="bg-blue-600 hover:bg-blue-700">
                     <span class="">Facebook</span>
-                </x-frontend.button-a>
+                </x-cube::button-link>
             @endif
 
             @if (env("GITHUB_ACTIVE"))
-                <x-frontend.button-a href="{{ route('social.login', 'github') }}" class="bg-gray-600 hover:bg-gray-700">
+                <x-cube::button-link href="{{ route('social.login', 'github') }}" class="bg-gray-600 hover:bg-gray-700">
                     <span class="">Github</span>
-                </x-frontend.button-a>
+                </x-cube::button-link>
             @endif
 
             @if (env("GOOGLE_ACTIVE"))
-                <x-frontend.button-a href="{{ route('social.login', 'google') }}" class="bg-red-600 hover:bg-red-700">
+                <x-cube::button-link href="{{ route('social.login', 'google') }}" class="bg-red-600 hover:bg-red-700">
                     <span class="">Google</span>
-                </x-frontend.button-a>
+                </x-cube::button-link>
             @endif
         </div>
 
