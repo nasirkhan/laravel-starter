@@ -16,95 +16,95 @@
             <img class="h-9" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
-@if (setting('show_theme_dropdown'))
-            <button
-                class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                id="theme-toggle"
-                type="button"
-                aria-label="Toggle between light and dark theme"
-                aria-pressed="false"
-            >
-                <svg
-                    class="hidden h-5 w-5"
-                    id="theme-toggle-dark-icon"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+            @if (setting("show_theme_dropdown"))
+                <button
+                    class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    id="theme-toggle"
+                    type="button"
+                    aria-label="Toggle between light and dark theme"
+                    aria-pressed="false"
                 >
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
-                <svg
-                    class="hidden h-5 w-5"
-                    id="theme-toggle-light-icon"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                    ></path>
-                </svg>
-            </button>
-        @endif
+                    <svg
+                        class="hidden h-5 w-5"
+                        id="theme-toggle-dark-icon"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg
+                        class="hidden h-5 w-5"
+                        id="theme-toggle-light-icon"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                        ></path>
+                    </svg>
+                </button>
+            @endif
 
-@if (setting('show_language_dropdown'))
-            <button
-                class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-3 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
-                data-dropdown-toggle="language-dropdown-menu"
-                type="button"
-                aria-label="Select language"
-                aria-haspopup="true"
-                aria-expanded="false"
-            >
-                <svg
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-language"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+            @if (setting("show_language_dropdown"))
+                <button
+                    class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-3 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    data-dropdown-toggle="language-dropdown-menu"
+                    type="button"
+                    aria-label="Select language"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                 >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 5h7" />
-                    <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-                    <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
-                    <path d="M12 20l4 -9l4 9" />
-                    <path d="M19.1 18h-6.2" />
-                </svg>
-                <span class="ms-2 hidden sm:block">
-                    {{ strtoupper(app()->currentLocale()) }}
-                </span>
-            </button>
-            <!-- Dropdown:language-dropdown-menu -->
-            <div
-                class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
-                id="language-dropdown-menu"
-                role="menu"
-                aria-label="Language selection menu"
-            >
-                <ul class="py-2 font-medium" role="none">
-                    @foreach (config("app.available_locales") as $locale_code => $locale_name)
-                        <li>
-                            <a
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                                href="{{ route("language.switch", $locale_code) }}"
-                                role="menuitem"
-                            >
-                                <div class="inline-flex items-center">
-                                    {{ $locale_name }}
-                                </div>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+                    <svg
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-language"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 5h7" />
+                        <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+                        <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
+                        <path d="M12 20l4 -9l4 9" />
+                        <path d="M19.1 18h-6.2" />
+                    </svg>
+                    <span class="ms-2 hidden sm:block">
+                        {{ strtoupper(app()->currentLocale()) }}
+                    </span>
+                </button>
+                <!-- Dropdown:language-dropdown-menu -->
+                <div
+                    class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow-sm dark:bg-gray-700"
+                    id="language-dropdown-menu"
+                    role="menu"
+                    aria-label="Language selection menu"
+                >
+                    <ul class="py-2 font-medium" role="none">
+                        @foreach (config("app.available_locales") as $locale_code => $locale_name)
+                            <li>
+                                <a
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    href="{{ route("language.switch", $locale_code) }}"
+                                    role="menuitem"
+                                >
+                                    <div class="inline-flex items-center">
+                                        {{ $locale_name }}
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             @guest
                 @if (user_registration())
