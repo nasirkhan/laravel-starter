@@ -1,9 +1,0 @@
-<x-cube::social.links
-    class="my-6"
-    :website="setting('website_url')"
-    :instagram="setting('instagram_url')"
-    :facebook="setting('facebook_url')"
-    :twitter="setting('twitter_url')"
-    :youtube="setting('youtube_url')"
-    :whatsapp="setting('whatsapp_url')"
-/>

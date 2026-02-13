@@ -32,7 +32,7 @@
 
         @stack("after-styles")
 
-        <x-google-analytics />
+        <x-cube::google-analytics />
 
         @livewireStyles
     </head>

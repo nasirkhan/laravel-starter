@@ -22,4 +22,4 @@
 @stack('after-styles')
 
 <!-- Google Analytics -->
-<x-google-analytics />
+<x-cube::google-analytics />

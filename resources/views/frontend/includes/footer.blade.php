@@ -16,10 +16,18 @@
             cssClass="mb-6 flex flex-wrap items-center justify-center text-gray-900 dark:text-white"
         />
 
-        <x-frontend.social.all-social-url />
+        <x-cube::social.links
+            class="my-6"
+            :website="setting('website_url')"
+            :instagram="setting('instagram_url')"
+            :facebook="setting('facebook_url')"
+            :twitter="setting('twitter_url')"
+            :youtube="setting('youtube_url')"
+            :whatsapp="setting('whatsapp_url')"
+        />
 
-        <x-frontend.footer-license license="cc-by-sa" />
+        <x-cube::footer-license license="cc-by-sa" :author="app_name()" :author-url="app_url()" />
 
-        <x-frontend.footer-credit />
+        <x-cube::footer-credit :text="setting('footer_text')" />
     </div>
 </footer>
