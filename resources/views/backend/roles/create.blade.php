@@ -83,9 +83,9 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <x-buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}">
+                            <x-backend-button-create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}">
                                 {{ __("Create") }}
-                            </x-buttons.create>
+                            </x-backend-button-create>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     <div class="col-12 mt-3">
                         <div class="float-end">
                             <div class="form-group">
-                                <x-buttons.cancel />
+                                <x-backend-button-cancel />
                             </div>
                         </div>
                     </div>

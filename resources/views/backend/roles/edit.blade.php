@@ -24,7 +24,7 @@
 
                 <x-slot name="toolbar">
                     <x-cube::backend-button-return-back :small="true" />
-                    <x-buttons.show
+                    <x-backend-button-show
                         class="ms-1"
                         title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'

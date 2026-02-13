@@ -36,7 +36,7 @@
                     <i class="fas fa-list"></i>
                     List
                 </a>
-                <x-buttons.edit
+                <x-backend-button-edit
                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}'
                     :small="true"
