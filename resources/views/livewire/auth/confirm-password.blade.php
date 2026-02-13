@@ -1,11 +1,11 @@
 <div class="flex flex-col gap-6">
-    <x-frontend.auth-header
+    <x-cube::auth-header
         :title="__('Confirm password')"
         :description="__('This is a secure area of the application. Please confirm your password before continuing.')"
     />
 
     <!-- Session Status -->
-    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
+    <x-cube::auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="confirmPassword" class="flex flex-col gap-6">
         {{-- Password --}}

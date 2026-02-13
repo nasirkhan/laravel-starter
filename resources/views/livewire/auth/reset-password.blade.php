@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-6">
-    <x-frontend.auth-header :title="__('Reset password')" :description="__('Please enter your new password below')" />
+    <x-cube::auth-header :title="__('Reset password')" :description="__('Please enter your new password below')" />
 
     <!-- Session Status -->
-    <x-frontend.auth-session-status class="text-center" :status="session('status')" />
+    <x-cube::auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
         {{-- Email Address --}}

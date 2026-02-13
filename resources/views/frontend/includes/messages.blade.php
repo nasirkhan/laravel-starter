@@ -12,7 +12,7 @@
     </div>
 @endif
 
-<x-frontend.flash-message />
+<x-cube::flash-message />
 
 @if (session("status"))
     <p class="alert alert-success">{{ session("status") }}</p>
