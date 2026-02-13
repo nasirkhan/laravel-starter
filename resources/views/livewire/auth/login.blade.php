@@ -9,38 +9,18 @@
 
     <form wire:submit="login" class="flex flex-col gap-6">
         {{-- Email Address --}}
-        @php
-            $field_name = "email";
-            $filed_label = __("Email Address");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
-
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="email"
-            :label="$filed_label"
-            :required="$required"
-        />
+        <x-cube::group name="email" label="Email Address" required>
+            <x-cube::input class="w-full" type="email" wire:model="email" required />
+        </x-cube::group>
 
         {{-- Password --}}
-        @php
-            $field_name = "password";
-            $filed_label = __("Password");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
-
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="password"
-            :label="$filed_label"
-            :required="$required"
-        />
+        <x-cube::group name="password" label="Password" required>
+            <x-cube::input class="w-full" type="password" wire:model="password" required />
+        </x-cube::group>
 
         <div class="flex items-center justify-between">
             <!-- Remember Me -->
-            <x-frontend.form.checkbox wire:model="remember" :label="__('Remember me')" />
+            <x-cube::checkbox wire:model="remember">{{ __('Remember me') }}</x-cube::checkbox>
 
             @if (Route::has("password.request"))
                 <x-cube::link class="text-sm" :href="route('password.request')" wire:navigate>

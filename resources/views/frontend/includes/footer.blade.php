@@ -11,9 +11,9 @@
         <p class="mx-auto my-6 text-gray-500 sm:w-1/2 dark:text-gray-400">
             {!! setting("meta_description") !!}
         </p>
-        <x-frontend.dynamic-menu
+        <x-menu-dynamic-menu
             location="frontend-footer"
-            cssClass="mb-6 flex flex-wrap items-center justify-center text-gray-900 dark:text-white"
+            css-class="mb-6 flex flex-wrap items-center justify-center text-gray-900 dark:text-white"
         />
 
         <x-cube::social.links

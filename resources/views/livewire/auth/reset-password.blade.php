@@ -6,49 +6,19 @@
 
     <form wire:submit="resetPassword" class="flex flex-col gap-6">
         {{-- Email Address --}}
-        @php
-            $field_name = "email";
-            $filed_label = __("Email Address");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
-
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="email"
-            :label="$filed_label"
-            :required="$required"
-        />
+        <x-cube::group name="email" label="Email Address" required>
+            <x-cube::input class="w-full" type="email" wire:model="email" required />
+        </x-cube::group>
 
         {{-- Password --}}
-        @php
-            $field_name = "password";
-            $filed_label = __("Password");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
+        <x-cube::group name="password" label="Password" required>
+            <x-cube::input class="w-full" type="password" wire:model="password" required />
+        </x-cube::group>
 
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="password"
-            :label="$filed_label"
-            :required="$required"
-        />
-        
         {{-- Confirm Password --}}
-        @php
-            $field_name = "password_confirmation";
-            $filed_label = __("Confirm Password");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
-
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="password"
-            :label="$filed_label"
-            :required="$required"
-        />
+        <x-cube::group name="password_confirmation" label="Confirm Password" required>
+            <x-cube::input class="w-full" type="password" wire:model="password_confirmation" required />
+        </x-cube::group>
 
         <div class="flex items-center justify-end">
             <x-cube::button class="w-full" variant="primary" type="submit">

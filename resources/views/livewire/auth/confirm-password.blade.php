@@ -9,19 +9,9 @@
 
     <form wire:submit="confirmPassword" class="flex flex-col gap-6">
         {{-- Password --}}
-        @php
-            $field_name = "password";
-            $filed_label = __("Password");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
-
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="password"
-            :label="$filed_label"
-            :required="$required"
-        />
+        <x-cube::group name="password" label="Password" required>
+            <x-cube::input class="w-full" type="password" wire:model="password" required />
+        </x-cube::group>
 
         <x-cube::button class="w-full" variant="primary" type="submit">
             {{ __("Confirm") }}

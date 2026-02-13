@@ -363,7 +363,7 @@
         </div>
 
         <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-language">
-            <x-frontend.dynamic-menu location="frontend-header" />
+            <x-menu-dynamic-menu location="frontend-header" />
         </div>
     </div>
 </nav>
