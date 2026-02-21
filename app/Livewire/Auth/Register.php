@@ -39,8 +39,6 @@ class Register extends Component
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $validated['password'] = $validated['password'];
-
         $user = User::create($validated);
 
         $username = intval(config('app.initial_username')) + $user->id;

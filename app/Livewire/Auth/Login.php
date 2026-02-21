@@ -41,9 +41,11 @@ class Login extends Component
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
-
-            event(new UserLoginSuccess(request(), $user));
         }
+
+        // Get authenticated user and fire event
+        $user = Auth::user();
+        event(new UserLoginSuccess(request(), $user));
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();

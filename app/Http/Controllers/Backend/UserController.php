@@ -468,7 +468,7 @@ class UserController extends Controller
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
         if ($id === 1) {
-            $user->syncRoles(['super admin']);
+            $$module_name_singular->syncRoles(['super admin']);
 
             // Clear Cache
             Artisan::call('cache:clear');
