@@ -66,7 +66,7 @@ if (! function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-    $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
+        $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
 
         return preg_replace('!\s+!', ' ', $new_text);
     }
