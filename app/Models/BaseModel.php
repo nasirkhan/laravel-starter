@@ -71,32 +71,21 @@ class BaseModel extends Model implements HasMedia
     {
         $table_name = DB::getTablePrefix().$this->getTable();
 
-        switch (config('database.default')) {
-            case 'sqlite':
-                $columns = DB::select("PRAGMA table_info({$table_name});");
-                break;
-            case 'mysql':
-            case 'mariadb':
-                $columns = DB::select('SHOW COLUMNS FROM '.$table_name);
-                $columns = array_map(function ($column) {
-                    return [
-                        'name' => $column->Field,
-                        'type' => $column->Type,
-                        'notnull' => $column->Null,
-                        'key' => $column->Key,
-                        'default' => $column->Default,
-                        'extra' => $column->Extra,
-                    ];
-                }, $columns);
-                break;
-            case 'pgsql':
-                $columns = DB::select("SELECT column_name as `Field`, data_type as `Type` FROM information_schema.columns WHERE table_name = '{$table_name}';");
-                break;
-
-            default:
-                // code...
-                break;
-        }
+        $columns = match (config('database.default')) {
+            'sqlite' => DB::select("PRAGMA table_info({$table_name});"),
+            'mysql', 'mariadb' => array_map(function ($column) {
+                return [
+                    'name' => $column->Field,
+                    'type' => $column->Type,
+                    'notnull' => $column->Null,
+                    'key' => $column->Key,
+                    'default' => $column->Default,
+                    'extra' => $column->Extra,
+                ];
+            }, DB::select('SHOW COLUMNS FROM '.$table_name)),
+            'pgsql' => DB::select("SELECT column_name as `Field`, data_type as `Type` FROM information_schema.columns WHERE table_name = '{$table_name}';"),
+            default => null,
+        };
 
         return json_decode(json_encode($columns));
     }
@@ -106,27 +95,12 @@ class BaseModel extends Model implements HasMedia
      */
     public function getStatusLabelAttribute()
     {
-        $return_string = '';
-
-        switch ($this->attributes['status']) {
-            case '0':
-                $return_string = '<span class="badge bg-danger">Inactive</span>';
-                break;
-
-            case '1':
-                $return_string = '<span class="badge bg-success">Active</span>';
-                break;
-
-            case '2':
-                $return_string = '<span class="badge bg-warning text-dark">Pending</span>';
-                break;
-
-            default:
-                $return_string = '<span class="badge bg-primary">Status:'.$this->status.'</span>';
-                break;
-        }
-
-        return $return_string;
+        return match ($this->attributes['status']) {
+            '0' => '<span class="badge bg-danger">Inactive</span>',
+            '1' => '<span class="badge bg-success">Active</span>',
+            '2' => '<span class="badge bg-warning text-dark">Pending</span>',
+            default => '<span class="badge bg-primary">Status:'.$this->status.'</span>',
+        };
     }
 
     /**
@@ -134,27 +108,12 @@ class BaseModel extends Model implements HasMedia
      */
     public function getStatusLabelTextAttribute()
     {
-        $return_string = '';
-
-        switch ($this->attributes['status']) {
-            case '0':
-                $return_string = 'Inactive';
-                break;
-
-            case '1':
-                $return_string = 'Active';
-                break;
-
-            case '2':
-                $return_string = 'Pending';
-                break;
-
-            default:
-                $return_string = $this->status;
-                break;
-        }
-
-        return $return_string;
+        return match ($this->attributes['status']) {
+            '0' => 'Inactive',
+            '1' => 'Active',
+            '2' => 'Pending',
+            default => $this->status,
+        };
     }
 
     /**
