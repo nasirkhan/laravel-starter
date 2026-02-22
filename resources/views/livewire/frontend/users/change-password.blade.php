@@ -30,37 +30,39 @@
                     <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="password" class="block text-sm font-medium text-gray-700">
-                                    @lang('Password')
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input
-                                    wire:model="password"
-                                    type="password"
-                                    id="password"
-                                    class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-                                    required
-                                />
-                                @error('password')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
-                                    @lang('Confirm Password')
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input
-                                    wire:model="password_confirmation"
-                                    type="password"
-                                    id="password_confirmation"
-                                    class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-                                    required
-                                />
-                                @error('password_confirmation')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
+    <label for="password" id="password-label" class="block text-sm font-medium text-gray-700">
+        @lang('Password')
+        <span class="text-red-500">*</span>
+    </label>
+    <input
+        wire:model="password"
+        type="password"
+        id="password"
+        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
+        required
+        aria-labelledby="password-label"
+    />
+    @error('password')
+        <span class="text-sm text-red-600">{{ $message }}</span>
+    @enderror
+</div>
+<div class="col-span-6 sm:col-span-3">
+    <label for="password_confirmation" id="password_confirmation-label" class="block text-sm font-medium text-gray-700">
+        @lang('Confirm Password')
+        <span class="text-red-500">*</span>
+    </label>
+    <input
+        wire:model="password_confirmation"
+        type="password"
+        id="password_confirmation"
+        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
+        required
+        aria-labelledby="password_confirmation-label"
+    />
+    @error('password_confirmation')
+        <span class="text-sm text-red-600">{{ $message }}</span>
+    @enderror
+</div>
                             <div class="col-span-6 bg-gray-50 px-4 py-3 text-end sm:px-6">
                                 <button
                                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"

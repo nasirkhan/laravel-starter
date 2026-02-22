@@ -40,9 +40,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 mb-3">
@@ -54,9 +54,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
@@ -70,9 +70,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 mb-3">
@@ -84,9 +84,9 @@
                             $required = "";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
@@ -100,9 +100,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->password($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 mb-3">
@@ -114,39 +114,39 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->password($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->password($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row mb-3">
-                    {{ html()->label(__("labels.backend.users.fields.status"))->class("col-6 col-sm-2 form-label")->for("status") }}
+    {{ html()->label(__("labels.backend.users.fields.status"))->class("col-6 col-sm-2 form-label")->for("status")->id("status-label") }}
 
-                    <div class="col-6 col-sm-10">
-                        {{ html()->checkbox("status", true, "1") }}
-                        @lang("Active")
-                    </div>
-                </div>
-
-                <div class="form-group row mb-3">
-                    {{ html()->label(__("labels.backend.users.fields.confirmed"))->class("col-6 col-sm-2 form-label")->for("confirmed") }}
-
-                    <div class="col-6 col-sm-10">
-                        {{ html()->checkbox("confirmed", true, "1") }}
-                        @lang("Email Confirmed")
-                    </div>
-                </div>
+    <div class="col-6 col-sm-10">
+        {{ html()->checkbox("status", true, "1")->attributes(["aria-labelledby" => "status-label"]) }}
+        @lang("Active")
+    </div>
+</div>
 
                 <div class="form-group row mb-3">
-                    {{ html()->label(__("labels.backend.users.fields.email_credentials"))->class("col-6 col-sm-2 form-label")->for("confirmed") }}
+    {{ html()->label(__("labels.backend.users.fields.confirmed"))->class("col-6 col-sm-2 form-label")->for("confirmed")->id("confirmed-label") }}
 
-                    <div class="col-6 col-sm-10">
-                        {{ html()->checkbox("email_credentials", true, "1") }}
-                        @lang("Email Credentials")
-                    </div>
-                </div>
+    <div class="col-6 col-sm-10">
+        {{ html()->checkbox("confirmed", true, "1")->attributes(["aria-labelledby" => "confirmed-label"]) }}
+        @lang("Email Confirmed")
+    </div>
+</div>
+
+<div class="form-group row mb-3">
+    {{ html()->label(__("labels.backend.users.fields.email_credentials"))->class("col-6 col-sm-2 form-label")->for("email_credentials")->id("email_credentials-label") }}
+
+    <div class="col-6 col-sm-10">
+        {{ html()->checkbox("email_credentials", true, "1")->attributes(["aria-labelledby" => "email_credentials-label"]) }}
+        @lang("Email Credentials")
+    </div>
+</div>
 
                 <div class="form-group row mb-3">
                     {{ html()->label("Abilities")->class("col-sm-2 form-label") }}
@@ -164,7 +164,7 @@
                                                 <div class="card mb-3">
                                                     <div class="card-header">
                                                         <div class="checkbox">
-                                                            {{ html()->label( html()->checkbox("roles[]", old("roles") && in_array($role->name, old("roles")) ? true : false, $role->name)->id("role-" . $role->id) ."&nbsp;" . ucwords($role->name) ."&nbsp;(" .$role->name .")",)->for("role-" . $role->id) }}
+                                                            {{ html()->label( html()->checkbox("roles[]", old("roles") && in_array($role->name, old("roles")) ? true : false, $role->name)->id("role-" . $role->id)->attributes(["aria-label" => ucwords($role->name) . " (" . $role->name . ")"]) ."&nbsp;" . ucwords($role->name) ."&nbsp;(" .$role->name .")",)->for("role-" . $role->id) }}
                                                         </div>
                                                     </div>
                                                     <div class="card-body">
@@ -197,7 +197,7 @@
                                         @if ($permissions->count())
                                             @foreach ($permissions as $permission)
                                                 <div class="checkbox">
-                                                    {{ html()->label( html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id) ." " .$permission->name,)->for("permission-" . $permission->id) }}
+                                                    {{ html()->label( html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->attributes(["aria-label" => $permission->name]) ." " .$permission->name,)->for("permission-" . $permission->id) }}
                                                 </div>
                                             @endforeach
                                         @endif

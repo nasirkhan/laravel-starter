@@ -48,20 +48,20 @@
                     {{ html()->form("PATCH", route("backend.users.changePasswordUpdate", $$module_name_singular->id))->class("form-horizontal")->open() }}
 
                     <div class="form-group row mb-3">
-                        {{ html()->label(__("labels.backend.users.fields.password"))->class("col-md-2 form-label")->for("password") }}
+    {{ html()->label(__("labels.backend.users.fields.password"))->class("col-md-2 form-label")->for("password")->id("password-label") }}
 
-                        <div class="col-md-10">
-                            {{ html()->password("password")->class("form-control")->placeholder(__("labels.backend.users.fields.password"))->required() }}
-                        </div>
-                    </div>
+    <div class="col-md-10">
+        {{ html()->password("password")->class("form-control")->placeholder(__("labels.backend.users.fields.password"))->required()->attributes(["aria-labelledby" => "password-label"]) }}
+    </div>
+</div>
 
-                    <div class="form-group row mb-3">
-                        {{ html()->label(__("labels.backend.users.fields.password_confirmation"))->class("col-md-2 form-label")->for("password_confirmation") }}
+<div class="form-group row mb-3">
+    {{ html()->label(__("labels.backend.users.fields.password_confirmation"))->class("col-md-2 form-label")->for("password_confirmation")->id("password_confirmation-label") }}
 
-                        <div class="col-md-10">
-                            {{ html()->password("password_confirmation")->class("form-control")->placeholder(__("labels.backend.users.fields.password_confirmation"))->required() }}
-                        </div>
-                    </div>
+    <div class="col-md-10">
+        {{ html()->password("password_confirmation")->class("form-control")->placeholder(__("labels.backend.users.fields.password_confirmation"))->required()->attributes(["aria-labelledby" => "password_confirmation-label"]) }}
+    </div>
+</div>
 
                     <div class="row">
                         <div class="col">

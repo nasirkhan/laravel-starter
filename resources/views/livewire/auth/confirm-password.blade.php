@@ -14,7 +14,7 @@
         </x-cube::group>
 
         <x-cube::button class="w-full" variant="primary" type="submit">
-            {{ __("Confirm") }}
-        </x-frontend.button>
+    {{ __("Confirm") }}
+</x-cube::button>
     </form>
 </div>

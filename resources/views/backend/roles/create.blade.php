@@ -38,16 +38,16 @@
                     ?>
 
                     <div class="col-12 col-sm-2">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-10">
-                        <div class="form-group">
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
-                        </div>
-                    </div>
+    <div class="form-group">
+        {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+        {!! field_required($required) !!}
+    </div>
+</div>
+<div class="col-12 col-sm-10">
+    <div class="form-group">
+        {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+    </div>
+</div>
                 </div>
 
                 <div class="row mb-3">
@@ -71,9 +71,9 @@
                             @if ($permissions->count())
                                 @foreach ($permissions as $permission)
                                     <div class="form-check">
-                                        {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("form-check-label") }}
-                                        {{ html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->class("form-check-input") }}
-                                    </div>
+    {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("form-check-label") }}
+    {{ html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->class("form-check-input")->attributes(["aria-label" => $permission->name]) }}
+</div>
                                 @endforeach
                             @endif
                         </div>
