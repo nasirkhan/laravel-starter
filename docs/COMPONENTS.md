@@ -1,10 +1,205 @@
 # Blade Component Documentation
 
-**Last Updated:** February 3, 2026  
+**Last Updated:** February 23, 2026  
 **Laravel Version:** 12.x  
 **Livewire Version:** 4.x
 
 This document provides comprehensive documentation for all Blade components in the Laravel Starter application, including usage examples, prop validation, and Alpine.js integration patterns.
+
+---
+
+## ⚡ Livewire Single-File Components (SFC)
+
+Livewire 4.0 introduces native Single-File Components (SFC) that allow you to define a component's logic and template in a single `.blade.php` file.
+
+### What is SFC?
+
+Single-File Components combine PHP class definition and Blade template in one file:
+
+```php
+<?php
+
+use Livewire\Component;
+
+new class extends Component {
+    public $title = '';
+
+    public function save()
+    {
+        // Save logic here...
+    }
+};
+?>
+
+<div>
+    <input wire:model="title" type="text">
+    <button wire:click="save">Save Post</button>
+</div>
+```
+
+### SFC vs Traditional Components
+
+| Aspect | Traditional | SFC |
+|---------|-------------|-------|
+| Files | 2 files (PHP class + Blade view) | 1 file (.blade.php) |
+| Syntax | `class MyComponent extends Component` | `new class extends Component` |
+| Location | `app/Livewire/` + `resources/views/livewire/` | `resources/views/livewire/` |
+| File Naming | `MyComponent.php` + `my-component.blade.php` | `⚡ my-component.blade.php` |
+
+### Creating SFC Components
+
+#### Using Artisan Command
+
+```bash
+# Create a new SFC component
+php artisan make:livewire Terms
+
+# This creates: resources/views/livewire/frontend/⚡ terms.blade.php
+```
+
+#### Manual Creation
+
+Create a `.blade.php` file in your Livewire views directory:
+
+```php
+<?php
+
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+#[Title('My Page')]
+new class extends Component {
+    public $title = 'My Page';
+    public $data = [];
+
+    public function mount()
+    {
+        // Initialization logic
+        $this->data = Model::all();
+    }
+};
+?>
+
+<div>
+    <h1>{{ $title }}</h1>
+    @foreach($data as $item)
+        <p>{{ $item->name }}</p>
+    @endforeach
+</div>
+```
+
+### SFC Features
+
+#### PHP Attributes
+
+Use Livewire attributes for component metadata:
+
+```php
+<?php
+
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
+use Livewire\Attributes\Validate;
+use Livewire\Attributes\Locked;
+
+#[Title('Page Title')]
+#[Layout('components.layouts.app')]
+new class extends Component {
+    #[Locked]
+    public User $user;
+
+    #[Url]
+    public $page = 1;
+
+    #[Validate('required|string|max:255')]
+    public $name = '';
+};
+?>
+```
+
+#### Lifecycle Hooks
+
+```php
+<?php
+
+new class extends Component {
+    public function mount($id = null)
+    {
+        // Called when component is initialized
+        if ($id) {
+            $this->data = Model::find($id);
+        }
+    }
+
+    public function updated($property)
+    {
+        // Called when a property is updated
+    }
+
+    public function render()
+    {
+        // Optional - can be omitted for simple components
+        return;
+    }
+};
+?>
+```
+
+#### Using Traits
+
+```php
+<?php
+
+use Livewire\Component;
+use Livewire\WithPagination;
+
+new class extends Component {
+    use WithPagination;
+
+    public function render()
+    {
+        $items = Model::paginate(15);
+        return;
+    }
+};
+?>
+```
+
+### SFC File Organization
+
+Livewire SFC files are organized with emoji prefixes:
+
+```
+resources/views/livewire/
+├── frontend/
+│   ├── ⚡ home.blade.php
+│   ├── ⚡ terms.blade.php
+│   └── ⚡ privacy.blade.php
+├── auth/
+│   ├── 🔐 login.blade.php
+│   ├── 🔐 register.blade.php
+│   └── 🔐 forgot-password.blade.php
+└── backend/
+    └── 📊 users.blade.php
+```
+
+### Emoji Prefixes
+
+| Component Type | Emoji | Example |
+|---------------|--------|----------|
+| Pages | ⚡ | `⚡ home.blade.php` |
+| Forms | 📝 | `📝 contact.blade.php` |
+| Tables | 📊 | `📊 users.blade.php` |
+| Cards | 🃏 | `🃏 profile.blade.php` |
+| Modals | 🪟 | `🪟 confirm.blade.php` |
+| Auth | 🔐 | `🔐 login.blade.php` |
+
+### Migration Guide
+
+For detailed migration instructions from traditional Livewire components to SFC, see:
+- [UPGRADE.md - Upgrading to Livewire 4.0 SFC](../UPGRADE.md#upgrading-to-livewire-40-sfc)
+- [SINGLE_FILE_COMPONENTS.md](SINGLE_FILE_COMPONENTS.md)
 
 ---
 
@@ -767,6 +962,6 @@ With Livewire:
 
 ---
 
-**Maintained by:** Laravel Starter Team  
-**Last Review:** February 3, 2026  
+**Maintained by:** Laravel Starter Team
+**Last Review:** February 23, 2026
 **Next Review:** March 2026

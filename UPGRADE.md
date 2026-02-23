@@ -4,6 +4,7 @@ This guide provides step-by-step instructions for upgrading between major versio
 
 ## Table of Contents
 - [General Upgrade Tips](#general-upgrade-tips)
+- [Upgrading to Livewire 4.0 SFC](#upgrading-to-livewire-40-sfc)
 - [Upgrading to 13.0 from 12.x](#upgrading-to-130-from-12x)
 - [Upgrading to 12.20.0 from 2.x](#upgrading-to-12200-from-2x)
 
@@ -51,6 +52,319 @@ This guide provides step-by-step instructions for upgrading between major versio
 3. **Review Error Logs**
    - Check storage/logs for any issues
    - Monitor application behavior
+
+---
+
+## Upgrading to Livewire 4.0 SFC
+
+> **Estimated Time:** 1-2 hours per component  
+> **Difficulty:** Low to Medium  
+> **Risk Level:** Low (with proper testing)
+
+### Overview
+
+Livewire 4.0 introduces native Single-File Components (SFC) that allow you to define a component's logic and template in a single `.blade.php` file using the `new class extends Component` syntax.
+
+### Requirements
+
+- PHP 8.2 or higher
+- Livewire 4.0 or higher
+- Laravel 12.x
+
+### What's New in Livewire 4.0 SFC
+
+#### 1. Native SFC Syntax
+
+Livewire 4.0 provides native SFC support without requiring Laravel Volt:
+
+```php
+<?php
+
+use Livewire\Component;
+
+new class extends Component {
+    public $title = '';
+
+    public function save()
+    {
+        // Save logic here...
+    }
+};
+?>
+
+<div>
+    <input wire:model="title" type="text">
+    <button wire:click="save">Save Post</button>
+</div>
+```
+
+#### 2. Emoji File Prefixes
+
+The `make:livewire` command now adds emoji prefixes to component files for better visual organization:
+
+| Component Type | Emoji Prefix | Example |
+|---------------|---------------|----------|
+| Pages | ⚡ | `⚡ terms.blade.php` |
+| Forms | 📝 | `📝 contact.blade.php` |
+| Tables | 📊 | `📊 users.blade.php` |
+| Cards | 🃏 | `🃏 profile.blade.php` |
+| Modals | 🪟 | `🪟 confirm.blade.php` |
+
+#### 3. Configuration Changes
+
+The `config/livewire.php` file has been updated to support SFC:
+
+```php
+'make_command' => [
+    // 'type' => 'class',  // Match v3 behavior (not SFC)
+    'emoji' => true,        // Add emoji prefixes to file names
+],
+```
+
+### Migration Steps
+
+#### Step 1: Update Livewire
+
+```bash
+# Update Livewire to version 4.0
+composer update livewire/livewire
+
+# Clear caches
+php artisan view:clear
+php artisan config:clear
+php artisan cache:clear
+```
+
+#### Step 2: Review Configuration
+
+Ensure your `config/livewire.php` has the correct settings:
+
+```php
+'make_command' => [
+    'emoji' => true,  // Enable emoji prefixes
+],
+
+'component_locations' => [
+    resource_path('views/components'),
+    resource_path('views/livewire'),
+],
+```
+
+#### Step 3: Migrate Components One by One
+
+**For each component you want to migrate to SFC:**
+
+1. **Identify the component**
+   - Find the PHP class file (e.g., `app/Livewire/Frontend/Terms.php`)
+   - Find the Blade view file (e.g., `resources/views/livewire/frontend/terms.blade.php`)
+
+2. **Create the SFC file**
+   - Create a new `.blade.php` file in the appropriate directory
+   - Use the emoji prefix (e.g., `⚡ terms.blade.php`)
+
+3. **Convert the component**
+
+**Before (Traditional):**
+
+**PHP Class:** `app/Livewire/Frontend/Terms.php`
+```php
+<?php
+
+namespace App\Livewire\Frontend;
+
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+#[Title('Terms and Conditions')]
+class Terms extends Component
+{
+    public function render()
+    {
+        $title = 'Terms and Conditions';
+        $company_name = app_name();
+
+        return view('livewire.frontend.terms', compact('title', 'company_name'));
+    }
+}
+```
+
+**Blade View:** `resources/views/livewire/frontend/terms.blade.php`
+```blade
+<div>
+    <h1>{{ $title }}</h1>
+    <p>Welcome to {{ $company_name }}!</p>
+</div>
+```
+
+**After (SFC):**
+
+**Single File:** `resources/views/livewire/frontend/⚡ terms.blade.php`
+```php
+<?php
+
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+#[Title('Terms and Conditions')]
+new class extends Component {
+    public $title = 'Terms and Conditions';
+    public $company_name;
+
+    public function mount()
+    {
+        $this->company_name = app_name();
+    }
+};
+?>
+
+<div>
+    <h1>{{ $title }}</h1>
+    <p>Welcome to {{ $company_name }}!</p>
+</div>
+```
+
+4. **Delete old files**
+   - Remove the PHP class file
+   - Remove the old Blade view file
+
+5. **Test the component**
+   - Visit the page that uses the component
+   - Verify all functionality works correctly
+
+#### Step 4: Update Routes (If Needed)
+
+Routes typically don't need to change, but verify they still work:
+
+```php
+// Before
+Route::livewire('terms', \App\Livewire\Frontend\Terms::class)->name('terms');
+
+// After - Livewire auto-discovers SFC files
+Route::livewire('terms', 'frontend.⚡ terms')->name('terms');
+// Or just use the component name without emoji
+Route::livewire('terms', 'frontend.terms')->name('terms');
+```
+
+#### Step 5: Update Tests
+
+Update test references to use the new component format:
+
+```php
+// Before
+Livewire::test(\App\Livewire\Frontend\Terms::class)
+
+// After
+Livewire::test('frontend.terms')
+// Or
+Livewire::test('frontend.⚡ terms')
+```
+
+### Breaking Changes
+
+#### 1. Class-Based Components Still Work
+
+Traditional class-based components (separate PHP and Blade files) continue to work in Livewire 4.0. You don't have to migrate all components at once.
+
+#### 2. Namespace Changes
+
+SFC components don't use namespaces. The component is defined inline:
+
+```php
+// Before - Class-based
+namespace App\Livewire\Frontend;
+class Terms extends Component { }
+
+// After - SFC
+new class extends Component { }
+```
+
+#### 3. Render Method Changes
+
+In SFC, the `render()` method is optional and typically just returns:
+
+```php
+// Before
+public function render()
+{
+    return view('livewire.frontend.terms', compact('title'));
+}
+
+// After - SFC (optional)
+public function render()
+{
+    return;  // Just return void or omit the method
+}
+```
+
+### Recommended Migration Order
+
+Migrate components in this order to minimize risk:
+
+1. **Simple static components** (Terms, Privacy, Home)
+2. **Form components** (Login, Register, ForgotPassword)
+3. **List components** (UsersIndex, PostsIndex)
+4. **Complex components** (ProfileEdit, PostEdit)
+
+### Troubleshooting
+
+#### Component Not Found
+
+```bash
+# Clear view cache
+php artisan view:clear
+
+# Clear config cache
+php artisan config:clear
+
+# Verify component location
+ls resources/views/livewire/frontend/
+```
+
+#### Route Not Working
+
+```bash
+# Clear route cache
+php artisan route:clear
+
+# Check route list
+php artisan route:list
+```
+
+#### Validation Errors
+
+Ensure you're using the correct attribute syntax:
+
+```php
+// Correct
+#[Validate('required|string|max:255')]
+public $name = '';
+
+// Incorrect
+public $name = '';  // Missing validation attribute
+```
+
+### Rollback
+
+If you need to rollback a component migration:
+
+```bash
+# Restore from git
+git checkout app/Livewire/Frontend/Terms.php
+git checkout resources/views/livewire/frontend/terms.blade.php
+
+# Delete the SFC file
+rm resources/views/livewire/frontend/⚡ terms.blade.php
+
+# Clear caches
+php artisan view:clear
+php artisan cache:clear
+```
+
+### Additional Resources
+
+- [Official Livewire v4 Documentation](https://livewire.laravel.com/docs/4.x/single-file-components)
+- [Livewire v4 Upgrade Guide](https://livewire.laravel.com/docs/4.x/upgrade)
+- [Project SFC Documentation](docs/SINGLE_FILE_COMPONENTS.md)
 
 ---
 
