@@ -69,7 +69,7 @@ class ProfileEdit extends Component
 
         // Check authorization - must be the authenticated user
         if ($this->user->id !== $user->id) {
-            return redirect()->route('frontend.users.profile', $this->user->username);
+            return redirect()->route('frontend.users.profile', parameters: $this->user->username);
         }
 
         // Populate form fields
@@ -117,9 +117,9 @@ class ProfileEdit extends Component
             $this->user->update(['avatar' => $media->getUrl()]);
         }
 
-        session()->flash('flash_success', 'Update successful!');
+        session()->flash(key: 'flash_success', value: 'Update successful!');
 
-        return redirect()->route('frontend.users.profile', $this->user->username);
+        return redirect()->route('frontend.users.profile', parameters: $this->user->username);
     }
 
     /**

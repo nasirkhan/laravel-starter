@@ -14,6 +14,6 @@ class Terms extends Component
         $company_name = app_name();
         $app_email = setting('email');
 
-        return view('livewire.frontend.terms', compact('title', 'company_name', 'app_email'));
+        return view(view: 'livewire.frontend.terms', data: compact('title', 'company_name', 'app_email'));
     }
 }

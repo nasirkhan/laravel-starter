@@ -67,8 +67,8 @@ class RolesController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "backend.{$module_path}.index",
-            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
+            view: "backend.{$module_path}.index",
+            data: compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -93,7 +93,7 @@ class RolesController extends Controller
 
         logUserAccess($module_title.' '.$module_action);
 
-        return view("backend.{$module_name}.create", compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
+        return view(view: "backend.{$module_name}.create", data: compact('module_title', 'module_name', 'module_icon', 'module_action', 'roles', 'permissions'));
     }
 
     /**
@@ -157,8 +157,8 @@ class RolesController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "backend.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'users')
+            view: "backend.{$module_name}.show",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'users')
         );
     }
 
@@ -186,7 +186,7 @@ class RolesController extends Controller
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return view("backend.{$module_name}.edit", compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
+        return view(view: "backend.{$module_name}.edit", data: compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
     }
 
     /**

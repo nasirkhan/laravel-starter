@@ -37,7 +37,7 @@ class ChangePassword extends Component
 
         // Check authorization - must be the authenticated user
         if ($this->user->id !== $user->id) {
-            redirect()->route('frontend.users.profile', $this->user->username);
+            redirect()->route('frontend.users.profile', parameters: $this->user->username);
         }
     }
 
@@ -54,9 +54,9 @@ class ChangePassword extends Component
 
         $this->reset(['password', 'password_confirmation']);
 
-        session()->flash('flash_success', 'Password updated successfully!');
+        session()->flash(key: 'flash_success', value: 'Password updated successfully!');
 
-        return redirect()->route('frontend.users.profile', $this->user->username);
+        return redirect()->route('frontend.users.profile', parameters: $this->user->username);
     }
 
     /**

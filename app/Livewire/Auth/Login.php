@@ -35,7 +35,10 @@ class Login extends Component
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password, 'status' => 1], $this->remember)) {
+        if (! Auth::attempt(
+            credentials: ['email' => $this->email, 'password' => $this->password, 'status' => 1],
+            remember: $this->remember
+        )) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

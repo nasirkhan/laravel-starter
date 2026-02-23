@@ -14,6 +14,6 @@ class Privacy extends Component
         $company_name = app_name();
         $app_email = setting('email');
 
-        return view('livewire.frontend.privacy', compact('title', 'company_name', 'app_email'));
+        return view(view: 'livewire.frontend.privacy', data: compact('title', 'company_name', 'app_email'));
     }
 }

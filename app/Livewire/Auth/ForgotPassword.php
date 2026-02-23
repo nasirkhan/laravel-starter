@@ -31,7 +31,7 @@ class ForgotPassword extends Component
 
         RateLimiter::hit($this->throttleKey(), 60);
 
-        session()->flash('status', __('A reset link will be sent if the account exists.'));
+        session()->flash(key: 'status', value: __('A reset link will be sent if the account exists.'));
     }
 
     /**
