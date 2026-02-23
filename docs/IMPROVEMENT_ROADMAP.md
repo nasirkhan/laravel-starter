@@ -1735,6 +1735,13 @@ Update GitHub Actions workflow:
 - **Minor versions:** New features, backward compatible
 - **Patch versions:** Bug fixes, documentation updates
 
+### Single-File Components (SFC) Implementation
+- **Documentation:** See [`docs/SINGLE_FILE_COMPONENTS.md`](SINGLE_FILE_COMPONENTS.md) for comprehensive SFC implementation guide
+- **Status:** Implementation guide created with examples for core and laravel-cube packages
+- **Examples:**
+  - [`app/Livewire/Frontend/Terms.php`](app/Livewire/Frontend/Terms.php) - Inline Blade SFC example
+  - [`../laravel-starter-packages/laravel-cube/resources/views/components/alert.blade.php`](../laravel-starter-packages/laravel-cube/resources/views/components/alert.blade.php) - Anonymous Blade component SFC example
+
 ### Update Process for Base Starter Users
 1. Review CHANGELOG.md for breaking changes
 2. Check UPGRADE.md for migration steps

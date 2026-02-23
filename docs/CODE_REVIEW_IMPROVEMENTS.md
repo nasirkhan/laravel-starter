@@ -560,6 +560,26 @@ Route::middleware(['auth', 'verified'])->prefix('settings')->group(function () {
 
 **Recommendation:** Add maintenance mode configuration for better production support.
 
+### 2.8.5 Single-File Components (SFC) Implementation
+
+**Documentation:** See [`SINGLE_FILE_COMPONENTS.md`](SINGLE_FILE_COMPONENTS.md) for comprehensive SFC implementation guide.
+
+**Implemented Examples:**
+- [`app/Livewire/Frontend/Terms.php`](app/Livewire/Frontend/Terms.php) - Inline Blade SFC example
+- [`../laravel-starter-packages/laravel-cube/resources/views/components/alert.blade.php`](../laravel-starter-packages/laravel-cube/resources/views/components/alert.blade.php) - Anonymous Blade component SFC example
+
+**SFC Approaches for Livewire 4.0:**
+1. **Inline Blade Views** - Using PHP heredoc syntax for simple components
+2. **Component Co-location** - Keeping PHP and Blade files in same directory
+3. **View Class Method** - Embedding view as method
+4. **Anonymous Blade Components** - Laravel's native SFC for Blade
+
+**Benefits:**
+- Co-located logic and templates
+- Easier to maintain and understand
+- Better developer experience
+- Improved component organization
+
 ### 2.9 Key Takeaways from Laravel Livewire Starter Kit
 
 1. **Simplicity First** - The starter kit prioritizes simplicity over features
