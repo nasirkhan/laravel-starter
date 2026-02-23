@@ -94,7 +94,7 @@ return [
     */
 
     'make_command' => [
-        'type' => 'class',  // Match v3 behavior
+        // 'type' => 'class',  // Match v3 behavior
         'emoji' => true,
     ],
 
