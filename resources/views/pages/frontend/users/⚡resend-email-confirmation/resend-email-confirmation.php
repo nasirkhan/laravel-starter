@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
-new class extends Component {
+new class extends Component
+{
     public function resend(): void
     {
         $user = Auth::user();
