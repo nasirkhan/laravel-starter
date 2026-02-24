@@ -2,13 +2,13 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('components.layouts.frontend')] #[Title('User Profile')] class extends Component {
+new #[Layout('components.layouts.frontend')] #[Title('User Profile')] class extends Component
+{
     public string $username = '';
 
     public string $module_title = 'Users';

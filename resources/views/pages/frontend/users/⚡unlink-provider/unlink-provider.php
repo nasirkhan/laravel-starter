@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
-new class extends Component {
+new class extends Component
+{
     #[Locked]
     public int $userProviderId = 0;
 
