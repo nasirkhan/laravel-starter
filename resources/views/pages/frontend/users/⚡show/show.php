@@ -6,7 +6,8 @@ use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('components.layouts.frontend')] #[Title('User Profile')] class extends Component {
+new #[Layout('components.layouts.frontend')] #[Title('User Profile')] class extends Component
+{
     #[Locked]
     public ?User $user = null;
 
