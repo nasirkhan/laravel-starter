@@ -1,24 +1,18 @@
 <?php
 
-namespace App\Livewire\Frontend\Users;
-
 use App\Models\UserProvider;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
-class UnlinkProvider extends Component
-{
+new class extends Component {
     #[Locked]
-    public int $userProviderId;
+    public int $userProviderId = 0;
 
     #[Locked]
     public string $providerName = '';
 
-    /**
-     * Mount the component.
-     */
     public function mount(int $userProviderId): void
     {
         $this->userProviderId = $userProviderId;
@@ -64,12 +58,4 @@ class UnlinkProvider extends Component
 
         $this->dispatch('provider-unlinked');
     }
-
-    /**
-     * Render the component.
-     */
-    public function render()
-    {
-        return view('livewire.frontend.users.unlink-provider');
-    }
-}
+};

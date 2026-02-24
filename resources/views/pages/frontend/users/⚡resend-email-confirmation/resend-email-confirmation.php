@@ -1,17 +1,11 @@
 <?php
 
-namespace App\Livewire\Frontend\Users;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
-class ResendEmailConfirmation extends Component
-{
-    /**
-     * Resend email verification notification.
-     */
+new class extends Component {
     public function resend(): void
     {
         $user = Auth::user();
@@ -38,12 +32,4 @@ class ResendEmailConfirmation extends Component
 
         flash('Email Sent! Please Check Your Inbox.')->success()->important();
     }
-
-    /**
-     * Render the component.
-     */
-    public function render()
-    {
-        return view('livewire.frontend.users.resend-email-confirmation');
-    }
-}
+};

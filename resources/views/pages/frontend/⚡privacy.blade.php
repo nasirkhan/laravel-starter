@@ -1,3 +1,22 @@
+<?php
+
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+new #[Layout('components.layouts.frontend')] #[Title('Privacy Policy')] class extends Component {
+    public string $title = 'Privacy Policy';
+    public string $company_name = '';
+    public string $app_email = '';
+
+    public function mount(): void
+    {
+        $this->company_name = app_name();
+        $this->app_email = setting('email');
+    }
+};
+?>
+
 <div>
     <x-cube::header-block :title="$title" />
 
@@ -67,7 +86,7 @@
 
             <h3 class="mb-2 mt-4 text-2xl">Cookies and Web Beacons</h3>
             <p>
-                Like any other website, {{ app_name() }} uses ‘cookies'. These cookies are used to store information
+                Like any other website, {{ app_name() }} uses 'cookies'. These cookies are used to store information
                 including visitors' preferences, and the pages on the website that the visitor accessed or visited. The
                 information is used to optimize the users' experience by customizing our web page content based on
                 visitors' browser type and/or other information.

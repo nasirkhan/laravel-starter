@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Livewire\Frontend\Users;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-#[Layout('components.layouts.frontend')]
-#[Title('Edit Profile')]
-class ProfileEdit extends Component
-{
+new #[Layout('components.layouts.frontend')] #[Title('Edit Profile')] class extends Component {
     use WithFileUploads;
 
-    public User $user;
+    #[Locked]
+    public ?User $user = null;
 
     #[Validate('required|string|max:191')]
     public string $first_name = '';
@@ -54,10 +51,19 @@ class ProfileEdit extends Component
     #[Validate('nullable|image|max:2048')]
     public $avatar;
 
-    /**
-     * Mount the component.
-     */
-    public function mount()
+    public string $module_title = 'Users';
+
+    public string $module_name = 'users';
+
+    public string $module_name_singular = 'user';
+
+    public string $module_icon = 'fas fa-users';
+
+    public string $module_action = 'Edit Profile';
+
+    public string $body_class = 'profile-page';
+
+    public function mount(): void
     {
         $user = Auth::user();
 
@@ -69,7 +75,7 @@ class ProfileEdit extends Component
 
         // Check authorization - must be the authenticated user
         if ($this->user->id !== $user->id) {
-            return redirect()->route('frontend.users.profile', parameters: $this->user->username);
+            redirect()->route('frontend.users.profile', parameters: $this->user->username);
         }
 
         // Populate form fields
@@ -86,10 +92,7 @@ class ProfileEdit extends Component
         $this->url_text = $this->user->url_text ?? '';
     }
 
-    /**
-     * Update the user profile.
-     */
-    public function update()
+    public function update(): mixed
     {
         $this->validate();
 
@@ -121,23 +124,4 @@ class ProfileEdit extends Component
 
         return redirect()->route('frontend.users.profile', parameters: $this->user->username);
     }
-
-    /**
-     * Render the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        return view('livewire.frontend.users.profile-edit', [
-            'module_title' => 'Users',
-            'module_name' => 'users',
-            'module_path' => 'users',
-            'module_icon' => 'fas fa-users',
-            'module_name_singular' => 'user',
-            'module_action' => 'Edit Profile',
-            'user' => $this->user,
-            'body_class' => 'profile-page',
-        ]);
-    }
-}
+};
