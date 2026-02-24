@@ -14,6 +14,9 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_all_forms_have_cancel_buttons_outside_forms(): void
     {
+        // Layout components live in the cube package (symlinked to vendor)
+        $cubePackagePath = 'vendor/nasirkhan/laravel-cube/resources/views/components/backend/layouts';
+
         $formsToCheck = [
             // Backend edit forms
             'resources/views/backend/users/edit.blade.php',
@@ -23,9 +26,9 @@ class AllFormsStructureTest extends TestCase
             'resources/views/backend/users/create.blade.php',
             'resources/views/backend/roles/create.blade.php',
 
-            // Layout components
-            'resources/views/components/backend/layouts/edit.blade.php',
-            'resources/views/components/backend/layouts/create.blade.php',
+            // Layout components (in cube package)
+            $cubePackagePath.'/edit.blade.php',
+            $cubePackagePath.'/create.blade.php',
         ];
 
         foreach ($formsToCheck as $formFile) {
@@ -99,7 +102,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_return_back_button_component_is_safe(): void
     {
-        $returnBackComponent = base_path('resources/views/components/backend/buttons/return-back.blade.php');
+        // The button component lives in the cube package (symlinked to vendor)
+        $returnBackComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/return-back.blade.php');
         $this->assertFileExists($returnBackComponent);
 
         $content = file_get_contents($returnBackComponent);
@@ -118,7 +122,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_cancel_button_component_is_safe(): void
     {
-        $cancelComponent = base_path('resources/views/components/backend/buttons/cancel.blade.php');
+        // The button component lives in the cube package (symlinked to vendor)
+        $cancelComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/cancel.blade.php');
         $this->assertFileExists($cancelComponent);
 
         $content = file_get_contents($cancelComponent);
