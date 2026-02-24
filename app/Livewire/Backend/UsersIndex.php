@@ -20,6 +20,14 @@ class UsersIndex extends Component
 
     protected $paginationTheme = 'bootstrap';
 
+    /**
+     * Reset pagination when the search term changes.
+     */
+    public function updatedSearchTerm(): void
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
