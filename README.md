@@ -1,7 +1,7 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with the latest Laravel framework."></p>
 
-# Laravel Starter (based on Laravel 12.x)
-**Laravel Starter** is a Laravel 12.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `Users` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based project.
+# Laravel Starter (based on Laravel 13.x)
+**Laravel Starter** is a Laravel 13.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `Users` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based project.
 Here Frontend and Backend are completely separated with separate routes, controllers, and themes as well.
 
 ***Please let me know your feedback and comments.***
@@ -26,19 +26,6 @@ Pass: secret
 User: user@user.com
 Pass: secret
 
-```
-
-## Demo Data
-For detailed information about seeding options and demo data management, see the [Database Seeding](#database-seeding) section above.
-
-Quick command to add demo data:
-```bash
-php artisan laravel-starter:insert-demo-data
-```
-
-Use `--fresh` to truncate existing data first:
-```bash
-php artisan laravel-starter:insert-demo-data --fresh
 ```
 
 # Custom Commands
@@ -170,135 +157,26 @@ php artisan storage:link
 
 ## Database Seeding
 
-This Laravel application provides flexible database seeding options to accommodate different development scenarios.
+Two seeder categories are available:
 
-### Types of Seeders
+- **Essential** (always run): users, roles, permissions, menu — `AuthTableSeeder`, `MenuDatabaseSeeder`
+- **Dummy data** (optional): posts, categories, tags — disabled via `SEED_DUMMY_DATA=false` in `.env`
 
-#### Essential Seeders (Always Run)
-- **Users, Roles & Permissions** (`AuthTableSeeder`)
-- **Menu & Navigation** (`MenuDatabaseSeeder`)
-
-These seeders create the core data required for the application to function properly.
-
-#### Dummy Data Seeders (Optional)
-- **Posts** (`PostDatabaseSeeder`)
-- **Categories** (`CategoryDatabaseSeeder`)
-- **Tags** (`TagDatabaseSeeder`)
-
-These seeders create sample content for development and testing purposes.
-
-### Seeding Options
-
-#### 1. Full Seeding (Default)
-Seeds both essential data and dummy data:
 ```bash
+# Full seed (essential + dummy data)
 php artisan migrate:fresh --seed
-```
 
-#### 2. Essential Data Only
-
-**Option A: Environment Variable**
-Set in your `.env` file:
-```env
-SEED_DUMMY_DATA=false
-```
-Then run:
-```bash
-php artisan migrate:fresh --seed
-```
-
-**Option B: Custom Command**
-```bash
-# Seed only essential data
-php artisan db:seed-essential
-
-# Fresh migration + essential data only
+# Essential data only
 php artisan db:seed-essential --fresh
-```
 
-**Option C: Runtime Environment Variable (PowerShell)**
-```powershell
-$env:SEED_DUMMY_DATA="false"; php artisan migrate:fresh --seed
-```
-
-#### 3. Dummy Data Only
-If you already have essential data and only want to add dummy content:
-```bash
-php artisan db:seed --class="Modules\Post\database\seeders\PostDatabaseSeeder"
-php artisan db:seed --class="Modules\Category\database\seeders\CategoryDatabaseSeeder"
-php artisan db:seed --class="Modules\Tag\database\seeders\TagDatabaseSeeder"
-```
-
-#### 4. On-Demand Demo Data Insertion
-If you need to add or refresh demo data after initial setup:
-```bash
+# Add or refresh demo content at any time
 php artisan laravel-starter:insert-demo-data
-```
-
-This command inserts demo data for posts, categories, tags, and comments. Use the `--fresh` option to truncate existing data first:
-```bash
 php artisan laravel-starter:insert-demo-data --fresh
 ```
 
-This is separate from the seeding process and can be used anytime to populate or refresh demo content.
-
-### Environment Configuration
-
-#### .env Variables
-```env
-# Control dummy data seeding (default: true)
-SEED_DUMMY_DATA=true
-```
-
-#### Production Considerations
-- Essential seeders are safe for production (users, roles, menus)
-- Dummy data seeders should typically be disabled in production
-- Use `--force` flag for production environments:
+For production, set `SEED_DUMMY_DATA=false` and use `--force`:
 ```bash
 php artisan db:seed-essential --fresh --force
-```
-
-#### Module Status Control
-Individual modules can be enabled/disabled via `modules_statuses.json`:
-```json
-{
-    "Post": true,     // Dummy data module
-    "Category": true, // Dummy data module
-    "Tag": true,      // Dummy data module
-    "Menu": true      // Essential module
-}
-```
-
-### Testing Environment
-During automated testing:
-- Seeder output is suppressed to keep test logs clean
-- Both essential and dummy data are seeded by default
-- Override with `SEED_DUMMY_DATA=false` for faster test execution
-
-### Examples
-
-**Development Setup**
-```bash
-# Full development environment with sample content
-php artisan migrate:fresh --seed
-```
-
-**Production Deployment**
-```bash
-# Production with only essential data
-SEED_DUMMY_DATA=false php artisan migrate:fresh --seed --force
-```
-
-**Quick Development Reset**
-```bash
-# Reset with only essential data for clean slate
-php artisan db:seed-essential --fresh
-```
-
-**Staging Environment**
-```bash
-# Add sample content to existing essential data
-SEED_DUMMY_DATA=true php artisan db:seed
 ```
 
 ## Docker and Laravel Sail
