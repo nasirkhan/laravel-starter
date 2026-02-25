@@ -5,7 +5,7 @@
 <meta name="keyword" content="{{ setting('meta_keyword') }}" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<title>{{ $title ?? '' }} | {{ config('app.name') }}</title>
+<title>@yield('title', $title ?? '') | {{ config('app.name') }}</title>
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/favicon.png') }}" />
@@ -22,4 +22,4 @@
 @stack('after-styles')
 
 <!-- Google Analytics -->
-<x-google-analytics />
+<x-cube::google-analytics />

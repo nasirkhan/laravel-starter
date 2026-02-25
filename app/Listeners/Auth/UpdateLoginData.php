@@ -8,15 +8,6 @@ use Carbon\Carbon;
 class UpdateLoginData
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Handle the event.
      */
     public function handle(UserLoginSuccess $event): void

@@ -63,8 +63,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "{$module_path}.{$module_name}.index_datatable",
-            compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
+            view: "{$module_path}.{$module_name}.index_datatable",
+            data: compact('module_title', 'module_name', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -134,7 +134,7 @@ class BackendBaseController extends Controller
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
 
-                return view('backend.includes.action_column', compact('module_name', 'data'));
+                return view(view: 'backend.includes.action_column', data: compact('module_name', 'data'));
             })
             ->editColumn('name', '<strong>{{$name}}</strong>')
             ->editColumn('updated_at', function ($data) {
@@ -172,8 +172,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "{$module_path}.{$module_name}.create",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action')
+            view: "{$module_path}.{$module_name}.create",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 
@@ -227,8 +227,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "{$module_path}.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}")
+            view: "{$module_path}.{$module_name}.show",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_name_singular', 'module_action', "{$module_name_singular}")
         );
     }
 
@@ -255,8 +255,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         return view(
-            "{$module_path}.{$module_name}.edit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+            view: "{$module_path}.{$module_name}.edit",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -347,8 +347,8 @@ class BackendBaseController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "{$module_path}.{$module_name}.trash",
-            compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
+            view: "{$module_path}.{$module_name}.trash",
+            data: compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 

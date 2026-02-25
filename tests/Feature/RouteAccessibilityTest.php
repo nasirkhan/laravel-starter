@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
-use Modules\Category\Models\Category;
-use Modules\Post\Models\Post;
-use Modules\Tag\Models\Tag;
+use Nasirkhan\ModuleManager\Modules\Category\Models\Category;
+use Nasirkhan\ModuleManager\Modules\Post\Models\Post;
+use Nasirkhan\ModuleManager\Modules\Tag\Models\Tag;
 use Tests\TestCase;
 
 class RouteAccessibilityTest extends TestCase
@@ -48,10 +48,10 @@ class RouteAccessibilityTest extends TestCase
         ]);
 
         // Create a menu with nested items to test lazy loading fix
-        $menu = \Modules\Menu\Models\Menu::factory()->create(['location' => 'backend-sidebar-1']);
-        $parentItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'name' => 'Parent']);
-        $childItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $parentItem->id, 'name' => 'Child']);
-        $grandChildItem = \Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $childItem->id, 'name' => 'Grandchild']);
+        $menu = \Nasirkhan\ModuleManager\Modules\Menu\Models\Menu::factory()->create(['location' => 'backend-sidebar-1']);
+        $parentItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'name' => 'Parent']);
+        $childItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $parentItem->id, 'name' => 'Child']);
+        $grandChildItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $childItem->id, 'name' => 'Grandchild']);
 
         foreach ($routes as $route) {
             if (! in_array('GET', $route->methods())) {
@@ -69,7 +69,10 @@ class RouteAccessibilityTest extends TestCase
                 str_contains($uri, 'filemanager') ||
                 str_contains($uri, 'log-viewer') ||
                 str_contains($uri, 'download') ||
-                str_contains($uri, 'emailConfirmationResend')
+                str_contains($uri, 'emailConfirmationResend') ||
+                str_contains($uri, 'backups') ||
+                str_contains($uri, 'delete') ||
+                str_contains($uri, 'clear-cache')
             ) {
                 continue;
             }

@@ -14,6 +14,9 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_all_forms_have_cancel_buttons_outside_forms(): void
     {
+        // Layout components live in the cube package (symlinked to vendor)
+        $cubePackagePath = 'vendor/nasirkhan/laravel-cube/resources/views/components/backend/layouts';
+
         $formsToCheck = [
             // Backend edit forms
             'resources/views/backend/users/edit.blade.php',
@@ -23,9 +26,9 @@ class AllFormsStructureTest extends TestCase
             'resources/views/backend/users/create.blade.php',
             'resources/views/backend/roles/create.blade.php',
 
-            // Layout components
-            'resources/views/components/backend/layouts/edit.blade.php',
-            'resources/views/components/backend/layouts/create.blade.php',
+            // Layout components (in cube package)
+            $cubePackagePath.'/edit.blade.php',
+            $cubePackagePath.'/create.blade.php',
         ];
 
         foreach ($formsToCheck as $formFile) {
@@ -83,41 +86,15 @@ class AllFormsStructureTest extends TestCase
 
     /**
      * Test that forms using layout components inherit the fix.
+     *
+     * Note: Module forms (Post, Category, Tag, Menu) have been moved to module-manager package
+     * and should be tested within their respective module test suites.
      */
     public function test_modular_forms_inherit_cancel_button_fix(): void
     {
-        $modularForms = [
-            // These forms use x-backend.layouts.edit which we fixed
-            'Modules/Category/Resources/views/backend/categories/edit.blade.php',
-            'Modules/Post/Resources/views/backend/posts/edit.blade.php',
-            'Modules/Tag/Resources/views/backend/tags/edit.blade.php',
-
-            // These forms use x-backend.layouts.create which we fixed
-            'Modules/Category/Resources/views/backend/categories/create.blade.php',
-            'Modules/Post/Resources/views/backend/posts/create.blade.php',
-            'Modules/Tag/Resources/views/backend/tags/create.blade.php',
-        ];
-
-        foreach ($modularForms as $formFile) {
-            $fullPath = base_path($formFile);
-
-            if (file_exists($fullPath)) {
-                $content = file_get_contents($fullPath);
-
-                // These should use x-backend.layouts.edit or x-backend.layouts.create
-                $usesLayoutComponent =
-                    strpos($content, 'x-backend.layouts.edit') !== false ||
-                    strpos($content, 'x-backend.layouts.create') !== false;
-
-                if ($usesLayoutComponent) {
-                    $this->assertTrue(true, "Form {$formFile} uses layout component which has our fix");
-                } else {
-                    // If not using layout component, should have direct fix
-                    $this->assertStringContainsString('Cancel button outside the form', $content,
-                        "Form {$formFile} should either use layout component or have direct fix");
-                }
-            }
-        }
+        // Module forms have been moved to module-manager package
+        // They should be tested in their respective module test suites
+        $this->markTestSkipped('Module forms moved to module-manager package - test in module test suites');
     }
 
     /**
@@ -125,7 +102,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_return_back_button_component_is_safe(): void
     {
-        $returnBackComponent = base_path('resources/views/components/backend/buttons/return-back.blade.php');
+        // The button component lives in the cube package (symlinked to vendor)
+        $returnBackComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/return-back.blade.php');
         $this->assertFileExists($returnBackComponent);
 
         $content = file_get_contents($returnBackComponent);
@@ -144,7 +122,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_cancel_button_component_is_safe(): void
     {
-        $cancelComponent = base_path('resources/views/components/backend/buttons/cancel.blade.php');
+        // The button component lives in the cube package (symlinked to vendor)
+        $cancelComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/cancel.blade.php');
         $this->assertFileExists($cancelComponent);
 
         $content = file_get_contents($cancelComponent);

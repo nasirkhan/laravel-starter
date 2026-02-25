@@ -1,30 +1,20 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header
+    <x-cube::auth-header
         :title="__('Confirm password')"
         :description="__('This is a secure area of the application. Please confirm your password before continuing.')"
     />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-cube::auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="confirmPassword" class="flex flex-col gap-6">
         {{-- Password --}}
-        @php
-            $field_name = "password";
-            $filed_label = __("Password");
-            $field_placeholder = $filed_label;
-            $required = "required";
-        @endphp
+        <x-cube::group name="password" label="Password" required>
+            <x-cube::input class="w-full" type="password" wire:model="password" required />
+        </x-cube::group>
 
-        <x-frontend.form.input
-            wire:model="{{ $field_name }}"
-            type="password"
-            :label="$filed_label"
-            :required="$required"
-        />
-
-        <x-button class="w-full" variant="primary" type="submit">
-            {{ __("Confirm") }}
-        </x-button>
+        <x-cube::button class="w-full" variant="primary" type="submit">
+    {{ __("Confirm") }}
+</x-cube::button>
     </form>
 </div>

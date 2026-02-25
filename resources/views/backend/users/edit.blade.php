@@ -6,53 +6,54 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ $$module_name_singular->name }}
-        </x-backend.breadcrumb-item>
+        </x-cube::backend-breadcrumb-item>
 
-        <x-backend.breadcrumb-item type="active">
+        <x-cube::backend-breadcrumb-item type="active">
             {{ __($module_title) }}
             {{ __($module_action) }}
-        </x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        </x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
-    <x-backend.layouts.edit :data="$user">
-        <x-backend.section-header>
+    <x-cube::backend-layout-edit :data="$user">
+        <x-cube::backend-section-header>
             <i class="{{ $module_icon }}"></i>
             {{ $$module_name_singular->name }}
             <small class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-backend.buttons.return-back :small="true" />
-                <x-backend.buttons.show
+                <x-cube::backend-button-return-back :small="true" />
+                <x-cube::backend-button-show
                     class="ms-1"
                     title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'
                     :small="true"
                 />
             </x-slot>
-        </x-backend.section-header>
+        </x-cube::backend-section-header>
 
         <div class="row mt-4">
             <div class="col">
                 {{ html()->modelForm($user, "PATCH", route("backend.users.update", $user->id))->class("form-horizontal")->acceptsFiles()->open() }}
 
                 <div class="form-group row">
-                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("name") }}
+                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("name")->id("avatar-label") }}
 
-                    <div class="col-md-5 mb-3">
-                        <img
-                            class="user-profile-image img-fluid img-thumbnail"
-                            src="{{ asset($$module_name_singular->avatar) }}"
-                            style="max-height: 200px; max-width: 200px"
-                        />
-                    </div>
-                    <div class="col-md-5 mb-3">
-                        <input id="file-multiple-input" name="avatar" type="file" multiple="" />
-                    </div>
+<div class="col-md-5 mb-3">
+    <img
+        class="user-profile-image img-fluid img-thumbnail"
+        src="{{ asset($$module_name_singular->avatar) }}"
+        style="max-height: 200px; max-width: 200px"
+        aria-labelledby="avatar-label"
+    />
+</div>
+<div class="col-md-5 mb-3">
+    <input id="file-multiple-input" name="avatar" type="file" multiple="" aria-labelledby="avatar-label" />
+</div>
                 </div>
 
                 <div class="row">
@@ -65,9 +66,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mb-3">
@@ -79,9 +80,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mb-3">
@@ -93,9 +94,9 @@
                             $required = "required";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mb-3">
@@ -107,9 +108,9 @@
                             $required = "";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
@@ -129,9 +130,9 @@
                             ];
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("form-select")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("form-select")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
 
@@ -144,9 +145,9 @@
                             $required = "";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->date($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->date($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
@@ -161,9 +162,9 @@
                             $required = "";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                     <div class="col-sm-6 col-12 mb-3">
@@ -175,9 +176,9 @@
                             $required = "";
                             ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
                 </div>
@@ -197,9 +198,9 @@
                                 $required = "";
                                 ?>
 
-                                {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                                {!! field_required($required) !!}
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+                                {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+{!! field_required($required) !!}
+{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                             </div>
                         </div>
                     @endforeach
@@ -310,23 +311,24 @@
                                                     <div class="card mb-3">
                                                         <div class="card-header">
                                                             <div class="checkbox">
-                                                                <div class="form-check">
-                                                                    <input
-                                                                        class="form-check-input"
-                                                                        id="{{ "role-" . $role->id }}"
-                                                                        name="roles[]"
-                                                                        type="checkbox"
-                                                                        value="{{ $role->name }}"
-                                                                        {{ in_array($role->name, $userRoles) ? "checked" : "" }}
-                                                                    />
-                                                                    <label
-                                                                        class="form-check-label"
-                                                                        for="{{ "role-" . $role->id }}"
-                                                                    >
-                                                                        &nbsp;{{ label_case($role->name) . " (" . $role->name . ")" }}
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+    <div class="form-check">
+        <input
+            class="form-check-input"
+            id="{{ "role-" . $role->id }}"
+            name="roles[]"
+            type="checkbox"
+            value="{{ $role->name }}"
+            {{ in_array($role->name, $userRoles) ? "checked" : "" }}
+            aria-label="{{ label_case($role->name) . " (" . $role->name . ")" }}"
+        />
+        <label
+            class="form-check-label"
+            for="{{ "role-" . $role->id }}"
+        >
+            &nbsp;{{ label_case($role->name) . " (" . $role->name . ")" }}
+        </label>
+    </div>
+</div>
                                                         </div>
                                                         <div class="card-body">
                                                             @if ($role->id != 1)
@@ -357,21 +359,22 @@
                                             @if ($permissions->count())
                                                 @foreach ($permissions as $permission)
                                                     <div class="mb-2">
-                                                        <input
-                                                            class="form-check-input"
-                                                            id="{{ "permission-" . $permission->id }}"
-                                                            name="permissions[]"
-                                                            type="checkbox"
-                                                            value="{{ $permission->name }}"
-                                                            {{ in_array($permission->name, $userPermissions) ? "checked" : "" }}
-                                                        />
-                                                        <label
-                                                            class="form-check-label"
-                                                            for="{{ "permission-" . $permission->id }}"
-                                                        >
-                                                            &nbsp;{{ label_case($permission->name) . " (" . $permission->name . ")" }}
-                                                        </label>
-                                                    </div>
+    <input
+        class="form-check-input"
+        id="{{ "permission-" . $permission->id }}"
+        name="permissions[]"
+        type="checkbox"
+        value="{{ $permission->name }}"
+        {{ in_array($permission->name, $userPermissions) ? "checked" : "" }}
+        aria-label="{{ label_case($permission->name) . " (" . $permission->name . ")" }}"
+    />
+    <label
+        class="form-check-label"
+        for="{{ "permission-" . $permission->id }}"
+    >
+        &nbsp;{{ label_case($permission->name) . " (" . $permission->name . ")" }}
+    </label>
+</div>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -385,7 +388,7 @@
                 <div class="row">
                     <div class="col-4 mb-3">
                         <div class="form-group">
-                            <x-backend.buttons.save />
+                            <x-cube::backend-button-save />
                         </div>
                     </div>
 
@@ -456,12 +459,12 @@
                 <div class="row">
                     <div class="col-12 mb-3">
                         <div class="float-end">
-                            <x-backend.buttons.return-back>@lang("Cancel")</x-backend.buttons.return-back>
+                            <x-cube::backend-button-return-back>@lang("Cancel")</x-cube::backend-button-return-back>
                         </div>
                     </div>
                 </div>
             </div>
             <!--/.col-->
         </div>
-    </x-backend.layouts.edit>
+    </x-cube::backend-layout-edit>
 @endsection

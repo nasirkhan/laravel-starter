@@ -5,10 +5,6 @@ namespace Tests\Feature;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Artisan;
-use Modules\Category\Models\Category;
-use Modules\Post\Models\Post;
-use Modules\Tag\Models\Tag;
 use Tests\TestCase;
 
 class BackendViewSuperAdminTest extends TestCase
@@ -21,7 +17,6 @@ class BackendViewSuperAdminTest extends TestCase
 
         // seed the database
         $this->seed();
-        // Artisan::call('db:seed');
 
         // Get Super Admin
         $user = User::whereId(1)->first();
@@ -71,7 +66,7 @@ class BackendViewSuperAdminTest extends TestCase
     {
         $fields_data = [];
 
-        foreach (config('setting_fields') as $section => $fields) {
+        foreach (config('settings.setting_fields') as $section => $fields) {
             foreach ($fields['elements'] as $field) {
                 $name = $field['name'];
                 $value = $field['value'];
@@ -95,7 +90,7 @@ class BackendViewSuperAdminTest extends TestCase
 
         $fields_data = [];
 
-        foreach (config('setting_fields') as $section => $fields) {
+        foreach (config('settings.setting_fields') as $section => $fields) {
             foreach ($fields['elements'] as $field) {
                 $name = $field['name'];
                 $value = $field['value'];
@@ -107,18 +102,6 @@ class BackendViewSuperAdminTest extends TestCase
         $response = $this->postJson(route('backend.settings.store'), $fields_data);
 
         $response->assertStatus(403);
-    }
-
-    /**
-     * Backups Test.
-     *
-     * ---------------------------------------------------------------
-     */
-    public function test_super_admin_user_can_view_backups_index(): void
-    {
-        $response = $this->get('/admin/backups');
-
-        $response->assertStatus(200);
     }
 
     /**
@@ -294,332 +277,6 @@ class BackendViewSuperAdminTest extends TestCase
 
         $user->delete();
 
-        // $this->assertSoftDeleted($user);
-
         $this->assertModelMissing($user);
-    }
-
-    /**
-     * Posts Test.
-     *
-     * ---------------------------------------------------------------
-     */
-    public function test_super_admin_user_can_view_posts_index(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/posts');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_create_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/posts/create');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_show_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/posts/1');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_edit_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/posts/1/edit');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_delete_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Post::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
-    }
-
-    public function test_super_admin_user_can_view_trashed_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Post::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertDatabaseMissing('posts', [
-            'id' => $model_id,
-            'deleted_at' => null,
-        ]);
-    }
-
-    public function test_super_admin_user_can_restore_trashed_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $response = $this->delete('/admin/posts/'.$model_id);
-
-        $response->assertStatus(302);
-
-        $response->assertRedirect('/admin/posts');
-
-        $model = Post::withTrashed()->find($model_id)->first();
-
-        $model->restore();
-
-        $this->assertModelExists($model);
-    }
-
-    public function test_super_admin_user_can_restore_post(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Post::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
-    }
-
-    /**
-     * Categories Test.
-     *
-     * ---------------------------------------------------------------
-     */
-    public function test_super_admin_user_can_view_categories_index(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/categories');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_create_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/categories/create');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_show_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/categories/1');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_edit_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/categories/1/edit');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_delete_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Category::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
-    }
-
-    public function test_super_admin_user_can_view_trashed_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Category::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertDatabaseMissing('categories', [
-            'id' => $model_id,
-            'deleted_at' => null,
-        ]);
-    }
-
-    public function test_super_admin_user_can_restore_trashed_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $response = $this->delete('/admin/categories/'.$model_id);
-
-        $response->assertStatus(302);
-
-        $response->assertRedirect('/admin/categories');
-
-        $model = Category::withTrashed()->find($model_id)->first();
-
-        $model->restore();
-
-        $this->assertModelExists($model);
-    }
-
-    public function test_super_admin_user_can_restore_category(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Category::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
-    }
-
-    /**
-     * Tags Test.
-     *
-     * ---------------------------------------------------------------
-     */
-    public function test_super_admin_user_can_view_tags_index(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/tags');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_create_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/tags/create');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_show_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/tags/1');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_edit_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $response = $this->get('/admin/tags/1/edit');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_super_admin_user_can_delete_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Tag::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
-    }
-
-    public function test_super_admin_user_can_view_trashed_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Tag::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertDatabaseMissing('tags', [
-            'id' => $model_id,
-            'deleted_at' => null,
-        ]);
-    }
-
-    public function test_super_admin_user_can_restore_trashed_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $response = $this->delete('/admin/tags/'.$model_id);
-
-        $response->assertStatus(302);
-
-        $response->assertRedirect('/admin/tags');
-
-        $model = Tag::withTrashed()->find($model_id)->first();
-
-        $model->restore();
-
-        $this->assertModelExists($model);
-    }
-
-    public function test_super_admin_user_can_restore_tag(): void
-    {
-        Artisan::call('laravel-starter:insert-demo-data');
-
-        $model_id = 5;
-
-        $model = Tag::find($model_id);
-
-        $this->assertModelExists($model);
-
-        $model->delete();
-
-        $this->assertSoftDeleted($model);
     }
 }

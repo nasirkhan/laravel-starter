@@ -35,15 +35,20 @@ class Login extends Component
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password, 'status' => 1], $this->remember)) {
+        if (! Auth::attempt(
+            credentials: ['email' => $this->email, 'password' => $this->password, 'status' => 1],
+            remember: $this->remember
+        )) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
-
-            event(new UserLoginSuccess(request(), $user));
         }
+
+        // Get authenticated user and fire event
+        $user = Auth::user();
+        event(new UserLoginSuccess(request(), $user));
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();

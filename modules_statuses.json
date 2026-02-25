@@ -1,6 +1,10 @@
 {
-    "Post": true,
+    "Backup": true,
     "Category": true,
-    "Tag": true,
-    "Menu": true
+    "FileManager": true,
+    "LogViewer": true,
+    "Menu": true,
+    "Post": true,
+    "Settings": true,
+    "Tag": true
 }

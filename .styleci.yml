@@ -1,5 +1,5 @@
 risky: false
-version: 8.2
+version: 8.3
 preset: laravel
 finder:
   exclude:
@@ -13,3 +13,4 @@ finder:
   not-name:
     - "*.blade.php"
     - "_ide_helper.php"
+    - "_ide_helper_models.php"
