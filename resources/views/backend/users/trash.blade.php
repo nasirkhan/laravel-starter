@@ -5,15 +5,15 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        </x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
-    <x-backend.layouts.trash
+    <x-cube::backend-layout-trash
         :data="$$module_name"
         :module_name="$module_name"
         :module_path="$module_path"

@@ -30,9 +30,9 @@ return new class extends Migration
 
             $table->tinyInteger('status')->default(1)->unsigned()->after('last_login');
 
-            $table->integer('created_by')->unsigned()->nullable()->after('status');
-            $table->integer('updated_by')->unsigned()->nullable()->after('created_by');
-            $table->integer('deleted_by')->unsigned()->nullable()->after('updated_by');
+            $table->unsignedBigInteger('created_by')->nullable()->after('status');
+            $table->unsignedBigInteger('updated_by')->nullable()->after('created_by');
+            $table->unsignedBigInteger('deleted_by')->nullable()->after('updated_by');
 
             $table->softDeletes();
         });

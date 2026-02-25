@@ -32,7 +32,7 @@
 
         @stack("after-styles")
 
-        <x-google-analytics />
+        <x-cube::google-analytics />
 
         @livewireStyles
     </head>
@@ -63,7 +63,7 @@
             </div>
 
             {{-- Footer block --}}
-            <x-backend.includes.footer />
+            <x-cube::backend-include-footer />
         </div>
 
         <!-- Scripts -->

@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
 
 /*
@@ -66,7 +66,6 @@ if (! function_exists('label_case')) {
         $order = ['_', '-'];
         $replace = ' ';
 
-        $new_text = trim(\Illuminate\Support\Str::title(str_replace('"', '', $text)));
         $new_text = trim(\Illuminate\Support\Str::title(str_replace($order, $replace, $text)));
 
         return preg_replace('!\s+!', ' ', $new_text);

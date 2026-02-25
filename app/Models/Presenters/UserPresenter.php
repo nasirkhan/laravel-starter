@@ -25,22 +25,11 @@ trait UserPresenter
      */
     public function getStatusLabelAttribute()
     {
-        $return_string = '';
-        switch ($this->status) {
-            case '1':
-                $return_string = '<span class="badge text-bg-success">Active</span>';
-                break;
-
-            case '2':
-                $return_string = '<span class="badge text-bg-danger">Blocked</span>';
-                break;
-
-            default:
-                $return_string = '<span class="badge text-bg-primary">Status:'.$this->status.'</span>';
-                break;
-        }
-
-        return $return_string;
+        return match ($this->status) {
+            '1' => '<span class="badge text-bg-success">Active</span>',
+            '2' => '<span class="badge text-bg-danger">Blocked</span>',
+            default => '<span class="badge text-bg-primary">Status:'.$this->status.'</span>',
+        };
     }
 
     /**

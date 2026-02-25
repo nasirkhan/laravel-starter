@@ -10,10 +10,10 @@
     @endif
 
     <div class="flex flex-col items-center justify-between space-y-3">
-        <x-frontend.link wire:click="sendVerification" class="w-full">
-            {{ __("Resend verification email") }}
-        </x-frontend.link>
+        <x-cube::link wire:click="sendVerification" class="w-full">
+            {{ __("Resend Verification Email") }}
+        </x-cube::link>
 
-        <x-frontend.link wire:click="logout">{{ __("Log out") }}</x-frontend.link>
+        <x-cube::link wire:click="logout">{{ __("Log out") }}</x-cube::link>
     </div>
 </div>

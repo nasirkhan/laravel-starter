@@ -3,6 +3,9 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -22,8 +25,38 @@ class ForgotPassword extends Component
             'email' => ['required', 'string', 'email'],
         ]);
 
+        $this->ensureIsNotRateLimited();
+
         Password::sendResetLink($this->only('email'));
 
-        session()->flash('status', __('A reset link will be sent if the account exists.'));
+        RateLimiter::hit($this->throttleKey(), 60);
+
+        session()->flash(key: 'status', value: __('A reset link will be sent if the account exists.'));
+    }
+
+    /**
+     * Ensure the request is not rate limited.
+     */
+    protected function ensureIsNotRateLimited(): void
+    {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
+            return;
+        }
+
+        $seconds = RateLimiter::availableIn($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            'email' => __('Too many password reset attempts. Please try again in :seconds seconds.', [
+                'seconds' => $seconds,
+            ]),
+        ]);
+    }
+
+    /**
+     * Get the rate limiting throttle key.
+     */
+    protected function throttleKey(): string
+    {
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
 }

@@ -77,8 +77,8 @@ class UserController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "{$module_path}.{$module_name}.index",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
+            view: "{$module_path}.{$module_name}.index",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
         );
     }
 
@@ -101,12 +101,12 @@ class UserController extends Controller
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
 
-                return view('backend.includes.user_actions', compact('module_name', 'data'));
+                return view(view: 'backend.includes.user_actions', data: compact('module_name', 'data'));
             })
             ->addColumn('user_roles', function ($data) {
                 $module_name = $this->module_name;
 
-                return view('backend.includes.user_roles', compact('module_name', 'data'));
+                return view(view: 'backend.includes.user_roles', data: compact('module_name', 'data'));
             })
             ->editColumn('name', '<strong>{{$name}}</strong>')
             ->editColumn('status', function ($data) {
@@ -201,8 +201,8 @@ class UserController extends Controller
         logUserAccess($module_title.' '.$module_action);
 
         return view(
-            "{$module_path}.{$module_name}.create",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'roles', 'permissions')
+            view: "{$module_path}.{$module_name}.create",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'roles', 'permissions')
         );
     }
 
@@ -302,8 +302,8 @@ class UserController extends Controller
         logUserAccess(__METHOD__." | {$$module_name_singular->name} ($id)");
 
         return view(
-            "{$module_path}.{$module_name}.show",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+            view: "{$module_path}.{$module_name}.show",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -338,8 +338,8 @@ class UserController extends Controller
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
         return view(
-            "{$module_path}.{$module_name}.changePassword",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
+            view: "{$module_path}.{$module_name}.changePassword",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}")
         );
     }
 
@@ -424,8 +424,8 @@ class UserController extends Controller
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
         return view(
-            "{$module_path}.{$module_name}.edit",
-            compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'roles', 'permissions', 'userRoles', 'userPermissions')
+            view: "{$module_path}.{$module_name}.edit",
+            data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', "{$module_name_singular}", 'roles', 'permissions', 'userRoles', 'userPermissions')
         );
     }
 
@@ -468,7 +468,7 @@ class UserController extends Controller
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
         if ($id === 1) {
-            $user->syncRoles(['super admin']);
+            $$module_name_singular->syncRoles(['super admin']);
 
             // Clear Cache
             Artisan::call('cache:clear');
@@ -569,8 +569,8 @@ class UserController extends Controller
         logUserAccess("{$module_title} {$module_action}");
 
         return view(
-            "{$module_path}.{$module_name}.trash",
-            compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
+            view: "{$module_path}.{$module_name}.trash",
+            data: compact('module_title', 'module_name', 'module_path', "{$module_name}", 'module_icon', 'module_name_singular', 'module_action')
         );
     }
 

@@ -20,5 +20,7 @@ yarn-error.log
 /.vscode
 *.cache
 
-
-
+# IDE Helper files
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php

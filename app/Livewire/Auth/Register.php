@@ -9,18 +9,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Title('Register')]
 #[Layout('components.layouts.auth')]
 class Register extends Component
 {
+    #[Validate('required|string|max:255')]
     public string $name = '';
 
+    #[Validate('required|string|lowercase|email|max:255')]
     public string $email = '';
 
+    #[Validate('required|string|confirmed')]
     public string $password = '';
 
+    #[Validate('required|string')]
     public string $password_confirmation = '';
 
     /**
@@ -33,8 +38,6 @@ class Register extends Component
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        $validated['password'] = $validated['password'];
 
         $user = User::create($validated);
 

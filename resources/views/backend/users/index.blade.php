@@ -5,17 +5,17 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        </x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
     <div class="card">
         <div class="card-body">
-            <x-backend.section-header
+            <x-cube::backend-section-header
                 :module_name="$module_name"
                 :module_title="$module_title"
                 :module_icon="$module_icon"

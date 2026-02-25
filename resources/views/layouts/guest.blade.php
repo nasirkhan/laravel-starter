@@ -19,7 +19,7 @@
         >
             <div>
                 <a href="/">
-                    <x-application-logo class="h-20 w-20 fill-current text-gray-500" />
+                    <x-cube::application-logo class="h-20 w-20 fill-current text-gray-500" />
                 </a>
             </div>
 

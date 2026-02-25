@@ -5,33 +5,33 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-cube::backend-breadcrumbs>
+        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-backend.breadcrumb-item>
+        </x-cube::backend-breadcrumb-item>
 
-        <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
-    </x-backend.breadcrumbs>
+        <x-cube::backend-breadcrumb-item type="active">{{ __($module_action) }}</x-cube::backend-breadcrumb-item>
+    </x-cube::backend-breadcrumbs>
 @endsection
 
 @section("content")
     <div class="card">
         <div class="card-body">
-            <x-backend.section-header>
+            <x-cube::backend-section-header>
                 <i class="{{ $module_icon }}"></i>
                 {{ __($module_title) }}
                 <small class="text-muted">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
-                    <x-backend.buttons.return-back :small="true" />
-                    <x-buttons.show
+                    <x-cube::backend-button-return-back :small="true" />
+                    <x-backend-button-show
                         class="ms-1"
                         title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'
                         :small="true"
                     />
                 </x-slot>
-            </x-backend.section-header>
+            </x-cube::backend-section-header>
 
             <div class="row">
                 <div class="col">
@@ -46,16 +46,16 @@
                         ?>
 
                         <div class="col-12 col-sm-2">
-                            <div class="form-group">
-                                {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                                {!! field_required($required) !!}
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-10">
-                            <div class="form-group">
-                                {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
-                            </div>
-                        </div>
+    <div class="form-group">
+        {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
+        {!! field_required($required) !!}
+    </div>
+</div>
+<div class="col-12 col-sm-10">
+    <div class="form-group">
+        {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+    </div>
+</div>
                     </div>
 
                     <div class="row mb-3">
@@ -79,9 +79,9 @@
                                 @if ($permissions->count())
                                     @foreach ($permissions as $permission)
                                         <div class="form-check">
-                                            {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("form-check-label") }}
-                                            {{ html()->checkbox("permissions[]", in_array($permission->name, $$module_name_singular->permissions->pluck("name")->all()), $permission->name)->id("permission-" . $permission->id)->class("form-check-input") }}
-                                        </div>
+    {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("form-check-label") }}
+    {{ html()->checkbox("permissions[]", in_array($permission->name, $$module_name_singular->permissions->pluck("name")->all()), $permission->name)->id("permission-" . $permission->id)->class("form-check-input")->attributes(["aria-label" => $permission->name]) }}
+</div>
                                     @endforeach
                                 @endif
                             </div>
@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <x-backend.buttons.save />
+                                <x-cube::backend-button-save />
                             </div>
                         </div>
                         
@@ -118,7 +118,7 @@
                     <div class="row">
                         <div class="col-12 mt-3">
                             <div class="float-end">
-                                <x-backend.buttons.return-back>Cancel</x-backend.buttons.return-back>
+                                <x-cube::backend-button-return-back>Cancel</x-cube::backend-button-return-back>
                             </div>
                         </div>
                     </div>

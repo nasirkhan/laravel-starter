@@ -64,6 +64,10 @@ class DatabaseSeeder extends Seeder
     {
         $essentialModules = ['Menu'];
 
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Seeding essential modules (Menu)...');
+        }
+
         foreach ($essentialModules as $moduleName) {
             $this->callModuleSeeder($moduleName);
         }
@@ -74,7 +78,12 @@ class DatabaseSeeder extends Seeder
      */
     protected function callDummyDataSeeders(): void
     {
-        $dummyDataModules = ['Post', 'Category', 'Tag'];
+        // Order matters: Category and Tag must be seeded before Post (due to foreign keys)
+        $dummyDataModules = ['Category', 'Tag', 'Post'];
+
+        if (! app()->runningUnitTests()) {
+            $this->command->info('Seeding dummy data modules (Category, Tag, Post)...');
+        }
 
         foreach ($dummyDataModules as $moduleName) {
             $this->callModuleSeeder($moduleName);
@@ -107,7 +116,7 @@ class DatabaseSeeder extends Seeder
 
         if (app()->bound($seederBinding)) {
             try {
-                $seederClass = app()->make($seederBinding);
+                $seederClass = app($seederBinding);
                 $this->call($seederClass);
             } catch (\Exception $e) {
                 $this->command->warn("Failed to seed module '{$moduleName}': ".$e->getMessage());
