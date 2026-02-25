@@ -14,7 +14,7 @@
     "license": "GPL-3.0-or-later",
     "type": "project",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "intervention/image-laravel": "^1.5",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^12.0",
