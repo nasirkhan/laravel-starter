@@ -13,16 +13,6 @@
     ],
     "license": "GPL-3.0-or-later",
     "type": "project",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../laravel-starter-packages/module-manager"
-        },
-        {
-            "type": "path",
-            "url": "../laravel-starter-packages/laravel-cube"
-        }
-    ],
     "require": {
         "php": "^8.2",
         "intervention/image-laravel": "^1.5",
