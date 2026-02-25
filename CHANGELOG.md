@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Streamlined head section in main layout
 
 ### Removed
-- Outdated documentation files (`PROJECT_IMPROVEMENT_SUGGESTIONS.md`, `SEEDER_CONFIGURATION.md`)
+- Outdated documentation files
 - Deprecated frontend components replaced by `cube` namespace equivalents
 
 ## [12.20.0] - 2026-02-10
