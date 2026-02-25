@@ -7,8 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [13.0.0] - 2026-02-26
+
 ### Added
-- Placeholder for next version features
+- Health check command (`starter:health-check`) with feature tests
+- Update command (`starter:update`) with feature tests
+- `UsersIndex` Livewire component with live search and pagination reset
+- Resend email confirmation functionality
+- Unlink social provider functionality from user profile
+- User profile management with linked/unlinked provider display
+- `laravel-cube` package integration (`nasirkhan/laravel-cube`) for shared frontend components
+- Module testsuite registered in `phpunit.xml`
+- `user_providers` table indexes via new migration
+
+### Changed
+- Frontend components migrated to `cube` namespace (header, footer, nav-item, button, dynamic menu)
+- Settings functionality migrated to `module-manager` package
+- Refactored `getTableColumns` and `getStatusLabelAttribute` to use `match` expressions
+- Improved code readability and maintainability across multiple refactors
+- Removed deprecated standalone Blade component files superseded by cube package
+- Updated package versions in `composer.json`
+
+### Fixed
+- Accessibility: added `aria-labelledby` attributes to form elements and buttons in user/role management views
+- Removed deprecated error handling from messages layout
+- Streamlined head section in main layout
+
+### Removed
+- Outdated documentation files (`PROJECT_IMPROVEMENT_SUGGESTIONS.md`, `SEEDER_CONFIGURATION.md`)
+- Deprecated frontend components replaced by `cube` namespace equivalents
 
 ## [12.20.0] - 2026-02-10
 
@@ -91,5 +118,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Previous versions (before comprehensive changelog implementation)
 
-[Unreleased]: https://github.com/nasirkhan/laravel-starter/compare/v12.20.0...HEAD
+[Unreleased]: https://github.com/nasirkhan/laravel-starter/compare/v13.0.0...HEAD
+[13.0.0]: https://github.com/nasirkhan/laravel-starter/compare/v12.20.0...v13.0.0
 [12.20.0]: https://github.com/nasirkhan/laravel-starter/releases/tag/v12.20.0
