@@ -39,7 +39,7 @@ class UnlinkProvider extends Component
             abort(401);
         }
 
-        if (! $this->userProviderId > 0) {
+        if ($this->userProviderId <= 0) {
             flash('Invalid Request. Please try again.')->error();
 
             return;
