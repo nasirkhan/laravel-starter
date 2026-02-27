@@ -24,6 +24,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali+UI&display=swap" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
         <style>
             body {
                 font-family: Ubuntu, 'Noto Sans Bengali UI', Arial, Helvetica, sans-serif;
