@@ -86,7 +86,7 @@ class SeedEssentialData extends Command
 
         try {
             $this->call('db:seed', [
-                '--class' => 'Modules\\Menu\\database\\seeders\\MenuDatabaseSeeder',
+                '--class' => 'Nasirkhan\\ModuleManager\\Modules\\Menu\\database\\seeders\\MenuDatabaseSeeder',
                 '--force' => $this->option('force'),
             ]);
             $this->info('Menu module seeded successfully.');
