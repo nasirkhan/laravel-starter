@@ -16,6 +16,7 @@ class StarterInstallCommand extends Command
     protected $signature = 'starter:install
                             {--skip-db : Skip database setup}
                             {--skip-seed : Skip database seeding}
+                            {--skip-npm : Skip npm install and asset build}
                             {--demo : Install with demo data}';
 
     /**
@@ -49,6 +50,11 @@ class StarterInstallCommand extends Command
 
                     // Step 5: Final Steps
                     $this->finalizeInstallation();
+
+                    // Step 6: Install npm dependencies & build assets
+                    if (! $this->option('skip-npm')) {
+                        $this->installNpmDependencies();
+                    }
 
                     $this->displaySuccessMessage();
 
@@ -183,7 +189,7 @@ class StarterInstallCommand extends Command
             return false;
         }
 
-        return $this->components->task('Running migrations', function () {
+        return (bool) $this->components->task('Running migrations', function () {
             Artisan::call('migrate:fresh', ['--force' => true], $this->output);
 
             return true;
@@ -237,6 +243,36 @@ class StarterInstallCommand extends Command
     }
 
     /**
+     * Install npm dependencies and build frontend assets.
+     */
+    protected function installNpmDependencies(): void
+    {
+        $this->newLine();
+
+        if (! $this->confirm('Install npm dependencies and build frontend assets?', true)) {
+            $this->components->warn('Skipping npm. Run manually: npm install && npm run build');
+
+            return;
+        }
+
+        $this->components->task('Installing npm dependencies', function () {
+            $output = [];
+            $exitCode = 0;
+            exec('npm install --no-audit --no-fund 2>&1', $output, $exitCode);
+
+            return $exitCode === 0;
+        });
+
+        $this->components->task('Building frontend assets', function () {
+            $output = [];
+            $exitCode = 0;
+            exec('npm run build 2>&1', $output, $exitCode);
+
+            return $exitCode === 0;
+        });
+    }
+
+    /**
      * Display success message.
      */
     protected function displaySuccessMessage(): void
@@ -251,10 +287,17 @@ class StarterInstallCommand extends Command
         $this->newLine();
 
         $this->components->twoColumnDetail('<fg=bright-blue>Next Steps</>', '');
-        $this->line('  1. <fg=green>npm install && npm run dev</> - Build frontend assets');
-        $this->line('  2. <fg=green>php artisan serve</> - Start development server');
-        $this->line('  3. Visit <fg=cyan>http://localhost:8000</> in your browser');
-        $this->line('  4. Login with credentials above');
+
+        $step = 1;
+
+        if ($this->option('skip-npm')) {
+            $this->line("  {$step}. <fg=green>npm install && npm run build</> - Build frontend assets");
+            $step++;
+        }
+
+        $this->line("  {$step}. <fg=green>php artisan serve</> - Start development server (or visit your Herd/Valet URL)");
+        $step++;
+        $this->line("  {$step}. Login with the credentials above");
         $this->newLine();
 
         $this->components->twoColumnDetail('<fg=bright-blue>Useful Commands</>', '');
