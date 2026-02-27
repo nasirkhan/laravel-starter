@@ -47,7 +47,18 @@ class StarterInstallCommandTest extends TestCase
             '--skip-seed' => true,
             '--skip-npm' => true,
         ])
-            ->expectsConfirmation('Run database migrations?', 'no')
+            ->expectsChoice(
+                'How would you like to set up the database?',
+                'skip',
+                [
+                    'Fresh install — drop all tables and re-run all migrations (⚠️  destroys existing data)',
+                    'Run new migrations only — safe for existing data',
+                    'Skip migrations',
+                    'fresh',
+                    'migrate',
+                    'skip',
+                ]
+            )
             ->assertFailed();
 
         if ($createdBackup) {

@@ -17,6 +17,7 @@ class StarterInstallCommand extends Command
                             {--skip-db : Skip database setup}
                             {--skip-seed : Skip database seeding}
                             {--skip-npm : Skip npm install and asset build}
+                            {--fresh : Reset the database (migrate:fresh) before seeding}
                             {--demo : Install with demo data}';
 
     /**
@@ -178,18 +179,62 @@ class StarterInstallCommand extends Command
 
     /**
      * Run database migrations.
+     *
+     * Returns false only when the user explicitly skips migrations.
      */
     protected function runMigrations(): bool
     {
         $this->newLine();
 
-        if (! $this->confirm('Run database migrations?', true)) {
+        // --fresh flag skips the interactive prompt
+        if ($this->option('fresh')) {
+            return $this->runFreshMigrations();
+        }
+
+        $choice = $this->choice(
+            'How would you like to set up the database?',
+            [
+                'fresh' => 'Fresh install — drop all tables and re-run all migrations (⚠️  destroys existing data)',
+                'migrate' => 'Run new migrations only — safe for existing data',
+                'skip' => 'Skip migrations',
+            ],
+            'fresh'
+        );
+
+        if ($choice === 'skip') {
             $this->components->warn('Skipping migrations. Run manually: php artisan migrate');
 
             return false;
         }
 
+        if ($choice === 'fresh') {
+            return $this->runFreshMigrations();
+        }
+
+        // migrate only
         return (bool) $this->components->task('Running migrations', function () {
+            Artisan::call('migrate', ['--force' => true], $this->output);
+
+            return true;
+        });
+    }
+
+    /**
+     * Drop all tables and re-run every migration.
+     */
+    protected function runFreshMigrations(): bool
+    {
+        $this->newLine();
+        $this->components->warn('⚠️  This will drop ALL tables and delete ALL existing data.');
+
+        // Skip confirmation if the user explicitly passed --fresh
+        if (! $this->option('fresh') && ! $this->confirm('Are you sure you want to reset the database?', false)) {
+            $this->components->info('Database reset cancelled.');
+
+            return false;
+        }
+
+        return (bool) $this->components->task('Resetting database (migrate:fresh)', function () {
             Artisan::call('migrate:fresh', ['--force' => true], $this->output);
 
             return true;
@@ -198,21 +243,30 @@ class StarterInstallCommand extends Command
 
     /**
      * Seed database.
+     *
+     * Always seeds essential data (users, roles, permissions, menus).
+     * Optionally seeds demo data (posts, categories, tags) on top.
      */
     protected function seedDatabase(): void
     {
         $this->newLine();
 
-        $seedDemo = $this->option('demo') || $this->confirm('Seed database with demo data?', true);
+        // Seed essential data via db:seed-essential
+        $this->components->task('Seeding essential data (users, roles, permissions, menus)', function () {
+            Artisan::call('db:seed-essential', ['--force' => true], $this->output);
+
+            return true;
+        });
+
+        // Optionally seed demo data on top
+        $seedDemo = $this->option('demo') || $this->confirm('Also seed demo data (posts, categories, tags)?', false);
 
         if ($seedDemo) {
-            $this->components->task('Seeding database', function () {
+            $this->components->task('Seeding demo data', function () {
                 Artisan::call('db:seed', ['--force' => true], $this->output);
 
                 return true;
             });
-        } else {
-            $this->components->warn('Skipping seeding. Run manually: php artisan db:seed');
         }
     }
 
