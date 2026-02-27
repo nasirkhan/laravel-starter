@@ -337,9 +337,9 @@
 
             <button
                 class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-hidden md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                data-collapse-toggle="navbar-language"
+                data-collapse-toggle="top-navbar"
                 type="button"
-                aria-controls="navbar-language"
+                aria-controls="top-navbar"
                 aria-expanded="false"
                 aria-label="Toggle navigation menu"
             >
@@ -362,7 +362,7 @@
             </button>
         </div>
 
-        <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-language">
+        <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="top-navbar">
             <x-menu-dynamic-menu location="frontend-header" />
         </div>
     </div>

@@ -32,6 +32,26 @@ Pass: secret
 
 We have created a number of custom commands for the project. The commands are listed below with a brief about their use of it.
 
+## Install / Setup
+
+Run the interactive setup wizard for a fresh project. It copies `.env`, generates an app key, configures the database, runs migrations, seeds data, creates the storage link, and builds frontend assets.
+
+```bash
+php artisan starter:install
+```
+
+Use `--skip-npm` to skip the frontend build, `--demo` to seed demo data without prompting, or `--skip-db` if the database is already set up.
+
+## Update
+
+After pulling changes from the repository, run:
+
+```bash
+php artisan starter:update
+```
+
+This runs `composer update`, checks for new module migrations, runs outstanding migrations, and clears all caches.
+
 ## Create New module
 
 To create a project use the following command, you have to replace the MODULE_NAME with the name of the module.
@@ -140,18 +160,61 @@ It is a modular application, and some modules are installed by default. It will 
 
 Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
-1. Open the terminal and run the following command, this will download and install the `Laravel Starter` and run the post-installation commands. 
+### From GitHub Template (recommended)
+
+If you created a new repository from this GitHub template, or cloned it directly:
+
+```bash
+# 1. Install PHP dependencies
+composer install
+
+# 2. Run the interactive setup wizard — handles .env, database, migrations, seeding, and npm assets
+php artisan starter:install
+```
+
+Or as a single shortcut after `composer install`:
+
+```bash
+composer setup
+```
+
+For a true one-liner from a fresh clone, convenience scripts are included:
+
+```bash
+# Linux / macOS
+bash setup.sh
+
+# Windows (PowerShell)
+.\setup.ps1
+```
+
+Both scripts run `composer install` and then launch `php artisan starter:install`.
+Pass any `starter:install` flags through, e.g. `bash setup.sh --demo`.
+
+The setup wizard will guide you through environment configuration, database selection, migrations, seeding, and building frontend assets. When finished it prints the app URL and default login credentials.
+
+**Available options:**
+
+| Option | Description |
+|---|---|
+| `--skip-db` | Skip database setup |
+| `--skip-seed` | Skip database seeding |
+| `--skip-npm` | Skip `npm install` and asset build |
+| `--demo` | Seed with demo data (no prompt) |
+
+### Via Composer create-project
+
 ```bash
 composer create-project nasirkhan/laravel-starter
 ```
-2. The default database is `sqlite`, if you want to change please update the database settings at `.env` file
-3. To create a link from the storage directory, run the following command from the project root:
-```php
-php artisan storage:link
-```
-4. If you run the `create-project` command from `Laravel Hard` then the site will be available at [http://laravel-starter.test](http://laravel-starter.test). You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
 
-*After creating the new permissions use the following commands to update cashed permissions.*
+This runs migrations automatically. Afterwards run the setup wizard to seed and build assets:
+
+```bash
+php artisan starter:install --skip-db
+```
+
+*After creating the new permissions use the following commands to update cached permissions.*
 
 `php artisan cache:forget spatie.permission.cache`
 

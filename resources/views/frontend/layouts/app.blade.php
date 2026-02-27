@@ -16,7 +16,6 @@
         @include("frontend.includes.footer")
 
         <!-- Scripts -->
-        @livewireScripts
         @stack("after-scripts")
     </body>
 </html>
