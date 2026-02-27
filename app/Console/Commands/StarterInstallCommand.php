@@ -42,8 +42,8 @@ class StarterInstallCommand extends Command
         if ($this->setupEnvironment()) {
             // Step 2: Database Setup
             if ($this->option('skip-db') || $this->setupDatabase()) {
-                // Step 3: Run Migrations
-                if ($this->runMigrations()) {
+                // Step 3: Run Migrations (skip entirely when --skip-db is passed)
+                if ($this->option('skip-db') || $this->runMigrations()) {
                     // Step 4: Seed Database
                     if (! $this->option('skip-seed')) {
                         $this->seedDatabase();

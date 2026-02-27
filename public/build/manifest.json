@@ -1,26 +1,26 @@
 {
-  "_popper-BDxvxioy.js": {
-    "file": "assets/popper-BDxvxioy.js",
+  "_popper-CA4i1o-O.js": {
+    "file": "assets/popper-CA4i1o-O.js",
     "name": "popper"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
+    "file": "assets/fa-brands-400-BP5tdqmh.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400-BVHPE7da.woff2",
+    "file": "assets/fa-regular-400-nyy7hhHF.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900-8GirhLYJ.woff2",
+    "file": "assets/fa-solid-900-DRAAbZTg.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
-    "file": "assets/fa-v4compatibility-DnhYSyY-.woff2",
+    "file": "assets/fa-v4compatibility-DD84SGiu.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-CUnJ57mD.css",
+    "file": "assets/app-frontend-fq3J46hJ.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true,
     "name": "app-frontend",
@@ -29,25 +29,25 @@
     ]
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-ChALy0bL.js",
+    "file": "assets/app-backend-Bh8lCtKX.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,
     "imports": [
-      "_popper-BDxvxioy.js"
+      "_popper-CA4i1o-O.js"
     ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-DmhiuY0N.js",
+    "file": "assets/app-frontend-DM2Z4uga.js",
     "name": "app-frontend",
     "src": "resources/js/app-frontend.js",
     "isEntry": true,
     "imports": [
-      "_popper-BDxvxioy.js"
+      "_popper-CA4i1o-O.js"
     ]
   },
   "resources/sass/app-backend.scss": {
-    "file": "assets/app-backend-3jjirE3K.css",
+    "file": "assets/app-backend-BIvlzDSr.css",
     "src": "resources/sass/app-backend.scss",
     "isEntry": true,
     "name": "app-backend",

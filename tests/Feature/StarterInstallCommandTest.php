@@ -32,7 +32,7 @@ class StarterInstallCommandTest extends TestCase
             ->assertSuccessful();
     }
 
-    public function test_command_skip_db_seed_and_npm_flags_bypass_those_steps(): void
+    public function test_skip_db_seed_npm_flags_bypass_all_those_steps(): void
     {
         // Ensure .env.backup exists so the existing-env confirmation is skipped
         $createdBackup = false;
@@ -42,24 +42,48 @@ class StarterInstallCommandTest extends TestCase
             $createdBackup = true;
         }
 
+        // --skip-db bypasses both DB type selection AND migrations,
+        // so no database choice prompt should appear.
         $this->artisan('starter:install', [
             '--skip-db' => true,
             '--skip-seed' => true,
             '--skip-npm' => true,
         ])
+            ->assertSuccessful();
+
+        if ($createdBackup) {
+            File::delete(base_path('.env.backup'));
+        }
+    }
+
+    public function test_migration_choice_prompts_with_correct_options(): void
+    {
+        $createdBackup = false;
+
+        if (! File::exists(base_path('.env.backup'))) {
+            File::copy(base_path('.env'), base_path('.env.backup'));
+            $createdBackup = true;
+        }
+
+        $this->artisan('starter:install', [
+            '--skip-seed' => true,
+            '--skip-npm' => true,
+        ])
+            ->expectsChoice(
+                'Select database type',
+                'SQLite',
+                ['SQLite', 'MySQL', 'PostgreSQL']
+            )
             ->expectsChoice(
                 'How would you like to set up the database?',
                 'skip',
                 [
-                    'Fresh install — drop all tables and re-run all migrations (⚠️  destroys existing data)',
-                    'Run new migrations only — safe for existing data',
-                    'Skip migrations',
-                    'fresh',
-                    'migrate',
-                    'skip',
+                    'fresh' => 'Fresh install — drop all tables and re-run all migrations (⚠️  destroys existing data)',
+                    'migrate' => 'Run new migrations only — safe for existing data',
+                    'skip' => 'Skip migrations',
                 ]
             )
-            ->assertFailed();
+            ->assertFailed(); // skipping migrations means the inner block is not entered
 
         if ($createdBackup) {
             File::delete(base_path('.env.backup'));
