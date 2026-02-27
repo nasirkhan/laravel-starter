@@ -2924,7 +2924,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "a019a15b445d364195d32e08512dbbb23a4a31f3"
+                "reference": "aa9a554767898444a22665c38764a4ad6f73a0ab"
             },
             "require": {
                 "laravel/framework": "^v12.0",
