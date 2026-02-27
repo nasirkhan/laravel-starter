@@ -168,8 +168,12 @@ class StarterInstallCommand extends Command
                 File::put($dbPath, '');
             }
 
+            // Use forward slashes — dotenv treats backslashes as escape characters
+            // and spaces in the path cause parse errors unless the path is normalised.
+            $dotenvSafePath = str_replace('\\', '/', $dbPath);
+
             $this->updateEnvFile('DB_CONNECTION', 'sqlite');
-            $this->updateEnvFile('DB_DATABASE', $dbPath);
+            $this->updateEnvFile('DB_DATABASE', $dotenvSafePath);
 
             return true;
         });
@@ -378,6 +382,11 @@ class StarterInstallCommand extends Command
         // Escape special regex characters in value
         $escapedValue = str_replace(['\\', '$'], ['\\\\', '\\$'], $value);
         $replacement = "{$key}={$escapedValue}";
+
+        // Quote values that contain spaces so dotenv can parse them
+        if (str_contains($value, ' ')) {
+            $replacement = "{$key}=\"{$escapedValue}\"";
+        }
 
         if (preg_match($pattern, $content)) {
             $content = preg_replace($pattern, $replacement, $content);
