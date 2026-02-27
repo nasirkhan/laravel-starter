@@ -30,7 +30,9 @@ jobs:
         run: cp .env.example .env
 
       - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: |
+          composer update --no-interaction nasirkhan/laravel-cube nasirkhan/module-manager
+          composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Generate application key
         run: php artisan key:generate
@@ -64,7 +66,9 @@ jobs:
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: |
+          composer update --no-interaction nasirkhan/laravel-cube nasirkhan/module-manager
+          composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run Laravel Pint
         run: ./vendor/bin/pint --test
