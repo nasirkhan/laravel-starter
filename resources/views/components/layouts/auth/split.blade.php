@@ -8,7 +8,7 @@
             <div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r dark:border-neutral-800">
                 <div class="absolute inset-0 bg-neutral-900"></div>
                 <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
-                    <span class="flex h-10 w-10 items-center justify-center rounded-md">
+                    <span class="flex h-10 items-center justify-center rounded-md">
                         <x-cube::application-logo class="mr-2 h-7 fill-current text-white" />
                     </span>
                     {{ config('app.name', 'Laravel') }}
