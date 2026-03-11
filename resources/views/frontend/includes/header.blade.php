@@ -13,7 +13,7 @@
 
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between p-4">
         <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/" wire:navigate aria-label="Go to homepage">
-            <img class="h-9" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
+            <img class="h-9 rounded" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
         <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
             @if (setting("show_theme_dropdown"))
