@@ -7,6 +7,87 @@
     "content-hash": "9fdb3f3a1a39b7ec3da123635b796921",
     "packages": [
         {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driesvints/blade-icons.git",
+                "reference": "caa92fde675d7a651c38bf73ca582ddada56f318"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driesvints/blade-icons/zipball/caa92fde675d7a651c38bf73ca582ddada56f318",
+                "reference": "caa92fde675d7a651c38bf73ca582ddada56f318",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "illuminate/view": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "php": "^7.4|^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0|^8.0",
+                "symfony/finder": "^5.3|^6.0|^7.0|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5.1",
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "bin": [
+                "bin/blade-icons-generate"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/driesvints/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/driesvints/blade-icons/issues",
+                "source": "https://github.com/driesvints/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/driesvints",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.paypal.com/paypalme/driesvints",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2026-02-23T10:42:23+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.14.8",
             "source": {
@@ -1338,28 +1419,28 @@
         },
         {
             "name": "intervention/image-laravel",
-            "version": "1.5.6",
+            "version": "1.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image-laravel.git",
-                "reference": "056029431400a5cc56036172787a578f334683c4"
+                "reference": "86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/056029431400a5cc56036172787a578f334683c4",
-                "reference": "056029431400a5cc56036172787a578f334683c4",
+                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa",
+                "reference": "86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa",
                 "shasum": ""
             },
             "require": {
-                "illuminate/http": "^8|^9|^10|^11|^12",
-                "illuminate/routing": "^8|^9|^10|^11|^12",
-                "illuminate/support": "^8|^9|^10|^11|^12",
+                "illuminate/http": "^8|^9|^10|^11|^12|^13",
+                "illuminate/routing": "^8|^9|^10|^11|^12|^13",
+                "illuminate/support": "^8|^9|^10|^11|^12|^13",
                 "intervention/image": "^3.11",
                 "php": "^8.1"
             },
             "require-dev": {
                 "ext-fileinfo": "*",
-                "orchestra/testbench": "^8.18 || ^9.9",
+                "orchestra/testbench": "^8.18 || ^9.9 || ^10.6",
                 "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
             },
             "type": "library",
@@ -1402,7 +1483,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image-laravel/issues",
-                "source": "https://github.com/Intervention/image-laravel/tree/1.5.6"
+                "source": "https://github.com/Intervention/image-laravel/tree/1.5.7"
             },
             "funding": [
                 {
@@ -1418,7 +1499,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2025-04-04T15:09:55+00:00"
+            "time": "2026-02-28T06:49:50+00:00"
         },
         {
             "name": "laracasts/flash",
@@ -2594,16 +2675,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "b2faf1b5805d469d5e22b35b0e5ffe3cbc466d39"
+                "reference": "93e972fa42c1b34fff1550093ab94f778d81ea5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/b2faf1b5805d469d5e22b35b0e5ffe3cbc466d39",
-                "reference": "b2faf1b5805d469d5e22b35b0e5ffe3cbc466d39",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/93e972fa42c1b34fff1550093ab94f778d81ea5a",
+                "reference": "93e972fa42c1b34fff1550093ab94f778d81ea5a",
                 "shasum": ""
             },
             "require": {
@@ -2658,7 +2739,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v4.2.0"
+                "source": "https://github.com/livewire/livewire/tree/v4.2.1"
             },
             "funding": [
                 {
@@ -2666,7 +2747,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-26T04:18:25+00:00"
+            "time": "2026-02-28T00:01:19+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -2866,7 +2947,8 @@
             "require": {
                 "illuminate/support": "^11.0|^12.0",
                 "illuminate/view": "^11.0|^12.0",
-                "php": "^8.2"
+                "php": "^8.2",
+                "themesberg/flowbite-blade-icons": "^1.3"
             },
             "require-dev": {
                 "orchestra/testbench": "^9.0",
@@ -3400,21 +3482,21 @@
         },
         {
             "name": "opcodesio/log-viewer",
-            "version": "v3.21.1",
+            "version": "v3.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opcodesio/log-viewer.git",
-                "reference": "6dfa99c3a8c5ae128c6b7f2f0a4f026af7ca055c"
+                "reference": "654a6ccd8d4b79268e5b2ea2f510b660b008973d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/6dfa99c3a8c5ae128c6b7f2f0a4f026af7ca055c",
-                "reference": "6dfa99c3a8c5ae128c6b7f2f0a4f026af7ca055c",
+                "url": "https://api.github.com/repos/opcodesio/log-viewer/zipball/654a6ccd8d4b79268e5b2ea2f510b660b008973d",
+                "reference": "654a6ccd8d4b79268e5b2ea2f510b660b008973d",
                 "shasum": ""
             },
             "require": {
                 "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0",
-                "opcodesio/mail-parser": "^0.1.6",
+                "opcodesio/mail-parser": "^0.2.3",
                 "php": "^8.0"
             },
             "conflict": {
@@ -3425,7 +3507,7 @@
                 "itsgoingd/clockwork": "^5.1",
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^7.0|^8.0",
-                "orchestra/testbench": "^7.6|^8.0|^9.0|^10.0",
+                "orchestra/testbench": "^7.6|^8.0|^9.5|^10.0",
                 "pestphp/pest": "^2.0|^3.7",
                 "pestphp/pest-plugin-laravel": "^2.0|^3.1",
                 "spatie/test-time": "^1.3"
@@ -3472,7 +3554,7 @@
             ],
             "support": {
                 "issues": "https://github.com/opcodesio/log-viewer/issues",
-                "source": "https://github.com/opcodesio/log-viewer/tree/v3.21.1"
+                "source": "https://github.com/opcodesio/log-viewer/tree/v3.23.0"
             },
             "funding": [
                 {
@@ -3484,20 +3566,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-23T05:12:09+00:00"
+            "time": "2026-02-28T09:52:35+00:00"
         },
         {
             "name": "opcodesio/mail-parser",
-            "version": "v0.1.6",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opcodesio/mail-parser.git",
-                "reference": "639ef31cbd146a63416283e75afce152e13233ea"
+                "reference": "6f9544a1e526d5849cf8d96600556b2951893aec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opcodesio/mail-parser/zipball/639ef31cbd146a63416283e75afce152e13233ea",
-                "reference": "639ef31cbd146a63416283e75afce152e13233ea",
+                "url": "https://api.github.com/repos/opcodesio/mail-parser/zipball/6f9544a1e526d5849cf8d96600556b2951893aec",
+                "reference": "6f9544a1e526d5849cf8d96600556b2951893aec",
                 "shasum": ""
             },
             "require": {
@@ -3535,9 +3617,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opcodesio/mail-parser/issues",
-                "source": "https://github.com/opcodesio/mail-parser/tree/v0.1.6"
+                "source": "https://github.com/opcodesio/mail-parser/tree/v0.2.3"
             },
-            "time": "2023-11-19T08:47:43+00:00"
+            "time": "2026-02-28T09:04:57+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -4257,16 +4339,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.20",
+            "version": "v0.12.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373"
+                "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/19678eb6b952a03b8a1d96ecee9edba518bb0373",
-                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
+                "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
                 "shasum": ""
             },
             "require": {
@@ -4330,9 +4412,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.20"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.21"
             },
-            "time": "2026-02-11T15:05:28+00:00"
+            "time": "2026-03-06T21:21:28+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -4597,16 +4679,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "3.9.1",
+            "version": "3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "9a8e02839897b236f37708d24bcb12381ba050ff"
+                "reference": "1ea40e429587df64b34139e6b18af34cb20ae5b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/9a8e02839897b236f37708d24bcb12381ba050ff",
-                "reference": "9a8e02839897b236f37708d24bcb12381ba050ff",
+                "url": "https://api.github.com/repos/spatie/image/zipball/1ea40e429587df64b34139e6b18af34cb20ae5b9",
+                "reference": "1ea40e429587df64b34139e6b18af34cb20ae5b9",
                 "shasum": ""
             },
             "require": {
@@ -4654,7 +4736,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/image/tree/3.9.1"
+                "source": "https://github.com/spatie/image/tree/3.9.3"
             },
             "funding": [
                 {
@@ -4666,7 +4748,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-12T07:34:13+00:00"
+            "time": "2026-03-01T20:58:11+00:00"
         },
         {
             "name": "spatie/image-optimizer",
@@ -5516,16 +5598,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.4.6",
+            "version": "v7.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "6d643a93b47398599124022eb24d97c153c12f27"
+                "reference": "e1e6770440fb9c9b0cf725f81d1361ad1835329d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6d643a93b47398599124022eb24d97c153c12f27",
-                "reference": "6d643a93b47398599124022eb24d97c153c12f27",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e1e6770440fb9c9b0cf725f81d1361ad1835329d",
+                "reference": "e1e6770440fb9c9b0cf725f81d1361ad1835329d",
                 "shasum": ""
             },
             "require": {
@@ -5590,7 +5672,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.4.6"
+                "source": "https://github.com/symfony/console/tree/v7.4.7"
             },
             "funding": [
                 {
@@ -5610,7 +5692,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-25T17:02:47+00:00"
+            "time": "2026-03-06T14:06:20+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -6061,16 +6143,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v7.4.6",
+            "version": "v7.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "fd97d5e926e988a363cef56fbbf88c5c528e9065"
+                "reference": "f94b3e7b7dafd40e666f0c9ff2084133bae41e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/fd97d5e926e988a363cef56fbbf88c5c528e9065",
-                "reference": "fd97d5e926e988a363cef56fbbf88c5c528e9065",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/f94b3e7b7dafd40e666f0c9ff2084133bae41e81",
+                "reference": "f94b3e7b7dafd40e666f0c9ff2084133bae41e81",
                 "shasum": ""
             },
             "require": {
@@ -6119,7 +6201,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v7.4.6"
+                "source": "https://github.com/symfony/http-foundation/tree/v7.4.7"
             },
             "funding": [
                 {
@@ -6139,20 +6221,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-21T16:25:55+00:00"
+            "time": "2026-03-06T13:15:18+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v7.4.6",
+            "version": "v7.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "002ac0cf4cd972a7fd0912dcd513a95e8a81ce83"
+                "reference": "3b3fcf386c809be990c922e10e4c620d6367cab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/002ac0cf4cd972a7fd0912dcd513a95e8a81ce83",
-                "reference": "002ac0cf4cd972a7fd0912dcd513a95e8a81ce83",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3b3fcf386c809be990c922e10e4c620d6367cab1",
+                "reference": "3b3fcf386c809be990c922e10e4c620d6367cab1",
                 "shasum": ""
             },
             "require": {
@@ -6238,7 +6320,7 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-kernel/tree/v7.4.6"
+                "source": "https://github.com/symfony/http-kernel/tree/v7.4.7"
             },
             "funding": [
                 {
@@ -6258,7 +6340,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-26T08:30:57+00:00"
+            "time": "2026-03-06T16:33:18+00:00"
         },
         {
             "name": "symfony/mailer",
@@ -6346,16 +6428,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v7.4.6",
+            "version": "v7.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "9fc881d95feae4c6c48678cb6372bd8a7ba04f5f"
+                "reference": "da5ab4fde3f6c88ab06e96185b9922f48b677cd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/9fc881d95feae4c6c48678cb6372bd8a7ba04f5f",
-                "reference": "9fc881d95feae4c6c48678cb6372bd8a7ba04f5f",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/da5ab4fde3f6c88ab06e96185b9922f48b677cd1",
+                "reference": "da5ab4fde3f6c88ab06e96185b9922f48b677cd1",
                 "shasum": ""
             },
             "require": {
@@ -6411,7 +6493,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v7.4.6"
+                "source": "https://github.com/symfony/mime/tree/v7.4.7"
             },
             "funding": [
                 {
@@ -6431,7 +6513,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-05T15:57:06+00:00"
+            "time": "2026-03-05T15:24:09+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -7930,6 +8012,67 @@
             "time": "2026-02-15T10:53:20+00:00"
         },
         {
+            "name": "themesberg/flowbite-blade-icons",
+            "version": "V1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/themesberg/flowbite-blade-icons.git",
+                "reference": "568d5f817ba4a2d263b948d07d0067cec6ce1c68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/themesberg/flowbite-blade-icons/zipball/568d5f817ba4a2d263b948d07d0067cec6ce1c68",
+                "reference": "568d5f817ba4a2d263b948d07d0067cec6ce1c68",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.6",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.23|^2.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Themesberg\\FlowbiteBladeIcons\\FlowbiteBladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Themesberg\\FlowbiteBladeIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dominique Thomas",
+                    "email": "domthomas@ncoo-dev.com"
+                }
+            ],
+            "description": "A package to easily make use of Flowbite Icons in your Laravel Blade views.",
+            "homepage": "https://github.com/themesberg/flowbite-blade-icons",
+            "keywords": [
+                "blade",
+                "flowbite",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/themesberg/flowbite-blade-icons/issues",
+                "source": "https://github.com/themesberg/flowbite-blade-icons/tree/V1.3.0"
+            },
+            "time": "2026-01-05T13:44:53+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.4.0",
             "source": {
@@ -8585,25 +8728,25 @@
         },
         {
             "name": "laravel/boost",
-            "version": "v2.2.1",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/boost.git",
-                "reference": "e27f1616177377fef95296620530c44a7dda4df9"
+                "reference": "44ab65a5455c2d6fceb71d6145f8d5d89c02d889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/boost/zipball/e27f1616177377fef95296620530c44a7dda4df9",
-                "reference": "e27f1616177377fef95296620530c44a7dda4df9",
+                "url": "https://api.github.com/repos/laravel/boost/zipball/44ab65a5455c2d6fceb71d6145f8d5d89c02d889",
+                "reference": "44ab65a5455c2d6fceb71d6145f8d5d89c02d889",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.9",
-                "illuminate/console": "^11.45.3|^12.41.1",
-                "illuminate/contracts": "^11.45.3|^12.41.1",
-                "illuminate/routing": "^11.45.3|^12.41.1",
-                "illuminate/support": "^11.45.3|^12.41.1",
-                "laravel/mcp": "^0.5.1",
+                "illuminate/console": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/contracts": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/routing": "^11.45.3|^12.41.1|^13.0",
+                "illuminate/support": "^11.45.3|^12.41.1|^13.0",
+                "laravel/mcp": "^0.5.1|^0.6.0",
                 "laravel/prompts": "^0.3.10",
                 "laravel/roster": "^0.5.0",
                 "php": "^8.2"
@@ -8611,7 +8754,7 @@
             "require-dev": {
                 "laravel/pint": "^1.27.0",
                 "mockery/mockery": "^1.6.12",
-                "orchestra/testbench": "^9.15.0|^10.6",
+                "orchestra/testbench": "^9.15.0|^10.6|^11.0",
                 "pestphp/pest": "^2.36.0|^3.8.4|^4.1.5",
                 "phpstan/phpstan": "^2.1.27",
                 "rector/rector": "^2.1"
@@ -8647,7 +8790,7 @@
                 "issues": "https://github.com/laravel/boost/issues",
                 "source": "https://github.com/laravel/boost"
             },
-            "time": "2026-02-25T16:07:36+00:00"
+            "time": "2026-03-06T20:20:28+00:00"
         },
         {
             "name": "laravel/breeze",
@@ -8712,16 +8855,16 @@
         },
         {
             "name": "laravel/mcp",
-            "version": "v0.5.9",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/mcp.git",
-                "reference": "39e8da60eb7bce4737c5d868d35a3fe78938c129"
+                "reference": "28860a10ca0cc5433e25d897ba7af844e6c7b6a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/mcp/zipball/39e8da60eb7bce4737c5d868d35a3fe78938c129",
-                "reference": "39e8da60eb7bce4737c5d868d35a3fe78938c129",
+                "url": "https://api.github.com/repos/laravel/mcp/zipball/28860a10ca0cc5433e25d897ba7af844e6c7b6a2",
+                "reference": "28860a10ca0cc5433e25d897ba7af844e6c7b6a2",
                 "shasum": ""
             },
             "require": {
@@ -8781,7 +8924,7 @@
                 "issues": "https://github.com/laravel/mcp/issues",
                 "source": "https://github.com/laravel/mcp"
             },
-            "time": "2026-02-17T19:05:53+00:00"
+            "time": "2026-02-24T08:43:06+00:00"
         },
         {
             "name": "laravel/pail",
@@ -8932,16 +9075,16 @@
         },
         {
             "name": "laravel/roster",
-            "version": "v0.5.0",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/roster.git",
-                "reference": "56904a78f4d7360c1c490ced7deeebf9aecb8c0e"
+                "reference": "5089de7615f72f78e831590ff9d0435fed0102bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/roster/zipball/56904a78f4d7360c1c490ced7deeebf9aecb8c0e",
-                "reference": "56904a78f4d7360c1c490ced7deeebf9aecb8c0e",
+                "url": "https://api.github.com/repos/laravel/roster/zipball/5089de7615f72f78e831590ff9d0435fed0102bb",
+                "reference": "5089de7615f72f78e831590ff9d0435fed0102bb",
                 "shasum": ""
             },
             "require": {
@@ -8989,7 +9132,7 @@
                 "issues": "https://github.com/laravel/roster/issues",
                 "source": "https://github.com/laravel/roster"
             },
-            "time": "2026-02-17T17:33:35+00:00"
+            "time": "2026-03-05T07:58:43+00:00"
         },
         {
             "name": "laravel/sail",
