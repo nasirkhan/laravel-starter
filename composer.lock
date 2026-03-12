@@ -2932,11 +2932,17 @@
         },
         {
             "name": "nasirkhan/laravel-cube",
-            "version": "1.2.0",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/laravel-cube.git",
+                "reference": "b403fde810ab57987813a1b7e64e31cb3bbccc14"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "8be8140fc2e7b4ac249d066d4568edafa7363246"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/laravel-cube/zipball/b403fde810ab57987813a1b7e64e31cb3bbccc14",
+                "reference": "b403fde810ab57987813a1b7e64e31cb3bbccc14",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0",
@@ -2964,11 +2970,7 @@
                     "Nasirkhan\\LaravelCube\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\LaravelCube\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -2983,30 +2985,37 @@
             "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
             "homepage": "https://github.com/nasirkhan/laravel-cube",
             "keywords": [
+                "Forms",
                 "alpine",
                 "blade-components",
                 "bootstrap",
                 "components",
                 "cube",
                 "flowbite",
-                "forms",
                 "laravel",
                 "navigation",
                 "tailwind",
                 "ui-components"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/laravel-cube/issues",
+                "source": "https://github.com/nasirkhan/laravel-cube/tree/v1.2.0"
+            },
+            "time": "2026-02-25T18:48:34+00:00"
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "5.1.0",
+            "version": "v5.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/module-manager.git",
+                "reference": "8fce245a4378c44f175287b4a4951f55e09b755e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/module-manager",
-                "reference": "33ba9b1b0bbd021f2db3dc7d28044e47210b24a4"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/8fce245a4378c44f175287b4a4951f55e09b755e",
+                "reference": "8fce245a4378c44f175287b4a4951f55e09b755e",
+                "shasum": ""
             },
             "require": {
                 "laravel/framework": "^v12.0",
@@ -3024,12 +3033,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider"
-                    ],
                     "aliases": {
                         "ModuleManager": "Nasirkhan\\ModuleManager\\ModuleManagerFacade"
-                    }
+                    },
+                    "providers": [
+                        "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3037,19 +3046,7 @@
                     "Nasirkhan\\ModuleManager\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\ModuleManager\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3063,16 +3060,17 @@
             "description": "Module Manager & Generator for Laravel Starter Kit (https://github.com/nasirkhan/laravel-starter)",
             "homepage": "https://github.com/nasirkhan/module-manager",
             "keywords": [
-                "laravel starter",
+                "Laravel Starter",
+                "Module Manager",
                 "module generator",
-                "module manager",
                 "nasirkhan",
                 "nasirkhansaikat"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/module-manager/issues",
+                "source": "https://github.com/nasirkhan/module-manager/tree/v5.5.0"
+            },
+            "time": "2026-02-27T20:51:08+00:00"
         },
         {
             "name": "nesbot/carbon",
