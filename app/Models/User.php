@@ -10,7 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
@@ -77,9 +81,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      */
     public function clearPermissionCache()
     {
-        $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
-        \Illuminate\Support\Facades\Cache::forget('roles_user_'.$this->id.'_'.$lastUpdated);
-        \Illuminate\Support\Facades\Cache::forget('permissions_user_'.$this->id.'_'.$lastUpdated);
+        $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
+        Cache::forget('roles_user_'.$this->id.'_'.$lastUpdated);
+        Cache::forget('permissions_user_'.$this->id.'_'.$lastUpdated);
     }
 
     /**
@@ -109,7 +113,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                 : $userRoles->contains('id', $roles);
         }
 
-        if ($roles instanceof \Spatie\Permission\Contracts\Role) {
+        if ($roles instanceof Role) {
             return $guard
                 ? $userRoles->where('guard_name', $guard)->contains('id', $roles->id)
                 : $userRoles->contains('id', $roles->id);
@@ -137,7 +141,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
             return $this->hasPermissionToOriginal($permission, $guardName);
         }
 
-        $permissionName = $permission instanceof \Spatie\Permission\Contracts\Permission
+        $permissionName = $permission instanceof Permission
             ? $permission->name
             : $permission;
 
@@ -157,7 +161,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
      */
     public function hasPermissionViaRole($permission, $guardName = null): bool
     {
-        $permissionName = $permission instanceof \Spatie\Permission\Contracts\Permission
+        $permissionName = $permission instanceof Permission
             ? $permission->name
             : $permission;
 
@@ -212,7 +216,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     /**
      * Override getRoleNames to use cached roles.
      */
-    public function getRoleNames(): \Illuminate\Support\Collection
+    public function getRoleNames(): Collection
     {
         if (! static::$useCachedPermissions) {
             return $this->roles()->pluck('name');
@@ -224,7 +228,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     /**
      * Override getAllPermissions to use cached data.
      */
-    public function getAllPermissions(): \Illuminate\Support\Collection
+    public function getAllPermissions(): Collection
     {
         if (! static::$useCachedPermissions) {
             return parent::getAllPermissions();
@@ -244,7 +248,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     /**
      * Override getDirectPermissions to use cached permissions.
      */
-    public function getDirectPermissions(): \Illuminate\Support\Collection
+    public function getDirectPermissions(): Collection
     {
         if (! static::$useCachedPermissions) {
             return $this->permissions()->get();

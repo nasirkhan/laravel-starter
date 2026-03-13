@@ -5,6 +5,7 @@ namespace Database\Seeders\Auth;
 use App\Events\Backend\UserCreated;
 use App\Models\User;
 use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 /**
@@ -19,7 +20,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
 
         $users = [
             [

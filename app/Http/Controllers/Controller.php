@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\HttpFoundation\Response;
+
 abstract class Controller
 {
     /**
@@ -9,7 +11,7 @@ abstract class Controller
      *
      * @param  string  $method
      * @param  array  $parameters
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function callAction($method, $parameters)
     {

@@ -3,6 +3,7 @@
 namespace App\Livewire\Frontend\Users;
 
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -34,7 +35,7 @@ class ResendEmailConfirmation extends Component
         flash('Email Sent! Please Check Your Inbox.')->success()->important();
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         return view('livewire.frontend.users.resend-email-confirmation');
     }

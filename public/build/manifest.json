@@ -20,7 +20,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-DtLhCZDE.css",
+    "file": "assets/app-frontend-A5Kj_xCy.css",
     "src": "resources/css/app-frontend.css",
     "isEntry": true,
     "name": "app-frontend",
@@ -29,7 +29,7 @@
     ]
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-C7HSAUGH.js",
+    "file": "assets/app-backend-BOPBty5Z.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,

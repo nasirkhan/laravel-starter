@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -45,7 +46,7 @@ class BackendBaseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -130,7 +131,7 @@ class BackendBaseController extends Controller
 
         $data = $$module_name;
 
-        return Datatables::of($$module_name)
+        return DataTables::of($$module_name)
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
 
@@ -156,7 +157,7 @@ class BackendBaseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function create()
     {
@@ -209,7 +210,7 @@ class BackendBaseController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function show($id)
     {
@@ -237,7 +238,7 @@ class BackendBaseController extends Controller
      *
      * @param  int  $id
      * @return Response
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function edit($id)
     {
@@ -329,7 +330,7 @@ class BackendBaseController extends Controller
      * List of trashed ertries
      * works if the softdelete is enabled.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function trashed()
     {

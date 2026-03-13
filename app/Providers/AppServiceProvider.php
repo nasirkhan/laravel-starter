@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Observers\UserObserver;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Prevent lazy loading, silently discarding attributes, and accessing missing attributes.
          */
-        \Illuminate\Database\Eloquent\Model::shouldBeStrict(! app()->isProduction());
+        Model::shouldBeStrict(! app()->isProduction());
 
         /**
          * Change default string length.

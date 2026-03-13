@@ -4,6 +4,7 @@ namespace App\Livewire\Frontend\Users;
 
 use App\Models\UserProvider;
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -60,7 +61,7 @@ class UnlinkProvider extends Component
         $this->dispatch('provider-unlinked');
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         return view('livewire.frontend.users.unlink-provider');
     }

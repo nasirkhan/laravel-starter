@@ -3,6 +3,7 @@
 namespace App\Models\Presenters;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -51,7 +52,7 @@ trait UserPresenter
      */
     public function getPermissionsAttribute()
     {
-        $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
+        $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
         $cacheKey = 'permissions_user_'.$this->id.'_'.$lastUpdated;
 
         // Check cache first
@@ -76,11 +77,11 @@ trait UserPresenter
     /**
      * Get the user's roles.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function getRolesAttribute()
     {
-        $lastUpdated = \Illuminate\Support\Facades\Cache::get('spatie_permissions_last_updated', 'never');
+        $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
         $cacheKey = 'roles_user_'.$this->id.'_'.$lastUpdated;
 
         // Check cache first

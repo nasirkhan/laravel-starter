@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -41,7 +42,7 @@ class NotificationsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -69,7 +70,7 @@ class NotificationsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function show($id)
     {
@@ -106,7 +107,7 @@ class NotificationsController extends Controller
      * Delete All the Notifications.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function deleteAll()
     {
