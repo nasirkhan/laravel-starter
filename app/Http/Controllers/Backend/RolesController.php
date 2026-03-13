@@ -8,10 +8,13 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Laracasts\Flash\Flash;
 
 class RolesController extends Controller
@@ -49,7 +52,7 @@ class RolesController extends Controller
     /**
      * Retrieves all the records from the database and displays them in a paginated list.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -75,7 +78,7 @@ class RolesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function create()
     {
@@ -99,7 +102,7 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
     public function store(Request $request)
     {
@@ -136,8 +139,8 @@ class RolesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\View\View
+     * @return Response
+     * @return View
      */
     public function show($id)
     {
@@ -166,8 +169,8 @@ class RolesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\View\View
+     * @return Response
+     * @return View
      */
     public function edit($id)
     {
@@ -193,8 +196,8 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\View\View
+     * @return Response
+     * @return View
      */
     public function update(Request $request, $id)
     {
@@ -227,7 +230,7 @@ class RolesController extends Controller
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
         // Update Global Cache Timestamp
-        \Illuminate\Support\Facades\Cache::put('spatie_permissions_last_updated', now()->timestamp);
+        Cache::put('spatie_permissions_last_updated', now()->timestamp);
 
         return redirect("admin/{$module_name}");
     }
@@ -236,8 +239,8 @@ class RolesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @return \Illuminate\View\View
+     * @return Response
+     * @return View
      */
     public function destroy($id)
     {
@@ -286,7 +289,7 @@ class RolesController extends Controller
                 logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
                 // Update Global Cache Timestamp
-                \Illuminate\Support\Facades\Cache::put('spatie_permissions_last_updated', now()->timestamp);
+                Cache::put('spatie_permissions_last_updated', now()->timestamp);
 
                 return redirect()->route("backend.{$module_name}.index");
             }

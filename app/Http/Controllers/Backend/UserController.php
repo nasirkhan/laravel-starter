@@ -13,12 +13,19 @@ use App\Models\UserProvider;
 use App\Notifications\UserAccountCreated;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -56,7 +63,7 @@ class UserController extends Controller
     /**
      * Retrieves the index page for the module.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -97,7 +104,7 @@ class UserController extends Controller
 
         $data = $$module_name;
 
-        return Datatables::of($$module_name)
+        return DataTables::of($$module_name)
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
 
@@ -191,10 +198,10 @@ class UserController extends Controller
 
         $module_action = 'Create';
 
-        $roles = \Illuminate\Support\Facades\Cache::rememberForever('roles_with_permissions', function () {
+        $roles = Cache::rememberForever('roles_with_permissions', function () {
             return Role::with('permissions')->get();
         });
-        $permissions = \Illuminate\Support\Facades\Cache::rememberForever('permissions_list', function () {
+        $permissions = Cache::rememberForever('permissions_list', function () {
             return Permission::select('name', 'id')->orderBy('id')->get();
         });
 
@@ -313,7 +320,7 @@ class UserController extends Controller
      * @param  int  $id  The ID of the user whose password will be changed.
      * @return \Illuminate\Contracts\View\View The view for the "Change Password" page.
      *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user cannot be found.
+     * @throws ModelNotFoundException If the user cannot be found.
      */
     public function changePassword($id)
     {
@@ -350,8 +357,8 @@ class UserController extends Controller
      * @param  int  $id  The ID of the user whose password is being updated.
      * @return \Illuminate\Http\RedirectResponse The response object redirecting to the admin module.
      *
-     * @throws \Illuminate\Validation\ValidationException If the validation fails.
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the user with the given ID is not found.
+     * @throws ValidationException If the validation fails.
+     * @throws ModelNotFoundException If the user with the given ID is not found.
      */
     public function changePasswordUpdate(Request $request, $id)
     {
@@ -390,9 +397,9 @@ class UserController extends Controller
      * Edit a record in the database.
      *
      * @param  int  $id  The ID of the record to be edited.
-     * @return \Illuminate\View\View The view for editing the record.
+     * @return View The view for editing the record.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException If the user does not have the permission to edit users.
+     * @throws AuthorizationException If the user does not have the permission to edit users.
      */
     public function edit($id)
     {
@@ -414,10 +421,10 @@ class UserController extends Controller
         $userRoles = $$module_name_singular->roles->pluck('name')->all();
         $userPermissions = $$module_name_singular->permissions->pluck('name')->all();
 
-        $roles = \Illuminate\Support\Facades\Cache::rememberForever('roles_with_permissions', function () {
+        $roles = Cache::rememberForever('roles_with_permissions', function () {
             return Role::with('permissions')->get();
         });
-        $permissions = \Illuminate\Support\Facades\Cache::rememberForever('permissions_list', function () {
+        $permissions = Cache::rememberForever('permissions_list', function () {
             return Permission::select('name', 'id')->orderBy('id')->get();
         });
 
@@ -549,7 +556,7 @@ class UserController extends Controller
     /**
      * Retrieves and displays a list of deleted records for the specified module.
      *
-     * @return \Illuminate\View\View the view for the list of deleted records
+     * @return View the view for the list of deleted records
      */
     public function trashed()
     {
@@ -745,7 +752,7 @@ class UserController extends Controller
      * @param  int  $id  The ID of the user.
      * @return \Illuminate\Http\RedirectResponse Returns a redirect response.
      *
-     * @throws \Illuminate\Http\Client\RequestException If the user is not authorized to resend the email confirmation.
+     * @throws RequestException If the user is not authorized to resend the email confirmation.
      */
     public function emailConfirmationResend($id)
     {

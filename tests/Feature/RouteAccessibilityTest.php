@@ -6,8 +6,11 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
 use Nasirkhan\ModuleManager\Modules\Category\Models\Category;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
 use Nasirkhan\ModuleManager\Modules\Post\Models\Post;
 use Nasirkhan\ModuleManager\Modules\Tag\Models\Tag;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class RouteAccessibilityTest extends TestCase
@@ -24,14 +27,14 @@ class RouteAccessibilityTest extends TestCase
         $routes = Route::getRoutes();
 
         // Create a user for auth tests
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = User::factory()->create([
             'username' => 'testuser',
         ]);
 
         // Create role if it doesn't exist
-        if (! \Spatie\Permission\Models\Role::where('name', 'super-admin')->exists()) {
-            \Spatie\Permission\Models\Role::create(['name' => 'super-admin']);
+        if (! Role::where('name', 'super-admin')->exists()) {
+            Role::create(['name' => 'super-admin']);
         }
 
         $user->assignRole('super-admin'); // Ensure user has access to everything
@@ -48,10 +51,10 @@ class RouteAccessibilityTest extends TestCase
         ]);
 
         // Create a menu with nested items to test lazy loading fix
-        $menu = \Nasirkhan\ModuleManager\Modules\Menu\Models\Menu::factory()->create(['location' => 'backend-sidebar-1']);
-        $parentItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'name' => 'Parent']);
-        $childItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $parentItem->id, 'name' => 'Child']);
-        $grandChildItem = \Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $childItem->id, 'name' => 'Grandchild']);
+        $menu = Menu::factory()->create(['location' => 'backend-sidebar-1']);
+        $parentItem = MenuItem::factory()->create(['menu_id' => $menu->id, 'name' => 'Parent']);
+        $childItem = MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $parentItem->id, 'name' => 'Child']);
+        $grandChildItem = MenuItem::factory()->create(['menu_id' => $menu->id, 'parent_id' => $childItem->id, 'name' => 'Grandchild']);
 
         foreach ($routes as $route) {
             if (! in_array('GET', $route->methods())) {
