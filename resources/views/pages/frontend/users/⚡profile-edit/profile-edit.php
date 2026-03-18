@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
@@ -64,6 +66,9 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
 
     public string $body_class = 'profile-page';
 
+    #[Locked]
+    public array $providerNames = [];
+
     public function mount(): void
     {
         $user = Auth::user();
@@ -91,6 +96,7 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
         $this->bio = $this->user->bio ?? '';
         $this->url = $this->user->url ?? '';
         $this->url_text = $this->user->url_text ?? '';
+        $this->syncProviderNames();
     }
 
     public function update(): mixed
@@ -124,5 +130,62 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
         session()->flash(key: 'flash_success', value: 'Update successful!');
 
         return redirect()->route('frontend.users.profile', parameters: $this->user->username);
+    }
+
+    public function resendEmailConfirmation(): void
+    {
+        if (! $this->user instanceof User || $this->user->id !== Auth::id()) {
+            abort(401);
+        }
+
+        if ($this->user->email_verified_at !== null) {
+            Log::info($this->user->name.' ('.$this->user->id.') - User requested but email already verified at '.$this->user->email_verified_at);
+
+            flash(
+                $this->user->name.', You already confirmed your email address at '.$this->user->email_verified_at->isoFormat('LL')
+            )->success()->important();
+
+            return;
+        }
+
+        Log::info($this->user->name.' ('.$this->user->id.') - User requested for email verification.');
+        $this->user->sendEmailVerificationNotification();
+
+        flash('Email Sent! Please Check Your Inbox.')->success()->important();
+    }
+
+    public function unlinkProvider(int $userProviderId): void
+    {
+        if (! $this->user instanceof User || $this->user->id !== Auth::id()) {
+            abort(401);
+        }
+
+        if ($userProviderId <= 0) {
+            flash('Invalid Request. Please try again.')->error();
+
+            return;
+        }
+
+        $userProvider = UserProvider::findOrFail($userProviderId);
+
+        if ($this->user->id !== $userProvider->user_id) {
+            flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
+            abort(403);
+        }
+
+        $providerName = $userProvider->provider ?? 'provider';
+        $userProvider->delete();
+
+        $this->user->refresh();
+        $this->syncProviderNames();
+
+        flash('<i class="fas fa-check-circle"></i> Successfully unlinked '.$providerName.' from your account!')->success();
+    }
+
+    protected function syncProviderNames(): void
+    {
+        $this->providerNames = $this->user?->providers
+            ?->mapWithKeys(fn ($provider) => [$provider->id => $provider->provider ?? 'provider'])
+            ->all() ?? [];
     }
 };
