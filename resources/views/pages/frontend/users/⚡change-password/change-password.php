@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-new #[Layout('components.layouts.frontend')] #[Title('Change Password')] class extends Component
+new #[Layout('layouts::frontend')] #[Title('Change Password')] class extends Component
 {
     #[Locked]
     public ?User $user = null;

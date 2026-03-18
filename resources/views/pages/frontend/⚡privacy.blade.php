@@ -4,7 +4,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('components.layouts.frontend')] #[Title('Privacy Policy')] class extends Component {
+new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Component {
     public string $title = 'Privacy Policy';
     public string $company_name = '';
     public string $app_email = '';

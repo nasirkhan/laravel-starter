@@ -9,7 +9,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-new #[Layout('components.layouts.frontend')] #[Title('Edit Profile')] class extends Component
+new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Component
 {
     use WithFileUploads;
 

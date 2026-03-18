@@ -11,7 +11,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Forgot password')]
-#[Layout('components.layouts.auth')]
+#[Layout('layouts::auth')]
 class ForgotPassword extends Component
 {
     public string $email = '';
