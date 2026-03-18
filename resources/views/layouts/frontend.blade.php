@@ -11,9 +11,6 @@
         <meta name="keyword" content="{{ setting('meta_keyword') }}" />
         @include('frontend.includes.meta')
 
-        <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon" />
-        <link type="image/ico" href="{{ asset('img/favicon.png') }}" rel="icon" />
-
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         @vite(['resources/css/app-frontend.css', 'resources/js/app-frontend.js'])
@@ -30,7 +27,7 @@
 
         @include('frontend.includes.header')
 
-        <main class="bg-white dark:bg-gray-800">
+        <main class="bg-white dark:bg-gray-800" id="main-content" role="main">
             {{ $slot }}
         </main>
 

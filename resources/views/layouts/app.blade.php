@@ -5,9 +5,11 @@
     </head>
 
     <body>
+        <x-selected-theme />
+
         @include('frontend.includes.header')
 
-        <main>
+        <main class="bg-white dark:bg-gray-800" id="main-content" role="main">
             {{ $slot }}
         </main>
 
