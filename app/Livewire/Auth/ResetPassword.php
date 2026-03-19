@@ -13,7 +13,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Reset password')]
-#[Layout('components.layouts.auth')]
+#[Layout('layouts::auth')]
 class ResetPassword extends Component
 {
     #[Locked]

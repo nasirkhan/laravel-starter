@@ -3,13 +3,11 @@
 namespace App\Livewire\Backend;
 
 use App\Models\User;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Layout('components.layouts.app')]
 #[Title('Users')]
 class UsersIndex extends Component
 {

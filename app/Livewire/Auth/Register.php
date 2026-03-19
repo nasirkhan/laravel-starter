@@ -13,7 +13,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 #[Title('Register')]
-#[Layout('components.layouts.auth')]
+#[Layout('layouts::auth')]
 class Register extends Component
 {
     #[Validate('required|string|max:255')]

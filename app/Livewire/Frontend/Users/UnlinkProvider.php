@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Frontend\Users;
 
+use App\Models\User;
 use App\Models\UserProvider;
 use Exception;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -12,56 +12,41 @@ use Livewire\Component;
 class UnlinkProvider extends Component
 {
     #[Locked]
-    public int $userProviderId = 0;
+    public int $userProviderId;
 
-    #[Locked]
     public string $providerName = '';
 
     public function mount(int $userProviderId): void
     {
-        $this->userProviderId = $userProviderId;
+        $provider = UserProvider::findOrFail($userProviderId);
 
-        $userProvider = UserProvider::find($userProviderId);
-        if ($userProvider) {
-            $this->providerName = $userProvider->provider ?? '';
-        }
+        $this->userProviderId = $provider->id;
+        $this->providerName = $provider->provider ?? 'provider';
     }
 
     /**
-     * Unlink the social provider from the user account.
-     *
      * @throws Exception
      */
     public function unlink(): void
     {
         $user = Auth::user();
 
-        if (! $user) {
+        if (! $user instanceof User) {
             abort(401);
         }
 
-        if ($this->userProviderId <= 0) {
-            flash('Invalid Request. Please try again.')->error();
+        $provider = UserProvider::findOrFail($this->userProviderId);
 
-            return;
-        }
-
-        $userProvider = UserProvider::findOrFail($this->userProviderId);
-
-        // Verify the provider belongs to the authenticated user
-        if ($user->id !== $userProvider->user->id) {
-            flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
+        if ((int) $provider->user_id !== (int) $user->id) {
             throw new Exception('There was a problem updating this user. Please try again.');
         }
 
-        $providerName = $userProvider->provider ?? 'provider';
-        $userProvider->delete();
+        $provider->delete();
 
-        flash('<i class="fas fa-check-circle"></i> Successfully unlinked '.$providerName.' from your account!')->success();
         $this->dispatch('provider-unlinked');
     }
 
-    public function render(): View
+    public function render()
     {
         return view('livewire.frontend.users.unlink-provider');
     }

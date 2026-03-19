@@ -3,9 +3,8 @@
 namespace App\Livewire\Frontend\Users;
 
 use App\Models\User;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class ResendEmailConfirmation extends Component
@@ -18,24 +17,18 @@ class ResendEmailConfirmation extends Component
             abort(401);
         }
 
-        // Check if email is already verified
-        if ($user->email_verified_at !== null) {
-            Log::info($user->name.' ('.$user->id.') - User requested but email already verified at '.$user->email_verified_at);
-            flash(
-                $user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL')
-            )->success()->important();
+        if ($user->hasVerifiedEmail()) {
+            Session::flash('status', 'email-already-verified');
 
             return;
         }
 
-        Log::info($user->name.' ('.$user->id.') - User requested for email verification.');
-        // Send Email Verification Notification
         $user->sendEmailVerificationNotification();
 
-        flash('Email Sent! Please Check Your Inbox.')->success()->important();
+        Session::flash('status', 'verification-link-sent');
     }
 
-    public function render(): View
+    public function render()
     {
         return view('livewire.frontend.users.resend-email-confirmation');
     }

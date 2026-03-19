@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Confirm password')]
-#[Layout('components.layouts.auth')]
+#[Layout('layouts::auth')]
 class ConfirmPassword extends Component
 {
     public string $password = '';
