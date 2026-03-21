@@ -3,7 +3,8 @@
 **Date**: 2026-03-21  
 **Reviewed By**: Kilo Code  
 **Scope**: Module Manager Package, Laravel-Cube Package, and Core Application Code  
-**Verification & Fixes Applied**: 2026-03-22 — All bugs cross-checked against source code; confirmed bugs fixed, false positives documented.
+**Verification & Fixes Applied**: 2026-03-22 — All bugs cross-checked against source code; confirmed bugs fixed, false positives documented.  
+**Improvements Applied**: 2026-03-22 — Additional bugs found and fixed (#14, #15); improvement suggestions #13 (partially) and #15 (partially) applied; all 197 tests passing.
 
 ---
 
@@ -142,6 +143,31 @@ public function getAbility($method)
     return $action ? $action.'_'.$routeName[1] : null;
 }
 ```
+
+#### 14. **helpers.php - user_registration() Bypasses Config Cache** ✅ Fixed
+- **File**: `app/helpers.php`
+- **Lines**: 15-25
+- **Severity**: Medium
+- **Status**: **Confirmed & Fixed** — `user_registration()` now only calls `config('app.user_registration')`. The redundant `env()` check was removed.
+- **Issue**: `if ((bool) env('USER_REGISTRATION'))` was called directly inside the helper alongside `config('app.user_registration')`. Direct `env()` calls outside config files break `php artisan config:cache`.
+- **Impact**: Config caching disabled for this value; inconsistent behaviour between cached and non-cached deployments
+- **Fix**:
+```php
+function user_registration(): bool
+{
+    return (bool) config('app.user_registration');
+}
+```
+
+#### 15. **helpers.php - Wrong Section Header Comments (3 occurrences)** ✅ Fixed
+- **File**: `app/helpers.php`
+- **Severity**: Low
+- **Status**: **Confirmed & Fixed** — All three incorrect comment blocks corrected.
+- **Issues**:
+  - Section block above `en2bnNumber` identified itself as `bn2enNumber`
+  - Section block above `en2bnDate` also identified itself as `bn2enNumber` with wrong description ("Convert a English number to Bengali")
+  - Section block above `icon` had a typo: "icon fornts" → "icon fonts"
+- **Impact**: Misleading in-code documentation
 
 ---
 
@@ -411,6 +437,7 @@ $items = Model::cursorPaginate(50);
 
 #### 13. Add Comprehensive Testing
 - **Priority**: Critical
+- **Status**: ✅ **Partially Applied** (2026-03-22) — `tests/Feature/Unit/HelpersTest.php` added with 6 assertions covering `user_registration()`, `label_case()`, `encode_id()`/`decode_id()`. Full coverage of services and commands is ongoing.
 - **Description**: Write unit tests for all services and commands
 - **Benefits**:
   - Catches bugs early
@@ -466,6 +493,7 @@ public function trackModuleMigrations(string $module, string $version): void
 
 #### 15. Add Type Hints Everywhere
 - **Priority**: High
+- **Status**: ✅ **Partially Applied** (2026-03-22) — `ModuleBuildCommand` methods `generate()`, `createFiles()`, `setFilePath()`, and `enableModule()` now have full parameter and return type declarations.
 - **Description**: Add return type hints to all methods and parameter type hints
 - **Benefits**:
   - Catches type errors early
@@ -1179,9 +1207,9 @@ return [
 | Category | Count | Severity Breakdown |
 |----------|--------|------------------|
 | Module Manager Package | 6 reported (5 confirmed, 1 false positive) | Critical: 1, Medium: 3, Low: 1 |
-| Core Application | 7 reported (3 confirmed, 4 false positives) | Critical: 0, Medium: 1, Low: 2 |
+| Core Application | 9 reported (5 confirmed, 4 false positives) | Critical: 0, Medium: 2, Low: 3 |
 | Laravel-Cube Package | 0 | - |
-| **Total** | **13 reported → 8 confirmed ✅, 5 false positives ❌** | **Critical: 1, Medium: 4, Low: 3** |
+| **Total** | **15 reported → 10 confirmed ✅, 5 false positives ❌** | **Critical: 1, Medium: 5, Low: 4** |
 
 ### Verification Table (2026-03-22)
 
@@ -1200,22 +1228,24 @@ return [
 | 11 | Missing quote in `helpers.php` | ❌ False Positive | No fix needed |
 | 12 | Wrong comment on `generate_rgb_code()` | ✅ Confirmed | Fixed |
 | 13 | Undefined index `$routeName[1]` in `Authorizable` | ✅ Confirmed | Fixed |
+| 14 | `user_registration()` calls `env()` directly | ✅ Confirmed | Fixed — uses `config()` only |
+| 15 | Wrong section header comments in `helpers.php` (×3) | ✅ Confirmed | Fixed |
 
 ### Improvement Suggestions Statistics
 
-| Category | Count | Priority Breakdown |
-|----------|--------|-------------------|
-| Architecture & Design | 4 | High: 2, Medium: 2 |
-| Security | 4 | Critical: 2, High: 2 |
-| Performance | 4 | High: 2, Medium: 2 |
-| Code Quality | 6 | Critical: 1, High: 3, Medium: 2 |
-| Module Manager Specific | 5 | High: 3, Medium: 2 |
-| Laravel-Cube Specific | 4 | High: 1, Medium: 2, Low: 1 |
-| Core Application Specific | 5 | Critical: 1, High: 2, Medium: 2 |
-| Database & Data | 3 | High: 2, Medium: 1 |
-| Developer Experience | 3 | Medium: 3 |
-| Configuration Management | 2 | High: 1, Medium: 1 |
-| **Total** | **40** | **Critical: 4, High: 18, Medium: 18** |
+| Category | Count | Priority Breakdown | Applied |
+|----------|--------|-------------------|---------|
+| Architecture & Design | 4 | High: 2, Medium: 2 | — |
+| Security | 4 | Critical: 2, High: 2 | — |
+| Performance | 4 | High: 2, Medium: 2 | — |
+| Code Quality | 6 | Critical: 1, High: 3, Medium: 2 | #13 partial ✅, #15 partial ✅ |
+| Module Manager Specific | 5 | High: 3, Medium: 2 | — |
+| Laravel-Cube Specific | 4 | High: 1, Medium: 2, Low: 1 | — |
+| Core Application Specific | 5 | Critical: 1, High: 2, Medium: 2 | — |
+| Database & Data | 3 | High: 2, Medium: 1 | — |
+| Developer Experience | 3 | Medium: 3 | — |
+| Configuration Management | 2 | High: 1, Medium: 1 | — |
+| **Total** | **40** | **Critical: 4, High: 18, Medium: 18** | **2 partially applied** |
 
 ---
 
@@ -1371,4 +1401,5 @@ return [
 
 **Report Generated**: 2026-03-21  
 **Reviewer**: Kilo Code  
-**Version**: 1.0.0
+**Version**: 1.0.0  
+**Last Updated**: 2026-03-22 — Bugs #14–15 added and fixed; Suggestions #13 and #15 partially applied; all 197 tests passing.

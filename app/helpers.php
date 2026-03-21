@@ -42,13 +42,7 @@ if (! function_exists('user_registration')) {
      */
     function user_registration(): bool
     {
-        $user_registration = config('app.user_registration');
-
-        if ((bool) env('USER_REGISTRATION')) {
-            $user_registration = true;
-        }
-
-        return (bool) $user_registration;
+        return (bool) config('app.user_registration');
     }
 }
 
@@ -280,7 +274,7 @@ if (! function_exists('slug_format')) {
 /*
  *
  * icon
- * A short and easy way to show icon fornts
+ * A short and easy way to show icon fonts
  * Default value will be check icon from FontAwesome (https://fontawesome.com)
  *
  * ------------------------------------------------------------------------
@@ -341,8 +335,8 @@ if (! function_exists('bn2enNumber')) {
 
 /*
  *
- * bn2enNumber
- * Convert a English number to Bengali
+ * en2bnNumber
+ * Convert an English number to Bengali
  *
  * ------------------------------------------------------------------------
  */
@@ -361,8 +355,8 @@ if (! function_exists('en2bnNumber')) {
 
 /*
  *
- * bn2enNumber
- * Convert a English number to Bengali
+ * en2bnDate
+ * Convert an English date to Bengali
  *
  * ------------------------------------------------------------------------
  */
