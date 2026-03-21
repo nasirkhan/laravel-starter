@@ -42,13 +42,7 @@ if (! function_exists('user_registration')) {
      */
     function user_registration(): bool
     {
-        $user_registration = config('app.user_registration');
-
-        if ((bool) env('USER_REGISTRATION')) {
-            $user_registration = true;
-        }
-
-        return (bool) $user_registration;
+        return (bool) config('app.user_registration');
     }
 }
 
@@ -280,7 +274,7 @@ if (! function_exists('slug_format')) {
 /*
  *
  * icon
- * A short and easy way to show icon fornts
+ * A short and easy way to show icon fonts
  * Default value will be check icon from FontAwesome (https://fontawesome.com)
  *
  * ------------------------------------------------------------------------
@@ -309,13 +303,21 @@ if (! function_exists('logUserAccess')) {
      */
     function logUserAccess(string $text = ''): void
     {
-        $auth_text = '';
+        $context = [];
 
         if (Auth::check()) {
-            $auth_text = 'User:'.Auth::user()->name.' (ID:'.Auth::user()->id.')';
+            $context['user_id'] = Auth::user()->id;
+            $context['user_name'] = Auth::user()->name;
         }
 
-        Log::debug(label_case($text)." | {$auth_text}");
+        if (app()->bound('request')) {
+            $request = request();
+            $context['ip'] = $request->ip();
+            $context['url'] = $request->fullUrl();
+            $context['method'] = $request->method();
+        }
+
+        Log::debug(label_case($text), $context);
     }
 }
 
@@ -341,8 +343,8 @@ if (! function_exists('bn2enNumber')) {
 
 /*
  *
- * bn2enNumber
- * Convert a English number to Bengali
+ * en2bnNumber
+ * Convert an English number to Bengali
  *
  * ------------------------------------------------------------------------
  */
@@ -361,8 +363,8 @@ if (! function_exists('en2bnNumber')) {
 
 /*
  *
- * bn2enNumber
- * Convert a English number to Bengali
+ * en2bnDate
+ * Convert an English date to Bengali
  *
  * ------------------------------------------------------------------------
  */
@@ -457,7 +459,8 @@ if (! function_exists('banglaDate')) {
 
 /*
  *
- * Decode Id to a Hashids\Hashids
+ * generate_rgb_code
+ * Generate an RGB color code string
  *
  * ------------------------------------------------------------------------
  */

@@ -1420,16 +1420,16 @@
         },
         {
             "name": "intervention/image-laravel",
-            "version": "1.5.7",
+            "version": "1.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image-laravel.git",
-                "reference": "86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa"
+                "reference": "78b609a3fd10da12dae03cc6a5e0a32a3e603714"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa",
-                "reference": "86a53a154024e8b2f52cbdeac13f6bdb1aaedfaa",
+                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/78b609a3fd10da12dae03cc6a5e0a32a3e603714",
+                "reference": "78b609a3fd10da12dae03cc6a5e0a32a3e603714",
                 "shasum": ""
             },
             "require": {
@@ -1484,7 +1484,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image-laravel/issues",
-                "source": "https://github.com/Intervention/image-laravel/tree/1.5.7"
+                "source": "https://github.com/Intervention/image-laravel/tree/1.5.8"
             },
             "funding": [
                 {
@@ -1500,7 +1500,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2026-02-28T06:49:50+00:00"
+            "time": "2026-03-20T16:16:10+00:00"
         },
         {
             "name": "laracasts/flash",
@@ -2933,17 +2933,11 @@
         },
         {
             "name": "nasirkhan/laravel-cube",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nasirkhan/laravel-cube.git",
-                "reference": "3cf349f0877639c8138d1bd0ab38af7f7afa0279"
-            },
+            "version": "1.2.0",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/laravel-cube/zipball/3cf349f0877639c8138d1bd0ab38af7f7afa0279",
-                "reference": "3cf349f0877639c8138d1bd0ab38af7f7afa0279",
-                "shasum": ""
+                "type": "path",
+                "url": "../laravel-starter-packages/laravel-cube",
+                "reference": "996a6a41c7049245b474dfb7d8296d816f5d6765"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0",
@@ -2971,7 +2965,11 @@
                     "Nasirkhan\\LaravelCube\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Nasirkhan\\LaravelCube\\Tests\\": "tests/"
+                }
+            },
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -2986,37 +2984,30 @@
             "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
             "homepage": "https://github.com/nasirkhan/laravel-cube",
             "keywords": [
-                "Forms",
                 "alpine",
                 "blade-components",
                 "bootstrap",
                 "components",
                 "cube",
                 "flowbite",
+                "forms",
                 "laravel",
                 "navigation",
                 "tailwind",
                 "ui-components"
             ],
-            "support": {
-                "issues": "https://github.com/nasirkhan/laravel-cube/issues",
-                "source": "https://github.com/nasirkhan/laravel-cube/tree/v1.5.0"
-            },
-            "time": "2026-03-12T19:31:23+00:00"
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "v5.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nasirkhan/module-manager.git",
-                "reference": "bebc4ea73e8fe4e0d122f353ec2f3dce869acb1a"
-            },
+            "version": "5.1.0",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/bebc4ea73e8fe4e0d122f353ec2f3dce869acb1a",
-                "reference": "bebc4ea73e8fe4e0d122f353ec2f3dce869acb1a",
-                "shasum": ""
+                "type": "path",
+                "url": "../laravel-starter-packages/module-manager",
+                "reference": "0c3ad76748ab6131237361ae2901342294605806"
             },
             "require": {
                 "laravel/framework": "^v12.0",
@@ -3034,12 +3025,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "ModuleManager": "Nasirkhan\\ModuleManager\\ModuleManagerFacade"
-                    },
                     "providers": [
                         "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "ModuleManager": "Nasirkhan\\ModuleManager\\ModuleManagerFacade"
+                    }
                 }
             },
             "autoload": {
@@ -3047,7 +3038,19 @@
                     "Nasirkhan\\ModuleManager\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Nasirkhan\\ModuleManager\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -3061,17 +3064,16 @@
             "description": "Module Manager & Generator for Laravel Starter Kit (https://github.com/nasirkhan/laravel-starter)",
             "homepage": "https://github.com/nasirkhan/module-manager",
             "keywords": [
-                "Laravel Starter",
-                "Module Manager",
+                "laravel starter",
                 "module generator",
+                "module manager",
                 "nasirkhan",
                 "nasirkhansaikat"
             ],
-            "support": {
-                "issues": "https://github.com/nasirkhan/module-manager/issues",
-                "source": "https://github.com/nasirkhan/module-manager/tree/v5.7.0"
-            },
-            "time": "2026-03-12T19:31:12+00:00"
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "nesbot/carbon",
@@ -8015,28 +8017,28 @@
         },
         {
             "name": "themesberg/flowbite-blade-icons",
-            "version": "V1.3.0",
+            "version": "V1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/themesberg/flowbite-blade-icons.git",
-                "reference": "568d5f817ba4a2d263b948d07d0067cec6ce1c68"
+                "reference": "ffd4fb89f666ecbf43f353517aeb3c85b9db783a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/themesberg/flowbite-blade-icons/zipball/568d5f817ba4a2d263b948d07d0067cec6ce1c68",
-                "reference": "568d5f817ba4a2d263b948d07d0067cec6ce1c68",
+                "url": "https://api.github.com/repos/themesberg/flowbite-blade-icons/zipball/ffd4fb89f666ecbf43f353517aeb3c85b9db783a",
+                "reference": "ffd4fb89f666ecbf43f353517aeb3c85b9db783a",
                 "shasum": ""
             },
             "require": {
                 "blade-ui-kit/blade-icons": "^1.6",
-                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
                 "php": "^8.1"
             },
             "require-dev": {
                 "laravel/pint": "^1.13",
-                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
                 "pestphp/pest": "^1.23|^2.0",
-                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+                "phpunit/phpunit": "^9.0|^10.5|^11.0|^12.0|^13.0"
             },
             "type": "library",
             "extra": {
@@ -8070,9 +8072,9 @@
             ],
             "support": {
                 "issues": "https://github.com/themesberg/flowbite-blade-icons/issues",
-                "source": "https://github.com/themesberg/flowbite-blade-icons/tree/V1.3.0"
+                "source": "https://github.com/themesberg/flowbite-blade-icons/tree/V1.4.0"
             },
-            "time": "2026-01-05T13:44:53+00:00"
+            "time": "2026-03-20T10:56:06+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

@@ -41,8 +41,12 @@ trait Authorizable
 
     public function getAbility($method)
     {
-        $routeName = explode('.', Route::currentRouteName());
+        $routeName = explode('.', Route::currentRouteName() ?? '');
         $action = Arr::get($this->getAbilities(), $method);
+
+        if (count($routeName) < 2) {
+            return null;
+        }
 
         return $action ? $action.'_'.$routeName[1] : null;
     }
