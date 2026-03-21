@@ -9,9 +9,6 @@ Here Frontend and Backend are completely separated with separate routes, control
 [![Latest Stable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v)](https://packagist.org/packages/nasirkhan/laravel-starter) [![StyleCI Build](https://github.styleci.io/repos/105638882/shield?style=flat)](https://packagist.org/packages/nasirkhan/laravel-starter) [![License](http://poser.pugx.org/nasirkhan/laravel-starter/license)](https://packagist.org/packages/nasirkhan/laravel-starter) [![PHP Version Require](http://poser.pugx.org/nasirkhan/laravel-starter/require/php)](https://packagist.org/packages/nasirkhan/laravel-starter)
 
 
-# Reporting a Vulnerability
-If you discover any security-related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
-
 # Appplication Demo
 Check the following demo project. It is just a straight installation of the project without any modification.
 
@@ -34,13 +31,7 @@ We have created a number of custom commands for the project. The commands are li
 
 ## Install / Setup
 
-Run the interactive setup wizard for a fresh project. It copies `.env`, generates an app key, configures the database, runs migrations, seeds data, creates the storage link, and builds frontend assets.
-
-```bash
-php artisan starter:install
-```
-
-Use `--skip-npm` to skip the frontend build, `--demo` to seed demo data without prompting, or `--skip-db` if the database is already set up.
+See the canonical [Installation](#installation) section below for the full setup flow and all supported options for `php artisan starter:install`.
 
 ## Update
 
@@ -69,10 +60,17 @@ php artisan module:build MODULE_NAME --force
 ## Clear All Cache
 
 ```bash
+php artisan clear-all
+```
+
+or 
+
+```bash
 composer clear-all
 ```
 
-this is a shortcut command to clear all cache including config, route, and more
+This clears application caches including config, route, view, and permission cache.
+If you prefer Composer scripts, `composer clear-all` is also available.
 
 ## Code Style Fix
 
@@ -89,9 +87,15 @@ The following command will format the blade templates.
 npm run format
 ```
 
-or if you are using `yarn` then you can use the following command.
+`npm` is the supported package manager for this project. Avoid mixing `npm` and `yarn` lockfiles on the same checkout, especially on Windows, because native packages such as `esbuild` and Tailwind's platform binaries can fail to resolve or unlink cleanly after a mixed install.
+
+If you are intentionally using `yarn`, remove the existing install state first so Yarn can rebuild it from scratch.
 
 ```bash
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force yarn.lock
+yarn cache clean
+yarn install
 yarn format
 ```
 
@@ -158,7 +162,7 @@ It is a modular application, and some modules are installed by default. It will 
 
 ## Installation
 
-Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
+This is the single source of truth for installing Laravel Starter from a fresh checkout. You may find more background in the [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
 
 ### From GitHub Template (recommended)
 
@@ -201,6 +205,12 @@ The setup wizard will guide you through environment configuration, database sele
 | `--skip-seed` | Skip database seeding |
 | `--skip-npm` | Skip `npm install` and asset build |
 | `--demo` | Seed with demo data (no prompt) |
+
+If you only need to rerun cache clearing after setup, use:
+
+```bash
+php artisan clear-all
+```
 
 ### Via Composer create-project
 
@@ -255,6 +265,10 @@ This project is configured with Laravel Sail (https://laravel.com/docs/sail). Yo
 8. Since Sail is already up, you can just visit http://localhost:80
 
 
+# Reporting a Vulnerability
+If you discover any security-related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
+
+
 # Screenshots
 
 __Home Page__
@@ -282,4 +296,3 @@ __Backend Dashboard__
 ---
 
 ![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/6421b8e5-3c69-4c1f-9518-875e72be77c0)
-
