@@ -303,13 +303,21 @@ if (! function_exists('logUserAccess')) {
      */
     function logUserAccess(string $text = ''): void
     {
-        $auth_text = '';
+        $context = [];
 
         if (Auth::check()) {
-            $auth_text = 'User:'.Auth::user()->name.' (ID:'.Auth::user()->id.')';
+            $context['user_id'] = Auth::user()->id;
+            $context['user_name'] = Auth::user()->name;
         }
 
-        Log::debug(label_case($text)." | {$auth_text}");
+        if (app()->bound('request')) {
+            $request = request();
+            $context['ip'] = $request->ip();
+            $context['url'] = $request->fullUrl();
+            $context['method'] = $request->method();
+        }
+
+        Log::debug(label_case($text), $context);
     }
 }
 

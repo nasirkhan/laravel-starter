@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
@@ -197,7 +198,9 @@ class BackendBaseController extends Controller
 
         $module_action = 'Store';
 
-        $$module_name_singular = $module_model::create($request->all());
+        $$module_name_singular = DB::transaction(function () use ($module_model, $request) {
+            return $module_model::create($request->all());
+        });
 
         flash("New '".Str::singular($module_title)."' Added")->success()->important();
 
@@ -283,9 +286,12 @@ class BackendBaseController extends Controller
 
         $module_action = 'Update';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = DB::transaction(function () use ($module_model, $request, $id) {
+            $record = $module_model::findOrFail($id);
+            $record->update($request->all());
 
-        $$module_name_singular->update($request->all());
+            return $record;
+        });
 
         flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
 
@@ -315,9 +321,12 @@ class BackendBaseController extends Controller
 
         $module_action = 'destroy';
 
-        $$module_name_singular = $module_model::findOrFail($id);
+        $$module_name_singular = DB::transaction(function () use ($module_model, $id) {
+            $record = $module_model::findOrFail($id);
+            $record->delete();
 
-        $$module_name_singular->delete();
+            return $record;
+        });
 
         flash(label_case($module_name_singular).' Deleted Successfully!')->success()->important();
 
@@ -375,8 +384,12 @@ class BackendBaseController extends Controller
 
         $module_action = 'Restore';
 
-        $$module_name_singular = $module_model::withTrashed()->find($id);
-        $$module_name_singular->restore();
+        $$module_name_singular = DB::transaction(function () use ($module_model, $id) {
+            $record = $module_model::withTrashed()->findOrFail($id);
+            $record->restore();
+
+            return $record;
+        });
 
         flash(label_case($module_name_singular).' Data Restored Successfully!')->success()->important();
 
