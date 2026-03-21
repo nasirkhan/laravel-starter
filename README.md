@@ -9,7 +9,7 @@ Here Frontend and Backend are completely separated with separate routes, control
 [![Latest Stable Version](http://poser.pugx.org/nasirkhan/laravel-starter/v)](https://packagist.org/packages/nasirkhan/laravel-starter) [![StyleCI Build](https://github.styleci.io/repos/105638882/shield?style=flat)](https://packagist.org/packages/nasirkhan/laravel-starter) [![License](http://poser.pugx.org/nasirkhan/laravel-starter/license)](https://packagist.org/packages/nasirkhan/laravel-starter) [![PHP Version Require](http://poser.pugx.org/nasirkhan/laravel-starter/require/php)](https://packagist.org/packages/nasirkhan/laravel-starter)
 
 
-# Appplication Demo
+# Application Demo
 Check the following demo project. It is just a straight installation of the project without any modification.
 
 Demo URL: https://laravel.nasirkhn.com
