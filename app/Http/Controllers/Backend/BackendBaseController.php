@@ -378,7 +378,7 @@ class BackendBaseController extends Controller
         $$module_name_singular = $module_model::withTrashed()->find($id);
         $$module_name_singular->restore();
 
-        flash(label_case($module_name_singular).' Data Restoreded Successfully!')->success()->important();
+        flash(label_case($module_name_singular).' Data Restored Successfully!')->success()->important();
 
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 

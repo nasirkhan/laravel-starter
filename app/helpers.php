@@ -457,7 +457,8 @@ if (! function_exists('banglaDate')) {
 
 /*
  *
- * Decode Id to a Hashids\Hashids
+ * generate_rgb_code
+ * Generate an RGB color code string
  *
  * ------------------------------------------------------------------------
  */
