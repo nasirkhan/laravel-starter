@@ -17,19 +17,19 @@
         "php": "^8.4",
         "intervention/image-laravel": "^1.5",
         "laracasts/flash": "^3.2",
-        "laravel/framework": "^12.0",
+        "laravel/framework": "^13.0",
         "laravel/socialite": "^5.19",
-        "laravel/tinker": "^2.10",
+        "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
         "nasirkhan/laravel-cube": "^1.0",
         "nasirkhan/module-manager": "^5.0",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
-        "spatie/laravel-permission": "^6.16"
+        "spatie/laravel-permission": "^7.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.15",
+        "barryvdh/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.24",
         "laravel/boost": "^2.0",
         "laravel/breeze": "^2.3",
@@ -38,7 +38,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.7",
-        "phpunit/phpunit": "^11.5",
+        "phpunit/phpunit": "^12.0",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "autoload": {
