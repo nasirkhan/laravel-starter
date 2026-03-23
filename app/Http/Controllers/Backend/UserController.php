@@ -528,7 +528,7 @@ class UserController extends Controller
 
         $module_action = 'destroy';
 
-        if (Auth::user()->id === $id || $id === 1) {
+        if (Auth::user()->id == $id || $id == 1) {
             flash('You can not delete this user!')->warning()->important();
 
             logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
