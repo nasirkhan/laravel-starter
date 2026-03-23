@@ -715,6 +715,10 @@ class UserController extends Controller
      */
     public function userProviderDestroy(Request $request)
     {
+        if (! Auth::user()->can('edit_users')) {
+            abort(403);
+        }
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -767,16 +771,6 @@ class UserController extends Controller
             $id = Auth::user()->id;
         }
 
-        // if ($id !== auth()->user()->id) {
-        //     if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
-        //         Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
-        //     } else {
-        //         Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
-
-        //         abort('403');
-        //     }
-        // }
-
         $user = User::where('id', '=', $id)->first();
 
         if ($user) {
@@ -790,6 +784,7 @@ class UserController extends Controller
 
                 return redirect()->back();
             }
+            
             Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
             flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
