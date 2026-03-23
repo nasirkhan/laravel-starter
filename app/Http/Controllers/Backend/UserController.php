@@ -625,7 +625,7 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (! Auth::user()->can('delete_users')) {
+        if (! Auth::user()->can('block_users')) {
             abort(403);
         }
 
@@ -670,7 +670,7 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (! Auth::user()->can('delete_users')) {
+        if (! Auth::user()->can('block_users')) {
             abort(403);
         }
 
@@ -729,7 +729,7 @@ class UserController extends Controller
         $user_provider_id = $request->user_provider_id;
         $user_id = $request->user_id;
 
-        if (! $user_provider_id > 0 || ! $user_id > 0) {
+        if (! ($user_provider_id > 0) || ! ($user_id > 0)) {
             flash('Invalid Request. Please try again.')->error()->important();
 
             return redirect()->back();
@@ -784,7 +784,7 @@ class UserController extends Controller
 
                 return redirect()->back();
             }
-            
+
             Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
             flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();
