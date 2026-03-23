@@ -117,7 +117,7 @@ class SocialLoginController extends Controller
 
             flash('Email address is required!')->error()->important();
 
-            return redirect()->intended(route('home', absolute: false));
+            throw new Exception('Email address is required for social login.');
         }
 
         $user = User::create([

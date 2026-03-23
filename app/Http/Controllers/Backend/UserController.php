@@ -474,7 +474,7 @@ class UserController extends Controller
 
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
-        if ($id === 1) {
+        if ((int) $id === 1) {
             $$module_name_singular->syncRoles(['super admin']);
 
             // Clear Cache
@@ -740,8 +740,6 @@ class UserController extends Controller
             return redirect()->back();
         }
         flash('Request rejected. Please contact the Administrator!')->warning()->important();
-
-        event(new UserUpdated($$module_name_singular));
 
         throw new Exception('There was a problem updating this user. Please try again.');
     }
