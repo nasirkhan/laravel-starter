@@ -544,7 +544,7 @@ if (! function_exists('demo_mode')) {
      */
     function demo_mode(): bool
     {
-        return (bool) env('DEMO_MODE');
+        return (bool) config('app.demo_mode', false);
     }
 }
 

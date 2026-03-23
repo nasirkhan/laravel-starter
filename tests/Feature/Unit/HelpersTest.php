@@ -66,4 +66,24 @@ class HelpersTest extends TestCase
     {
         $this->assertNull(decode_id(''));
     }
+
+    /**
+     * demo_mode() returns true when config value is true.
+     */
+    public function test_demo_mode_returns_true_when_config_is_true(): void
+    {
+        config(['app.demo_mode' => true]);
+
+        $this->assertTrue(demo_mode());
+    }
+
+    /**
+     * demo_mode() returns false when config value is false.
+     */
+    public function test_demo_mode_returns_false_when_config_is_false(): void
+    {
+        config(['app.demo_mode' => false]);
+
+        $this->assertFalse(demo_mode());
+    }
 }
