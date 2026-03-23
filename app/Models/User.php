@@ -172,18 +172,11 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
                 continue;
             }
 
-            // We need to check if the ROLE has the permission.
-            // Spatie's Role model caches permissions too?
-            // Yes, Role->permissions is a relation.
-            // If we access $role->permissions, it might query if not loaded.
-            // But we eager loaded 'roles.permissions' in some places.
-            // However, here we are iterating cached roles.
-            // If the role object in cache has permissions loaded, great.
-            // If not, it will query.
-            // Spatie caches permissions for roles automatically in its own cache.
-            // So $role->hasPermissionTo($permission) should be fast/cached by Spatie.
-
-            if ($role->hasPermissionTo($permission)) {
+            if ($role->relationLoaded('permissions')) {
+                if ($role->permissions->where('guard_name', $guardName)->contains('name', $permissionName)) {
+                    return true;
+                }
+            } elseif ($role->hasPermissionTo($permission)) {
                 return true;
             }
         }
