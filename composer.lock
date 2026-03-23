@@ -2939,7 +2939,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "4ca886c9e0c32bb30748ee499bf646bc7f98c8ca"
+                "reference": "ffe00507872fff43a7f20745ce7c081c8fb8d6c7"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3009,7 +3009,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-jodit",
-                "reference": "fdae8d1e7499064bc9f60a6e8e47c9594a9c07ce"
+                "reference": "b9402a0bf5b06716b530584da68ef7e36d5e8260"
             },
             "require": {
                 "illuminate/filesystem": "^11.0|^12.0|^13.0",
@@ -3077,16 +3077,16 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "5f1a8f9c38741e5fa1c8bcc6c71d683a135a43e5"
+                "reference": "e9f8bf5535335eb94a161683a25cafec23fb29cf"
             },
             "require": {
                 "laravel/framework": "^12.0 || ^13.0",
                 "nasirkhan/laravel-jodit": "^1.0.0",
                 "opcodesio/log-viewer": "^3.21",
-                "php": "^8.3|^8.4",
-                "spatie/laravel-backup": "^9.2|^10.0",
+                "php": "^8.3 || ^8.4",
+                "spatie/laravel-backup": "^9.2 || ^10.0",
                 "sqids/sqids": "^0.5.0",
-                "yajra/laravel-datatables-oracle": "^12.0|^13.0"
+                "yajra/laravel-datatables-oracle": "^12.0 || ^13.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^10.0 || ^11.0",
@@ -4412,16 +4412,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.21",
+            "version": "v0.12.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97"
+                "reference": "3be75d5b9244936dd4ac62ade2bfb004d13acf0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
-                "reference": "4821fab5b7cd8c49a673a9fd5754dc9162bb9e97",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3be75d5b9244936dd4ac62ade2bfb004d13acf0f",
+                "reference": "3be75d5b9244936dd4ac62ade2bfb004d13acf0f",
                 "shasum": ""
             },
             "require": {
@@ -4485,9 +4485,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.21"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.22"
             },
-            "time": "2026-03-06T21:21:28+00:00"
+            "time": "2026-03-22T23:03:24+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
