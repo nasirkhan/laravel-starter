@@ -3077,7 +3077,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "f249f923ef822221be1a6eadeca97a942397f163"
+                "reference": "ab88d546ba0a358f80c610eb29f800de021de800"
             },
             "require": {
                 "laravel/framework": "^12.0 || ^13.0",
