@@ -45,18 +45,30 @@ class BackendBaseController extends Controller
     }
 
     /**
+     * Returns the common module context variables used across every action.
+     *
+     * @return array{module_title: string, module_name: string, module_path: string, module_icon: string, module_model: string, module_name_singular: string}
+     */
+    protected function moduleContext(): array
+    {
+        return [
+            'module_title' => $this->module_title,
+            'module_name' => $this->module_name,
+            'module_path' => $this->module_path,
+            'module_icon' => $this->module_icon,
+            'module_model' => $this->module_model,
+            'module_name_singular' => Str::singular($this->module_name),
+        ];
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return View
      */
     public function index()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'List';
 
@@ -78,12 +90,7 @@ class BackendBaseController extends Controller
      */
     public function index_list(Request $request)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'List';
 
@@ -116,12 +123,7 @@ class BackendBaseController extends Controller
      */
     public function index_data()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'List';
 
@@ -162,12 +164,7 @@ class BackendBaseController extends Controller
      */
     public function create()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Create';
 
@@ -189,12 +186,7 @@ class BackendBaseController extends Controller
      */
     public function store(Request $request)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Store';
 
@@ -217,12 +209,7 @@ class BackendBaseController extends Controller
      */
     public function show($id)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Show';
 
@@ -245,12 +232,7 @@ class BackendBaseController extends Controller
      */
     public function edit($id)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Edit';
 
@@ -277,12 +259,7 @@ class BackendBaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Update';
 
@@ -312,12 +289,7 @@ class BackendBaseController extends Controller
      */
     public function destroy($id)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'destroy';
 
@@ -343,12 +315,7 @@ class BackendBaseController extends Controller
      */
     public function trashed()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Trash List';
 
@@ -375,12 +342,7 @@ class BackendBaseController extends Controller
      */
     public function restore($id)
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
+        extract($this->moduleContext());
 
         $module_action = 'Restore';
 
