@@ -6,8 +6,9 @@ use App\Authorizable;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -63,10 +64,8 @@ class BackendBaseController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return View
      */
-    public function index()
+    public function index(): View
     {
         extract($this->moduleContext());
 
@@ -88,7 +87,7 @@ class BackendBaseController extends Controller
      * @param  Request  $request  The HTTP request object.
      * @return JsonResponse The JSON response containing the list of items.
      */
-    public function index_list(Request $request)
+    public function index_list(Request $request): JsonResponse
     {
         extract($this->moduleContext());
 
@@ -121,7 +120,7 @@ class BackendBaseController extends Controller
      *
      * @return Illuminate\Http\JsonResponse
      */
-    public function index_data()
+    public function index_data(): JsonResponse
     {
         extract($this->moduleContext());
 
@@ -159,10 +158,8 @@ class BackendBaseController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return View
      */
-    public function create()
+    public function create(): View
     {
         extract($this->moduleContext());
 
@@ -184,7 +181,7 @@ class BackendBaseController extends Controller
      *
      * @throws Exception If there is an error during the creation of the resource.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         extract($this->moduleContext());
 
@@ -205,9 +202,8 @@ class BackendBaseController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return View
      */
-    public function show($id)
+    public function show($id): View
     {
         extract($this->moduleContext());
 
@@ -227,10 +223,8 @@ class BackendBaseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
-     * @return View
      */
-    public function edit($id)
+    public function edit($id): View
     {
         extract($this->moduleContext());
 
@@ -252,12 +246,10 @@ class BackendBaseController extends Controller
      * @param  int  $id
      * @param  Request  $request  The request object.
      * @param  mixed  $id  The ID of the resource to update.
-     * @return Response
-     * @return RedirectResponse The redirect response.
      *
      * @throws ModelNotFoundException If the resource is not found.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         extract($this->moduleContext());
 
@@ -282,12 +274,10 @@ class BackendBaseController extends Controller
      *
      * @param  int  $id
      * @param  int  $id  The ID of the record to be destroyed.
-     * @return Response
-     * @return \Illuminate\Http\RedirectResponse Redirects the user to the specified URL.
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the record is not found.
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         extract($this->moduleContext());
 
@@ -310,10 +300,8 @@ class BackendBaseController extends Controller
     /**
      * List of trashed ertries
      * works if the softdelete is enabled.
-     *
-     * @return View
      */
-    public function trashed()
+    public function trashed(): View
     {
         extract($this->moduleContext());
 
@@ -335,12 +323,10 @@ class BackendBaseController extends Controller
      * @param  Request  $request
      * @param  int  $id
      * @param  int  $id  The ID of the data entry to be restored.
-     * @return Response
-     * @return \Illuminate\Http\RedirectResponse The response redirecting to the admin page of the module.
      *
      * @throws \Exception If the data entry cannot be found or restored.
      */
-    public function restore($id)
+    public function restore($id): RedirectResponse
     {
         extract($this->moduleContext());
 
