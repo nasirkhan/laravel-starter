@@ -4,7 +4,6 @@ namespace App\Livewire\Auth;
 
 use App\Events\Frontend\UserRegistered;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -46,7 +45,6 @@ class Register extends Component
         $user->last_ip = optional(request())->getClientIp();
         $user->save();
 
-        // event(new Registered($user));
         event(new UserRegistered($user));
 
         Auth::login($user);
