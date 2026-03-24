@@ -18,11 +18,11 @@
         "intervention/image-laravel": "^1.5",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^13.0",
-        "laravel/socialite": "^5.19",
+        "laravel/socialite": "^5.0",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
-        "nasirkhan/laravel-cube": "^1.0",
-        "nasirkhan/module-manager": "^5.0",
+        "nasirkhan/laravel-cube": "^2.0",
+        "nasirkhan/module-manager": "^6.0",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
@@ -104,6 +104,7 @@
             "merge-dev": true,
             "merge-extra": false,
             "merge-extra-deep": false,
+            "merge-repositories": true,
             "replace": false,
             "recurse": false
         }

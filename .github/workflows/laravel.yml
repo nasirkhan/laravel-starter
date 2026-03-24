@@ -2,13 +2,16 @@ name: Laravel
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "dev"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "dev"]
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+
+    env:
+      CACHE_STORE: file
 
     strategy:
       fail-fast: false
@@ -29,14 +32,6 @@ jobs:
       - name: Copy .env
         run: cp .env.example .env
 
-      - name: Install Composer dependencies
-        run: |
-          composer update --no-interaction nasirkhan/laravel-cube nasirkhan/module-manager
-          composer install --no-interaction --prefer-dist --optimize-autoloader
-
-      - name: Generate application key
-        run: php artisan key:generate
-
       - name: Set directory permissions
         run: chmod -R 777 storage bootstrap/cache
 
@@ -45,14 +40,26 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
+      - name: Remove local Composer overrides
+        run: echo '{}' > composer.local.json
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run database migrations
+        run: php artisan migrate --no-interaction
+
       - name: Run Tests
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
         run: php artisan test
 
   pint:
     runs-on: ubuntu-latest
+
+    env:
+      CACHE_STORE: file
 
     steps:
       - name: Checkout code
@@ -65,10 +72,22 @@ jobs:
           extensions: mbstring, bcmath, ctype, fileinfo, json, tokenizer
           coverage: none
 
-      - name: Install Composer dependencies
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Set directory permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Create SQLite database
         run: |
-          composer update --no-interaction nasirkhan/laravel-cube nasirkhan/module-manager
-          composer install --no-interaction --prefer-dist --optimize-autoloader
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: Remove local Composer overrides
+        run: echo '{}' > composer.local.json
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run Laravel Pint
         run: ./vendor/bin/pint --test
