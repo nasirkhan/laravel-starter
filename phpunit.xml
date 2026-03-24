@@ -12,7 +12,7 @@
             <directory>tests/Feature</directory>
         </testsuite>
         <testsuite name="Module">
-            <directory>../laravel-starter-packages/module-manager/src/Modules/*/Tests</directory>
+            <directory>vendor/nasirkhan/module-manager/src/Modules/*/Tests</directory>
         </testsuite>
     </testsuites>
     <source>
