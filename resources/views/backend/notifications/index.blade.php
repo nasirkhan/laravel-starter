@@ -84,12 +84,12 @@
                                     <td>
                                         <a href="{{ route("backend.$module_name.show", $module_name_singular->id) }}">
                                             <span class="{{ $span_class }}">
-                                                {{ $module_name_singular->data["title"] }}
+                                                {{ $module_name_singular->data["title"] ?? $module_name_singular->data["module"] ?? $module_name_singular->data["message"] ?? __("Notification") }}
                                             </span>
                                         </a>
                                     </td>
                                     <td>
-                                        {{ $module_name_singular->data["module"] }}
+                                        {{ $module_name_singular->data["module"] ?? __("Notification") }}
                                     </td>
                                     <td>
                                         {{ $module_name_singular->updated_at->diffForHumans() }}

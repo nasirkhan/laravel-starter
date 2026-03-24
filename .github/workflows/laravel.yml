@@ -10,9 +10,6 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    env:
-      CACHE_STORE: file
-
     strategy:
       fail-fast: false
       matrix:
@@ -57,9 +54,6 @@ jobs:
 
   pint:
     runs-on: ubuntu-latest
-
-    env:
-      CACHE_STORE: file
 
     steps:
       - name: Checkout code
