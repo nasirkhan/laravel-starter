@@ -24,6 +24,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasRoles {
         hasRole as hasRoleOriginal;
         hasPermissionTo as hasPermissionToOriginal;
+        assignRole as assignRoleOriginal;
+        givePermissionTo as givePermissionToOriginal;
     }
     use Notifiable;
     use SoftDeletes;
@@ -84,6 +86,30 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         $lastUpdated = Cache::get('spatie_permissions_last_updated', 'never');
         Cache::forget('roles_user_'.$this->id.'_'.$lastUpdated);
         Cache::forget('permissions_user_'.$this->id.'_'.$lastUpdated);
+    }
+
+    /**
+     * Override assignRole to clear the permission cache after Spatie v7 internally
+     * accesses $this->roles (which would otherwise cache a stale empty collection).
+     */
+    public function assignRole(...$roles): static
+    {
+        $result = $this->assignRoleOriginal(...$roles);
+        $this->clearPermissionCache();
+
+        return $result;
+    }
+
+    /**
+     * Override givePermissionTo to clear the permission cache after Spatie v7 internally
+     * accesses $this->permissions (which would otherwise cache a stale empty collection).
+     */
+    public function givePermissionTo(...$permissions): static
+    {
+        $result = $this->givePermissionToOriginal(...$permissions);
+        $this->clearPermissionCache();
+
+        return $result;
     }
 
     /**
