@@ -45,7 +45,7 @@ class NewRegistrationNotification extends Notification
     {
         $user = $notifiable;
 
-        if ($user->email_verified_at === '') {
+        if ($user->email_verified_at === null) {
             $verificationUrl = $this->verificationUrl($notifiable);
 
             if (static::$toMailCallback) {

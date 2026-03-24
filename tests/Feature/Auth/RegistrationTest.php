@@ -3,7 +3,9 @@
 namespace Tests\Feature\Auth;
 
 use App\Livewire\Auth\Register;
+use App\Notifications\NewRegistrationNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -25,6 +27,8 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register(): void
     {
         if (config('app.user_registration')) {
+            Notification::fake();
+
             $response = Livewire::test(Register::class)
                 ->set('name', 'Test User')
                 ->set('email', 'test@example.com')
@@ -37,6 +41,7 @@ class RegistrationTest extends TestCase
                 ->assertRedirect(route('home', absolute: false));
 
             $this->assertAuthenticated();
+            Notification::assertSentTo(auth()->user(), NewRegistrationNotification::class);
         } else {
             $response = $this->get('/register');
             $response->assertStatus(404);

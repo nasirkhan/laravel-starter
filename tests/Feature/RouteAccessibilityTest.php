@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Category\Models\Category;
 use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
 use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
@@ -48,6 +50,18 @@ class RouteAccessibilityTest extends TestCase
             'slug' => 'test-post-slug',
             'name' => 'Test Post',
             'created_by_name' => 'Test User',
+        ]);
+
+        // Create a notification for the test user (UUID primary key required by notifications.show)
+        $notificationId = Str::uuid()->toString();
+        DB::table('notifications')->insert([
+            'id' => $notificationId,
+            'type' => 'App\Notifications\TestNotification',
+            'notifiable_type' => User::class,
+            'notifiable_id' => $user->id,
+            'data' => json_encode(['message' => 'Test notification']),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         // Create a menu with nested items to test lazy loading fix
@@ -99,6 +113,8 @@ class RouteAccessibilityTest extends TestCase
                     $uri = str_replace('{slug?}', 'dummy-slug', $uri);
                 } elseif (str_contains($uri, 'menuitems')) {
                     $uri = str_replace('{id}', $parentItem->id, $uri);
+                } elseif (str_contains($uri, 'notifications')) {
+                    $uri = str_replace('{id}', $notificationId, $uri);
                 } else {
                     // Generic fallback
                     $uri = str_replace('{id}', $user->id, $uri);

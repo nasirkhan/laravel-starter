@@ -59,6 +59,12 @@ class SocialLoginController extends Controller
 
             $authUser = $this->findOrCreateUser($user, $provider);
 
+            if ($authUser === null) {
+                flash('Email address is required!')->error()->important();
+
+                return redirect('/');
+            }
+
             Auth::login($authUser, true);
         } catch (Exception $e) {
             return redirect('/');
@@ -90,7 +96,7 @@ class SocialLoginController extends Controller
      * @param  string  $provider  The provider name.
      * @return object The created or existing user object.
      */
-    private function findOrCreateUser($socialUser, $provider)
+    private function findOrCreateUser($socialUser, $provider): ?object
     {
         if ($authUser = UserProvider::where('provider_id', $socialUser->getId())->first()) {
             return User::findOrFail($authUser->user->id);
@@ -115,9 +121,7 @@ class SocialLoginController extends Controller
         if ($email === '') {
             Log::error('Social Login does not have email!');
 
-            flash('Email address is required!')->error()->important();
-
-            return redirect()->intended(route('home', absolute: false));
+            return null;
         }
 
         $user = User::create([

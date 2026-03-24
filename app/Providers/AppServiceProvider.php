@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerEventListeners()
+    public function registerEventListeners(): void
     {
         // Register event listeners here when needed
     }

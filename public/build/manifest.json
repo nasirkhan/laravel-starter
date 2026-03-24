@@ -1,7 +1,7 @@
 {
-  "_popper-CA4i1o-O.js": {
-    "file": "assets/popper-CA4i1o-O.js",
-    "name": "popper"
+  "_lib-BwT_WK9h.js": {
+    "file": "assets/lib-BwT_WK9h.js",
+    "name": "lib"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-BP5tdqmh.woff2",
@@ -20,39 +20,45 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app-frontend.css": {
-    "file": "assets/app-frontend-BW5srm-_.css",
-    "src": "resources/css/app-frontend.css",
-    "isEntry": true,
+    "file": "assets/app-frontend-d880am9a.css",
     "name": "app-frontend",
     "names": [
       "app-frontend.css"
-    ]
+    ],
+    "src": "resources/css/app-frontend.css",
+    "isEntry": true
   },
   "resources/js/app-backend.js": {
-    "file": "assets/app-backend-BOPBty5Z.js",
+    "file": "assets/app-backend-BBbz7HRQ.js",
     "name": "app-backend",
     "src": "resources/js/app-backend.js",
     "isEntry": true,
     "imports": [
-      "_popper-CA4i1o-O.js"
+      "_lib-BwT_WK9h.js"
     ]
   },
   "resources/js/app-frontend.js": {
-    "file": "assets/app-frontend-DM2Z4uga.js",
+    "file": "assets/app-frontend-BZY1K3Rt.js",
     "name": "app-frontend",
     "src": "resources/js/app-frontend.js",
     "isEntry": true,
     "imports": [
-      "_popper-CA4i1o-O.js"
+      "_lib-BwT_WK9h.js"
     ]
   },
   "resources/sass/app-backend.scss": {
-    "file": "assets/app-backend-DSSm2DmP.css",
-    "src": "resources/sass/app-backend.scss",
-    "isEntry": true,
+    "file": "assets/app-backend-D3DEL1uD.css",
     "name": "app-backend",
     "names": [
       "app-backend.css"
+    ],
+    "src": "resources/sass/app-backend.scss",
+    "isEntry": true,
+    "assets": [
+      "assets/fa-brands-400-BP5tdqmh.woff2",
+      "assets/fa-regular-400-nyy7hhHF.woff2",
+      "assets/fa-solid-900-DRAAbZTg.woff2",
+      "assets/fa-v4compatibility-DD84SGiu.woff2"
     ]
   }
 }

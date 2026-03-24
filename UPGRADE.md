@@ -69,7 +69,7 @@ Livewire 4.0 introduces native Single-File Components (SFC) that allow you to de
 
 - PHP 8.2 or higher
 - Livewire 4.0 or higher
-- Laravel 12.x
+- Laravel 13.x
 
 ### What's New in Livewire 4.0 SFC
 
@@ -370,11 +370,81 @@ php artisan cache:clear
 
 ## Upgrading to 13.0 from 12.x
 
-> **Estimated Time:** TBD  
-> **Difficulty:** TBD  
-> **Risk Level:** TBD
+> **Estimated Time:** 30-60 minutes  
+> **Difficulty:** Low to Medium  
+> **Risk Level:** Low (with proper testing)
 
-**Note:** Version 13.0.0 is planned for future release. This section will be updated when v13.0.0 is ready.
+### Requirements
+
+- PHP 8.4 or higher
+- Laravel 13.x
+- Composer 2.0 or higher
+- Node.js 20+ and NPM 10+
+
+### High Impact Changes
+
+#### 1. Frontend Components Migrated to `cube` Namespace
+
+Shared frontend components (header, footer, nav-item, button, dynamic menu) have been moved to the `nasirkhan/laravel-cube` package. References to the old standalone Blade component files must be updated.
+
+**Before (12.x):**
+```blade
+<x-header />
+<x-footer />
+<x-nav-item :item="$item" />
+```
+
+**After (13.0):**
+```blade
+<x-cube::header />
+<x-cube::footer />
+<x-cube::nav-item :item="$item" />
+```
+
+#### 2. Settings Functionality Migrated to `module-manager` Package
+
+Application settings are now managed by the `nasirkhan/module-manager` package. Any custom settings code that was in the application layer should be reviewed against the package.
+
+### Step-by-Step Upgrade Process
+
+#### Step 1: Update Dependencies
+
+```bash
+composer update
+```
+
+Ensure `composer.json` requires `"laravel/framework": "^13.0"` and `"php": "^8.4"`.
+
+#### Step 2: Update Frontend Component References
+
+Search your views for any overridden or custom copies of the old frontend components and update them to use the `cube` namespace equivalents.
+
+#### Step 3: Run Migrations
+
+```bash
+php artisan migrate
+```
+
+Version 13.0 adds indexes to the `user_providers` table via a new migration.
+
+#### Step 4: Clear All Caches
+
+```bash
+php artisan clear-all
+```
+
+#### Step 5: Build Frontend Assets
+
+```bash
+npm install
+npm run build
+```
+
+#### Step 6: Run Tests
+
+```bash
+php artisan test
+```
 
 ---
 

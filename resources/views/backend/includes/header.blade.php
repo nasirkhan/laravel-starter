@@ -47,9 +47,10 @@ $notifications_latest = optional($notifications)->take(5);
                     @if ($notifications_latest)
                         @foreach ($notifications_latest as $notification)
                             @php
-                                $notification_text = isset($notification->data["title"])
-                                    ? $notification->data["title"]
-                                    : $notification->data["module"];
+                                $notification_text = $notification->data["title"]
+                                    ?? $notification->data["module"]
+                                    ?? $notification->data["message"]
+                                    ?? __("Notification");
                             @endphp
 
                             <li>

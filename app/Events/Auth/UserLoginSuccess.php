@@ -29,7 +29,7 @@ class UserLoginSuccess
 
     public function prepareRequestData($request)
     {
-        $data = $request->all();
+        $data = $request->except(['password', 'password_confirmation']);
 
         $data['last_ip'] = optional(request())->getClientIp();
 

@@ -474,7 +474,7 @@ class UserController extends Controller
 
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
-        if ($id === 1) {
+        if ((int) $id === 1) {
             $$module_name_singular->syncRoles(['super admin']);
 
             // Clear Cache
@@ -528,7 +528,7 @@ class UserController extends Controller
 
         $module_action = 'destroy';
 
-        if (Auth::user()->id === $id || $id === 1) {
+        if (Auth::user()->id == $id || $id == 1) {
             flash('You can not delete this user!')->warning()->important();
 
             logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
@@ -625,7 +625,7 @@ class UserController extends Controller
      */
     public function block($id)
     {
-        if (! Auth::user()->can('delete_users')) {
+        if (! Auth::user()->can('block_users')) {
             abort(403);
         }
 
@@ -670,7 +670,7 @@ class UserController extends Controller
      */
     public function unblock($id)
     {
-        if (! Auth::user()->can('delete_users')) {
+        if (! Auth::user()->can('block_users')) {
             abort(403);
         }
 
@@ -715,6 +715,10 @@ class UserController extends Controller
      */
     public function userProviderDestroy(Request $request)
     {
+        if (! Auth::user()->can('edit_users')) {
+            abort(403);
+        }
+
         $module_title = $this->module_title;
         $module_name = $this->module_name;
         $module_path = $this->module_path;
@@ -725,7 +729,7 @@ class UserController extends Controller
         $user_provider_id = $request->user_provider_id;
         $user_id = $request->user_id;
 
-        if (! $user_provider_id > 0 || ! $user_id > 0) {
+        if (! ($user_provider_id > 0) || ! ($user_id > 0)) {
             flash('Invalid Request. Please try again.')->error()->important();
 
             return redirect()->back();
@@ -740,8 +744,6 @@ class UserController extends Controller
             return redirect()->back();
         }
         flash('Request rejected. Please contact the Administrator!')->warning()->important();
-
-        event(new UserUpdated($$module_name_singular));
 
         throw new Exception('There was a problem updating this user. Please try again.');
     }
@@ -769,16 +771,6 @@ class UserController extends Controller
             $id = Auth::user()->id;
         }
 
-        // if ($id !== auth()->user()->id) {
-        //     if (auth()->user()->hasAnyRole(['administrator', 'super admin'])) {
-        //         Log::info(auth()->user()->name.' ('.auth()->user()->id.') - User Requested for Email Verification.');
-        //     } else {
-        //         Log::warning(auth()->user()->name.' ('.auth()->user()->id.') - User trying to confirm another users email.');
-
-        //         abort('403');
-        //     }
-        // }
-
         $user = User::where('id', '=', $id)->first();
 
         if ($user) {
@@ -792,6 +784,7 @@ class UserController extends Controller
 
                 return redirect()->back();
             }
+
             Log::info($user->name.' ('.$user->id.') - User Requested but Email already verified at.'.$user->email_verified_at);
 
             flash($user->name.', You already confirmed your email address at '.$user->email_verified_at->isoFormat('LL'))->success()->important();

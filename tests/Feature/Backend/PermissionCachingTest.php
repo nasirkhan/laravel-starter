@@ -294,4 +294,43 @@ class PermissionCachingTest extends TestCase
         $this->assertCount(1, $roles->first()->permissions);
         $this->assertEquals('test-permission', $roles->first()->permissions->first()->name);
     }
+
+    #[Test]
+    public function eager_loaded_roles_are_cached_with_permissions(): void
+    {
+        Cache::flush();
+
+        // Simulate eager loading (the path that previously skipped 'with permissions')
+        $user = User::with('roles')->find($this->user->id);
+
+        // Accessing the roles attribute triggers the eager-load cache branch
+        $roles = $user->roles;
+
+        $this->assertTrue(
+            $roles->first()->relationLoaded('permissions'),
+            'Roles from the eager-load cache branch should also have permissions loaded'
+        );
+    }
+
+    #[Test]
+    public function has_permission_via_role_uses_loaded_permissions_without_extra_queries(): void
+    {
+        Cache::flush();
+
+        // Populate the roles cache (which now stores roles with permissions)
+        $this->user->roles;
+
+        DB::enableQueryLog();
+
+        // hasPermissionTo hitting the role-permission path should not query
+        $hasPermission = $this->user->fresh()->hasPermissionTo('test-permission');
+
+        $queries = DB::getQueryLog();
+        $rolePermissionQueries = array_filter($queries, function ($query) {
+            return str_contains($query['query'], 'role_has_permissions');
+        });
+
+        $this->assertEmpty($rolePermissionQueries, 'Role-permission lookup should use loaded collection, not DB');
+        $this->assertTrue($hasPermission);
+    }
 }
