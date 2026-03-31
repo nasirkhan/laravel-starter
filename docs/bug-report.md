@@ -39,9 +39,9 @@
 
 | # | File | Line | Issue |
 |---|------|------|-------|
-| 15 | `app/Models/Notification.php` | ~29 | `SHOW COLUMNS FROM` is MySQL-only. Breaks on PostgreSQL/SQLite. |
-| 16 | `app/Models/BaseModel.php` | ~84 | Backtick aliases in PostgreSQL branch (`` `Field` ``, `` `Type` ``) are MySQL syntax — invalid in PostgreSQL. |
-| 17 | `app/Console/Commands/AppHealthCheckCommand.php` | ~59 | Direct `env()` call in a command — bypasses config cache. |
+| 15 | `app/Models/Notification.php` | ~29 | ~~`SHOW COLUMNS FROM` is MySQL-only. Breaks on PostgreSQL/SQLite.~~ ✅ Fixed: replaced with `Schema::getColumnListing()` which is DB-agnostic. |
+| 16 | `app/Models/BaseModel.php` | ~84 | ~~Backtick aliases in PostgreSQL branch (`` `Field` ``, `` `Type` ``) are MySQL syntax — invalid in PostgreSQL.~~ ✅ Fixed: replaced backticks with ANSI double-quotes (`"Field"`, `"Type"`). |
+| 17 | `app/Console/Commands/AppHealthCheckCommand.php` | ~59 | ~~Direct `env()` call in a command — bypasses config cache.~~ ✅ Fixed: replaced `env('APP_KEY/APP_URL/DB_CONNECTION')` with `config('app.key')`, `config('app.url')`, `config('database.default')`. |
 
 ---
 

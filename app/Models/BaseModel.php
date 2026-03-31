@@ -84,7 +84,7 @@ class BaseModel extends Model implements HasMedia
                     'extra' => $column->Extra,
                 ];
             }, DB::select('SHOW COLUMNS FROM '.$table_name)),
-            'pgsql' => DB::select("SELECT column_name as `Field`, data_type as `Type` FROM information_schema.columns WHERE table_name = '{$table_name}';"),
+            'pgsql' => DB::select("SELECT column_name AS \"Field\", data_type AS \"Type\" FROM information_schema.columns WHERE table_name = '{$table_name}';"),
             default => null,
         };
 
