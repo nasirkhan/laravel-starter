@@ -10,9 +10,9 @@
 
 | # | File | Line | Issue |
 |---|------|------|-------|
-| 1 | `app/Http/Controllers/SocialLoginController.php` | ~135 | `new UserRegistered(request(), $user)` — passes `Request` as first arg; constructor only accepts `User`. Causes a **TypeError** on every social registration. |
-| 2 | `app/Http/Controllers/UserController.php` | ~518 | `$user->name` accessed *before* `$user` is assigned (it's assigned a few lines later). Fatal error in PHP 8. |
-| 3 | `app/Http/Controllers/UserController.php` | ~261, 274 | `$request->confirmed === 1` and `$request->email_credentials === 1` use strict comparison against a string. Always `false`. Email verification timestamp and credentials notification are never triggered. |
+| 1 | `app/Http/Controllers/Auth/SocialLoginController.php` | ~135 | ~~`new UserRegistered(request(), $user)` — passes `Request` as first arg; constructor only accepts `User`. Causes a **TypeError** on every social registration.~~ ✅ Fixed: removed `request()` argument. |
+| 2 | `app/Http/Controllers/Backend/UserController.php` | ~518 | ~~`$user->name` accessed *before* `$user` is assigned (it's assigned a few lines later). Fatal error in PHP 8.~~ ✅ Fixed: replaced `$$module_name_singular->name` with `(id: $id)` in the log call. |
+| 3 | `app/Http/Controllers/Backend/UserController.php` | ~261, 274 | ~~`$request->confirmed === 1` and `$request->email_credentials === 1` use strict comparison against a string. Always `false`. Email verification timestamp and credentials notification are never triggered.~~ ✅ Fixed: changed `===` to `==`. |
 
 ### 🟠 High (Security / Authorization)
 

@@ -135,7 +135,7 @@ class SocialLoginController extends Controller
         $user->avatar = $media->getUrl();
         $user->save();
 
-        event(new UserRegistered(request(), $user));
+        event(new UserRegistered($user));
 
         UserProvider::create([
             'user_id' => $user->id,

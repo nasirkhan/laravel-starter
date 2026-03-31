@@ -243,7 +243,7 @@ class UserController extends Controller
         $data_array['name'] = $request->first_name.' '.$request->last_name;
         $data_array['password'] = $request->password;
 
-        if ($request->confirmed === 1) {
+        if ($request->confirmed == 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
         } else {
             $data_array = Arr::add($data_array, 'email_verified_at', null);
@@ -271,7 +271,7 @@ class UserController extends Controller
 
         flash("New '".Str::singular($module_title)."' Created")->success()->important();
 
-        if ($request->email_credentials === 1) {
+        if ($request->email_credentials == 1) {
             $data = [
                 'password' => $request->password,
             ];
@@ -531,7 +531,7 @@ class UserController extends Controller
         if (Auth::user()->id == $id || $id == 1) {
             flash('You can not delete this user!')->warning()->important();
 
-            logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
+            logUserAccess("{$module_title} {$module_action} Failed! (id: $id)");
 
             return redirect()->back();
         }
