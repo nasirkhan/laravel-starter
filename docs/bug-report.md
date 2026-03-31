@@ -18,10 +18,10 @@
 
 | # | File | Line | Issue |
 |---|------|------|-------|
-| 4 | `app/Http/Controllers/UserController.php` | ~522 | Non-admin `destroy()` guard replaces `$id` with the attacker's own ID instead of aborting. End result: they delete themselves. Should be `abort(403)`. |
-| 5 | `app/Http/Controllers/SocialLoginController.php` | ~24 | `redirectTo()` returns an unvalidated user-supplied URL — open redirect vulnerability. |
-| 6 | `app/Http/Controllers/LanguageController.php` | ~10 | `$language` parameter accepted with no whitelist check. Arbitrary locale strings are stored in session and passed to `setlocale()`. |
-| 7 | `app/Http/Controllers/RolesController.php` | ~258 | Loads all users + N role queries to count one role's members. Should be `User::role($role_name)->count()`. |
+| 4 | `app/Http/Controllers/Backend/UserController.php` | ~522 | ~~Non-admin `destroy()` guard replaces `$id` with the attacker's own ID instead of aborting. End result: they delete themselves. Should be `abort(403)`.~~ ✅ Fixed: replaced silent `$id` override with `abort(403)`. |
+| 5 | `app/Http/Controllers/Auth/SocialLoginController.php` | ~24 | ~~`redirectTo()` returns an unvalidated user-supplied URL — open redirect vulnerability.~~ ✅ Fixed: only returns the URL if it starts with `/` (relative paths only). |
+| 6 | `app/Http/Controllers/LanguageController.php` | ~10 | ~~`$language` parameter accepted with no whitelist check. Arbitrary locale strings are stored in session and passed to `setlocale()`.~~ ✅ Fixed: validates `$language` against `config('app.available_locales')` keys; aborts with 404 if invalid. |
+| 7 | `app/Http/Controllers/Backend/RolesController.php` | ~258 | ~~Loads all users + N role queries to count one role's members. Should be `User::role($role_name)->count()`.~~ ✅ Fixed: replaced with `User::role($role_name)->count()`. |
 
 ### 🟡 Medium (Null-safety / Logic)
 

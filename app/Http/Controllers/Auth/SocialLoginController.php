@@ -25,7 +25,7 @@ class SocialLoginController extends Controller
     {
         $redirectTo = request()->redirectTo;
 
-        if ($redirectTo) {
+        if ($redirectTo && str_starts_with($redirectTo, '/')) {
             return $redirectTo;
         }
 

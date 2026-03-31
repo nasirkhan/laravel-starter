@@ -537,7 +537,7 @@ class UserController extends Controller
         }
 
         if (! Auth::user()->can('edit_users')) {
-            $id = Auth::user()->id;
+            abort(403);
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
