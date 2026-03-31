@@ -49,13 +49,13 @@
 
 | # | File | Severity | Issue |
 |---|------|----------|-------|
-| 18 | `src/ModuleManager.php` | 🔴 Critical | The class body is empty. All facade calls (`ModuleManager::anything()`) throw `BadMethodCallException`. |
-| 19 | `src/Commands/AuthPermissionsCommand.php` | 🔴 Critical | Hard-codes `use App\Models\Permission` — fatal `Class not found` if the app uses a different permission model. |
-| 20 | `src/Commands/InsertDemoDataCommand.php` | 🔴 Critical | Hard-coded `use Modules\Comment\Models\Comment` causes fatal error if the Comment module is absent. |
-| 21 | `src/Commands/InsertDemoDataCommand.php` | 🟠 High | `Auth::loginUsingId(1)` on an empty database silently returns null auth — breaks all subsequent seeding that relies on `Auth::user()`. |
-| 22 | 4 command files | 🟠 High | `File::get('modules_statuses.json')` called without `File::exists()` guard. Crashes with unhandled `FileNotFoundException`. Affects: `ModuleCheckMigrationsCommand`, `ModuleDetectUpdatesCommand`, `ModuleDependenciesCommand`, `ModuleTrackMigrationsCommand`. |
-| 23 | `src/Commands/ModulePublishCommand.php` | 🟡 Medium | `symfony/finder` used via inline FQCN but not in `require` — `Class not found` in non-dev installs. |
-| 24 | Multiple commands | 🟡 Medium | `handle()` returns `null` instead of `self::SUCCESS` / `self::FAILURE`. `assertExitCode()` in tests is unreliable. |
+| 18 | `src/ModuleManager.php` | 🔴 Critical | ~~The class body is empty. All facade calls (`ModuleManager::anything()`) throw `BadMethodCallException`.~~ ✅ Fixed: added `getModules()`, `getEnabledModules()`, and `isEnabled()` methods backed by `modules_statuses.json`. |
+| 19 | `src/Commands/AuthPermissionsCommand.php` | 🔴 Critical | ~~Hard-codes `use App\Models\Permission` — fatal `Class not found` if the app uses a different permission model.~~ ✅ Fixed: removed static import; resolves model at runtime via `config('permission.models.permission', 'App\Models\Permission')`. |
+| 20 | `src/Commands/InsertDemoDataCommand.php` | 🔴 Critical | ~~Hard-coded `use Modules\Comment\Models\Comment` causes fatal error if the Comment module is absent.~~ ✅ Fixed: removed the unused import (Comment usage was already commented out). |
+| 21 | `src/Commands/InsertDemoDataCommand.php` | 🟠 High | ~~`Auth::loginUsingId(1)` on an empty database silently returns null auth — breaks all subsequent seeding that relies on `Auth::user()`.~~ ✅ Fixed: resolves user model from config, checks user exists, returns `self::FAILURE` with a clear error if not found. |
+| 22 | 4 command files | 🟠 High | ~~`File::get('modules_statuses.json')` called without `File::exists()` guard. Crashes with unhandled `FileNotFoundException`. Affects: `ModuleCheckMigrationsCommand`, `ModuleDetectUpdatesCommand`, `ModuleDependenciesCommand`, `ModuleTrackMigrationsCommand`.~~ ✅ Fixed: all four methods now check `File::exists()` first and return `self::FAILURE` with a clear error message. |
+| 23 | `src/Commands/ModulePublishCommand.php` | 🟡 Medium | ~~`symfony/finder` used via inline FQCN but not in `require` — `Class not found` in non-dev installs.~~ ✅ Fixed: added `use Symfony\Component\Finder\Finder;` import. |
+| 24 | Multiple commands | 🟡 Medium | ~~`handle()` returns `null` instead of `self::SUCCESS` / `self::FAILURE`. `assertExitCode()` in tests is unreliable.~~ ✅ Fixed: `AuthPermissionsCommand`, `InsertDemoDataCommand`, `ModuleBuildCommand`, `ModuleEnableCommand`, `ModuleDisableCommand`, `ModuleRemoveCommand` all now declare `: int` return type and return the correct exit code on every path. |
 
 ---
 
@@ -63,10 +63,10 @@
 
 | # | File | Severity | Issue |
 |---|------|----------|-------|
-| 25 | `src/View/Components/Ui/Button.php` | 🟡 Medium | `$size` property is completely ignored in Tailwind mode — all sizes render identically. |
-| 26 | `src/View/Components/Ui/Button.php` | 🟡 Medium | Only 3 of 9 variants defined in Tailwind config. `success`, `warning`, `info`, `light`, `dark`, `link` silently fall back to `primary`. |
-| 27 | `src/View/Components/RendersWithFallback.php` | 🟡 Medium | Error boundary catches exceptions and calls `view('cube::components.error-boundary')` — if *that* view is missing it throws an uncaught exception, defeating the error boundary. |
-| 28 | `src/View/Components/Navigation/NavLink.php` | 🔵 Low | `config('cube.tailwind.navigation.link')` can be `null` after publishing; `null . ' '` is a deprecation warning in PHP 8 producing malformed class strings. |
+| 25 | `src/View/Components/Ui/Button.php` | ✅ Resolved | `$size` property is completely ignored in Tailwind mode — all sizes render identically. |
+| 26 | `src/View/Components/Ui/Button.php` | ✅ Resolved | Only 3 of 9 variants defined in Tailwind config. `success`, `warning`, `info`, `light`, `dark`, `link` silently fall back to `primary`. |
+| 27 | `src/View/Components/RendersWithFallback.php` | ✅ Resolved | Error boundary catches exceptions and calls `view('cube::components.error-boundary')` — if *that* view is missing it throws an uncaught exception, defeating the error boundary. |
+| 28 | `src/View/Components/Navigation/NavLink.php` | ✅ Resolved | `config('cube.tailwind.navigation.link')` can be `null` after publishing; `null . ' '` is a deprecation warning in PHP 8 producing malformed class strings. |
 
 ---
 
@@ -74,7 +74,7 @@
 
 | # | File | Severity | Issue |
 |---|------|----------|-------|
-| 29 | `routes/web.php` | 🔴 Critical | Route registered as `POST` only. Jodit file browser sends `GET` requests → `405 Method Not Allowed`. Must be `Route::any()`. |
-| 30 | `src/Http/Controllers/JoditConnectorController.php` | 🔴 Critical | URL generation hardcodes `/storage/` prefix. Any non-`public` disk (S3, R2, etc.) produces broken file URLs. Should use `Storage::disk($this->disk)->url($path)`. |
-| 31 | `src/Http/Controllers/JoditConnectorController.php` | 🟠 High | `Storage::disk($this->disk)->path($storedPath)` throws `RuntimeException` on S3/non-local disks during image sanitization after upload. |
-| 32 | `src/Http/Controllers/JoditConnectorController.php` | 🟡 Medium | `actionResize()` with both dimensions `0` silently reads and re-saves the file unchanged, returning HTTP 200. No validation that at least one dimension is provided. |
+| 29 | `routes/web.php` | ✅ Resolved | Route registered as `POST` only. Jodit file browser sends `GET` requests → `405 Method Not Allowed`. Must be `Route::any()`. |
+| 30 | `src/Http/Controllers/JoditConnectorController.php` | ✅ Resolved | URL generation hardcodes `/storage/` prefix. Any non-`public` disk (S3, R2, etc.) produces broken file URLs. Should use `Storage::disk($this->disk)->url($path)`. |
+| 31 | `src/Http/Controllers/JoditConnectorController.php` | ✅ Resolved | `Storage::disk($this->disk)->path($storedPath)` throws `RuntimeException` on S3/non-local disks during image sanitization after upload. |
+| 32 | `src/Http/Controllers/JoditConnectorController.php` | ✅ Resolved | `actionResize()` with both dimensions `0` silently reads and re-saves the file unchanged, returning HTTP 200. No validation that at least one dimension is provided. |
