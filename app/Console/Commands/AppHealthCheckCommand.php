@@ -52,11 +52,15 @@ class AppHealthCheckCommand extends Command
      */
     protected function checkEnvironment(): void
     {
-        $required = ['APP_KEY', 'APP_URL', 'DB_CONNECTION'];
+        $required = [
+            'APP_KEY' => config('app.key'),
+            'APP_URL' => config('app.url'),
+            'DB_CONNECTION' => config('database.default'),
+        ];
         $missing = [];
 
-        foreach ($required as $key) {
-            if (empty(env($key))) {
+        foreach ($required as $key => $value) {
+            if (empty($value)) {
                 $missing[] = $key;
             }
         }

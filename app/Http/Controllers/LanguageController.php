@@ -9,6 +9,12 @@ class LanguageController extends Controller
 {
     public function switch($language)
     {
+        $availableLocales = array_keys(config('app.available_locales', []));
+
+        if (! in_array($language, $availableLocales, true)) {
+            abort(404);
+        }
+
         App::setLocale($language);
 
         session()->put('locale', $language);

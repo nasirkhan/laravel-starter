@@ -258,9 +258,7 @@ class RolesController extends Controller
 
         $user_roles = Auth::user()->getRoleNames();
 
-        $role_users = User::with('roles')->get()->filter(
-            fn ($user) => $user->roles->where('name', $role_name)->toArray()
-        )->count();
+        $role_users = User::role($role_name)->count();
 
         if ($id == 1) {
             Flash::warning("You can not delete {$$module_name_singular->name} role!")->important();
@@ -300,5 +298,7 @@ class RolesController extends Controller
 
             Log::error('Can not delete role with id '.$id);
         }
+
+        return redirect()->route("backend.{$module_name}.index");
     }
 }

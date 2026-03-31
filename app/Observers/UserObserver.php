@@ -25,6 +25,6 @@ class UserObserver
     public function deleting(User $user)
     {
         $user->deleted_by = Auth::id();
-        $user->save();
+        $user->saveQuietly();
     }
 }

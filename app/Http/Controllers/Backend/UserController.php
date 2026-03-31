@@ -243,7 +243,7 @@ class UserController extends Controller
         $data_array['name'] = $request->first_name.' '.$request->last_name;
         $data_array['password'] = $request->password;
 
-        if ($request->confirmed === 1) {
+        if ($request->confirmed == 1) {
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
         } else {
             $data_array = Arr::add($data_array, 'email_verified_at', null);
@@ -271,7 +271,7 @@ class UserController extends Controller
 
         flash("New '".Str::singular($module_title)."' Created")->success()->important();
 
-        if ($request->email_credentials === 1) {
+        if ($request->email_credentials == 1) {
             $data = [
                 'password' => $request->password,
             ];
@@ -382,11 +382,10 @@ class UserController extends Controller
         $$module_name_singular = User::findOrFail($id);
 
         $request_data = $request->only('password');
-        $request_data['password'] = $request_data['password'];
 
         $$module_name_singular->update($request_data);
 
-        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title).' Updated Successfully')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -480,7 +479,7 @@ class UserController extends Controller
             // Clear Cache
             Artisan::call('cache:clear');
 
-            flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+            flash(Str::singular($module_title).' Updated Successfully')->success()->important();
 
             return redirect("admin/{$module_name}");
         }
@@ -502,7 +501,7 @@ class UserController extends Controller
 
         event(new UserUpdated($$module_name_singular));
 
-        flash(Str::singular($module_title)."' Updated Successfully")->success()->important();
+        flash(Str::singular($module_title).' Updated Successfully')->success()->important();
 
         logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
 
@@ -531,13 +530,13 @@ class UserController extends Controller
         if (Auth::user()->id == $id || $id == 1) {
             flash('You can not delete this user!')->warning()->important();
 
-            logUserAccess("{$module_title} {$module_action} Failed! {$$module_name_singular->name} ($id)");
+            logUserAccess("{$module_title} {$module_action} Failed! (id: $id)");
 
             return redirect()->back();
         }
 
         if (! Auth::user()->can('edit_users')) {
-            $id = Auth::user()->id;
+            abort(403);
         }
 
         $$module_name_singular = $module_model::findOrFail($id);
@@ -602,7 +601,7 @@ class UserController extends Controller
 
         $module_action = 'Restore';
 
-        $$module_name_singular = $module_model::withTrashed()->find($id);
+        $$module_name_singular = $module_model::withTrashed()->findOrFail($id);
 
         $$module_name_singular->restore();
 
@@ -646,7 +645,7 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = User::withTrashed()->findOrFail($id);
 
         $$module_name_singular->status = 2;
         $$module_name_singular->save();
@@ -691,7 +690,7 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        $$module_name_singular = User::withTrashed()->find($id);
+        $$module_name_singular = User::withTrashed()->findOrFail($id);
 
         $$module_name_singular->status = 1;
         $$module_name_singular->save();

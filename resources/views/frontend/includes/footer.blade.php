@@ -28,11 +28,13 @@
         />
         @endif
 
-        @if (setting("show_copyright"))
+        @if (setting("show_license"))
         <x-cube::footer-license license="cc-by-sa" :author="app_name()" :author-url="app_url()" />
         @endif
 
+        @if (setting("show_credit"))
         <x-cube::footer-credit :text="setting('footer_text')" />
+        @endif
 
     </div>
 </footer>

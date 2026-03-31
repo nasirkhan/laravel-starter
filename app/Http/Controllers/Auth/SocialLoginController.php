@@ -25,7 +25,7 @@ class SocialLoginController extends Controller
     {
         $redirectTo = request()->redirectTo;
 
-        if ($redirectTo) {
+        if ($redirectTo && str_starts_with($redirectTo, '/')) {
             return $redirectTo;
         }
 
@@ -135,7 +135,7 @@ class SocialLoginController extends Controller
         $user->avatar = $media->getUrl();
         $user->save();
 
-        event(new UserRegistered(request(), $user));
+        event(new UserRegistered($user));
 
         UserProvider::create([
             'user_id' => $user->id,
