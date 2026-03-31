@@ -27,13 +27,13 @@
 
 | # | File | Line | Issue |
 |---|------|------|-------|
-| 8 | `app/Http/Controllers/UserController.php` | ~612 | `find()` result not null-checked before `->restore()`. Use `findOrFail()`. |
-| 9 | `app/Http/Controllers/UserController.php` | ~654, 698 | Same `find()` without null check in `block()` and `unblock()`. |
-| 10 | `app/Http/Controllers/RolesController.php` | ~290 | No `return` statement when `delete()` returns false — controller falls off end returning `null`. |
-| 11 | `app/Observers/UserObserver.php` | ~26 | `$user->save()` inside `deleting()` fires the `saving` observer again, issuing a redundant `UPDATE` on a row about to be deleted. Use `User::withoutEvents()`. |
-| 12 | `app/Http/Controllers/UserController.php` | ~450, 505 | Flash messages read `"'User' Updated"` — missing opening quote, output is `User' Updated Successfully`. |
-| 13 | `app/Http/Controllers/UserController.php` | ~592 | `$request_data['password'] = $request_data['password']` — dead self-assignment. |
-| 14 | `app/Http/Controllers/NotificationsController.php` | ~36 | `$this->module_model` set to `App\Models\User` instead of a Notification model. |
+| 8 | `app/Http/Controllers/Backend/UserController.php` | ~612 | ~~`find()` result not null-checked before `->restore()`. Use `findOrFail()`.~~ ✅ Fixed: changed to `findOrFail()`. |
+| 9 | `app/Http/Controllers/Backend/UserController.php` | ~654, 698 | ~~Same `find()` without null check in `block()` and `unblock()`.~~ ✅ Fixed: changed both to `findOrFail()`. |
+| 10 | `app/Http/Controllers/Backend/RolesController.php` | ~290 | ~~No `return` statement when `delete()` returns false — controller falls off end returning `null`.~~ ✅ Fixed: added `return redirect()->route("backend.{$module_name}.index")` after the catch block. |
+| 11 | `app/Observers/UserObserver.php` | ~26 | ~~`$user->save()` inside `deleting()` fires the `saving` observer again, issuing a redundant `UPDATE` on a row about to be deleted. Use `User::withoutEvents()`.~~ ✅ Fixed: changed `save()` to `saveQuietly()`. |
+| 12 | `app/Http/Controllers/Backend/UserController.php` | ~450, 505 | ~~Flash messages read `"'User' Updated"` — missing opening quote, output is `User' Updated Successfully`.~~ ✅ Fixed: removed stray `'` — now outputs `User Updated Successfully`. |
+| 13 | `app/Http/Controllers/Backend/UserController.php` | ~592 | ~~`$request_data['password'] = $request_data['password']` — dead self-assignment.~~ ✅ Fixed: removed the dead line. |
+| 14 | `app/Http/Controllers/Backend/NotificationsController.php` | ~36 | ~~`$this->module_model` set to `App\Models\User` instead of a Notification model.~~ ✅ Fixed: changed to `App\Models\Notification`. |
 
 ### 🔵 Low / Compatibility
 

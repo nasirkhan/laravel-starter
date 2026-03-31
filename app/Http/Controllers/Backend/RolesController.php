@@ -298,5 +298,7 @@ class RolesController extends Controller
 
             Log::error('Can not delete role with id '.$id);
         }
+
+        return redirect()->route("backend.{$module_name}.index");
     }
 }
