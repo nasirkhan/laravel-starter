@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use RuntimeException;
+use Throwable;
 
 class StarterInstallCommand extends Command
 {
@@ -32,41 +34,51 @@ class StarterInstallCommand extends Command
      */
     public function handle(): int
     {
-        $this->displayWelcome();
+        try {
+            $this->displayWelcome();
 
-        if (! $this->confirmInstallation()) {
-            return self::SUCCESS;
-        }
+            if (! $this->confirmInstallation()) {
+                return self::SUCCESS;
+            }
 
-        // Step 1: Environment Setup
-        if ($this->setupEnvironment()) {
-            // Step 2: Database Setup
-            if ($this->option('skip-db') || $this->setupDatabase()) {
-                // Step 3: Run Migrations (skip entirely when --skip-db is passed)
-                if ($this->option('skip-db') || $this->runMigrations()) {
-                    // Step 4: Seed Database
-                    if (! $this->option('skip-seed')) {
-                        $this->seedDatabase();
+            // Step 1: Environment Setup
+            if ($this->setupEnvironment()) {
+                // Step 2: Database Setup
+                if ($this->option('skip-db') || $this->setupDatabase()) {
+                    // Step 3: Run Migrations (skip entirely when --skip-db is passed)
+                    if ($this->option('skip-db') || $this->runMigrations()) {
+                        // Step 4: Seed Database
+                        if (! $this->option('skip-seed')) {
+                            $this->seedDatabase();
+                        }
+
+                        // Step 5: Final Steps
+                        $this->finalizeInstallation();
+
+                        // Step 6: Install npm dependencies & build assets
+                        if (! $this->option('skip-npm')) {
+                            $this->installNpmDependencies();
+                        }
+
+                        $this->displaySuccessMessage();
+
+                        return self::SUCCESS;
                     }
-
-                    // Step 5: Final Steps
-                    $this->finalizeInstallation();
-
-                    // Step 6: Install npm dependencies & build assets
-                    if (! $this->option('skip-npm')) {
-                        $this->installNpmDependencies();
-                    }
-
-                    $this->displaySuccessMessage();
-
-                    return self::SUCCESS;
                 }
             }
+
+            $this->components->error('Installation failed. Please check the errors above.');
+
+            return self::FAILURE;
+        } catch (Throwable $exception) {
+            report($exception);
+
+            $this->newLine();
+            $this->components->error($exception->getMessage());
+            $this->components->error('Installation failed. See logs for full stack trace.');
+
+            return self::FAILURE;
         }
-
-        $this->components->error('Installation failed. Please check the errors above.');
-
-        return self::FAILURE;
     }
 
     /**
@@ -216,11 +228,19 @@ class StarterInstallCommand extends Command
         }
 
         // migrate only
-        return (bool) $this->components->task('Running migrations', function () {
-            Artisan::call('migrate', ['--force' => true], $this->output);
+        $migrationExitCode = self::FAILURE;
 
-            return true;
+        $this->components->task('Running migrations', function () use (&$migrationExitCode) {
+            $migrationExitCode = Artisan::call('migrate', ['--force' => true], $this->output);
+
+            return $migrationExitCode === self::SUCCESS;
         });
+
+        if ($migrationExitCode !== self::SUCCESS) {
+            throw new RuntimeException('Running migrations failed. Review the migration output above.');
+        }
+
+        return true;
     }
 
     /**
@@ -238,11 +258,19 @@ class StarterInstallCommand extends Command
             return false;
         }
 
-        return (bool) $this->components->task('Resetting database (migrate:fresh)', function () {
-            Artisan::call('migrate:fresh', ['--force' => true], $this->output);
+        $freshMigrationExitCode = self::FAILURE;
 
-            return true;
+        $this->components->task('Resetting database (migrate:fresh)', function () use (&$freshMigrationExitCode) {
+            $freshMigrationExitCode = Artisan::call('migrate:fresh', ['--force' => true], $this->output);
+
+            return $freshMigrationExitCode === self::SUCCESS;
         });
+
+        if ($freshMigrationExitCode !== self::SUCCESS) {
+            throw new RuntimeException('Database reset failed while running migrate:fresh. Review the migration output above.');
+        }
+
+        return true;
     }
 
     /**
