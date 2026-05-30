@@ -6,7 +6,11 @@
 /* Configure Flowbite source */
 @source "../node_modules/flowbite";
 
-/* Include Laravel Cube package classes for Tailwind class detection */
+/* Include package view classes for Tailwind class detection. */
+@source "../../vendor/nasirkhan/module-manager/src/Modules/**/*.{php,blade.php}";
+@source "../../vendor/nasirkhan/laravel-sharekit/resources/views/**/*.blade.php";
+
+/* Include Laravel Cube package sources. */
 @import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
 
 /* Import Flowbite plugin */
