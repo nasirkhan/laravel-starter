@@ -234,6 +234,13 @@ class UserController extends Controller
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
             'password' => 'required|confirmed|min:6',
+            'mobile' => 'nullable|string|max:191',
+            'gender' => 'nullable|string|in:Female,Male,Other',
+            'date_of_birth' => 'nullable|date',
+            'address' => 'nullable|string|max:500',
+            'bio' => 'nullable|string|max:1000',
+            'social_profiles' => 'nullable|array',
+            'social_profiles.*' => 'nullable|url|max:191',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -463,6 +470,13 @@ class UserController extends Controller
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'.$id,
+            'mobile' => 'nullable|string|max:191',
+            'gender' => 'nullable|string|in:Female,Male,Other',
+            'date_of_birth' => 'nullable|date',
+            'address' => 'nullable|string|max:500',
+            'bio' => 'nullable|string|max:1000',
+            'social_profiles' => 'nullable|array',
+            'social_profiles.*' => 'nullable|url|max:191',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -474,12 +488,10 @@ class UserController extends Controller
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
         if ((int) $id === 1) {
-            $$module_name_singular->syncRoles(['super admin']);
-
             // Clear Cache
             Artisan::call('cache:clear');
 
-            flash(Str::singular($module_title).' Updated Successfully')->success()->important();
+            flash(Str::singular($module_title).' Data Updated Successfully')->success()->important();
 
             return redirect("admin/{$module_name}");
         }
@@ -492,9 +504,6 @@ class UserController extends Controller
 
         // Sync Permissions
         $$module_name_singular->syncPermissions((isset($validated_data['permissions'])) ? $validated_data['permissions'] : []);
-
-        // Clear user's permission cache
-        $$module_name_singular->clearPermissionCache();
 
         // Clear Cache
         Artisan::call('cache:clear');

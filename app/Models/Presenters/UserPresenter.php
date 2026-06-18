@@ -89,13 +89,19 @@ trait UserPresenter
             return Cache::get($cacheKey);
         }
 
-        // If relation is loaded (via eager loading), cache it and return
+        // If relation is loaded (via eager loading), cache it and return.
+        // Guard against a plain Collection (set by Spatie internally when events_enabled=false),
+        // which does not have loadMissing(). Only Eloquent Collections support that method.
         if ($this->relationLoaded('roles')) {
             $roles = $this->getRelation('roles');
-            $roles->loadMissing('permissions');
-            Cache::forever($cacheKey, $roles);
+            if ($roles instanceof Collection) {
+                $roles->loadMissing('permissions');
+                Cache::forever($cacheKey, $roles);
 
-            return $roles;
+                return $roles;
+            }
+            // Plain Collection — unset so the query path below loads a proper Eloquent Collection.
+            $this->unsetRelation('roles');
         }
 
         // Otherwise, query and cache
@@ -128,7 +134,7 @@ trait UserPresenter
     public static function socialFieldsNames()
     {
         return [
-            'website_url',
+            'website',
             'facebook_url',
             'twitter_url',
             'instagram_url',
@@ -139,7 +145,7 @@ trait UserPresenter
 
     public function getUrlWebsiteAttribute()
     {
-        return $this->social_profiles['website_url'] ?? null;
+        return $this->social_profiles['website'] ?? $this->social_profiles['website_url'] ?? null;
     }
 
     public function getUrlFacebookAttribute()
