@@ -187,9 +187,12 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        $role_users_count = User::role($$module_name_singular->name)->count();
+        $is_protected_role = ((int) $id === 1);
+
         logUserAccess($module_title.' '.$module_action.' | Id: '.$$module_name_singular->id);
 
-        return view(view: "backend.{$module_name}.edit", data: compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions'));
+        return view(view: "backend.{$module_name}.edit", data: compact('module_title', 'module_name', "{$module_name_singular}", 'module_name_singular', 'module_icon', 'module_action', 'permissions', 'role_users_count', 'is_protected_role'));
     }
 
     /**
@@ -212,10 +215,23 @@ class RolesController extends Controller
 
         $$module_name_singular = $module_model::findOrFail($id);
 
+        if ((int) $id === 1) {
+            flash(__('This role is protected and cannot be updated.'))->error()->important();
+
+            return redirect("admin/{$module_name}");
+        }
+
+        $role_users_count = User::role($$module_name_singular->name)->count();
+
         $validated_data = $request->validate([
             'name' => 'required|max:100|unique:roles,name,'.$id,
             'permissions' => 'nullable|array',
         ]);
+
+        // Prevent name change if the role has users assigned
+        if ($role_users_count > 0) {
+            $validated_data['name'] = $$module_name_singular->name;
+        }
 
         // Update Name
         $data = Arr::except($validated_data, ['permissions']);

@@ -33,6 +33,22 @@
                 </x-slot>
             </x-cube::backend-section-header>
 
+            @if ($is_protected_role ?? false)
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-warning d-flex align-items-center gap-2" role="alert">
+                            <i class="fas fa-lock fa-lg"></i>
+                            <div>
+                                <strong>{{ __('Protected Role') }}</strong> &mdash;
+                                {{ __('This role is protected and cannot be updated.') }}
+                            </div>
+                        </div>
+                        <a href="{{ route("backend.$module_name.index") }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> {{ __('Back to Roles') }}
+                        </a>
+                    </div>
+                </div>
+            @else
             <div class="row">
                 <div class="col">
                     {{ html()->modelForm($$module_name_singular, "PATCH", route("backend.$module_name.update", $$module_name_singular->id))->class("form-horizontal")->open() }}
@@ -43,6 +59,7 @@
                         $field_lable = __("labels.backend.roles.fields.name");
                         $field_placeholder = $field_lable;
                         $required = "required";
+                        $name_locked = ($role_users_count ?? 0) > 0;
                         ?>
 
                         <div class="col-12 col-sm-2">
@@ -53,7 +70,16 @@
 </div>
 <div class="col-12 col-sm-10">
     <div class="form-group">
-        {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+        @if ($name_locked)
+            {{ html()->hidden($field_name, $$module_name_singular->name) }}
+            {{ html()->text($field_name, $$module_name_singular->name)->placeholder($field_placeholder)->class("form-control")->attributes(["disabled", "aria-labelledby" => "{$field_name}-label"]) }}
+            <small class="text-warning">
+                <i class="fas fa-lock"></i>
+                {{ __('Role name cannot be changed because :count user(s) are assigned to this role.', ['count' => $role_users_count]) }}
+            </small>
+        @else
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+        @endif
     </div>
 </div>
                     </div>
@@ -94,7 +120,7 @@
                                 <x-cube::backend-button-save />
                             </div>
                         </div>
-                        
+
                         <div class="col-8">
                             <div class="float-end">
                                 @can("delete_" . $module_name)
@@ -113,7 +139,7 @@
                         </div>
                     </div>
                     {{ html()->form()->close() }}
-                    
+
                     <!-- Cancel button outside the form to prevent accidental form submission -->
                     <div class="row">
                         <div class="col-12 mt-3">
@@ -124,6 +150,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
         <div class="card-footer">
             <div class="row">
