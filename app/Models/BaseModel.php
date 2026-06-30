@@ -142,7 +142,7 @@ class BaseModel extends Model implements HasMedia
         return $this->belongsTo(User::class, 'updated_by');
     }
 
-    public function deletedByUser(): belongsTo
+    public function deletedByUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }
