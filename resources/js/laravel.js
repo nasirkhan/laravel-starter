@@ -5,6 +5,7 @@ Exemples :
 <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?">
 */
 
+import $ from 'jquery';
 
 (function () {
 

@@ -41,7 +41,7 @@ document.addEventListener('scroll', () => {
     }
 });
 
-// live clock 
+// live clock
 $(function () {
     showTime();
 });
@@ -61,8 +61,12 @@ function showTime() {
 
     var locale = document.getElementsByTagName("html")[0].getAttribute("lang");
     var time = hours.toLocaleString(locale) + ":" + minutes.toLocaleString(locale) + ":" + seconds.toLocaleString(locale) + " " + session.toLocaleString(locale);
-    document.getElementById("liveClock").innerText = time;
-    document.getElementById("liveClock").textContent = time;
+
+    var liveClockEl = document.getElementById("liveClock");
+    if (liveClockEl) {
+        liveClockEl.innerText = time;
+        liveClockEl.textContent = time;
+    }
 
     setTimeout(showTime, 1000);
 }
