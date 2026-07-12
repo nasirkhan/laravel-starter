@@ -179,7 +179,7 @@
                         alt="{{ Auth::user()->name }}'s profile picture"
                     />
                     <span class="ms-2 hidden sm:block">
-                        {{ Auth::user()->last_name }}
+                        {{ Auth::user()->first_name }}
                     </span>
                 </button>
                 <!-- Dropdown:user-dropdown-menu -->
@@ -200,7 +200,7 @@
                                 >
                                     <div class="inline-flex items-center">
                                         <svg
-                                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
+                                            class="me-2"
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
                                             height="24"
@@ -240,7 +240,7 @@
                             >
                                 <div class="inline-flex items-center">
                                     <svg
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-user-bolt me-2"
+                                        class="me-2"
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
                                         height="24"
@@ -269,7 +269,7 @@
                             >
                                 <div class="inline-flex items-center">
                                     <svg
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-settings-cog me-2"
+                                        class="me-2"
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
                                         height="24"
@@ -306,7 +306,7 @@
                             >
                                 <div class="inline-flex items-center">
                                     <svg
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-logout me-2"
+                                        class="me-2"
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
                                         height="24"
