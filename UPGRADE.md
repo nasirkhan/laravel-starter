@@ -4,6 +4,7 @@ This guide provides step-by-step instructions for upgrading between major versio
 
 ## Table of Contents
 - [General Upgrade Tips](#general-upgrade-tips)
+- [Upgrading to 13.7 from 13.6](#upgrading-to-137-from-136)
 - [Upgrading to Livewire 4.0 SFC](#upgrading-to-livewire-40-sfc)
 - [Upgrading to 13.0 from 12.x](#upgrading-to-130-from-12x)
 - [Upgrading to 12.20.0 from 2.x](#upgrading-to-12200-from-2x)
@@ -52,6 +53,59 @@ This guide provides step-by-step instructions for upgrading between major versio
 3. **Review Error Logs**
    - Check storage/logs for any issues
    - Monitor application behavior
+
+---
+
+## Upgrading to 13.7 from 13.6
+
+> **Estimated Time:** 5 minutes
+> **Difficulty:** Low
+> **Risk Level:** Low
+
+### Overview
+
+Two packages have been removed as direct dependencies of `laravel-starter` and are now managed by `nasirkhan/module-manager`. They are still installed in your application — they arrive transitively through the package.
+
+| Package | Where it moved |
+|---|---|
+| `spatie/laravel-activitylog ^5.0` | `nasirkhan/module-manager` |
+| `intervention/image-laravel ^4.0` | `nasirkhan/module-manager` |
+
+### Migration Steps
+
+#### Step 1: Remove the packages from `composer.json`
+
+Open `composer.json` and remove these lines from the `require` section:
+
+```json
+"intervention/image-laravel": "^4.0",
+"spatie/laravel-activitylog": "^5.0",
+```
+
+#### Step 2: Update dependencies
+
+```bash
+composer update
+```
+
+#### Step 3: Verify packages are still present
+
+```bash
+composer show spatie/laravel-activitylog
+composer show intervention/image-laravel
+```
+
+Both should still resolve through `nasirkhan/module-manager`.
+
+#### Step 4: Clear caches
+
+```bash
+php artisan clear-all
+```
+
+### No Code Changes Required
+
+All existing code referencing these packages continues to work without modification.
 
 ---
 
