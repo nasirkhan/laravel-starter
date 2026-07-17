@@ -22,7 +22,7 @@
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
         "nasirkhan/laravel-cube": "^2.0",
-        "nasirkhan/module-manager": "^6.0",
+        "nasirkhan/module-manager": "^7.0",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
         "spatie/laravel-permission": "^8.0"
