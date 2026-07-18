@@ -15,18 +15,17 @@
     "type": "project",
     "require": {
         "php": "^8.4",
-        "intervention/image-laravel": "^1.5",
+        "intervention/image": "^4.0",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^13.0",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
         "nasirkhan/laravel-cube": "^2.0",
-        "nasirkhan/module-manager": "^6.0",
-        "spatie/laravel-activitylog": "^4.10",
+        "nasirkhan/module-manager": "^7.0",
         "spatie/laravel-html": "^3.12",
         "spatie/laravel-medialibrary": "^11.12",
-        "spatie/laravel-permission": "^7.0"
+        "spatie/laravel-permission": "^8.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",

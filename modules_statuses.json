@@ -1,4 +1,5 @@
 {
+    "ActivityLog": true,
     "Backup": true,
     "Category": true,
     "FileManager": true,

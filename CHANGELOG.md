@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Moved `spatie/laravel-activitylog` dependency to `nasirkhan/module-manager` — the package is now installed transitively; remove it from your own `composer.json` if listed directly
+- Moved `intervention/image-laravel` dependency to `nasirkhan/module-manager` — required by `nasirkhan/laravel-jodit` for image resize/crop operations in the file browser; remove it from your own `composer.json` if listed directly
+
 ## [13.0.0] - 2026-02-26
 
 ### Added

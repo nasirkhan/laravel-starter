@@ -1,7 +1,5 @@
 <?php
 
-use Intervention\Image\Drivers\Gd\Driver;
-
 return [
 
     /*
@@ -9,15 +7,12 @@ return [
     | Image Driver
     |--------------------------------------------------------------------------
     |
-    | Intervention Image supports “GD Library” and “Imagick” to process images
-    | internally. Depending on your PHP setup, you can choose one of them.
-    |
-    | Included options:
-    |   - \Intervention\Image\Drivers\Gd\Driver::class
-    |   - \Intervention\Image\Drivers\Imagick\Driver::class
+    | Laravel's image manipulation features are powered by Intervention Image
+    | and support the "gd" and "imagick" PHP extensions. You may also set
+    | the driver using the IMAGE_DRIVER environment variable.
     |
     */
 
-    'driver' => Driver::class,
+    'driver' => env('IMAGE_DRIVER', 'gd'),
 
 ];
