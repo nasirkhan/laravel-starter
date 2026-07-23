@@ -67,6 +67,13 @@ class SocialLoginController extends Controller
 
             Auth::login($authUser, true);
         } catch (Exception $e) {
+            Log::error('Social login failed', [
+                'provider' => $provider,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            flash('Social login failed. Please try again.')->error()->important();
+
             return redirect('/');
         }
 
@@ -118,7 +125,7 @@ class SocialLoginController extends Controller
         $last_name = $name_parts[1];
         $email = $socialUser->getEmail();
 
-        if ($email === '') {
+        if (empty($email)) {
             Log::error('Social Login does not have email!');
 
             return null;
@@ -131,9 +138,17 @@ class SocialLoginController extends Controller
             'email' => $email,
         ]);
 
-        $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-        $user->avatar = $media->getUrl();
-        $user->save();
+        try {
+            $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
+            $user->avatar = $media->getUrl();
+            $user->save();
+        } catch (Exception $e) {
+            Log::warning('Failed to import social avatar', [
+                'user_id' => $user->id,
+                'avatar_url' => $socialUser->getAvatar(),
+                'error' => $e->getMessage(),
+            ]);
+        }
 
         event(new UserRegistered($user));
 

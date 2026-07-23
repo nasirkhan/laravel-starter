@@ -1,9 +1,12 @@
 {
     "agents": [
-        "copilot"
+        "copilot",
+        "claude",
+        "kilocode"
     ],
     "editors": [
         "vscode"
     ],
+    "mcp": true,
     "guidelines": []
 }
