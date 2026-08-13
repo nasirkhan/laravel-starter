@@ -26,5 +26,8 @@
         "simplebar": "^6.3.0",
         "tailwindcss": "^4.2.2",
         "vite": "^8.0.16"
+    },
+    "dependencies": {
+        "@tailwindcss/typography": "^0.5.20"
     }
 }
