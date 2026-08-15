@@ -38,7 +38,9 @@ jobs:
           touch database/database.sqlite
 
       - name: Remove local Composer overrides
-        run: echo '{}' > composer.local.json
+        run: |
+          echo '{}' > composer.local.json
+          rm -f composer.lock
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -78,7 +80,9 @@ jobs:
           touch database/database.sqlite
 
       - name: Remove local Composer overrides
-        run: echo '{}' > composer.local.json
+        run: |
+          echo '{}' > composer.local.json
+          rm -f composer.lock
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader

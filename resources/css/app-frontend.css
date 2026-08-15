@@ -16,6 +16,9 @@
 /* Import Flowbite plugin */
 @plugin "flowbite/plugin";
 
+/* Typography plugin for rich prose content */
+@plugin "@tailwindcss/typography";
+
 /* Dark mode variant configuration for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 

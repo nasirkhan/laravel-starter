@@ -12,7 +12,7 @@
             <p class="mb-10 text-lg font-normal text-gray-500 sm:px-16 sm:text-2xl xl:px-48 dark:text-gray-400">
                 {!! setting('app_description') !!}
             </p>
-            <div class="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
+            <div class="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-12">
                 <a
                     class="inline-flex items-center justify-center rounded-lg bg-gray-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-300"
                     href="https://github.com/nasirkhan/laravel-starter"
@@ -68,6 +68,19 @@
                     <span class="ms-2">Website</span>
                 </a>
             </div>
+
+            <div class="mb-8 flex flex-col items-center justify-center space-x-4 mx-auto text-center">
+                <div class="text-lg font-normal text-gray-500 sm:px-16 sm:text-xl xl:px-48 dark:text-gray-400 py-2">
+                    {{ __('Share this project with your friends and colleagues') }}
+                </div>
+                <x-sharekit::buttons
+                    theme="tailwind"
+                    :url="route('home')"
+                    :title="__('Laravel Starter')"
+                    :networks="['x', 'facebook', 'linkedin', 'whatsapp', 'copy']"
+                />
+            </div>
+
 
             @include('frontend.includes.messages')
         </div>
