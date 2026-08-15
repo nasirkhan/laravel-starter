@@ -1,20 +1,26 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="{{ setting('meta_description') }}" />
-<meta name="keyword" content="{{ setting('meta_keyword') }}" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-<title>@yield('title', $title ?? '') | {{ config('app.name') }}</title>
-
-<!-- Favicon -->
-<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/favicon.png') }}" />
-<link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
-<link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" />
-<link rel="icon" type="image/ico" href="{{ asset('img/favicon.png') }}" />
-
-<!-- Meta Includes -->
+{{-- Page-specific Head API calls (OG type overrides, article/profile meta, etc.) --}}
 @include('frontend.includes.meta')
+
+@php
+    // Backward-compatible title bridge: propagate @section('title') / $title into
+    // laravel/head so @head renders <title> and fills og:title / twitter:title.
+    // Controllers that call Head::title() directly will have their value replaced by
+    // this bridge when a @section('title') is also defined; prefer one or the other
+    // per page, not both simultaneously.
+    $__sectionTitle = trim($__env->yieldContent('title', $title ?? ''));
+    if ($__sectionTitle !== '') {
+        \Laravel\Head\Facades\Head::title($__sectionTitle, suffix: ' | ' . config('app.name'));
+    }
+@endphp
+
+@head
+
+{{-- Repeatable same-property tags pushed from meta.blade.php (e.g. article:tag) --}}
+@stack('head-meta')
 
 <!-- Styles -->
 @livewireStyles

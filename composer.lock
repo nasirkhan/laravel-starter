@@ -1710,6 +1710,77 @@
             "time": "2026-08-11T13:56:22+00:00"
         },
         {
+            "name": "laravel/head",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/head.git",
+                "reference": "08542966b1022348b1b4ee77008c6c6d4646a927"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/head/zipball/08542966b1022348b1b4ee77008c6c6d4646a927",
+                "reference": "08542966b1022348b1b4ee77008c6c6d4646a927",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^13.17.0",
+                "illuminate/routing": "^13.17.0",
+                "illuminate/support": "^13.17.0",
+                "illuminate/view": "^13.17.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "inertiajs/inertia-laravel": "^3.1",
+                "laravel/pint": "^1.28.0",
+                "livewire/livewire": "^4.3",
+                "orchestra/testbench": "^11.0",
+                "pestphp/pest": "^4.0",
+                "phpstan/phpstan": "^2.0",
+                "rector/rector": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Head": "Laravel\\Head\\Facades\\Head"
+                    },
+                    "providers": [
+                        "Laravel\\Head\\HeadServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Head\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "First-party head management for Laravel applications",
+            "homepage": "https://github.com/laravel/head",
+            "keywords": [
+                "head",
+                "laravel",
+                "metadata",
+                "seo",
+                "tags"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/head/issues",
+                "source": "https://github.com/laravel/head"
+            },
+            "time": "2026-08-12T20:38:49+00:00"
+        },
+        {
             "name": "laravel/prompts",
             "version": "v0.3.22",
             "source": {
@@ -2868,11 +2939,12 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "d16ccc5a1edbe88ccfbac24d066e0e27ffc2a156"
+                "reference": "9a9e419537396b81292c65bdd3407e34c7da6135"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
                 "illuminate/view": "^11.0|^12.0|^13.0",
+                "laravel/head": "^0.2",
                 "php": "^8.3 || ^8.4",
                 "themesberg/flowbite-blade-icons": "^1.3"
             },
@@ -3004,7 +3076,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-sharekit",
-                "reference": "e36f67d9992f6af4de81946d5240302776288264"
+                "reference": "251a24e43d987d541d8779e74da87e80eead4a98"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3069,7 +3141,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "dd104a51c5bd7d54f5aa6b11613b5bd776415948"
+                "reference": "f8300099500448e0c150013303efa58c6e697613"
             },
             "require": {
                 "intervention/image": "^4.0",
@@ -8352,16 +8424,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v13.1.6",
+            "version": "v13.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "662cbca5d7c7cecd1e21b123eafda0485f0f033d"
+                "reference": "1a3d674cdc0ef6a226c76f5ff0c3b6d8f3af15cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/662cbca5d7c7cecd1e21b123eafda0485f0f033d",
-                "reference": "662cbca5d7c7cecd1e21b123eafda0485f0f033d",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/1a3d674cdc0ef6a226c76f5ff0c3b6d8f3af15cc",
+                "reference": "1a3d674cdc0ef6a226c76f5ff0c3b6d8f3af15cc",
                 "shasum": ""
             },
             "require": {
@@ -8429,7 +8501,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables/issues",
-                "source": "https://github.com/yajra/laravel-datatables/tree/v13.1.6"
+                "source": "https://github.com/yajra/laravel-datatables/tree/v13.2.0"
             },
             "funding": [
                 {
@@ -8437,7 +8509,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-31T03:18:01+00:00"
+            "time": "2026-08-14T03:20:47+00:00"
         }
     ],
     "packages-dev": [
@@ -8680,19 +8752,21 @@
         },
         {
             "name": "hamcrest/hamcrest-php",
-            "version": "v2.1.1",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487"
+                "reference": "b61cd040da1a4925bc90a51c074f5297e7c0fa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
-                "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/b61cd040da1a4925bc90a51c074f5297e7c0fa52",
+                "reference": "b61cd040da1a4925bc90a51c074f5297e7c0fa52",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
                 "php": "^7.4|^8.0"
             },
             "replace": {
@@ -8701,13 +8775,15 @@
                 "kodova/hamcrest-php": "*"
             },
             "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-phpunit": "^2.0",
                 "phpunit/php-file-iterator": "^1.4 || ^2.0 || ^3.0",
                 "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -8725,9 +8801,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hamcrest/hamcrest-php/issues",
-                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.1.1"
+                "source": "https://github.com/hamcrest/hamcrest-php/tree/v3.0.0"
             },
-            "time": "2025-04-30T06:54:44+00:00"
+            "time": "2026-03-17T11:56:53+00:00"
         },
         {
             "name": "laravel/boost",
@@ -9207,29 +9283,28 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.6.12",
+            "version": "1.6.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699"
+                "reference": "9cb54414cdcd2ec5ca292e7ba19dba3a3444885d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/1f4efdd7d3beafe9807b08156dfcb176d18f1699",
-                "reference": "1f4efdd7d3beafe9807b08156dfcb176d18f1699",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/9cb54414cdcd2ec5ca292e7ba19dba3a3444885d",
+                "reference": "9cb54414cdcd2ec5ca292e7ba19dba3a3444885d",
                 "shasum": ""
             },
             "require": {
-                "hamcrest/hamcrest-php": "^2.0.1",
-                "lib-pcre": ">=7.0",
+                "hamcrest/hamcrest-php": "^2.0 || ^3.0",
                 "php": ">=7.3"
             },
             "conflict": {
                 "phpunit/phpunit": "<8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.6.17",
-                "symplify/easy-coding-standard": "^12.1.14"
+                "phpunit/phpunit": "^9.6.36",
+                "symplify/easy-coding-standard": "^13.2.17"
             },
             "type": "library",
             "autoload": {
@@ -9286,7 +9361,7 @@
                 "security": "https://github.com/mockery/mockery/security/advisories",
                 "source": "https://github.com/mockery/mockery"
             },
-            "time": "2024-05-16T03:13:13+00:00"
+            "time": "2026-08-15T03:07:32+00:00"
         },
         {
             "name": "myclabs/deep-copy",
