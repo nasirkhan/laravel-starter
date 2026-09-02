@@ -13,83 +13,17 @@
 @endsection
 
 @section("content")
-    <div class="card">
-        <div class="card-body">
-            <x-cube::backend-section-header>
-                <i class="{{ $module_icon }}"></i>
-                {{ __($module_title) }}
-                <small class="text-muted">{{ __($module_action) }}</small>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6">
+            <x-cube::backend-section-header
+                :module_name="$module_name"
+                :module_title="$module_title"
+                :module_icon="$module_icon"
+                :module_action="$module_action"
+            />
 
-                <x-slot name="toolbar">
-                    <x-cube::backend-button-create
-                        title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
-                        route='{{ route("backend.$module_name.create") }}'
-                        :small="true"
-                    />
-                </x-slot>
-            </x-cube::backend-section-header>
-
-            <div class="row">
-                <div class="col">
-                    <div class="table-responsive">
-                        <table class="table-hover table-bordered table">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
-                                    <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
-                                    <th>{{ __("labels.backend.$module_name.fields.users_count") }}</th>
-                                    <th>{{ __("labels.backend.action") }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($$module_name as $module_name_singular)
-                                    <tr>
-                                        <td>
-                                            <strong>
-                                                {{ $module_name_singular->name }}
-                                            </strong>
-                                        </td>
-                                        <td>
-                                            <ul>
-                                                @foreach ($module_name_singular->permissions as $permission)
-                                                    <li>{{ $permission->name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="badge bg-primary">
-                                                {{ $module_name_singular->users_count }}
-                                            </span>
-                                        </td>
-                                        <td class="text-end">
-                                            @can("edit_" . $module_name)
-                                                <x-cube::backend-button-edit
-                                                    title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                                                    route='{!! route("backend.$module_name.edit", $module_name_singular) !!}'
-                                                    small="true"
-                                                />
-                                            @endcan
-
-                                            <x-cube::backend-button-show
-                                                title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
-                                                route='{!! route("backend.$module_name.show", $module_name_singular) !!}'
-                                                small="true"
-                                            />
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <livewire:backend.roles-index />
         </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-12 mt-2">
-                    {{ $$module_name->links("pagination::bootstrap-5") }}
-                </div>
-            </div>
-        </div>
+        <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-3"></div>
     </div>
 @endsection

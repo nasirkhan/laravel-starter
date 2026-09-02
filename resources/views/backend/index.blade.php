@@ -9,18 +9,16 @@
 @endsection
 
 @section("content")
-    <div class="card mb-4">
-        <div class="card-body">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow mb-4">
+        <div class="p-6">
             <x-cube::backend-section-header>
                 @lang("Admin Dashboard")
 
                 <x-slot name="toolbar">
                     <button
-                        class="btn btn-outline-primary mb-1"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-700 border border-blue-700 rounded-lg hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-gray-700"
                         type="button"
-                        data-toggle="tooltip"
-                        data-coreui-placement="top"
-                        title="Tooltip"
+                        title="Announce"
                     >
                         <i class="fa-solid fa-bullhorn"></i>
                     </button>

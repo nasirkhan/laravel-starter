@@ -18,90 +18,62 @@
         <x-cube::backend-section-header>
             <i class="{{ $module_icon }}"></i>
             {{ __($module_title) }}
-            <small class="text-muted">{{ __($module_action) }}</small>
+            <small class="text-gray-500 dark:text-gray-400">{{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
                 <x-cube::backend-button-return-back :small="true" />
             </x-slot>
         </x-cube::backend-section-header>
 
-        <div class="row">
-            <div class="col">
-                {{ html()->form("POST", route("backend.roles.store"))->class("form-horizontal")->open() }}
+        {{ html()->form("POST", route("backend.roles.store"))->open() }}
 
-                <div class="row mb-3">
-                    <?php
-                    $field_name = "name";
-                    $field_lable = __("labels.backend.roles.fields.name");
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
+        <div class="mb-3">
+            <?php
+            $field_name = "name";
+            $field_lable = __("labels.backend.roles.fields.name");
+            $field_placeholder = $field_lable;
+            $required = "required";
+            ?>
 
-                    <div class="col-12 col-sm-2">
-    <div class="form-group">
-        {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-        {!! field_required($required) !!}
-    </div>
-</div>
-<div class="col-12 col-sm-10">
-    <div class="form-group">
-        {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-    </div>
-</div>
-                </div>
+            {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
+            {!! field_required($required) !!}
+            {{ html()->text($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+        </div>
 
-                <div class="row mb-3">
-                    <?php
-                    $field_name = "name";
-                    $field_lable = __("Abilities");
-                    $field_placeholder = $field_lable;
-                    $required = "";
-                    ?>
+        <div class="mb-3">
+            <?php
+            $field_name = "name";
+            $field_lable = __("Abilities");
+            $field_placeholder = $field_lable;
+            $required = "";
+            ?>
 
-                    <div class="col-12 col-sm-2">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                        </div>
+            {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white") }}
+            {!! field_required($required) !!}
+
+            <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">{{ __("Select permissions from the list:") }}</p>
+
+            @if ($permissions->count())
+                @foreach ($permissions as $permission)
+                    <div class="flex items-center gap-2 mb-2">
+                        {{ html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->class("w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600")->attributes(["aria-label" => $permission->name]) }}
+                        {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("text-sm font-medium text-gray-900 dark:text-gray-300") }}
                     </div>
-                    <div class="col-12 col-sm-10">
-                        <div class="form-group">
-                            {{ __("Select permissions from the list:") }}
+                @endforeach
+            @endif
+        </div>
 
-                            @if ($permissions->count())
-                                @foreach ($permissions as $permission)
-                                    <div class="form-check">
-    {{ html()->label($permission->name)->for("permission-" . $permission->id)->class("form-check-label") }}
-    {{ html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->class("form-check-input")->attributes(["aria-label" => $permission->name]) }}
-</div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
+        <div class="mb-4">
+            <x-backend-button-create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}">
+                {{ __("Create") }}
+            </x-backend-button-create>
+        </div>
 
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <x-backend-button-create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}">
-                                {{ __("Create") }}
-                            </x-backend-button-create>
-                        </div>
-                    </div>
-                </div>
-                {{ html()->form()->close() }}
-                
-                <!-- Cancel button outside the form to prevent accidental form submission -->
-                <div class="row">
-                    <div class="col-12 mt-3">
-                        <div class="float-end">
-                            <div class="form-group">
-                                <x-backend-button-cancel />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{ html()->form()->close() }}
+
+        <!-- Cancel button outside the form to prevent accidental form submission -->
+        <div class="flex justify-end mt-3">
+            <x-backend-button-cancel />
         </div>
     </x-cube::backend-layout-create>
 @endsection

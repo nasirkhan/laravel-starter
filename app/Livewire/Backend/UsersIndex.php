@@ -3,42 +3,36 @@
 namespace App\Livewire\Backend;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Title;
-use Livewire\Attributes\Url;
-use Livewire\Component;
-use Livewire\WithPagination;
+use Nasirkhan\LaravelCube\Livewire\LwTable;
 
 #[Title('Users')]
-class UsersIndex extends Component
+class UsersIndex extends LwTable
 {
-    use WithPagination;
+    public string $sortCol = 'name';
 
-    #[Url(as: 'q')]
-    public string $searchTerm = '';
+    public string $sortDir = 'asc';
 
-    protected $paginationTheme = 'bootstrap';
-
-    /**
-     * Reset pagination when the search term changes.
-     */
-    public function updatedSearchTerm(): void
+    protected function baseQuery(): Builder
     {
-        $this->resetPage();
+        return User::query()
+            ->when(
+                $this->search,
+                fn (Builder $q) => $q->where(
+                    fn (Builder $inner) => $inner
+                        ->where('name', 'like', '%'.$this->search.'%')
+                        ->orWhere('email', 'like', '%'.$this->search.'%')
+                )
+            )
+            ->orderBy($this->sortCol, $this->sortDir)
+            ->with(['roles', 'providers']);
     }
 
     public function render()
     {
-        $searchTerm = '%'.$this->searchTerm.'%';
-
-        $users = User::query()
-            ->where('name', 'like', $searchTerm)
-            ->orWhere('email', 'like', $searchTerm)
-            ->orderBy('id', 'desc')
-            ->with(['permissions', 'roles.permissions', 'providers'])
-            ->paginate();
-
         return view('livewire.backend.users-index', [
-            'users' => $users,
+            'users' => $this->rows(),
         ]);
     }
 }

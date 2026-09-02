@@ -13,8 +13,8 @@
 @endsection
 
 @section("content")
-    <div class="card">
-        <div class="card-body">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6">
             <x-cube::backend-section-header
                 :module_name="$module_name"
                 :module_title="$module_title"
@@ -24,6 +24,6 @@
 
             <livewire:backend.users-index />
         </div>
-        <div class="card-footer"></div>
+        <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-3"></div>
     </div>
 @endsection

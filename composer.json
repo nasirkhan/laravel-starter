@@ -21,6 +21,7 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
+        "nasirkhan/laravel-admin": "@dev",
         "nasirkhan/laravel-cube": "^2.0",
         "nasirkhan/module-manager": "^7.0",
         "spatie/laravel-html": "^3.12",

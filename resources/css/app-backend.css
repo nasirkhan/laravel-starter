@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "flowbite/src/themes/default";
+@source "../../resources/views/backend";
+@source "../../node_modules/flowbite";
+@source "../../vendor/nasirkhan/laravel-admin/resources/views";
+@source "../../vendor/nasirkhan/module-manager/src/Modules/**/*.{php,blade.php}";
+@import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
+@plugin "flowbite/plugin";
+
+/* Dark mode variant configuration for Tailwind v4 (class-based: <html class="dark">) */
+@variant dark (&:where(.dark, .dark *));

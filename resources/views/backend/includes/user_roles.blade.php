@@ -1,8 +1,8 @@
 @if ($data->getRoleNames()->count() > 0)
-    <ul class="fa-ul">
+    <ul class="space-y-1">
         @foreach ($data->getRoleNames() as $role)
             <li>
-                <span class="fa-li"><i class="fas fa-check-square"></i></span>
+                <i class="fas fa-check-square"></i>
                 {{ ucwords($role) }}
             </li>
         @endforeach

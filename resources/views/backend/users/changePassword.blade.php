@@ -15,27 +15,27 @@
 @endsection
 
 @section("content")
-    <div class="card">
-        <div class="card-body">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6">
             <x-cube::backend-section-header>
                 <i class="{{ $module_icon }}"></i>
                 {{ __($module_title) }}
-                <small class="text-muted">{{ __($module_action) }}</small>
+                <small class="text-gray-500 dark:text-gray-400">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
                     <x-cube::backend-button-return-back :small="true" />
                 </x-slot>
             </x-cube::backend-section-header>
 
-            <div class="row mb-3">
-                <div class="col">
+            <div class="flex flex-wrap gap-4 mb-3">
+                <div>
                     <strong>
                         @lang("Name")
                         :
                     </strong>
                     {{ $$module_name_singular->name }}
                 </div>
-                <div class="col">
+                <div>
                     <strong>
                         @lang("Email")
                         :
@@ -43,45 +43,29 @@
                     {{ $$module_name_singular->email }}
                 </div>
             </div>
-            <div class="row mb-4 mt-4">
-                <div class="col">
-                    {{ html()->form("PATCH", route("backend.users.changePasswordUpdate", $$module_name_singular->id))->class("form-horizontal")->open() }}
 
-                    <div class="form-group row mb-3">
-    {{ html()->label(__("labels.backend.users.fields.password"))->class("col-md-2 form-label")->for("password")->id("password-label") }}
+            <div class="mt-4">
+                {{ html()->form("PATCH", route("backend.users.changePasswordUpdate", $$module_name_singular->id))->open() }}
 
-    <div class="col-md-10">
-        {{ html()->password("password")->class("form-control")->placeholder(__("labels.backend.users.fields.password"))->required()->attributes(["aria-labelledby" => "password-label"]) }}
-    </div>
-</div>
-
-<div class="form-group row mb-3">
-    {{ html()->label(__("labels.backend.users.fields.password_confirmation"))->class("col-md-2 form-label")->for("password_confirmation")->id("password_confirmation-label") }}
-
-    <div class="col-md-10">
-        {{ html()->password("password_confirmation")->class("form-control")->placeholder(__("labels.backend.users.fields.password_confirmation"))->required()->attributes(["aria-labelledby" => "password_confirmation-label"]) }}
-    </div>
-</div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        {{ html()->button($text = "<i class='fas fa-save'></i> Save", $type = "submit")->class("btn btn-success") }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{ html()->closeModelForm() }}
+                <div class="mb-4">
+                    {{ html()->label(__("labels.backend.users.fields.password"))->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->for("password")->id("password-label") }}
+                    {{ html()->password("password")->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->placeholder(__("labels.backend.users.fields.password"))->required()->attributes(["aria-labelledby" => "password-label"]) }}
                 </div>
-                <!--/.col-->
+
+                <div class="mb-4">
+                    {{ html()->label(__("labels.backend.users.fields.password_confirmation"))->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->for("password_confirmation")->id("password_confirmation-label") }}
+                    {{ html()->password("password_confirmation")->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->placeholder(__("labels.backend.users.fields.password_confirmation"))->required()->attributes(["aria-labelledby" => "password_confirmation-label"]) }}
+                </div>
+
+                <div class="mb-4">
+                    {{ html()->button($text = "<i class='fas fa-save'></i> Save", $type = "submit")->class("inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700") }}
+                </div>
+
+                {{ html()->closeModelForm() }}
             </div>
-            <!--/.row-->
         </div>
 
-        <div class="card-footer">
+        <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-3">
             <x-cube::backend-section-footer>
                 @lang("Updated")
                 : {{ $$module_name_singular->updated_at->diffForHumans() }},
