@@ -18,7 +18,7 @@
         <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/" wire:navigate aria-label="Go to homepage">
             <img class="h-9 rounded" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
-        <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
+        <div class="flex items-center justify-end gap-2 md:order-2 md:gap-3 rtl:space-x-reverse">
             @if (setting("show_theme_dropdown"))
                 <button
                     class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
