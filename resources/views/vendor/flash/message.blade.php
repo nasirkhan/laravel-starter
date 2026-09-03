@@ -1,54 +1,27 @@
 @foreach (session('flash_notification', collect())->toArray() as $message)
-    <?php
-    $variable = $message['level'];
-    
-    switch ($variable) {
-        case 'primary':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
-            break;
-        case 'secondary':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
-            break;
-        case 'success':
-            $icon = '<i class="fa-solid fa-circle-check fa-fw"></i>';
-            break;
-        case 'danger':
-            $icon = '<i class="fa-solid fa-triangle-exclamation fa-fw"></i>';
-            break;
-        case 'warning':
-            $icon = '<i class="fa-solid fa-triangle-exclamation fa-fw"></i>';
-            break;
-        case 'info':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
-            break;
-        case 'light':
-            $icon = '<i class="fa-solid fa-bullhorn fa-fw"></i>';
-            break;
-        case 'dark':
-            $icon = '<i class="fa-solid fa-circle-question fa-fw"></i>';
-            break;
-        default:
-            $icon = '<i class="fa-solid fa-bullhorn fa-fw"></i>';
-            break;
-    }
-    ?>
-
     @if ($message['overlay'])
-        @include('flash::modal', [
-            'modalClass' => 'flash-modal',
-            'title' => $message['title'],
-            'body' => $message['message'],
-        ])
+        <x-cube::modal framework="bootstrap" name="flash-overlay-{{ $loop->index }}">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ $message['title'] }}</h5>
+                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="{{ __('Close') }}"></button>
+            </div>
+            <div class="modal-body">
+                <p>{!! $message['message'] !!}</p>
+            </div>
+            <div class="modal-footer">
+                <x-cube::button framework="bootstrap" data-coreui-dismiss="modal">{{ __('Close') }}</x-cube::button>
+            </div>
+        </x-cube::modal>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var el = document.getElementById('flash-overlay-{{ $loop->index }}');
+                if (el) { new coreui.Modal(el).show(); }
+            });
+        </script>
     @else
-        <div class="alert alert-{{ $message['level'] }} {{ $message['important'] ? 'alert-dismissible' : '' }}"
-            role="alert" fade show>
-
-            {!! $icon !!}&nbsp;{!! $message['message'] !!}
-
-            @if ($message['important'])
-                <button class="btn-close" data-coreui-dismiss="alert" type="button" aria-label="Close"></button>
-            @endif
-        </div>
+        <x-cube::alert :type="$message['level']" :dismissible="$message['important']">
+            {!! $message['message'] !!}
+        </x-cube::alert>
     @endif
 @endforeach
 

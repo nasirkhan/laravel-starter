@@ -45,12 +45,9 @@ class AllFormsStructureTest extends TestCase
             $formClosePositions = [];
             $cancelPositions = [];
 
-            // Look for various form closing patterns
-            if (strpos($content, '{{ html()->closeModelForm() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->closeModelForm() }}');
-            }
-            if (strpos($content, '{{ html()->form()->close() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->form()->close() }}');
+            // Look for form closing tag
+            if (strpos($content, '</form>') !== false) {
+                $formClosePositions[] = strpos($content, '</form>');
             }
 
             // Look for Cancel button patterns

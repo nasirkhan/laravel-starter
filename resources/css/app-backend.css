@@ -4,7 +4,7 @@
 @source "../../resources/views/backend";
 @source "../../node_modules/flowbite";
 @source "../../vendor/nasirkhan/laravel-admin/resources/views";
-@source "../../vendor/nasirkhan/module-manager/src/Modules/**/*.{php,blade.php}";
+@source "../../vendor/nasirkhan/module-manager/src/Modules";
 @import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
 @plugin "flowbite/plugin";
 

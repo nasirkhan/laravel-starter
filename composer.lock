@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b01e32c0449fb49a931d08948f69809",
+    "content-hash": "333c44d4213a8bd8f0a8f247aa4cc7bc",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1424,63 +1424,6 @@
                 }
             ],
             "time": "2026-08-29T05:35:03+00:00"
-        },
-        {
-            "name": "laracasts/flash",
-            "version": "3.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/flash.git",
-                "reference": "4fc18fed3152d8910ed64589b0f5d049fd6a0806"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/flash/zipball/4fc18fed3152d8910ed64589b0f5d049fd6a0806",
-                "reference": "4fc18fed3152d8910ed64589b0f5d049fd6a0806",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "dev-master",
-                "phpunit/phpunit": "^6.1|^9.5.10|^10.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Flash": "Laracasts\\Flash\\Flash"
-                    },
-                    "providers": [
-                        "Laracasts\\Flash\\FlashServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Laracasts/Flash/functions.php"
-                ],
-                "psr-0": {
-                    "Laracasts\\Flash": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Easy flash notifications",
-            "support": {
-                "source": "https://github.com/laracasts/flash/tree/3.2.6"
-            },
-            "time": "2026-03-25T17:55:04+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2989,7 +2932,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "9a9e419537396b81292c65bdd3407e34c7da6135"
+                "reference": "dbc294886b7fe52ac67184d122468ed728f6b770"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3191,7 +3134,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "d064e1ad7f6b0bcf2cd9d5d8fba4214c05732cd3"
+                "reference": "ab1314715a0234f534364f5cdc899856a78fdf21"
             },
             "require": {
                 "intervention/image": "^4.0",
@@ -5148,84 +5091,6 @@
                 }
             ],
             "time": "2026-08-20T12:06:47+00:00"
-        },
-        {
-            "name": "spatie/laravel-html",
-            "version": "3.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-html.git",
-                "reference": "0579bf41959b4c4068206ec9bf1fcd1b59d8fa25"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/0579bf41959b4c4068206ec9bf1fcd1b59d8fa25",
-                "reference": "0579bf41959b4c4068206ec9bf1fcd1b59d8fa25",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": "^10.0|^11.0|^12.0|^13.0",
-                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3",
-                "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
-                "pestphp/pest": "^2.34|^3.7|^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Html": "Spatie\\Html\\Facades\\Html"
-                    },
-                    "providers": [
-                        "Spatie\\Html\\HtmlServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Spatie\\Html\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A fluent html builder",
-            "homepage": "https://github.com/spatie/laravel-html",
-            "keywords": [
-                "html",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/laravel-html/tree/3.13.0"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
-            ],
-            "time": "2026-02-22T09:05:56+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",

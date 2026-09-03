@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Laracasts\Flash\Flash;
+use App\Support\Flash;
 
 class RolesController extends Controller
 {

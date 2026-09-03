@@ -1,11 +1,19 @@
 <?php
 
+use App\Support\Flash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
+
+if (! function_exists('flash')) {
+    function flash(string $message = ''): Flash
+    {
+        return new Flash($message);
+    }
+}
 
 /*
  * Global helpers file with misc functions.
