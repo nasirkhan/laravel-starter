@@ -47,7 +47,7 @@ trait Authorizable
             return null;
         }
 
-        return $action ? $action . '_' . $routeName[1] : null;
+        return $action ? $action.'_'.$routeName[1] : null;
     }
 
     public function setAbilities($abilities)
