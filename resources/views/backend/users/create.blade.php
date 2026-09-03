@@ -27,162 +27,106 @@
         </x-cube::backend-section-header>
 
         <div class="mt-4">
-            {{ html()->form("POST", route("backend.$module_name.store"))->acceptsFiles()->open() }}
+            <form method="POST" action="{{ route("backend.$module_name.store") }}" enctype="multipart/form-data">
+                @csrf
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <?php
-                    $field_name = "first_name";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <x-cube::group name="first_name" :label="label_case('first_name')" required>
+                        <x-cube::input type="text" name="first_name" :value="old('first_name')" :placeholder="label_case('first_name')" required />
+                    </x-cube::group>
+                    <x-cube::group name="last_name" :label="label_case('last_name')" required>
+                        <x-cube::input type="text" name="last_name" :value="old('last_name')" :placeholder="label_case('last_name')" required />
+                    </x-cube::group>
                 </div>
-                <div>
-                    <?php
-                    $field_name = "last_name";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
 
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <x-cube::group name="email" :label="label_case('email')" required>
+                        <x-cube::input type="email" name="email" :value="old('email')" :placeholder="label_case('email')" required />
+                    </x-cube::group>
+                    <x-cube::group name="mobile" :label="label_case('mobile')">
+                        <x-cube::input type="text" name="mobile" :value="old('mobile')" :placeholder="label_case('mobile')" />
+                    </x-cube::group>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <?php
-                    $field_name = "email";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->email($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <x-cube::group name="password" :label="label_case('password')" required>
+                        <x-cube::input type="password" name="password" :placeholder="label_case('password')" required />
+                    </x-cube::group>
+                    <x-cube::group name="password_confirmation" :label="label_case('password_confirmation')" required>
+                        <x-cube::input type="password" name="password_confirmation" :placeholder="label_case('password_confirmation')" required />
+                    </x-cube::group>
                 </div>
-                <div>
-                    <?php
-                    $field_name = "mobile";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "";
-                    ?>
 
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                <div class="flex flex-col gap-2 mb-4">
+                    <x-cube::checkbox name="status" value="1" :checked="old('status', true)">
+                        @lang("Active")
+                    </x-cube::checkbox>
+                    <x-cube::checkbox name="confirmed" value="1" :checked="old('confirmed', true)">
+                        @lang("Email Confirmed")
+                    </x-cube::checkbox>
+                    <x-cube::checkbox name="email_credentials" value="1" :checked="old('email_credentials', true)">
+                        @lang("Email Credentials")
+                    </x-cube::checkbox>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <?php
-                    $field_name = "password";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->password($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                </div>
-                <div>
-                    <?php
-                    $field_name = "password_confirmation";
-                    $field_lable = label_case($field_name);
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-
-                    {{ html()->label($field_lable, $field_name)->class("block mb-2 text-sm font-medium text-gray-900 dark:text-white")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->password($field_name)->placeholder($field_placeholder)->class("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                </div>
-            </div>
-
-            <div class="flex items-center gap-3 mb-3">
-                {{ html()->label(__("labels.backend.users.fields.status"))->class("text-sm font-medium text-gray-900 dark:text-white")->for("status")->id("status-label") }}
-                {{ html()->checkbox("status", true, "1")->attributes(["aria-labelledby" => "status-label"]) }}
-                @lang("Active")
-            </div>
-
-            <div class="flex items-center gap-3 mb-3">
-                {{ html()->label(__("labels.backend.users.fields.confirmed"))->class("text-sm font-medium text-gray-900 dark:text-white")->for("confirmed")->id("confirmed-label") }}
-                {{ html()->checkbox("confirmed", true, "1")->attributes(["aria-labelledby" => "confirmed-label"]) }}
-                @lang("Email Confirmed")
-            </div>
-
-            <div class="flex items-center gap-3 mb-3">
-                {{ html()->label(__("labels.backend.users.fields.email_credentials"))->class("text-sm font-medium text-gray-900 dark:text-white")->for("email_credentials")->id("email_credentials-label") }}
-                {{ html()->checkbox("email_credentials", true, "1")->attributes(["aria-labelledby" => "email_credentials-label"]) }}
-                @lang("Email Credentials")
-            </div>
-
-            <div class="mb-4">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">@lang("Abilities")</label>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-white dark:bg-gray-800 border border-sky-200 dark:border-sky-800 rounded-lg">
-                        <div class="px-4 py-3 border-b border-sky-200 dark:border-sky-800 font-semibold text-gray-900 dark:text-white">@lang("Roles")</div>
-                        <div class="p-4 space-y-2">
-                            @if ($roles->count())
-                                @foreach ($roles as $role)
-                                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg mb-3">
-                                        <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                                            <div class="flex items-center gap-2">
-                                                {{ html()->checkbox("roles[]", old("roles") && in_array($role->name, old("roles")) ? true : false, $role->name)->id("role-" . $role->id)->class("w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600")->attributes(["aria-label" => ucwords($role->name) . " (" . $role->name . ")"]) }}
-                                                <label for="role-{{ $role->id }}" class="text-sm font-medium text-gray-900 dark:text-gray-300">{{ ucwords($role->name) }} ({{ $role->name }})</label>
+                <div class="mb-4">
+                    <x-cube::label :value="__('Abilities')" />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-1">
+                        <div class="bg-white dark:bg-gray-800 border border-sky-200 dark:border-sky-800 rounded-lg">
+                            <div class="px-4 py-3 border-b border-sky-200 dark:border-sky-800 font-semibold text-gray-900 dark:text-white">@lang("Roles")</div>
+                            <div class="p-4 space-y-2">
+                                @if ($roles->count())
+                                    @foreach ($roles as $role)
+                                        <div class="border border-gray-200 dark:border-gray-700 rounded-lg mb-3">
+                                            <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                                                <x-cube::checkbox
+                                                    name="roles[]"
+                                                    value="{{ $role->name }}"
+                                                    id="role-{{ $role->id }}"
+                                                    :checked="in_array($role->name, old('roles', []))"
+                                                >{{ ucwords($role->name) }} ({{ $role->name }})</x-cube::checkbox>
+                                            </div>
+                                            <div class="p-4 text-sm text-gray-600 dark:text-gray-400">
+                                                @if ($role->id != 1)
+                                                    @if ($role->permissions->count())
+                                                        @foreach ($role->permissions as $permission)
+                                                            <i class="far fa-check-circle mr-1"></i>
+                                                            &nbsp;{{ $permission->name }}&nbsp;
+                                                        @endforeach
+                                                    @else
+                                                        @lang("None")
+                                                    @endif
+                                                @else
+                                                    @lang("All Permissions")
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="p-4 text-sm text-gray-600 dark:text-gray-400">
-                                            @if ($role->id != 1)
-                                                @if ($role->permissions->count())
-                                                    @foreach ($role->permissions as $permission)
-                                                        <i class="far fa-check-circle mr-1"></i>
-                                                        &nbsp;{{ $permission->name }}&nbsp;
-                                                    @endforeach
-                                                @else
-                                                    @lang("None")
-                                                @endif
-                                            @else
-                                                @lang("All Permissions")
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
-                        <div class="px-4 py-3 border-b border-blue-200 dark:border-blue-800 font-semibold text-gray-900 dark:text-white">@lang("Permissions")</div>
-                        <div class="p-4 space-y-2">
-                            @if ($permissions->count())
-                                @foreach ($permissions as $permission)
-                                    <div class="flex items-center gap-2 mb-2">
-                                        {{ html()->checkbox("permissions[]", old("permissions") && in_array($permission->name, old("permissions")) ? true : false, $permission->name)->id("permission-" . $permission->id)->class("w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600")->attributes(["aria-label" => $permission->name]) }}
-                                        <label for="permission-{{ $permission->id }}" class="text-sm font-medium text-gray-900 dark:text-gray-300">{{ $permission->name }}</label>
-                                    </div>
-                                @endforeach
-                            @endif
+                        <div class="bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-800 rounded-lg">
+                            <div class="px-4 py-3 border-b border-blue-200 dark:border-blue-800 font-semibold text-gray-900 dark:text-white">@lang("Permissions")</div>
+                            <div class="p-4 space-y-2">
+                                @if ($permissions->count())
+                                    @foreach ($permissions as $permission)
+                                        <x-cube::checkbox
+                                            name="permissions[]"
+                                            value="{{ $permission->name }}"
+                                            id="permission-{{ $permission->id }}"
+                                            :checked="in_array($permission->name, old('permissions', []))"
+                                        >{{ $permission->name }}</x-cube::checkbox>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-4">
-                <x-cube::backend-button-create>Create</x-cube::backend-button-create>
-            </div>
-
-            {{ html()->form()->close() }}
+                <div class="mb-4">
+                    <x-cube::backend-button-create>Create</x-cube::backend-button-create>
+                </div>
+            </form>
 
             <!-- Cancel button outside the form to prevent accidental form submission -->
             <div class="flex justify-end mt-3">

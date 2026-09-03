@@ -13,7 +13,6 @@ trait Authorizable
      */
     private $abilities = [
         'index' => 'view',
-        'index_data' => 'view',
         'index_list' => 'view',
         'edit' => 'edit',
         'show' => 'view',
@@ -48,7 +47,7 @@ trait Authorizable
             return null;
         }
 
-        return $action ? $action.'_'.$routeName[1] : null;
+        return $action ? $action . '_' . $routeName[1] : null;
     }
 
     public function setAbilities($abilities)

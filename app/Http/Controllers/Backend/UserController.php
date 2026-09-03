@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -87,99 +86,6 @@ class UserController extends Controller
             view: "{$module_path}.{$module_name}.index",
             data: compact('module_title', 'module_name', 'module_path', 'module_icon', 'module_action', 'module_name_singular', 'page_heading', 'title')
         );
-    }
-
-    public function index_data()
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'List';
-
-        $$module_name = $module_model::select('id', 'name', 'username', 'email', 'email_verified_at', 'updated_at', 'status');
-
-        $data = $$module_name;
-
-        return DataTables::of($$module_name)
-            ->addColumn('action', function ($data) {
-                $module_name = $this->module_name;
-
-                return view(view: 'backend.includes.user_actions', data: compact('module_name', 'data'));
-            })
-            ->addColumn('user_roles', function ($data) {
-                $module_name = $this->module_name;
-
-                return view(view: 'backend.includes.user_roles', data: compact('module_name', 'data'));
-            })
-            ->editColumn('name', '<strong>{{$name}}</strong>')
-            ->editColumn('status', function ($data) {
-                $return_data = $data->status_label;
-                $return_data .= '<br>'.$data->confirmed_label;
-
-                return $return_data;
-            })
-            ->editColumn('updated_at', function ($data) {
-                $module_name = $this->module_name;
-
-                $diff = Carbon::now()->diffInHours($data->updated_at);
-
-                if ($diff < 25) {
-                    return $data->updated_at->diffForHumans();
-                }
-
-                return $data->updated_at->isoFormat('LLLL');
-            })
-            ->rawColumns(['name', 'action', 'status', 'user_roles'])
-            ->orderColumns(['id'], '-:column $1')
-            ->make(true);
-    }
-
-    /**
-     * Retrieves a list of items based on the search term.
-     *
-     * @param  Request  $request  The HTTP request object.
-     * @return JsonResponse The JSON response containing the list of items.
-     *
-     * @throws None
-     */
-    public function index_list(Request $request)
-    {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'Index List';
-
-        $page_heading = label_case($module_title);
-        $title = $page_heading.' '.label_case($module_action);
-
-        $term = trim($request->q);
-
-        if (empty($term)) {
-            return response()->json([]);
-        }
-
-        $query_data = $module_model::where('name', 'LIKE', "%{$term}%")->orWhere('email', 'LIKE', "%{$term}%")->limit(10)->get();
-
-        $$module_name = [];
-
-        foreach ($query_data as $row) {
-            $$module_name[] = [
-                'id' => $row->id,
-                'text' => $row->name.' (Email: '.$row->email.')',
-            ];
-        }
-
-        logUserAccess($module_title.' '.$module_action);
-
-        return response()->json($$module_name);
     }
 
     /**
