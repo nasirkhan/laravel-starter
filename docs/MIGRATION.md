@@ -30,94 +30,124 @@
 - [ ] Review FluxUI layout structure at fluxui.dev
 
 ### Phase 1 — npm Dependency Swap
-- [ ] Add `tom-select` to `package.json`
-- [ ] Remove `@coreui/coreui`, `simplebar`, `bootstrap` (kept only via CoreUI) from `package.json`
-- [ ] Remove `jquery` from `package.json` (replaced by Alpine.js, already present via Livewire)
-- [ ] Verify `flowbite`, `tailwindcss`, `@tailwindcss/vite` remain
-- [ ] Run `npm install` and confirm build passes
+- [x] Add `tom-select` to `package.json`
+- [x] Remove `@coreui/coreui`, `simplebar`, `bootstrap` (kept only via CoreUI) from `package.json`
+- [x] Remove `jquery` from `package.json` (replaced by Alpine.js, already present via Livewire)
+- [x] Verify `flowbite`, `tailwindcss`, `@tailwindcss/vite` remain
+- [x] Run `npm install` and confirm build passes
 
 ### Phase 2 — Backend CSS/JS Entry Point
-- [ ] Create `resources/css/app-backend.css` (Tailwind + Flowbite import, mirroring `app-frontend.css`)
-- [ ] Delete `resources/sass/app-backend.scss`, `_backend_custom.scss`, `_backend_variables.scss`
-- [ ] Update `vite.config.js`: replace `resources/sass/app-backend.scss` → `resources/css/app-backend.css`
-- [ ] Update `resources/js/app-backend.js`: remove CoreUI/jQuery/SimpleBar imports, add Tom Select + Flowbite init
-- [ ] Confirm `npm run build` produces clean backend bundle
+- [x] Create `resources/css/app-backend.css` (Tailwind + Flowbite import, mirroring `app-frontend.css`)
+- [x] Delete `resources/sass/app-backend.scss`, `_backend_custom.scss`, `_backend_variables.scss`
+- [x] Update `vite.config.js`: replace `resources/sass/app-backend.scss` → `resources/css/app-backend.css`
+- [x] Update `resources/js/app-backend.js`: remove CoreUI/jQuery/SimpleBar imports, add Tom Select + Flowbite init
+- [x] Confirm `npm run build` produces clean backend bundle
 
 ### Phase 3 — New `laravel-admin` Package (Shell)
-- [ ] Create package skeleton at `laravel-starter-packages/laravel-admin`
-- [ ] Implement publishable `resources/views/layouts/admin.blade.php` (Flowbite/FluxUI style)
-- [ ] Implement `resources/views/includes/sidebar.blade.php` — config-driven nav items
-- [ ] Implement `resources/views/includes/header.blade.php` — breadcrumb, user menu, theme toggle
-- [ ] Create `config/admin.php` — nav structure, app name, branding
-- [ ] Register service provider, publish command
-- [ ] Add as path repository in `laravel-starter` `composer.json`
-- [ ] Publish and wire layout in `laravel-starter`
+- [x] Create package skeleton at `laravel-starter-packages/laravel-admin`
+- [x] Implement publishable `resources/views/layouts/admin.blade.php` (Flowbite/FluxUI style)
+- [x] Implement `resources/views/includes/sidebar.blade.php` — config-driven nav items
+- [x] Implement `resources/views/includes/header.blade.php` — breadcrumb, user menu, theme toggle
+- [x] Create `config/admin.php` — nav structure, app name, branding
+- [x] Register service provider, publish command
+- [x] Add as path repository in `laravel-starter` `composer.json`
+- [x] Publish and wire layout in `laravel-starter`
 
 ### Phase 4 — Backend View Migration (`laravel-starter`)
-- [ ] `backend/layouts/app.blade.php` — extend `laravel-admin::layouts.admin`
-- [ ] `backend/includes/header.blade.php` — replaced by package component
-- [ ] `backend/includes/sidebar.blade.php` — replaced by package component (nav config in `config/admin.php`)
-- [ ] `backend/includes/errors.blade.php` — Flowbite alert component
-- [ ] `backend/includes/action_column.blade.php` — Tailwind icon buttons
-- [ ] `backend/includes/user_actions.blade.php` — Tailwind
-- [ ] `backend/includes/user_roles.blade.php` — Tailwind badges/checkboxes
-- [ ] `backend/index.blade.php` — dashboard: stat cards (Flowbite), demo data section
-- [ ] `backend/users/index.blade.php` — replace with Livewire table component
-- [ ] `backend/users/index_datatable.blade.php` — delete (replaced by Livewire table)
-- [ ] `backend/users/create.blade.php` — Tailwind form with Tom Select for roles
-- [ ] `backend/users/edit.blade.php` — same as create
-- [ ] `backend/users/show.blade.php` — Tailwind detail card
-- [ ] `backend/users/changePassword.blade.php` — Tailwind form
-- [ ] `backend/users/trash.blade.php` — Tailwind table with restore actions
-- [ ] `backend/roles/index.blade.php` — Livewire table or simple Tailwind table
-- [ ] `backend/roles/create.blade.php` — Tailwind form, permission checkboxes
-- [ ] `backend/roles/edit.blade.php` — same as create
-- [ ] `backend/roles/show.blade.php` — Tailwind detail card
-- [ ] `backend/notifications/index.blade.php` — Tailwind list
-- [ ] `backend/notifications/show.blade.php` — Tailwind detail
+- [x] `backend/layouts/app.blade.php` — extend `laravel-admin::layouts.admin`
+- [x] `backend/includes/header.blade.php` — replaced by package component
+- [x] `backend/includes/sidebar.blade.php` — replaced by package component (nav config in `config/admin.php`)
+- [x] `backend/includes/errors.blade.php` — Flowbite alert component
+- [x] `backend/includes/action_column.blade.php` — Tailwind icon buttons
+- [x] `backend/includes/user_actions.blade.php` — Tailwind
+- [x] `backend/includes/user_roles.blade.php` — Tailwind badges/checkboxes
+- [x] `backend/index.blade.php` — dashboard: stat cards (Flowbite), demo data section
+- [x] `backend/users/index.blade.php` — replace with Livewire table component
+- [x] `backend/users/index_datatable.blade.php` — deleted (replaced by Livewire table)
+- [x] `backend/users/create.blade.php` — Tailwind form with Tom Select for roles
+- [x] `backend/users/edit.blade.php` — same as create
+- [x] `backend/users/show.blade.php` — Tailwind detail card
+- [x] `backend/users/changePassword.blade.php` — Tailwind form
+- [x] `backend/users/trash.blade.php` — Tailwind table with restore actions
+- [x] `backend/roles/index.blade.php` — Tailwind table with pagination::tailwind
+- [x] `backend/roles/create.blade.php` — Tailwind form, permission checkboxes
+- [x] `backend/roles/edit.blade.php` — same as create
+- [x] `backend/roles/show.blade.php` — Tailwind detail card
+- [x] `backend/notifications/index.blade.php` — Tailwind list
+- [x] `backend/notifications/show.blade.php` — Tailwind detail
 
-### Phase 5 — Livewire Backend Components
-- [ ] Install `rappasoft/laravel-livewire-tables` via Composer
-- [ ] Refactor `app/Livewire/Backend/UsersIndex.php` to extend Rappasoft `DataTableComponent`
-- [ ] Update `resources/views/livewire/backend/users-index.blade.php` accordingly
-- [ ] Create `app/Livewire/Backend/RolesIndex.php` using same pattern
-- [ ] Update `config/livewire.php` pagination theme from `bootstrap` → `tailwind`
-- [ ] Remove jQuery DataTables files from `public/vendor/datatable/`
-- [ ] Remove Select2/Selectize from `public/vendor/` (replaced by Tom Select)
+### Phase 5 — Livewire Backend Components (custom `LwTable`, no rappasoft)
+> **Note:** `rappasoft/laravel-livewire-tables` is incompatible with Livewire v4 — not used.
+> Instead, a thin `LwTable` abstract base class lives in `nasirkhan/laravel-cube`.
+- [x] Create `src/Livewire/LwTable.php` in `laravel-cube` — abstract base with search, sort, per-page, pagination (Tailwind theme)
+- [x] Create `resources/views/components/lw-table.blade.php` in `laravel-cube` — search bar + per-page selector + loading overlay + pagination footer
+- [x] Create `resources/views/components/lw-table-th.blade.php` in `laravel-cube` — sortable `<th>` with active/inactive sort icons
+- [x] Register `cube::lw-table` and `cube::lw-table-th` in `CubeServiceProvider`
+- [x] Refactor `app/Livewire/Backend/UsersIndex.php` to extend `LwTable`, remove redundant `WithPagination`/`$paginationTheme`/`$searchTerm`
+- [x] Migrate `resources/views/livewire/backend/users-index.blade.php` to Tailwind using `<x-cube::lw-table>` and `<x-cube::lw-table-th>`
+- [x] Create `app/Livewire/Backend/RolesIndex.php` extending `LwTable`
+- [x] Create `resources/views/livewire/backend/roles-index.blade.php`
+- [x] Update `resources/views/backend/roles/index.blade.php` to use `<livewire:backend.roles-index />`
+- [x] Remove jQuery DataTables files from `public/vendor/datatable/`
+- [x] Remove Select2/Selectize from `public/vendor/` (replaced by Tom Select)
 
 ### Phase 6 — `laravel-cube` Package Updates
-- [ ] Add `LwTable` base Livewire component (thin wrapper/config above Rappasoft, or standalone)
-- [ ] Add `TomSelect` Blade component (`<x-cube::tom-select>`)
-- [ ] Add shared Tailwind form field components (`<x-cube::input>`, `<x-cube::select>`, `<x-cube::textarea>`)
-- [ ] Add Flowbite alert/flash component (`<x-cube::alert>`)
-- [ ] Update `tailwind.config` source paths if needed for new components
-- [ ] Bump package version
+- [x] Add `LwTable` base Livewire component (thin wrapper/config above Rappasoft, or standalone)
+- [x] Add `TomSelect` Blade component (`<x-cube::tom-select>`)
+- [x] Add shared Tailwind form field components (`<x-cube::input>`, `<x-cube::select>`, `<x-cube::textarea>`)
+- [x] Add Flowbite alert/flash component (`<x-cube::alert>`)
+- [x] Update `tailwind.config` source paths if needed for new components
+- [x] Bump package version
 
 ### Phase 7 — Frontend Visual Refresh (`laravel-starter`)
-- [ ] Audit `resources/views/frontend/layouts/app.blade.php` — header, footer structure
-- [ ] Redesign `frontend/includes/header.blade.php` — sticky nav, mobile hamburger (Flowbite navbar), dark mode toggle
-- [ ] Redesign `frontend/includes/footer.blade.php` — modern multi-column or minimal footer
-- [ ] Update `resources/css/app-frontend.css` — add typography scale, spacing tokens if needed
-- [ ] Review and update auth Livewire views (`login`, `register`, `forgot-password`, etc.) — centered card layout, Flowbite form inputs
-- [ ] Update `frontend/includes/messages.blade.php` — Flowbite toast or inline alert
-- [ ] Test dark mode across all frontend pages
+> The frontend already uses Tailwind v4 + Flowbite. This phase is visual polish — not a framework migration. Do not touch PHP logic, routes, or Livewire component classes.
+
+**Layout shell:**
+- [x] `resources/views/frontend/layouts/app.blade.php` — add `scroll-smooth` to `<html>`; add `antialiased font-sans text-gray-900 dark:text-white` to `<body>`; add `min-h-screen` to `<main>` so footer stays at bottom on short pages
+
+**Header:**
+- [x] `frontend/includes/header.blade.php` — make `<nav>` sticky: replaced static `bg-white shadow-md` with `sticky top-0 z-40 bg-white/90 backdrop-blur-md dark:bg-gray-900/90`
+- [x] Add Alpine scroll-aware shadow: `x-data="{ scrolled: false }"` + `window.addEventListener('scroll', ...)` → toggle `shadow-md` only when scrolled past 8px
+- [x] Style auth CTAs: Register → filled blue button (`bg-blue-600 text-white hover:bg-blue-700`); Login → outlined (`border border-gray-300 rounded-lg`)
+- [x] Add `transition-all duration-200` to the `<nav>` element
+
+**Footer:**
+- [x] `frontend/includes/footer.blade.php` — changed bg to `bg-gray-50 dark:bg-gray-900`; added `border-t border-gray-200 dark:border-gray-700`
+- [x] Expanded inner container to `max-w-7xl`; adjusted padding to `py-12 sm:py-16 sm:px-8`
+- [x] Added copyright bar at the bottom: `© {{ now()->year }} {{ app_name() }}`
+
+**Auth layout — fix two broken things:**
+- [x] `resources/views/layouts/auth.blade.php` — replaced `bg-background` (undefined CSS variable) with `bg-gray-50 dark:bg-gray-950`
+- [x] Removed `@fluxScripts` (FluxUI remnant) — `partials.head` already loads Vite assets
+- [x] Added visible app name text below the logo mark for context
+
+**CSS / design tokens:**
+- [x] `resources/css/app-frontend.css` — added smooth dark-mode color transitions and base font stack
+
+**Testing:**
+- [ ] Sticky header: scroll down on `/` — confirm blur + shadow appear, disappear on scroll-to-top
+- [ ] Auth pages: `/login`, `/register`, `/forgot-password` — confirm no `bg-background` undefined var, no missing FluxUI script
+- [ ] Dark mode toggle on frontend persists across `wire:navigate` page transitions
+- [ ] Mobile view: hamburger opens/closes, footer copyright visible
 
 ### Phase 8 — `module-manager` Scaffold Update
-- [ ] Locate stub files inside `module-manager` package (typically `src/Commands/stubs/`)
-- [ ] Update `index.blade.php.stub` — Tailwind table, use `<x-cube::lw-table>` or Rappasoft
-- [ ] Update `create.blade.php.stub` — Tailwind form, `<x-cube::input>`, `<x-cube::select>`
-- [ ] Update `edit.blade.php.stub` — same as create
-- [ ] Update `show.blade.php.stub` — Tailwind detail card
-- [ ] Update `action_column.blade.php.stub` — Tailwind icon buttons
-- [ ] Update generated controller stub if it references DataTables routes — remove, use Livewire component
-- [ ] Bump package version, test by generating a sample module
+> Stubs live in `src/stubs/` (not `src/Commands/stubs/`). Generator command: `ModuleBuildCommand.php`.
+- [x] Locate stub files — found in `src/stubs/Resources/views/backend/stubViews/` and `frontend/stubViews/`
+- [x] Update `index.blade.stub.php` — Flowbite table, inline SVG icon buttons (edit/show/delete), Tailwind pagination footer
+- [x] Update `form.blade.stub.php` — replaced Bootstrap `.form-control`/`.form-select`/`.form-group` with Tailwind inputs; removed `x-library.select2` (replaced by Tom Select global init); handles `old()` + edit pre-fill
+- [x] Update `index_datatable.blade.stub.php` — removed jQuery DataTable + `datatables.min.js/css` assets; replaced with server-side Tailwind table (same pattern as `index.blade.stub.php` but fewer columns); added comment explaining the legacy context
+- [x] Update `frontend/stubViews/index.blade.stub.php` — fixed Bootstrap `d-flex justify-content-center w-100` → `flex justify-center`
+- [x] Update `routes/web.stub.php` — removed `index_list` and `index_data` DataTable API routes
+- [x] No version field in `module-manager/composer.json` — version is managed by git tags; tag a new release after testing
+- [x] Remove `yajra/laravel-datatables-oracle` from `module-manager/composer.json` require block (no generated view uses DataTables anymore); run `composer update` in laravel-starter
+- [x] Test by generating a sample module: `php artisan module:build TestItem` — verify generated views use Tailwind classes, no Bootstrap remnants, no DataTable assets referenced
 
 ### Phase 9 — Cleanup & Final Audit
-- [ ] Remove `resources/sass/` directory entirely
-- [ ] Remove unused public vendor assets (`jquery/`, `select2/`, `datatable/`, `selectize/`)
-- [ ] Search entire codebase for Bootstrap classes (`btn-primary`, `form-control`, `col-md-`, `d-flex`, etc.) — fix any missed
-- [ ] Search for any remaining `$()` jQuery calls — replace or remove
-- [ ] Run full build (`npm run build`) — confirm no warnings about missing chunks
+- [x] Remove `resources/sass/` directory entirely
+- [x] Remove unused public vendor assets (`jquery/`, `select2/`, `datatable/`, `selectize/`)
+- [x] Search entire codebase for Bootstrap classes (`btn-primary`, `form-control`, `col-md-`, `d-flex`, etc.) — fix any missed
+- [x] Search for any remaining `$()` jQuery calls — replace or remove
+- [x] Run full build (`npm run build`) — confirm no warnings about missing chunks
 - [ ] Test all backend routes manually: users CRUD, roles CRUD, notifications, dashboard
 - [ ] Test all frontend routes: home, auth flows, profile, social login
 - [ ] Test dark mode on both backend and frontend
@@ -409,45 +439,159 @@ In the laravel-starter project at c:\Users\Nasir Khan\Herd\laravel-starter:
 ```
 In the laravel-starter project at c:\Users\Nasir Khan\Herd\laravel-starter:
 
-Read these files first:
+Context: The frontend already uses Tailwind v4 + Flowbite. This is a visual polish pass, not a
+framework migration. Do NOT change any PHP files, route names, Livewire component classes, or
+controller logic.
+
+Read these files before making any changes:
 - resources/views/frontend/layouts/app.blade.php
 - resources/views/frontend/includes/header.blade.php
 - resources/views/frontend/includes/footer.blade.php
-- resources/views/frontend/includes/messages.blade.php
-- resources/views/livewire/auth/login.blade.php
-- resources/views/livewire/auth/register.blade.php
+- resources/views/layouts/auth.blade.php
+- resources/css/app-frontend.css
 
-Then apply these improvements:
 
-HEADER (resources/views/frontend/includes/header.blade.php):
-- Use Flowbite navbar component: sticky top, transparent on scroll → white on scroll (JS class toggle)
-- Logo left, nav links center/right, auth buttons right
-- Mobile: hamburger menu with slide-down drawer (Flowbite collapse)
-- Dark mode toggle button with sun/moon icon
-- Active link state using request()->routeIs()
+─── 1. LAYOUT SHELL ──────────────────────────────────────────────────────────
 
-FOOTER (resources/views/frontend/includes/footer.blade.php):
-- Modern minimal footer: brand + tagline left, nav links right
-- Bottom bar: copyright, links
-- Dark mode aware (dark:bg-gray-900 dark:text-gray-400)
+File: resources/views/frontend/layouts/app.blade.php
 
-MESSAGES (resources/views/frontend/includes/messages.blade.php):
-- Replace any Bootstrap alerts with Flowbite dismissible alerts
-- Support: success (green), error (red), warning (yellow), info (blue)
-- Auto-dismiss after 4 seconds via Alpine: x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 4000)"
+a) On the <html> tag, add the class: scroll-smooth
 
-AUTH VIEWS — apply to login, register, forgot-password, reset-password, verify-email:
-- Centered full-height layout: min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900
-- Card: bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 w-full max-w-md
-- Flowbite form inputs with labels and error states
-- Submit button: full-width, blue, loading state with wire:loading
+b) On the <body> tag, add classes: antialiased font-sans text-gray-900 dark:text-white
 
-LAYOUT (resources/views/frontend/layouts/app.blade.php):
-- Ensure font is set (Inter or system-ui via Tailwind)
-- Add scroll-smooth to html tag
-- Confirm dark mode class on <html> is set correctly by the Flowbite JS already in app-frontend.js
+c) On the <main> tag, add class: min-h-screen
+   (keeps the footer anchored to the bottom on short-content pages)
 
-Do not change route names, Livewire component PHP files, or any controller logic.
+
+─── 2. HEADER ────────────────────────────────────────────────────────────────
+
+File: resources/views/frontend/includes/header.blade.php
+
+a) Sticky + frosted glass:
+   The current <nav> has these classes: "border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900"
+   Replace with:
+   "sticky top-0 z-40 border-b border-gray-200/60 bg-white/90 backdrop-blur-md transition-all duration-200 dark:border-gray-700/60 dark:bg-gray-900/90"
+   (Removes static shadow-md — shadow will be toggled by Alpine on scroll)
+
+b) Scroll-aware shadow:
+   Add Alpine attributes to the <nav> element:
+     x-data="{ scrolled: false }"
+     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 8 })"
+     :class="scrolled ? 'shadow-md' : 'shadow-none'"
+
+c) Register button — make it a filled CTA:
+   Find the <a> tag that links to route('register'). Change its class from the current
+   "inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium
+    text-gray-900 hover:bg-gray-100 sm:px-4 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+   To:
+   "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2
+    text-sm font-medium text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-500
+    dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+
+d) Login button — make it outlined:
+   Find the <a> tag that links to route('login'). Change its class to:
+   "inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-gray-300
+    px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white
+    dark:hover:bg-gray-800"
+
+
+─── 3. FOOTER ────────────────────────────────────────────────────────────────
+
+File: resources/views/frontend/includes/footer.blade.php
+
+a) On the <footer> element, change the class from:
+   "bg-gray-100 px-4 py-6 sm:p-20 dark:bg-gray-800"
+   To:
+   "border-t border-gray-200 bg-gray-50 px-4 py-12 sm:px-8 sm:py-16 dark:border-gray-700 dark:bg-gray-900"
+
+b) On the inner <div>, change from:
+   "mx-auto max-w-5xl text-center"
+   To:
+   "mx-auto max-w-7xl text-center"
+
+c) Add a copyright bar after the last @endif block (after show_credit), before </footer>:
+
+   <div class="mx-auto mt-8 max-w-7xl border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
+       &copy; {{ now()->year }} {{ app_name() }}. {{ __('All rights reserved.') }}
+   </div>
+
+
+─── 4. CSS / DESIGN TOKENS ──────────────────────────────────────────────────
+
+File: resources/css/app-frontend.css
+
+After the existing "@variant dark" line, append:
+
+/* Base font stack */
+html {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Smooth dark-mode color transitions (excludes layout properties to avoid janky reflow) */
+*, *::before, *::after {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+
+─── 5. AUTH LAYOUT — fix two broken things ──────────────────────────────────
+
+File: resources/views/layouts/auth.blade.php
+
+Issue A: `bg-background` is an undefined CSS custom property — will render as transparent/wrong color.
+Issue B: `@fluxScripts` is a FluxUI remnant — will fail with "undefined function" or inject a 404 script.
+
+a) On <body>, change:
+   class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900"
+   To:
+   class="min-h-screen bg-white antialiased dark:bg-gray-950"
+
+b) Replace the outer wrapper <div> class — remove "bg-background":
+   Change: class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10"
+   To:     class="flex min-h-svh flex-col items-center justify-center gap-6 bg-gray-50 p-6 dark:bg-gray-950 md:p-10"
+
+c) Remove @fluxScripts entirely.
+   Check if resources/views/partials/head.blade.php already loads Vite assets — if YES, nothing more needed.
+   If NO, add @vite(['resources/css/app-frontend.css', 'resources/js/app-frontend.js']) just before </body>.
+
+d) After the existing <span class="sr-only"> app name, add a visible brand label:
+   <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">{{ config('app.name') }}</span>
+
+
+─── 6. VERIFY ────────────────────────────────────────────────────────────────
+
+1. Run: npm run build — confirm no errors.
+
+2. Open browser and check each page listed below. Look specifically for:
+
+   / (frontend home)
+   - Header is sticky — stays at top as you scroll down
+   - Shadow appears once scrolled ~8px, disappears at top
+   - Frosted glass effect visible when header overlaps content
+   - Register button is blue/filled, Login button is outlined
+   - Footer has border-top and copyright year
+
+   /login and /register
+   - Auth card renders on a gray-50/gray-950 background (no blinding white flash on dark mode)
+   - No JavaScript 404 errors in browser console (confirms @fluxScripts is removed)
+   - App name visible below logo mark
+
+   Dark mode (toggle it on/off)
+   - Color transitions are smooth (150ms), not jarring/instant
+   - Header background shifts cleanly between light and dark variants
+   - Footer transitions to dark:bg-gray-900
+
+   Mobile (resize browser to ~375px)
+   - Hamburger opens nav drawer
+   - Register/Login buttons stack cleanly
+   - Footer copyright bar readable
+
+3. Open DevTools → Console: confirm zero "undefined CSS variable" warnings.
+4. Open DevTools → Network: confirm no 404 for any FluxUI script.
+
+Do not change any Livewire PHP components, route files, or controller files.
 ```
 
 ---
