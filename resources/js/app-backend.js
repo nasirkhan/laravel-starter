@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('livewire:navigated', () => {
+    setInitialTheme();
     initFlowbite();
     updateThemeToggleIcons();
     initThemeToggle();
