@@ -53,7 +53,7 @@
             <x-cube::checkbox wire:model="remember">{{ __('Remember me') }}</x-cube::checkbox>
 
             @if (Route::has('password.request'))
-                <x-cube::link class="text-sm" :href="route('password.request')" wire:navigate>
+                <x-cube::link class="text-sm dark:text-gray-400" :href="route('password.request')" wire:navigate>
                     {{ __('Forgot password?') }}
                 </x-cube::link>
             @endif
