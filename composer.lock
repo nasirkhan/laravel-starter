@@ -2882,7 +2882,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "6d8f2ab84148ecad28ad87b22a3d872bac2b0858"
+                "reference": "2873a86d404fa3130c45de4d5883018648f6621f"
             },
             "require": {
                 "illuminate/support": "^11|^12|^13",
@@ -2913,6 +2913,7 @@
                 }
             ],
             "description": "Tailwind/Flowbite backend shell for Laravel — sidebar, header, breadcrumb layout",
+            "homepage": "https://github.com/nasirkhan/laravel-admin",
             "keywords": [
                 "admin",
                 "backend",
@@ -2921,6 +2922,10 @@
                 "layout",
                 "tailwind"
             ],
+            "support": {
+                "issues": "https://github.com/nasirkhan/laravel-admin/issues",
+                "source": "https://github.com/nasirkhan/laravel-admin"
+            },
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -2932,7 +2937,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "dbc294886b7fe52ac67184d122468ed728f6b770"
+                "reference": "23b41a0fd3d72282505bf8af8fcac0447d3bcc11"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -2957,6 +2962,9 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
                 "psr-4": {
                     "Nasirkhan\\LaravelCube\\": "src/"
                 }
@@ -3134,7 +3142,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "ab1314715a0234f534364f5cdc899856a78fdf21"
+                "reference": "ef6c506052e3ce861eae6c18836d94426ff65b97"
             },
             "require": {
                 "intervention/image": "^4.0",

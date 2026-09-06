@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Traits\AutoDiscoverModuleSeeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Nasirkhan\ModuleManager\Traits\AutoDiscoverModuleSeeders;
 
 class DatabaseSeeder extends Seeder
 {
