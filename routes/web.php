@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\Backend\NotificationsController;
-use App\Http\Controllers\Backend\RolesController;
-use App\Http\Controllers\Backend\UserController as BackendUserController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,57 +46,4 @@ Route::group(['as' => 'frontend.'], function () {
         Route::livewire('profile/changePassword', 'pages::frontend.users.change-password')->name("{$module_name}.changePassword");
         Route::livewire('profile/{username?}', 'pages::frontend.users.profile')->name("{$module_name}.profile");
     });
-});
-
-/*
-*
-* Backend Routes
-* These routes need view-backend permission
-* --------------------------------------------------------------------
-*/
-Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
-    /**
-     * Backend Dashboard
-     * Namespaces indicate folder structure.
-     */
-    Route::get('/', [BackendController::class, 'index'])->name('home');
-    Route::get('dashboard', [BackendController::class, 'index'])->name('dashboard');
-
-    /*
-     *
-     *  Notification Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'notifications';
-    Route::get("{$module_name}", [NotificationsController::class, 'index'])->name("{$module_name}.index");
-    Route::get("{$module_name}/markAllAsRead", [NotificationsController::class, 'markAllAsRead'])->name("{$module_name}.markAllAsRead");
-    Route::delete("{$module_name}/deleteAll", [NotificationsController::class, 'deleteAll'])->name("{$module_name}.deleteAll");
-    Route::get("{$module_name}/{id}", [NotificationsController::class, 'show'])->name("{$module_name}.show");
-
-    /*
-     *
-     *  Roles Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'roles';
-    Route::resource("{$module_name}", RolesController::class);
-
-    /*
-     *
-     *  Users Routes
-     *
-     * ---------------------------------------------------------------------
-     */
-    $module_name = 'users';
-    Route::get("{$module_name}/{id}/resend-email-confirmation", [BackendUserController::class, 'emailConfirmationResend'])->name("{$module_name}.emailConfirmationResend");
-    Route::delete("{$module_name}/user-provider-destroy", [BackendUserController::class, 'userProviderDestroy'])->name("{$module_name}.userProviderDestroy");
-    Route::get("{$module_name}/{id}/change-password", [BackendUserController::class, 'changePassword'])->name("{$module_name}.changePassword");
-    Route::patch("{$module_name}/{id}/change-password", [BackendUserController::class, 'changePasswordUpdate'])->name("{$module_name}.changePasswordUpdate");
-    Route::get("{$module_name}/trashed", [BackendUserController::class, 'trashed'])->name("{$module_name}.trashed");
-    Route::patch("{$module_name}/{id}/trashed", [BackendUserController::class, 'restore'])->name("{$module_name}.restore");
-    Route::patch("{$module_name}/{id}/block", [BackendUserController::class, 'block'])->name("{$module_name}.block")->middleware('can:block_users');
-    Route::patch("{$module_name}/{id}/unblock", [BackendUserController::class, 'unblock'])->name("{$module_name}.unblock")->middleware('can:block_users');
-    Route::resource("{$module_name}", BackendUserController::class);
 });
