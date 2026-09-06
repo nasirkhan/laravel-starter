@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners\Auth;
+namespace App\Listeners\Auth\UserLoginSuccess;
 
 use App\Events\Auth\UserLoginSuccess;
 use Carbon\Carbon;
