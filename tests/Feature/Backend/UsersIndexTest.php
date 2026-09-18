@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Backend;
 
-use App\Livewire\Backend\UsersIndex;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Nasirkhan\Admin\Livewire\UsersIndex;
 use Tests\TestCase;
 
 class UsersIndexTest extends TestCase
@@ -43,7 +43,7 @@ class UsersIndexTest extends TestCase
         User::factory()->create(['name' => 'Bob Builder']);
 
         Livewire::test(UsersIndex::class)
-            ->set('searchTerm', 'Alice')
+            ->set('search', 'Alice')
             ->assertSee('Alice Wonderland')
             ->assertDontSee('Bob Builder');
     }
@@ -57,7 +57,7 @@ class UsersIndexTest extends TestCase
         User::factory()->create(['email' => 'other@example.com']);
 
         Livewire::test(UsersIndex::class)
-            ->set('searchTerm', 'unique-test')
+            ->set('search', 'unique-test')
             ->assertSee('unique-test@example.com')
             ->assertDontSee('other@example.com');
     }
@@ -74,9 +74,9 @@ class UsersIndexTest extends TestCase
         // Navigate to page 2, then change the search term
         // updatedSearchTerm() should reset to page 1, making $firstPageUser visible again
         Livewire::test(UsersIndex::class)
-            ->set('searchTerm', 'Aardvark')
+            ->set('search', 'Aardvark')
             ->call('nextPage')            // advance to page 2
-            ->set('searchTerm', 'Aardvark First') // triggers updatedSearchTerm → resetPage
+            ->set('search', 'Aardvark First') // triggers updatedSearchTerm → resetPage
             ->assertSee('Aardvark First')
             ->assertStatus(200);
     }
@@ -89,9 +89,9 @@ class UsersIndexTest extends TestCase
         User::factory()->count(20)->create(['name' => 'Clearable User']);
 
         Livewire::test(UsersIndex::class)
-            ->set('searchTerm', 'Clearable User')
+            ->set('search', 'Clearable User')
             ->call('nextPage')  // advance past page 1
-            ->set('searchTerm', '') // triggers updatedSearchTerm → resetPage
+            ->set('search', '') // triggers updatedSearchTerm → resetPage
             ->assertStatus(200);
     }
 }

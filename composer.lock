@@ -2893,7 +2893,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "a801cd793e0f5d4503db541b63f4c35f82093158"
+                "reference": "88e40154e189351db67c3bb0dfc735acf2c129c2"
             },
             "require": {
                 "illuminate/notifications": "^11|^12|^13",
@@ -2954,7 +2954,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "73bebabe47c2f9b6bf3a61744c364a1b4b76fc4e"
+                "reference": "99b8b234397f37d79f5d932ca7662738413ce254"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",

@@ -26,7 +26,7 @@ class FrontendPublicViewTest extends TestCase
 
         $response->assertStatus(200);
 
-        $value = __('Log in');
+        $value = __('Welcome back');
 
         $response->assertSeeText($value, $escxaped = true);
     }
