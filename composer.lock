@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "333c44d4213a8bd8f0a8f247aa4cc7bc",
+    "content-hash": "4a41a5e14c90251f1a6910fc45cab71f",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2950,7 +2950,7 @@
         },
         {
             "name": "nasirkhan/laravel-cube",
-            "version": "2.0.0",
+            "version": "3.0.0",
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
@@ -3155,11 +3155,11 @@
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "7.0.0",
+            "version": "8.0.0",
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "fa0f05d2c0f3ebbd3302f7c411a41aa275eea788"
+                "reference": "b9014c8af0822ea99d1ed7eefde180ed697e6554"
             },
             "require": {
                 "intervention/image": "^4.0",
@@ -11289,9 +11289,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "nasirkhan/laravel-admin": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
