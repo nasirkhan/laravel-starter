@@ -2893,7 +2893,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "88e40154e189351db67c3bb0dfc735acf2c129c2"
+                "reference": "4a9ace0059082d7833c8ea4513435f1e83f1e7a0"
             },
             "require": {
                 "illuminate/notifications": "^11|^12|^13",
