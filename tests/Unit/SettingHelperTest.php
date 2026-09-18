@@ -36,6 +36,11 @@ class SettingHelperTest extends TestCase
         $this->assertSame($settingPair[1], setting($settingPair[0]));
     }
 
+    public function test_setting_returns_default_for_missing_key_when_settings_table_exists(): void
+    {
+        $this->assertSame('Fallback value', setting('missing-setting-key', 'Fallback value'));
+    }
+
     public function test_setting_rethrows_non_missing_table_query_exception_when_reading(): void
     {
         $defaultConnection = config('database.default');
