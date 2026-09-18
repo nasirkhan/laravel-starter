@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
@@ -171,6 +172,20 @@ if (! function_exists('setting')) {
     {
         if (is_null($key)) {
             return new Setting;
+        }
+
+        static $settingsTableExists;
+
+        if ($settingsTableExists === null) {
+            try {
+                $settingsTableExists = Schema::hasTable((new Setting)->getTable());
+            } catch (Throwable) {
+                $settingsTableExists = false;
+            }
+        }
+
+        if (! $settingsTableExists) {
+            return is_array($key) ? null : value($default);
         }
 
         if (is_array($key)) {
