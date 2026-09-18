@@ -170,7 +170,7 @@ if (! function_exists('settings_table_is_missing')) {
         $sqlState = (string) ($errorInfo[0] ?? $exception->getCode());
         $driverCode = (string) ($errorInfo[1] ?? '');
         $message = strtolower($exception->getMessage());
-        $settingsTable = strtolower((new Setting)->getTable());
+        $settingsTable = strtolower((new \Nasirkhan\ModuleManager\Modules\Settings\Models\Setting)->getTable());
         $tableSegments = array_map(
             static fn (string $segment): string => '[`"\\[]?'.preg_quote($segment, '/').'[`"\\]]?',
             explode('.', $settingsTable)
@@ -212,7 +212,10 @@ if (! function_exists('setting')) {
     /**
      * Get or Set the Settings Values.
      *
-     * @param  mixed  $key
+     * Array writes return the underlying Setting::set() result, or null when
+     * the settings table is unavailable during early bootstrapping.
+     *
+     * @param  array{0: string, 1: mixed}|mixed  $key
      * @param  mixed  $default
      * @return mixed
      */
