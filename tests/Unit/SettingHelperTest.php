@@ -35,8 +35,18 @@ class SettingHelperTest extends TestCase
 
     public function test_setting_rethrows_non_missing_table_query_exception_when_reading(): void
     {
-        config(['database.connections.sqlite.database' => '/tmp/missing-settings-read/database.sqlite']);
-        DB::purge('sqlite');
+        $brokenConnection = 'sqlite_broken_read';
+
+        config([
+            'database.default' => $brokenConnection,
+            "database.connections.$brokenConnection" => array_merge(
+                config('database.connections.sqlite'),
+                ['database' => '/tmp/missing-settings-read/database.sqlite']
+            ),
+        ]);
+
+        DB::purge($brokenConnection);
+        DB::setDefaultConnection($brokenConnection);
 
         $this->expectException(QueryException::class);
 
@@ -45,8 +55,18 @@ class SettingHelperTest extends TestCase
 
     public function test_setting_rethrows_non_missing_table_query_exception_when_writing(): void
     {
-        config(['database.connections.sqlite.database' => '/tmp/missing-settings-write/database.sqlite']);
-        DB::purge('sqlite');
+        $brokenConnection = 'sqlite_broken_write';
+
+        config([
+            'database.default' => $brokenConnection,
+            "database.connections.$brokenConnection" => array_merge(
+                config('database.connections.sqlite'),
+                ['database' => '/tmp/missing-settings-write/database.sqlite']
+            ),
+        ]);
+
+        DB::purge($brokenConnection);
+        DB::setDefaultConnection($brokenConnection);
 
         $this->expectException(QueryException::class);
 
