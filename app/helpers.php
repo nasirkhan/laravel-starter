@@ -171,7 +171,14 @@ if (! function_exists('settings_table_is_missing')) {
         $driverCode = (string) ($errorInfo[1] ?? '');
         $message = strtolower($exception->getMessage());
         $settingsTable = strtolower((new Setting)->getTable());
-        $referencesSettingsTable = preg_match('/\b'.preg_quote($settingsTable, '/').'\b/', $message) === 1;
+        $tableSegments = array_map(
+            static fn (string $segment): string => '[`"\\[]?'.preg_quote($segment, '/').'[`"\\]]?',
+            explode('.', $settingsTable)
+        );
+        $referencesSettingsTable = preg_match(
+            '/(^|[^a-z0-9_])'.implode('\\s*\\.\\s*', $tableSegments).'([^a-z0-9_]|$)/',
+            $message
+        ) === 1;
 
         if ($referencesSettingsTable && in_array($sqlState, ['42P01', '42S02'], true)) {
             return true;
