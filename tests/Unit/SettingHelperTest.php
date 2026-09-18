@@ -23,4 +23,11 @@ class SettingHelperTest extends TestCase
 
         $this->assertNull(setting(['app_name', 'Fallback value']));
     }
+
+    public function test_setting_set_stores_value_when_settings_table_exists(): void
+    {
+        setting(['app_name', 'Updated App Name']);
+
+        $this->assertSame('Updated App Name', setting('app_name'));
+    }
 }
