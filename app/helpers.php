@@ -4,7 +4,6 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
@@ -175,19 +174,24 @@ if (! function_exists('setting')) {
             return new Setting;
         }
 
-        $settingsTableMissing = static function (): bool {
-            try {
-                return ! Schema::hasTable((new Setting)->getTable());
-            } catch (QueryException) {
-                return false;
-            }
+        $settingsTable = strtolower((new Setting)->getTable());
+
+        $settingsTableMissing = static function (QueryException $exception) use ($settingsTable): bool {
+            $message = strtolower($exception->getMessage());
+
+            return str_contains($message, $settingsTable)
+                && (
+                    str_contains($message, 'no such table')
+                    || str_contains($message, "doesn't exist")
+                    || str_contains($message, 'base table or view not found')
+                );
         };
 
         if (is_array($key)) {
             try {
                 return Setting::set($key[0], $key[1]);
             } catch (QueryException $exception) {
-                if (! $settingsTableMissing()) {
+                if (! $settingsTableMissing($exception)) {
                     throw $exception;
                 }
 
@@ -198,7 +202,7 @@ if (! function_exists('setting')) {
         try {
             $value = Setting::get($key);
         } catch (QueryException $exception) {
-            if (! $settingsTableMissing()) {
+            if (! $settingsTableMissing($exception)) {
                 throw $exception;
             }
 
