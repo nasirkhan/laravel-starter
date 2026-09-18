@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "333c44d4213a8bd8f0a8f247aa4cc7bc",
+    "content-hash": "7eb96ad23423ce74d2afba93ca504475",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -2889,11 +2889,17 @@
         },
         {
             "name": "nasirkhan/laravel-admin",
-            "version": "1.0.0",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/laravel-admin.git",
+                "reference": "f6fef4e3d8a6d73eef17f23a0d46c69ea0f45087"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "4a9ace0059082d7833c8ea4513435f1e83f1e7a0"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/laravel-admin/zipball/f6fef4e3d8a6d73eef17f23a0d46c69ea0f45087",
+                "reference": "f6fef4e3d8a6d73eef17f23a0d46c69ea0f45087",
+                "shasum": ""
             },
             "require": {
                 "illuminate/notifications": "^11|^12|^13",
@@ -2918,6 +2924,7 @@
                     "Nasirkhan\\Admin\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -2943,18 +2950,21 @@
                 "issues": "https://github.com/nasirkhan/laravel-admin/issues",
                 "source": "https://github.com/nasirkhan/laravel-admin"
             },
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2026-09-18T06:39:21+00:00"
         },
         {
             "name": "nasirkhan/laravel-cube",
-            "version": "2.0.0",
+            "version": "v2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/laravel-cube.git",
+                "reference": "052c6f6306e869dc43e61e55be4aa32059e5fadd"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "99b8b234397f37d79f5d932ca7662738413ce254"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/laravel-cube/zipball/052c6f6306e869dc43e61e55be4aa32059e5fadd",
+                "reference": "052c6f6306e869dc43e61e55be4aa32059e5fadd",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -2979,18 +2989,11 @@
                 }
             },
             "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
                 "psr-4": {
                     "Nasirkhan\\LaravelCube\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\LaravelCube\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -3005,30 +3008,37 @@
             "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
             "homepage": "https://github.com/nasirkhan/laravel-cube",
             "keywords": [
+                "Forms",
                 "alpine",
                 "blade-components",
                 "bootstrap",
                 "components",
                 "cube",
                 "flowbite",
-                "forms",
                 "laravel",
                 "navigation",
                 "tailwind",
                 "ui-components"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/laravel-cube/issues",
+                "source": "https://github.com/nasirkhan/laravel-cube/tree/v2.8.0"
+            },
+            "time": "2026-08-15T04:34:18+00:00"
         },
         {
             "name": "nasirkhan/laravel-jodit",
-            "version": "2.0.0",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/laravel-jodit.git",
+                "reference": "9e5404294f3f43ceee776a799e442edaefbb3601"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/laravel-jodit",
-                "reference": "6cabda056657c0365c2c360c784de26ca61ad622"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/laravel-jodit/zipball/9e5404294f3f43ceee776a799e442edaefbb3601",
+                "reference": "9e5404294f3f43ceee776a799e442edaefbb3601",
+                "shasum": ""
             },
             "require": {
                 "illuminate/filesystem": "^11.0|^12.0|^13.0",
@@ -3056,11 +3066,7 @@
                     "Nasirkhan\\LaravelJodit\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\LaravelJodit\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3083,18 +3089,25 @@
                 "rich-text",
                 "wysiwyg"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/laravel-jodit/issues",
+                "source": "https://github.com/nasirkhan/laravel-jodit/tree/v2.0.0"
+            },
+            "time": "2026-07-17T18:11:10+00:00"
         },
         {
             "name": "nasirkhan/laravel-sharekit",
-            "version": "1.0.0",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/laravel-sharekit.git",
+                "reference": "0161d73160dd38b98e395df7e4043279e0f8b82a"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/laravel-sharekit",
-                "reference": "76f65c4979d3bd26eccde387d8160ca5a570c66e"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/laravel-sharekit/zipball/0161d73160dd38b98e395df7e4043279e0f8b82a",
+                "reference": "0161d73160dd38b98e395df7e4043279e0f8b82a",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3118,11 +3131,7 @@
                     "Nasirkhan\\LaravelSharekit\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\LaravelSharekit\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -3148,18 +3157,25 @@
                 "social-sharing",
                 "web-share-api"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/laravel-sharekit/issues",
+                "source": "https://github.com/nasirkhan/laravel-sharekit/tree/v1.6.0"
+            },
+            "time": "2026-08-15T04:10:43+00:00"
         },
         {
             "name": "nasirkhan/module-manager",
-            "version": "7.0.0",
+            "version": "v8.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nasirkhan/module-manager.git",
+                "reference": "254a53758a7d2e204f62be529391ffd9eee134b7"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-starter-packages/module-manager",
-                "reference": "fa0f05d2c0f3ebbd3302f7c411a41aa275eea788"
+                "type": "zip",
+                "url": "https://api.github.com/repos/nasirkhan/module-manager/zipball/254a53758a7d2e204f62be529391ffd9eee134b7",
+                "reference": "254a53758a7d2e204f62be529391ffd9eee134b7",
+                "shasum": ""
             },
             "require": {
                 "intervention/image": "^4.0",
@@ -3180,12 +3196,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider"
-                    ],
                     "aliases": {
                         "ModuleManager": "Nasirkhan\\ModuleManager\\ModuleManagerFacade"
-                    }
+                    },
+                    "providers": [
+                        "Nasirkhan\\ModuleManager\\ModuleManagerServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3193,19 +3209,7 @@
                     "Nasirkhan\\ModuleManager\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nasirkhan\\ModuleManager\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3219,16 +3223,17 @@
             "description": "Module Manager & Generator for Laravel Starter Kit (https://github.com/nasirkhan/laravel-starter)",
             "homepage": "https://github.com/nasirkhan/module-manager",
             "keywords": [
-                "laravel starter",
+                "Laravel Starter",
+                "Module Manager",
                 "module generator",
-                "module manager",
                 "nasirkhan",
                 "nasirkhansaikat"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/nasirkhan/module-manager/issues",
+                "source": "https://github.com/nasirkhan/module-manager/tree/v8.0.0"
+            },
+            "time": "2026-09-18T06:44:50+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -8469,16 +8474,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.18.4",
+            "version": "2.18.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d2102955e48b9fd9ab24280a7ad12ed552752c4d"
+                "reference": "baec851ad6ae00db8bd0fdd30d208afc1b71c56e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/d2102955e48b9fd9ab24280a7ad12ed552752c4d",
-                "reference": "d2102955e48b9fd9ab24280a7ad12ed552752c4d",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/baec851ad6ae00db8bd0fdd30d208afc1b71c56e",
+                "reference": "baec851ad6ae00db8bd0fdd30d208afc1b71c56e",
                 "shasum": ""
             },
             "require": {
@@ -8487,8 +8492,8 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3",
-                "symfony/var-dumper": "^4.0 || ^5.0"
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3 || ^10.5.58",
+                "symfony/var-dumper": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0"
             },
             "suggest": {
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
@@ -8528,7 +8533,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.18.4"
+                "source": "https://github.com/filp/whoops/tree/2.18.5"
             },
             "funding": [
                 {
@@ -8536,7 +8541,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-08T12:00:00+00:00"
+            "time": "2026-09-18T12:00:00+00:00"
         },
         {
             "name": "fruitcake/laravel-debugbar",
@@ -11289,9 +11294,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "nasirkhan/laravel-admin": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
