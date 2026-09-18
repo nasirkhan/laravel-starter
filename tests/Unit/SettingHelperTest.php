@@ -77,7 +77,7 @@ class SettingHelperTest extends TestCase
 
         File::ensureDirectoryExists(dirname($databasePath));
         File::delete($databasePath);
-        touch($databasePath);
+        File::put($databasePath, '');
 
         config([
             'database.default' => $connectionName,
