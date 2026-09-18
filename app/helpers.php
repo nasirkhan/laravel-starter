@@ -1,9 +1,9 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
@@ -174,25 +174,19 @@ if (! function_exists('setting')) {
             return new Setting;
         }
 
-        static $settingsTableExists;
-
-        if ($settingsTableExists === null) {
+        if (is_array($key)) {
             try {
-                $settingsTableExists = Schema::hasTable((new Setting)->getTable());
-            } catch (Throwable) {
-                $settingsTableExists = false;
+                return Setting::set($key[0], $key[1]);
+            } catch (QueryException) {
+                return null;
             }
         }
 
-        if (! $settingsTableExists) {
-            return is_array($key) ? null : value($default);
+        try {
+            $value = Setting::get($key);
+        } catch (QueryException) {
+            return value($default);
         }
-
-        if (is_array($key)) {
-            return Setting::set($key[0], $key[1]);
-        }
-
-        $value = Setting::get($key);
 
         return is_null($value) ? value($default) : $value;
     }
