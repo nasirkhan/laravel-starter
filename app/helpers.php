@@ -160,7 +160,7 @@ if (! function_exists('field_required')) {
 /**
  * Get or Set the Settings Values.
  */
-if (!function_exists('settings_table_is_missing')) {
+if (! function_exists('settings_table_is_missing')) {
     /**
      * Determine whether a settings query failed because the settings table does not exist yet.
      */
@@ -172,11 +172,11 @@ if (!function_exists('settings_table_is_missing')) {
         $message = strtolower($exception->getMessage());
         $settingsTable = strtolower((new Setting)->getTable());
         $tableSegments = array_map(
-            static fn (string $segment): string => '[`"\\[]?' . preg_quote($segment, '/') . '[`"\\]]?',
+            static fn (string $segment): string => '[`"\\[]?'.preg_quote($segment, '/').'[`"\\]]?',
             explode('.', $settingsTable)
         );
         $referencesSettingsTable = preg_match(
-            '/(^|[^a-z0-9_])' . implode('\\s*\\.\\s*', $tableSegments) . '([^a-z0-9_]|$)/',
+            '/(^|[^a-z0-9_])'.implode('\\s*\\.\\s*', $tableSegments).'([^a-z0-9_]|$)/',
             $message
         ) === 1;
 
@@ -207,7 +207,7 @@ if (!function_exists('settings_table_is_missing')) {
 /**
  * Get or Set the Settings Values.
  */
-if (!function_exists('setting')) {
+if (! function_exists('setting')) {
     /**
      * Get or Set the Settings Values.
      *
@@ -229,7 +229,7 @@ if (!function_exists('setting')) {
             try {
                 return Setting::set($key[0], $key[1]);
             } catch (QueryException $exception) {
-                if (!settings_table_is_missing($exception)) {
+                if (! settings_table_is_missing($exception)) {
                     throw $exception;
                 }
 
@@ -240,7 +240,7 @@ if (!function_exists('setting')) {
         try {
             $value = Setting::get($key);
         } catch (QueryException $exception) {
-            if (!settings_table_is_missing($exception)) {
+            if (! settings_table_is_missing($exception)) {
                 throw $exception;
             }
 
