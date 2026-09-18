@@ -45,6 +45,7 @@ class SettingHelperTest extends TestCase
     {
         $defaultConnection = config('database.default');
         $brokenConnection = 'sqlite_broken_read';
+        $originalBrokenConnectionConfig = config("database.connections.$brokenConnection");
 
         try {
             $this->useBrokenDefaultConnection($brokenConnection, 'broken-settings-read');
@@ -54,6 +55,7 @@ class SettingHelperTest extends TestCase
             setting('app_name');
         } finally {
             config(['database.default' => $defaultConnection]);
+            config(["database.connections.$brokenConnection" => $originalBrokenConnectionConfig]);
             DB::setDefaultConnection($defaultConnection);
             DB::purge($brokenConnection);
         }
@@ -63,6 +65,7 @@ class SettingHelperTest extends TestCase
     {
         $defaultConnection = config('database.default');
         $brokenConnection = 'sqlite_broken_write';
+        $originalBrokenConnectionConfig = config("database.connections.$brokenConnection");
 
         try {
             $this->useBrokenDefaultConnection($brokenConnection, 'broken-settings-write');
@@ -72,6 +75,7 @@ class SettingHelperTest extends TestCase
             setting(['app_name', 'Updated App Name']);
         } finally {
             config(['database.default' => $defaultConnection]);
+            config(["database.connections.$brokenConnection" => $originalBrokenConnectionConfig]);
             DB::setDefaultConnection($defaultConnection);
             DB::purge($brokenConnection);
         }
