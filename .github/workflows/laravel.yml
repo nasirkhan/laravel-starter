@@ -39,7 +39,7 @@ jobs:
 
       - name: Remove local Composer overrides
         run: |
-          echo '{}' > composer.local.json
+          echo '{"repositories":[{"type":"vcs","url":"https://github.com/nasirkhan/laravel-cube"}]}' > composer.local.json
           rm -f composer.lock
 
       - name: Install Composer dependencies
@@ -81,7 +81,7 @@ jobs:
 
       - name: Remove local Composer overrides
         run: |
-          echo '{}' > composer.local.json
+          echo '{"repositories":[{"type":"vcs","url":"https://github.com/nasirkhan/laravel-cube"}]}' > composer.local.json
           rm -f composer.lock
 
       - name: Install Composer dependencies
