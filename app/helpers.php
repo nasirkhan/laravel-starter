@@ -214,6 +214,7 @@ if (! function_exists('setting')) {
      *
      * Array writes return the underlying Setting::set() result, or null when
      * the settings table is unavailable during early bootstrapping.
+     * Only two-item [key, value] arrays are supported for writes.
      *
      * @param  array{0: string, 1: mixed}|mixed  $key
      * @param  mixed  $default
