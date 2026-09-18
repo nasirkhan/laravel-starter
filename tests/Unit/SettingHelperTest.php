@@ -43,7 +43,7 @@ class SettingHelperTest extends TestCase
                 'database.default' => $brokenConnection,
                 "database.connections.$brokenConnection" => array_merge(
                     config('database.connections.sqlite'),
-                    ['database' => '/tmp/missing-settings-read/database.sqlite']
+                    ['database' => storage_path('framework/testing/missing-settings-read/database.sqlite')]
                 ),
             ]);
 
@@ -70,7 +70,7 @@ class SettingHelperTest extends TestCase
                 'database.default' => $brokenConnection,
                 "database.connections.$brokenConnection" => array_merge(
                     config('database.connections.sqlite'),
-                    ['database' => '/tmp/missing-settings-write/database.sqlite']
+                    ['database' => storage_path('framework/testing/missing-settings-write/database.sqlite')]
                 ),
             ]);
 
