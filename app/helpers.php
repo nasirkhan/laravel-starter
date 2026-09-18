@@ -178,7 +178,7 @@ if (! function_exists('setting')) {
         $settingsTableMissing = static function (): bool {
             try {
                 return ! Schema::hasTable((new Setting)->getTable());
-            } catch (Throwable) {
+            } catch (\Throwable) {
                 return false;
             }
         };

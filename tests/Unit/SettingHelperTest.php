@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Unit;
+namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
@@ -15,5 +15,12 @@ class SettingHelperTest extends TestCase
         Schema::dropIfExists('settings');
 
         $this->assertSame('Fallback value', setting('app_name', 'Fallback value'));
+    }
+
+    public function test_setting_set_returns_null_when_settings_table_is_missing(): void
+    {
+        Schema::dropIfExists('settings');
+
+        $this->assertNull(setting(['app_name', 'Fallback value']));
     }
 }
