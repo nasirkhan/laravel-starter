@@ -76,6 +76,8 @@ class SettingHelperTest extends TestCase
     {
         $databasePath = $this->testingDatabasePath($directoryName);
 
+        File::ensureDirectoryExists(dirname($databasePath));
+        File::delete($databasePath);
         File::ensureDirectoryExists($databasePath);
 
         config([
@@ -92,6 +94,6 @@ class SettingHelperTest extends TestCase
 
     private function testingDatabasePath(string $directoryName): string
     {
-        return storage_path("framework/testing/{$directoryName}");
+        return storage_path("framework/testing/{$directoryName}/database.sqlite");
     }
 }
