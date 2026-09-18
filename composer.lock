@@ -3159,7 +3159,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "baa1602e93cb377837104c1660fbb783bff024e6"
+                "reference": "fa0f05d2c0f3ebbd3302f7c411a41aa275eea788"
             },
             "require": {
                 "intervention/image": "^4.0",
