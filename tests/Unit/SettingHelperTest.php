@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Illuminate\Database\QueryException;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -40,10 +39,10 @@ class SettingHelperTest extends TestCase
     public function test_setting_rethrows_non_missing_table_query_exception_when_reading(): void
     {
         $defaultConnection = config('database.default');
-        $brokenConnection = 'sqlite_malformed_read';
+        $brokenConnection = 'sqlite_broken_read';
 
         try {
-            $this->useMalformedSettingsConnection($brokenConnection, 'malformed-settings-read');
+            $this->useBrokenDefaultConnection($brokenConnection, 'broken-settings-read');
 
             $this->expectException(QueryException::class);
 
@@ -58,10 +57,10 @@ class SettingHelperTest extends TestCase
     public function test_setting_rethrows_non_missing_table_query_exception_when_writing(): void
     {
         $defaultConnection = config('database.default');
-        $brokenConnection = 'sqlite_malformed_write';
+        $brokenConnection = 'sqlite_broken_write';
 
         try {
-            $this->useMalformedSettingsConnection($brokenConnection, 'malformed-settings-write');
+            $this->useBrokenDefaultConnection($brokenConnection, 'broken-settings-write');
 
             $this->expectException(QueryException::class);
 
@@ -73,13 +72,11 @@ class SettingHelperTest extends TestCase
         }
     }
 
-    private function useMalformedSettingsConnection(string $connectionName, string $directoryName): void
+    private function useBrokenDefaultConnection(string $connectionName, string $directoryName): void
     {
         $databasePath = $this->testingDatabasePath($directoryName);
 
-        File::ensureDirectoryExists(dirname($databasePath));
-        File::delete($databasePath);
-        File::put($databasePath, '');
+        File::ensureDirectoryExists($databasePath);
 
         config([
             'database.default' => $connectionName,
@@ -91,14 +88,10 @@ class SettingHelperTest extends TestCase
 
         DB::purge($connectionName);
         DB::setDefaultConnection($connectionName);
-
-        Schema::connection($connectionName)->create('settings', function (Blueprint $table): void {
-            $table->id();
-        });
     }
 
     private function testingDatabasePath(string $directoryName): string
     {
-        return storage_path("framework/testing/{$directoryName}/database.sqlite");
+        return storage_path("framework/testing/{$directoryName}");
     }
 }
