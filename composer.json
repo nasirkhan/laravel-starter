@@ -7,6 +7,7 @@
         "cms",
         "starter",
         "admin",
+        "laravel-starter",
         "admin dashboard",
         "laravel blog",
         "website"
@@ -20,7 +21,7 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.0",
-        "nasirkhan/laravel-cube": "^2.8",
+        "nasirkhan/laravel-cube": "^3.0",
         "nasirkhan/module-manager": "^8.0",
         "spatie/laravel-medialibrary": "^11.12",
         "spatie/laravel-permission": "^8.0"
@@ -96,7 +97,9 @@
             "dont-discover": []
         },
         "merge-plugin": {
-            "include": ["composer.local.json"],
+            "include": [
+                "composer.local.json"
+            ],
             "ignore-duplicates": false,
             "merge-dev": true,
             "merge-extra": false,

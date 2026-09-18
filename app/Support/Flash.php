@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use Illuminate\Support\Collection;
+
 class Flash
 {
     protected string $message;
@@ -85,7 +87,7 @@ class Flash
     {
         $messages = session('flash_notification', collect());
 
-        if (! $messages instanceof \Illuminate\Support\Collection) {
+        if (! $messages instanceof Collection) {
             $messages = collect($messages);
         }
 

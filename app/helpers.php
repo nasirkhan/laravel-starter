@@ -121,7 +121,7 @@ if (! function_exists('show_column_value')) {
                             </figure>';
         } else {
             // Handle enum objects by converting to their string value
-            if ($value instanceof BackedEnum) {
+            if ($value instanceof \BackedEnum) {
                 $return_text = $value->value;
             } elseif (is_string($value)) {
                 $return_text = $value;
