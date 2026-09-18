@@ -160,6 +160,27 @@ if (! function_exists('field_required')) {
 /**
  * Get or Set the Settings Values.
  */
+if (! function_exists('settings_table_is_missing')) {
+    /**
+     * Determine whether a settings query failed because the settings table does not exist yet.
+     */
+    function settings_table_is_missing(QueryException $exception): bool
+    {
+        $message = strtolower($exception->getMessage());
+        $settingsTable = strtolower((new Setting)->getTable());
+
+        return str_contains($message, $settingsTable)
+            && (
+                str_contains($message, 'no such table')
+                || str_contains($message, "doesn't exist")
+                || str_contains($message, 'base table or view not found')
+            );
+    }
+}
+
+/**
+ * Get or Set the Settings Values.
+ */
 if (! function_exists('setting')) {
     /**
      * Get or Set the Settings Values.
@@ -174,24 +195,11 @@ if (! function_exists('setting')) {
             return new Setting;
         }
 
-        $settingsTable = strtolower((new Setting)->getTable());
-
-        $settingsTableMissing = static function (QueryException $exception) use ($settingsTable): bool {
-            $message = strtolower($exception->getMessage());
-
-            return str_contains($message, $settingsTable)
-                && (
-                    str_contains($message, 'no such table')
-                    || str_contains($message, "doesn't exist")
-                    || str_contains($message, 'base table or view not found')
-                );
-        };
-
         if (is_array($key)) {
             try {
                 return Setting::set($key[0], $key[1]);
             } catch (QueryException $exception) {
-                if (! $settingsTableMissing($exception)) {
+                if (! settings_table_is_missing($exception)) {
                     throw $exception;
                 }
 
@@ -202,7 +210,7 @@ if (! function_exists('setting')) {
         try {
             $value = Setting::get($key);
         } catch (QueryException $exception) {
-            if (! $settingsTableMissing($exception)) {
+            if (! settings_table_is_missing($exception)) {
                 throw $exception;
             }
 
