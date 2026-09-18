@@ -3,8 +3,10 @@
 namespace Tests\Unit;
 
 use Illuminate\Database\QueryException;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -36,10 +38,10 @@ class SettingHelperTest extends TestCase
     public function test_setting_rethrows_non_missing_table_query_exception_when_reading(): void
     {
         $defaultConnection = config('database.default');
-        $brokenConnection = 'sqlite_broken_read';
+        $brokenConnection = 'sqlite_malformed_read';
 
         try {
-            $this->useBrokenDefaultConnection($brokenConnection, 'missing-settings-read');
+            $this->useMalformedSettingsConnection($brokenConnection, 'malformed-settings-read');
 
             $this->expectException(QueryException::class);
 
@@ -54,10 +56,10 @@ class SettingHelperTest extends TestCase
     public function test_setting_rethrows_non_missing_table_query_exception_when_writing(): void
     {
         $defaultConnection = config('database.default');
-        $brokenConnection = 'sqlite_broken_write';
+        $brokenConnection = 'sqlite_malformed_write';
 
         try {
-            $this->useBrokenDefaultConnection($brokenConnection, 'missing-settings-write');
+            $this->useMalformedSettingsConnection($brokenConnection, 'malformed-settings-write');
 
             $this->expectException(QueryException::class);
 
@@ -69,21 +71,31 @@ class SettingHelperTest extends TestCase
         }
     }
 
-    private function useBrokenDefaultConnection(string $connectionName, string $directoryName): void
+    private function useMalformedSettingsConnection(string $connectionName, string $directoryName): void
     {
+        $databasePath = $this->testingDatabasePath($directoryName);
+
+        File::ensureDirectoryExists(dirname($databasePath));
+        File::delete($databasePath);
+        touch($databasePath);
+
         config([
             'database.default' => $connectionName,
             "database.connections.$connectionName" => array_merge(
                 config('database.connections.sqlite'),
-                ['database' => $this->brokenTestingDatabasePath($directoryName)]
+                ['database' => $databasePath]
             ),
         ]);
 
         DB::purge($connectionName);
         DB::setDefaultConnection($connectionName);
+
+        Schema::connection($connectionName)->create('settings', function (Blueprint $table): void {
+            $table->id();
+        });
     }
 
-    private function brokenTestingDatabasePath(string $directoryName): string
+    private function testingDatabasePath(string $directoryName): string
     {
         return storage_path("framework/testing/{$directoryName}/database.sqlite");
     }
