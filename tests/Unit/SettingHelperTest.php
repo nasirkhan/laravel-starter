@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use PDOException;
 use Tests\TestCase;
 
 class SettingHelperTest extends TestCase
@@ -39,6 +40,16 @@ class SettingHelperTest extends TestCase
     public function test_setting_returns_default_for_missing_key_when_settings_table_exists(): void
     {
         $this->assertSame('Fallback value', setting('missing-setting-key', 'Fallback value'));
+    }
+
+    public function test_settings_table_is_missing_recognizes_sqlite_missing_table_query_exception(): void
+    {
+        $previous = new PDOException('SQLSTATE[HY000]: General error: 1 no such table: settings');
+        $previous->errorInfo = ['HY000', 1, 'no such table: settings'];
+
+        $exception = new QueryException('sqlite', 'select * from "settings"', [], $previous);
+
+        $this->assertTrue(settings_table_is_missing($exception));
     }
 
     public function test_setting_rethrows_non_missing_table_query_exception_when_reading(): void
