@@ -78,7 +78,7 @@ class SettingHelperTest extends TestCase
 
         File::ensureDirectoryExists(dirname($databasePath));
         File::delete($databasePath);
-        File::ensureDirectoryExists($databasePath);
+        File::put($databasePath, 'not a sqlite database');
 
         config([
             'database.default' => $connectionName,
