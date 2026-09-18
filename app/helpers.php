@@ -166,13 +166,31 @@ if (! function_exists('settings_table_is_missing')) {
      */
     function settings_table_is_missing(QueryException $exception): bool
     {
+        $errorInfo = $exception->errorInfo ?? [];
+        $sqlState = (string) ($errorInfo[0] ?? $exception->getCode());
+        $driverCode = (string) ($errorInfo[1] ?? '');
         $message = strtolower($exception->getMessage());
         $settingsTable = strtolower((new Setting)->getTable());
 
+        if (in_array($sqlState, ['42P01', '42S02'], true)) {
+            return true;
+        }
+
+        if ($driverCode === '1146') {
+            return true;
+        }
+
+        if (
+            $driverCode === '1'
+            && str_contains($message, $settingsTable)
+            && str_contains($message, 'no such table')
+        ) {
+            return true;
+        }
+
         return str_contains($message, $settingsTable)
             && (
-                str_contains($message, 'no such table')
-                || str_contains($message, "doesn't exist")
+                str_contains($message, "doesn't exist")
                 || str_contains($message, 'base table or view not found')
             );
     }
