@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -159,11 +160,62 @@ if (! function_exists('field_required')) {
 /**
  * Get or Set the Settings Values.
  */
-if (! function_exists('setting')) {
+if (!function_exists('settings_table_is_missing')) {
+    /**
+     * Determine whether a settings query failed because the settings table does not exist yet.
+     */
+    function settings_table_is_missing(QueryException $exception): bool
+    {
+        $errorInfo = $exception->errorInfo ?? [];
+        $sqlState = (string) ($errorInfo[0] ?? $exception->getCode());
+        $driverCode = (string) ($errorInfo[1] ?? '');
+        $message = strtolower($exception->getMessage());
+        $settingsTable = strtolower((new Setting)->getTable());
+        $tableSegments = array_map(
+            static fn (string $segment): string => '[`"\\[]?' . preg_quote($segment, '/') . '[`"\\]]?',
+            explode('.', $settingsTable)
+        );
+        $referencesSettingsTable = preg_match(
+            '/(^|[^a-z0-9_])' . implode('\\s*\\.\\s*', $tableSegments) . '([^a-z0-9_]|$)/',
+            $message
+        ) === 1;
+
+        if ($referencesSettingsTable && in_array($sqlState, ['42P01', '42S02'], true)) {
+            return true;
+        }
+
+        if ($referencesSettingsTable && $driverCode === '1146') {
+            return true;
+        }
+
+        if (
+            $referencesSettingsTable
+            && $driverCode === '1'
+            && str_contains($message, 'no such table')
+        ) {
+            return true;
+        }
+
+        return $referencesSettingsTable
+            && (
+                str_contains($message, "doesn't exist")
+                || str_contains($message, 'base table or view not found')
+            );
+    }
+}
+
+/**
+ * Get or Set the Settings Values.
+ */
+if (!function_exists('setting')) {
     /**
      * Get or Set the Settings Values.
      *
-     * @param  mixed  $key
+     * Array writes return the underlying Setting::set() result, or null when
+     * the settings table is unavailable during early bootstrapping.
+     * Only two-item [key, value] arrays are supported for writes.
+     *
+     * @param  array{0: string, 1: mixed}|mixed  $key
      * @param  mixed  $default
      * @return mixed
      */
@@ -174,10 +226,26 @@ if (! function_exists('setting')) {
         }
 
         if (is_array($key)) {
-            return Setting::set($key[0], $key[1]);
+            try {
+                return Setting::set($key[0], $key[1]);
+            } catch (QueryException $exception) {
+                if (!settings_table_is_missing($exception)) {
+                    throw $exception;
+                }
+
+                return null;
+            }
         }
 
-        $value = Setting::get($key);
+        try {
+            $value = Setting::get($key);
+        } catch (QueryException $exception) {
+            if (!settings_table_is_missing($exception)) {
+                throw $exception;
+            }
+
+            return value($default);
+        }
 
         return is_null($value) ? value($default) : $value;
     }
