@@ -2954,7 +2954,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "99b8b234397f37d79f5d932ca7662738413ce254"
+                "reference": "05a205a6dc23aaf2f99d3a2b927a2dc1853ae34b"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
