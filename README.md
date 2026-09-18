@@ -133,12 +133,13 @@ It is a modular application, and some modules are installed by default. It will 
 * Language Switcher
 * Localization enabled across the project
 * Backend Theme
-  * Bootstrap 5, CoreUI
-  * Fontawesome 6
+  * Tailwind CSS v4, Flowbite
+  * Fontawesome 7
   * Dark Mode
+  * Livewire-powered tables
 * Frontend Theme
-  * Tailwind
-  * Fontawesome 6
+  * Tailwind CSS v4
+  * Fontawesome 7
   * Dark Mode
 * Article Module
   * Posts
@@ -149,13 +150,10 @@ It is a modular application, and some modules are installed by default. It will 
   * File browser
 * Application Settings
 * External Libraries
-  * Bootstrap 5
-  * Fontawesome 6
-  * CoreUI
-  * Tailwind
-  * Datatables
-  * Select2
-  * Date Time Picker
+  * Tailwind CSS v4
+  * Flowbite
+  * Fontawesome 7
+  * Tom Select
   * Jodit WYSIWYG Editor
 * Backup (Source, Files, Database as Zip)
 * Log Viewer
@@ -169,6 +167,7 @@ Laravel Starter is built on top of a set of focused, reusable packages that are 
 
 | Package | Description |
 |---|---|
+| [nasirkhan/laravel-admin](https://github.com/nasirkhan/laravel-admin) | Tailwind CSS v4 / Flowbite backend shell — sidebar, header, breadcrumb layout, and Livewire-powered CRUD for users, roles, and notifications |
 | [nasirkhan/module-manager](https://github.com/nasirkhan/module-manager) | Powerful module management with version tracking, migration management, dependency resolution, and full module lifecycle commands (`module:status`, `module:build`, `module:enable`, etc.) |
 | [nasirkhan/laravel-cube](https://github.com/nasirkhan/laravel-cube) | Versatile collection of reusable UI Blade components (buttons, modals, cards, forms, navigation, and more) with dual Tailwind CSS and Bootstrap 5 support and built-in dark mode |
 | [nasirkhan/laravel-jodit](https://github.com/nasirkhan/laravel-jodit) | Integrates the [Jodit](https://xdsoft.net/jodit/) WYSIWYG editor via a single Blade component (`<x-jodit::editor>`), with Livewire support and a built-in server-side file browser/uploader |
