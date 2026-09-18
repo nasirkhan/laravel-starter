@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
 use Sqids\Sqids;
@@ -174,17 +175,33 @@ if (! function_exists('setting')) {
             return new Setting;
         }
 
+        $settingsTableMissing = static function (): bool {
+            try {
+                return ! Schema::hasTable((new Setting)->getTable());
+            } catch (Throwable) {
+                return false;
+            }
+        };
+
         if (is_array($key)) {
             try {
                 return Setting::set($key[0], $key[1]);
-            } catch (QueryException) {
+            } catch (QueryException $exception) {
+                if (! $settingsTableMissing()) {
+                    throw $exception;
+                }
+
                 return null;
             }
         }
 
         try {
             $value = Setting::get($key);
-        } catch (QueryException) {
+        } catch (QueryException $exception) {
+            if (! $settingsTableMissing()) {
+                throw $exception;
+            }
+
             return value($default);
         }
 
