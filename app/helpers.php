@@ -10,7 +10,7 @@ use Sqids\Sqids;
 /*
  * Global helpers file with misc functions.
  */
-if (! function_exists('app_name')) {
+if (!function_exists('app_name')) {
     /**
      * Helper to grab the application name.
      */
@@ -23,7 +23,7 @@ if (! function_exists('app_name')) {
 /*
  * Global helpers file with misc functions.
  */
-if (! function_exists('app_url')) {
+if (!function_exists('app_url')) {
     /**
      * Helper to grab the application URL.
      */
@@ -36,7 +36,7 @@ if (! function_exists('app_url')) {
 /*
  * Global helpers file with misc functions.
  */
-if (! function_exists('user_registration')) {
+if (!function_exists('user_registration')) {
     /**
      * Helper to check if user registration is enabled.
      */
@@ -52,7 +52,7 @@ if (! function_exists('user_registration')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('label_case')) {
+if (!function_exists('label_case')) {
     /**
      * Prepare the Column Name for Labels.
      */
@@ -73,7 +73,7 @@ if (! function_exists('label_case')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('show_column_value')) {
+if (!function_exists('show_column_value')) {
     /**
      * Generates the formatted column value based on its type.
      *
@@ -89,7 +89,7 @@ if (! function_exists('show_column_value')) {
 
         $value = $valueObject->$column_name;
 
-        if (! $value) {
+        if (!$value) {
             return is_array($value) ? null : $value;
         }
 
@@ -113,10 +113,10 @@ if (! function_exists('show_column_value')) {
             $img_path = asset($value);
 
             $return_text = '<figure class="figure">
-                                <a href="'.$img_path.'" data-lightbox="image-set" data-title="Path: '.$value.'">
-                                    <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
+                                <a href="' . $img_path . '" data-lightbox="image-set" data-title="Path: ' . $value . '">
+                                    <img src="' . $img_path . '" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
                                 </a>
-                                <figcaption class="figure-caption">Path: '.$value.'</figcaption>
+                                <figcaption class="figure-caption">Path: ' . $value . '</figcaption>
                             </figure>';
         } else {
             // Handle enum objects by converting to their string value
@@ -140,7 +140,7 @@ if (! function_exists('show_column_value')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('field_required')) {
+if (!function_exists('field_required')) {
     /**
      * Show a * if field is required.
      */
@@ -159,7 +159,7 @@ if (! function_exists('field_required')) {
 /**
  * Get or Set the Settings Values.
  */
-if (! function_exists('setting')) {
+if (!function_exists('setting')) {
     /**
      * Get or Set the Settings Values.
      *
@@ -186,7 +186,7 @@ if (! function_exists('setting')) {
 /*
  * Show Human readable file size
  */
-if (! function_exists('humanFilesize')) {
+if (!function_exists('humanFilesize')) {
     /**
      * Show Human readable file size.
      */
@@ -201,7 +201,7 @@ if (! function_exists('humanFilesize')) {
             $i++;
         }
 
-        return round($size, $precision).$units[$i];
+        return round($size, $precision) . $units[$i];
     }
 }
 
@@ -211,14 +211,14 @@ if (! function_exists('humanFilesize')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('encode_id')) {
+if (!function_exists('encode_id')) {
     /**
      * Encode Id to Sqids.
      */
     function encode_id(int $id): string
     {
         static $sqids;
-        if (! $sqids) {
+        if (!$sqids) {
             $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
         }
 
@@ -232,14 +232,14 @@ if (! function_exists('encode_id')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('decode_id')) {
+if (!function_exists('decode_id')) {
     /**
      * Decode Id from Sqids.
      */
     function decode_id(string $hashid): ?int
     {
         static $sqids;
-        if (! $sqids) {
+        if (!$sqids) {
             $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
         }
         $id = $sqids->decode($hashid);
@@ -255,7 +255,7 @@ if (! function_exists('decode_id')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('slug_format')) {
+if (!function_exists('slug_format')) {
     /**
      * Format a string to Slug.
      */
@@ -279,13 +279,13 @@ if (! function_exists('slug_format')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('icon')) {
+if (!function_exists('icon')) {
     /**
      * A short and easy way to show icon fonts.
      */
     function icon(string $string = 'fa-regular fa-circle-check'): string
     {
-        return "<i class='".$string."'></i>&nbsp;";
+        return "<i class='" . $string . "'></i>&nbsp;";
     }
 }
 
@@ -297,7 +297,7 @@ if (! function_exists('icon')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('logUserAccess')) {
+if (!function_exists('logUserAccess')) {
     /**
      * Get current user's name and id and log as debug data. Additional text can be added too.
      */
@@ -328,7 +328,7 @@ if (! function_exists('logUserAccess')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('bn2enNumber')) {
+if (!function_exists('bn2enNumber')) {
     /**
      * Convert a Bengali number to English.
      */
@@ -348,7 +348,7 @@ if (! function_exists('bn2enNumber')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('en2bnNumber')) {
+if (!function_exists('en2bnNumber')) {
     /**
      * Convert an English number to Bengali.
      */
@@ -368,7 +368,7 @@ if (! function_exists('en2bnNumber')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('en2bnDate')) {
+if (!function_exists('en2bnDate')) {
     /**
      * Convert an English date to Bengali.
      */
@@ -410,7 +410,7 @@ if (! function_exists('en2bnDate')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('banglaDate')) {
+if (!function_exists('banglaDate')) {
     /**
      * Get the Date of Bengali Calendar from the Gregorian Calendar.
      * By default, it will return the Today's Date.
@@ -451,7 +451,7 @@ if (! function_exists('banglaDate')) {
             $bn_year -= 1;
         }
 
-        $return_bn_date = $bn_day.' '.$bn_month.' '.$bn_year;
+        $return_bn_date = $bn_day . ' ' . $bn_month . ' ' . $bn_year;
 
         return en2bnNumber($return_bn_date);
     }
@@ -464,7 +464,7 @@ if (! function_exists('banglaDate')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('generate_rgb_code')) {
+if (!function_exists('generate_rgb_code')) {
     /**
      * Generate an RGB color code string.
      */
@@ -486,7 +486,7 @@ if (! function_exists('generate_rgb_code')) {
  *
  * ------------------------------------------------------------------------
  */
-if (! function_exists('date_today')) {
+if (!function_exists('date_today')) {
     /**
      * Return Date with weekday.
      * Carbon Locale will be considered here.
@@ -498,7 +498,7 @@ if (! function_exists('date_today')) {
     }
 }
 
-if (! function_exists('language_direction')) {
+if (!function_exists('language_direction')) {
     /**
      * Return direction of languages.
      */
@@ -538,7 +538,7 @@ if (! function_exists('language_direction')) {
 /*
  * Application Demo Mode check
  */
-if (! function_exists('demo_mode')) {
+if (!function_exists('demo_mode')) {
     /**
      * Check if application is in demo mode.
      */
@@ -551,7 +551,7 @@ if (! function_exists('demo_mode')) {
 /*
  * Split Name to First Name and Last Name
  */
-if (! function_exists('split_name')) {
+if (!function_exists('split_name')) {
     /**
      * Split Name to First Name and Last Name.
      */
@@ -559,7 +559,7 @@ if (! function_exists('split_name')) {
     {
         $name = trim($name);
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
-        $first_name = trim(preg_replace('#'.preg_quote($last_name, '#').'#', '', $name));
+        $first_name = trim(preg_replace('#' . preg_quote($last_name, '#') . '#', '', $name));
 
         return [$first_name, $last_name];
     }
