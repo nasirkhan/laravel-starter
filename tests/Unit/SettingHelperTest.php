@@ -39,16 +39,7 @@ class SettingHelperTest extends TestCase
         $brokenConnection = 'sqlite_broken_read';
 
         try {
-            config([
-                'database.default' => $brokenConnection,
-                "database.connections.$brokenConnection" => array_merge(
-                    config('database.connections.sqlite'),
-                    ['database' => storage_path('framework/testing/missing-settings-read/database.sqlite')]
-                ),
-            ]);
-
-            DB::purge($brokenConnection);
-            DB::setDefaultConnection($brokenConnection);
+            $this->useBrokenDefaultConnection($brokenConnection, 'missing-settings-read');
 
             $this->expectException(QueryException::class);
 
@@ -66,16 +57,7 @@ class SettingHelperTest extends TestCase
         $brokenConnection = 'sqlite_broken_write';
 
         try {
-            config([
-                'database.default' => $brokenConnection,
-                "database.connections.$brokenConnection" => array_merge(
-                    config('database.connections.sqlite'),
-                    ['database' => storage_path('framework/testing/missing-settings-write/database.sqlite')]
-                ),
-            ]);
-
-            DB::purge($brokenConnection);
-            DB::setDefaultConnection($brokenConnection);
+            $this->useBrokenDefaultConnection($brokenConnection, 'missing-settings-write');
 
             $this->expectException(QueryException::class);
 
@@ -85,5 +67,24 @@ class SettingHelperTest extends TestCase
             DB::setDefaultConnection($defaultConnection);
             DB::purge($brokenConnection);
         }
+    }
+
+    private function useBrokenDefaultConnection(string $connectionName, string $directoryName): void
+    {
+        config([
+            'database.default' => $connectionName,
+            "database.connections.$connectionName" => array_merge(
+                config('database.connections.sqlite'),
+                ['database' => $this->brokenTestingDatabasePath($directoryName)]
+            ),
+        ]);
+
+        DB::purge($connectionName);
+        DB::setDefaultConnection($connectionName);
+    }
+
+    private function brokenTestingDatabasePath(string $directoryName): string
+    {
+        return storage_path("framework/testing/{$directoryName}/database.sqlite");
     }
 }
