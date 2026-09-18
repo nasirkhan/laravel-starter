@@ -170,7 +170,7 @@ if (! function_exists('settings_table_is_missing')) {
         $sqlState = (string) ($errorInfo[0] ?? $exception->getCode());
         $driverCode = (string) ($errorInfo[1] ?? '');
         $message = strtolower($exception->getMessage());
-        $settingsTable = strtolower((new Setting)->getTable());
+        $settingsTable = strtolower((new \Nasirkhan\ModuleManager\Modules\Settings\Models\Setting)->getTable());
         $tableSegments = array_map(
             static fn (string $segment): string => '[`"\\[]?'.preg_quote($segment, '/').'[`"\\]]?',
             explode('.', $settingsTable)
@@ -190,7 +190,8 @@ if (! function_exists('settings_table_is_missing')) {
 
         if (
             $referencesSettingsTable
-            && $driverCode === '1'
+            &&
+            $driverCode === '1'
             && str_contains($message, 'no such table')
         ) {
             return true;
