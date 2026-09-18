@@ -1,7 +1,10 @@
 <nav
-    class="border-b-2 border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-900"
+    class="sticky top-0 z-40 border-b border-gray-200/60 bg-white/90 backdrop-blur-md transition-all duration-200 dark:border-gray-700/60 dark:bg-gray-900/90"
     role="navigation"
     aria-label="Main navigation"
+    x-data="{ scrolled: false }"
+    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 8 })"
+    :class="scrolled ? 'shadow-md' : 'shadow-none'"
 >
     <!-- Skip to main content link for accessibility -->
     <a
@@ -15,7 +18,7 @@
         <a class="flex items-center space-x-3 rtl:space-x-reverse" href="/" wire:navigate aria-label="Go to homepage">
             <img class="h-9 rounded" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
         </a>
-        <div class="flex items-center justify-end space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
+        <div class="flex items-center justify-end gap-2 md:order-2 md:gap-3 rtl:space-x-reverse">
             @if (setting("show_theme_dropdown"))
                 <button
                     class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
@@ -109,7 +112,7 @@
             @guest
                 @if (user_registration())
                     <a
-                        class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-4 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                        class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
                         href="{{ route("register") }}"
                         wire:navigate
                     >
@@ -137,7 +140,7 @@
                 @endif
 
                 <a
-                    class="inline-flex cursor-pointer items-center justify-center rounded-sm p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 sm:px-4 sm:py-2 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
                     href="{{ route("login") }}"
                     wire:navigate
                 >
@@ -196,7 +199,6 @@
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                     href="{{ route("backend.dashboard") }}"
                                     role="menuitem"
-                                    wire:navigate
                                 >
                                     <div class="inline-flex items-center">
                                         <svg

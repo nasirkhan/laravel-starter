@@ -8,23 +8,19 @@
         "format": "prettier --write **/*.blade.php"
     },
     "devDependencies": {
-        "@coreui/coreui": "^5.4.3",
         "@fortawesome/fontawesome-free": "^7.1.0",
         "@popperjs/core": "^2.11.8",
         "@shufo/prettier-plugin-blade": "^1.16.1",
         "@tailwindcss/vite": "^4.2.2",
         "axios": "^1.16.0",
-        "bootstrap": "^5.3.3",
         "concurrently": "^9.0.1",
         "flowbite": "^3.1.2",
-        "jquery": "^3.7.1",
         "laravel-vite-plugin": "^3.0.0",
         "prettier": "^3.5.3",
         "prettier-plugin-blade": "^3.1.4",
         "prettier-plugin-tailwindcss": "^0.8.0",
-        "sass": "^1.86.1",
-        "simplebar": "^6.3.0",
         "tailwindcss": "^4.2.2",
+        "tom-select": "^2.4.3",
         "vite": "^8.0.16"
     },
     "dependencies": {

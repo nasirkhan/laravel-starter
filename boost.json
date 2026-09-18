@@ -1,12 +1,22 @@
 {
     "agents": [
-        "copilot",
-        "claude",
-        "kilocode"
+        "claude_code",
+        "copilot"
     ],
+    "cloud": false,
     "editors": [
         "vscode"
     ],
+    "guidelines": true,
     "mcp": true,
-    "guidelines": []
+    "nightwatch": false,
+    "sail": false,
+    "skills": [
+        "infer-conventions",
+        "laravel-best-practices",
+        "testing-best-practices",
+        "socialite-development",
+        "livewire-development",
+        "tailwindcss-development"
+    ]
 }

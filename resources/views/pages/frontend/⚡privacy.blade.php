@@ -20,8 +20,9 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
 <div>
     <x-cube::header-block :title="$title" />
 
-    <section class="mx-auto max-w-screen-xl bg-white p-6 text-gray-600 sm:p-20">
-        <div class="grid grid-cols-1">
+    <section class="bg-white py-10 text-gray-600 dark:bg-gray-800 sm:py-16">
+        <div class="mx-auto max-w-4xl px-6 sm:px-10">
+        <div class="prose prose-gray max-w-none dark:prose-invert prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-headings:font-semibold">
             <p>
                 At {{ app_name() }}, accessible at
                 <a href="{{ config("app.url") }}">{{ config("app.url") }}</a>
@@ -38,10 +39,10 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 applicable to any information collected offline or via channels other than this website.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Consent</h3>
+            <h3>Consent</h3>
             <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Information we collect</h3>
+            <h3>Information we collect</h3>
             <p>
                 The personal information that you are asked to provide, and the reasons why you are asked to provide it,
                 will be made clear to you at the point we ask you to provide your personal information.
@@ -56,10 +57,9 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 company name, address, email address, and telephone number.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">How we use your information</h3>
+            <h3>How we use your information</h3>
             <p>We use the information we collect in various ways, including to:</p>
-            <p></p>
-            <ul class="list-inside list-disc">
+            <ul>
                 <li>Provide, operate, and maintain our website</li>
                 <li>Improve, personalize, and expand our website</li>
                 <li>Understand and analyze how you use our website</li>
@@ -73,7 +73,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 <li>Find and prevent fraud</li>
             </ul>
 
-            <h3 class="mb-2 mt-4 text-2xl">Log Files</h3>
+            <h3>Log Files</h3>
             <p>
                 {{ app_name() }} follows a standard procedure of using log files. These files log visitors when they
                 visit websites. All hosting companies do this and a part of hosting services' analytics. The information
@@ -84,7 +84,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 demographic information.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Cookies and Web Beacons</h3>
+            <h3>Cookies and Web Beacons</h3>
             <p>
                 Like any other website, {{ app_name() }} uses 'cookies'. These cookies are used to store information
                 including visitors' preferences, and the pages on the website that the visitor accessed or visited. The
@@ -92,7 +92,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 visitors' browser type and/or other information.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">DoubleClick DART Cookie</h3>
+            <h3>DoubleClick DART Cookie</h3>
             <p>
                 Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve
                 ads to our site visitors based upon their visit to {{ config("app.url") }} and other sites on the
@@ -106,7 +106,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
             </p>
             <p>Google: https://policies.google.com/technologies/ads</p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Advertising Partners Privacy Policies</h3>
+            <h3>Advertising Partners Privacy Policies</h3>
 
             <p>
                 You may consult this list to find the Privacy Policy for each of the advertising partners of
@@ -124,7 +124,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 advertisers.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Third-Party Privacy Policies</h3>
+            <h3>Third-Party Privacy Policies</h3>
             <p>
                 {{ app_name() }}'s Privacy Policy does not apply to other advertisers or websites. Thus, we are
                 advising you to consult the respective Privacy Policies of these third-party ad servers for more
@@ -138,7 +138,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 respective websites. What Are Cookies?
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">CCPA Privacy Policy (Do Not Sell My Personal Information)</h3>
+            <h3>CCPA Privacy Policy (Do Not Sell My Personal Information)</h3>
             <p>Under the CCPA, among other rights, California consumers have the right to:</p>
             <p>
                 Request that a business that collects a consumer's personal data disclose the categories and specific
@@ -151,7 +151,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 rights, please contact us.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">GDPR Privacy Policy (Data Protection Rights)</h3>
+            <h3>GDPR Privacy Policy (Data Protection Rights)</h3>
             <p>
                 We would like to make sure you are fully aware of all of your data protection rights. Every user is
                 entitled to the following:
@@ -186,7 +186,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 rights, please contact us.
             </p>
 
-            <h3 class="mb-2 mt-4 text-2xl">Children's Information</h3>
+            <h3>Children's Information</h3>
             <p>
                 Another part of our priority is adding protection for children while using the internet. We encourage
                 parents and guardians to observe, participate in, and/or monitor and guide their online activity.
@@ -197,6 +197,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
                 strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such
                 information from our records.
             </p>
+        </div>
         </div>
     </section>
 </div>

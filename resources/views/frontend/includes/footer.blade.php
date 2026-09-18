@@ -1,5 +1,5 @@
-<footer class="bg-gray-100 px-4 py-6 sm:p-20 dark:bg-gray-800" role="contentinfo" aria-label="Site footer">
-    <div class="mx-auto max-w-5xl text-center">
+<footer class="border-t border-gray-200 bg-gray-50 px-4 py-12 sm:px-8 sm:py-16 dark:border-gray-700 dark:bg-gray-900" role="contentinfo" aria-label="Site footer">
+    <div class="mx-auto max-w-7xl text-center">
         <a
             class="flex items-center justify-center"
             href="/"
@@ -36,5 +36,8 @@
         <x-cube::footer-credit :text="setting('footer_text')" />
         @endif
 
+        <div class="mx-auto mt-8 max-w-7xl border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
+            &copy; {{ now()->year }} {{ app_name() }}. {{ __('All rights reserved.') }}
+        </div>
     </div>
 </footer>

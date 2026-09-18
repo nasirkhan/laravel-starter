@@ -75,6 +75,7 @@
                 </div>
                 <x-sharekit::buttons
                     theme="tailwind"
+                    :compact="true"
                     :url="route('home')"
                     :title="__('Laravel Starter')"
                     :networks="['x', 'facebook', 'linkedin', 'whatsapp', 'copy']"

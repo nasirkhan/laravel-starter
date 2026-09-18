@@ -18,13 +18,13 @@ class AllFormsStructureTest extends TestCase
         $cubePackagePath = 'vendor/nasirkhan/laravel-cube/resources/views/components/backend/layouts';
 
         $formsToCheck = [
-            // Backend edit forms
-            'resources/views/backend/users/edit.blade.php',
-            'resources/views/backend/roles/edit.blade.php',
+            // Backend edit forms (in laravel-admin package)
+            'vendor/nasirkhan/laravel-admin/resources/views/users/edit.blade.php',
+            'vendor/nasirkhan/laravel-admin/resources/views/roles/edit.blade.php',
 
-            // Backend create forms
-            'resources/views/backend/users/create.blade.php',
-            'resources/views/backend/roles/create.blade.php',
+            // Backend create forms (in laravel-admin package)
+            'vendor/nasirkhan/laravel-admin/resources/views/users/create.blade.php',
+            'vendor/nasirkhan/laravel-admin/resources/views/roles/create.blade.php',
 
             // Layout components (in cube package)
             $cubePackagePath.'/edit.blade.php',
@@ -45,12 +45,9 @@ class AllFormsStructureTest extends TestCase
             $formClosePositions = [];
             $cancelPositions = [];
 
-            // Look for various form closing patterns
-            if (strpos($content, '{{ html()->closeModelForm() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->closeModelForm() }}');
-            }
-            if (strpos($content, '{{ html()->form()->close() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->form()->close() }}');
+            // Look for form closing tag
+            if (strpos($content, '</form>') !== false) {
+                $formClosePositions[] = strpos($content, '</form>');
             }
 
             // Look for Cancel button patterns

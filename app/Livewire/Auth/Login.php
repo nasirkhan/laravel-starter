@@ -53,7 +53,10 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('frontend.index', absolute: false), navigate: true);
+        $intendedUrl = Session::pull('url.intended', route('frontend.index', absolute: false));
+        $isAdminUrl = str_starts_with(parse_url($intendedUrl, PHP_URL_PATH) ?? '', '/admin');
+
+        $this->redirect($intendedUrl, navigate: ! $isAdminUrl);
     }
 
     /**
