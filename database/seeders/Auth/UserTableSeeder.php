@@ -5,7 +5,6 @@ namespace Database\Seeders\Auth;
 use App\Events\Backend\UserCreated;
 use App\Models\User;
 use Carbon\Carbon;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 /**
@@ -20,8 +19,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
-
         $users = [
             [
                 'id' => 1,
@@ -76,9 +73,14 @@ class UserTableSeeder extends Seeder
         ];
 
         foreach ($users as $user_data) {
-            $user = User::create($user_data);
+            $user = User::firstOrCreate(
+                ['email' => $user_data['email']],
+                array_diff_key($user_data, ['id' => true]),
+            );
 
-            event(new UserCreated($user));
+            if ($user->wasRecentlyCreated) {
+                event(new UserCreated($user));
+            }
         }
     }
 }
