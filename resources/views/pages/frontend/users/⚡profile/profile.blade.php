@@ -19,28 +19,20 @@
             @auth
                 @if (auth()->user()->id == $$module_name_singular->id)
                     <div class="flex flex-wrap gap-2 sm:mb-1">
-                        <a
-                            href="{{ route('frontend.users.profileEdit') }}"
-                            wire:navigate
-                            class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-600 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-750"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <x-cube::button-link href="{{ route('frontend.users.profileEdit') }}" wire:navigate variant="secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="me-1.5 h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                             </svg>
                             {{ __('Edit Profile') }}
-                        </a>
-                        <a
-                            href="{{ route('frontend.users.changePassword') }}"
-                            wire:navigate
-                            class="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-600 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-750"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </x-cube::button-link>
+                        <x-cube::button-link href="{{ route('frontend.users.changePassword') }}" wire:navigate variant="secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="me-1.5 h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                             </svg>
                             {{ __('Password') }}
-                        </a>
+                        </x-cube::button-link>
                     </div>
                 @endif
             @endauth
@@ -256,17 +248,13 @@
                                 <div class="min-w-0">
                                     <p class="text-sm font-medium text-teal-800 dark:text-teal-300">{{ __('Your profile has empty fields') }}</p>
                                     <p class="mt-0.5 text-sm text-teal-600 dark:text-teal-400/80">{{ __('Add a bio, social links, or website so others can learn more about you.') }}</p>
-                                    <a
-                                        href="{{ route('frontend.users.profileEdit') }}"
-                                        wire:navigate
-                                        class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 transition hover:text-teal-900 dark:text-teal-400 dark:hover:text-teal-300"
-                                    >
+                                    <x-cube::button-link href="{{ route('frontend.users.profileEdit') }}" wire:navigate variant="primary" class="mt-3">
                                         {{ __('Complete your profile') }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="ms-1.5 h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <line x1="5" y1="12" x2="19" y2="12"/>
                                             <polyline points="12 5 19 12 12 19"/>
                                         </svg>
-                                    </a>
+                                    </x-cube::button-link>
                                 </div>
                             </div>
                         @endif

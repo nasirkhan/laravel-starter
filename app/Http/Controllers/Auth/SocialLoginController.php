@@ -116,6 +116,11 @@ class SocialLoginController extends Controller
                 'provider' => $provider,
             ]);
 
+            if ($authUser->email_verified_at === null) {
+                $authUser->email_verified_at = now();
+                $authUser->save();
+            }
+
             return $authUser;
         }
         $name = $socialUser->getName();
@@ -136,6 +141,7 @@ class SocialLoginController extends Controller
             'last_name' => $last_name,
             'name' => $name,
             'email' => $email,
+            'email_verified_at' => now(),
         ]);
 
         try {
