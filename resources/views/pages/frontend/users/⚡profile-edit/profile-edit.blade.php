@@ -6,7 +6,7 @@
     <div class="container mx-auto max-w-7xl px-4 py-10 sm:px-6">
         {{-- Email Verification Alert --}}
         @if(Auth::user() && Auth::user()->email_verified_at === null)
-            <div class="mb-6 rounded-lg border-2 border-yellow-400 bg-yellow-50 p-4 dark:bg-yellow-100">
+            <div class="mb-6 rounded-lg border-2 border-yellow-400 bg-yellow-50 p-4 dark:border-yellow-700 dark:bg-yellow-900/20">
                 <div class="flex items-start">
                     <div class="shrink-0">
                         <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -14,10 +14,10 @@
                         </svg>
                     </div>
                     <div class="ml-3 flex-1">
-                        <h3 class="text-sm font-medium text-yellow-800">
+                        <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-300">
                             @lang('Email Not Verified')
                         </h3>
-                        <div class="mt-2 text-sm text-yellow-700">
+                        <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-400">
                             <p>
                                 @lang('Your email address has not been verified. Please check your inbox for the verification email.')
                             </p>
@@ -27,7 +27,7 @@
                                 type="button"
                                 wire:click="resendEmailConfirmation"
                                 wire:loading.attr="disabled"
-                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-100 focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50 focus:outline-hidden disabled:opacity-50"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-100 focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50 focus:outline-hidden disabled:opacity-50 dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50"
                             >
                                 <span wire:loading.remove wire:target="resendEmailConfirmation">
                                     @lang('Resend Verification Email')
@@ -52,192 +52,74 @@
                         @lang("This information will be displayed publicly so be careful what you share.")
                     </p>
 
-                    <div class="pt-4 text-center">
-                        <a href="{{ route('frontend.users.profile') }}" wire:navigate>
-                            <div
-                                class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden dark:border-gray-500"
-                            >
-                                @lang(" View Profile")
-                            </div>
-                        </a>
+                    <div class="pt-4">
+                        <x-cube::button-link href="{{ route('frontend.users.profile') }}" wire:navigate variant="secondary" class="w-full">
+                            @lang("View Profile")
+                        </x-cube::button-link>
                     </div>
                 </div>
             </div>
 
             <div class="mt-5 sm:col-span-2 sm:mt-0">
                 <form wire:submit="update" enctype="multipart/form-data">
-                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
+                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-3">
-    <label for="first_name" id="first_name-label" class="block text-sm font-medium text-gray-700">
-        @lang('First Name') <span class="text-red-500">*</span>
-    </label>
-    <input
-        type="text"
-        wire:model="first_name"
-        id="first_name"
-        placeholder="@lang('First Name')"
-        required
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="first_name-label"
-    />
-    @error('first_name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="first_name" :label="__('First Name')" required class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="text" name="first_name" wire:model="first_name" :placeholder="__('First Name')" required />
+                            </x-cube::group>
 
-                            <div class="col-span-6 sm:col-span-3">
-    <label for="last_name" id="last_name-label" class="block text-sm font-medium text-gray-700">
-        @lang('Last Name') <span class="text-red-500">*</span>
-    </label>
-    <input
-        type="text"
-        wire:model="last_name"
-        id="last_name"
-        placeholder="@lang('Last Name')"
-        required
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="last_name-label"
-    />
-    @error('last_name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="last_name" :label="__('Last Name')" required class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="text" name="last_name" wire:model="last_name" :placeholder="__('Last Name')" required />
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="mobile" id="mobile-label" class="block text-sm font-medium text-gray-700">
-        @lang('Mobile')
-    </label>
-    <input
-        type="text"
-        wire:model="mobile"
-        id="mobile"
-        placeholder="@lang('Mobile')"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="mobile-label"
-    />
-    @error('mobile') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="mobile" :label="__('Mobile')" class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="text" name="mobile" wire:model="mobile" :placeholder="__('Mobile')" />
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="date_of_birth" id="date_of_birth-label" class="block text-sm font-medium text-gray-700">
-        @lang('Date Of Birth')
-    </label>
-    <input
-        type="date"
-        wire:model="date_of_birth"
-        id="date_of_birth"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="date_of_birth-label"
-    />
-    @error('date_of_birth') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="date_of_birth" :label="__('Date Of Birth')" class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="date" name="date_of_birth" wire:model="date_of_birth" />
+                            </x-cube::group>
 
-<div class="col-span-6">
-    <label for="address" id="address-label" class="block text-sm font-medium text-gray-700">
-        @lang('Address')
-    </label>
-    <input
-        type="text"
-        wire:model="address"
-        id="address"
-        placeholder="@lang('Address')"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="address-label"
-    />
-    @error('address') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="address" :label="__('Address')" class="col-span-6">
+                                <x-cube::input type="text" name="address" wire:model="address" :placeholder="__('Address')" />
+                            </x-cube::group>
 
-<div class="col-span-6">
-    <label for="bio" id="bio-label" class="block text-sm font-medium text-gray-700">
-        @lang('Bio')
-    </label>
-    <textarea
-        wire:model="bio"
-        id="bio"
-        rows="3"
-        placeholder="@lang('Bio')"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="bio-label"
-    ></textarea>
-    @error('bio') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="bio" :label="__('Bio')" class="col-span-6">
+                                <x-cube::textarea name="bio" wire:model="bio" :placeholder="__('Bio')" rows="3"></x-cube::textarea>
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="url" id="url-label" class="block text-sm font-medium text-gray-700">
-        @lang('Website URL')
-    </label>
-    <input
-        type="url"
-        wire:model="url"
-        id="url"
-        placeholder="@lang('Website URL')"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="url-label"
-    />
-    @error('url') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="url" :label="__('Website URL')" class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="url" name="url" wire:model="url" :placeholder="__('Website URL')" />
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="url_text" id="url_text-label" class="block text-sm font-medium text-gray-700">
-        @lang('Website Link Text')
-    </label>
-    <input
-        type="text"
-        wire:model="url_text"
-        id="url_text"
-        placeholder="@lang('Website Link Text')"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        aria-labelledby="url_text-label"
-    />
-    @error('url_text') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="url_text" :label="__('Website Link Text')" class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="text" name="url_text" wire:model="url_text" :placeholder="__('Website Link Text')" />
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="gender" id="gender-label" class="block text-sm font-medium text-gray-700">
-        @lang('Gender')
-    </label>
-    <select
-        wire:model="gender"
-        id="gender"
-        class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-3 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-hidden text-sm dark:bg-gray-100"
-        aria-labelledby="gender-label"
-    >
-        <option value="">-- Select an option --</option>
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
-        <option value="Other">Other</option>
-    </select>
-    @error('gender') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-</div>
+                            <x-cube::group name="gender" :label="__('Gender')" class="col-span-6 sm:col-span-3">
+                                <x-cube::select name="gender" wire:model="gender">
+                                    <option value="">-- Select an option --</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Other">Other</option>
+                                </x-cube::select>
+                            </x-cube::group>
 
-<div class="col-span-6 sm:col-span-3">
-    <label for="avatar" id="avatar-label" class="block text-sm font-medium text-gray-700">
-        @lang('Avatar')
-    </label>
-    <input
-        type="file"
-        wire:model="avatar"
-        id="avatar"
-        accept="image/*"
-        class="mt-1 block w-full text-sm text-gray-500 file:me-3 file:rounded-sm file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
-        aria-labelledby="avatar-label"
-    />
-    @error('avatar') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-
-    @if($avatar)
-        <div class="mt-2">
-            <img src="{{ $avatar->temporaryUrl() }}" class="h-20 w-20 rounded-md object-cover" alt="Preview" aria-labelledby="avatar-label" />
-        </div>
-    @endif
-</div>
+                            <x-cube::group name="avatar" :label="__('Avatar')" class="col-span-6 sm:col-span-3">
+                                <x-cube::file-input name="avatar" wire:model="avatar" accept="image/*" />
+                                @if($avatar)
+                                    <div class="mt-2">
+                                        <img src="{{ $avatar->temporaryUrl() }}" class="h-20 w-20 rounded-md object-cover" alt="Preview" />
+                                    </div>
+                                @endif
+                            </x-cube::group>
                         </div>
 
-                        <div class="mt-6 bg-gray-50 px-4 text-end sm:px-6">
-                            <button
-                                class="inline-flex w-full cursor-pointer justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden"
-                                type="submit"
-                                wire:loading.attr="disabled"
-                            >
+                        <div class="mt-6 px-6">
+                            <x-cube::button type="submit" variant="primary" class="w-full" wire:loading.attr="disabled">
                                 <span wire:loading.remove>@lang('Save')</span>
                                 <span wire:loading>@lang('Saving...')</span>
-                            </button>
+                            </x-cube::button>
                         </div>
                     </div>
                 </form>
@@ -246,7 +128,7 @@
 
         <div class="hidden sm:block" aria-hidden="true">
             <div class="mb-10 py-4">
-                <div class="border-t border-gray-200"></div>
+                <div class="border-t border-gray-200 dark:border-gray-700"></div>
             </div>
         </div>
 
@@ -259,18 +141,10 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:col-span-2 sm:mt-0">
-                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 text-center">
-                                <a href="{{ route('frontend.users.changePassword') }}" wire:navigate>
-                                    <div
-                                        class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden"
-                                    >
-                                        Change Password
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                        <x-cube::button-link href="{{ route('frontend.users.changePassword') }}" wire:navigate variant="secondary" class="w-full">
+                            @lang('Change Password')
+                        </x-cube::button-link>
                     </div>
                 </div>
             </div>
@@ -279,7 +153,7 @@
         @if($user->providers && $user->providers->count() > 0)
             <div class="hidden sm:block" aria-hidden="true">
                 <div class="mb-10 py-4">
-                    <div class="border-t border-gray-200"></div>
+                    <div class="border-t border-gray-200 dark:border-gray-700"></div>
                 </div>
             </div>
 
@@ -292,14 +166,14 @@
                         </div>
                     </div>
                     <div class="mt-5 sm:col-span-2 sm:mt-0">
-                        <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:bg-gray-100">
+                        <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
                             <div class="space-y-4">
                                 @foreach($user->providers as $provider)
-                                    <div class="flex items-center justify-between rounded-md border border-gray-200 p-4">
+                                    <div class="flex items-center justify-between rounded-md border border-gray-200 p-4 dark:border-gray-700">
                                         <div class="flex items-center">
                                             <div class="shrink-0">
                                                 @if($provider->provider === 'github')
-                                                    <i class="fab fa-github text-2xl text-gray-800"></i>
+                                                    <i class="fab fa-github text-2xl text-gray-800 dark:text-gray-200"></i>
                                                 @elseif($provider->provider === 'google')
                                                     <i class="fab fa-google text-2xl text-red-500"></i>
                                                 @elseif($provider->provider === 'facebook')
@@ -311,21 +185,21 @@
                                                 @endif
                                             </div>
                                             <div class="ml-3">
-                                                <p class="text-sm font-medium text-gray-900">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
                                                     {{ ucfirst($provider->provider) }}
                                                 </p>
-                                                <p class="text-xs text-gray-500">
+                                                <p class="text-xs text-gray-500 dark:text-gray-400">
                                                     Connected on {{ $provider->created_at->format('M d, Y') }}
                                                 </p>
                                             </div>
                                         </div>
                                         <div>
-                                            <button
+                                            <x-cube::button
                                                 type="button"
+                                                variant="danger"
                                                 wire:click="unlinkProvider({{ $provider->id }})"
                                                 wire:loading.attr="disabled"
                                                 wire:confirm="Are you sure you want to unlink this {{ $providerNames[$provider->id] ?? $provider->provider }} account?"
-                                                class="inline-flex items-center rounded-md border border-red-600 bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-hidden disabled:opacity-50"
                                                 aria-label="@lang('Unlink Provider')"
                                             >
                                                 <span wire:loading.remove wire:target="unlinkProvider({{ $provider->id }})">
@@ -336,7 +210,7 @@
                                                     <i class="fas fa-spinner fa-spin me-1"></i>
                                                     @lang('Unlinking...')
                                                 </span>
-                                            </button>
+                                            </x-cube::button>
                                         </div>
                                     </div>
                                 @endforeach

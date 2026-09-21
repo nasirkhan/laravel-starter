@@ -14,62 +14,30 @@
                         @lang('Use the following form to change your account password!')
                     </p>
 
-                    <div class="pt-4 text-center">
-                        <a href="{{ route('frontend.users.profile') }}" wire:navigate>
-                            <div
-                                class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden dark:border-gray-500"
-                            >
-                                @lang(' View Profile')
-                            </div>
-                        </a>
+                    <div class="pt-4">
+                        <x-cube::button-link href="{{ route('frontend.users.profile') }}" wire:navigate variant="secondary" class="w-full">
+                            @lang('View Profile')
+                        </x-cube::button-link>
                     </div>
                 </div>
             </div>
+
             <div class="mt-5 sm:col-span-2 md:mt-0">
                 <form wire:submit="updatePassword">
-                    <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
+                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-3">
-    <label for="password" id="password-label" class="block text-sm font-medium text-gray-700">
-        @lang('Password')
-        <span class="text-red-500">*</span>
-    </label>
-    <input
-        wire:model="password"
-        type="password"
-        id="password"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        required
-        aria-labelledby="password-label"
-    />
-    @error('password')
-        <span class="text-sm text-red-600">{{ $message }}</span>
-    @enderror
-</div>
-<div class="col-span-6 sm:col-span-3">
-    <label for="password_confirmation" id="password_confirmation-label" class="block text-sm font-medium text-gray-700">
-        @lang('Confirm Password')
-        <span class="text-red-500">*</span>
-    </label>
-    <input
-        wire:model="password_confirmation"
-        type="password"
-        id="password_confirmation"
-        class="mt-1 w-full rounded-sm border border-gray-300 bg-white px-4 py-2 text-gray-700 placeholder-gray-300 shadow-sm focus:border-transparent focus:outline-hidden focus:ring-2 focus:ring-blue-600 dark:bg-gray-100"
-        required
-        aria-labelledby="password_confirmation-label"
-    />
-    @error('password_confirmation')
-        <span class="text-sm text-red-600">{{ $message }}</span>
-    @enderror
-</div>
-                            <div class="col-span-6 bg-gray-50 px-4 py-3 text-end sm:px-6">
-                                <button
-                                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                    type="submit"
-                                >
+                            <x-cube::group name="password" :label="__('Password')" required class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="password" name="password" wire:model="password" required />
+                            </x-cube::group>
+
+                            <x-cube::group name="password_confirmation" :label="__('Confirm Password')" required class="col-span-6 sm:col-span-3">
+                                <x-cube::input type="password" name="password_confirmation" wire:model="password_confirmation" required />
+                            </x-cube::group>
+
+                            <div class="col-span-6 bg-gray-50 py-3 text-end dark:bg-gray-700">
+                                <x-cube::button type="submit" variant="primary" class="w-full">
                                     @lang('Update Password')
-                                </button>
+                                </x-cube::button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +47,7 @@
 
         <div class="hidden sm:block" aria-hidden="true">
             <div class="mb-10 py-4">
-                <div class="border-t border-gray-200"></div>
+                <div class="border-t border-gray-200 dark:border-gray-700"></div>
             </div>
         </div>
 
@@ -96,18 +64,10 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:col-span-2 md:mt-0">
-                    <div class="mb-8 rounded-lg border bg-white p-6 shadow-lg dark:bg-gray-100">
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 text-center">
-                                <a href="{{ route("frontend.users.profileEdit") }}" wire:navigate>
-                                    <div
-                                        class="w-full rounded-sm border-2 border-gray-900 px-6 py-2 text-sm font-semibold text-gray-500 transition duration-200 ease-in hover:bg-gray-800 hover:text-white focus:outline-hidden"
-                                    >
-                                        @lang("Edit Profile")
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="mb-8 rounded-lg border border-gray-400 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                        <x-cube::button-link href="{{ route('frontend.users.profileEdit') }}" wire:navigate variant="secondary" class="w-full">
+                            @lang("Edit Profile")
+                        </x-cube::button-link>
                     </div>
                 </div>
             </div>

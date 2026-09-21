@@ -94,7 +94,7 @@ class SettingHelperTest extends TestCase
 
     private function useBrokenDefaultConnection(string $connectionName, string $directoryName): void
     {
-        $databasePath = $this->testingDatabasePath($directoryName);
+        $databasePath = $this->testing_database_path($directoryName);
 
         File::ensureDirectoryExists(dirname($databasePath));
         File::delete($databasePath);
@@ -112,7 +112,7 @@ class SettingHelperTest extends TestCase
         DB::setDefaultConnection($connectionName);
     }
 
-    private function testingDatabasePath(string $directoryName): string
+    private function testing_database_path(string $directoryName): string
     {
         return storage_path("framework/testing/{$directoryName}/database.sqlite");
     }
