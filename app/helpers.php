@@ -121,7 +121,7 @@ if (! function_exists('show_column_value')) {
                             </figure>';
         } else {
             // Handle enum objects by converting to their string value
-            if ($value instanceof \BackedEnum) {
+            if ($value instanceof BackedEnum) {
                 $return_text = $value->value;
             } elseif (is_string($value)) {
                 $return_text = $value;
@@ -170,7 +170,7 @@ if (! function_exists('settings_table_is_missing')) {
         $sqlState = (string) ($errorInfo[0] ?? $exception->getCode());
         $driverCode = (string) ($errorInfo[1] ?? '');
         $message = strtolower($exception->getMessage());
-        $settingsTable = strtolower((new \Nasirkhan\ModuleManager\Modules\Settings\Models\Setting)->getTable());
+        $settingsTable = strtolower((new Setting)->getTable());
         $tableSegments = array_map(
             static fn (string $segment): string => '[`"\\[]?'.preg_quote($segment, '/').'[`"\\]]?',
             explode('.', $settingsTable)
