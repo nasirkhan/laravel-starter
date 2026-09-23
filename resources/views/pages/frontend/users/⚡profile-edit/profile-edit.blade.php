@@ -27,7 +27,7 @@
                                 type="button"
                                 wire:click="resendEmailConfirmation"
                                 wire:loading.attr="disabled"
-                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-100 focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2 focus:ring-offset-yellow-50 focus:outline-hidden disabled:opacity-50 dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50"
+                                class="rounded-md bg-yellow-50 px-3 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-100 disabled:opacity-50 dark:bg-yellow-900/30 dark:text-yellow-300 dark:hover:bg-yellow-900/50"
                             >
                                 <span wire:loading.remove wire:target="resendEmailConfirmation">
                                     @lang('Resend Verification Email')
