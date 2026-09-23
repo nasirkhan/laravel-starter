@@ -21,7 +21,7 @@
         <div class="flex items-center justify-end gap-2 md:order-2 md:gap-3 rtl:space-x-reverse">
             @if (setting("show_theme_dropdown"))
                 <button
-                    class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
+                    class="rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                     id="theme-toggle"
                     type="button"
                     aria-label="Toggle between light and dark theme"
@@ -112,7 +112,7 @@
             @guest
                 @if (user_registration())
                     <a
-                        class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+                        class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
                         href="{{ route("register") }}"
                         wire:navigate
                     >
@@ -338,7 +338,7 @@
             @endauth
 
             <button
-                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-hidden md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 md:hidden dark:text-gray-400 dark:hover:bg-gray-700"
                 data-collapse-toggle="top-navbar"
                 type="button"
                 aria-controls="top-navbar"

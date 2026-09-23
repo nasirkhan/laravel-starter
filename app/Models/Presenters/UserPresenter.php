@@ -29,9 +29,9 @@ trait UserPresenter
     public function getStatusLabelAttribute()
     {
         return match ($this->status) {
-            '1' => '<span class="badge text-bg-success">Active</span>',
-            '2' => '<span class="badge text-bg-danger">Blocked</span>',
-            default => '<span class="badge text-bg-primary">Status:'.$this->status.'</span>',
+            '1' => '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Active</span>',
+            '2' => '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">Blocked</span>',
+            default => '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Status:'.$this->status.'</span>',
         };
     }
 
@@ -43,10 +43,10 @@ trait UserPresenter
     public function getConfirmedLabelAttribute()
     {
         if ($this->email_verified_at !== null) {
-            return '<span class="badge text-bg-primary">Confirmed</span>';
+            return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Confirmed</span>';
         }
 
-        return '<span class="badge text-bg-danger">Not Confirmed</span>';
+        return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">Not Confirmed</span>';
     }
 
     /**

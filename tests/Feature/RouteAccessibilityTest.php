@@ -145,7 +145,6 @@ class RouteAccessibilityTest extends TestCase
                     $this->assertStringNotContainsString('LazyLoadingViolationException', $response->exception->getMessage(), "Route {$uri} caused LazyLoadingViolationException.");
                 }
             } catch (\Exception $e) {
-                dump("Route {$uri} failed: ".$e->getMessage());
                 $this->fail("Route {$uri} threw exception: ".$e->getMessage());
             }
         }
