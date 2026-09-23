@@ -1435,90 +1435,6 @@
             "time": "2026-08-29T05:35:03+00:00"
         },
         {
-            "name": "intervention/image-laravel",
-            "version": "4.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Intervention/image-laravel.git",
-                "reference": "8a8bd2c7bb4a9aa2b046ff066fd1cd44b1de0da2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/8a8bd2c7bb4a9aa2b046ff066fd1cd44b1de0da2",
-                "reference": "8a8bd2c7bb4a9aa2b046ff066fd1cd44b1de0da2",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": "^8|^9|^10|^11|^12|^13",
-                "illuminate/routing": "^8|^9|^10|^11|^12|^13",
-                "illuminate/support": "^8|^9|^10|^11|^12|^13",
-                "intervention/image": "^4.0",
-                "php": "^8.3"
-            },
-            "require-dev": {
-                "ext-fileinfo": "*",
-                "orchestra/testbench": "^8.18 || ^9.9 || ^10.6",
-                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Image": "Intervention\\Image\\Laravel\\Facades\\Image"
-                    },
-                    "providers": [
-                        "Intervention\\Image\\Laravel\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Intervention\\Image\\Laravel\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Vogel",
-                    "email": "oliver@intervention.io",
-                    "homepage": "https://intervention.io/"
-                }
-            ],
-            "description": "Laravel Integration of Intervention Image",
-            "homepage": "https://image.intervention.io/",
-            "keywords": [
-                "gd",
-                "image",
-                "imagick",
-                "laravel",
-                "resize",
-                "thumbnail",
-                "watermark"
-            ],
-            "support": {
-                "issues": "https://github.com/Intervention/image-laravel/issues",
-                "source": "https://github.com/Intervention/image-laravel/tree/4.1.1"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/interventionio",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Intervention",
-                    "type": "github"
-                },
-                {
-                    "url": "https://ko-fi.com/interventionphp",
-                    "type": "ko_fi"
-                }
-            ],
-            "time": "2026-07-22T15:00:50+00:00"
-        },
-        {
             "name": "laravel/framework",
             "version": "v13.33.0",
             "source": {
@@ -2981,7 +2897,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "e30b96917f83ddf87d8e44b92a3998d7457a31b5"
+                "reference": "5eaeb69c5944c1eb7f2a0fced258e9e32f1f1f34"
             },
             "require": {
                 "illuminate/notifications": "^11|^12|^13",
@@ -3042,7 +2958,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "4f9a9632874de241b75fd62e652fd10303e61d7d"
+                "reference": "091f705fc4990f5ea2717d0419846fe3de3a7c2c"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3115,7 +3031,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-jodit",
-                "reference": "2d2ae1027b90a12337f135692d961e99d16403a8"
+                "reference": "929aeb7386c7d6a34e8be9a45ff4daef8187eab9"
             },
             "require": {
                 "illuminate/filesystem": "^11.0|^12.0|^13.0",
@@ -3124,7 +3040,6 @@
                 "illuminate/support": "^11.0|^12.0|^13.0",
                 "illuminate/view": "^11.0|^12.0|^13.0",
                 "intervention/image": "^4.0",
-                "intervention/image-laravel": "^4.0",
                 "php": "^8.3 || ^8.4"
             },
             "require-dev": {
@@ -3247,12 +3162,13 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "b9014c8af0822ea99d1ed7eefde180ed697e6554"
+                "reference": "b8b2233ca53541ff9c3913083f43b790ead1628f"
             },
             "require": {
                 "intervention/image": "^4.0",
                 "laravel/framework": "^12.0 || ^13.0",
                 "nasirkhan/laravel-admin": "^2.0",
+                "nasirkhan/laravel-cube": "^4.0",
                 "nasirkhan/laravel-jodit": "^3.0",
                 "nasirkhan/laravel-sharekit": "^1.0",
                 "opcodesio/log-viewer": "^3.21",
