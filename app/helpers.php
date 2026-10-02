@@ -113,12 +113,12 @@ if (! function_exists('show_column_value')) {
         } elseif ($column_type !== 'json' && is_string($value) && Str::endsWith(strtolower($value), ['png', 'jpg', 'jpeg', 'gif', 'svg'])) {
             $img_path = asset($value);
 
-            $return_text = '<figure class="figure">
-                                <a href="'.$img_path.'" data-lightbox="image-set" data-title="Path: '.$value.'">
-                                    <img src="'.$img_path.'" style="max-width:200px;" class="figure-img img-fluid rounded img-thumbnail" alt="">
+            $return_text = '<div class="pswp-gallery"><figure>
+                                <a href="'.$img_path.'" data-pswp-src="'.$img_path.'">
+                                    <img src="'.$img_path.'" style="max-width:200px;" class="rounded img-thumbnail" alt="">
                                 </a>
-                                <figcaption class="figure-caption">Path: '.$value.'</figcaption>
-                            </figure>';
+                                <figcaption class="text-xs text-gray-500 mt-1">Path: '.$value.'</figcaption>
+                            </figure></div>';
         } else {
             // Handle enum objects by converting to their string value
             if ($value instanceof BackedEnum) {
