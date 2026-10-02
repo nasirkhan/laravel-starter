@@ -104,6 +104,58 @@ yarn format
 ```
 
 
+## Image Lightbox (PhotoSwipe)
+
+The backend uses [PhotoSwipe v5](https://photoswipe.com/) as a zero-dependency image lightbox. It replaces the jQuery-based Lightbox2 library that was used in earlier versions.
+
+### How it works
+
+PhotoSwipe is initialised globally in `resources/js/photoswipe.js` and called from `app-backend.js` on both `DOMContentLoaded` and `livewire:navigated`, so it works across Livewire page navigation.
+
+Any element with the class `pswp-gallery` that contains one or more `<a>` tags is automatically picked up. Clicking a thumbnail opens the full image in an overlay with keyboard navigation, pinch-to-zoom on touch devices, and swipe gestures.
+
+### Markup convention
+
+Wrap your thumbnail link in a `pswp-gallery` container:
+
+```html
+<div class="pswp-gallery">
+    <a href="/path/to/full.jpg" data-pswp-src="/path/to/full.jpg">
+        <img src="/path/to/thumb.jpg" class="rounded img-thumbnail" alt="" />
+    </a>
+</div>
+```
+
+- `href` — fallback if JavaScript is disabled
+- `data-pswp-src` — full-resolution image PhotoSwipe opens in the overlay
+- `data-pswp-width` / `data-pswp-height` — optional; if omitted, dimensions are resolved automatically when the overlay opens
+
+### Where it is used
+
+| Location | Trigger |
+|---|---|
+| Module form views (Post, Category, Tag) | Thumbnail of the currently saved image shown beside the file input |
+| Backend show pages | Any column whose value ends with an image extension (`.jpg`, `.png`, etc.) rendered by `show_column_value()` |
+
+### Extending with plugins
+
+The initialisation in `resources/js/photoswipe.js` is a self-contained function. Adding an official plugin requires two steps:
+
+```bash
+npm install photoswipe-dynamic-caption-plugin
+```
+
+```js
+// resources/js/photoswipe.js
+import PhotoSwipeDynamicCaption from 'photoswipe-dynamic-caption-plugin';
+import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
+
+// inside initPhotoSwipe(), before lightbox.init():
+new PhotoSwipeDynamicCaption(lightbox, { type: 'auto' });
+```
+
+The same pattern applies to the [Deep Zoom (tiled zoom) plugin](https://github.com/dimsemenov/photoswipe-deep-zoom-plugin).
+
 ## Role - Permissions
 
 Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples.
@@ -155,6 +207,7 @@ It is a modular application, and some modules are installed by default. It will 
   * Fontawesome 7
   * Tom Select
   * Jodit WYSIWYG Editor
+  * PhotoSwipe (image lightbox)
 * Backup (Source, Files, Database as Zip)
 * Log Viewer
 * Notification
