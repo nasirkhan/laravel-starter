@@ -3,13 +3,17 @@
     role="navigation"
     aria-label="Main navigation"
     x-data="{ scrolled: false }"
-    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 8 })"
+    x-init="
+        window.addEventListener('scroll', () => {
+            scrolled = window.scrollY > 8;
+        })
+    "
     :class="scrolled ? 'shadow-md' : 'shadow-none'"
 >
     <!-- Skip to main content link for accessibility -->
     <a
         href="#main-content"
-        class="sr-only z-50 rounded-md bg-blue-600 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        class="sr-only z-50 rounded-md bg-sky-600 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:ring-2 focus:ring-sky-500 focus:outline-none"
     >
         Skip to main content
     </a>
@@ -80,9 +84,7 @@
                         <path d="M12 20l4 -9l4 9" />
                         <path d="M19.1 18h-6.2" />
                     </svg>
-                    <span class="ms-2 hidden sm:block">
-                        {{ strtoupper(app()->currentLocale()) }}
-                    </span>
+                    <span class="ms-1 hidden sm:block"> {{ strtoupper(app()->currentLocale()) }} </span>
                 </button>
                 <!-- Dropdown:language-dropdown-menu -->
                 <div
@@ -99,9 +101,7 @@
                                     href="{{ route("language.switch", $locale_code) }}"
                                     role="menuitem"
                                 >
-                                    <div class="inline-flex items-center">
-                                        {{ $locale_name }}
-                                    </div>
+                                    <div class="inline-flex items-center">{{ $locale_name }}</div>
                                 </a>
                             </li>
                         @endforeach
@@ -112,7 +112,7 @@
             @guest
                 @if (user_registration())
                     <a
-                        class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                        class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium font-semibold text-white hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
                         href="{{ route("register") }}"
                         wire:navigate
                     >
@@ -133,14 +133,12 @@
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076" />
                             <path d="M19 16l-2 3h4l-2 3" />
                         </svg>
-                        <span class="ms-2 hidden sm:block">
-                            {{ __("Register") }}
-                        </span>
+                        <span class="ms-1 hidden sm:block"> {{ __("Register") }} </span>
                     </a>
                 @endif
 
                 <a
-                    class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
+                    class="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium font-semibold text-gray-900 hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
                     href="{{ route("login") }}"
                     wire:navigate
                 >
@@ -161,9 +159,7 @@
                         <path d="M21 12h-13l3 -3" />
                         <path d="M11 15l-3 -3" />
                     </svg>
-                    <span class="ms-2 hidden sm:block">
-                        {{ __("Login") }}
-                    </span>
+                    <span class="ms-1 hidden sm:block"> {{ __("Login") }} </span>
                 </a>
             @endguest
 
@@ -181,9 +177,7 @@
                         src="{{ asset(Auth::user()->avatar) }}"
                         alt="{{ Auth::user()->name }}'s profile picture"
                     />
-                    <span class="ms-2 hidden sm:block">
-                        {{ Auth::user()->first_name }}
-                    </span>
+                    <span class="ms-1 hidden sm:block"> {{ Auth::user()->first_name }} </span>
                 </button>
                 <!-- Dropdown:user-dropdown-menu -->
                 <div
@@ -193,7 +187,7 @@
                     aria-label="User account menu"
                 >
                     <ul class="py-2 font-medium" role="none">
-                        @can("view_backend")
+                        @can ("view_backend")
                             <li class="border-b-2 border-gray-200">
                                 <a
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -304,7 +298,10 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                 href="{{ route("logout") }}"
                                 role="menuitem"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                onclick="
+                                    event.preventDefault();
+                                    document.getElementById('logout-form').submit();
+                                "
                             >
                                 <div class="inline-flex items-center">
                                     <svg

@@ -1,6 +1,7 @@
 import 'flowbite';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css';
+import { initPhotoSwipe } from './photoswipe.js';
 
 window.TomSelect = TomSelect;
 
@@ -141,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initTomSelects();
     initMethodLinks();
+    initPhotoSwipe();
     showTime();
     initSlugConverter();
 });
@@ -152,6 +154,7 @@ document.addEventListener('livewire:navigated', () => {
     initThemeToggle();
     initTomSelects();
     initMethodLinks();
+    initPhotoSwipe();
 });
 
 document.addEventListener('livewire:update', () => {
