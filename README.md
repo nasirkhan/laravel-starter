@@ -178,7 +178,8 @@ It is a modular application, and some modules are installed by default. It will 
   * Google
   * Facebook
   * Github
-  * Build in a way adding more is much easier now
+  * Each provider can be toggled independently via `GOOGLE_ACTIVE`, `FACEBOOK_ACTIVE`, `GITHUB_ACTIVE` env variables (default: `false`). The login page shows only the active providers.
+  * Adding more providers is straightforward
 * User Profile with Avatar
 * Role-Permissions for Users
 * Dynamic Menu System
@@ -342,26 +343,41 @@ If you discover any security-related issues, please send an e-mail to Nasir Khan
 
 __Home Page__
 
-![Laravel Starter Homepage Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/1cf5ce5a-f374-4bae-b5a3-69e8d7ff684d)
-![Laravel Starter Homepage](https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d)
+![Laravel Starter Homepage Dark Mode](https://github.com/user-attachments/assets/59ee0e03-093f-46ba-b1a3-2fb5f2c5ea72)
+
+.
+
+![Laravel Starter Homepage](https://github.com/user-attachments/assets/b3ffcbf3-7645-4605-8401-843bcc7733f7)
 
 __Login Page__
 
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/164892620-3b4c8b1b-81c8-4630-a39f-38dadff89a7d.png)
+![Laravel Starter Login Dark Mode](https://github.com/user-attachments/assets/53fefecd-a000-4cd6-b077-363ce9331aa9)
 
-__Posts Page__
+.
 
-![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/288f56cb-0cb0-4652-be17-9f65288558bb)
+![Laravel Starter Login](https://github.com/user-attachments/assets/88167774-e3da-47d4-ae3f-389cdd9d5693)
+
 
 __Backend Dashboard__
 
-![Laravel Starter Admin Dashboard Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4)
-![Laravel Starter Admin Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/f8131011-2ecc-4a11-961f-85e02cb8f7a1)
+![Laravel Starter Admin Dashboard Dark Mode](https://github.com/user-attachments/assets/5e598982-46cc-4f6d-8e35-20abf2ed3fed)
 
----
+.
 
-![Laravel Starter Posts List](https://github.com/nasirkhan/laravel-starter/assets/396987/c032769e-78b2-4dbf-bc5e-687645125796)
+![Laravel Starter Admin Dashboard](https://github.com/user-attachments/assets/6d570678-ccdc-4660-9951-2e594be45826)
 
----
+__Backend Settings__
 
-![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/6421b8e5-3c69-4c1f-9518-875e72be77c0)
+![Laravel Starter Admin Settings Dark Mode](https://github.com/user-attachments/assets/d67c3fb9-7d62-447a-b29f-587a67c624a0)
+
+.
+
+![Laravel Starter Admin Settings](https://github.com/user-attachments/assets/6f7d7282-2074-49d2-8de9-e9025daffdde)
+
+__Posts Page__
+
+![Laravel Starter Posts Page Dark Mode](https://github.com/user-attachments/assets/f9944270-1e3d-4220-8d33-f2f08b9722a0)
+
+.
+
+![Laravel Starter Posts Page](https://github.com/user-attachments/assets/99f3d502-cc2b-4caa-91ae-94909ff75bdf)
