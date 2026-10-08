@@ -343,41 +343,25 @@ If you discover any security-related issues, please send an e-mail to Nasir Khan
 
 __Home Page__
 
-![Laravel Starter Homepage Dark Mode](https://github.com/user-attachments/assets/59ee0e03-093f-46ba-b1a3-2fb5f2c5ea72)
-
-.
-
-![Laravel Starter Homepage](https://github.com/user-attachments/assets/b3ffcbf3-7645-4605-8401-843bcc7733f7)
+<img alt="home dark" src="https://github.com/user-attachments/assets/fb57889b-b2d0-4995-8ab0-52718fc821a1" />
+<img alt="home light" src="https://github.com/user-attachments/assets/96f4392a-6fe8-49ab-83a7-a0458cca6295" />
 
 __Login Page__
 
-![Laravel Starter Login Dark Mode](https://github.com/user-attachments/assets/53fefecd-a000-4cd6-b077-363ce9331aa9)
-
-.
-
-![Laravel Starter Login](https://github.com/user-attachments/assets/88167774-e3da-47d4-ae3f-389cdd9d5693)
-
+<img alt="login dark" src="https://github.com/user-attachments/assets/99b27a34-3139-4762-a535-a771dd5b14c3" />
+<img alt="login light" src="https://github.com/user-attachments/assets/89b2f7b5-56f1-47ff-9e90-220597bb1121" />
 
 __Backend Dashboard__
 
-![Laravel Starter Admin Dashboard Dark Mode](https://github.com/user-attachments/assets/5e598982-46cc-4f6d-8e35-20abf2ed3fed)
-
-.
-
-![Laravel Starter Admin Dashboard](https://github.com/user-attachments/assets/6d570678-ccdc-4660-9951-2e594be45826)
+<img alt="dashboard dark" src="https://github.com/user-attachments/assets/9bc02ce0-9035-4315-a14d-5477c020f383" />
+<img alt="dashboard light" src="https://github.com/user-attachments/assets/0e1a2097-8d47-42e4-bae3-874d3c5bcd03" />
 
 __Backend Settings__
 
-![Laravel Starter Admin Settings Dark Mode](https://github.com/user-attachments/assets/d67c3fb9-7d62-447a-b29f-587a67c624a0)
-
-.
-
-![Laravel Starter Admin Settings](https://github.com/user-attachments/assets/6f7d7282-2074-49d2-8de9-e9025daffdde)
+<img alt="settings dark" src="https://github.com/user-attachments/assets/6f443dd1-9098-417f-ba88-bbb880949cde" />
+<img alt="settings light" src="https://github.com/user-attachments/assets/fcf5c24d-fa8c-465b-b3c2-8f9a0a691c43" />
 
 __Posts Page__
 
-![Laravel Starter Posts Page Dark Mode](https://github.com/user-attachments/assets/f9944270-1e3d-4220-8d33-f2f08b9722a0)
-
-.
-
-![Laravel Starter Posts Page](https://github.com/user-attachments/assets/99f3d502-cc2b-4caa-91ae-94909ff75bdf)
+<img alt="post dark" src="https://github.com/user-attachments/assets/41b791be-1e52-479c-ab64-ef657126842f" />
+<img alt="posts light" src="https://github.com/user-attachments/assets/d1dc8bc5-c048-4a60-b8d5-90994e7e8c00" />
