@@ -107,70 +107,70 @@
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/59ee0e03-093f-46ba-b1a3-2fb5f2c5ea72"
+                    src="https://github.com/user-attachments/assets/fb57889b-b2d0-4995-8ab0-52718fc821a1"
                     alt="Laravel Starter Homepage Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/b3ffcbf3-7645-4605-8401-843bcc7733f7"
+                    src="https://github.com/user-attachments/assets/96f4392a-6fe8-49ab-83a7-a0458cca6295"
                     alt="Laravel Starter Homepage"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/53fefecd-a000-4cd6-b077-363ce9331aa9"
+                    src="https://github.com/user-attachments/assets/99b27a34-3139-4762-a535-a771dd5b14c3"
                     alt="Laravel Starter Login Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/88167774-e3da-47d4-ae3f-389cdd9d5693"
+                    src="https://github.com/user-attachments/assets/89b2f7b5-56f1-47ff-9e90-220597bb1121"
                     alt="Laravel Starter Login"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/5e598982-46cc-4f6d-8e35-20abf2ed3fed"
+                    src="https://github.com/user-attachments/assets/9bc02ce0-9035-4315-a14d-5477c020f383"
                     alt="Laravel Starter Admin Dashboard Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/6d570678-ccdc-4660-9951-2e594be45826"
+                    src="https://github.com/user-attachments/assets/0e1a2097-8d47-42e4-bae3-874d3c5bcd03"
                     alt="Laravel Starter Admin Dashboard"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/d67c3fb9-7d62-447a-b29f-587a67c624a0"
+                    src="https://github.com/user-attachments/assets/6f443dd1-9098-417f-ba88-bbb880949cde"
                     alt="Laravel Starter Admin Settings Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/6f7d7282-2074-49d2-8de9-e9025daffdde"
+                    src="https://github.com/user-attachments/assets/fcf5c24d-fa8c-465b-b3c2-8f9a0a691c43"
                     alt="Laravel Starter Admin Settings"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/f9944270-1e3d-4220-8d33-f2f08b9722a0"
+                    src="https://github.com/user-attachments/assets/41b791be-1e52-479c-ab64-ef657126842f"
                     alt="Laravel Starter Posts Page Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/user-attachments/assets/99f3d502-cc2b-4caa-91ae-94909ff75bdf"
+                    src="https://github.com/user-attachments/assets/d1dc8bc5-c048-4a60-b8d5-90994e7e8c00"
                     alt="Laravel Starter Posts Page"
                 />
             </div>
