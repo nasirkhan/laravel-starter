@@ -178,7 +178,8 @@ It is a modular application, and some modules are installed by default. It will 
   * Google
   * Facebook
   * Github
-  * Build in a way adding more is much easier now
+  * Each provider can be toggled independently via `GOOGLE_ACTIVE`, `FACEBOOK_ACTIVE`, `GITHUB_ACTIVE` env variables (default: `false`). The login page shows only the active providers.
+  * Adding more providers is straightforward
 * User Profile with Avatar
 * Role-Permissions for Users
 * Dynamic Menu System
@@ -342,26 +343,25 @@ If you discover any security-related issues, please send an e-mail to Nasir Khan
 
 __Home Page__
 
-![Laravel Starter Homepage Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/1cf5ce5a-f374-4bae-b5a3-69e8d7ff684d)
-![Laravel Starter Homepage](https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d)
+<img alt="home dark" src="https://github.com/user-attachments/assets/fb57889b-b2d0-4995-8ab0-52718fc821a1" />
+<img alt="home light" src="https://github.com/user-attachments/assets/96f4392a-6fe8-49ab-83a7-a0458cca6295" />
 
 __Login Page__
 
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/164892620-3b4c8b1b-81c8-4630-a39f-38dadff89a7d.png)
-
-__Posts Page__
-
-![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/288f56cb-0cb0-4652-be17-9f65288558bb)
+<img alt="login dark" src="https://github.com/user-attachments/assets/99b27a34-3139-4762-a535-a771dd5b14c3" />
+<img alt="login light" src="https://github.com/user-attachments/assets/89b2f7b5-56f1-47ff-9e90-220597bb1121" />
 
 __Backend Dashboard__
 
-![Laravel Starter Admin Dashboard Dark Mode](https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4)
-![Laravel Starter Admin Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/f8131011-2ecc-4a11-961f-85e02cb8f7a1)
+<img alt="dashboard dark" src="https://github.com/user-attachments/assets/9bc02ce0-9035-4315-a14d-5477c020f383" />
+<img alt="dashboard light" src="https://github.com/user-attachments/assets/0e1a2097-8d47-42e4-bae3-874d3c5bcd03" />
 
----
+__Backend Settings__
 
-![Laravel Starter Posts List](https://github.com/nasirkhan/laravel-starter/assets/396987/c032769e-78b2-4dbf-bc5e-687645125796)
+<img alt="settings dark" src="https://github.com/user-attachments/assets/6f443dd1-9098-417f-ba88-bbb880949cde" />
+<img alt="settings light" src="https://github.com/user-attachments/assets/fcf5c24d-fa8c-465b-b3c2-8f9a0a691c43" />
 
----
+__Posts Page__
 
-![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/6421b8e5-3c69-4c1f-9518-875e72be77c0)
+<img alt="post dark" src="https://github.com/user-attachments/assets/41b791be-1e52-479c-ab64-ef657126842f" />
+<img alt="posts light" src="https://github.com/user-attachments/assets/d1dc8bc5-c048-4a60-b8d5-90994e7e8c00" />

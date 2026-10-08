@@ -107,29 +107,71 @@
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/nasirkhan/laravel-starter/assets/396987/1cf5ce5a-f374-4bae-b5a3-69e8d7ff684d"
-                    alt="Page preview"
+                    src="https://github.com/user-attachments/assets/fb57889b-b2d0-4995-8ab0-52718fc821a1"
+                    alt="Laravel Starter Homepage Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/nasirkhan/laravel-starter/assets/396987/93341711-60dd-4624-8cd7-82f1c611287d"
-                    alt="Page preview"
+                    src="https://github.com/user-attachments/assets/96f4392a-6fe8-49ab-83a7-a0458cca6295"
+                    alt="Laravel Starter Homepage"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/nasirkhan/laravel-starter/assets/396987/0f6b8201-6f6a-429f-894b-4e491cc5eba4"
-                    alt="Page preview"
+                    src="https://github.com/user-attachments/assets/99b27a34-3139-4762-a535-a771dd5b14c3"
+                    alt="Laravel Starter Login Dark Mode"
                 />
             </div>
             <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
                 <img
                     loading="lazy"
-                    src="https://github.com/nasirkhan/laravel-starter/assets/396987/f8131011-2ecc-4a11-961f-85e02cb8f7a1"
-                    alt="Page preview"
+                    src="https://github.com/user-attachments/assets/89b2f7b5-56f1-47ff-9e90-220597bb1121"
+                    alt="Laravel Starter Login"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/9bc02ce0-9035-4315-a14d-5477c020f383"
+                    alt="Laravel Starter Admin Dashboard Dark Mode"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/0e1a2097-8d47-42e4-bae3-874d3c5bcd03"
+                    alt="Laravel Starter Admin Dashboard"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/6f443dd1-9098-417f-ba88-bbb880949cde"
+                    alt="Laravel Starter Admin Settings Dark Mode"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/fcf5c24d-fa8c-465b-b3c2-8f9a0a691c43"
+                    alt="Laravel Starter Admin Settings"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/41b791be-1e52-479c-ab64-ef657126842f"
+                    alt="Laravel Starter Posts Page Dark Mode"
+                />
+            </div>
+            <div class="rounded-lg p-3 shadow-lg sm:p-10 dark:bg-gray-800">
+                <img
+                    loading="lazy"
+                    src="https://github.com/user-attachments/assets/d1dc8bc5-c048-4a60-b8d5-90994e7e8c00"
+                    alt="Laravel Starter Posts Page"
                 />
             </div>
         </div>
