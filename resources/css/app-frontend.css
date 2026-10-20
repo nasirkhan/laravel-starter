@@ -30,6 +30,9 @@ html {
                  Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Hide Alpine.js x-cloak elements until Alpine initialises */
+[x-cloak] { display: none !important; }
+
 /* Smooth dark-mode color transitions — excludes layout props to avoid janky reflow */
 *, *::before, *::after {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
