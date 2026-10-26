@@ -60,7 +60,9 @@ setInitialTheme();
 
 function initTomSelects() {
     document.querySelectorAll('[data-tom-select]').forEach(el => {
-        if (!el.tomselect) {
+        if (el.tomselect) {
+            el.tomselect.sync();
+        } else {
             new TomSelect(el, { plugins: ['remove_button'] });
         }
     });
@@ -159,4 +161,8 @@ document.addEventListener('livewire:navigated', () => {
 
 document.addEventListener('livewire:update', () => {
     initFlowbite();
+});
+
+document.addEventListener('livewire:updated', () => {
+    initTomSelects();
 });
