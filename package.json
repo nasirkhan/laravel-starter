@@ -13,7 +13,7 @@
         "@shufo/prettier-plugin-blade": "^1.16.1",
         "@tailwindcss/vite": "^4.2.2",
         "axios": "^1.16.0",
-        "concurrently": "^9.0.1",
+        "concurrently": "^9.2.5",
         "flowbite": "^3.1.2",
         "laravel-vite-plugin": "^3.0.0",
         "prettier": "^3.5.3",
@@ -21,7 +21,7 @@
         "prettier-plugin-tailwindcss": "^0.8.0",
         "tailwindcss": "^4.2.2",
         "tom-select": "^2.4.3",
-        "vite": "^8.0.16"
+        "vite": "^8.3.5"
     },
     "dependencies": {
         "@tailwindcss/typography": "^0.5.20",
