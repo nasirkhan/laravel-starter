@@ -22,7 +22,10 @@
 /* Dark mode variant configuration for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 
-/* @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'; */
+@import "@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "@fortawesome/fontawesome-free/css/solid.css";
+@import "@fortawesome/fontawesome-free/css/regular.css";
+@import "@fortawesome/fontawesome-free/css/brands.css";
 
 /* Base font stack */
 html {
