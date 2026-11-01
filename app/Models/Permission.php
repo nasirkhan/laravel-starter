@@ -30,7 +30,6 @@ class Permission extends \Spatie\Permission\Models\Permission
 
             'view_backups',
             'add_backups',
-            'create_backups',
             'download_backups',
             'delete_backups',
         ];

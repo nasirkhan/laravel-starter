@@ -10,3 +10,19 @@
 
 /* Dark mode variant configuration for Tailwind v4 (class-based: <html class="dark">) */
 @variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    body {
+        color: var(--color-gray-900);
+        @variant dark {
+            color: var(--color-gray-100);
+        }
+    }
+
+    a {
+        color: var(--color-blue-600);
+        @variant dark {
+            color: var(--color-blue-400);
+        }
+    }
+}
