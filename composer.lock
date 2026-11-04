@@ -2898,7 +2898,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-admin",
-                "reference": "1e7567b45aa89b0bd63aab21a9b1a7cae9e02346"
+                "reference": "ba845d72f51cf29516f0b3d3fbb6bce24afaccd6"
             },
             "require": {
                 "illuminate/notifications": "^11|^12|^13",
@@ -2959,7 +2959,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-cube",
-                "reference": "764abea9749bc0b206eb354f4d75fd4e7876b6bd"
+                "reference": "d8bdd05d0f6eadf891aa692ebc6cc6c4b23bf3a2"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3098,7 +3098,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/laravel-sharekit",
-                "reference": "76f65c4979d3bd26eccde387d8160ca5a570c66e"
+                "reference": "5561498fab6641ad1f056f3a0bdd50f96f47e6df"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",
@@ -3163,7 +3163,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-starter-packages/module-manager",
-                "reference": "096e809369bf2002843984a391dab88bb54f2fbe"
+                "reference": "b77d5e1690272638aeb335dacb0305572be0d691"
             },
             "require": {
                 "intervention/image": "^4.0",
@@ -8514,16 +8514,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.18.7",
+            "version": "2.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "50670ba239926c50f2073e868f6672f775cd57ec"
+                "reference": "2915c807d7af61d8fb5c31d90c57af91d30f29fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/50670ba239926c50f2073e868f6672f775cd57ec",
-                "reference": "50670ba239926c50f2073e868f6672f775cd57ec",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/2915c807d7af61d8fb5c31d90c57af91d30f29fc",
+                "reference": "2915c807d7af61d8fb5c31d90c57af91d30f29fc",
                 "shasum": ""
             },
             "require": {
@@ -8573,7 +8573,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.18.7"
+                "source": "https://github.com/filp/whoops/tree/2.19.1"
             },
             "funding": [
                 {
@@ -8581,7 +8581,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-18T13:17:38+00:00"
+            "time": "2026-11-02T12:00:00+00:00"
         },
         {
             "name": "fruitcake/laravel-debugbar",
@@ -10102,16 +10102,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.5.42",
+            "version": "12.5.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1d6dbe748c079e5d2b03bca1be69d0f4cc52a578"
+                "reference": "1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d6dbe748c079e5d2b03bca1be69d0f4cc52a578",
-                "reference": "1d6dbe748c079e5d2b03bca1be69d0f4cc52a578",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb",
+                "reference": "1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb",
                 "shasum": ""
             },
             "require": {
@@ -10180,7 +10180,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.42"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.43"
             },
             "funding": [
                 {
@@ -10188,7 +10188,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-27T04:15:03+00:00"
+            "time": "2026-11-02T07:10:00+00:00"
         },
         {
             "name": "sebastian/cli-parser",
