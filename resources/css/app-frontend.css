@@ -11,6 +11,8 @@
 @source "../../vendor/nasirkhan/laravel-sharekit/resources/views/**/*.blade.php";
 
 /* Include Laravel Cube package sources. */
+@source "../../vendor/nasirkhan/laravel-cube/resources/views";
+@source "../../vendor/nasirkhan/laravel-cube/src";
 @import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
 
 /* Import Flowbite plugin */

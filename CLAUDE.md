@@ -180,3 +180,100 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - Run `vendor/bin/phpunit` to call the test runner directly. It accepts the same file path and `--filter=testName` arguments.
 
 </laravel-boost-guidelines>
+
+# Laravel Starter — Project Rules
+
+## What This Project Is
+
+A modular CMS-style Laravel starter that serves two purposes:
+1. A standalone application with a full backend admin panel and frontend.
+2. The canonical source project — derived apps (e.g. `chottor`) are built on top of this stack. CSS patterns, package choices, and conventions set here propagate forward.
+
+## Package Ecosystem
+
+This project uses three first-party `nasirkhan/*` packages. Understand what each owns before adding or editing anything in those areas:
+
+| Package | What it owns |
+|---|---|
+| `nasirkhan/laravel-admin` | Backend layout shell (`admin::layouts.admin`), routes under `backend.*`, Users / Roles / Notifications Livewire components |
+| `nasirkhan/laravel-cube` | Blade components (`<x-cube.*>`), Livewire table and UI components, TomSelect form inputs, shared CSS |
+| `nasirkhan/module-manager` | Module loader, built-in modules: Post, Category, Tag, Menu, Settings, ActivityLog, Backup, FileManager, LogViewer |
+| `nasirkhan/laravel-sharekit` | Social share buttons and related frontend views (frontend CSS only) |
+
+Do not edit files inside `vendor/nasirkhan/` directly. Publish views or override Livewire components via `AppServiceProvider` (see Livewire Overrides below).
+
+## Module Architecture
+
+- **Built-in modules** live in `vendor/nasirkhan/module-manager/src/Modules/`. Never edit these directly — override by publishing views or extending in your own code.
+- **Custom modules** go in `Modules/` at the project root, following the same structure as built-in ones (e.g. `Modules/<Name>/Resources/views/`, `Modules/<Name>/Http/Controllers/`).
+- The `Modules/` directory is currently empty — it is the extension point for this project's own domain features.
+
+## Dual CSS Architecture
+
+Two completely separate asset chains — never mix them:
+
+| Bundle | Used by |
+|---|---|
+| `resources/css/app-backend.css` + `resources/js/app-backend.js` | Admin / backend pages |
+| `resources/css/app-frontend.css` + `resources/js/app-frontend.js` | Public-facing pages |
+
+Each has its own `@source` entries for the vendor packages it needs.
+
+## Tailwind Vendor Source Detection
+
+The `nasirkhan/*` vendor packages are gitignored, so Tailwind skips them during automatic scanning. Both CSS files use explicit `@source` directives to register vendor paths.
+
+**Rule: after `composer update` on any `nasirkhan/*` package, always run `npm run build`.** If new classes still don't appear, the `@source` entries may need to be updated.
+
+Do NOT rely on `@source` inside an `@import`ed vendor CSS file — those may not propagate reliably in Tailwind v4 / Vite. Always declare `@source` explicitly in the root CSS file.
+
+### Required sources — `app-backend.css`
+
+```css
+@source "../../vendor/nasirkhan/laravel-admin/resources/views";
+@source "../../vendor/nasirkhan/module-manager/src";
+@source "../../vendor/nasirkhan/laravel-cube/resources/views";
+@source "../../vendor/nasirkhan/laravel-cube/src";
+@import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
+```
+
+### Required sources — `app-frontend.css`
+
+```css
+@source "../../vendor/nasirkhan/module-manager/src/Modules/**/*.{php,blade.php}";
+@source "../../vendor/nasirkhan/laravel-sharekit/resources/views/**/*.blade.php";
+@source "../../vendor/nasirkhan/laravel-cube/resources/views";
+@source "../../vendor/nasirkhan/laravel-cube/src";
+@import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
+```
+
+If a package is updated and still has missing classes after a rebuild, check whether its `src/` or `resources/views/` directory is covered by one of the above entries.
+
+## Livewire Component Overrides
+
+`nasirkhan/laravel-admin` registers its Livewire components in its own `AdminServiceProvider`, which boots after `AppServiceProvider`. Any `Livewire::component()` call placed directly in `AppServiceProvider::boot()` will be overwritten.
+
+Always wrap overrides in `$this->app->booted()`:
+
+```php
+// AppServiceProvider::boot()
+$this->app->booted(function () {
+    Livewire::component('admin.dashboard', \App\Livewire\Backend\AdminDashboard::class);
+});
+```
+
+The same applies to any component registered by `nasirkhan/laravel-cube` or `nasirkhan/module-manager`.
+
+## Permissions
+
+Permissions follow the `{access}_{module}` naming convention. Examples: `view_posts`, `add_categories`, `edit_settings`, `delete_users`, `restore_tags`. See `.ai/rules/seeders.md` for the full rule.
+
+Roles and permissions are managed via `spatie/laravel-permission`. Always seed permissions through `database/seeders/` using this convention — never create them ad hoc in controllers.
+
+## Key Third-Party Packages
+
+- **`spatie/laravel-permission`** — RBAC. Use `@can` / `Gate::authorize()` for authorization; never roll your own.
+- **`spatie/laravel-medialibrary`** — media uploads. Models that handle media implement `HasMedia` and use `InteractsWithMedia`.
+- **`intervention/image`** — image manipulation, used inside media library conversions.
+- **`laravel/socialite`** — OAuth social login. Use the `socialite-development` skill when working on social auth.
+
