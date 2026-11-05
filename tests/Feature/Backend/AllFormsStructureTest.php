@@ -129,8 +129,8 @@ class AllFormsStructureTest extends TestCase
         $this->assertStringContainsString('window.history.back()', $content,
             'cancel component should use safe navigation');
 
-        // Should create a button element
-        $this->assertStringContainsString('<button', $content,
-            'cancel component should create a button element');
+        // Should render as an anchor element (never triggers form submission)
+        $this->assertStringContainsString('<a', $content,
+            'cancel component should render as an anchor element');
     }
 }
