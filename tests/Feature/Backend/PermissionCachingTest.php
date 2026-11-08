@@ -5,9 +5,11 @@ namespace Tests\Feature\Backend;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Database\Seeders\Auth\UserRoleTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -310,6 +312,69 @@ class PermissionCachingTest extends TestCase
             $roles->first()->relationLoaded('permissions'),
             'Roles from the eager-load cache branch should also have permissions loaded'
         );
+    }
+
+    #[Test]
+    public function assign_role_writes_the_pivot_row_even_when_a_stale_cache_claims_the_user_has_it(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::findOrCreate('stale-role', 'web');
+
+        // Prime the forever-cache so the cached accessor falsely reports the user already
+        // has the role, while no model_has_roles row exists (the migrate:fresh scenario).
+        Cache::forever('roles_user_'.$user->id.'_never', collect([$role]));
+
+        $user->assignRole('stale-role');
+
+        $this->assertDatabaseHas('model_has_roles', [
+            'role_id' => $role->id,
+            'model_id' => $user->id,
+            'model_type' => $user->getMorphClass(),
+        ]);
+        $this->assertTrue($user->fresh()->hasRole('stale-role'));
+    }
+
+    #[Test]
+    public function give_permission_to_writes_the_pivot_row_even_when_a_stale_cache_claims_the_user_has_it(): void
+    {
+        $user = User::factory()->create();
+        $permission = Permission::findOrCreate('stale-permission', 'web');
+
+        Cache::forever('permissions_user_'.$user->id.'_never', collect([$permission]));
+
+        $user->givePermissionTo('stale-permission');
+
+        $this->assertDatabaseHas('model_has_permissions', [
+            'permission_id' => $permission->id,
+            'model_id' => $user->id,
+            'model_type' => $user->getMorphClass(),
+        ]);
+        $this->assertTrue($user->fresh()->hasPermissionTo('stale-permission'));
+    }
+
+    #[Test]
+    public function seeder_grants_super_admin_every_ability_through_the_gate_bypass_despite_a_stale_cache(): void
+    {
+        $userRoles = [
+            'super@admin.com' => 'super admin',
+            'admin@admin.com' => 'administrator',
+            'manager@manager.com' => 'manager',
+            'executive@executive.com' => 'executive',
+            'user@user.com' => 'user',
+        ];
+        foreach ($userRoles as $email => $role) {
+            User::factory()->create(['email' => $email]);
+            Role::findOrCreate($role, 'web');
+        }
+        $superAdmin = User::where('email', 'super@admin.com')->firstOrFail();
+
+        // Simulate a file cache warmed by a previous database that outlived migrate:fresh.
+        Cache::forever('roles_user_'.$superAdmin->id.'_never', collect([Role::findByName('super admin', 'web')]));
+
+        (new UserRoleTableSeeder)->run();
+
+        $this->assertTrue($superAdmin->fresh()->hasRole('super admin'));
+        $this->assertTrue(Gate::forUser($superAdmin->fresh())->allows('any-undefined-ability'));
     }
 
     #[Test]

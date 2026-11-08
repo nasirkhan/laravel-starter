@@ -89,24 +89,40 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     }
 
     /**
-     * Override assignRole to clear the permission cache after Spatie v7 internally
-     * accesses $this->roles (which would otherwise cache a stale empty collection).
+     * Override assignRole so the role is always written to the pivot table.
+     *
+     * Spatie's assignRole reads $this->roles to compute array_diff(wanted, current)
+     * before attaching. Because this model caches that accessor forever, a stale entry
+     * (e.g. one that survived a migrate:fresh) can make the diff empty and silently skip
+     * the INSERT. Clear the cache and unset the loaded relation BEFORE delegating so the
+     * diff is computed from fresh database state, then clear again so later reads re-warm.
      */
     public function assignRole(...$roles): static
     {
+        $this->clearPermissionCache();
+        $this->unsetRelation('roles');
+
         $result = $this->assignRoleOriginal(...$roles);
+
         $this->clearPermissionCache();
 
         return $result;
     }
 
     /**
-     * Override givePermissionTo to clear the permission cache after Spatie v7 internally
-     * accesses $this->permissions (which would otherwise cache a stale empty collection).
+     * Override givePermissionTo so the permission is always written to the pivot table.
+     *
+     * Same stale-cache hazard as assignRole: Spatie reads $this->permissions to diff
+     * before attaching. Clear the cache and unset the loaded relation BEFORE delegating,
+     * then clear again afterward.
      */
     public function givePermissionTo(...$permissions): static
     {
+        $this->clearPermissionCache();
+        $this->unsetRelation('permissions');
+
         $result = $this->givePermissionToOriginal(...$permissions);
+
         $this->clearPermissionCache();
 
         return $result;

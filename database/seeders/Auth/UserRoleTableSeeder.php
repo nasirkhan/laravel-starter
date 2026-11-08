@@ -18,6 +18,11 @@ class UserRoleTableSeeder extends Seeder
      */
     public function run()
     {
+        // Clear any cache left over from a previous database (the file cache store
+        // survives migrate:fresh). A stale roles_user_{id}_{lastUpdated} entry would
+        // otherwise make Spatie's assignRole diff empty and skip the pivot INSERT.
+        Artisan::call('cache:clear');
+
         $userRoles = [
             'super@admin.com' => 'super admin',
             'admin@admin.com' => 'administrator',
