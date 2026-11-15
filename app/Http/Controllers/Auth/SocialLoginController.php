@@ -146,7 +146,7 @@ class SocialLoginController extends Controller
 
         try {
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-            $user->avatar = $media->getUrl();
+            $user->avatar = User::imagePathFromUrl($media->getUrl());
             $user->save();
         } catch (Exception $e) {
             Log::warning('Failed to import social avatar', [

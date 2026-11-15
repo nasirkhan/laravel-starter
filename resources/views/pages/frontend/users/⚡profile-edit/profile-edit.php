@@ -127,7 +127,7 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
             $media = $this->user->addMedia($this->avatar->getRealPath())
                 ->toMediaCollection('users');
 
-            $this->user->update(['avatar' => $media->getUrl()]);
+            $this->user->update(['avatar' => User::imagePathFromUrl($media->getUrl())]);
         }
 
         session()->flash(key: 'flash_success', value: 'Update successful!');

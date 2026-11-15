@@ -23,6 +23,19 @@ trait HasHashedMediaTrait
     }
 
     /**
+     * Reduce a media URL to a host-relative path for storage, so a domain
+     * change never invalidates stored media URLs.
+     *
+     * Media Library's getUrl() always returns an absolute URL (scheme + host)
+     * via its URL generator; keeping only the path lets the browser resolve it
+     * against the current host when used directly as a src attribute.
+     */
+    public static function imagePathFromUrl(string $url): string
+    {
+        return parse_url($url, PHP_URL_PATH) ?: $url;
+    }
+
+    /**
      * Create an UploadedFile object from absolute path.
      *
      * @param  string  $path
