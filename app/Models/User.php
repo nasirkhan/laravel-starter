@@ -64,6 +64,18 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     }
 
     /**
+     * Get the fully-qualified URL for the stored avatar path.
+     *
+     * The avatar column stores a host-relative path; this accessor expands it to
+     * an absolute URL. Legacy rows that still hold an absolute URL pass through
+     * untouched. Use $user->avatar_full_url wherever an absolute URL is needed.
+     */
+    public function getAvatarFullUrlAttribute(): ?string
+    {
+        return static::imageUrlFromPath($this->avatar ?? null);
+    }
+
+    /**
      * Retrieve the providers associated with the user.
      */
     public function providers(): HasMany

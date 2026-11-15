@@ -36,6 +36,27 @@ trait HasHashedMediaTrait
     }
 
     /**
+     * Resolve a stored media path back to a fully-qualified URL for display.
+     *
+     * Reverse of imagePathFromUrl(): rows written since the host-relative
+     * refactor hold a leading-slash path and are expanded with asset(); legacy
+     * rows that still hold an absolute URL (not yet backfilled) are returned
+     * untouched so both formats render correctly during a rolling upgrade.
+     */
+    public static function imageUrlFromPath(?string $path): ?string
+    {
+        if (blank($path)) {
+            return null;
+        }
+
+        if (str_contains($path, '://')) {
+            return $path;
+        }
+
+        return asset($path);
+    }
+
+    /**
      * Create an UploadedFile object from absolute path.
      *
      * @param  string  $path
