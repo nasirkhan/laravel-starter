@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserLoginSuccess;
 use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -66,6 +67,8 @@ class SocialLoginController extends Controller
             }
 
             Auth::login($authUser, true);
+
+            event(new UserLoginSuccess(request(), $authUser));
         } catch (Exception $e) {
             Log::error('Social login failed', [
                 'provider' => $provider,
