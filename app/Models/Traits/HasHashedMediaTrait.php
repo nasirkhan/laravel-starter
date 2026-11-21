@@ -23,6 +23,40 @@ trait HasHashedMediaTrait
     }
 
     /**
+     * Reduce a media URL to a host-relative path for storage, so a domain
+     * change never invalidates stored media URLs.
+     *
+     * Media Library's getUrl() always returns an absolute URL (scheme + host)
+     * via its URL generator; keeping only the path lets the browser resolve it
+     * against the current host when used directly as a src attribute.
+     */
+    public static function imagePathFromUrl(string $url): string
+    {
+        return parse_url($url, PHP_URL_PATH) ?: $url;
+    }
+
+    /**
+     * Resolve a stored media path back to a fully-qualified URL for display.
+     *
+     * Reverse of imagePathFromUrl(): rows written since the host-relative
+     * refactor hold a leading-slash path and are expanded with asset(); legacy
+     * rows that still hold an absolute URL (not yet backfilled) are returned
+     * untouched so both formats render correctly during a rolling upgrade.
+     */
+    public static function imageUrlFromPath(?string $path): ?string
+    {
+        if (blank($path)) {
+            return null;
+        }
+
+        if (str_contains($path, '://')) {
+            return $path;
+        }
+
+        return asset($path);
+    }
+
+    /**
      * Create an UploadedFile object from absolute path.
      *
      * @param  string  $path

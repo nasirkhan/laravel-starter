@@ -276,6 +276,41 @@ if (! function_exists('humanFilesize')) {
 
 /*
  *
+ * Shared Sqids instance (single source of truth for encode/decode)
+ *
+ * ------------------------------------------------------------------------
+ *
+ * Sqids supports exactly three options:
+ *   - alphabet:  characters + their order (this is the obfuscation; there is no salt)
+ *   - minLength: pad the output to at least this many characters (0 = no padding)
+ *   - blocklist: words the generated ids are guaranteed never to form
+ *
+ * Keeping this in one place means encode and decode can never drift apart.
+ * NOTE: changing the alphabet or its order invalidates every previously
+ * generated id. Changing minLength only pads new ids (old ids still decode).
+ */
+if (! function_exists('sqids')) {
+    /**
+     * Shared Sqids instance, cached per minLength so callers that need
+     * padding and callers that don't reuse the same objects.
+     */
+    function sqids(int $minLength = 0): Sqids
+    {
+        static $instances = [];
+        if (! isset($instances[$minLength])) {
+            $instances[$minLength] = new Sqids(
+                alphabet: 'abcdefghijklmnopqrstuvwxyz123456789',
+                minLength: $minLength,
+                // blocklist: Sqids::DEFAULT_BLOCKLIST, // profanity list is on by default
+            );
+        }
+
+        return $instances[$minLength];
+    }
+}
+
+/*
+ *
  * Encode Id to a Hashids / Sqids
  *
  * ------------------------------------------------------------------------
@@ -283,15 +318,14 @@ if (! function_exists('humanFilesize')) {
 if (! function_exists('encode_id')) {
     /**
      * Encode Id to Sqids.
+     *
+     * @param  int  $minLength  pad the output to at least this many characters
+     *                          (0 = no padding). e.g. encode_id($participantId, 6)
+     *                          for entry ids.
      */
-    function encode_id(int $id): string
+    function encode_id(int $id, int $minLength = 0): string
     {
-        static $sqids;
-        if (! $sqids) {
-            $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
-        }
-
-        return $sqids->encode([$id]);
+        return sqids($minLength)->encode([$id]);
     }
 }
 
@@ -307,11 +341,7 @@ if (! function_exists('decode_id')) {
      */
     function decode_id(string $hashid): ?int
     {
-        static $sqids;
-        if (! $sqids) {
-            $sqids = new Sqids(alphabet: 'abcdefghijklmnopqrstuvwxyz123456789');
-        }
-        $id = $sqids->decode($hashid);
+        $id = sqids()->decode($hashid);
 
         return count($id) ? $id[0] : null;
     }

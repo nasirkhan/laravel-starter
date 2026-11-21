@@ -93,6 +93,18 @@ class BaseModel extends Model implements HasMedia
     }
 
     /**
+     * Get the fully-qualified URL for the stored image path.
+     *
+     * The image column stores a host-relative path; this accessor expands it to
+     * an absolute URL for contexts that require one (og:image tags, feeds, API
+     * responses). Use $model->image_full_url wherever an absolute URL is needed.
+     */
+    public function getImageFullUrlAttribute(): ?string
+    {
+        return static::imageUrlFromPath($this->image ?? null);
+    }
+
+    /**
      * Get Status Label.
      */
     public function getStatusLabelAttribute()

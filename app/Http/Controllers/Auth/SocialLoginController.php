@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserLoginSuccess;
 use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -66,6 +67,8 @@ class SocialLoginController extends Controller
             }
 
             Auth::login($authUser, true);
+
+            event(new UserLoginSuccess(request(), $authUser));
         } catch (Exception $e) {
             Log::error('Social login failed', [
                 'provider' => $provider,
@@ -146,7 +149,7 @@ class SocialLoginController extends Controller
 
         try {
             $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-            $user->avatar = $media->getUrl();
+            $user->avatar = User::imagePathFromUrl($media->getUrl());
             $user->save();
         } catch (Exception $e) {
             Log::warning('Failed to import social avatar', [
